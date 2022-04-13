@@ -144,3 +144,54 @@ input:checked ~ .dot {
 .btn-lightBlue {
   background-color: var(--lightBlue);
 }
+.btn-darkBlue {
+background-color: var(--darkBlue);
+}
+.btn-darkYellow {
+  background-color: var(--darkYellow);
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 300px) {
+  @keyframes example {
+  0%   {right:-120%;}
+  100% {right:-48%;}
+  } 
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  @keyframes example {
+  0%   {right:-120%;}
+  100% {right:-70%;}
+  }  
+}
+
+
+
+.notification-animation {
+animation:example 1s;
+animation-fill-mode: forwards;
+}
+
+.notification-box {
+position:relative;
+top:1px;
+right:110%;
+display:inline-block;
+z-index:1;
+max-width:300px;
+transition:0.5s easy-in-out;
+  animation-delay: 0s;
+}
+
+.not-box {
+display:inline-block;
+background-color: #f8f8f8;
+color: #666;
+border-radius: 5px;
+padding: 10px;
+border-left:10px solid green;
+
+}

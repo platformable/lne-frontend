@@ -5,15 +5,25 @@ import styles from "../../styles/Home.module.css";
 import AuthUserListRow from "../../components/AuthUserListRow";
 import AddUserModal from "../../components/AddUserModal";
 import EditAuthUserModal from "../../components/EditAuthUserModal";
-
+import NotificationBox from '../../components/NotificationBox';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AuthorizedUsersIndex({data}) {
     const { user, error, isLoading } = useUser();
     const [showModal,setShowModal] = useState(false)
 
+    const [notificationMessage,setNotificationMessage]=useState(false)
+
     const [showEditAuthUserModal,setShowEditAuthUserModal] = useState(false)
     const [selectedUser,setSelectedUser]=useState({})
-
+    
+ const notifyMessage= ()=>{
+  toast.success("A new user has been saved!", {
+    position: toast.POSITION.TOP_CENTER,
+    
+  });
+ }
 
   return (
     <>
@@ -34,32 +44,32 @@ export default function AuthorizedUsersIndex({data}) {
             <Link
               href="/api/auth/logout"
             >
-            <a className={`${styles.btnIndexPage} inline-block btn-index-page text-black px-3 py-0 rounded-md`}>Logout</a>
+            <a className={`btn-darkYellow inline-block btn-index-page text-black px-3 py-0 rounded-md`}>Logout</a>
 
             </Link>
           </div>
         </div>
       </header>
       <main>
+      <ToastContainer autoClose={2000}/>
           <section>
            <div className="container mx-auto"> 
 
            <div className="flex my-5">
               <Link href="/dashboard">
-              <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
-         
-Dashboard
+              <button className="rounded btn-darkYellow px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
+                Home
               </button>
               </Link>
-              <Link href="/users">
+  {/*             <Link href="/users">
               <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
                Users 
 
               {" "}
        
               </button>
-              </Link>
-              <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block" id="myBtn" onClick={()=>setShowModal(!showModal)}>
+              </Link> */}
+              <button className="rounded btn-darkYellow px-5 py-2 flex shadow-xl inline-block" id="myBtn" onClick={()=>setShowModal(!showModal)}>
                 <svg
                   className="mr-2"
                   width="24"
@@ -139,8 +149,13 @@ Dashboard
           </div>
           </section>
       </main>
-      {showModal &&<AddUserModal setShowModal={setShowModal} showModal={showModal}/>}
+      {showModal &&<AddUserModal 
+      setShowModal={setShowModal} 
+      showModal={showModal}
+      notifyMessage={notifyMessage}
+      />}
       {showEditAuthUserModal &&<EditAuthUserModal setShowEditAuthUserModal={setShowEditAuthUserModal}  showEditAuthUserModal={showEditAuthUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
+       
     </>
   )
 }

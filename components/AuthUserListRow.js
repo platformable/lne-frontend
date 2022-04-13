@@ -16,8 +16,6 @@ export default function AuthUserListRow({authorizeduser,setShowEditAuthUserModal
   }
 
   const handleAuthUserDelete = (id)=>{
-
-
     axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/`,{data:{id}})
     .then(response=>{
       router.reload()
@@ -29,9 +27,7 @@ export default function AuthUserListRow({authorizeduser,setShowEditAuthUserModal
   return (
     <> 
 
-    <div
-                className={`${styles.dashboardClientListHeadRow} border rounded-md py-3 px-5 my-1 `}
-              >
+              <div className={`${styles.dashboardClientListHeadRow} border rounded-md py-3 px-5 my-1 `}>
                 <div className="head-row ">
                   <p className="text-center">{id}</p>
                 </div>

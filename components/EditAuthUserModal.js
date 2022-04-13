@@ -6,6 +6,7 @@ import Loader from "./Loader";
 export default function EditAuthUserModal({selectedUser, setShowEditAuthUserModal, showEditAuthUserModal }) {
   const router = useRouter()
   const [userData,setUserData]= useState(selectedUser || {
+    id:selectedUser.id,
     name:"",
     lastname:"",
     email:"",
@@ -14,6 +15,7 @@ export default function EditAuthUserModal({selectedUser, setShowEditAuthUserModa
   })
 
   const [saving,setSaving] = useState(false)
+  console.log("selectedUser",selectedUser)
 
   const EditUser =  (user)=> {
  

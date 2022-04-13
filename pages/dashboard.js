@@ -9,7 +9,10 @@ import AddUserModal from "../components/AddUserModal";
 export default function Dashboard() {
   const { user, error, isLoading } = useUser();
   const [showModal,setShowModal] = useState(false)
+  const loggedUserRole = user && user['https://lanuevatest.herokuapp.com/roles']
+  console.log("loggedUserRole",loggedUserRole)
  
+
 
  
   return (
@@ -43,22 +46,47 @@ export default function Dashboard() {
       <main className="mt-5 ">
         <section id="dashboard-client-list">
           <div className="container mx-auto">
-          {/*   <h3 className="font-black my-5">What you want to do today?</h3> */}
+          <h1 className="font-black my-5">Hello  {user && user["https://lanuevatest.herokuapp.com/name"]}</h1>
+          <h3 className="font-black my-5">What you want to do today?</h3> 
             <div className="flex mb-5">
-            <Link href="/authorizedusers">
-              <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
-              <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 21.4V2.6C4 2.26863 4.26863 2 4.6 2H16.2515C16.4106 2 16.5632 2.06321 16.6757 2.17574L19.8243 5.32426C19.9368 5.43679 20 5.5894 20 5.74853V21.4C20 21.7314 19.7314 22 19.4 22H4.6C4.26863 22 4 21.7314 4 21.4Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 10L16 10" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 18L16 18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 14L12 14" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              {" "}
-                Authorized Users
-              </button>
-              </Link>
-              <Link href="/users">
+              {loggedUserRole==='Supervisor'&& (
+                <Link href="/authorizedusers">
+                  <div className="text-center mr-5"> 
+                  <div className="rounded btn-darkYellow p-5 text-center shadow-xl   mb-2 rounded-xl">
+                <button  id="myBtn">
+                <div className="flex justify-center">
+                <svg width="102" height="102" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                </div>
+                </button>
+                </div>
+                { ' ' }
+                <p clasName="my-5">MANAGE USERS</p>
+                </div>
+                </Link>
+              )}
+
+
+                  <div className="text-center mr-5"> 
+                  <div className="rounded btn-darkBlue p-5 text-center shadow-xl   mb-2 rounded-xl">
+                <button  id="myBtn">
+                <div className="flex justify-center">
+                <svg width="102" height="102" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 10H20M23 10H20M20 10V7M20 10V13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                </div>
+                </button>
+                </div>
+                { ' ' }
+                <p clasName="my-5">ADD NEW CLIENT</p>
+                </div>
+
+            
+    {/*           <Link href="/users">
               <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
               <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 21.4V2.6C4 2.26863 4.26863 2 4.6 2H16.2515C16.4106 2 16.5632 2.06321 16.6757 2.17574L19.8243 5.32426C19.9368 5.43679 20 5.5894 20 5.74853V21.4C20 21.7314 19.7314 22 19.4 22H4.6C4.26863 22 4 21.7314 4 21.4Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
@@ -70,39 +98,11 @@ export default function Dashboard() {
               {" "}
                 Users
               </button>
-              </Link>
+              </Link> */}
               
-              <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block" id="myBtn" /* onClick={()=>setShowModal(!showModal)} */>
-                <svg
-                  className="mr-2"
-                  width="24"
-                  height="24"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17 10H20M23 10H20M20 10V7M20 10V13"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>{" "}
-                Add new Client
-              </button>
+             
+        
+                
             </div>
             {/* <div className="dashboard-client-list">
             <h3 className="font-black text-center my-5">Client list</h3>
@@ -131,7 +131,7 @@ export default function Dashboard() {
               </div>
             </div> */}
             <div className="dashboard-client-list mt-5">
-              <h1 className="font-black text-center my-5">No active clients</h1>
+              <h1 className="font-black text-center my-5"></h1>
 {/*               <UserListRow /> */}
             </div>
           </div>

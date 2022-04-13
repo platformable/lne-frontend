@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Loader from "./Loader";
 
-export default function AddUserModal({ showModal, setShowModal }) {
+export default function AddUserModal({ showModal, setShowModal,notificationMessage,setNotificationMessage,notifyMessage }) {
   const router = useRouter()
   const [userData,setUserData]= useState({
     name:"",
@@ -19,7 +19,11 @@ export default function AddUserModal({ showModal, setShowModal }) {
      axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/create`,userData)
     .then(function (response) {
       setShowModal(!showModal)
-      router.reload()
+      notifyMessage()
+      setTimeout(()=>{
+        router.reload()
+      },3000)
+      
     })
     .catch(function (error) {
       console.log("client error",error);
