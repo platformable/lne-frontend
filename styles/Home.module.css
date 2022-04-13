@@ -1,0 +1,23 @@
+.btnIndexPage {
+  background-color:var(--yellow);
+  transition: 0.5s ease-in-out;
+  
+}
+.btnIndexPage:hover {
+  background-color:var(--darkYellow);
+  transition: 0.5s ease-in-out;
+
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+
+.dashboardClientListHeadRow {
+  display:grid;
+  grid-template-columns: 0.5fr 1fr 2fr 2fr 2fr 2fr 1fr 1fr;
+}

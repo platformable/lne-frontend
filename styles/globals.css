@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-size:14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  font-size:14px;
+}
+
+h1 {
+  font-size:28px;
+  margin:0;
+}
+
+h2 {
+  font-size:24px;
+  margin:0;
+}
+
+h3 {
+  font-size:18px;
+  margin:0;
+}
+
+h4 {
+  font-size:15px;
+  margin:0;
+}
+
+h5 {
+  font-size:14px;
+  margin:0;
+}
+
+h6 {
+  font-size:12px;
+  margin:0;
+}
+
+:root {
+  --yellow:#EBD841;
+  --lightYellow:#FDF8CE;
+  --darkYellow:#D3C23B;
+  --lightBlue:#D0E7FD;
+  --blue:#62A6E5;
+  --darkBlue:#2278C9;
+  --pink:#FF9EB6;
+  --strongPink:#FF56A5;
+  --purple:#AD4BBF;
+  --orange:#FFA100;
+  --green:#45CCC2;
+  --blue2:#005AAF;
+  --lightPink:#FFF0F4;
+  --lightStringPink:#FFE8F3;
+  --lightPurple:#FCEDFF;
+  --lightOrange:#FFF1D8;
+  --lightGreen:#E8FCFA;
+  --lightBlue:#E5F2FF;
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid;
+    border-color: white;
+    border-right-color: black;
+    animation: spinner-d3wgkg 1s infinite linear;
+ }
+ 
+ @keyframes spinner-d3wgkg {
+    to {
+       transform: rotate(1turn);
+    }
+ }
+  /* The Modal (background) */
+
+
+
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  /* background-color: #fefefe; */
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Toggle A */
+/* input:checked ~ .dot {
+  transform: translateX(100%);
+  background-color: var(--yellow);
+} */
+
+/* Toggle B */
+input:checked ~ .dot {
+  transform: translateX(100%);
+  background-color: var(--yellow);
+}
+
+.btn-lightBlue {
+  background-color: var(--lightBlue);
+}
