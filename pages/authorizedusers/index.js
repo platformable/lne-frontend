@@ -5,7 +5,6 @@ import styles from "../../styles/Home.module.css";
 import AuthUserListRow from "../../components/AuthUserListRow";
 import AddUserModal from "../../components/AddUserModal";
 import EditAuthUserModal from "../../components/EditAuthUserModal";
-import NotificationBox from '../../components/NotificationBox';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
