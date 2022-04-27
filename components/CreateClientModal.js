@@ -74,7 +74,7 @@ if(clientData.clientFirstName==""
 ||clientData.clientSSN==""|| 
 clientData.clientID=="") {checkEmtpyFields()}
 else{
-  axios(`http://localhost:5500/clients/create`,{
+  axios(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`,{
     method:'POST',
     headers: {
      'Accept': 'application/json',
