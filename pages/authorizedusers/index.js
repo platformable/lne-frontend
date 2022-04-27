@@ -142,7 +142,7 @@ export default function AuthorizedUsersIndex({data}) {
                    showEditAuthUserModal={showEditAuthUserModal}
                    setSelectedUser={setSelectedUser}
                    />
-                }):"No hay data"}
+                }):"No Data"}
               
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function AuthorizedUsersIndex({data}) {
 // This gets called on every request
 export async function getServerSideProps() {
     // Fetch data from external API
-    const res = await fetch(`http://lanuevatest.herokuapp.com/authorizedusers`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers`)
     const data = await res.json()
     // Pass data to the page via props
     return { props: { data } }

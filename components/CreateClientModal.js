@@ -1,32 +1,108 @@
-import React,{ useState } from "react";
+import React,{ useState,useEffect,useRef } from "react";
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Loader from "./Loader";
 
-export default function EditUserModal({selectedUser, setShowEditUserModal, showEditUserModal }) {
+export default function CreateClientModal({ setShowCreateClientModal, showCreateClientModal,notifyMessage,setNotifyMessage,data,user }) {
   const router = useRouter()
-  const [userData,setUserData]= useState(selectedUser || {
-    name:"",
-    lastname:"",
-    email:"",
-    userRole:"",
-    isactive:false
+
+  const loggeduserId=user[`https://lanuevatest.herokuapp.com/roles`]
+  const loggedUserName=user[`https://lanuevatest.herokuapp.com/name`]
+  const loggedUserLastname=user[`https://lanuevatest.herokuapp.com/lastname`]
+
+  const {current:a} = useRef(['a'])
+  console.log("user",user)
+
+  const [users,setUsers]=useState([])
+  const [errorMessage,setErrorMessage]=useState("")
+  const [saving,setSaving] = useState(false)
+  const [emptyFields,setEmptyFields]=useState(false)
+
+  const [clientData,setClientData]= useState({
+    clientFirstName:"",
+    clientLastName:"",
+    clientSSN:"",
+    clientDateCreated:new Date(),
+    clientActive:true,
+    clientHCWID: loggeduserId !== "Supervisor" ? user.sub : "",
+    clientHCWName: loggedUserName,
+    clientHCWLastname: loggedUserLastname,
+    clientID:""
   })
 
-  const [saving,setSaving] = useState(false)
 
-  const EditUser =  (user)=> {
-
-   axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`,userData)
-    .then(function (response) {
-        setShowEditUserModal(!showEditUserModal)
-      router.reload()
-    })
-    .catch(function (error) {
-      console.log("client error",error);
-    }); 
+  const createClientId=()=>{
+    const firstNameLetter = clientData?.clientFirstName?.slice(0,1)
+    let shortSsn=String(clientData?.clientSSN)?.slice(-4)
+    let shortSsnNumber=Number(shortSsn)
+    const lastnameFirstLetter=clientData?.clientLastName?.slice(0,1)
+    const result =firstNameLetter.toUpperCase()+shortSsnNumber+lastnameFirstLetter.toUpperCase()
+    setClientData({...clientData,clientID:result})
   }
 
+  const getUsers = () => {
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`)
+    .then(res=>res.json())
+    .then(response=>setUsers(response))
+    .catch(err=>console.log("err",err))
+}
+
+  const showErrors =(message)=>{
+    setErrorMessage(message)
+  }
+
+  const changeSaving=(error)=>{
+    if(error.response.status===409){
+      setSaving(prevSelected => {return !prevSelected })
+    }
+  }
+
+  const checkEmtpyFields=()=>{
+    showErrors("")
+    setEmptyFields(prevState=> {return !prevState})
+    setSaving(prevSelected => {return !prevSelected })
+  }
+
+  const addClient =  ()=> {
+    
+    setSaving(!saving);
+    setEmptyFields(false)
+     //axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`,clientData)
+
+if(clientData.clientFirstName=="" 
+|| clientData.clientLastName=="" 
+||clientData.clientSSN==""|| 
+clientData.clientID=="") {checkEmtpyFields()}
+else{
+  axios(`http://localhost:5500/clients/create`,{
+    method:'POST',
+    headers: {
+     'Accept': 'application/json',
+     'Content-Type': 'application/json'
+   },
+   data: clientData
+  })
+ .then(function (response) {
+   if(response.status===200 || response.statusText==='Ok'){
+     setShowCreateClientModal(!showCreateClientModal)
+     notifyMessage()
+     setTimeout(()=>{
+       router.reload()
+     },2300)
+   } 
+ })
+ .catch(function (error) {
+   showErrors(error.response.data)
+   changeSaving(error)
+ });
+}
+ 
+  }
+
+  useEffect(()=>{
+    getUsers()
+    createClientId()
+},[clientData.clientFirstName,clientData.clientLastname,clientData.clientSSN,saving])
 
 
   return (
@@ -34,16 +110,16 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
       <div className="modal">
         <div className="mt-8 max-w-md mx-auto bg-white p-5 rounded">
           <div className="grid grid-cols-1 gap-6">
-            <h1 className="font-black">Edit Users information</h1>
+            <h1 className="font-black">Client Information</h1>
+            {emptyFields  && <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">Please Complete all the fields</span>} 
             <label className="block">
               <span className="">First name</span>
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="John Doe"
-                value={userData.name}
                 onChange={(e) =>
-                  setUserData({ ...userData, name: e.target.value })
+                  setClientData({ ...clientData, clientFirstName: e.target.value })
                 }
               />
             </label>
@@ -53,21 +129,21 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="John Doe"
-                value={userData.lastname}
                 onChange={(e) =>
-                  setUserData({ ...userData, lastname: e.target.value })
+                  setClientData({ ...clientData, clientLastName: e.target.value })
                 }
               />
             </label>
             <label className="block">
-              <span className="">Email address</span>
+              <span className="">Client Social Security Number</span>
+         
               <input
-                type="email"
+                type="number"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="john@example.com"
-                value={userData.useremail}
+                placeholder="1234567890"
+                onWheel={event => event.currentTarget.blur()}
                 onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
+                  setClientData({ ...clientData, clientSSN: e.target.value })
                 }
               />
             </label>
@@ -78,46 +154,51 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             />
           </label> */}
+          {loggeduserId === "Supervisor" ? (
             <label className="block">
-              <span className="text-gray-700">User role</span>
-              <select
-              value={userData.userrole}
-                onChange={(e) =>
-                  setUserData({ ...userData, userrole: e.target.value })
-                }
-                className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              >
-                <option>HWC</option>
-                <option>Supervisor</option>
-                <option>DES</option>
-              </select>
-            </label>
+            <span className="text-gray-700">Asign user</span>
+            <select
+              onChange={(e) =>
+                 
+                setClientData({ ...clientData, clientHCWID: e.target.value })
+              }
+              className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            ><option>-</option>
+                {users && users?.map((user,index)=>{
+              return <option value={user.user_id}>{user.useremail}</option>
+                })}
 
-           {/*  <label className="block">
+            </select>
+          </label>
+          ):""}
+            
+
+            <label className="block">
               <span className="text-gray-700">Active / No active</span>
               <select
-              value={userData.isactive}
-                onChange={(e) =>
-                  setUserData({ ...userData, role: e.target.value })
+                onChange={() =>
+                  setClientData({ ...clientData, isactive:!clientData.isactive })
                 }
                 className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
                 <option>Active</option>
                 <option>No Active</option>
               </select>
-            </label> */}
+            </label>
 
+            {errorMessage  && 
+            <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">
+            {errorMessage}
+            </span>} 
+            
             <div className="block">
               <div className="mt-2">
                 <div className="flex ">
                   <button
                     className="px-5  py-1 mr-3 font-medium bg-yellow-300  text-sm flex shadow-xl items-center rounded-md"
-                    onClick={() => {
-                      EditUser(selectedUser);
-                      setSaving(!saving);
-                    }}
+                    onClick={() => addClient()} 
                   >
-                    {saving ? (
+                    { saving ? (
                       <Loader />
                     ) : (
                       <svg
@@ -146,11 +227,11 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
                         />
                       </svg>
                     )}
-                    Update
+                    Save
                   </button>
                   <button
                     className="px-5  font-medium bg-black  text-sm text-white flex shadow-xl items-center rounded-md"
-                    onClick={() => setShowEditUserModal(!showEditUserModal)}
+                    onClick={() => setShowCreateClientModal(!showCreateClientModal)}
                   >
                     <svg
                       className="mr-1 relative "
@@ -187,14 +268,6 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
           </div>
         </div>
       </div>
-      {/* <div id="myModal" className="modal fade">
-        <div className="modal-content rounded-xl bg-red-500">
-          <span className="close" onClick={() => setShowModal(!showModal)}>
-            &times;
-          </span>
-          <p className="font-black">Some text in the Modal..</p>
-        </div>
-      </div> */}
     </>
   );
 }

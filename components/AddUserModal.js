@@ -15,7 +15,7 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
 
   const [saving,setSaving] = useState(false)
 
-  const addUser =  ()=> {process.env.DB_HOST
+  const addUser =  ()=> {
      axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/create`,userData)
     .then(function (response) {
       setShowModal(!showModal)
@@ -86,7 +86,7 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
                 }
                 className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>HWC</option>
+                <option>HCW</option>
                 <option>Supervisor</option>
                 <option>DES</option>
               </select>
