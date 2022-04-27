@@ -30,13 +30,13 @@ export default function Dashboard({ data }) {
       const userClients = allClients.map((client,index)=>{
         return (
           <>
-          <DashboardClientCard client={client}/>
+          <DashboardClientCard client={client} key={index}/>
           </>)
       })
       return userClients
     } else {
      const userClients= data.map((client,index)=>{
-     return  <DashboardClientCard client={client}/>
+     return  <DashboardClientCard client={client} key={index}/>
       })
       return userClients
     }

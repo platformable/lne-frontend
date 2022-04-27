@@ -165,7 +165,7 @@ else{
               className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             ><option>-</option>
                 {users && users?.map((user,index)=>{
-              return <option value={user.user_id}>{user.useremail}</option>
+              return <option value={user.user_id} key={index}>{user.useremail}</option>
                 })}
 
             </select>
