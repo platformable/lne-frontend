@@ -169,6 +169,7 @@ else{
                   setClientData({ ...clientData, clientLastName: e.target.value })
                 }
               />
+              
             </label>
             <label className="block">
               <span className="">Last 4 digits of social security number </span>
@@ -178,12 +179,13 @@ else{
                 placeholder="1234"
                 min="4" 
                 max="4"
-                value={(e)=>e.target.value.slice(0,4)}
+                
                 onWheel={event => event.currentTarget.blur()}
                 onChange={(e) =>
                   setClientData({ ...clientData, clientSSN: e.target.value })
                 }
               />
+              {clientData.clientSSN.length>4 && <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p>}
             </label>
             {/*  <label className="block">
             <span className="text-gray-700">When is your event?</span>

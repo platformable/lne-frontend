@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Layout from "../../../../components/Layout";
 import Styles from "../../../../styles/ServiceAP.module.css";
 import axios from 'axios'
-
+import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 
 export default function IndexServoceActionPlan({ data }) {
+  const router = useRouter()
   console.log("data", data);
   const [clientData, setClientData] = useState({
     clientId:data[0].clientid,
@@ -124,6 +125,20 @@ const services = [
               <h3>Service Action Plan</h3>
             </div>
           </div>
+        </section>
+        <section className="container mx-auto">
+    
+
+        <button 
+        onClick={()=>router.back()}
+        className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
+        <svg className="mr-2" width="20" height="20" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+        Back to client profile
+        </button>
+  
         </section>
         <section id="info" className="my-5 px-5">
           <div className="container mx-auto">
@@ -500,12 +515,12 @@ const services = [
           <h6 className="font-black">Signatures</h6>
           <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
             <div className="others-container-box flex gap-2 justify-center items-center" >
-              <p>Has client signed?</p>
+              <p>Has the client signed?</p>
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,HCWSignature:e.target.value})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
-              <p>Has health care worker signed?</p>
+              <p>Has the health care worker signed?</p>
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,HCWSignatureDate:e.target.value})}}/>
             </div>
@@ -521,6 +536,8 @@ const services = [
 
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
+          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
+            Save Progress</button>
             <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
             onClick={(e)=>{createClientActionPlan()}}>Save</button>
             <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>
