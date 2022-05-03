@@ -1,0 +1,20 @@
+.serviceActionPlanPageInfoContainer {
+    display:grid;
+    grid-template-columns: 1fr 2fr 2fr;
+}
+
+.serviceActionPlanPageInfoTitles {
+    grid-template-columns: 18px 2fr;
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .serviceActionPlanPageInfoContainer {
+        display:grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .serviceActionPlanPageInfoTitles {
+        grid-template-columns: 1fr;
+      } 
+  }

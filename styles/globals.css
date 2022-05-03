@@ -141,17 +141,7 @@ input[type=number] {
   cursor: pointer;
 }
 
-/* Toggle A */
-/* input:checked ~ .dot {
-  transform: translateX(100%);
-  background-color: var(--yellow);
-} */
 
-/* Toggle B */
-input:checked ~ .dot {
-  transform: translateX(100%);
-  background-color: var(--yellow);
-}
 
 .btn-lightBlue {
   background-color: var(--lightBlue);
@@ -210,4 +200,36 @@ border-left:10px solid green;
 
 .dashboard-card-name-box {
   grid-template-columns: 32px 2fr;
+}
+
+/* TEXT COLORS */
+
+.text-dark-blue {
+  color:var(--darkBlue);
+}
+
+.text-color-light-blue {
+  color:var(--blue);
+}
+/* BACKGROUNDS */
+
+.bg-dark-blue{
+  background-color: var(--darkBlue);
+}
+
+.bg-light-blue{
+  background-color: var(--lightBlue);
+}
+
+/* BORDERS */
+.border-black {
+  border:1px solid black;
+}
+
+.border-dark-blue {
+  border: 1px solid var(--darkBlue);
+}
+
+.verga {
+  color:red;
 }

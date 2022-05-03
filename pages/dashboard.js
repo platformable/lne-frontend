@@ -83,7 +83,7 @@ export default function Dashboard({ data }) {
             <h1 className="font-black my-5">
               Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
             </h1>
-            <h3 className="font-black my-5">What you want to do today? {userId}</h3>
+            <h3 className="font-black my-5">What you want to do today? </h3>
             <div className="flex mb-5">
               {loggedUserRole === "Supervisor" && (
                 <Link href="/authorizedusers">

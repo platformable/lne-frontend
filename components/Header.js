@@ -10,7 +10,7 @@ export default function Header() {
   return (
      <header className="border-b">
         <div className="container mx-auto py-5  grid space-between grid-cols-2">
-          <img src="./logo.png" alt="" width={125} />
+          <Link href="/dashboard"><img src="../../../../logo.png" alt="" width={125} className="cursor-pointer" /></Link>
           <div id="head-user" className="grid place-items-end">
             <h3 className="font-black">
               {user && user["https://lanuevatest.herokuapp.com/name"]}

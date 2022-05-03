@@ -43,7 +43,7 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="John Doe"
+                placeholder="John"
                 onChange={(e) =>
                   setUserData({ ...userData, name: e.target.value })
                 }
@@ -54,7 +54,7 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="John Doe"
+                placeholder="Doe"
                 onChange={(e) =>
                   setUserData({ ...userData, lastname: e.target.value })
                 }

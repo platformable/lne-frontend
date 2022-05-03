@@ -110,14 +110,50 @@ else{
       <div className="modal">
         <div className="mt-8 max-w-md mx-auto bg-white p-5 rounded">
           <div className="grid grid-cols-1 gap-6">
+            <div className="flex justify-between">
             <h1 className="font-black">Client Information</h1>
+            <button
+                    className="text-sm text-white"
+                    onClick={() => setShowCreateClientModal(!showCreateClientModal)}
+                  >
+                    <svg
+                      className="mr-1 relative "
+                      width="24"
+                      height="24"
+                      strokeWidth="1.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3 17V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17Z"
+                        stroke="black"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M10 14.2426L12.1213 12.1213M12.1213 12.1213L14.2426 10M12.1213 12.1213L10 10M12.1213 12.1213L14.2426 14.2426"
+                        stroke="black"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M6 8H7"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    
+                  </button>
+            </div>
+           
             {emptyFields  && <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">Please Complete all the fields</span>} 
             <label className="block">
               <span className="">First name</span>
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="John Doe"
+                placeholder="John"
                 onChange={(e) =>
                   setClientData({ ...clientData, clientFirstName: e.target.value })
                 }
@@ -128,19 +164,21 @@ else{
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="John Doe"
+                placeholder="Doe"
                 onChange={(e) =>
                   setClientData({ ...clientData, clientLastName: e.target.value })
                 }
               />
             </label>
             <label className="block">
-              <span className="">Client Social Security Number</span>
-         
+              <span className="">Last 4 digits of social security number </span>
               <input
                 type="number"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="1234567890"
+                placeholder="1234"
+                min="4" 
+                max="4"
+                value={(e)=>e.target.value.slice(0,4)}
                 onWheel={event => event.currentTarget.blur()}
                 onChange={(e) =>
                   setClientData({ ...clientData, clientSSN: e.target.value })
@@ -174,7 +212,7 @@ else{
             
 
             <label className="block">
-              <span className="text-gray-700">Active / No active</span>
+              <span className="text-gray-700">is Active / No active</span>
               <select
                 onChange={() =>
                   setClientData({ ...clientData, isactive:!clientData.isactive })
@@ -229,7 +267,7 @@ else{
                     )}
                     Save
                   </button>
-                  <button
+                  {/* <button
                     className="px-5  font-medium bg-black  text-sm text-white flex shadow-xl items-center rounded-md"
                     onClick={() => setShowCreateClientModal(!showCreateClientModal)}
                   >
@@ -261,7 +299,7 @@ else{
                       />
                     </svg>
                     Close
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

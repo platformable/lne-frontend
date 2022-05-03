@@ -5,7 +5,7 @@ export default function DashboardClientCard({client}) {
   return (
     <div className="dashboard-clients-box">
     <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm ">
-      <div className="grid  dashboard-card-name-box gap-1 ">
+      <div className="grid dashboard-card-name-box gap-1 ">
         <svg
           width="24"
           height="24"
@@ -39,7 +39,7 @@ export default function DashboardClientCard({client}) {
           />
         </svg>
         <h5 className="text-gray-900 text-xl leading-tight font-black">
-          {client.clientfirstname}{' '}{client.clientlastname}
+          {client.clientfirstname}{' '}{client.clientlastname.charAt(0)}
         </h5>
       </div>
       
@@ -70,9 +70,9 @@ export default function DashboardClientCard({client}) {
             fill="currentColor"
           />
         </svg>
-        <p className=""><span className="font-black">Id:</span> {client.clientid}</p>
+        <p className=""><span className="font-black">Client ID:</span> {client.clientid}</p>
       </div>
-      <div className="grid dashboard-card-name-box gap-1">
+     {/*  <div className="grid dashboard-card-name-box gap-1">
       <svg stroke="black" className="font-black" width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path strokeWidth="2" d="M15 4V2M15 4V6M15 4H10.5M3 10V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V10H3Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
       <path strokeWidth="2" d="M3 10V6C3 4.89543 3.89543 4 5 4H7" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
@@ -80,8 +80,8 @@ export default function DashboardClientCard({client}) {
       <path strokeWidth="2" d="M21 10V6C21 4.89543 20.1046 4 19 4H18.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
         <p className=""><span className="font-black">Created:</span> 21/04/22</p>
-      </div>
-      <div className="grid dashboard-card-name-box gap-1 my-2">
+      </div> */}
+      {/* <div className="grid dashboard-card-name-box gap-1 my-2">
         <svg
           width="24"
           height="24"
@@ -109,7 +109,7 @@ export default function DashboardClientCard({client}) {
           />
         </svg>
         <p className=""><span className="font-black">HCW Id:</span> {client.clienthcwid.slice(-4)}</p>
-      </div>
+      </div> */}
 
       <a href={`/clients/${client.clientid}`}><Link href={`/clients/${client.clientid}/profile/`}><button
         type="button"
