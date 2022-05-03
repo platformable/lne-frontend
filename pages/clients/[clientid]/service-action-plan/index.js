@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 
-export default function indexServoceActionPlan({ data }) {
+export default function IndexServoceActionPlan({ data }) {
   console.log("data", data);
   const [clientData, setClientData] = useState({
     clientId:data[0].clientid,
