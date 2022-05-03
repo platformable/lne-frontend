@@ -12,12 +12,12 @@ export default function ClientProfilePage({ data }) {
         <div className="container mx-auto my-5 grid grid-cols-2 gap-5">
 
     <div className="text-center"> 
-          <h3>Client Name: {data[0].clientfirstname}</h3>
-          <h3>Client Lastname: {data[0].clientlastname.charAt(0)}</h3>
+          <h3>Client: {data[0].clientfirstname}{' '}{data[0].clientlastname.charAt(0)}</h3>
+          
           </div>
           <div className="text-center">
-          <h3>HCW Name: {data[0].clienthcwlastname}</h3>
-          <h3>HCW Lastname: {data[0].clienthcwname}</h3>
+          <h3>HCW: {data[0].clienthcwlastname}{' '}{data[0].clienthcwname}</h3>
+
           </div>
         </div>
       </section>
