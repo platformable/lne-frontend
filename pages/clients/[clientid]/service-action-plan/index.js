@@ -67,17 +67,14 @@ export default function IndexServoceActionPlan({ data }) {
   ]
 
 const services = [
-"Development of Action Plan with Client",
 "CD4/VL Lab Report Check",
 "Transportation Coordination",
 "Translation/Interpretation",
 "Comprehensive Behavioral Risk Assessment",
-"Tickler Update",
 "Treatment Education and Adherence Counselling",
 "Prevention Counselling",
 "Supportive Counselling",
 "Escort",
-"Case Closure/Discharge",
 "Linkage to Services",
 "Other form of Assistance",
   ]

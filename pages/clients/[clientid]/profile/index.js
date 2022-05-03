@@ -16,7 +16,7 @@ export default function ClientProfilePage({ data }) {
           
           </div>
           <div className="text-center">
-          <h3>HCW: {data[0].clienthcwlastname}{' '}{data[0].clienthcwname}</h3>
+          <h3>HCW:{data[0].clienthcwname}{' '} {data[0].clienthcwlastname}</h3>
 
           </div>
         </div>
