@@ -41,6 +41,7 @@ export default function IndexServoceActionPlan({ data }) {
     HCWSignature:"",
     HCWSignatureDate:"",
     supervisorSignature:"",
+    clientSignature:""
   });
 
   console.log("clientData",clientData)
@@ -102,7 +103,7 @@ const services = [
 
 
   const createClientActionPlan = ()=>{
-    axios.post('http://localhost:5500/client_action_plan', {
+    axios.post('http://localhost:5500/services_action_plan', {
       clientData
     })
     .then(function (response) {
@@ -514,12 +515,12 @@ const services = [
             <div className="others-container-box flex gap-2 justify-center items-center" >
               <p>Has the client signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,HCWSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,clientSignature:e.target.value})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the health care worker signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,HCWSignatureDate:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,HCWSignature:e.target.value})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the supervisor signed?</p>
