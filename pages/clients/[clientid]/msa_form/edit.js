@@ -298,6 +298,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSIntakeFormDate &&
                     clientData.AIRSIntakeFormDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSIntakeFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -355,6 +356,7 @@ const handleMsaform = ()=> {
                     clientData.ComprehensiveRiskBehaviorAssessmentDate &&
                     clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
                   }
+                  disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -411,6 +413,7 @@ const handleMsaform = ()=> {
                     clientData.ServiceActionPlanDate &&
                     clientData.ServiceActionPlanDate.split('T')[0]
                   }
+                  disabled={clientData.ServiceActionPlanDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -468,6 +471,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSCollateralInformationDate &&
                     clientData.AIRSCollateralInformationDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSCollateralInformationDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -525,6 +529,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSFinancialInformationDate &&
                     clientData.AIRSFinancialInformationDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSFinancialInformationDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -582,6 +587,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSHIVAIDSRiskHistoryDate &&
                     clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -638,6 +644,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSHCVHistoryDate &&
                     clientData.AIRSHCVHistoryDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSHCVHistoryDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -695,6 +702,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSHousingInformationDate &&
                     clientData.AIRSHousingInformationDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSHousingInformationDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -752,6 +760,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSInsuranceInformationDate &&
                     clientData.AIRSInsuranceInformationDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSInsuranceInformationDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -809,6 +818,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSSubstanceUseHistoryDate &&
                     clientData.AIRSSubstanceUseHistoryDate.split('T')[0]
                   }
+                  disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -865,6 +875,7 @@ const handleMsaform = ()=> {
                     clientData.LNEClientRightsDate &&
                     clientData.LNEClientRightsDate.split('T')[0]
                   }
+                  disabled={clientData.LNEClientRightsDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -922,6 +933,7 @@ const handleMsaform = ()=> {
                     clientData.LNEClientGrievancePolicyProcedureDate &&
                     clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]
                   }
+                  disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -978,6 +990,7 @@ const handleMsaform = ()=> {
                     clientData.LNEProgramRulesDate &&
                     clientData.LNEProgramRulesDate.split('T')[0]
                   }
+                  disabled={clientData.LNEProgramRulesDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1035,6 +1048,7 @@ const handleMsaform = ()=> {
                     clientData.LNEEmergencyContactConsentDate &&
                     clientData.LNEEmergencyContactConsentDate.split('T')[0]
                   }
+                  disabled={clientData.LNEEmergencyContactConsentDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1092,6 +1106,7 @@ const handleMsaform = ()=> {
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate &&
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]
                   }
+                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1149,6 +1164,7 @@ const handleMsaform = ()=> {
                     clientData.HIPPAConsentFormDate &&
                     clientData.HIPPAConsentFormDate.split('T')[0]
                   }
+                  disabled={clientData.HIPPAConsentFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1209,6 +1225,7 @@ const handleMsaform = ()=> {
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate &&
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]
                   }
+                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1266,6 +1283,7 @@ const handleMsaform = ()=> {
                     clientData.LNEOutreachRetentionTrackingFormDate &&
                     clientData.LNEOutreachRetentionTrackingFormDate.split('T')[0]
                   }
+                  disabled={clientData.LNEOutreachRetentionTrackingFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1323,6 +1341,7 @@ const handleMsaform = ()=> {
                     clientData.LNEReferralInformationDate &&
                     clientData.LNEReferralInformationDate.split('T')[0]
                   }
+                  disabled={clientData.LNEReferralInformationDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1379,6 +1398,7 @@ const handleMsaform = ()=> {
                     clientData.LNEClientReferralFormDate &&
                     clientData.LNEClientReferralFormDate.split('T')[0]
                   }
+                  disabled={clientData.LNEClientReferralFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1435,6 +1455,7 @@ const handleMsaform = ()=> {
                     clientData.LNEHNSEligibilityFormDate &&
                     clientData.LNEHNSEligibilityFormDate.split('T')[0]
                   }
+                  disabled={clientData.LNEHNSEligibilityFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({

@@ -6,8 +6,17 @@ import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
+import { ToastContainer, toast } from "react-toastify";
+
 const Index = ({ data }) => {
    const router = useRouter()
+
+
+  const notifyMessage = () => {
+    toast.success("A new MSA Form has been created!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
 
     console.log("data",data)
   const [clientData, setClientData] = useState({
@@ -73,15 +82,21 @@ const handleMsaform = ()=> {
         clientData
       })
       .then(function (response) {
-        console.log(response);
+        if(response.status===200 || response.statusText==='Ok'){
+          notifyMessage()
+          setTimeout(()=>{
+            router.push(`/clients/${clientData.clientId}/profile`)
+          },2300)
+        } 
       })
       .catch(function (error) {
-        console.log(error);
+            console.log(error)
       });
 }
 
   return (
     <>
+    <ToastContainer autoClose={2000} />
       <Layout>
         <div className="container mx-auto">
           <h3 className="font-black text-center my-5">MSA FORM</h3>
@@ -286,6 +301,7 @@ const handleMsaform = ()=> {
                 <p>AIRS Intake Form <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
+                 
                 <input
                   type="date"
                   id="AIRSIntakeForm"
@@ -293,6 +309,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSIntakeFormDate &&
                     clientData.AIRSIntakeFormDate
                   }
+                  
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({

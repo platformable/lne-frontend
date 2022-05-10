@@ -11,7 +11,7 @@ export default function CreateClientModal({ setShowCreateClientModal, showCreate
   const loggedUserLastname=user[`https://lanuevatest.herokuapp.com/lastname`]
 
   const {current:a} = useRef(['a'])
-  console.log("user",user)
+
 
   const [users,setUsers]=useState([])
   const [errorMessage,setErrorMessage]=useState("")
@@ -67,7 +67,6 @@ export default function CreateClientModal({ setShowCreateClientModal, showCreate
     
     setSaving(!saving);
     setEmptyFields(false)
-     //axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`,clientData)
 
 if(clientData.clientFirstName=="" 
 || clientData.clientLastName=="" 
