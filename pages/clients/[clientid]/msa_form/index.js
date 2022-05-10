@@ -111,7 +111,7 @@ const handleMsaform = ()=> {
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
                   <h3 className="font-black mb-5">Date</h3>
                   <label className="block">
-                    <span className="text-xs">Today's date</span>
+                    <span className="text-xs">Today&apos;s date</span>
                     <p>{todaysDate.toLocaleDateString()}</p>
                   </label>
                 </div>
@@ -247,7 +247,7 @@ const handleMsaform = ()=> {
             </div>
           </section>
           <h6 className="font-black my-5 text-dark-blue">
-            Forms - checkmark if documents was added to client's file
+            Forms - checkmark if documents was added to client &apos;s file
           </h6>
           <section
             id="form"
