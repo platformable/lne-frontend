@@ -24,7 +24,7 @@ export default function Dashboard({ data }) {
 
   const getUserClients = ()=> {
 
-    if(loggedUserRole !=="Supervisor" ){
+    if(loggedUserRole !=="Supervisor" && loggedUserRole !=="DES" ){
 
       const allClients= data.filter(client=>client.clienthcwid===userId)
       const userClients = allClients.map((client,index)=>{
