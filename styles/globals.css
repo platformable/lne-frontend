@@ -233,3 +233,22 @@ border-left:10px solid green;
 .verga {
   color:red;
 }
+.user-box-container {
+  width: 110px;
+  height: 36px;
+  border: 2px solid #2278C9;
+  margin-bottom: -2px;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 2px solid white !important;
+
+}
+#client-profile-page-client-information::before {
+    content: "";
+    position: relative;
+    display: block;
+    top: 38px;
+    width: 106px;
+    height: 5px;
+    left: 2px;
+    background-color: white;
+}
