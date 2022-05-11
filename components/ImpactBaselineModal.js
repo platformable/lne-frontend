@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImpactModal = () => {
+const ImpactBaselineModal = () => {
 
     return (
         <>
@@ -43,12 +43,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Barriers to accessing HIV primary care</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>   
@@ -56,27 +56,27 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Barriers to accessing medications</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>   
                                     </div>  
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Difficulty to adhering to medications
-                                            or treatment plan
+                                            or <br/>treatment plan
                                         </p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>     
@@ -84,12 +84,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Detectable viral load</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>     
@@ -97,12 +97,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>More than 6 months since last HIV test</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -110,12 +110,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Uninformed about PrEP</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -138,12 +138,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Engaging in unsafe sexual behavior</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -151,12 +151,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Substance abuse</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -164,12 +164,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Fear or overdosing</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -196,12 +196,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Legal Issues</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -209,12 +209,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Unestable employment situation</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -238,12 +238,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Mental health issues</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>     
@@ -265,12 +265,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>An unstable housing situation</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -293,12 +293,12 @@ const ImpactModal = () => {
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5">
                                         <p className='font-bold text-xs'>Food insecurity</p>
                                         <div className='text-xs flex justify-between'>
-                                            <div className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            <span className='mx-2 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>Yes</label>
-                                            </div>
-                                            <span className='mx-2'>
-                                                <input className="mr-1" type="radio"/>
+                                            </span>
+                                            <span className='mx-1 md:mx-3 lg:mx-4'>
+                                                <input className="mr-1 md:mr-3" type="radio"/>
                                                 <label>No</label>
                                             </span>
                                         </div>      
@@ -325,4 +325,4 @@ const ImpactModal = () => {
     );
 };
 
-export default ImpactModal;
+export default ImpactBaselineModal;
