@@ -12,11 +12,13 @@ import { Dropbox } from "dropbox";
 import DashboardClientCard from '../components/DashboardClientCard'
 
 import Layout from "../components/Layout";
+import ImpactBaselineModal from "../components/ImpactBaselineModal";
 
 export default function Dashboard({ data }) {
   const { user, error, isLoading } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showCreateClientModal, setShowCreateClientModal] = useState(false);
+  const [showImpactBaselineModal, setShowImpactBaselineModal] = useState(false);
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
   const userId = user?.sub
 
@@ -231,6 +233,9 @@ export default function Dashboard({ data }) {
           notifyMessage={notifyMessage}
           user={user}
         />
+      )}
+      {showImpactBaselineModal && (
+        <ImpactBaselineModal/>
       )}
     </>
   );
