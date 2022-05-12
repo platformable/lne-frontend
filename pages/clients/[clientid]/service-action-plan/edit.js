@@ -5,15 +5,10 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
-import ImpactBaselineModal from "../../../../components/ImpactBaselineModal";
 
-export default function IndexServoceActionPlan({ data }) {
+export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
   console.log("data", data);
-
-  const [showImpactBaselineModal, setShowImpactBaselineModal] = useState(false);
-
   const [clientData, setClientData] = useState({
     clientId:data[0].clientid,
     clientFirstName:data[0].clientfirstname,
@@ -21,28 +16,28 @@ export default function IndexServoceActionPlan({ data }) {
     planStartDate :"",
     userFirstName :data[0].clienthcwname,
     userLastName:data[0].clienthcwlastname,
-    goal1ServiceCategory:"",
-    goal1Summary:"",
-    goal1Details:"",
-    goal1TargetDate:"",
-    goal1ActionStep1:"",
-    goal1ActionStep2:"",
-    goal1ActionStep3:"",
-    goal2ServiceCategory:"",
-    goal2Summary:"",
-    goal2Details :"",
-    goal2TargetDate:"",
-    goal2ActionStep1:"",
-    goal2ActionStep2:"",
-    goal2ActionStep3:"",
-    goal3ServiceCategory:"",
-    goal3Summary:"",
-    goal3Details:"",
-    goal3TargetDate:"",
-    goal3ActionStep1:"",
-    goal3ActionStep2:"",
-    goal3ActionStep3:"",
-    comments:"",
+    goal1ServiceCategory:data[0].goal1servicecategory,
+    goal1Summary:data[0].goal1summary,
+    goal1Details:data[0].goal1details,
+    goal1TargetDate:data[0].goal1targetdate,
+    goal1ActionStep1:data[0].goal1actionstep1,
+    goal1ActionStep2:data[0].goal1actionstep2,
+    goal1ActionStep3:data[0].goal1actionstep3,
+    goal2ServiceCategory:data[0].goal2servicecategory,
+    goal2Summary:data[0].goal2summary,
+    goal2Details :data[0].goal2details,
+    goal2TargetDate:data[0].goal2targetdate,
+    goal2ActionStep1:data[0].goal2actionstep1,
+    goal2ActionStep2:data[0].goal2actionstep2,
+    goal2ActionStep3:data[0].goal2actionstep3,
+    goal3ServiceCategory:data[0].goal3servicecategory,
+    goal3Summary:data[0].goal3summary,
+    goal3Details:data[0].goal3details,
+    goal3TargetDate:data[0].goal3targetdate,
+    goal3ActionStep1:data[0].goal3actionstep1,
+    goal3ActionStep2:data[0].goal3actionstep2,
+    goal3ActionStep3:data[0].goal3actionstep3,
+    comments:data[0].comments,
     HCWSignature:"",
     HCWSignatureDate:"",
     supervisorSignature:"",
@@ -108,36 +103,24 @@ const services = [
 
 
   const createClientActionPlan = ()=>{
-    axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
+    axios.post('http://localhost:5500/services_action_plan', {
       clientData
     })
     .then(function (response) {
-      if(response.status===200 || response.statusText==='Ok'){
-        notifyMessage()
-        setTimeout(()=>{
-          router.push(`/clients/${clientData.clientId}/profile`)
-        },2300)
-      } 
+      console.log(response);
     })
     .catch(function (error) {
-          console.log(error)
+      console.log(error);
     });
   }
 
-  const notifyMessage = () => {
-    toast.success("A new Service Action Plan has been created!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  };
-  
   return (
     <>
-     <ToastContainer autoClose={2000} />
       <Layout>
         <section className="my-5">
           <div className="container mx-auto">
             <div className="md:text-center font-black md:p-0 px-5">
-              <h3>Service Action Plan</h3>
+              <h3>Edit Service Action Plan</h3>
             </div>
           </div>
         </section>
@@ -170,9 +153,8 @@ const services = [
                   <input
                     type="date"
                     className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                    onChange={(e) =>
-                      setClientData({ ...clientData, planStartDate: e.target.value })
-                    }
+                    value={data[0].planstartdate.split('T')[0]}
+                    disabled
                   />
                 </label>
               </div>
@@ -289,7 +271,7 @@ const services = [
                     <input
                       type="text"
                       className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0].clienthcwname}
+                      value={data[0].userfirstname}
                       disabled
                     />
                   </label>
@@ -299,7 +281,7 @@ const services = [
                       type="text"
                       className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
 
-                      value={data[0].clienthcwlastname}
+                      value={data[0].userlastname}
                       disabled
                     />
                   </label>
@@ -330,8 +312,10 @@ const services = [
                           setClientData({...clientData,goal1Summary:e.target.value})
                       }
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      
                     >
-                      <option selected="true" disabled="disabled">Select</option>
+                     <option value={clientData.goal1Summary} selected="true">{clientData.goal1Summary}</option>
+                    {/*   <option  disabled="disabled">Select</option> */}
                       
                       {displayGenericGoals(genericGoals)}
                     </select>
@@ -346,38 +330,45 @@ const services = [
                       }
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
-                      <option selected="true" disabled="disabled">Select</option>
+                        <option value={clientData.goal1ServiceCategory} selected="true">{clientData.goal1ServiceCategory}</option>
+                    {/*   <option  disabled="disabled">Select</option> */}
                       {displayServices(services)}
                     </select>
                   </label>
                   <label className="block">
                     <h6 className="font-black">Details</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData, goal1Details:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData, goal1Details:e.target.value})}}
+                    value={clientData.goal1Details}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
+                    value={clientData.goal1TargetDate.split('T')[0]}
                     onChange={(e)=>setClientData({...clientData,goal1TargetDate:e.target.value})}/>
                   </label>
                   
                   <label className="block">
                     <h6 className="font-black">Action 01</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal1ActionStep1:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal1ActionStep1:e.target.value})}}
+                    value={clientData.goal1ActionStep1}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 02</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal1ActionStep2:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal1ActionStep2:e.target.value})}}
+                    value={clientData.goal1ActionStep2}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 03</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal1ActionStep3:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal1ActionStep3:e.target.value})}}
+                    value={clientData.goal1ActionStep3}
+                    ></textarea>
                   </label>
                 </div>
               </div>
@@ -396,7 +387,8 @@ const services = [
                       }
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
-                      <option selected="true" disabled="disabled">Select</option>
+                      <option value={clientData.goal2Summary} selected="true">{clientData.goal2Summary}</option>
+                    {/*   <option  disabled="disabled">Select</option> */}
                       
                       {displayGenericGoals(genericGoals)}
                     </select>
@@ -411,37 +403,47 @@ const services = [
                       }
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
-                      <option selected="true" disabled="disabled">Select</option>
+                          <option value={clientData.goal2ServiceCategory} selected="true">{clientData.goal2ServiceCategory}</option>
+                    {/*   <option  disabled="disabled">Select</option> */}
                       {displayServices(services)}
                     </select>
                   </label>
                   <label className="block">
                     <h6 className="font-black">Details</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData, goal2Details:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData, goal2Details:e.target.value})}}
+                    value={clientData.goal2Details}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
-                    onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}/>
+                    onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}
+                    value={clientData.goal2TargetDate.split('T')[0]}
+                    />
                   </label>
                   
                   <label className="block">
                     <h6 className="font-black">Action 01</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal2ActionStep1:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal2ActionStep1:e.target.value})}}
+                    value={clientData.goal2ActionStep1}
+                    ></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 02</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal2ActionStep2:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal2ActionStep2:e.target.value})}}
+                    value={clientData.goal2ActionStep2}
+                    ></textarea>
+                  
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 03</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    value={clientData.goal2ActionStep3}
                     onChange={(e)=>{setClientData({...clientData,goal2ActionStep3:e.target.value})}}></textarea>
                   </label>
                 </div>
@@ -460,7 +462,9 @@ const services = [
                       }
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
-                      <option selected="true" disabled="disabled">Select</option>
+                      
+                      <option value={clientData.goal3Summary} selected="true">{clientData.goal3Summary}</option>
+                    {/*   <option  disabled="disabled">Select</option> */}
                       
                       {displayGenericGoals(genericGoals)}
                     </select>
@@ -475,38 +479,46 @@ const services = [
                       }
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
-                      <option selected="true" disabled="disabled">Select</option>
+                      <option value={clientData.goal3ServiceCategory} selected="true">{clientData.goal3ServiceCategory}</option>
+                    {/*   <option  disabled="disabled">Select</option> */}
                       {displayServices(services)}
                     </select>
                   </label>
                   <label className="block">
                     <h6 className="font-black">Details</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData, goal3Details:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData, goal3Details:e.target.value})}}
+                    value={clientData.goal3Details}
+                    ></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
-                    onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}/>
+                    onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}
+                    value={clientData.goal3TargetDate.split('T')[0]}
+                    />
                   </label>
                   
                   <label className="block">
                     <h6 className="font-black">Action 01</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal3ActionStep1:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal3ActionStep1:e.target.value})}}
+                    value={clientData.goal3ActionStep1}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 02</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal3ActionStep2:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal3ActionStep2:e.target.value})}}
+                    value={clientData.goal3ActionStep1}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 03</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,goal3ActionStep3:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,goal3ActionStep3:e.target.value})}}
+                    value={clientData.goal3ActionStep1}></textarea>
                   </label>
                 </div>
               </div>
@@ -523,8 +535,10 @@ const services = [
           <div  className={`border-dark-blue  rounded-xl px-5 py-5`}>
           <label className="block">
                     <h6 className="font-black">Additional Comments</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,comments:e.target.value})}}></textarea>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
+                    onChange={(e)=>{setClientData({...clientData,comments:e.target.value})}}
+                    value={clientData.comments || ""}
+                    ></textarea>
                   </label>
           
           <h6 className="font-black">Signatures</h6>
@@ -560,8 +574,6 @@ const services = [
         </section>
 
       </Layout>
-      {showImpactBaselineModal && (<ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
-                                    setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}/>)}
     </>
   );
 }
@@ -570,7 +582,7 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientid}`
     );
 
     const data = await res.json();
