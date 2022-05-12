@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Loader from "./Loader";
 
-export default function CreateClientModal({ setShowCreateClientModal, showCreateClientModal,notifyMessage,setNotifyMessage,data,user }) {
+export default function MSA_FORM({ setShowCreateClientModal, showCreateClientModal,notifyMessage,setNotifyMessage,data,user }) {
   const router = useRouter()
 
   const loggeduserId=user[`https://lanuevatest.herokuapp.com/roles`]
@@ -11,7 +11,7 @@ export default function CreateClientModal({ setShowCreateClientModal, showCreate
   const loggedUserLastname=user[`https://lanuevatest.herokuapp.com/lastname`]
 
   const {current:a} = useRef(['a'])
-
+  console.log("user",user)
 
   const [users,setUsers]=useState([])
   const [errorMessage,setErrorMessage]=useState("")
@@ -67,6 +67,7 @@ export default function CreateClientModal({ setShowCreateClientModal, showCreate
     
     setSaving(!saving);
     setEmptyFields(false)
+     //axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`,clientData)
 
 if(clientData.clientFirstName=="" 
 || clientData.clientLastName=="" 
@@ -110,7 +111,7 @@ else{
         <div className="mt-8 max-w-md mx-auto bg-white p-5 rounded">
           <div className="grid grid-cols-1 gap-6">
             <div className="flex justify-between">
-            <h1 className="font-black">Client Information</h1>
+            <h1 className="font-black">MSA FORM</h1>
             <button
                     className="text-sm text-white"
                     onClick={() => setShowCreateClientModal(!showCreateClientModal)}

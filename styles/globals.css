@@ -221,6 +221,30 @@ border-left:10px solid green;
   background-color: var(--lightBlue);
 }
 
+.bg-light-green {
+  background-color:var(--lightGreen);
+}
+
+.bg-dark-green {
+  background-color:var(--darkGreen);
+}
+
+.bg-light-pink {
+  background-color:var(--lightPink);
+}
+
+.bg-dark-pink {
+  background-color:var(--darkPink);
+}
+
+.bg-light-purple {
+  background-color:var(--lightPurple);
+}
+
+.bg-dark-pueple {
+  background-color:var(--darkPurple);
+}
+
 /* BORDERS */
 .border-black {
   border:1px solid black;
