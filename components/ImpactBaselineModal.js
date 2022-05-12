@@ -1,14 +1,24 @@
 import React, {useState} from 'react';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+import axios from 'axios'
 
 
-const ImpactBaselineModal = ({notifyMessage, setShowImpactBaselineModal, showImpactBaselineModal}) => {
+export function getDate () {
+    const date = new Date()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const year = date.getFullYear()
+    const result = `${month}/${day}/${year}`
+    return result
+}
+
+const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModal, clientId}) => {
     const router = useRouter()    
-    // const [showImpactBaselineModal, setShowImpactBaselineModal] = useState(true);
 
-    // yyyy/mm/dd
-    const date = JSON.stringify(new Date()).split('T')[0].slice(1)   
+    const date = getDate()
 
     const [impactBaseline, setImpactBaseline] = useState({
         impactFormStartDate: date,
@@ -43,31 +53,30 @@ const ImpactBaselineModal = ({notifyMessage, setShowImpactBaselineModal, showImp
             })
         }
     }
-    // const notifyMessage = () => {
-    //     toast.success("Impact Baseline was update!", {
-    //       position: toast.POSITION.TOP_CENTER,
-    //     });
-    //   };
+    const notifyMessage = () => {
+        toast.success("Impact Baseline was updated!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      };
 
-    const saveForm=()=>{
-        notifyMessage()
-        // router.push('/dashboard')   
-        setShowImpactBaselineModal(!showImpactBaselineModal)
-        setTimeout(()=>{
-            router.push('/clients/K3214K/profile')   
-        },6000)
-    }
-
-    // const createImpactBaselineForm = ()=>{           ////url?
-    //     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
+    const createImpactBaselineForm=()=>{
+         notifyMessage()
+         setShowImpactBaselineModal(!showImpactBaselineModal)
+         setTimeout(()=>{
+        router.push(`/clients/${clientId}/profile`)
+    },2300)
+     }
+    // const createImpactBaselineForm = ()=>{           
+    //     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker_baseline`, {
     //       impactBaseline
     //     })
     //     .then(function (response) {
     //       if(response.status===200 || response.statusText==='Ok'){
     //         notifyMessage()
+    //         setShowImpactBaselineModal(!showImpactBaselineModal)
+
     //         setTimeout(()=>{
-    //             //redireccion desde SAP?
-    //           router.push(`/clients/${clientData.clientId}/profile`)
+    //           router.push(`/clients/${clientId}/profile`)
     //         },2300)
     //       } 
     //     })
@@ -75,13 +84,9 @@ const ImpactBaselineModal = ({notifyMessage, setShowImpactBaselineModal, showImp
     //           console.log(error)
     //     });
     //   }
-
     return (
         <>
-         <ToastContainer autoClose={2000} />
-
-        {showImpactBaselineModal && 
-        (
+        
             <div className="modal">
             <div className="grid grid-cols-1 justify-items-center pb-4 mt-8 md:max-w-md lg:max-w-lg mx-auto border border-blue-500 bg-white mb-8 rounded">
                 <div className="grid grid-cols-1 gap-2">
@@ -420,7 +425,7 @@ const ImpactBaselineModal = ({notifyMessage, setShowImpactBaselineModal, showImp
                 </div>
                 
                 <button 
-                    onClick={saveForm}
+                    onClick={createImpactBaselineForm}
                     className='bg-dark-blue text-white rounded-sm flex items-center px-7 py-1 text-sm'>
                     <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24"  fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -431,9 +436,6 @@ const ImpactBaselineModal = ({notifyMessage, setShowImpactBaselineModal, showImp
 
             </div>
         </div>   
-        )
-        
-        }
          
         </>
     );

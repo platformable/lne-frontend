@@ -6,16 +6,31 @@ import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
-  console.log("data", data);
+
+
+  const notifyMessage = () => {
+    toast.success("Service Action Plan updated!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
+  const { user, error, isLoading } = useUser();
+  const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
+
+const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
+
   const [clientData, setClientData] = useState({
     clientId:data[0].clientid,
     clientFirstName:data[0].clientfirstname,
     clientLastName :data[0].clientlastname,
-    planStartDate :"",
-    userFirstName :data[0].clienthcwname,
-    userLastName:data[0].clienthcwlastname,
+    planStartDate:data[0].planstartdate,
+    userFirstName :data[0].userfirstname,
+    userLastName:data[0].userlastname,
     goal1ServiceCategory:data[0].goal1servicecategory,
     goal1Summary:data[0].goal1summary,
     goal1Details:data[0].goal1details,
@@ -38,47 +53,47 @@ export default function EditServiceActionPlan({ data }) {
     goal3ActionStep2:data[0].goal3actionstep2,
     goal3ActionStep3:data[0].goal3actionstep3,
     comments:data[0].comments,
-    HCWSignature:"",
-    HCWSignatureDate:"",
-    supervisorSignature:"",
-    clientSignature:""
+    HCWSignature:data[0].HCWSignature===0 ? false : true,
+    HCWSignatureDate:data[0].HCWSignatureDate===0 ? false: true,
+    supervisorSignature:data[0].supervisorSignature===0 ? false : true,
+    clientSignature:data[0].clientSignature===0 ? false : true
   });
 
-  console.log("clientData",clientData)
+  
 
   const genericGoals = [
-"Attend all health appointments",
-"Adhere to HIV medication",
-"Remove barriers to accessing medication",
-"Access HIV primary care",
-"Consistently measure CD4 Count and Viral load",
-"Reduce unsafe sexual behavior",
-"Start using PrEP",
-"Prevention counselling",
-"Access supportive counselling",
-"Address a problem with street drugs or substance abuse",
-"Overdose Prevention",
-"Assistance with employment",
-"Assistance with education",
-"Assistance with housing services",
-"Addressing a legal issue",
-"Transportation",
-"Improve food security",
-"Gain access to public assistance"
+  "Attend all health appointments",
+  "Adhere to HIV medication",
+  "Remove barriers to accessing medication",
+  "Access HIV primary care",
+  "Consistently measure CD4 Count and Viral load",
+  "Reduce unsafe sexual behavior",
+  "Start using PrEP",
+  "Prevention counselling",
+  "Access supportive counselling",
+  "Address a problem with street drugs or substance abuse",
+  "Overdose Prevention",
+  "Assistance with employment",
+  "Assistance with education",
+  "Assistance with housing services",
+  "Addressing a legal issue",
+  "Transportation",
+  "Improve food security",
+  "Gain access to public assistance"
   ]
 
-const services = [
-"CD4/VL Lab Report Check",
-"Transportation Coordination",
-"Translation/Interpretation",
-"Comprehensive Behavioral Risk Assessment",
-"Treatment Education and Adherence Counselling",
-"Prevention Counselling",
-"Supportive Counselling",
-"Escort",
-"Linkage to Services",
-"Other form of Assistance",
-  ]
+  const services = [
+  "CD4/VL Lab Report Check",
+  "Transportation Coordination",
+  "Translation/Interpretation",
+  "Comprehensive Behavioral Risk Assessment",
+  "Treatment Education and Adherence Counselling",
+  "Prevention Counselling",
+  "Supportive Counselling",
+  "Escort",
+  "Linkage to Services",
+  "Other form of Assistance",
+    ]
 
 
   const displayServices = (arr) => {
@@ -102,20 +117,39 @@ const services = [
   };
 
 
-  const createClientActionPlan = ()=>{
-    axios.post('http://localhost:5500/services_action_plan', {
+  const updateClientActionPlan = ()=>{
+    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientData.clientId}`, {
       clientData
     })
     .then(function (response) {
-      console.log(response);
+
+
+      if(response.status===200 || response.statusText==='Ok'){
+        notifyMessage()
+          setTimeout(()=>{
+            router.push(`/clients/${clientData.clientId}/profile`)
+          },2300)
+        } 
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
+
+  const setLocaleDateString = (date) => {
+    const fecha = Date.parse(date)
+    const newDate=new Date(fecha).toLocaleDateString().replace("/","-").replace("/","-")
+    const separatedDate=newDate.split('-')
+    const finalDate=`${separatedDate[2]}-${separatedDate[1]}-${separatedDate[0]}`
+    return finalDate
+
+  }
+
+  
+
   return (
-    <>
+    <><ToastContainer autoClose={2000} />
       <Layout>
         <section className="my-5">
           <div className="container mx-auto">
@@ -146,6 +180,7 @@ const services = [
             <div
               className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
             >
+         {/*      <p>{clientData.planStartDate}</p> */}
               <div className="service-action-plan-page-info-box md:my-0 my-5">
                 <h3 className="font-black mb-5">Date</h3>
                 <label className="block">
@@ -153,9 +188,10 @@ const services = [
                   <input
                     type="date"
                     className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                    value={data[0].planstartdate.split('T')[0]}
-                    disabled
-                  />
+                    value={clientData.planStartDate.split('T')[0]}
+                    disabled={disableUserIfNotSupervisor()}
+                    onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
+                   /*  pattern="\d{4}-\d{2}-\d{2}" */ />
                 </label>
               </div>
 
@@ -312,7 +348,7 @@ const services = [
                           setClientData({...clientData,goal1Summary:e.target.value})
                       }
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                      
+                      disabled={disableUserIfNotSupervisor()}
                     >
                      <option value={clientData.goal1Summary} selected="true">{clientData.goal1Summary}</option>
                     {/*   <option  disabled="disabled">Select</option> */}
@@ -328,6 +364,7 @@ const services = [
                       onChange={(e) =>
                         setClientData({...clientData,goal1ServiceCategory:e.target.value})
                       }
+                      disabled={disableUserIfNotSupervisor()}
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                         <option value={clientData.goal1ServiceCategory} selected="true">{clientData.goal1ServiceCategory}</option>
@@ -339,13 +376,15 @@ const services = [
                     <h6 className="font-black">Details</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData, goal1Details:e.target.value})}}
-                    value={clientData.goal1Details}></textarea>
+                    value={clientData.goal1Details}
+                    disabled={disableUserIfNotSupervisor()}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     value={clientData.goal1TargetDate.split('T')[0]}
+                    disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,goal1TargetDate:e.target.value})}/>
                   </label>
                   
@@ -353,6 +392,7 @@ const services = [
                     <h6 className="font-black">Action 01</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal1ActionStep1:e.target.value})}}
+                    disabled={disableUserIfNotSupervisor()}
                     value={clientData.goal1ActionStep1}></textarea>
                   </label>
 
@@ -360,6 +400,7 @@ const services = [
                     <h6 className="font-black">Action 02</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal1ActionStep2:e.target.value})}}
+                    disabled={disableUserIfNotSupervisor()}
                     value={clientData.goal1ActionStep2}></textarea>
                   </label>
 
@@ -368,6 +409,7 @@ const services = [
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal1ActionStep3:e.target.value})}}
                     value={clientData.goal1ActionStep3}
+                    disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
                 </div>
@@ -385,6 +427,7 @@ const services = [
                       onChange={(e) =>
                           setClientData({...clientData,goal2Summary:e.target.value})
                       }
+                      disabled={disableUserIfNotSupervisor()}
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option value={clientData.goal2Summary} selected="true">{clientData.goal2Summary}</option>
@@ -401,6 +444,7 @@ const services = [
                       onChange={(e) =>
                         setClientData({...clientData,goal2ServiceCategory:e.target.value})
                       }
+                      disabled={disableUserIfNotSupervisor()}
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                           <option value={clientData.goal2ServiceCategory} selected="true">{clientData.goal2ServiceCategory}</option>
@@ -412,7 +456,9 @@ const services = [
                     <h6 className="font-black">Details</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData, goal2Details:e.target.value})}}
-                    value={clientData.goal2Details}></textarea>
+                    value={clientData.goal2Details}
+                    disabled={disableUserIfNotSupervisor()}
+                    ></textarea>
                   </label>
 
                   <label className="block">
@@ -420,6 +466,7 @@ const services = [
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}
                     value={clientData.goal2TargetDate.split('T')[0]}
+                    disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
                   
@@ -428,6 +475,7 @@ const services = [
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal2ActionStep1:e.target.value})}}
                     value={clientData.goal2ActionStep1}
+                    disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -436,6 +484,7 @@ const services = [
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal2ActionStep2:e.target.value})}}
                     value={clientData.goal2ActionStep2}
+                    disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   
                   </label>
@@ -444,7 +493,9 @@ const services = [
                     <h6 className="font-black">Action 03</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     value={clientData.goal2ActionStep3}
-                    onChange={(e)=>{setClientData({...clientData,goal2ActionStep3:e.target.value})}}></textarea>
+                    onChange={(e)=>{setClientData({...clientData,goal2ActionStep3:e.target.value})}}
+                    disabled={disableUserIfNotSupervisor()}
+                    ></textarea>
                   </label>
                 </div>
               </div>
@@ -460,6 +511,7 @@ const services = [
                       onChange={(e) =>
                           setClientData({...clientData,goal3Summary:e.target.value})
                       }
+                      disabled={disableUserIfNotSupervisor()}
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       
@@ -477,6 +529,7 @@ const services = [
                       onChange={(e) =>
                         setClientData({...clientData,goal3ServiceCategory:e.target.value})
                       }
+                      disabled={disableUserIfNotSupervisor()}
                       className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option value={clientData.goal3ServiceCategory} selected="true">{clientData.goal3ServiceCategory}</option>
@@ -489,6 +542,7 @@ const services = [
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData, goal3Details:e.target.value})}}
                     value={clientData.goal3Details}
+                    disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -497,6 +551,7 @@ const services = [
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}
                     value={clientData.goal3TargetDate.split('T')[0]}
+                    disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
                   
@@ -504,21 +559,25 @@ const services = [
                     <h6 className="font-black">Action 01</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal3ActionStep1:e.target.value})}}
-                    value={clientData.goal3ActionStep1}></textarea>
+                    value={clientData.goal3ActionStep1}
+                    disabled={disableUserIfNotSupervisor()}
+                    ></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 02</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal3ActionStep2:e.target.value})}}
-                    value={clientData.goal3ActionStep1}></textarea>
+                    disabled={disableUserIfNotSupervisor()}
+                    value={clientData.goal3ActionStep2}></textarea>
                   </label>
 
                   <label className="block">
                     <h6 className="font-black">Action 03</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,goal3ActionStep3:e.target.value})}}
-                    value={clientData.goal3ActionStep1}></textarea>
+                    disabled={disableUserIfNotSupervisor()}
+                    value={clientData.goal3ActionStep3}></textarea>
                   </label>
                 </div>
               </div>
@@ -537,6 +596,7 @@ const services = [
                     <h6 className="font-black">Additional Comments</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1 text-xs" 
                     onChange={(e)=>{setClientData({...clientData,comments:e.target.value})}}
+                    disabled={disableUserIfNotSupervisor()}
                     value={clientData.comments || ""}
                     ></textarea>
                   </label>
@@ -546,17 +606,23 @@ const services = [
             <div className="others-container-box flex gap-2 justify-center items-center" >
               <p>Has the client signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,clientSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,clientSignature:!clientData.clientSignature})}}
+              disabled={disableUserIfNotSupervisor()}
+              />
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the health care worker signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,HCWSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,HCWSignature:!clientData.HCWSignature})}}
+              disabled={disableUserIfNotSupervisor()}
+              />
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the supervisor signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,supervisorSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,supervisorSignature:!clientData.supervisorSignature})}}
+              disabled={disableUserIfNotSupervisor()}
+              />
             </div>
           </div>
           </div>
@@ -565,10 +631,9 @@ const services = [
 
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
-            Save Progress</button>
-            <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-            onClick={(e)=>{createClientActionPlan()}}>Save</button>
+      
+           {loggedUserRole==='HCW' ? "":<button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+            onClick={(e)=>{updateClientActionPlan()}}>Save</button>} 
             <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>
           </div>
         </section>
