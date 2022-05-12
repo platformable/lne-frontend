@@ -5,11 +5,25 @@ import Styles from "../../../../styles/ServiceAP.module.css";
 import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditMsaFormPage = ({ data }) => {
    const router = useRouter()
 
+   const notifyMessage = () => {
+    toast.success("MSA Form updated!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
     
+
+  const { user, error, isLoading } = useUser();
+  const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
+
+const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
+
+
   const [clientData, setClientData] = useState({
     dateFormReviewed:new Date(),
     clientId: data[0].clientid,
@@ -19,72 +33,77 @@ const EditMsaFormPage = ({ data }) => {
     planStartDate: "",
     userFirstName: data[0].userfirstname,
     userLastName: data[0].userlastname,
-    AIRSIntakeForm: data[0].airsintakeform,
+    AIRSIntakeForm: data[0].airsintakeform==="0" ? false: true,
     AIRSIntakeFormDate: data[0].airsintakeformdate,
-    ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment,
+    ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment ==="0" ? false: true,
     ComprehensiveRiskBehaviorAssessmentDate:data[0].comprehensiveriskbehaviorassessmentdate,
-    ServiceActionPlan: data[0].serviceactionplan,
+    ServiceActionPlan: data[0].serviceactionplan ==="0" ? false: true,
     ServiceActionPlanDate:  data[0].serviceactionplandate,
-    AIRSCollateralInformation: data[0].airscollateralinformation,
+    AIRSCollateralInformation: data[0].airscollateralinformation ==="0" ? false: true,
     AIRSCollateralInformationDate:data[0].airscollateralinformationdate,
-    AIRSFinancialInformation: data[0].airsfinancialinformation,
-    AIRSFinancialInformationDate: data[0].airsfinancialinformationdate,
-    AIRSHIVAIDSRiskHistory: data[0].AIRSHIVAIDSRiskHistory,
-    AIRSHIVAIDSRiskHistoryDate: data[0].AIRSHIVAIDSRiskHistorydate,
-    AIRSHCVHistory: data[0].AIRSHCVHistory,
-    AIRSHCVHistoryDate: data[0].AIRSHCVHistorydate,
-    AIRSHousingInformation: data[0].AIRSHousingInformation,
-    AIRSHousingInformationDate: data[0].AIRSHousingInformationdate,
-    AIRSInsuranceInformation: data[0].AIRSInsuranceInformation,
-    AIRSInsuranceInformationDate: data[0].AIRSInsuranceInformationdate,
-    AIRSSubstanceUseHistory: data[0].AIRSSubstanceUseHistory,
-    AIRSSubstanceUseHistoryDate: data[0].AIRSSubstanceUseHistorydate,
-    LNEClientRights: data[0].LNEClientRights,
-    LNEClientRightsDate: data[0].LNEClientRightsDate,
-    LNEClientGrievancePolicyProcedure: data[0].LNEClientGrievancePolicyProcedure,
-    LNEClientGrievancePolicyProcedureDate: data[0].LNEClientGrievancePolicyProcedureDate,
-    LNEProgramRules: data[0].LNEProgramRules,
-    LNEProgramRulesDate: data[0].LNEProgramRulesDate,
-    LNEEmergencyContactConsent: data[0].LNEEmergencyContactConsent,
-    LNEEmergencyContactConsentDate: data[0].LNEEmergencyContactConsentDate,
-    LNEConsentForReleaseOfConfidentialInformation: data[0].LNEConsentForReleaseOfConfidentialInformation,
-    LNEConsentForReleaseOfConfidentialInformationDate: data[0].LNEConsentForReleaseOfConfidentialInformationDate,
-    HIPPAConsentForm: data[0].HIPPAConsentForm,
-    HIPPAConsentFormDate: data[0].HIPPAConsentFormDate,
-    NYCDOHMHNoticeOfPrivacyPractices: data[0].NYCDOHMHNoticeOfPrivacyPractices,
-    NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].NYCDOHMHNoticeOfPrivacyPracticesDate,
-    LNEOutreachRetentionTrackingForm: data[0].LNEOutreachRetentionTrackingForm,
-    LNEOutreachRetentionTrackingFormDate: data[0].LNEOutreachRetentionTrackingFormDate,
-    LNEReferralInformation: data[0].LNEReferralInformation,
-    LNEReferralInformationDate: data[0].LNEReferralInformationDate,
-    LNEClientReferralForm: data[0].LNEClientReferralForm,
-    LNEClientReferralFormDate: data[0].LNEClientReferralFormDate,
-    LNEHNSEligibilityForm: data[0].LNEHNSEligibilityForm,
-    LNEHNSEligibilityFormDate: data[0].LNEHNSEligibilityFormDate
+    AIRSFinancialInformation: data[0].airsfinancialinformation ==="0" ? false: true,
+    AIRSFinancialInformationDate: data[0].airsfinancialinformationdate ,
+    AIRSHIVAIDSRiskHistory: data[0].airshivaidsriskhistory ==="0" ? false: true,
+    AIRSHIVAIDSRiskHistoryDate: data[0].airshivaidsriskhistorydate,
+    AIRSHCVHistory: data[0].airshcvhistory ==="0" ? false: true,
+    AIRSHCVHistoryDate: data[0].airshcvhistorydate,
+    AIRSHousingInformation: data[0].airshousinginformation ==="0" ? false: true,
+    AIRSHousingInformationDate: data[0].airshousinginformationdate,
+    AIRSInsuranceInformation: data[0].airsinsuranceinformation ==="0" ? false: true,
+    AIRSInsuranceInformationDate: data[0].airsinsuranceinformationdate,
+    AIRSSubstanceUseHistory: data[0].airssubstanceusehistory ==="0" ? false: true,
+    AIRSSubstanceUseHistoryDate: data[0].airssubstanceusehistorydate,
+    LNEClientRights: data[0].lneclientrights ==="0" ? false: true,
+    LNEClientRightsDate: data[0].lneclientrightsdate,
+    LNEClientGrievancePolicyProcedure: data[0].lneclientgrievancepolicyprocedure ==="0" ? false: true,
+    LNEClientGrievancePolicyProcedureDate: data[0].lneclientgrievancepolicyproceduredate,
+    LNEProgramRules: data[0].lneprogramrules ==="0" ? false: true,
+    LNEProgramRulesDate: data[0].lneprogramrulesdate,
+    LNEEmergencyContactConsent: data[0].lneemergencycontactconsent ==="0" ? false: true,
+    LNEEmergencyContactConsentDate: data[0].lneemergencycontactconsentdate,
+    LNEConsentForReleaseOfConfidentialInformation: data[0].lneconsentforreleaseofconfidentialinformation ==="0" ? false: true,
+    LNEConsentForReleaseOfConfidentialInformationDate: data[0].lneconsentforreleaseofconfidentialinformationdate,
+    HIPPAConsentForm: data[0].hippaconsentform ==="0" ? false: true,
+    HIPPAConsentFormDate: data[0].hippaconsentformdate,
+    NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices ==="0" ? false: true,
+    NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate,
+    LNEOutreachRetentionTrackingForm: data[0].lneoutreachretentiontrackingform ==="0" ? false: true,
+    LNEOutreachRetentionTrackingFormDate: data[0].lneoutreachretentiontrackingformdate,
+    LNEReferralInformation: data[0].lnereferralinformation ==="0" ? false: true,
+    LNEReferralInformationDate: data[0].lnereferralinformationdate,
+    LNEClientReferralForm: data[0].lneclientreferralform ==="0" ? false: true,
+    LNEClientReferralFormDate: data[0].lneclientreferralformdate,
+    LNEHNSEligibilityForm: data[0].lnehnseligibilityform ==="0" ? false: true,
+    LNEHNSEligibilityFormDate: data[0].lnehnseligibilityformdate
   });
 
   const todaysDate = new Date();
 
-  console.log("clientData",clientData)
-/* 
-  console.log("clientdata",clientData) */
+
 
 const handleMsaform = ()=> {
 
-    axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/create_msa_form`, {
+    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update`, {
         clientData
       })
       .then(function (response) {
-        console.log(response);
+   
+        if(response.status===200 || response.statusText==='Ok'){
+          notifyMessage()
+            setTimeout(()=>{
+              router.push(`/clients/${clientData.clientId}/profile`)
+            },2300)
+          } 
       })
       .catch(function (error) {
-        console.log(error);
+       res.send(error)
       });
 }
 
   return (
-    <>
+    <><ToastContainer autoClose={2000} />
       <Layout>
+      
         <div className="container mx-auto">
           <h3 className="font-black text-center my-5">Edit MSA FORM</h3>
         </div>
@@ -249,7 +268,7 @@ const handleMsaform = ()=> {
             </div>
           </section>
           <h6 className="font-black my-5 text-dark-blue">
-            Forms - checkmark if documents was added to clients file
+            Forms - check if documents were added to the client&apos;s file
           </h6>
           <section
             id="form"
@@ -282,7 +301,7 @@ const handleMsaform = ()=> {
                       AIRSIntakeForm: !clientData.AIRSIntakeForm,
                     })
                   }
-                  checked={clientData.AIRSIntakeForm==="1" ? 'checked' : ''}
+                  checked={clientData.AIRSIntakeForm ? 'checked' : false}
                 />
               </div>
               <div>
@@ -342,7 +361,7 @@ const handleMsaform = ()=> {
                         !clientData.ComprehensiveRiskBehaviorAssessment,
                     })
                   }
-                  checked={clientData.ComprehensiveRiskBehaviorAssessment==="1" ? 'checked' : ''}
+                  checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -399,7 +418,7 @@ const handleMsaform = ()=> {
                       ServiceActionPlan: !clientData.ServiceActionPlan,
                     })
                   }
-                  checked={clientData.ServiceActionPlan==="1" ? 'checked' : ''}
+                  checked={clientData.ServiceActionPlan ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -450,14 +469,17 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={(e) =>{
+                    console.log("value del input:",e.target.value)
                     setClientData({
                       ...clientData,
                       AIRSCollateralInformation:
                         !clientData.AIRSCollateralInformation,
                     })
+                }
                   }
-                  checked={clientData.AIRSCollateralInformation==="1" ? 'checked' : ''}
+                  /* checked={clientData.AIRSCollateralInformation ? true : false} */
+                 /*  value={clientData.AIRSCollateralInformation ? true : false} */
                 />
               </div>
               <div>
@@ -515,7 +537,7 @@ const handleMsaform = ()=> {
                         !clientData.AIRSFinancialInformation,
                     })
                   }
-                  checked={clientData.AIRSFinancialInformation==="1" ? 'checked' : ''}
+                  checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -573,7 +595,7 @@ const handleMsaform = ()=> {
                         !clientData.AIRSHIVAIDSRiskHistory,
                     })
                   }
-                  checked={clientData.AIRSHIVAIDSRiskHistory==="1" ? 'checked' : ''}
+                  checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -630,7 +652,7 @@ const handleMsaform = ()=> {
                       AIRSHCVHistory: !clientData.AIRSHCVHistory,
                     })
                   }
-                  checked={clientData.AIRSHCVHistory==="1" ? 'checked' : ''}
+                  checked={clientData.AIRSHCVHistory ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -688,7 +710,7 @@ const handleMsaform = ()=> {
                         !clientData.AIRSHousingInformation,
                     })
                   }
-                  checked={clientData.AIRSHousingInformation==="1" ? 'checked' : ''}
+                  checked={clientData.AIRSHousingInformation ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -746,7 +768,7 @@ const handleMsaform = ()=> {
                         !clientData.AIRSInsuranceInformation,
                     })
                   }
-                  checked={clientData.AIRSInsuranceInformation==="1" ? 'checked' : ''}
+                  checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -804,7 +826,7 @@ const handleMsaform = ()=> {
                         !clientData.AIRSSubstanceUseHistory,
                     })
                   }
-                  checked={clientData.AIRSSubstanceUseHistory==="1" ? 'checked' : ''}
+                  checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -861,7 +883,7 @@ const handleMsaform = ()=> {
                       LNEClientRights: !clientData.LNEClientRights,
                     })
                   }
-                  checked={clientData.LNEClientRights==="1" ? 'checked' : ''}
+                  checked={clientData.LNEClientRights ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -919,7 +941,7 @@ const handleMsaform = ()=> {
                         !clientData.LNEClientGrievancePolicyProcedure,
                     })
                   }
-                  checked={clientData.LNEClientGrievancePolicyProcedure==="1" ? 'checked' : ''}
+                  checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -976,7 +998,7 @@ const handleMsaform = ()=> {
                       LNEProgramRules: !clientData.LNEProgramRules,
                     })
                   }
-                  checked={clientData.LNEProgramRules==="1" ? 'checked' : ''}
+                  checked={clientData.LNEProgramRules ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1034,7 +1056,7 @@ const handleMsaform = ()=> {
                         !clientData.LNEEmergencyContactConsent,
                     })
                   }
-                  checked={clientData.LNEEmergencyContactConsent==="1" ? 'checked' : ''}
+                  checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1092,7 +1114,7 @@ const handleMsaform = ()=> {
                         !clientData.LNEConsentForReleaseOfConfidentialInformation,
                     })
                   }
-                  checked={clientData.LNEConsentForReleaseOfConfidentialInformation==="1" ? 'checked' : ''}
+                  checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1150,11 +1172,11 @@ const handleMsaform = ()=> {
                       HIPPAConsentForm: !clientData.HIPPAConsentForm,
                     })
                   }
-                  checked={clientData.HIPPAConsentForm==="1" ? 'checked' : ''}
+                  checked={clientData.HIPPAConsentForm ? 'checked' : ''}
                 />
               </div>
               <div>
-                <p>HIPPA Consent Form (OCA Form 960)</p>
+                <p>HIPAA Consent Form (OCA Form 960)</p>
               </div>
               <div className="text-center">
                 <input
@@ -1208,7 +1230,7 @@ const handleMsaform = ()=> {
                         !clientData.NYCDOHMHNoticeOfPrivacyPractices,
                     })
                   }
-                  checked={clientData.NYCDOHMHNoticeOfPrivacyPractices==="1" ? 'checked' : ''}
+                  checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1269,7 +1291,7 @@ const handleMsaform = ()=> {
                         !clientData.LNEOutreachRetentionTrackingForm,
                     })
                   }
-                  checked={clientData.LNEOutreachRetentionTrackingForm==="1" ? 'checked' : ''}
+                  checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1327,7 +1349,7 @@ const handleMsaform = ()=> {
                         !clientData.LNEReferralInformation,
                     })
                   }
-                  checked={clientData.LNEReferralInformation==="1" ? 'checked' : ''}
+                  checked={clientData.LNEReferralInformation ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1384,7 +1406,7 @@ const handleMsaform = ()=> {
                       LNEClientReferralForm: !clientData.LNEClientReferralForm,
                     })
                   }
-                  checked={clientData.LNEClientReferralForm==="1" ? 'checked' : ''}
+                  checked={clientData.LNEClientReferralForm ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1441,7 +1463,7 @@ const handleMsaform = ()=> {
                       LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
                     })
                   }
-                  checked={clientData.LNEHNSEligibilityForm==="1" ? 'checked' : ''}
+                  checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
                 />
               </div>
               <div>
@@ -1488,7 +1510,7 @@ const handleMsaform = ()=> {
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-
+                onClick={()=>handleMsaform()}
               >
                 Save and Update
               </button>

@@ -141,7 +141,7 @@ export default function ClientProfilePage({ data }) {
            </svg>
            </div>
            <h4 className="text-center">
-           {data[0]?.serviceactionplan ==="0" ? "Create service action plan" : `Edit Service action plan`}
+           {data[0]?.serviceactionplan ==="0" ? "Create Service Action Plan" : `View Service Action Plan`}
            </h4>
          </div>
          </Link>  
