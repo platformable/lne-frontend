@@ -18,7 +18,6 @@ const Index = ({ data }) => {
     });
   };
 
-    console.log("data",data)
   const [clientData, setClientData] = useState({
     dateFormReviewed:new Date(),
     clientId: data[0]?.clientid,
@@ -262,7 +261,7 @@ const handleMsaform = ()=> {
             </div>
           </section>
           <h6 className="font-black my-5 text-dark-blue">
-            Forms - checkmark if documents was added to client &apos;s file
+            Forms - check if documents were added to the client&apos;s file
           </h6>
           <section
             id="form"
@@ -1136,7 +1135,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>HIPPA Consent Form (OCA Form 960)</p>
+                <p>HIPAA Consent Form (OCA Form 960)</p>
               </div>
               <div className="text-center">
                 <input

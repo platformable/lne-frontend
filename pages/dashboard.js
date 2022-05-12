@@ -116,7 +116,7 @@ export default function Dashboard({ data }) {
                         </div>
                       </button>
                     </div>{" "}
-                    <p clasName="my-5">MANAGE USERS</p>
+                    <p className="my-5">MANAGE USERS</p>
                   </div>
                 </Link>
               )}
@@ -158,7 +158,7 @@ export default function Dashboard({ data }) {
                     </div>
                   </button>
                 </div>{" "}
-                <p clasName="my-5">ADD NEW CLIENT</p>
+                <p className="my-5">ADD NEW CLIENT</p>
               </div>
 
               {/*           <Link href="/users">

@@ -6,9 +6,11 @@ import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import ImpactBaselineModal from "../../../../components/ImpactBaselineModal";
 
 export default function IndexServoceActionPlan({ data }) {
+
   const router = useRouter()
   console.log("data", data);
 
@@ -43,13 +45,13 @@ export default function IndexServoceActionPlan({ data }) {
     goal3ActionStep2:"",
     goal3ActionStep3:"",
     comments:"",
-    HCWSignature:"",
-    HCWSignatureDate:"",
-    supervisorSignature:"",
-    clientSignature:""
+    HCWSignature:false,
+    HCWSignatureDate:false,
+    supervisorSignature:false,
+    clientSignature:false
   });
 
-  console.log("clientData",clientData)
+
 
   const genericGoals = [
 "Attend all health appointments",
@@ -105,35 +107,35 @@ const services = [
       );
     });
   };
-
-
-  const createClientActionPlan = ()=>{
+  
+  const notifyMessage = () => {
+    toast.success("Service Action Plan updated", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+  const updateClientActionPlan = ()=>{
     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
       clientData
     })
     .then(function (response) {
+      console.log("response",response)
       if(response.status===200 || response.statusText==='Ok'){
         notifyMessage()
         setTimeout(()=>{
-          router.push(`/clients/${clientData.clientId}/profile`)
-        },2300)
+          setShowImpactBaselineModal(!showImpactBaselineModal)
+        },3300)
       } 
     })
     .catch(function (error) {
           console.log(error)
     });
   }
-
-  const notifyMessage = () => {
-    toast.success("A new Service Action Plan has been created!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  };
   
   return (
     <>
      <ToastContainer autoClose={2000} />
       <Layout>
+      <ToastContainer autoClose={2000} />
         <section className="my-5">
           <div className="container mx-auto">
             <div className="md:text-center font-black md:p-0 px-5">
@@ -554,7 +556,7 @@ const services = [
           <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
             Save Progress</button>
             <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-            onClick={(e)=>{createClientActionPlan()}}>Save</button>
+            onClick={(e)=>{updateClientActionPlan()}}>Save</button>
             <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>
           </div>
         </section>

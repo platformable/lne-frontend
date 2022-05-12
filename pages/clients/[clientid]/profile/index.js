@@ -6,14 +6,31 @@ import Image from "next/image";
 
 import infoIcon from "../../../../public/client/info-icon.svg"
 import userIcon from "../../../../public/client/user-icon.svg"
-import itemMenuActionsImg from "../../../../public/client/item-menu-actions.svg"
-
 
 import { useRouter } from "next/router";
 
-export default function ClientProfilePage({ data }) {
+export function getDate (string) {
+    const date = new Date(string)
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const year = date.getFullYear()
+    const result = `${month}/${day}/${year}`
+    return result
+}
 
-  console.log("data",data)
+
+export default function ClientProfilePage({ data }) {
+  console.log('data',data)
+
+  const setLocaleDateString = (date) => {
+     const fecha = Date.parse(date)
+     const newDate=new Date(fecha).toLocaleDateString().replace('/”,“-').replace('/”,“-')
+     const separatedDate=newDate.split('-')
+     const finalDate=`${separatedDate[2]}-${separatedDate[1]?.length===1?`0${separatedDate[1]}`:separatedDate[1]}-${separatedDate[0]?.length===1?`0${separatedDate[0]}`:separatedDate[0]}`
+     return finalDate
+   }
+  const clientJoinedDate = getDate(data[0].clientdatecreated)
+  const cleanDate = setLocaleDateString(data[0].clientdatecreated)
 
   const router = useRouter()
   return (<>
@@ -40,7 +57,7 @@ export default function ClientProfilePage({ data }) {
                     
                 <div className='grid mt-4 grid-rows-2 md:flex md:items-center md:justify-between'>
                 <p className="">Date Client Joined LNE</p>
-                <p className='justify-self-end'>MM/DD/YY</p>
+                <p className='justify-self-end'>{clientJoinedDate}</p>
                 </div>
                 <hr className='border-blue-400'></hr>
                 
@@ -177,34 +194,18 @@ export default function ClientProfilePage({ data }) {
            </svg>
            </div>
            <h4 className="text-center">
-           {data[0]?.serviceactionplan ==="0" ? "Create service action plan" : `Edit Service action plan`}
+           {data[0]?.serviceactionplan ==="0" ? "Create Service Action Plan" : `View Service Action Plan`}
            </h4>
          </div>
          </Link>  
           :""}
-
-
            
-           
-            
           </div>
         </div>
           
-        {/* <div className='text-black bg-light-blue py-12 px-8  w-full'>
-            <ul className='grid justify-center  mt-4
-             text-center gap-8 md:grid-cols-3 md:border-0 lg:grid-cols-3 xl:grid-cols-6'>
-                
-                
-                
-              
-              
-            </ul>
-        </div> */}
-          
       </section>
     </Layout>
-
-</>
+   </>
   );
 }
 
