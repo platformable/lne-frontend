@@ -645,6 +645,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 }
 
 export const getServerSideProps = withPageAuthRequired({
+  
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
     const res = await fetch(

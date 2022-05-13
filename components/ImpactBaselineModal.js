@@ -54,7 +54,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         }
     }
     const notifyMessage = () => {
-        toast.success("Impact Baseline was updated!", {
+        toast.success("Impact Baseline was created!", {
           position: toast.POSITION.TOP_CENTER,
         });
       };

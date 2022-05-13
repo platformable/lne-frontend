@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const EditMsaFormPage = ({ data }) => {
 
-  console.log("data",data)
    const router = useRouter()
 
    const notifyMessage = () => {
@@ -81,8 +80,6 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 
   const todaysDate = new Date();
 
-
-  console.log("clientData",clientData)
 
 
 const handleMsaform = ()=> {
@@ -512,7 +509,7 @@ const crearFecha=()=>{
                       AIRSCollateralInformation:
                         !clientData.AIRSCollateralInformation,
                     })
-                }
+                    }
                   }
                   /* checked={clientData.AIRSCollateralInformation ? true : false} */
                  /*  value={clientData.AIRSCollateralInformation ? true : false} */
@@ -956,10 +953,11 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEClientRights: !clientData.LNEClientRights,
+                      LNEClientRightsDate:crearFecha()
                     })):setClientData({
                       ...clientData,
                       LNEClientRights: !clientData.LNEClientRights,
-                      LNEClientRightsDate:crearFecha()
+                     
                     })
                   }}
                   checked={clientData.LNEClientRights ? 'checked' : ''}
@@ -1470,8 +1468,7 @@ const crearFecha=()=>{
                   id=""
                   onChange={() => {
                     
-                    clientData.LNEReferralInformationDate==="" ? clientData.LNEReferralInformationDate===null (
-                        
+                    clientData.LNEReferralInformationDate==="" || clientData.LNEReferralInformationDate===null ? (
                     setClientData({
                       ...clientData,
                       LNEReferralInformation:
@@ -1484,8 +1481,6 @@ const crearFecha=()=>{
                     })
                   }
                 }
-
-
                   checked={clientData.LNEReferralInformation ? 'checked' : ''}
                 />
               </div>

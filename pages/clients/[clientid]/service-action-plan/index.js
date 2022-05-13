@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import ImpactBaselineModal from "../../../../components/ImpactBaselineModal";
 
 export default function IndexServoceActionPlan({ data }) {
@@ -161,6 +163,8 @@ const services = [
         </button>
   
         </section>
+
+        <main id="mainContent">
         <section id="info" className="my-5 px-5">
           <div className="container mx-auto">
             <h6 className="font-black my-5 text-dark-blue">
@@ -554,7 +558,7 @@ const services = [
           </div>
           </div>
         </section>
-
+        </main>
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
           <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
