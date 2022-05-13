@@ -538,17 +538,17 @@ const services = [
             <div className="others-container-box flex gap-2 justify-center items-center" >
               <p>Has the client signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,clientSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,clientSignature:!clientData.clientSignature})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the health care worker signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,HCWSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,HCWSignature:!clientData.HCWSignature})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the supervisor signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,supervisorSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,supervisorSignature:!clientData.supervisorSignature})}}/>
             </div>
           </div>
           </div>
