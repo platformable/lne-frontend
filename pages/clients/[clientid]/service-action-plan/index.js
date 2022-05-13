@@ -116,8 +116,8 @@ const services = [
       position: toast.POSITION.TOP_CENTER,
     });
   };
-  const updateClientActionPlan = ()=>{
-    axios.post('http://localhost:5500/services_action_plan', {
+  const createClientActionPlan = ()=>{
+    axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
       clientData
     })
     .then(function (response) {
@@ -564,7 +564,7 @@ const services = [
  {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
             Save Progress</button> */}
             <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-            onClick={(e)=>{updateClientActionPlan()}}>Save</button>
+            onClick={(e)=>{createClientActionPlan()}}>Save</button>
             <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>
           </div>
         </section>
