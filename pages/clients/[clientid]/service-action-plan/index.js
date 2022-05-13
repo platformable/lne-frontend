@@ -47,7 +47,7 @@ export default function IndexServoceActionPlan({ data }) {
     goal3ActionStep3:"",
     comments:"",
     HCWSignature:false,
-    HCWSignatureDate:false,
+    HCWSignatureDate:"",
     supervisorSignature:false,
     clientSignature:false
   });
