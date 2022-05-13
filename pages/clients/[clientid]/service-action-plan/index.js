@@ -561,8 +561,8 @@ const services = [
         </main>
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
-            Save Progress</button>
+ {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
+            Save Progress</button> */}
             <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
             onClick={(e)=>{updateClientActionPlan()}}>Save</button>
             <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>
