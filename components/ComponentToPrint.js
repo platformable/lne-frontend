@@ -267,4 +267,6 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
   );
 });
 
+
+ComponentToPrint.displayName = 'ComponentToPrint';
 export default ComponentToPrint;
