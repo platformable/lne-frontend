@@ -15,7 +15,7 @@ export default function ClientProfilePage({ data }) {
       <h3 className="font-black text-center">Client Profile</h3>
       <div className="container mx-auto">
       <button 
-        onClick={()=>router.back()}
+        onClick={()=>router.push('/dashboard')}
         className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
         <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
