@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 
-export default function DashboardClientCard({client}) {
+export default function DashboardClientCard({client,index}) {
   return (
-    <div className="dashboard-clients-box">
+    <div className="dashboard-clients-box" key={index}>
     <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm ">
       <div className="grid dashboard-card-name-box gap-5 ">
         <svg
@@ -57,7 +57,8 @@ export default function DashboardClientCard({client}) {
 
       <div className="flex dashboard-card-name-box  items-center pl-2 justify-between">
       <h6 className="font-black text-xs">Last Updated</h6>
-      <p className="font-black ">{new Date().toLocaleDateString()}</p>
+      {/* <p className="font-black ">{new Date().toLocaleDateString()}</p> */}
+      <p className="font-black ">16-05-2022</p>
       </div>
       <div className="grid dashboard-card-name-box  items-center pl-2">
       

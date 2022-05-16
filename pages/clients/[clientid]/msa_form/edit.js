@@ -80,6 +80,8 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 
   const todaysDate = new Date();
 
+  console.log("data",data)
+  console.log("clientData",clientData)
 
 
 const handleMsaform = ()=> {
@@ -1617,7 +1619,7 @@ const crearFecha=()=>{
                   id="LNEHNSEligibilityForm"
                   value={
                     clientData.LNEHNSEligibilityFormDate &&
-                    clientData.LNEHNSEligibilityFormDate
+                    clientData.LNEHNSEligibilityFormDate.split('T')[0]
                   }
                   disabled={clientData.LNEHNSEligibilityFormDate ? true: false}
                   className="rounded-lg text-sm p-1"

@@ -13,12 +13,15 @@ import DashboardClientCard from '../components/DashboardClientCard'
 
 import Layout from "../components/Layout";
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ data, hcworkers }) {
   const { user, error, isLoading } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showCreateClientModal, setShowCreateClientModal] = useState(false);
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
   const userId = user?.sub
+  const [noDataMessage, setNoDataMessage] = useState(false);
+
+  const [liveData,setLiveData]=useState(data)
 
 
 
@@ -26,16 +29,16 @@ export default function Dashboard({ data }) {
 
     if(loggedUserRole !=="Supervisor" && loggedUserRole !=="DES" ){
 
-      const allClients= data.filter(client=>client.clienthcwid===userId)
+      const allClients= liveData.filter(client=>client.clienthcwid===userId).sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
       const userClients = allClients.map((client,index)=>{
         return (
-          <>
+          
           <DashboardClientCard client={client} key={index}/>
-          </>)
+          )
       })
       return userClients
     } else {
-     const userClients= data.map((client,index)=>{
+     const userClients= liveData.map((client,index)=>{
      return  <DashboardClientCard client={client} key={index}/>
       })
       return userClients
@@ -43,7 +46,36 @@ export default function Dashboard({ data }) {
 
     
    }
-   
+   const searchByClientIdOrClientName = (text) => {
+    const result = data.filter(
+      (client, index) =>
+        client.clientfirstname.toLowerCase().includes(text.toLowerCase()) ||
+        client.clientid.toLowerCase().includes(text.toLowerCase())
+    );
+    setLiveData(result);
+
+    if (result.length <= 0) {
+      setNoDataMessage(true);
+    } else {
+      setNoDataMessage(false);
+    }
+  };
+
+  const searchByUserId =(userid)=>{
+    console.log("liveData antes",liveData)
+    setLiveData(data)
+    const result = data.filter((client, index) => client.clienthcwid.toLowerCase()===userid.toLowerCase());
+
+    console.log(result)
+    setLiveData(result);
+
+
+    if (result.length <= 0) {
+      setNoDataMessage(true);
+    } else {
+      setNoDataMessage(false);
+    }
+  }
 
 
   const notifyMessage = () => {
@@ -52,20 +84,18 @@ export default function Dashboard({ data }) {
     });
   };
 
-  useEffect(() => {
-   /*  var ACCESS_TOKEN = process.env.NEXT_PUBLIC_DB_ACCESS_TK;
-    var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
-    dbx
-      .filesListFolder({ path: "" })
-      .then(function (response) {
-        console.log("response", response);
-        displayFiles(response.result.entries);
-      })
-      .catch(function (error) {
-        console.error(error);
-      }); */
+  const displayUserList = () => {
+   return hcworkers && hcworkers.map((user, index) => {
 
-  }, []);
+      return (
+        <option className="text-black" value={user.user_id} key={index}>
+          {user.name} {user.lastname}
+        </option>
+      );
+    });
+  };
+
+
 
   return (
     <>
@@ -115,10 +145,12 @@ export default function Dashboard({ data }) {
                         </div>
                       </button>
                     </div>{" "}
-                    <p clasName="my-5">MANAGE USERS</p>
+                    <p className="my-5">MANAGE USERS</p>
                   </div>
                 </Link>
               )}
+
+
 
              {/*  <div
                 className="text-center mr-5"
@@ -157,15 +189,71 @@ export default function Dashboard({ data }) {
                     </div>
                   </button>
                 </div>{" "}
-                <p clasName="my-5">ADD NEW CLIENT</p>
+                <p className="my-5">ADD NEW CLIENT</p>
               </div> */}
 
            
             </div>
+
+            <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
+                <div className="search-box flex  items-center">
+                  <p className="mr-5">Search by name or Client ID</p>
+
+                  <div className="flex ">
+                    <div className="flex border-1 border-black rounded-lg  rounded-lg">
+                      <input
+                        type="text"
+                        className="px-4  w-80 rounded-lg "
+                        placeholder="Search..."
+                        onChange={(e) =>
+                          searchByClientIdOrClientName(e.target.value)
+                        }
+                      />
+                      <button className="px-4 py-1 text-white bg-dark-blue border-l rounded">
+                        <svg
+                          width="24"
+                          height="24"
+                          strokeWidth="1.5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15.5 15.5L19 19"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              <div className="search-box flex items-center justify-end gap-3">
+                <p>Filter by HCW</p> 
+                <img src="" alt="" />
+              <select
+                    onChange={(e)=>searchByUserId(e.target.value)}
+                      className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
+                    >
+                      <option selected="true" disabled="disabled">Select HCW</option>
+                      {displayUserList()}
+                 
+                    </select>
+              </div>
+              </div>
           
             <div className="dashboard-client-list ">
               <h1 className="font-black text-center my-5">Clients</h1>
               {data.length<=0 && <p className="text-center">No clients has been added</p>}
+              {noDataMessage && <p className="text-center">No clients has been added with that name or id</p>}
               <div className="dashboard-clients-container grid md:grid-cols-5 grid.cols-1 md:px-0 px-5 gap-5">
             {/*  
              {data.length > 0 && data.map((client,index)=>{
@@ -175,6 +263,8 @@ export default function Dashboard({ data }) {
               </>)
             })
             } */}
+
+            {loggedUserRole ==="Supervisor" || loggedUserRole==="HCW" && 
             <div
                 className="p-5 text-center mb-2  text-center btn-darkBlue rounded shadow-xl rounded-xl text-white"
                 onClick={() => setShowCreateClientModal(!showCreateClientModal)}
@@ -213,9 +303,13 @@ export default function Dashboard({ data }) {
                     </div>
                   </button>
                 </div>{" "}
-                <p clasName="my-5 lne-text-white">ADD NEW CLIENT</p>
+                <p className="my-5 lne-text-white">ADD NEW CLIENT</p>
               </div>
-            {getUserClients()}
+            }
+
+              {getUserClients()}
+          
+          
                 
               </div>
             </div>
@@ -243,10 +337,18 @@ export default function Dashboard({ data }) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    //console.log("user",user)
-    //const res = await fetch(`http://localhost:5500/clients`);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
+    const [data, hcworkers] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+        r.json()
+      ),
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`).then((r) =>
+        r.json()
+      ),
+    ]);
+    return { props: { data: data, hcworkers: hcworkers } };
+
+    /*  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
     const data = await res.json();
-    return { props: { data } };
+    return { props: { data } }; */
   },
 });
