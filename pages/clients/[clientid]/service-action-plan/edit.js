@@ -141,11 +141,11 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     const fecha = Date.parse(date)
     const newDate=new Date(fecha).toLocaleDateString().replace("/","-").replace("/","-")
     const separatedDate=newDate.split('-')
-    const finalDate=`${separatedDate[2]}-${separatedDate[1]}-${separatedDate[0]}`
+    const finalDate=`${separatedDate[2]}-${separatedDate[1]?.length===1?`0${separatedDate[1]}`:separatedDate[1]}-${separatedDate[0]?.length===1?`0${separatedDate[0]}`:separatedDate[0]}`
     return finalDate
-
   }
 
+  console.log(data)
   
 
   return (
@@ -170,7 +170,8 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 </svg>
         Back to client profile
         </button>
-  
+
+
         </section>
         <section id="info" className="my-5 px-5">
           <div className="container mx-auto">
@@ -188,7 +189,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
                   <input
                     type="date"
                     className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                    value={clientData.planStartDate.split('T')[0]}
+                    value={setLocaleDateString(clientData.planStartDate)}
                     disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
                    /*  pattern="\d{4}-\d{2}-\d{2}" */ />
@@ -383,7 +384,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
-                    value={clientData.goal1TargetDate.split('T')[0]}
+                    value={setLocaleDateString(clientData.goal1TargetDate)}
                     disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,goal1TargetDate:e.target.value})}/>
                   </label>
@@ -465,7 +466,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}
-                    value={clientData.goal2TargetDate.split('T')[0]}
+                    value={setLocaleDateString(clientData.goal2TargetDate)}
                     disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
@@ -550,7 +551,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}
-                    value={clientData.goal3TargetDate.split('T')[0]}
+                    value={setLocaleDateString(clientData.goal3TargetDate)}
                     disabled={disableUserIfNotSupervisor()}
                     />
                   </label>

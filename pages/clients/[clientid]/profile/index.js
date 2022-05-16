@@ -200,12 +200,17 @@ export default function ClientProfilePage({ data }) {
          </Link>  
           :""}
            
+            
           </div>
         </div>
           
       </section>
     </Layout>
-   </>
+
+    
+  
+
+</>
   );
 }
 

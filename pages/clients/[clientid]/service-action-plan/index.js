@@ -6,15 +6,14 @@ import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import ImpactBaselineModal from "../../../../components/ImpactBaselineModal";
 
 export default function IndexServoceActionPlan({ data }) {
 
   const router = useRouter()
-  console.log("data", data);
+  const [showImpactBaselineModal,setShowImpactBaselineModal]=useState(false)
 
-  const [showImpactBaselineModal, setShowImpactBaselineModal] = useState(false);
+  
 
   const [clientData, setClientData] = useState({
     clientId:data[0].clientid,
@@ -107,7 +106,6 @@ const services = [
       );
     });
   };
-  
   const notifyMessage = () => {
     toast.success("Service Action Plan updated", {
       position: toast.POSITION.TOP_CENTER,
@@ -120,20 +118,23 @@ const services = [
     .then(function (response) {
       console.log("response",response)
       if(response.status===200 || response.statusText==='Ok'){
+        setShowImpactBaselineModal(!showImpactBaselineModal)
         notifyMessage()
-        setTimeout(()=>{
-          setShowImpactBaselineModal(!showImpactBaselineModal)
-        },3300)
+        /* setTimeout(()=>{
+          router.push(`/clients/${clientData.clientId}/profile`)
+        },2300) */
       } 
     })
     .catch(function (error) {
           console.log(error)
     });
   }
-  
+
+
+
   return (
     <>
-     <ToastContainer autoClose={2000} />
+     
       <Layout>
       <ToastContainer autoClose={2000} />
         <section className="my-5">
@@ -145,7 +146,7 @@ const services = [
         </section>
         <section className="container mx-auto">
     
-
+{showImpactBaselineModal && <ImpactBaselineModal setShowImpactBaselineModal={setShowImpactBaselineModal} clientId={clientData.clientId}/>}
         <button 
         onClick={()=>router.back()}
         className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
