@@ -236,8 +236,11 @@ export default function Dashboard({ data, hcworkers }) {
                   </div>
                 </div>
 
+                {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
               <div className="search-box flex items-center justify-end gap-3">
-                <p>Filter by HCW</p> 
+               
+                
+                  <p>Filter by HCW</p> 
                 <img src="" alt="" />
               <select
                     onChange={(e)=>searchByUserId(e.target.value)}
@@ -248,7 +251,10 @@ export default function Dashboard({ data, hcworkers }) {
                  
                     </select>
               </div>
+              )}
+
               </div>
+              
           
             <div className="dashboard-client-list ">
               <h1 className="font-black text-center my-5">Clients</h1>
