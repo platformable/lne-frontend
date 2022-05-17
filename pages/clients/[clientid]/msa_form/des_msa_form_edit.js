@@ -9,24 +9,24 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditMsaFormPage = ({ data }) => {
+ ç
+  const router = useRouter()
 
-   const router = useRouter()
-
-   const notifyMessage = () => {
+  const notifyMessage = () => {
     toast.success("MSA Form updated!", {
       position: toast.POSITION.TOP_CENTER,
     });
   };
-    
+
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
 
-const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
+  const disableUserIfNotSupervisor = () => loggedUserRole === 'HCW' ? true : false
 
 
   const [clientData, setClientData] = useState({
-    dateFormReviewed:new Date(),
+    dateFormReviewed: new Date(),
     clientId: data[0].clientid,
     clientFirstName: data[0].clientfirstname,
     clientLastName: data[0].clientlastname,
@@ -34,108 +34,150 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     planStartDate: "",
     userFirstName: data[0].userfirstname,
     userLastName: data[0].userlastname,
-    AIRSIntakeForm: data[0].airsintakeform==="0" ? false: true,
+    AIRSIntakeForm: data[0].airsintakeform === "0" ? false : true,
     AIRSIntakeFormDate: data[0].airsintakeformdate,
-    ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment ==="0" ? false: true,
-    ComprehensiveRiskBehaviorAssessmentDate:data[0].comprehensiveriskbehaviorassessmentdate,
-    ServiceActionPlan: data[0].serviceactionplan ==="0" ? false: true,
-    ServiceActionPlanDate:  data[0].serviceactionplandate,
-    AIRSCollateralInformation: data[0].airscollateralinformation ==="0" ? false: true,
-    AIRSCollateralInformationDate:data[0].airscollateralinformationdate,
-    AIRSFinancialInformation: data[0].airsfinancialinformation ==="0" ? false: true,
-    AIRSFinancialInformationDate: data[0].airsfinancialinformationdate ,
-    AIRSHIVAIDSRiskHistory: data[0].airshivaidsriskhistory ==="0" ? false: true,
+    ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment === "0" ? false : true,
+    ComprehensiveRiskBehaviorAssessmentDate: data[0].comprehensiveriskbehaviorassessmentdate,
+    ServiceActionPlan: data[0].serviceactionplan === "0" ? false : true,
+    ServiceActionPlanDate: data[0].serviceactionplandate,
+    AIRSCollateralInformation: data[0].airscollateralinformation === "0" ? false : true,
+    AIRSCollateralInformationDate: data[0].airscollateralinformationdate,
+    AIRSFinancialInformation: data[0].airsfinancialinformation === "0" ? false : true,
+    AIRSFinancialInformationDate: data[0].airsfinancialinformationdate,
+    AIRSHIVAIDSRiskHistory: data[0].airshivaidsriskhistory === "0" ? false : true,
     AIRSHIVAIDSRiskHistoryDate: data[0].airshivaidsriskhistorydate,
-    AIRSHCVHistory: data[0].airshcvhistory ==="0" ? false: true,
+    AIRSHCVHistory: data[0].airshcvhistory === "0" ? false : true,
     AIRSHCVHistoryDate: data[0].airshcvhistorydate,
-    AIRSHousingInformation: data[0].airshousinginformation ==="0" ? false: true,
+    AIRSHousingInformation: data[0].airshousinginformation === "0" ? false : true,
     AIRSHousingInformationDate: data[0].airshousinginformationdate,
-    AIRSInsuranceInformation: data[0].airsinsuranceinformation ==="0" ? false: true,
+    AIRSInsuranceInformation: data[0].airsinsuranceinformation === "0" ? false : true,
     AIRSInsuranceInformationDate: data[0].airsinsuranceinformationdate,
-    AIRSSubstanceUseHistory: data[0].airssubstanceusehistory ==="0" ? false: true,
+    AIRSSubstanceUseHistory: data[0].airssubstanceusehistory === "0" ? false : true,
     AIRSSubstanceUseHistoryDate: data[0].airssubstanceusehistorydate,
-    LNEClientRights: data[0].lneclientrights ==="0" ? false: true,
+    LNEClientRights: data[0].lneclientrights === "0" ? false : true,
     LNEClientRightsDate: data[0].lneclientrightsdate,
-    LNEClientGrievancePolicyProcedure: data[0].lneclientgrievancepolicyprocedure ==="0" ? false: true,
+    LNEClientGrievancePolicyProcedure: data[0].lneclientgrievancepolicyprocedure === "0" ? false : true,
     LNEClientGrievancePolicyProcedureDate: data[0].lneclientgrievancepolicyproceduredate,
-    LNEProgramRules: data[0].lneprogramrules ==="0" ? false: true,
+    LNEProgramRules: data[0].lneprogramrules === "0" ? false : true,
     LNEProgramRulesDate: data[0].lneprogramrulesdate,
-    LNEEmergencyContactConsent: data[0].lneemergencycontactconsent ==="0" ? false: true,
+    LNEEmergencyContactConsent: data[0].lneemergencycontactconsent === "0" ? false : true,
     LNEEmergencyContactConsentDate: data[0].lneemergencycontactconsentdate,
-    LNEConsentForReleaseOfConfidentialInformation: data[0].lneconsentforreleaseofconfidentialinformation ==="0" ? false: true,
+    LNEConsentForReleaseOfConfidentialInformation: data[0].lneconsentforreleaseofconfidentialinformation === "0" ? false : true,
     LNEConsentForReleaseOfConfidentialInformationDate: data[0].lneconsentforreleaseofconfidentialinformationdate,
-    HIPPAConsentForm: data[0].hippaconsentform ==="0" ? false: true,
+    HIPPAConsentForm: data[0].hippaconsentform === "0" ? false : true,
     HIPPAConsentFormDate: data[0].hippaconsentformdate,
-    NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices ==="0" ? false: true,
+    NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices === "0" ? false : true,
     NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate,
-    LNEOutreachRetentionTrackingForm: data[0].lneoutreachretentiontrackingform ==="0" ? false: true,
+    LNEOutreachRetentionTrackingForm: data[0].lneoutreachretentiontrackingform === "0" ? false : true,
     LNEOutreachRetentionTrackingFormDate: data[0].lneoutreachretentiontrackingformdate,
-    LNEReferralInformation: data[0].lnereferralinformation ==="0" ? false: true,
+    LNEReferralInformation: data[0].lnereferralinformation === "0" ? false : true,
     LNEReferralInformationDate: data[0].lnereferralinformationdate,
-    LNEClientReferralForm: data[0].lneclientreferralform ==="0" ? false: true,
+    LNEClientReferralForm: data[0].lneclientreferralform === "0" ? false : true,
     LNEClientReferralFormDate: data[0].lneclientreferralformdate,
-    LNEHNSEligibilityForm: data[0].lnehnseligibilityform ==="0" ? false: true,
+    LNEHNSEligibilityForm: data[0].lnehnseligibilityform === "0" ? false : true,
     LNEHNSEligibilityFormDate: data[0].lnehnseligibilityformdate
   });
 
   const todaysDate = new Date();
 
-  console.log("data",data)
-  console.log("clientData",clientData)
+  console.log("data", data)
+  console.log("clientData", clientData)
 
 
-const handleMsaform = ()=> {
+  const handleMsaform = () => {
 
     axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update`, {
-        clientData
-      })
+      clientData
+    })
       .then(function (response) {
-   
-        if(response.status===200 || response.statusText==='Ok'){
+
+        if (response.status === 200 || response.statusText === 'Ok') {
           notifyMessage()
-            setTimeout(()=>{
-              router.push(`/clients/${clientData.clientId}/profile`)
-            },2300)
-          } 
+          setTimeout(() => {
+            router.push(`/clients/${clientData.clientId}/profile`)
+          }, 2300)
+        }
       })
       .catch(function (error) {
-       res.send(error)
+        res.send(error)
       });
-}
+  }
 
-const crearFecha=()=>{
-  const initialDate= new Date().toLocaleDateString()
-  const newDate=initialDate.split('/')
-  const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
-  return fixedDate
+  const crearFecha = () => {
+    const initialDate = new Date().toLocaleDateString()
+    const newDate = initialDate.split('/')
+    const fixedDate = `${newDate[2]}-${newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`}-${newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`}`
+    return fixedDate
 
-}
+  }
 
   return (
     <><ToastContainer autoClose={2000} />
       <Layout>
-      
+
         <div className="container mx-auto">
           <h3 className="font-black text-center my-5">DES Edit MSA FORM</h3>
         </div>
 
-        
+        <div className="container bg-blue-50 rounded-xl p-5 mx-auto">
+          <div className="flex flex-col items-center max-w-fit">
+            <svg
+              width="24"
+              height="24"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="black"
+              xmlns="http://www.w3.org/2000/svg"
+              className="font-black"
+            >
+              <path
+                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+              <path
+                d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+              <path
+                d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </svg>
+            <p className="text-dark-blue">{clientData.clientId}</p>
+            <button className="flex items-center bg-blue-500 hover:bg-blue-300 px-3 py-1 rounded text-white inline-block text-xs">
+            <svg className="mr-1" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>Dashboard
+              </button>
+          </div>
+        </div>
 
         <main className="container mx-auto">
-         
-        <button 
-        onClick={()=>router.back()}
-        className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
-        <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        Back to client profile
-        </button>
+
+          <button
+            onClick={() => router.back()}
+            className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
+            <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Back to client profile
+          </button>
           <section id="info" className="my-5">
             <div className="">
-              <h6 className="font-black my-5 text-dark-blue">
-                 Client Information
+              <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
+                Information
               </h6>
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
@@ -278,28 +320,31 @@ const crearFecha=()=>{
               </div>
             </div>
           </section>
-          <h6 className="font-black my-5 text-dark-blue">
-            Forms - check if documents were added to the client&apos;s file
+          <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
+           Indicate which of the following forms you have uploaded to the client&apos;s Dropbox
           </h6>
           <section
             id="form"
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <p className="text-xs"><span className="text-red-500">*</span> Mandatory fields (Please, fil out these forms to complete the process)</p>
+
             <div
               id="form-head"
-              className={`${MSAStyles.formRowsContainer} bg-dark-blue  text-white grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}
             >
               <div></div>
               <p>Form name</p>
               <p className="text-center">Date added</p>
               <p className="text-center">Dropbox Folder</p>
+              <p className="text-center">Date last updated</p>
+              <p className="text-center">PDF version uploaded</p>
+              <p className="text-center">Scanned version uploaded</p>
             </div>
             {/* {TABLE HEAD} */}
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -307,26 +352,26 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={(e) => {
-                    clientData.AIRSIntakeFormDate ==="" || clientData.AIRSIntakeFormDate ===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
-                      AIRSIntakeFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
-                    })
+                    clientData.AIRSIntakeFormDate === "" || clientData.AIRSIntakeFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                        AIRSIntakeFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                      })
                   }
-                }
+                  }
                   checked={clientData.AIRSIntakeForm ? 'checked' : false}
                 />
               </div>
               <div>
                 <p>AIRS Intake Form <span className="text-red-500">*</span></p>
               </div>
-          
+
               <div className="text-center">
-                 
+
                 <input
                   type="date"
                   id="AIRSIntakeForm"
@@ -334,7 +379,7 @@ const crearFecha=()=>{
                     clientData.AIRSIntakeFormDate &&
                     clientData.AIRSIntakeFormDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSIntakeFormDate ? true: false}
+                  disabled={clientData.AIRSIntakeFormDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -361,30 +406,92 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className=" text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className="text-center">
                 <input
                   type="checkbox"
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.ComprehensiveRiskBehaviorAssessmentDate==="" || clientData.ComprehensiveRiskBehaviorAssessmentDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      ComprehensiveRiskBehaviorAssessment:
-                        !clientData.ComprehensiveRiskBehaviorAssessment,
-                        omprehensiveRiskBehaviorAssessmentDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      ComprehensiveRiskBehaviorAssessment:
-                        !clientData.ComprehensiveRiskBehaviorAssessment,
-                    })
+                    clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessment:
+                          !clientData.ComprehensiveRiskBehaviorAssessment,
+                        omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessment:
+                          !clientData.ComprehensiveRiskBehaviorAssessment,
+                      })
                   }
-                }
+                  }
                   checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
                 />
               </div>
@@ -399,7 +506,7 @@ const crearFecha=()=>{
                     clientData.ComprehensiveRiskBehaviorAssessmentDate &&
                     clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
                   }
-                  disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false}
+                  disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -408,6 +515,7 @@ const crearFecha=()=>{
                     });
                   }}
                 />
+                
               </div>
               <div className="flex justify-center">
                 <svg
@@ -426,27 +534,89 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className="text-center">
                 <input
                   type="checkbox"
                   name=""
                   id=""
                   onChange={() => {
-                    
-                    clientData.ServiceActionPlanDate==="" || clientData.ServiceActionPlanDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      ServiceActionPlan: !clientData.ServiceActionPlan,
-                      ServiceActionPlanDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      ServiceActionPlan: !clientData.ServiceActionPlan,
-                    })
+
+                    clientData.ServiceActionPlanDate === "" || clientData.ServiceActionPlanDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ServiceActionPlan: !clientData.ServiceActionPlan,
+                        ServiceActionPlanDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ServiceActionPlan: !clientData.ServiceActionPlan,
+                      })
                   }}
                   checked={clientData.ServiceActionPlan ? 'checked' : ''}
                 />
@@ -462,7 +632,7 @@ const crearFecha=()=>{
                     clientData.ServiceActionPlanDate &&
                     clientData.ServiceActionPlanDate.split('T')[0]
                   }
-                  disabled={clientData.ServiceActionPlanDate ? true: false}
+                  disabled={clientData.ServiceActionPlanDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -489,32 +659,94 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
-            >
-              <div className="form-row-item px-5">
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="text-center">
                 <input
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={(e) =>{
-                    clientData.AIRSCollateralInformationDate==="" || clientData.AIRSCollateralInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
-                        AIRSCollateralInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
-                    })
-                    }
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+            </div>
+
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+            >
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSCollateralInformationDate === "" || clientData.AIRSCollateralInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformation:
+                          !clientData.AIRSCollateralInformation,
+                        AIRSCollateralInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSCollateralInformation:
+                          !clientData.AIRSCollateralInformation,
+                      })
                   }
-                  /* checked={clientData.AIRSCollateralInformation ? true : false} */
-                 /*  value={clientData.AIRSCollateralInformation ? true : false} */
+                  }
+                /* checked={clientData.AIRSCollateralInformation ? true : false} */
+                /*  value={clientData.AIRSCollateralInformation ? true : false} */
                 />
               </div>
               <div>
@@ -528,7 +760,7 @@ const crearFecha=()=>{
                     clientData.AIRSCollateralInformationDate &&
                     clientData.AIRSCollateralInformationDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSCollateralInformationDate ? true: false}
+                  disabled={clientData.AIRSCollateralInformationDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -555,28 +787,90 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className="text-center">
                 <input
                   type="checkbox"
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.AIRSFinancialInformationDate ==="" || clientData.AIRSFinancialInformationDate === null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                        AIRSFinancialInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                    })
+                    clientData.AIRSFinancialInformationDate === "" || clientData.AIRSFinancialInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSFinancialInformation:
+                          !clientData.AIRSFinancialInformation,
+                        AIRSFinancialInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSFinancialInformation:
+                          !clientData.AIRSFinancialInformation,
+                      })
                   }}
                   checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
                 />
@@ -592,7 +886,7 @@ const crearFecha=()=>{
                     clientData.AIRSFinancialInformationDate &&
                     clientData.AIRSFinancialInformationDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSFinancialInformationDate ? true: false}
+                  disabled={clientData.AIRSFinancialInformationDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -619,28 +913,90 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className="text-center">
                 <input
                   type="checkbox"
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.AIRSHIVAIDSRiskHistoryDate==="" || clientData.AIRSHIVAIDSRiskHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                        AIRSHIVAIDSRiskHistoryDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                    })
+                    clientData.AIRSHIVAIDSRiskHistoryDate === "" || clientData.AIRSHIVAIDSRiskHistoryDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistory:
+                          !clientData.AIRSHIVAIDSRiskHistory,
+                        AIRSHIVAIDSRiskHistoryDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistory:
+                          !clientData.AIRSHIVAIDSRiskHistory,
+                      })
                   }}
                   checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
                 />
@@ -656,7 +1012,7 @@ const crearFecha=()=>{
                     clientData.AIRSHIVAIDSRiskHistoryDate &&
                     clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false}
+                  disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -683,28 +1039,90 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="text-center">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className="text-centerç">
                 <input
                   type="checkbox"
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.AIRSHCVHistoryDate==="" || clientData.AIRSHCVHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
-                      AIRSHCVHistoryDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
-                    })
+                    clientData.AIRSHCVHistoryDate === "" || clientData.AIRSHCVHistoryDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                        AIRSHCVHistoryDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                      })
                   }
-                }
+                  }
                   checked={clientData.AIRSHCVHistory ? 'checked' : ''}
                 />
               </div>
@@ -719,7 +1137,7 @@ const crearFecha=()=>{
                     clientData.AIRSHCVHistoryDate &&
                     clientData.AIRSHCVHistoryDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSHCVHistoryDate ? true: false}
+                  disabled={clientData.AIRSHCVHistoryDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -746,10 +1164,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -757,20 +1237,20 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() => {
-                 
-                    clientData.AIRSHousingInformationDate==="" || clientData.AIRSHousingInformationDate=== null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                        AIRSHousingInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                    })
+
+                    clientData.AIRSHousingInformationDate === "" || clientData.AIRSHousingInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHousingInformation:
+                          !clientData.AIRSHousingInformation,
+                        AIRSHousingInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHousingInformation:
+                          !clientData.AIRSHousingInformation,
+                      })
                   }
-                }
+                  }
                   checked={clientData.AIRSHousingInformation ? 'checked' : ''}
                 />
               </div>
@@ -785,7 +1265,7 @@ const crearFecha=()=>{
                     clientData.AIRSHousingInformationDate &&
                     clientData.AIRSHousingInformationDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSHousingInformationDate ? true: false}
+                  disabled={clientData.AIRSHousingInformationDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -812,10 +1292,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -823,17 +1365,17 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.AIRSInsuranceInformationDate==="" || clientData.AIRSInsuranceInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                        AIRSInsuranceInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                    })
+                    clientData.AIRSInsuranceInformationDate === "" || clientData.AIRSInsuranceInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformation:
+                          !clientData.AIRSInsuranceInformation,
+                        AIRSInsuranceInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformation:
+                          !clientData.AIRSInsuranceInformation,
+                      })
                   }}
                   checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
                 />
@@ -849,7 +1391,7 @@ const crearFecha=()=>{
                     clientData.AIRSInsuranceInformationDate &&
                     clientData.AIRSInsuranceInformationDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSInsuranceInformationDate ? true: false}
+                  disabled={clientData.AIRSInsuranceInformationDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -876,10 +1418,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -887,17 +1491,17 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.AIRSSubstanceUseHistoryDate==="" || clientData.AIRSSubstanceUseHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                        AIRSSubstanceUseHistoryDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                    })
+                    clientData.AIRSSubstanceUseHistoryDate === "" || clientData.AIRSSubstanceUseHistoryDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistory:
+                          !clientData.AIRSSubstanceUseHistory,
+                        AIRSSubstanceUseHistoryDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistory:
+                          !clientData.AIRSSubstanceUseHistory,
+                      })
                   }}
                   checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
                 />
@@ -913,7 +1517,7 @@ const crearFecha=()=>{
                     clientData.AIRSSubstanceUseHistoryDate &&
                     clientData.AIRSSubstanceUseHistoryDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false}
+                  disabled={clientData.AIRSSubstanceUseHistoryDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -940,10 +1544,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -951,16 +1617,16 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.LNEClientRightsDate==="" || clientData.LNEClientRightsDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientRights: !clientData.LNEClientRights,
-                      LNEClientRightsDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientRights: !clientData.LNEClientRights,
-                     
-                    })
+                    clientData.LNEClientRightsDate === "" || clientData.LNEClientRightsDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEClientRights: !clientData.LNEClientRights,
+                        LNEClientRightsDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEClientRights: !clientData.LNEClientRights,
+
+                      })
                   }}
                   checked={clientData.LNEClientRights ? 'checked' : ''}
                 />
@@ -976,7 +1642,7 @@ const crearFecha=()=>{
                     clientData.LNEClientRightsDate &&
                     clientData.LNEClientRightsDate.split('T')[0]
                   }
-                  disabled={clientData.LNEClientRightsDate ? true: false}
+                  disabled={clientData.LNEClientRightsDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1003,10 +1669,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1014,17 +1742,17 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.LNEClientGrievancePolicyProcedureDate==="" || clientData.LNEClientGrievancePolicyProcedureDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                        LNEClientGrievancePolicyProcedureDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                    })
+                    clientData.LNEClientGrievancePolicyProcedureDate === "" || clientData.LNEClientGrievancePolicyProcedureDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedure:
+                          !clientData.LNEClientGrievancePolicyProcedure,
+                        LNEClientGrievancePolicyProcedureDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedure:
+                          !clientData.LNEClientGrievancePolicyProcedure,
+                      })
                   }}
                   checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
                 />
@@ -1040,7 +1768,7 @@ const crearFecha=()=>{
                     clientData.LNEClientGrievancePolicyProcedureDate &&
                     clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]
                   }
-                  disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false}
+                  disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1067,10 +1795,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1078,17 +1868,17 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() => {
-                    clientData.LNEProgramRulesDate==="" || clientData.LNEProgramRulesDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEProgramRules: !clientData.LNEProgramRules,
-                      LNEProgramRulesDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEProgramRules: !clientData.LNEProgramRules,
-                    })
+                    clientData.LNEProgramRulesDate === "" || clientData.LNEProgramRulesDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEProgramRules: !clientData.LNEProgramRules,
+                        LNEProgramRulesDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEProgramRules: !clientData.LNEProgramRules,
+                      })
                   }
-                }
+                  }
                   checked={clientData.LNEProgramRules ? 'checked' : ''}
                 />
               </div>
@@ -1103,7 +1893,7 @@ const crearFecha=()=>{
                     clientData.LNEProgramRulesDate &&
                     clientData.LNEProgramRulesDate.split('T')[0]
                   }
-                  disabled={clientData.LNEProgramRulesDate ? true: false}
+                  disabled={clientData.LNEProgramRulesDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1130,28 +1920,90 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEEmergencyContactConsentDate==="" || clientData.LNEEmergencyContactConsentDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                        LNEEmergencyContactConsentDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                    })
+                  onChange={() => {
+                    clientData.LNEEmergencyContactConsentDate === "" || clientData.LNEEmergencyContactConsentDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsent:
+                          !clientData.LNEEmergencyContactConsent,
+                        LNEEmergencyContactConsentDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsent:
+                          !clientData.LNEEmergencyContactConsent,
+                      })
                   }}
                   checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
                 />
@@ -1167,7 +2019,7 @@ const crearFecha=()=>{
                     clientData.LNEEmergencyContactConsentDate &&
                     clientData.LNEEmergencyContactConsentDate.split('T')[0]
                   }
-                  disabled={clientData.LNEEmergencyContactConsentDate ? true: false}
+                  disabled={clientData.LNEEmergencyContactConsentDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1194,30 +2046,92 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEConsentForReleaseOfConfidentialInformationDate==="" || clientData.LNEConsentForReleaseOfConfidentialInformationDate===null ? (
+                  onChange={() => {
+                    clientData.LNEConsentForReleaseOfConfidentialInformationDate === "" || clientData.LNEConsentForReleaseOfConfidentialInformationDate === null ? (
                       setClientData({
                         ...clientData,
                         LNEConsentForReleaseOfConfidentialInformation:
                           !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                          LNEConsentForReleaseOfConfidentialInformationDate:crearFecha()
+                        LNEConsentForReleaseOfConfidentialInformationDate: crearFecha()
                       })
-                    ):setClientData({
+                    ) : setClientData({
                       ...clientData,
                       LNEConsentForReleaseOfConfidentialInformation:
                         !clientData.LNEConsentForReleaseOfConfidentialInformation,
                     })
-                    
+
                   }
                   }
                   checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
@@ -1234,7 +2148,7 @@ const crearFecha=()=>{
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate &&
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]
                   }
-                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false}
+                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1262,26 +2176,88 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.HIPPAConsentFormDate==="" || clientData.HIPPAConsentFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
-                      HIPPAConsentFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
-                    })
+                  onChange={() => {
+                    clientData.HIPPAConsentFormDate === "" || clientData.HIPPAConsentFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                        HIPPAConsentFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                      })
                   }
                   }
                   checked={clientData.HIPPAConsentForm ? 'checked' : ''}
@@ -1298,7 +2274,7 @@ const crearFecha=()=>{
                     clientData.HIPPAConsentFormDate &&
                     clientData.HIPPAConsentFormDate.split('T')[0]
                   }
-                  disabled={clientData.HIPPAConsentFormDate ? true: false}
+                  disabled={clientData.HIPPAConsentFormDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1325,28 +2301,90 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate==="" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                        NYCDOHMHNoticeOfPrivacyPracticesDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                    })
+                  onChange={() => {
+                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate === "" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPractices:
+                          !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPractices:
+                          !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                      })
                   }
                   }
                   checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
@@ -1366,7 +2404,7 @@ const crearFecha=()=>{
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate &&
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]
                   }
-                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false}
+                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1393,28 +2431,90 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEOutreachRetentionTrackingFormDate==="" || clientData.LNEOutreachRetentionTrackingFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                        LNEOutreachRetentionTrackingFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                    })
+                  onChange={() => {
+                    clientData.LNEOutreachRetentionTrackingFormDate === "" || clientData.LNEOutreachRetentionTrackingFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingForm:
+                          !clientData.LNEOutreachRetentionTrackingForm,
+                        LNEOutreachRetentionTrackingFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingForm:
+                          !clientData.LNEOutreachRetentionTrackingForm,
+                      })
                   }
                   }
                   checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
@@ -1431,7 +2531,7 @@ const crearFecha=()=>{
                     clientData.LNEOutreachRetentionTrackingFormDate &&
                     clientData.LNEOutreachRetentionTrackingFormDate.split('T')[0]
                   }
-                  disabled={clientData.LNEOutreachRetentionTrackingFormDate ? true: false}
+                  disabled={clientData.LNEOutreachRetentionTrackingFormDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1458,10 +2558,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1469,20 +2631,20 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() => {
-                    
-                    clientData.LNEReferralInformationDate==="" || clientData.LNEReferralInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                        LNEReferralInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                    })
+
+                    clientData.LNEReferralInformationDate === "" || clientData.LNEReferralInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEReferralInformation:
+                          !clientData.LNEReferralInformation,
+                        LNEReferralInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEReferralInformation:
+                          !clientData.LNEReferralInformation,
+                      })
                   }
-                }
+                  }
                   checked={clientData.LNEReferralInformation ? 'checked' : ''}
                 />
               </div>
@@ -1497,7 +2659,7 @@ const crearFecha=()=>{
                     clientData.LNEReferralInformationDate &&
                     clientData.LNEReferralInformationDate.split('T')[0]
                   }
-                  disabled={clientData.LNEReferralInformationDate ? true: false}
+                  disabled={clientData.LNEReferralInformationDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1524,10 +2686,72 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1535,15 +2759,15 @@ const crearFecha=()=>{
                   name=""
                   id=""
                   onChange={() =>
-                    clientData.LNEClientReferralFormDate ==="" || clientData.LNEClientReferralFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientReferralForm: !clientData.LNEClientReferralForm,
-                      LNEClientReferralFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientReferralForm: !clientData.LNEClientReferralForm
-                    })
+                    clientData.LNEClientReferralFormDate === "" || clientData.LNEClientReferralFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEClientReferralForm: !clientData.LNEClientReferralForm,
+                        LNEClientReferralFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEClientReferralForm: !clientData.LNEClientReferralForm
+                      })
                   }
                   checked={clientData.LNEClientReferralForm ? 'checked' : ''}
                 />
@@ -1559,7 +2783,7 @@ const crearFecha=()=>{
                     clientData.LNEClientReferralFormDate &&
                     clientData.LNEClientReferralFormDate.split('T')[0]
                   }
-                  disabled={clientData.LNEClientReferralFormDate ? true: false}
+                  disabled={clientData.LNEClientReferralFormDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1586,26 +2810,88 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEHNSEligibilityFormDate==="" || clientData.LNEHNSEligibilityFormDate ===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                      LNEHNSEligibilityFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm
-                    })
+                  onChange={() => {
+                    clientData.LNEHNSEligibilityFormDate === "" || clientData.LNEHNSEligibilityFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                        LNEHNSEligibilityFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm
+                      })
                   }}
                   checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
                 />
@@ -1621,10 +2907,10 @@ const crearFecha=()=>{
                     clientData.LNEHNSEligibilityFormDate &&
                     clientData.LNEHNSEligibilityFormDate.split('T')[0]
                   }
-                  disabled={clientData.LNEHNSEligibilityFormDate ? true: false}
+                  disabled={clientData.LNEHNSEligibilityFormDate ? true : false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-            
+
                     setClientData({
                       ...clientData,
                       LNEHNSEligibilityFormDate: e.target.value,
@@ -1649,13 +2935,75 @@ const crearFecha=()=>{
                   />
                 </svg>
               </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSIntakeForm"
+                  // value={
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                  // }
+                  // disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true : false}
+                  // className="rounded-lg text-sm p-1"
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                  //   });
+                  // }}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  // onChange={() => {
+                  //   clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                  //     setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //       omprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                  //     })) : setClientData({
+                  //       ...clientData,
+                  //       ComprehensiveRiskBehaviorAssessment:
+                  //         !clientData.ComprehensiveRiskBehaviorAssessment,
+                  //     })
+                  // }
+                  // }
+                  // checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                />
+              </div>
             </div>
           </section>
 
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-                onClick={()=>handleMsaform()}
+                onClick={() => handleMsaform()}
               >
                 Save and Update
               </button>
@@ -1670,13 +3018,13 @@ const crearFecha=()=>{
 export default EditMsaFormPage;
 
 export const getServerSideProps = withPageAuthRequired({
-    async getServerSideProps(ctx) {
-      let { clientid } = ctx.params;
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientid}`
-      );
-  
-      const data = await res.json();
-      return { props: { data } };
-    },
-  });
+  async getServerSideProps(ctx) {
+    let { clientid } = ctx.params;
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientid}`
+    );
+
+    const data = await res.json();
+    return { props: { data } };
+  },
+});
