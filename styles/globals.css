@@ -74,6 +74,9 @@ h6 {
   --lightBlue:#E5F2FF;
   }
 
+  .lne-text-white {
+    color:white !important;
+  }
   /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -185,7 +188,7 @@ display:inline-block;
 z-index:1;
 max-width:300px;
 transition:0.5s easy-in-out;
-  animation-delay: 0s;
+animation-delay: 0s;
 }
 
 .not-box {
@@ -215,6 +218,9 @@ border-left:10px solid green;
 
 .bg-dark-blue{
   background-color: var(--darkBlue);
+}
+.hover-bg-dark-blue:hover{
+background-color: var(--blue);
 }
 
 .bg-light-blue{

@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Index = ({ data }) => {
    const router = useRouter()
@@ -17,6 +18,14 @@ const Index = ({ data }) => {
       position: toast.POSITION.TOP_CENTER,
     });
   };
+
+  const crearFecha=()=>{
+    const initialDate= new Date().toLocaleDateString()
+    const newDate=initialDate.split('/')
+    const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
+    return fixedDate
+  
+  }
 
   const [clientData, setClientData] = useState({
     dateFormReviewed:new Date(),
@@ -109,9 +118,9 @@ const handleMsaform = ()=> {
         onClick={()=>router.back()}
         className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
         <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
+        <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
         Back to client profile
         </button>
           <section id="info" className="my-5">
@@ -288,12 +297,18 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    clientData.AIRSIntakeFormDate ==="" || clientData.AIRSIntakeFormDate ===null ? (
                     setClientData({
+                      ...clientData,
+                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                      AIRSIntakeFormDate:crearFecha()
+                    })):setClientData({
                       ...clientData,
                       AIRSIntakeForm: !clientData.AIRSIntakeForm,
                     })
                   }
+                }
                 />
               </div>
               <div>
@@ -308,7 +323,6 @@ const handleMsaform = ()=> {
                     clientData.AIRSIntakeFormDate &&
                     clientData.AIRSIntakeFormDate
                   }
-                  
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -345,13 +359,20 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.ComprehensiveRiskBehaviorAssessmentDate==="" || clientData.ComprehensiveRiskBehaviorAssessmentDate===null ? (
                     setClientData({
+                      ...clientData,
+                      ComprehensiveRiskBehaviorAssessment:
+                        !clientData.ComprehensiveRiskBehaviorAssessment,
+                        ComprehensiveRiskBehaviorAssessmentDate:crearFecha()
+                    })):setClientData({
                       ...clientData,
                       ComprehensiveRiskBehaviorAssessment:
                         !clientData.ComprehensiveRiskBehaviorAssessment,
                     })
                   }
+                }
                 />
               </div>
               <div>
@@ -401,12 +422,17 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.ServiceActionPlanDate==="" || clientData.ServiceActionPlanDate===null ? (
                     setClientData({
                       ...clientData,
                       ServiceActionPlan: !clientData.ServiceActionPlan,
+                      ServiceActionPlanDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      ServiceActionPlan: !clientData.ServiceActionPlan,
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -456,12 +482,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={(e) =>{
+                    clientData.AIRSCollateralInformationDate==="" || clientData.AIRSCollateralInformationDate===null ? (
                     setClientData({
                       ...clientData,
                       AIRSCollateralInformation:
                         !clientData.AIRSCollateralInformation,
+                        AIRSCollateralInformationDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      AIRSCollateralInformation:
+                        !clientData.AIRSCollateralInformation,
                     })
+                    }
                   }
                 />
               </div>
@@ -512,13 +545,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.AIRSFinancialInformationDate ==="" || clientData.AIRSFinancialInformationDate === null ? (
                     setClientData({
                       ...clientData,
                       AIRSFinancialInformation:
                         !clientData.AIRSFinancialInformation,
+                        AIRSFinancialInformationDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      AIRSFinancialInformation:
+                        !clientData.AIRSFinancialInformation,
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -568,13 +607,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.AIRSHIVAIDSRiskHistoryDate==="" || clientData.AIRSHIVAIDSRiskHistoryDate===null ? (
                     setClientData({
                       ...clientData,
                       AIRSHIVAIDSRiskHistory:
                         !clientData.AIRSHIVAIDSRiskHistory,
+                        AIRSHIVAIDSRiskHistoryDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      AIRSHIVAIDSRiskHistory:
+                        !clientData.AIRSHIVAIDSRiskHistory,
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -624,12 +669,18 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.AIRSHCVHistoryDate==="" || clientData.AIRSHCVHistoryDate===null ? (
                     setClientData({
+                      ...clientData,
+                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                      AIRSHCVHistoryDate:crearFecha()
+                    })):setClientData({
                       ...clientData,
                       AIRSHCVHistory: !clientData.AIRSHCVHistory,
                     })
                   }
+                }
                 />
               </div>
               <div>
@@ -679,13 +730,21 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                 
+                    clientData.AIRSHousingInformationDate==="" || clientData.AIRSHousingInformationDate=== null ? (
                     setClientData({
+                      ...clientData,
+                      AIRSHousingInformation:
+                        !clientData.AIRSHousingInformation,
+                        AIRSHousingInformationDate:crearFecha()
+                    })):setClientData({
                       ...clientData,
                       AIRSHousingInformation:
                         !clientData.AIRSHousingInformation,
                     })
                   }
+                }
                 />
               </div>
               <div>
@@ -735,13 +794,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.AIRSInsuranceInformationDate==="" || clientData.AIRSInsuranceInformationDate===null ? (
                     setClientData({
                       ...clientData,
                       AIRSInsuranceInformation:
                         !clientData.AIRSInsuranceInformation,
+                        AIRSInsuranceInformationDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      AIRSInsuranceInformation:
+                        !clientData.AIRSInsuranceInformation,
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -791,13 +856,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.AIRSSubstanceUseHistoryDate==="" || clientData.AIRSSubstanceUseHistoryDate===null ? (
                     setClientData({
                       ...clientData,
                       AIRSSubstanceUseHistory:
                         !clientData.AIRSSubstanceUseHistory,
+                        AIRSSubstanceUseHistoryDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      AIRSSubstanceUseHistory:
+                        !clientData.AIRSSubstanceUseHistory,
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -847,12 +918,18 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.LNEClientRightsDate==="" || clientData.LNEClientRightsDate===null ? (
                     setClientData({
                       ...clientData,
                       LNEClientRights: !clientData.LNEClientRights,
+                      LNEClientRightsDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      LNEClientRights: !clientData.LNEClientRights,
+                     
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -902,13 +979,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.LNEClientGrievancePolicyProcedureDate==="" || clientData.LNEClientGrievancePolicyProcedureDate===null ? (
                     setClientData({
                       ...clientData,
                       LNEClientGrievancePolicyProcedure:
                         !clientData.LNEClientGrievancePolicyProcedure,
+                        LNEClientGrievancePolicyProcedureDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      LNEClientGrievancePolicyProcedure:
+                        !clientData.LNEClientGrievancePolicyProcedure,
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -958,12 +1041,18 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    clientData.LNEProgramRulesDate==="" || clientData.LNEProgramRulesDate===null ? (
                     setClientData({
+                      ...clientData,
+                      LNEProgramRules: !clientData.LNEProgramRules,
+                      LNEProgramRulesDate:crearFecha()
+                    })):setClientData({
                       ...clientData,
                       LNEProgramRules: !clientData.LNEProgramRules,
                     })
                   }
+                }
                 />
               </div>
               <div>
@@ -1013,13 +1102,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() =>{
+                    clientData.LNEEmergencyContactConsentDate==="" || clientData.LNEEmergencyContactConsentDate===null ? (
                     setClientData({
                       ...clientData,
                       LNEEmergencyContactConsent:
                         !clientData.LNEEmergencyContactConsent,
+                        LNEEmergencyContactConsentDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      LNEEmergencyContactConsent:
+                        !clientData.LNEEmergencyContactConsent,
                     })
-                  }
+                  }}
                 />
               </div>
               <div>
@@ -1069,12 +1164,20 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
-                    setClientData({
+                  onChange={() =>{
+                    clientData.LNEConsentForReleaseOfConfidentialInformationDate==="" || clientData.LNEConsentForReleaseOfConfidentialInformationDate===null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEConsentForReleaseOfConfidentialInformation:
+                          !clientData.LNEConsentForReleaseOfConfidentialInformation,
+                          LNEConsentForReleaseOfConfidentialInformationDate:crearFecha()
+                      })
+                    ):setClientData({
                       ...clientData,
                       LNEConsentForReleaseOfConfidentialInformation:
                         !clientData.LNEConsentForReleaseOfConfidentialInformation,
                     })
+                  }
                   }
                 />
               </div>
@@ -1126,11 +1229,17 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() =>{
+                    clientData.HIPPAConsentFormDate==="" || clientData.HIPPAConsentFormDate===null ? (
                     setClientData({
                       ...clientData,
                       HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                      HIPPAConsentFormDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
                     })
+                  }
                   }
                 />
               </div>
@@ -1181,12 +1290,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() =>{
+                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate==="" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate===null ? (
                     setClientData({
                       ...clientData,
                       NYCDOHMHNoticeOfPrivacyPractices:
                         !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      NYCDOHMHNoticeOfPrivacyPractices:
+                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
                     })
+                  }
                   }
                 />
               </div>
@@ -1240,12 +1356,19 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() =>{
+                    clientData.LNEOutreachRetentionTrackingFormDate==="" || clientData.LNEOutreachRetentionTrackingFormDate===null ? (
                     setClientData({
                       ...clientData,
                       LNEOutreachRetentionTrackingForm:
                         !clientData.LNEOutreachRetentionTrackingForm,
+                        LNEOutreachRetentionTrackingFormDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      LNEOutreachRetentionTrackingForm:
+                        !clientData.LNEOutreachRetentionTrackingForm,
                     })
+                  }
                   }
                 />
               </div>
@@ -1296,13 +1419,21 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() => {
+                    
+                    clientData.LNEReferralInformationDate==="" || clientData.LNEReferralInformationDate===null ? (
                     setClientData({
+                      ...clientData,
+                      LNEReferralInformation:
+                        !clientData.LNEReferralInformation,
+                        LNEReferralInformationDate:crearFecha()
+                    })):setClientData({
                       ...clientData,
                       LNEReferralInformation:
                         !clientData.LNEReferralInformation,
                     })
                   }
+                }
                 />
               </div>
               <div>
@@ -1353,9 +1484,14 @@ const handleMsaform = ()=> {
                   name=""
                   id=""
                   onChange={() =>
+                    clientData.LNEClientReferralFormDate ==="" || clientData.LNEClientReferralFormDate===null ? (
                     setClientData({
                       ...clientData,
                       LNEClientReferralForm: !clientData.LNEClientReferralForm,
+                      LNEClientReferralFormDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      LNEClientReferralForm: !clientData.LNEClientReferralForm
                     })
                   }
                 />
@@ -1407,12 +1543,17 @@ const handleMsaform = ()=> {
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
+                  onChange={() =>{
+                    clientData.LNEHNSEligibilityFormDate==="" || clientData.LNEHNSEligibilityFormDate ===null ? (
                     setClientData({
                       ...clientData,
                       LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                      LNEHNSEligibilityFormDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm
                     })
-                  }
+                  }}
                 />
               </div>
               <div>

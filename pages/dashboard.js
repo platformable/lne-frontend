@@ -14,12 +14,15 @@ import DashboardClientCard from '../components/DashboardClientCard'
 import Layout from "../components/Layout";
 import ImpactBaselineModal from "../components/ImpactBaselineModal";
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ data, hcworkers }) {
   const { user, error, isLoading } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showCreateClientModal, setShowCreateClientModal] = useState(false);
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
   const userId = user?.sub
+  const [noDataMessage, setNoDataMessage] = useState(false);
+
+  const [liveData,setLiveData]=useState(data)
 
 
 
@@ -27,16 +30,16 @@ export default function Dashboard({ data }) {
 
     if(loggedUserRole !=="Supervisor" && loggedUserRole !=="DES" ){
 
-      const allClients= data.filter(client=>client.clienthcwid===userId)
+      const allClients= liveData.filter(client=>client.clienthcwid===userId).sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
       const userClients = allClients.map((client,index)=>{
         return (
-          <>
+          
           <DashboardClientCard client={client} key={index}/>
-          </>)
+          )
       })
       return userClients
     } else {
-     const userClients= data.map((client,index)=>{
+     const userClients= liveData.map((client,index)=>{
      return  <DashboardClientCard client={client} key={index}/>
       })
       return userClients
@@ -44,7 +47,36 @@ export default function Dashboard({ data }) {
 
     
    }
-   
+   const searchByClientIdOrClientName = (text) => {
+    const result = data.filter(
+      (client, index) =>
+        client.clientfirstname.toLowerCase().includes(text.toLowerCase()) ||
+        client.clientid.toLowerCase().includes(text.toLowerCase())
+    );
+    setLiveData(result);
+
+    if (result.length <= 0) {
+      setNoDataMessage(true);
+    } else {
+      setNoDataMessage(false);
+    }
+  };
+
+  const searchByUserId =(userid)=>{
+    console.log("liveData antes",liveData)
+    setLiveData(data)
+    const result = data.filter((client, index) => client.clienthcwid.toLowerCase()===userid.toLowerCase());
+
+    console.log(result)
+    setLiveData(result);
+
+
+    if (result.length <= 0) {
+      setNoDataMessage(true);
+    } else {
+      setNoDataMessage(false);
+    }
+  }
 
 
   const notifyMessage = () => {
@@ -53,20 +85,18 @@ export default function Dashboard({ data }) {
     });
   };
 
-  useEffect(() => {
-   /*  var ACCESS_TOKEN = process.env.NEXT_PUBLIC_DB_ACCESS_TK;
-    var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
-    dbx
-      .filesListFolder({ path: "" })
-      .then(function (response) {
-        console.log("response", response);
-        displayFiles(response.result.entries);
-      })
-      .catch(function (error) {
-        console.error(error);
-      }); */
+  const displayUserList = () => {
+   return hcworkers && hcworkers.map((user, index) => {
 
-  }, []);
+      return (
+        <option className="text-black" value={user.user_id} key={index}>
+          {user.name} {user.lastname}
+        </option>
+      );
+    });
+  };
+
+
 
   return (
     <>
@@ -78,14 +108,14 @@ export default function Dashboard({ data }) {
       </Head>
 
 <Layout>
-      <main className="mt-5 ">
+      <main className="my-5">
         <section id="dashboard-client-list">
           <div className="container mx-auto">
             <h1 className="font-black my-5">
               Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
             </h1>
-            <h3 className="font-black my-5">What you want to do today? </h3>
-            <div className="flex mb-5">
+            <h3 className="font-black my-2">What you want to do today? </h3>
+            <div className="flex mb-2">
               {loggedUserRole === "Supervisor" && (
                 <Link href="/authorizedusers">
                   <div className="text-center mr-5">
@@ -121,7 +151,9 @@ export default function Dashboard({ data }) {
                 </Link>
               )}
 
-              <div
+
+
+             {/*  <div
                 className="text-center mr-5"
                 onClick={() => setShowCreateClientModal(!showCreateClientModal)}
               >
@@ -159,52 +191,77 @@ export default function Dashboard({ data }) {
                   </button>
                 </div>{" "}
                 <p className="my-5">ADD NEW CLIENT</p>
-              </div>
+              </div> */}
 
-              {/*           <Link href="/users">
-              <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
-              <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 21.4V2.6C4 2.26863 4.26863 2 4.6 2H16.2515C16.4106 2 16.5632 2.06321 16.6757 2.17574L19.8243 5.32426C19.9368 5.43679 20 5.5894 20 5.74853V21.4C20 21.7314 19.7314 22 19.4 22H4.6C4.26863 22 4 21.7314 4 21.4Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 10L16 10" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 18L16 18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 14L12 14" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              {" "}
-                Users
-              </button>
-              </Link> */}
+           
             </div>
-            {/* <div className="dashboard-client-list">
-            <h3 className="font-black text-center my-5">Client list</h3>
-              <div className={`${styles.dashboardClientListHeadRow} py-3 px-5`}>
-                <div className="head-row font-black">
-                  <p className="text-center"> User ID</p>
+
+            <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
+                <div className="search-box flex  items-center">
+                  <p className="mr-5">Search by name or Client ID</p>
+
+                  <div className="flex ">
+                    <div className="flex border-1 border-black rounded-lg  rounded-lg">
+                      <input
+                        type="text"
+                        className="px-4  w-80 rounded-lg "
+                        placeholder="Search..."
+                        onChange={(e) =>
+                          searchByClientIdOrClientName(e.target.value)
+                        }
+                      />
+                      <button className="px-4 py-1 text-white bg-dark-blue border-l rounded">
+                        <svg
+                          width="24"
+                          height="24"
+                          strokeWidth="1.5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15.5 15.5L19 19"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="head-row font-black">
-                  <p className="text-center">Name</p>
-                </div>
-                <div className="head-row font-black">
-                  <p className="text-center">Last login</p>
-                </div>
-                <div className="head-row font-black">
-                  <p className="text-center">Activated in</p>
-                </div>
-                <div className="head-row font-black">
-                  <p className="text-center">Deactivated in</p>
-                </div>
-                <div className="head-row font-black">
-                  <p className="text-center">Edit</p>
-                </div>
-                <div className="head-row font-black">
-                  <p className="text-center">Delete</p>
-                </div>
+
+                {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
+              <div className="search-box flex items-center justify-end gap-3">
+               
+                
+                  <p>Filter by HCW</p> 
+                <img src="" alt="" />
+              <select
+                    onChange={(e)=>searchByUserId(e.target.value)}
+                      className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
+                    >
+                      <option selected="true" disabled="disabled">Select HCW</option>
+                      {displayUserList()}
+                 
+                    </select>
               </div>
-            </div> */}
-            <div className="dashboard-client-list mt-5">
+              )}
+
+              </div>
+              
+          
+            <div className="dashboard-client-list ">
               <h1 className="font-black text-center my-5">Clients</h1>
               {data.length<=0 && <p className="text-center">No clients has been added</p>}
-              <div className="dashboard-clients-container grid md:grid-cols-4 grid.cols-1 md:px-0 px-5 gap-5">
+              {noDataMessage && <p className="text-center">No clients has been added with that name or id</p>}
+              <div className="dashboard-clients-container grid md:grid-cols-5 grid.cols-1 md:px-0 px-5 gap-5">
             {/*  
              {data.length > 0 && data.map((client,index)=>{
               return (
@@ -213,7 +270,53 @@ export default function Dashboard({ data }) {
               </>)
             })
             } */}
-            {getUserClients()}
+
+            {loggedUserRole ==="Supervisor" || loggedUserRole==="HCW" && 
+            <div
+                className="p-5 text-center mb-2  text-center btn-darkBlue rounded shadow-xl rounded-xl text-white"
+                onClick={() => setShowCreateClientModal(!showCreateClientModal)}
+              >
+                <div className="  ">
+                  <button id="myBtn">
+                    <div className="flex justify-center">
+                      <svg
+                      className=""
+                        width="102"
+                        height="102"
+                        strokeWidth="1.5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M17 10H20M23 10H20M20 10V7M20 10V13"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </div>{" "}
+                <p className="my-5 lne-text-white">ADD NEW CLIENT</p>
+              </div>
+            }
+
+              {getUserClients()}
+          
+          
                 
               </div>
             </div>
@@ -242,10 +345,18 @@ export default function Dashboard({ data }) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    //console.log("user",user)
-    //const res = await fetch(`http://localhost:5500/clients`);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
+    const [data, hcworkers] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+        r.json()
+      ),
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`).then((r) =>
+        r.json()
+      ),
+    ]);
+    return { props: { data: data, hcworkers: hcworkers } };
+
+    /*  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
     const data = await res.json();
-    return { props: { data } };
+    return { props: { data } }; */
   },
 });

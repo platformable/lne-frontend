@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import Layout from "../../../../components/Layout";
 import Styles from "../../../../styles/ServiceAP.module.css";
 import axios from 'axios'
@@ -9,9 +9,13 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+
+import ReactToPrint from 'react-to-print'
+import ComponentToPrint from "../../../../components/ComponentToPrint";
+
 export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
-
+  let componentRef = useRef();
 
   const notifyMessage = () => {
     toast.success("Service Action Plan updated!", {
@@ -635,7 +639,15 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
       
            {loggedUserRole==='HCW' ? "":<button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
             onClick={(e)=>{updateClientActionPlan()}}>Save</button>} 
-            <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>
+            <ReactToPrint
+                trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>}
+                content={() => componentRef.current}
+              
+              />
+          
+          <div style={{display:'none'}}>
+      <ComponentToPrint ref={componentRef} name="alexei" clientData={clientData}/>
+      </div>
           </div>
         </section>
 
@@ -645,6 +657,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 }
 
 export const getServerSideProps = withPageAuthRequired({
+  
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
     const res = await fetch(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import Layout from "../../../../components/Layout";
 import Styles from "../../../../styles/ServiceAP.module.css";
 import axios from 'axios'
@@ -6,14 +6,23 @@ import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import ImpactBaselineModal from "../../../../components/ImpactBaselineModal";
 
+import ReactToPrint from 'react-to-print'
+import ComponentToPrint from "../../../../components/ComponentToPrint";
+
+
 export default function IndexServoceActionPlan({ data }) {
+
+  let componentRef = useRef();
 
   const router = useRouter()
   const [showImpactBaselineModal,setShowImpactBaselineModal]=useState(false)
 
-  
+  const [errorCompleteAllFieldsMessage,setErrorCompleteAllFieldsMessage]=useState(false)
+
 
   const [clientData, setClientData] = useState({
     clientId:data[0].clientid,
@@ -45,7 +54,7 @@ export default function IndexServoceActionPlan({ data }) {
     goal3ActionStep3:"",
     comments:"",
     HCWSignature:false,
-    HCWSignatureDate:false,
+    HCWSignatureDate:"",
     supervisorSignature:false,
     clientSignature:false
   });
@@ -111,23 +120,50 @@ const services = [
       position: toast.POSITION.TOP_CENTER,
     });
   };
-  const updateClientActionPlan = ()=>{
-    axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
-      clientData
-    })
-    .then(function (response) {
-      console.log("response",response)
-      if(response.status===200 || response.statusText==='Ok'){
-        setShowImpactBaselineModal(!showImpactBaselineModal)
-        notifyMessage()
-        /* setTimeout(()=>{
-          router.push(`/clients/${clientData.clientId}/profile`)
-        },2300) */
-      } 
-    })
-    .catch(function (error) {
-          console.log(error)
-    });
+  const createClientActionPlan = ()=>{
+
+    if(
+    clientData.goal1ServiceCategory==="" ||
+    clientData.goal1Summary==="" ||
+    clientData.goal1Details==="" ||
+    clientData.goal1TargetDate==="" ||
+    clientData.goal1ActionStep1==="" ||
+    clientData.goal1ActionStep2==="" ||
+    clientData.goal1ActionStep3==="" ||
+    clientData.goal2ServiceCategory==="" ||
+    clientData.goal2Summary==="" ||
+    clientData.goal2Details ==="" ||
+    clientData.goal2TargetDate==="" ||
+    clientData.goal2ActionStep1==="" ||
+    clientData.goal2ActionStep2==="" ||
+    clientData.goal2ActionStep3==="" ||
+    clientData.goal3ServiceCategory==="" ||
+    clientData.goal3Summary==="" ||
+    clientData.goal3Details==="" ||
+    clientData.goal3TargetDate==="" ||
+    clientData.goal3ActionStep1==="" ||
+    clientData.goal3ActionStep2==="" ||
+    clientData.goal3ActionStep3==="") {
+      setErrorCompleteAllFieldsMessage(!errorCompleteAllFieldsMessage)
+    }else{
+      
+      axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
+        clientData
+      })
+      .then(function (response) {
+        console.log("response",response)
+        if(response.status===200 || response.statusText==='Ok'){
+          setShowImpactBaselineModal(!showImpactBaselineModal)
+         /*  notifyMessage()
+           setTimeout(()=>{
+            router.push(`/clients/${clientData.clientId}/profile`)
+          },2300)  */
+        } 
+      })
+      .catch(function (error) {
+            console.log(error)
+      });
+    }
   }
 
 
@@ -158,6 +194,8 @@ const services = [
         </button>
   
         </section>
+
+        <main id="mainContent" >
         <section id="info" className="my-5 px-5">
           <div className="container mx-auto">
             <h6 className="font-black my-5 text-dark-blue">
@@ -535,33 +573,50 @@ const services = [
             <div className="others-container-box flex gap-2 justify-center items-center" >
               <p>Has the client signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,clientSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,clientSignature:!clientData.clientSignature})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the health care worker signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,HCWSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,HCWSignature:!clientData.HCWSignature})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
               <p>Has the supervisor signed?</p>
               <input type="checkbox" className="border-dark-blue" 
-              onClick={(e)=>{setClientData({...clientData,supervisorSignature:e.target.value})}}/>
+              onClick={(e)=>{setClientData({...clientData,supervisorSignature:!clientData.supervisorSignature})}}/>
             </div>
           </div>
           </div>
           </div>
         </section>
+        </main>
 
+        {errorCompleteAllFieldsMessage && <p className="text-xs text-red-500 my-3 text-center">* Please Complete all the fields</p>  }
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
-            Save Progress</button>
+ {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
+            Save Progress</button> */}
+
+ 
             <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-            onClick={(e)=>{updateClientActionPlan()}}>Save</button>
-            <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>
+            onClick={(e)=>{createClientActionPlan()}}>Save</button>
+             <ReactToPrint
+                trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>}
+                content={() => componentRef.current}
+              
+              />
+          
+          <div style={{display:'none'}}>
+      <ComponentToPrint ref={componentRef} name="alexei" clientData={clientData}/>
+      </div>
           </div>
         </section>
 
+
+
+
+
+  
       </Layout>
       {showImpactBaselineModal && (<ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
                                     setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}/>)}
