@@ -149,7 +149,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     return finalDate
   }
 
-  console.log(data)
+
   
 
   return (
@@ -158,7 +158,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
         <section className="my-5">
           <div className="container mx-auto">
             <div className="md:text-center font-black md:p-0 px-5">
-              <h3>Edit Service Action Plan</h3>
+              <h3>Service Action Plan</h3>
             </div>
           </div>
         </section>
