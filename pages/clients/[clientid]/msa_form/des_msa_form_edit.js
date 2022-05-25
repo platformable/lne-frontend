@@ -521,7 +521,7 @@ console.log(FormTitles);
                       } >
                
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSIntakeForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -634,7 +634,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSIntakeFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -681,7 +681,7 @@ console.log(FormTitles);
                 }
                 >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSIntakeFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -728,7 +728,7 @@ console.log(FormTitles);
                >
                  
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessment ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -837,7 +837,7 @@ console.log(FormTitles);
                   }
                 } >                 
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -885,7 +885,7 @@ console.log(FormTitles);
               }
                >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -930,7 +930,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1019,7 +1019,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlanPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1057,7 +1057,7 @@ console.log(FormTitles);
                       ServiceActionPlanUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlanScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1102,7 +1102,7 @@ console.log(FormTitles);
                       }))
                   }}>
                   <svg xmlns="http://www.w3.org/2000/svg"
-                    class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     strokeWidth={clientData.AIRSCollateralInformation ? "3" : "0"}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
@@ -1213,7 +1213,7 @@ console.log(FormTitles);
                }
                >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSCollateralInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1259,7 +1259,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSCollateralInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1304,7 +1304,7 @@ console.log(FormTitles);
                 }
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1409,7 +1409,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1455,7 +1455,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1499,7 +1499,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1604,7 +1604,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistoryPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1650,7 +1650,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistoryScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1694,7 +1694,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1799,7 +1799,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistoryPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1845,7 +1845,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistoryScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1889,7 +1889,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1994,7 +1994,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2040,7 +2040,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2085,7 +2085,7 @@ console.log(FormTitles);
             }
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSInsuranceInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2190,7 +2190,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSInsuranceInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2236,7 +2236,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSInsuranceInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2280,7 +2280,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2385,7 +2385,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistoryPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2431,7 +2431,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistoryScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2475,7 +2475,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRights ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2561,7 +2561,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRightsPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2600,7 +2600,7 @@ console.log(FormTitles);
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRightsScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2644,7 +2644,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedure ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2729,7 +2729,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedurePDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2769,7 +2769,7 @@ console.log(FormTitles);
                     }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedureScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2813,7 +2813,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRules ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2898,7 +2898,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRulesPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2937,7 +2937,7 @@ console.log(FormTitles);
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRulesScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2981,7 +2981,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsent ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3067,7 +3067,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsentPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3106,7 +3106,7 @@ console.log(FormTitles);
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsentScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3150,7 +3150,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3235,7 +3235,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3274,7 +3274,7 @@ console.log(FormTitles);
                     }))
                   }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationScan? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3318,7 +3318,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3423,7 +3423,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3469,7 +3469,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3513,7 +3513,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPractices ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3621,7 +3621,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3667,7 +3667,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3711,7 +3711,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3816,7 +3816,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3862,7 +3862,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3906,7 +3906,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4011,7 +4011,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4057,7 +4057,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4101,7 +4101,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4206,7 +4206,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4253,7 +4253,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4297,7 +4297,7 @@ console.log(FormTitles);
                 }
                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4402,7 +4402,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4448,7 +4448,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
