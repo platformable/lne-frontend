@@ -12,6 +12,7 @@ import { Dropbox } from "dropbox";
 import DashboardClientCard from '../components/DashboardClientCard'
 
 import Layout from "../components/Layout";
+import ImpactBaselineModal from "../components/ImpactBaselineModal";
 
 export default function Dashboard({ data, hcworkers }) {
   const { user, error, isLoading } = useUser();
@@ -334,6 +335,7 @@ export default function Dashboard({ data, hcworkers }) {
           user={user}
         />
       )}
+      
     </>
   );
 }
