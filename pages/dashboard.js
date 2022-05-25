@@ -63,11 +63,9 @@ export default function Dashboard({ data, hcworkers }) {
   };
 
   const searchByUserId =(userid)=>{
-    console.log("liveData antes",liveData)
+
     setLiveData(data)
     const result = data.filter((client, index) => client.clienthcwid.toLowerCase()===userid.toLowerCase());
-
-    console.log(result)
     setLiveData(result);
 
 
@@ -197,6 +195,7 @@ export default function Dashboard({ data, hcworkers }) {
             </div>
 
             <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
+            {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
                 <div className="search-box flex  items-center">
                   <p className="mr-5">Search by name or Client ID</p>
 
@@ -235,7 +234,7 @@ export default function Dashboard({ data, hcworkers }) {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div>)}
 
                 {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
               <div className="search-box flex items-center justify-end gap-3">
