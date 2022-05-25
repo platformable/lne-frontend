@@ -34,13 +34,13 @@ export default function Dashboard({ data, hcworkers }) {
       const userClients = allClients.map((client,index)=>{
         return (
           
-          <DashboardClientCard client={client} key={index}/>
+          <DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>
           )
       })
       return userClients
     } else {
      const userClients= liveData.map((client,index)=>{
-     return  <DashboardClientCard client={client} key={index}/>
+     return  <DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>
       })
       return userClients
     }
@@ -63,17 +63,24 @@ export default function Dashboard({ data, hcworkers }) {
   };
 
   const searchByUserId =(userid)=>{
-
+    console.log(userid)
+    console.log("data antes",data)
+if(userid!=="All"){
     setLiveData(data)
     const result = data.filter((client, index) => client.clienthcwid.toLowerCase()===userid.toLowerCase());
     setLiveData(result);
-
-
     if (result.length <= 0) {
       setNoDataMessage(true);
     } else {
       setNoDataMessage(false);
     }
+} else {
+  setLiveData(data)
+  console.log("data despues",data)
+}
+
+
+  
   }
 
 
@@ -247,6 +254,7 @@ export default function Dashboard({ data, hcworkers }) {
                       className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
                     >
                       <option selected="true" disabled="disabled">Select HCW</option>
+                      <option onClick={()=>searchByUserId("")}>All</option>
                       {displayUserList()}
                  
                     </select>
