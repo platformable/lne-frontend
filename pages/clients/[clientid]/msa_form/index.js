@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Layout from "../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Styles from "../../../../styles/ServiceAP.module.css";
 import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { Dropbox } from "dropbox";
 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Index = ({ data }) => {
    const router = useRouter()
 
-
+console.log("data",data)
   const notifyMessage = () => {
     toast.success("A new MSA Form has been created!", {
       position: toast.POSITION.TOP_CENTER,
@@ -101,6 +102,38 @@ const handleMsaform = ()=> {
             console.log(error)
       });
 }
+
+useEffect(()=>{
+  /* var dbx = new Dropbox({ accessToken: process.env.NEXT_PUBLIC_DB_ACCESS_TK });
+  dbx.filesListFolder({path: `/apps`})
+    .then(function(response) {
+      console.log('response', response)
+      console.log(response.result.entries);
+    })
+    .catch(function(error) {
+      console.error(error);
+    }); */
+
+
+    axios({
+      method:'post',
+      url:'https://api.dropboxapi.com/2/files/get_metadata',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DB_ACCESS_TK}`
+      },
+      data:
+        {
+          "include_deleted": false,
+          "include_has_explicit_shared_members": false,
+          "include_media_info": false,
+          "path": `/clients/${clientData.clientId}`
+      }
+      
+    })
+    .then(response=>console.log("response:",response))
+    .catch((e)=>console.log(e))
+},[])
 
   return (
     <>
@@ -333,6 +366,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+                <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -348,6 +382,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -396,6 +431,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="flex justify-center">
+              <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -411,6 +447,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -456,6 +493,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -471,6 +509,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -519,6 +558,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -534,6 +574,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -581,6 +622,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -596,6 +638,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -643,6 +686,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -658,6 +702,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -704,6 +749,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -719,6 +765,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -768,6 +815,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -783,6 +831,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -830,6 +879,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -845,6 +895,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -892,6 +943,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -907,6 +959,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -953,6 +1006,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -968,6 +1022,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1015,6 +1070,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1030,6 +1086,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1076,6 +1133,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1091,6 +1149,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1138,6 +1197,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1153,6 +1213,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1203,6 +1264,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1218,6 +1280,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1264,6 +1327,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1279,6 +1343,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1330,6 +1395,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1345,12 +1411,11 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
-            >
+            <div className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}>
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
@@ -1393,6 +1458,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1408,6 +1474,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1457,6 +1524,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1472,6 +1540,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1517,6 +1586,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1532,6 +1602,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1577,6 +1648,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1592,6 +1664,7 @@ const handleMsaform = ()=> {
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
           </section>
