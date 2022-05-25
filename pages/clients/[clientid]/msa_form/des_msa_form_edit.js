@@ -858,7 +858,7 @@ console.log(FormTitles);
                       })
                   }
                   }
-                 
+                  disabled={clientData.ComprehensiveRiskBehaviorAssessment ? true : false}
                   checked={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? 'checked' : false}
                 />
               </div>
@@ -1125,6 +1125,7 @@ console.log(FormTitles);
                     }
                     }
                     checked={clientData.AIRSCollateralInformation ? 'checked' : false}
+                   
                   />
                 </div>
                 {/*  */}
@@ -1235,6 +1236,7 @@ console.log(FormTitles);
                   }
                   }
                   checked={clientData.AIRSCollateralInformation ? 'checked' : false}
+                  disabled={clientData.AIRSCollateralInformation ? true : false}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "

@@ -1415,9 +1415,7 @@ useEffect(()=>{
               </div>
             </div>
 
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
-            >
+            <div className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}>
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
