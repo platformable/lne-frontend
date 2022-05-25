@@ -260,3 +260,11 @@ background-color: var(--blue);
   border: 1px solid var(--darkBlue);
 }
 
+.border-r-dark-blue {
+  border-right: 1px solid var(--darkBlue);
+}
+
+
+
+/* CHECKBOX */
+
