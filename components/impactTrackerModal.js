@@ -10,7 +10,7 @@ export function getDate () {
     return result
 }
 
-const impactTrackerModal = ({clientId}) => {
+const ImpactTrackerModal = ({clientId}) => {
     const router = useRouter()  
     const date = getDate()
     const [errorMessage, setErrorMessage] = useState('')
