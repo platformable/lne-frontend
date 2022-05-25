@@ -28,7 +28,7 @@ export function setLocaleDateString (date) {
 
 export default function ClientProfilePage({ data }) {
 
-
+console.log("data",data)
  /*  const clientJoinedDate = getDate(new Date())
   const cleanDate = setLocaleDateString(data[0].clientdatecreated) */
 
@@ -139,7 +139,7 @@ export default function ClientProfilePage({ data }) {
             }
 
             {data[0]?.msaformairsintakeform ==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment==="1" ? 
-           <Link href={data[0].servicesactionplanid==="0" ?`/clients/${data[0]?.clientid}/service-action-plan` : `/clients/${data[0]?.clientid}/service-action-plan/edit`}>
+           <Link href={data[0].servicesactionplanid ?`/clients/${data[0]?.clientid}/service-action-plan/edit` : `/clients/${data[0]?.clientid}/service-action-plan`}>
 
            <div className="client-profile-page-navigation-icon-container boder-dark-blue bg-white cursor-pointer rounded-xl py-2 px-5 inline-block">
            
@@ -187,7 +187,7 @@ export default function ClientProfilePage({ data }) {
            </div>
            <h4 className="text-center">
 
-           {data[0]?.servicesactionplanid ==="0" ? "Create Service Action Plan" : `View Service Action Plan`}
+           {data[0]?.servicesactionplanid  ? "View Service Action Plan" : `Create Service Action Plan`}
 
            </h4>
          </div>
