@@ -366,7 +366,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-                <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank">
+                <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -431,7 +431,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="flex justify-center">
-              <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank">
+              <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -493,7 +493,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank">
+              <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -558,7 +558,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -622,7 +622,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -686,7 +686,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -749,7 +749,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -815,7 +815,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -879,7 +879,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -943,7 +943,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1006,7 +1006,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1070,7 +1070,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1133,7 +1133,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1197,7 +1197,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1264,7 +1264,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1327,7 +1327,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1395,7 +1395,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1460,7 +1460,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1526,7 +1526,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1588,7 +1588,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1650,7 +1650,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"

@@ -350,7 +350,7 @@ console.log("clientData",clientData)
                     <input type="checkbox" 
                     onChange={()=>setClientData({...clientData,CD4VLLabReport:!clientData.CD4VLLabReport})}
                     />
-                    <span class={`${ProgressNotesStyles.checkmark}`}></span>
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
                   </label>
                 </div>
                 <div className="flex items-center">
