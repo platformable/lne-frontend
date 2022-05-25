@@ -618,8 +618,11 @@ const services = [
 
   
       </Layout>
-      {showImpactBaselineModal && (<ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
-                                    setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}/>)}
+      {
+      showImpactBaselineModal && (
+      <ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
+       setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}/>)
+      }
     </>
   );
 }

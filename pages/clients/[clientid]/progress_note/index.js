@@ -6,7 +6,7 @@ import ProgressNotesStyles from "../../../../styles/ProgressNotes.module.css";
 import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
-
+import ImpactTrackerModal from "../../../../components/impactTrackerModal";
 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,6 +15,8 @@ const ProgressNotesIndex = ({ data }) => {
 
     console.log("data",data)
    const router = useRouter()
+
+   const [showImpactTrackerModal,setShowImpactTrackerModal]=useState(false)
 
 
   const notifyMessage = () => {
@@ -128,10 +130,9 @@ const handleMsaform = ()=> {
 }
 
 const handleProgressNote=()=>{
+    setShowImpactTrackerModal(!showImpactTrackerModal)
     notifyMessage()
-    setTimeout(()=>{
-        router.push(`/clients/${clientData.clientId}/profile`)
-      },1500)
+   
 }
 
 
@@ -1335,6 +1336,12 @@ console.log("clientData",clientData)
           </section>
         </main>
       </Layout>
+      {showImpactTrackerModal && (
+      <ImpactTrackerModal showImpactTrackerModal={showImpactTrackerModal} 
+       setShowImpactTrackerModal={setShowImpactTrackerModal} notifyMessage={notifyMessage}
+       clientId={clientData.clientId}
+       />)
+      }
     </>
   );
 };

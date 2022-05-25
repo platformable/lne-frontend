@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {toast } from 'react-toastify';
-
+import { useRouter } from 'next/router';
 export function getDate () {
     const date = new Date()
     const month = date.getMonth() + 1
@@ -11,6 +11,7 @@ export function getDate () {
 }
 
 const impactTrackerModal = ({clientId}) => {
+    const router = useRouter()  
     const date = getDate()
     const [errorMessage, setErrorMessage] = useState('')
     const [impactTracker, setImpactTracker] = useState({
@@ -35,9 +36,16 @@ const impactTrackerModal = ({clientId}) => {
 
     const createImpactTrackerForm =()=>{
         //when form is complete returns false
-        const isEmpty = Object.values(impactTracker).some(value => value === '' || value === null)
-        console.log(isEmpty)
-        if (!isEmpty) {
+        //const isEmpty = Object.values(impactTracker).some(value => value === '' || value === null)
+        //console.log(isEmpty)
+        setErrorMessage('')
+                  notifyMessage()
+                  //action: close modal!!
+                  setTimeout(()=>{
+                    router.push(`/clients/${clientId}/profile`)
+                  },2300)
+                 
+       /*  if (!isEmpty) {
             axios.post(``, {
                 impactTracker
               })
@@ -56,11 +64,11 @@ const impactTrackerModal = ({clientId}) => {
               });
         } else {
             setErrorMessage('Must select all the options.')
-        }
+        } */
         
     }
     const notifyMessage = () => {
-        toast.success("Impact Tracker was updated!", {
+        toast.success("Impact Tracker was saved!", {
           position: toast.POSITION.TOP_CENTER,
         });
     };

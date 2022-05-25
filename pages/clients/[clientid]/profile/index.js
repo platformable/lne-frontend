@@ -29,8 +29,8 @@ export function setLocaleDateString (date) {
 export default function ClientProfilePage({ data }) {
 
 
-  const clientJoinedDate = getDate(new Date())
-  const cleanDate = setLocaleDateString(data[0].clientdatecreated)
+ /*  const clientJoinedDate = getDate(new Date())
+  const cleanDate = setLocaleDateString(data[0].clientdatecreated) */
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
@@ -62,13 +62,13 @@ export default function ClientProfilePage({ data }) {
                     
                 <div className='grid mt-4 grid-rows-2 md:flex md:items-center md:justify-between'>
                 <p className="">Date Client Joined LNE</p>
-                <p className='justify-self-end'>{clientJoinedDate}</p>
+                <p className='justify-self-end'>{new Date().toLocaleDateString()}</p>
                 </div>
                 <hr className='border-blue-600'></hr>
                 
                 <div className='grid grid-rows-2 md:flex md:items-center md:justify-between'>
                 <p  className="">Date Of Last Action</p>
-                <p className='justify-self-end'>MM/DD/YY</p>
+                <p className='justify-self-end'>{new Date().toLocaleDateString()}</p>
                 </div>
                 <hr className='border-blue-600 hidden md:block'></hr>
 
