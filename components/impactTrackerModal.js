@@ -633,4 +633,4 @@ const ImpactTrackerModal = ({clientId}) => {
 
 };
 
-export default impactTrackerModal;
+export default ImpactTrackerModal;
