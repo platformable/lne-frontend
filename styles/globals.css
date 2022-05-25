@@ -260,9 +260,8 @@ background-color: var(--blue);
   border: 1px solid var(--darkBlue);
 }
 
-.verga {
-  color:red;
-}
+
+
 /*Client profile style */
 #user-box-container {
   width: 110px;
@@ -281,3 +280,9 @@ background-color: var(--blue);
     left: 2px;
     background-color: white;
 }
+
+.border-r-dark-blue {
+  border-right: 1px solid var(--darkBlue);
+}
+
+
