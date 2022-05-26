@@ -621,7 +621,8 @@ const services = [
       {
       showImpactBaselineModal && (
       <ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
-       setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}/>)
+       setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}
+       clientId={clientData.clientId}/>)
       }
     </>
   );
