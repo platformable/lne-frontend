@@ -12,6 +12,7 @@ import { Dropbox } from "dropbox";
 import DashboardClientCard from '../components/DashboardClientCard'
 
 import Layout from "../components/Layout";
+import ImpactBaselineModal from "../components/ImpactBaselineModal";
 
 export default function Dashboard({ data, hcworkers }) {
   const { user, error, isLoading } = useUser();
@@ -33,13 +34,13 @@ export default function Dashboard({ data, hcworkers }) {
       const userClients = allClients.map((client,index)=>{
         return (
           
-          <DashboardClientCard client={client} key={index}/>
+          <DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>
           )
       })
       return userClients
     } else {
      const userClients= liveData.map((client,index)=>{
-     return  <DashboardClientCard client={client} key={index}/>
+     return  <DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>
       })
       return userClients
     }
@@ -62,19 +63,24 @@ export default function Dashboard({ data, hcworkers }) {
   };
 
   const searchByUserId =(userid)=>{
-    console.log("liveData antes",liveData)
+    console.log(userid)
+    console.log("data antes",data)
+if(userid!=="All"){
     setLiveData(data)
     const result = data.filter((client, index) => client.clienthcwid.toLowerCase()===userid.toLowerCase());
-
-    console.log(result)
     setLiveData(result);
-
-
     if (result.length <= 0) {
       setNoDataMessage(true);
     } else {
       setNoDataMessage(false);
     }
+} else {
+  setLiveData(data)
+  console.log("data despues",data)
+}
+
+
+  
   }
 
 
@@ -196,6 +202,7 @@ export default function Dashboard({ data, hcworkers }) {
             </div>
 
             <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
+            {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
                 <div className="search-box flex  items-center">
                   <p className="mr-5">Search by name or Client ID</p>
 
@@ -234,7 +241,7 @@ export default function Dashboard({ data, hcworkers }) {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div>)}
 
                 {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
               <div className="search-box flex items-center justify-end gap-3">
@@ -247,6 +254,7 @@ export default function Dashboard({ data, hcworkers }) {
                       className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
                     >
                       <option selected="true" disabled="disabled">Select HCW</option>
+                      <option onClick={()=>searchByUserId("")}>All</option>
                       {displayUserList()}
                  
                     </select>
@@ -335,6 +343,7 @@ export default function Dashboard({ data, hcworkers }) {
           user={user}
         />
       )}
+      
     </>
   );
 }

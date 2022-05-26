@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditMsaFormPage = ({ data }) => {
-
+console.log("data",data)
    const router = useRouter()
 
    const notifyMessage = () => {
@@ -345,6 +345,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -360,6 +361,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -410,6 +412,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="flex justify-center">
+              <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -425,6 +428,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -473,6 +477,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -488,6 +493,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -539,6 +545,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -554,6 +561,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -603,6 +611,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -618,6 +627,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -667,6 +677,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -682,6 +693,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -730,6 +742,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -745,6 +758,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -796,6 +810,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -811,6 +826,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -860,6 +876,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -875,6 +892,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -924,6 +942,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -939,6 +958,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -987,6 +1007,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1002,6 +1023,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1051,6 +1073,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1066,6 +1089,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1114,6 +1138,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1129,6 +1154,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1178,6 +1204,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1193,6 +1220,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1246,6 +1274,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1261,6 +1290,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1309,6 +1339,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1324,6 +1355,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1377,6 +1409,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1392,6 +1425,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1442,6 +1476,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1457,6 +1492,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1508,6 +1544,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1523,6 +1560,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1570,6 +1608,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1585,6 +1624,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
 
@@ -1633,6 +1673,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -1648,6 +1689,7 @@ const crearFecha=()=>{
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
               </div>
             </div>
           </section>
