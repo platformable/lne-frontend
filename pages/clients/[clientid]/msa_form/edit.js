@@ -315,6 +315,7 @@ const crearFecha=()=>{
                     })):setClientData({
                       ...clientData,
                       AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                      AIRSIntakeFormDate: ''
                     })
                   }
                 }
@@ -339,6 +340,7 @@ const crearFecha=()=>{
                   onChange={(e) => {
                     setClientData({
                       ...clientData,
+                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
                       AIRSIntakeFormDate: e.target.value,
                     });
                   }}
@@ -379,11 +381,12 @@ const crearFecha=()=>{
                       ...clientData,
                       ComprehensiveRiskBehaviorAssessment:
                         !clientData.ComprehensiveRiskBehaviorAssessment,
-                        omprehensiveRiskBehaviorAssessmentDate:crearFecha()
+                        ComprehensiveRiskBehaviorAssessmentDate:crearFecha()
                     })):setClientData({
                       ...clientData,
                       ComprehensiveRiskBehaviorAssessment:
                         !clientData.ComprehensiveRiskBehaviorAssessment,
+                        ComprehensiveRiskBehaviorAssessmentDate: '',
                     })
                   }
                 }
@@ -406,6 +409,8 @@ const crearFecha=()=>{
                   onChange={(e) => {
                     setClientData({
                       ...clientData,
+                      ComprehensiveRiskBehaviorAssessment:
+                        !clientData.ComprehensiveRiskBehaviorAssessment,
                       ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
                     });
                   }}
@@ -450,6 +455,7 @@ const crearFecha=()=>{
                     })):setClientData({
                       ...clientData,
                       ServiceActionPlan: !clientData.ServiceActionPlan,
+                      ServiceActionPlanDate: ''
                     })
                   }}
                   checked={clientData.ServiceActionPlan ? 'checked' : ''}
@@ -472,6 +478,7 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       ServiceActionPlanDate: e.target.value,
+                      ServiceActionPlan: !clientData.ServiceActionPlan,
                     });
                   }}
                 />
@@ -516,10 +523,11 @@ const crearFecha=()=>{
                       ...clientData,
                       AIRSCollateralInformation:
                         !clientData.AIRSCollateralInformation,
+                        AIRSCollateralInformationDate: ''
                     })
                     }
                   }
-                  /* checked={clientData.AIRSCollateralInformation ? true : false} */
+                   checked={clientData.AIRSCollateralInformation ? true : false} 
                  /*  value={clientData.AIRSCollateralInformation ? true : false} */
                 />
               </div>
@@ -540,6 +548,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       AIRSCollateralInformationDate: e.target.value,
+                      AIRSCollateralInformation:
+                        !clientData.AIRSCollateralInformation,
                     });
                   }}
                 />
@@ -584,6 +594,7 @@ const crearFecha=()=>{
                       ...clientData,
                       AIRSFinancialInformation:
                         !clientData.AIRSFinancialInformation,
+                      AIRSFinancialInformationDate: ''
                     })
                   }}
                   checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
@@ -606,6 +617,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       AIRSFinancialInformationDate: e.target.value,
+                      AIRSFinancialInformation:
+                        !clientData.AIRSFinancialInformation,
                     });
                   }}
                 />
@@ -650,6 +663,7 @@ const crearFecha=()=>{
                       ...clientData,
                       AIRSHIVAIDSRiskHistory:
                         !clientData.AIRSHIVAIDSRiskHistory,
+                      AIRSHIVAIDSRiskHistoryDate: ''
                     })
                   }}
                   checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
@@ -672,6 +686,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       AIRSHIVAIDSRiskHistoryDate: e.target.value,
+                      AIRSHIVAIDSRiskHistory:
+                        !clientData.AIRSHIVAIDSRiskHistory,
                     });
                   }}
                 />
@@ -714,6 +730,7 @@ const crearFecha=()=>{
                     })):setClientData({
                       ...clientData,
                       AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                      AIRSHCVHistoryDate: '',
                     })
                   }
                 }
@@ -737,6 +754,7 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       AIRSHCVHistoryDate: e.target.value,
+                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
                     });
                   }}
                 />
@@ -782,6 +800,7 @@ const crearFecha=()=>{
                       ...clientData,
                       AIRSHousingInformation:
                         !clientData.AIRSHousingInformation,
+                      AIRSHousingInformationDate: '',
                     })
                   }
                 }
@@ -805,6 +824,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       AIRSHousingInformationDate: e.target.value,
+                      AIRSHousingInformation:
+                        !clientData.AIRSHousingInformation,
                     });
                   }}
                 />
@@ -849,6 +870,7 @@ const crearFecha=()=>{
                       ...clientData,
                       AIRSInsuranceInformation:
                         !clientData.AIRSInsuranceInformation,
+                      AIRSInsuranceInformationDate: ''
                     })
                   }}
                   checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
@@ -871,6 +893,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       AIRSInsuranceInformationDate: e.target.value,
+                      AIRSInsuranceInformation:
+                        !clientData.AIRSInsuranceInformation,
                     });
                   }}
                 />
@@ -915,6 +939,7 @@ const crearFecha=()=>{
                       ...clientData,
                       AIRSSubstanceUseHistory:
                         !clientData.AIRSSubstanceUseHistory,
+                        AIRSSubstanceUseHistoryDate: ''
                     })
                   }}
                   checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
@@ -937,6 +962,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       AIRSSubstanceUseHistoryDate: e.target.value,
+                      AIRSSubstanceUseHistory:
+                        !clientData.AIRSSubstanceUseHistory,
                     });
                   }}
                 />
@@ -979,6 +1006,7 @@ const crearFecha=()=>{
                     })):setClientData({
                       ...clientData,
                       LNEClientRights: !clientData.LNEClientRights,
+                      LNEClientRightsDate: ''
                      
                     })
                   }}
@@ -1002,6 +1030,7 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEClientRightsDate: e.target.value,
+                      LNEClientRights: !clientData.LNEClientRights,
                     });
                   }}
                 />
@@ -1041,11 +1070,12 @@ const crearFecha=()=>{
                       ...clientData,
                       LNEClientGrievancePolicyProcedure:
                         !clientData.LNEClientGrievancePolicyProcedure,
-                        LNEClientGrievancePolicyProcedureDate:crearFecha()
+                      LNEClientGrievancePolicyProcedureDate:crearFecha()
                     })):setClientData({
                       ...clientData,
                       LNEClientGrievancePolicyProcedure:
                         !clientData.LNEClientGrievancePolicyProcedure,
+                      LNEClientGrievancePolicyProcedureDate: '',
                     })
                   }}
                   checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
@@ -1068,6 +1098,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEClientGrievancePolicyProcedureDate: e.target.value,
+                      LNEClientGrievancePolicyProcedure:
+                        !clientData.LNEClientGrievancePolicyProcedure,
                     });
                   }}
                 />
@@ -1110,6 +1142,7 @@ const crearFecha=()=>{
                     })):setClientData({
                       ...clientData,
                       LNEProgramRules: !clientData.LNEProgramRules,
+                      LNEProgramRulesDate: '',
                     })
                   }
                 }
@@ -1133,6 +1166,7 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEProgramRulesDate: e.target.value,
+                      LNEProgramRules: !clientData.LNEProgramRules,
                     });
                   }}
                 />
@@ -1177,6 +1211,7 @@ const crearFecha=()=>{
                       ...clientData,
                       LNEEmergencyContactConsent:
                         !clientData.LNEEmergencyContactConsent,
+                      LNEEmergencyContactConsentDate: '',  
                     })
                   }}
                   checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
@@ -1199,6 +1234,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEEmergencyContactConsentDate: e.target.value,
+                      LNEEmergencyContactConsent:
+                        !clientData.LNEEmergencyContactConsent,
                     });
                   }}
                 />
@@ -1244,6 +1281,7 @@ const crearFecha=()=>{
                       ...clientData,
                       LNEConsentForReleaseOfConfidentialInformation:
                         !clientData.LNEConsentForReleaseOfConfidentialInformation,
+                      LNEConsentForReleaseOfConfidentialInformationDate: '',
                     })
                     
                   }
@@ -1269,6 +1307,8 @@ const crearFecha=()=>{
                       ...clientData,
                       LNEConsentForReleaseOfConfidentialInformationDate:
                         e.target.value,
+                      LNEConsentForReleaseOfConfidentialInformation:
+                      !clientData.LNEConsentForReleaseOfConfidentialInformation,
                     });
                   }}
                 />
@@ -1311,6 +1351,7 @@ const crearFecha=()=>{
                     })):setClientData({
                       ...clientData,
                       HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                      HIPPAConsentFormDate: '',
                     })
                   }
                   }
@@ -1334,6 +1375,7 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       HIPPAConsentFormDate: e.target.value,
+                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
                     });
                   }}
                 />
@@ -1378,6 +1420,7 @@ const crearFecha=()=>{
                       ...clientData,
                       NYCDOHMHNoticeOfPrivacyPractices:
                         !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                      NYCDOHMHNoticeOfPrivacyPracticesDate: '',
                     })
                   }
                   }
@@ -1404,6 +1447,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value,
+                      NYCDOHMHNoticeOfPrivacyPractices:
+                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
                     });
                   }}
                 />
@@ -1448,6 +1493,7 @@ const crearFecha=()=>{
                       ...clientData,
                       LNEOutreachRetentionTrackingForm:
                         !clientData.LNEOutreachRetentionTrackingForm,
+                      LNEOutreachRetentionTrackingFormDate: '',
                     })
                   }
                   }
@@ -1471,6 +1517,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEOutreachRetentionTrackingFormDate: e.target.value,
+                      LNEOutreachRetentionTrackingForm:
+                        !clientData.LNEOutreachRetentionTrackingForm,
                     });
                   }}
                 />
@@ -1516,6 +1564,7 @@ const crearFecha=()=>{
                       ...clientData,
                       LNEReferralInformation:
                         !clientData.LNEReferralInformation,
+                      LNEReferralInformationDate: ''
                     })
                   }
                 }
@@ -1539,6 +1588,8 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEReferralInformationDate: e.target.value,
+                      LNEReferralInformation:
+                        !clientData.LNEReferralInformation,
                     });
                   }}
                 />
@@ -1580,7 +1631,8 @@ const crearFecha=()=>{
                       LNEClientReferralFormDate:crearFecha()
                     })):setClientData({
                       ...clientData,
-                      LNEClientReferralForm: !clientData.LNEClientReferralForm
+                      LNEClientReferralForm: !clientData.LNEClientReferralForm,
+                      LNEClientReferralFormDate: '',
                     })
                   }
                   checked={clientData.LNEClientReferralForm ? 'checked' : ''}
@@ -1603,6 +1655,7 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEClientReferralFormDate: e.target.value,
+                      LNEClientReferralForm: !clientData.LNEClientReferralForm,
                     });
                   }}
                 />
@@ -1644,7 +1697,8 @@ const crearFecha=()=>{
                       LNEHNSEligibilityFormDate:crearFecha()
                     })):setClientData({
                       ...clientData,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm
+                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                      LNEHNSEligibilityFormDate: ''
                     })
                   }}
                   checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
@@ -1668,6 +1722,7 @@ const crearFecha=()=>{
                     setClientData({
                       ...clientData,
                       LNEHNSEligibilityFormDate: e.target.value,
+                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
                     });
                   }}
                 />
