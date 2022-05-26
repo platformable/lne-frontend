@@ -187,7 +187,7 @@ else{
               />
               
               </div>
-              {clientData.clientSSN.length>4 && <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p>}
+              {clientData.clientSSN.length >4 && <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p>}
             </label>
             {/*  <label className="block">
             <span className="text-gray-700">When is your event?</span>
