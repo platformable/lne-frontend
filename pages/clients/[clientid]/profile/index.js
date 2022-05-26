@@ -6,7 +6,7 @@ import Image from "next/image";
 
 import infoIcon from "../../../../public/client/info-icon.svg"
 import userIcon from "../../../../public/client/user-icon.svg"
-import ImpactTrackerModal from '../../../../components/impactTrackerModal'
+import ImpactTrackerModal from '../../../../components/ImpactTrackerModal'
 
 import { useRouter } from "next/router";
 
