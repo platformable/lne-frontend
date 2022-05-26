@@ -172,7 +172,12 @@ const EditMsaFormPage = ({ data }) => {
 console.log(FormTitles);
   const handleMsaform = () => {
 
-    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update`, {
+    notifyMessage()
+          setTimeout(() => {
+            router.push(`/clients/${clientData.clientId}/profile`)
+          }, 2300)
+
+   /*  axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update`, {
       clientData
     })
       .then(function (response) {
@@ -186,7 +191,7 @@ console.log(FormTitles);
       })
       .catch(function (error) {
         res.send(error)
-      });
+      }); */
   }
 
   const crearFecha = () => {
@@ -203,7 +208,7 @@ console.log(FormTitles);
         <div className="container mx-auto">
           <h3 className="font-black text-center my-5">DES Edit MSA FORM</h3>
         </div>
-        <div className="container bg-blue-50 rounded-xl p-5 mx-auto">
+       {/*  <div className="container bg-blue-50 rounded-xl p-5 mx-auto">
           <div className="flex flex-col items-center max-w-fit">
             <svg
               width="24"
@@ -246,7 +251,7 @@ console.log(FormTitles);
               </svg>Dashboard
             </button>
           </div>
-        </div>
+        </div> */}
         <main className="container mx-auto">
 
           <button
@@ -514,11 +519,13 @@ console.log(FormTitles);
                           }))
                         }
                       } >
+               
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSIntakeForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
+              
                 <input
                   className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
                   type="checkbox"
@@ -563,6 +570,7 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   className="mr-2"
                   width="18"
@@ -580,6 +588,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Intake</p>
               </div>
               <div className="text-center">
@@ -625,7 +634,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSIntakeFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -672,7 +681,7 @@ console.log(FormTitles);
                 }
                 >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSIntakeFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -717,8 +726,9 @@ console.log(FormTitles);
                   }
                 } 
                >
+                 
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessment ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -767,6 +777,7 @@ console.log(FormTitles);
 
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   width="18"
                   height="18"
@@ -783,6 +794,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">CRBA</p>
               </div>
               <div className="text-center">
@@ -825,7 +837,7 @@ console.log(FormTitles);
                   }
                 } >                 
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -846,7 +858,7 @@ console.log(FormTitles);
                       })
                   }
                   }
-                 
+                  disabled={clientData.ComprehensiveRiskBehaviorAssessment ? true : false}
                   checked={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? 'checked' : false}
                 />
               </div>
@@ -873,7 +885,7 @@ console.log(FormTitles);
               }
                >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -918,7 +930,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -966,6 +978,7 @@ console.log(FormTitles);
               </div>
 
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   className="mr-2"
                   width="18"
@@ -983,6 +996,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Action Plans</p>
               </div>
               <div className="text-center">
@@ -1005,7 +1019,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlanPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1043,7 +1057,7 @@ console.log(FormTitles);
                       ServiceActionPlanUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlanScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1088,7 +1102,7 @@ console.log(FormTitles);
                       }))
                   }}>
                   <svg xmlns="http://www.w3.org/2000/svg"
-                    class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     strokeWidth={clientData.AIRSCollateralInformation ? "3" : "0"}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
@@ -1111,6 +1125,7 @@ console.log(FormTitles);
                     }
                     }
                     checked={clientData.AIRSCollateralInformation ? 'checked' : false}
+                   
                   />
                 </div>
                 {/*  */}
@@ -1137,6 +1152,7 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   className="mr-2"
                   width="18"
@@ -1154,6 +1170,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
               <div className="text-center">
@@ -1197,7 +1214,7 @@ console.log(FormTitles);
                }
                >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSCollateralInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1219,6 +1236,7 @@ console.log(FormTitles);
                   }
                   }
                   checked={clientData.AIRSCollateralInformation ? 'checked' : false}
+                  disabled={clientData.AIRSCollateralInformation ? true : false}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
@@ -1243,7 +1261,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSCollateralInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1288,7 +1306,7 @@ console.log(FormTitles);
                 }
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1334,11 +1352,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1351,6 +1368,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
               <div className="text-center">
@@ -1393,7 +1411,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1439,7 +1457,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1483,7 +1501,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1529,11 +1547,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11  text-center flex justify-start items-center`}>
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1546,6 +1563,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
               <div className="text-center">
@@ -1588,7 +1606,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistoryPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1634,7 +1652,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistoryScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1678,7 +1696,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1724,11 +1742,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11  text-center flex justify-start items-center`}>
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1741,6 +1758,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
               <div className="text-center">
@@ -1783,7 +1801,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistoryPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1829,7 +1847,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistoryScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1873,7 +1891,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -1919,11 +1937,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -1936,6 +1953,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
               <div className="text-center">
@@ -1978,7 +1996,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2024,7 +2042,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2069,7 +2087,7 @@ console.log(FormTitles);
             }
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSInsuranceInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2115,11 +2133,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -2132,6 +2149,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
               <div className="text-center">
@@ -2174,7 +2192,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSInsuranceInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2220,7 +2238,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSInsuranceInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2264,7 +2282,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2310,11 +2328,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -2327,6 +2344,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
               <div className="text-center">
@@ -2369,7 +2387,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistoryPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2415,7 +2433,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistoryScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2459,7 +2477,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRights ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2505,12 +2523,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 flex justify-start items-center`}>
-
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -2523,6 +2539,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Consents</p>
 
               </div>
@@ -2546,7 +2563,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRightsPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2585,7 +2602,7 @@ console.log(FormTitles);
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRightsScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2629,7 +2646,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedure ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2675,11 +2692,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -2692,6 +2708,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
               <div className="text-center">
@@ -2714,7 +2731,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedurePDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2754,7 +2771,7 @@ console.log(FormTitles);
                     }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedureScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2798,7 +2815,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRules ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2844,11 +2861,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -2861,6 +2877,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
               <div className="text-center">
@@ -2883,7 +2900,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRulesPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2922,7 +2939,7 @@ console.log(FormTitles);
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRulesScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -2966,7 +2983,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsent ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3013,11 +3030,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -3030,6 +3046,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
               <div className="text-center">
@@ -3052,7 +3069,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsentPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3091,7 +3108,7 @@ console.log(FormTitles);
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsentScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3135,7 +3152,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3181,11 +3198,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -3198,6 +3214,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
               <div className="text-center">
@@ -3220,7 +3237,7 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
                 {/* <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3259,7 +3276,7 @@ console.log(FormTitles);
                     }))
                   }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationScan? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3303,7 +3320,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3349,11 +3366,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -3366,6 +3382,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
               <div className="text-center">
@@ -3408,7 +3425,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3454,7 +3471,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3498,7 +3515,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPractices ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3547,11 +3564,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -3564,6 +3580,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
               <div className="text-center">
@@ -3606,7 +3623,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3652,7 +3669,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3696,7 +3713,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3742,11 +3759,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -3759,6 +3775,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
               <div className="text-center">
@@ -3801,7 +3818,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3847,7 +3864,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3891,7 +3908,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -3937,11 +3954,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -3954,6 +3970,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
               <div className="text-center">
@@ -3996,7 +4013,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4042,7 +4059,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4086,7 +4103,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4132,11 +4149,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -4149,6 +4165,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
               <div className="text-center">
@@ -4191,7 +4208,7 @@ console.log(FormTitles);
               }
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4238,7 +4255,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4282,7 +4299,7 @@ console.log(FormTitles);
                 }
                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4328,11 +4345,10 @@ console.log(FormTitles);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
-                  className="mr-2"
                   width="18"
                   height="18"
-
                   strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -4345,6 +4361,7 @@ console.log(FormTitles);
                     strokeLinejoin="round"
                   />
                 </svg>
+                </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
               <div className="text-center">
@@ -4387,7 +4404,7 @@ console.log(FormTitles);
                 }
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityFormPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -4433,7 +4450,7 @@ console.log(FormTitles);
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                  class="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>

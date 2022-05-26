@@ -115,7 +115,6 @@ const services = [
       );
     });
   };
-
   const notifyMessage = () => {
     toast.success("Service Action Plan updated", {
       position: toast.POSITION.TOP_CENTER,
@@ -619,6 +618,12 @@ const services = [
 
   
       </Layout>
+      {
+      showImpactBaselineModal && (
+      <ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
+       setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}
+       clientId={clientData.clientId}/>)
+      }
     </>
   );
 }
