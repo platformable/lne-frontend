@@ -37,6 +37,27 @@ console.log("data",data)
 
   const router = useRouter()
 
+  const checkForms=()=>{
+  
+    let result 
+
+    if(data[0]?.msaformid==="" || data[0]?.msaformid===null && data[0]?.servicesactionplanid ==="" || data[0]?.servicesactionplanid ===null){
+      result="Please create an MSA Form & A Service Action Pan"
+    } 
+    
+    if(data[0]?.msaformid !==""  &&  data[0]?.servicesactionplanid===null || data[0]?.servicesactionplanid==="") {
+      result="Please create a Service Action Plan"
+    }
+   
+    
+    if(data[0]?.msaformid!=="" &&  data[0]?.servicesactionplanid!==null){ 
+       result = "All forms are up to date"
+    }
+    
+    return result
+
+  }
+
   return (<>
     <Layout>
     
@@ -53,7 +74,7 @@ console.log("data",data)
 
         <div id="user-box-container" className='p-3 flex justify-around items-center  font-bold'>
               <Image src={userIcon} className="mr-4"></Image>
-              <p className='text-blue-600'>{data[0].clientid}</p>
+              <p className='text-blue-600'>{data[0]?.clientid}</p>
         </div>
         <article className='container mx-auto border-2 border-blue-600 rounded-xl rounded-tl-none text-black md:grid md:grid-cols-2 font-bold shadow-xl'>
         
@@ -62,7 +83,7 @@ console.log("data",data)
                     
                 <div className='grid mt-4 grid-rows-2 md:flex md:items-center md:justify-between'>
                 <p className="">Date Client Joined LNE</p>
-                <p className='justify-self-end'>{new Date().toLocaleDateString()}</p>
+                <p className='justify-self-end'>{new Date(data[0]?.clientdatecreated).toLocaleDateString()}</p>
                 </div>
                 <hr className='border-blue-600'></hr>
                 
@@ -77,7 +98,7 @@ console.log("data",data)
             <div className='py-10 pl-4 md:pl-10  grid grid-rows-3 gap-5 items-center justify-items-start'>
                 <div className='flex'>
                     <Image src={infoIcon} ></Image>
-                    <p className='px-4 '>You need to complete x form</p>
+                    <p className='px-4 '>{checkForms()}</p>
                 </div>
                 <div className='flex'>
                     <Image src={infoIcon} ></Image>
@@ -242,7 +263,7 @@ console.log("data",data)
   </svg>
   </div>
   <h4 className="text-center">
-  Create Progress Note
+ {`Create Progress Note`}
   </h4>
 </div>
 </Link>  
