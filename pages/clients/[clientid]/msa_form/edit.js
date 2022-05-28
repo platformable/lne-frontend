@@ -320,6 +320,7 @@ const crearFecha=()=>{
                   }
                 }
                   checked={clientData.AIRSIntakeForm ? 'checked' : false}
+                  disabled={clientData.AIRSIntakeFormDate ? true : false} 
                 />
               </div>
               <div>
@@ -390,7 +391,8 @@ const crearFecha=()=>{
                     })
                   }
                 }
-                  checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : ''}
+                  checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : false}
+                  disabled={clientData.ComprehensiveRiskBehaviorAssessment ? true : false}
                 />
               </div>
               <div>
@@ -459,6 +461,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.ServiceActionPlan ? 'checked' : ''}
+                  disabled={clientData.ServiceActionPlan ? true : false}
                 />
               </div>
               <div>
@@ -528,7 +531,7 @@ const crearFecha=()=>{
                     }
                   }
                    checked={clientData.AIRSCollateralInformation ? true : false} 
-                 /*  value={clientData.AIRSCollateralInformation ? true : false} */
+                  disabled={clientData.AIRSCollateralInformation ? true : false}
                 />
               </div>
               <div>
@@ -598,6 +601,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
+                  disabled={clientData.AIRSFinancialInformation ? true : false}
                 />
               </div>
               <div>
@@ -667,6 +671,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
+                  disabled={clientData.AIRSHIVAIDSRiskHistory ? true : false}
                 />
               </div>
               <div>
@@ -735,6 +740,7 @@ const crearFecha=()=>{
                   }
                 }
                   checked={clientData.AIRSHCVHistory ? 'checked' : ''}
+                  disabled={clientData.AIRSHCVHistory ? true : false}
                 />
               </div>
               <div>
@@ -805,6 +811,7 @@ const crearFecha=()=>{
                   }
                 }
                   checked={clientData.AIRSHousingInformation ? 'checked' : ''}
+                  disabled={clientData.AIRSHousingInformation ? true : false}
                 />
               </div>
               <div>
@@ -874,6 +881,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
+                  disabled={clientData.AIRSInsuranceInformation ? true : false}
                 />
               </div>
               <div>
@@ -943,6 +951,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
+                  disabled={clientData.AIRSSubstanceUseHistory ? true : false}
                 />
               </div>
               <div>
@@ -1011,6 +1020,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.LNEClientRights ? 'checked' : ''}
+                  disabled={clientData.LNEClientRights ? true : false}
                 />
               </div>
               <div>
@@ -1079,6 +1089,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
+                  disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false}
                 />
               </div>
               <div>
@@ -1147,6 +1158,7 @@ const crearFecha=()=>{
                   }
                 }
                   checked={clientData.LNEProgramRules ? 'checked' : ''}
+                  disabled={clientData.LNEProgramRules ? true : false}
                 />
               </div>
               <div>
@@ -1215,6 +1227,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
+                  disabled={clientData.LNEEmergencyContactConsent ? true : false}
                 />
               </div>
               <div>
@@ -1287,6 +1300,7 @@ const crearFecha=()=>{
                   }
                   }
                   checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
+                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformation ? true : false}
                 />
               </div>
               <div>
@@ -1356,6 +1370,7 @@ const crearFecha=()=>{
                   }
                   }
                   checked={clientData.HIPPAConsentForm ? 'checked' : ''}
+                  disabled={clientData.HIPPAConsentForm ? true : false}
                 />
               </div>
               <div>
@@ -1425,6 +1440,7 @@ const crearFecha=()=>{
                   }
                   }
                   checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
+                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPractices ? true : false}
                 />
               </div>
               <div>
@@ -1498,6 +1514,7 @@ const crearFecha=()=>{
                   }
                   }
                   checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
+                  disabled={clientData.LNEOutreachRetentionTrackingForm ? true : false}
                 />
               </div>
               <div>
@@ -1569,6 +1586,7 @@ const crearFecha=()=>{
                   }
                 }
                   checked={clientData.LNEReferralInformation ? 'checked' : ''}
+                  disabled={clientData.LNEReferralInformation ? true : false}
                 />
               </div>
               <div>
@@ -1636,6 +1654,7 @@ const crearFecha=()=>{
                     })
                   }
                   checked={clientData.LNEClientReferralForm ? 'checked' : ''}
+                  disabled={clientData.LNEClientReferralForm ? true : false}
                 />
               </div>
               <div>
@@ -1702,6 +1721,7 @@ const crearFecha=()=>{
                     })
                   }}
                   checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
+                  disabled={clientData.LNEHNSEligibilityForm ? true : false}
                 />
               </div>
               <div>

@@ -17,6 +17,8 @@ export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
   let componentRef = useRef();
 
+  console.log("data",data)
+
   const notifyMessage = () => {
     toast.success("Service Action Plan updated!", {
       position: toast.POSITION.TOP_CENTER,
@@ -57,13 +59,14 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     goal3ActionStep2:data[0].goal3actionstep2,
     goal3ActionStep3:data[0].goal3actionstep3,
     comments:data[0].comments,
-    HCWSignature:data[0].HCWSignature===0 ? false : true,
-    HCWSignatureDate:data[0].HCWSignatureDate===0 ? false: true,
-    supervisorSignature:data[0].supervisorSignature===0 ? false : true,
-    clientSignature:data[0].clientSignature===0 ? false : true
+    HCWSignature:data[0].hcwsignature==="0" ? false : true,
+    HCWSignatureDate:data[0].HCWSignatureDate==="0" ? false: true,
+    supervisorSignature:data[0].supervisorsignature==="0" ? false : true,
+    clientSignature:data[0].clientsignature===0 ? false : true
   });
 
-  
+  console.log("clientData",clientData)
+  console.log("siganut", clientData.supervisorSignature)
 
   const genericGoals = [
   "Attend all health appointments",
@@ -613,6 +616,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,clientSignature:!clientData.clientSignature})}}
               disabled={disableUserIfNotSupervisor()}
+              checked={clientData?.clientSignature? true:false}
               />
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
@@ -620,6 +624,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,HCWSignature:!clientData.HCWSignature})}}
               disabled={disableUserIfNotSupervisor()}
+              checked={clientData?.HCWSignature? true:false}
               />
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
@@ -627,6 +632,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,supervisorSignature:!clientData.supervisorSignature})}}
               disabled={disableUserIfNotSupervisor()}
+              checked={clientData?.supervisorSignature ? true:false}
               />
             </div>
           </div>

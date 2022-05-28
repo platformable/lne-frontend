@@ -39,7 +39,8 @@ export default function Dashboard({ data, hcworkers }) {
       })
       return userClients
     } else {
-     const userClients= liveData.map((client,index)=>{
+      const hasMsaForm=liveData.filter(client=>client.msa_form_id!==null)
+     const userClients= hasMsaForm.map((client,index)=>{
      return  <DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>
       })
       return userClients
