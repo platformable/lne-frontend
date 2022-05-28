@@ -41,10 +41,10 @@ const EditMsaFormPage = ({ data }) => {
     AIRSIntakeFormPDF: data[0].airsintakeformpdf=== "0" || data[0].airsintakeformpdf=== null ? false : true,
     AIRSIntakeFormScan: data[0].airsintakeformscan=== "0" || data[0].airsintakeformscan=== null ? false : true,
     AIRSIntakeFormUploadDate: data[0].airsintakeformuploaddate || null,
-    ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment === "0" ? false : true,
+    ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment === "0" || data[0].comprehensiveriskbehaviorassessment === null ? false : true,
     ComprehensiveRiskBehaviorAssessmentDate: data[0].comprehensiveriskbehaviorassessmentdate,
-    ComprehensiveRiskBehaviorAssessmentPDF: data[0].comprehensiveriskbehaviorassessmentpdf=== "0" ? false : true,
-    ComprehensiveRiskBehaviorAssessmentScan: data[0].comprehensiveriskbehaviorassessmentscan=== "0" ? false : true,
+    ComprehensiveRiskBehaviorAssessmentPDF: data[0].comprehensiveriskbehaviorassessmentpdf=== "0" || data[0].comprehensiveriskbehaviorassessmentpdf=== null ? false : true,
+    ComprehensiveRiskBehaviorAssessmentScan: data[0].comprehensiveriskbehaviorassessmentscan=== "0" || data[0].comprehensiveriskbehaviorassessmentscan=== null ? false : true,
     ComprehensiveRiskBehaviorAssessmentUploadDate: data[0].comprehensiveriskbehaviorassessmentuploaddate || null,
     ServiceActionPlan: data[0].serviceactionplan === "0" || data[0].serviceactionplan === null ? false : true,
     ServiceActionPlanDate: data[0].serviceactionplandate,
@@ -187,7 +187,7 @@ console.log("clientData",clientData);
         if (response.status === 200 || response.statusText === 'Ok') {
           notifyMessage()
           setTimeout(() => {
-            router.push(`/clients/${clientData.clientId}/profile`)
+            router.push(`/dashboard`)
           }, 2300)
         
         } 
