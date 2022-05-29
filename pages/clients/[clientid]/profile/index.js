@@ -152,7 +152,7 @@ console.log("data",data)
               </svg>
               </div>
               <h4 className="text-center">
-                {data[0]?.msaformid ===undefined || data[0]?.msaformid==="" || data[0]?.msaformid===null ? (`Create MSA Form`) : 'Edit MSA Form' }
+                {data[0]?.msaformid ===undefined || data[0]?.msaformid==="" || data[0]?.msaformid===null ? (`Add MSA Form`) : 'MSA Form' }
               </h4>
               </div>
               </Link>

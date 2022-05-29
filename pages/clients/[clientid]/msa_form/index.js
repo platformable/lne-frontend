@@ -359,7 +359,7 @@ useEffect(()=>{
                     clientData.AIRSIntakeFormDate &&
                     clientData.AIRSIntakeFormDate
                   }
-                  disabled={clientData.AIRSIntakeFormDate ? true: false}
+                  /* disabled={clientData.AIRSIntakeFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -428,7 +428,7 @@ useEffect(()=>{
                     clientData.ComprehensiveRiskBehaviorAssessmentDate &&
                     clientData.ComprehensiveRiskBehaviorAssessmentDate
                   }
-                  disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false}
+                  /* disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -495,7 +495,7 @@ useEffect(()=>{
                     clientData.ServiceActionPlanDate &&
                     clientData.ServiceActionPlanDate
                   }
-                  disabled={clientData.ServiceActionPlanDate ? true: false}
+                  /* disabled={clientData.ServiceActionPlanDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -564,7 +564,7 @@ useEffect(()=>{
                     clientData.AIRSCollateralInformationDate &&
                     clientData.AIRSCollateralInformationDate
                   }
-                  disabled={clientData.AIRSCollateralInformationDate ? true: false}
+                  /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -633,7 +633,7 @@ useEffect(()=>{
                     clientData.AIRSFinancialInformationDate &&
                     clientData.AIRSFinancialInformationDate
                   }
-                  disabled={clientData.AIRSFinancialInformation ? true: false}
+                 /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -702,7 +702,7 @@ useEffect(()=>{
                     clientData.AIRSHIVAIDSRiskHistoryDate &&
                     clientData.AIRSHIVAIDSRiskHistoryDate
                   }
-                  disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false}
+                  /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -770,7 +770,7 @@ useEffect(()=>{
                     clientData.AIRSHCVHistoryDate &&
                     clientData.AIRSHCVHistoryDate
                   }
-                  disabled={clientData.AIRSHCVHistoryDate ? true: false}
+                  /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -840,7 +840,7 @@ useEffect(()=>{
                     clientData.AIRSHousingInformationDate &&
                     clientData.AIRSHousingInformationDate
                   }
-                  disabled={clientData.AIRSHousingInformationDate ? true: false}
+                  /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -909,7 +909,7 @@ useEffect(()=>{
                     clientData.AIRSInsuranceInformationDate &&
                     clientData.AIRSInsuranceInformationDate
                   }
-                  disabled={clientData.AIRSInsuranceInformationDate ? true: false}
+                  /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -978,7 +978,7 @@ useEffect(()=>{
                     clientData.AIRSSubstanceUseHistoryDate &&
                     clientData.AIRSSubstanceUseHistoryDate
                   }
-                  disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false}
+                  /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1045,7 +1045,7 @@ useEffect(()=>{
                     clientData.LNEClientRightsDate &&
                     clientData.LNEClientRightsDate
                   }
-                  disabled={clientData.LNEClientRightsDate ? true: false}
+                  /* disabled={clientData.LNEClientRightsDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1113,7 +1113,7 @@ useEffect(()=>{
                     clientData.LNEClientGrievancePolicyProcedureDate &&
                     clientData.LNEClientGrievancePolicyProcedureDate
                   }
-                  disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false}
+                  /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1181,7 +1181,7 @@ useEffect(()=>{
                     clientData.LNEProgramRulesDate &&
                     clientData.LNEProgramRulesDate
                   }
-                  disabled={clientData.LNEProgramRulesDate ? true: false}
+                  /* disabled={clientData.LNEProgramRulesDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1249,7 +1249,7 @@ useEffect(()=>{
                     clientData.LNEEmergencyContactConsentDate &&
                     clientData.LNEEmergencyContactConsentDate
                   }
-                  disabled={clientData.LNEEmergencyContactConsentDate ? true: false}
+                  /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
@@ -1320,7 +1320,7 @@ useEffect(()=>{
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate &&
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate
                   }
-                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false}
+                  /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
