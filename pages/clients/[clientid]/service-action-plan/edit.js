@@ -153,7 +153,14 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
   }
 
 
-  
+const getDate=(date)=>{
+const fecha =  Date.parse(date)
+const newDate= new Date(fecha).toLocaleDateString()
+const separatedDate=newDate.split('/')
+const prefinalDate=separatedDate.reverse()
+const finalDate=prefinalDate.join('-')
+return finalDate
+}  
 
   return (
     <><ToastContainer autoClose={2000} />
@@ -183,7 +190,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
         <section id="info" className="my-5 px-5">
           <div className="container mx-auto">
             <h6 className="font-black my-5 text-dark-blue">
-              Client Information
+              Client Information {setLocaleDateString(clientData.planStartDate)} <br />
             </h6>
             <div
               className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
@@ -196,7 +203,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
                   <input
                     type="date"
                     className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                    value={setLocaleDateString(clientData.planStartDate)}
+                    value={getDate(clientData.planStartDate)}
                     disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
                    /*  pattern="\d{4}-\d{2}-\d{2}" */ />
