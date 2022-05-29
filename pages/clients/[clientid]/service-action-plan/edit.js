@@ -157,8 +157,11 @@ const getDate=(date)=>{
 const fecha =  Date.parse(date)
 const newDate= new Date(fecha).toLocaleDateString()
 const separatedDate=newDate.split('/')
-const prefinalDate=separatedDate.reverse()
+const prefinalDate=separatedDate.reverse() 
+//const orderedDate=prefinalDate[0]+prefinalDate[2]+prefinalDate[1]
 const finalDate=prefinalDate.join('-')
+console.log("finalDate",finalDate)
+/* console.log(finalDate) */
 return finalDate
 }  
 
@@ -185,12 +188,12 @@ return finalDate
         Back to client profile
         </button>
 
-
+<input type="date" format="mm-dd-yyyy" value={getDate(clientData.planStartDate)}/>
         </section>
         <section id="info" className="my-5 px-5">
           <div className="container mx-auto">
             <h6 className="font-black my-5 text-dark-blue">
-              Client Information {setLocaleDateString(clientData.planStartDate)} <br />
+              Client Information  <br />
             </h6>
             <div
               className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
@@ -200,13 +203,14 @@ return finalDate
                 <h3 className="font-black mb-5">Date</h3>
                 <label className="block">
                   <span className="text-xs">Plan start date</span>
-                  <input
+                  <p>{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
+                  {/* <input
                     type="date"
                     className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
                     value={getDate(clientData.planStartDate)}
                     disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
-                   /*  pattern="\d{4}-\d{2}-\d{2}" */ />
+                    /> */}
                 </label>
               </div>
 
@@ -398,7 +402,7 @@ return finalDate
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
-                    value={setLocaleDateString(clientData.goal1TargetDate)}
+                    value={getDate(clientData.goal1TargetDate)}
                     disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,goal1TargetDate:e.target.value})}/>
                   </label>
@@ -480,7 +484,7 @@ return finalDate
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}
-                    value={setLocaleDateString(clientData.goal2TargetDate)}
+                    value={getDate(clientData.goal2TargetDate)}
                     disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
@@ -565,7 +569,7 @@ return finalDate
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}
-                    value={setLocaleDateString(clientData.goal3TargetDate)}
+                    value={getDate(clientData.goal3TargetDate)}
                     disabled={disableUserIfNotSupervisor()}
                     />
                   </label>

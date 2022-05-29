@@ -221,7 +221,7 @@ console.log("clientData",clientData)
                   <h3 className="font-black mb-5">Date</h3>
                   <label className="block">
                     <span className="text-xs">Today&apos;s date</span>
-                    <p>{todaysDate.toLocaleDateString()}</p>
+                    <p>{todaysDate.toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
                   </label>
                 </div>
 
@@ -545,7 +545,7 @@ console.log("clientData",clientData)
                   <div>
                     <span className="text-sm">Target Date</span>
                     <p className="text-dark-blue text-sm">
-                    {setLocaleDateString(serviceActionData?.goal1targetdate)}
+                    {new Date(serviceActionData?.goal1targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
                 </div>
@@ -572,7 +572,7 @@ console.log("clientData",clientData)
                   <div>
                     <span className="text-sm">Target Date</span>
                     <p className="text-dark-blue text-sm">
-                    {serviceActionData?.goal2targetdate?.split('T')[0]}
+                    {new Date(serviceActionData?.goal2targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
                 </div>
@@ -601,7 +601,7 @@ console.log("clientData",clientData)
                   <div>
                     <span className="text-sm">Target Date</span>
                     <p className="text-dark-blue text-sm">
-                    {serviceActionData?.goal3targetdate?.split('T')[0]}
+                    {new Date(serviceActionData?.goal3targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
                 </div>
