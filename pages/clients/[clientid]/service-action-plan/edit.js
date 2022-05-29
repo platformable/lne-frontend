@@ -402,7 +402,7 @@ return finalDate
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
-                    value={getDate(clientData.goal1TargetDate)}
+                    value={clientData.goal1TargetDate && clientData.goal1TargetDate.split('T')[0]}
                     disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,goal1TargetDate:e.target.value})}/>
                   </label>
@@ -484,7 +484,7 @@ return finalDate
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}
-                    value={getDate(clientData.goal2TargetDate)}
+                    value={clientData.goal2TargetDate && clientData.goal2TargetDate.split('T')[0]}
                     disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
@@ -569,7 +569,7 @@ return finalDate
                     <h6 className="font-black">Target Date</h6>
                     <input type="date" className="border-black w-full rounded p-2 text-xs"
                     onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}
-                    value={getDate(clientData.goal3TargetDate)}
+                    value={clientData.goal1TargetDate && clientData.goal1TargetDate.split('T')[0]}
                     disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
