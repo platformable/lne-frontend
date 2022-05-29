@@ -10,7 +10,7 @@ import ImpactTrackerModal from '../../../../components/ImpactTrackerModal'
 
 import { useRouter } from "next/router";
 
-export function getDate (string) {
+export function getDatex (string) {
     const date = new Date(string)
     const month = date.getMonth() + 1
     const day = date.getDate()
@@ -25,6 +25,14 @@ export function setLocaleDateString (date) {
   const finalDate=`${separatedDate[2]}-${separatedDate[1]?.length===1?`0${separatedDate[1]}`:separatedDate[1]}-${separatedDate[0]?.length===1?`0${separatedDate[0]}`:separatedDate[0]}`
   return finalDate
 }
+
+const getDate=(date)=>{
+  const fecha =  Date.parse(date)
+  const newDate= new Date(fecha).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})
+  const separatedDate=newDate.split('/')
+  const finalDate=separatedDate.join('-')
+  return newDate
+  }  
 
 export default function ClientProfilePage({ data }) {
 
@@ -83,13 +91,13 @@ console.log("data",data)
                     
                 <div className='grid mt-4 grid-rows-2 md:flex md:items-center md:justify-between'>
                 <p className="">Date Client Joined LNE</p>
-                <p className='justify-self-end'>{new Date(data[0]?.clientdatecreated).toLocaleDateString()}</p>
+                <p className='justify-self-end'>{getDate(data[0]?.clientdatecreated)}</p>
                 </div>
                 <hr className='border-blue-600'></hr>
                 
                 <div className='grid grid-rows-2 md:flex md:items-center md:justify-between'>
                 <p  className="">Date Of Last Action</p>
-                <p className='justify-self-end'>{new Date().toLocaleDateString()}</p>
+                <p className='justify-self-end'>{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
                 </div>
                 <hr className='border-blue-600 hidden md:block'></hr>
 

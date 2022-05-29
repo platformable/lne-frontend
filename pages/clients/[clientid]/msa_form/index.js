@@ -168,7 +168,7 @@ useEffect(()=>{
                   <h3 className="font-black mb-5">Date</h3>
                   <label className="block">
                     <span className="text-xs">Today&apos;s date</span>
-                    <p>{todaysDate.toLocaleDateString()}</p>
+                    <p>{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
                   </label>
                 </div>
 
