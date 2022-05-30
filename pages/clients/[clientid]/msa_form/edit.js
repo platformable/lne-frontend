@@ -630,7 +630,7 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                     clientData.AIRSFinancialInformationDate &&
                     clientData.AIRSFinancialInformationDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSFinancialInformationDate ? true: false}
+                  /* disabled={clientData.AIRSFinancialInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     setClientData({
