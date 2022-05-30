@@ -103,11 +103,21 @@ const handleMsaform = ()=> {
       });
 }
 
+
+
+
 const crearFecha=()=>{
 
   const initialDate= new Date().toLocaleDateString()
   const newDate=initialDate.split('/')
-  const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
+  let fixedDate;
+  if(typeof window !== 'undefined'){
+    const userLocale=window.navigator.language
+    userLocale='en-US' ? fixedDate=`${newDate[2]}-${newDate[0].length===1? `0${newDate[0]}`:`${newDate[0]}`}-${newDate[1].length===1 ? `0${newDate[1]}`: `${newDate[1]}`}`
+    :fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
+  }
+  
+
   console.log("initialDate",initialDate)
   console.log("fixedDate",fixedDate)
   return fixedDate
@@ -1738,7 +1748,7 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   id="LNEHNSEligibilityForm"
                   value={
                     clientData.LNEHNSEligibilityFormDate &&
-                    clientData.LNEHNSEligibilityFormDate 
+                    clientData.LNEHNSEligibilityFormDate.split('T')[0] 
                   }
                   /* disabled={clientData.LNEHNSEligibilityFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
