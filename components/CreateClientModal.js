@@ -48,7 +48,7 @@ export default function CreateClientModal({ setShowCreateClientModal, showCreate
     .catch(err=>console.log("err",err))
 }
 
-  const checkErorsFields =()=>{
+  const checkErrorsFields =()=>{
     // setErrorMessage('');
     setErrorsInFields(prevSelected => {return !prevSelected })
     setSaving(prevSelected => {return !prevSelected })
@@ -77,7 +77,7 @@ if(clientData.clientFirstName==""
 clientData.clientID=="") {checkEmtpyFields()}
 else if(clientData.clientFirstName.match(/[^a-zA-Z]/) 
 || clientData.clientLastName.match(/[^a-zA-Z]/)
-|| (clientData.clientSSN.length <=3 ||clientData.clientSSN.length >4)){checkErorsFields()}
+|| clientData.clientSSN.length <= 3 ||clientData.clientSSN.length >4 ){checkErrorsFields()}
  else{
   axios(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`,{
     method:'POST',
@@ -197,7 +197,8 @@ else if(clientData.clientFirstName.match(/[^a-zA-Z]/)
               />
               
               </div>
-              {(clientData.clientSSN.length <=3 ||clientData.clientSSN.length >4) && <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p>}
+              {(clientData.clientSSN.length ==0 || clientData.clientSSN.length ==4 ) ? null :
+               clientData.clientSSN.length >4 ? <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p> : <p className="text-red-500 text-xs mt-2">Must be 4 numbers </p>}
             </label>
             {/*  <label className="block">
             <span className="text-gray-700">When is your event?</span>
