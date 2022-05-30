@@ -104,7 +104,11 @@ const handleMsaform = ()=> {
 }
 
 
-
+/* if(typeof window !== 'undefined'){
+  const userLocale=window.navigator.language
+  userLocale='en-US' ? console.log("es gringo")
+  :console.log("no es gringo")
+} */
 
 const crearFecha=()=>{
 
@@ -113,19 +117,12 @@ const crearFecha=()=>{
   let fixedDate;
   if(typeof window !== 'undefined'){
     const userLocale=window.navigator.language
-    userLocale='en-US' ? fixedDate=`${newDate[2]}-${newDate[0].length===1? `0${newDate[0]}`:`${newDate[0]}`}-${newDate[1].length===1 ? `0${newDate[1]}`: `${newDate[1]}`}`
+    userLocale==='en-US' ? fixedDate=`${newDate[2]}-${newDate[0].length===1? `0${newDate[0]}`:`${newDate[0]}`}-${newDate[1].length===1 ? `0${newDate[1]}`: `${newDate[1]}`}`
     :fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
   }
-  
-
-  console.log("initialDate",initialDate)
-  console.log("fixedDate",fixedDate)
   return fixedDate
-
-
-
 }
-console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'}))
+
   return (
     <><ToastContainer autoClose={2000} />
       <Layout>
@@ -354,11 +351,20 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSIntakeFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
-                      AIRSIntakeFormDate: e.target.value,
-                    });
+                    if(clientData.AIRSIntakeForm){
+                      setClientData({
+                        ...clientData,
+               
+                        AIRSIntakeFormDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                        AIRSIntakeFormDate: e.target.value,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
@@ -424,12 +430,20 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      ComprehensiveRiskBehaviorAssessment:
-                        !clientData.ComprehensiveRiskBehaviorAssessment,
-                      ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
-                    });
+                    if(clientData){
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessment:
+                          !clientData.ComprehensiveRiskBehaviorAssessment,
+                        ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -480,7 +494,7 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                 />
               </div>
               <div>
-                <p>Service Action Plan <span className="text-red-500">*</span> </p>
+                <p>Service Action Plan</p>
               </div>
               <div className="text-center">
                 <input
@@ -493,11 +507,19 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.ServiceActionPlanDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      ServiceActionPlanDate: e.target.value,
-                      ServiceActionPlan: !clientData.ServiceActionPlan,
-                    });
+                    if(clientData){
+                      setClientData({
+                        ...clientData,
+                        ServiceActionPlanDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        ServiceActionPlanDate: e.target.value,
+                        ServiceActionPlan: !clientData.ServiceActionPlan,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
@@ -563,12 +585,20 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSCollateralInformationDate: e.target.value,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
-                    });
+                    if(clientData){
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformationDate: e.target.value,
+                        AIRSCollateralInformation:
+                          !clientData.AIRSCollateralInformation,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -633,12 +663,19 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSFinancialInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSFinancialInformationDate: e.target.value,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                    });
+                    if (clientData){
+                      setClientData({
+                        ...clientData,
+                        AIRSFinancialInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSFinancialInformationDate: e.target.value,
+                        AIRSFinancialInformation:
+                          !clientData.AIRSFinancialInformation,
+                      });
+                    }
                   }}
                 />
               </div>
@@ -703,12 +740,21 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistoryDate: e.target.value,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                    });
+                    if(clientData.AIRSHIVAIDSRiskHistory){
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistoryDate: e.target.value,
+
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistoryDate: e.target.value,
+                        AIRSHIVAIDSRiskHistory:
+                          !clientData.AIRSHIVAIDSRiskHistory,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
@@ -772,11 +818,19 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHCVHistoryDate: e.target.value,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
-                    });
+                    if(clientData.AIRSHCVHistory){
+                      setClientData({
+                        ...clientData,
+                        AIRSHCVHistoryDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSHCVHistoryDate: e.target.value,
+                        AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
@@ -843,12 +897,21 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHousingInformationDate: e.target.value,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                    });
+                    if(clientData.AIRSHousingInformation){
+                      setClientData({
+                        ...clientData,
+                        AIRSHousingInformationDate: e.target.value,
+
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSHousingInformationDate: e.target.value,
+                        AIRSHousingInformation:
+                          !clientData.AIRSHousingInformation,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -913,12 +976,20 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformationDate: e.target.value,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                    });
+                    if (clientData.AIRSInsuranceInformation){
+                      setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformationDate: e.target.value,
+                        AIRSInsuranceInformation:
+                          !clientData.AIRSInsuranceInformation,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
@@ -983,12 +1054,20 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistoryDate: e.target.value,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                    });
+                    if(clientData.AIRSSubstanceUseHistory){
+                      setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistoryDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistoryDate: e.target.value,
+                        AIRSSubstanceUseHistory:
+                          !clientData.AIRSSubstanceUseHistory,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1052,11 +1131,19 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEClientRightsDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEClientRightsDate: e.target.value,
-                      LNEClientRights: !clientData.LNEClientRights,
-                    });
+                    if(clientData.LNEClientRights){
+                      setClientData({
+                        ...clientData,
+                        LNEClientRightsDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEClientRightsDate: e.target.value,
+                        LNEClientRights: !clientData.LNEClientRights,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1121,12 +1208,20 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedureDate: e.target.value,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                    });
+                    if(clientData.LNEClientGrievancePolicyProcedure){
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedureDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedureDate: e.target.value,
+                        LNEClientGrievancePolicyProcedure:
+                          !clientData.LNEClientGrievancePolicyProcedure,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1190,11 +1285,19 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEProgramRulesDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEProgramRulesDate: e.target.value,
-                      LNEProgramRules: !clientData.LNEProgramRules,
-                    });
+                    if(clientData.LNEProgramRules){
+                      setClientData({
+                        ...clientData,
+                        LNEProgramRulesDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEProgramRulesDate: e.target.value,
+                        LNEProgramRules: !clientData.LNEProgramRules,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1259,12 +1362,20 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsentDate: e.target.value,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                    });
+                    if(clientData.LNEEmergencyContactConsent){
+                      setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsentDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsentDate: e.target.value,
+                        LNEEmergencyContactConsent:
+                          !clientData.LNEEmergencyContactConsent,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1332,13 +1443,22 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEConsentForReleaseOfConfidentialInformationDate:
-                        e.target.value,
-                      LNEConsentForReleaseOfConfidentialInformation:
-                      !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                    });
+                    if(clientData.LNEConsentForReleaseOfConfidentialInformation){
+                      setClientData({
+                        ...clientData,
+                        LNEConsentForReleaseOfConfidentialInformationDate:
+                          e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEConsentForReleaseOfConfidentialInformationDate:
+                          e.target.value,
+                        LNEConsentForReleaseOfConfidentialInformation:
+                        !clientData.LNEConsentForReleaseOfConfidentialInformation,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1402,11 +1522,19 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.HIPPAConsentFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      HIPPAConsentFormDate: e.target.value,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
-                    });
+                    if(clientData.HIPPAConsentForm){
+                      setClientData({
+                        ...clientData,
+                        HIPPAConsentFormDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        HIPPAConsentFormDate: e.target.value,
+                        HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1475,12 +1603,21 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                    });
+                    if(clientData.NYCDOHMHNoticeOfPrivacyPractices){
+                      setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value
+
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value,
+                        NYCDOHMHNoticeOfPrivacyPractices:
+                          !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1546,12 +1683,21 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEOutreachRetentionTrackingFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingFormDate: e.target.value,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                    });
+                    if(clientData.LNEOutreachRetentionTrackingForm){
+                      setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingFormDate: e.target.value
+      
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingFormDate: e.target.value,
+                        LNEOutreachRetentionTrackingForm:
+                          !clientData.LNEOutreachRetentionTrackingForm,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1618,12 +1764,21 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEReferralInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEReferralInformationDate: e.target.value,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                    });
+                    if(clientData.LNEReferralInformation){
+                      setClientData({
+                        ...clientData,
+                        LNEReferralInformationDate: e.target.value,
+              
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEReferralInformationDate: e.target.value,
+                        LNEReferralInformation:
+                          !clientData.LNEReferralInformation,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
@@ -1686,11 +1841,18 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEClientReferralFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
+                    if(clientData.LNEClientReferralForm){
+                      setClientData({
+                        ...clientData,
+                        LNEClientReferralFormDate: e.target.value,
+                      });
+                    } else {
                     setClientData({
                       ...clientData,
                       LNEClientReferralFormDate: e.target.value,
                       LNEClientReferralForm: !clientData.LNEClientReferralForm,
                     });
+                  }
                   }}
                 />
               </div>
@@ -1753,12 +1915,22 @@ console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',d
                   /* disabled={clientData.LNEHNSEligibilityFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
+
+                    if(clientData.LNEHNSEligibilityForm){
+                      setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityFormDate: e.target.value,
+                    
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityFormDate: e.target.value,
+                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                      });
+                    }
             
-                    setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityFormDate: e.target.value,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                    });
+                    
                   }}
                 />
               </div>
