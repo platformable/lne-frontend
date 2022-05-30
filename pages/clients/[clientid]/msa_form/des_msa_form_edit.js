@@ -34,10 +34,10 @@ const EditMsaFormPage = ({ data }) => {
     planStartDate: "",
     userFirstName: data[0].userfirstname,
     userLastName: data[0].userlastname,
-    AIRSIntakeForm:  data[0].AIRSIntakeForm === "0" ? false : true,
+    AIRSIntakeForm: data[0].AIRSIntakeForm === "0" ? false : true,
     AIRSIntakeFormDate: data[0].airsintakeformdate,
-    AIRSIntakeFormPDF: false ,
-    AIRSIntakeFormScan: false ,
+    AIRSIntakeFormPDF: false,
+    AIRSIntakeFormScan: false,
     AIRSIntakeFormUploadDate: data[0].airsintakeformuploaddate || null,
     ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment === "0" ? false : true,
     ComprehensiveRiskBehaviorAssessmentDate: data[0].comprehensiveriskbehaviorassessmentdate,
@@ -47,7 +47,7 @@ const EditMsaFormPage = ({ data }) => {
     ServiceActionPlan: data[0].serviceactionplan === "0" ? false : true,
     ServiceActionPlanDate: data[0].serviceactionplandate,
     // ServiceActionPlanPDF: data[0].serviceactionplanpdf === "0" ? true : false,
-    ServiceActionPlanScan :  false,
+    ServiceActionPlanScan: false,
     ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate || null,
     AIRSCollateralInformation: data[0].airscollateralinformation === "0" ? false : true,
     AIRSCollateralInformationDate: data[0].airscollateralinformationdate,
@@ -63,50 +63,50 @@ const EditMsaFormPage = ({ data }) => {
 
     AIRSHIVAIDSRiskHistory: data[0].airshivaidsriskhistory === "0" ? false : true,
     AIRSHIVAIDSRiskHistoryDate: data[0].airshivaidsriskhistorydate,
-    AIRSHIVAIDSRiskHistoryPDF: false, 
-    AIRSHIVAIDSRiskHistoryScan: false, 
+    AIRSHIVAIDSRiskHistoryPDF: false,
+    AIRSHIVAIDSRiskHistoryScan: false,
     AIRSHIVAIDSRiskHistoryUploadDate: data[0].airshivaidsriskhistoryuploaddate || null,
 
     AIRSHCVHistory: data[0].airshcvhistory === "0" ? false : true,
     AIRSHCVHistoryDate: data[0].airshcvhistorydate,
-    AIRSHCVHistoryPDF: false, 
-    AIRSHCVHistoryScan: false, 
+    AIRSHCVHistoryPDF: false,
+    AIRSHCVHistoryScan: false,
     AIRSHCVHistoryUploadDate: data[0].airshcvhistoryuploaddate || null,
 
     AIRSHousingInformation: data[0].airshousinginformation === "0" ? false : true,
     AIRSHousingInformationDate: data[0].airshousinginformationdate,
-    AIRSHousingInformationPDF: false, 
-    AIRSHousingInformationScan: false, 
+    AIRSHousingInformationPDF: false,
+    AIRSHousingInformationScan: false,
     AIRSHousingInformationUploadDate: data[0].airshousinginformationuploaddate || null,
 
     AIRSInsuranceInformation: data[0].airsinsuranceinformation === "0" ? false : true,
     AIRSInsuranceInformationDate: data[0].airsinsuranceinformationdate,
-    AIRSInsuranceInformationPDF: false, 
-    AIRSInsuranceInformationScan : false, 
+    AIRSInsuranceInformationPDF: false,
+    AIRSInsuranceInformationScan: false,
     AIRSInsuranceInformationUploadDate: data[0].airsinsuranceinformationuploaddate || null,
 
     AIRSSubstanceUseHistory: data[0].airssubstanceusehistory === "0" ? false : true,
     AIRSSubstanceUseHistoryDate: data[0].airssubstanceusehistorydate,
-    AIRSSubstanceUseHistoryPDF: false, 
-    AIRSSubstanceUseHistoryScan : false, 
+    AIRSSubstanceUseHistoryPDF: false,
+    AIRSSubstanceUseHistoryScan: false,
     AIRSSubstanceUseHistoryUploadDate: data[0].airssubstanceusehistoryuploaddate || null,
 
     LNEClientRights: data[0].lneclientrights === "0" ? false : true,
     LNEClientRightsDate: data[0].lneclientrightsdate,
-    LNEClientRightsPDF: false, 
-    LNEClientRightsScan: false, 
+    LNEClientRightsPDF: false,
+    LNEClientRightsScan: false,
     LNEClientRightsUploadDate: data[0].lneclientrightsuploaddate || null,
 
     LNEClientGrievancePolicyProcedure: data[0].lneclientgrievancepolicyprocedure === "0" ? false : true,
     LNEClientGrievancePolicyProcedureDate: data[0].lneclientgrievancepolicyproceduredate,
-    LNEClientGrievancePolicyProcedurePDF: false, 
-    LNEClientGrievancePolicyProcedureScan : false, 
+    LNEClientGrievancePolicyProcedurePDF: false,
+    LNEClientGrievancePolicyProcedureScan: false,
     LNEClientGrievancePolicyProcedureUploadDate: data[0].lneclientgrievancepolicyprocedureuploaddate || null,
 
     LNEProgramRules: data[0].lneprogramrules === "0" ? false : true,
     LNEProgramRulesDate: data[0].lneprogramrulesdate,
-    LNEProgramRulesPDF: false, 
-    LNEProgramRulesScan: false, 
+    LNEProgramRulesPDF: false,
+    LNEProgramRulesScan: false,
     LNEProgramRulesUploadDate: data[0].lneprogramrulesuploaddate || null,
 
     LNEEmergencyContactConsent: data[0].lneemergencycontactconsent === "0" ? false : true,
@@ -124,13 +124,13 @@ const EditMsaFormPage = ({ data }) => {
     HIPPAConsentForm: data[0].hippaconsentform === "0" ? false : true,
     HIPPAConsentFormDate: data[0].hippaconsentformdate,
     HIPPAConsentFormPDF: false,
-    HIPPAConsentFormScan : false,
+    HIPPAConsentFormScan: false,
     HIPPAConsentFormUploadDate: data[0].hippaconsentformuploaddate || null,
 
     NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices === "0" ? false : true,
     NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate,
     NYCDOHMHNoticeOfPrivacyPracticesPDF: false,
-    NYCDOHMHNoticeOfPrivacyPracticesScan : false,
+    NYCDOHMHNoticeOfPrivacyPracticesScan: false,
     NYCDOHMHNoticeOfPrivacyPracticesUploadDate: data[0].nycdohmhnoticeofprivacypracticesuploaddate || null,
 
     LNEOutreachRetentionTrackingForm: data[0].lneoutreachretentiontrackingform === "0" ? false : true,
@@ -161,7 +161,7 @@ const EditMsaFormPage = ({ data }) => {
 
 
 
-//WORK IN PROGRESS, TRYING TO ITERATE THE STATE
+  //WORK IN PROGRESS, TRYING TO ITERATE THE STATE
   // [['AIRSIntakeForm', true], [...]...]
   const clientForms = Object.entries(clientData).slice(8)
   const FormTitles = clientForms.filter((form, i) => i % 5 === 0 && form[0]);
@@ -169,29 +169,30 @@ const EditMsaFormPage = ({ data }) => {
   const CompRiskBehASS = `${FormTitles[1][0].slice(0, 13)} ${FormTitles[1][0].slice(13, 17)} ${FormTitles[1][0].slice(17, 25)} ${FormTitles[2][0].slice(25)}`;
   const ServActioPla = `${FormTitles[2][0].slice(0, 7)} ${FormTitles[2][0].slice(7, 13)} ${FormTitles[2][0].slice(13, 17)}`
 
-console.log(FormTitles);
+  console.log("data[0]", data);
+  console.log("data[0]");
   const handleMsaform = () => {
 
     notifyMessage()
-          setTimeout(() => {
-            router.push(`/clients/${clientData.clientId}/profile`)
-          }, 2300)
+    setTimeout(() => {
+      router.push(`/dashboard`)
+    }, 2300)
 
-   /*  axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update`, {
-      clientData
-    })
-      .then(function (response) {
-
-        if (response.status === 200 || response.statusText === 'Ok') {
-          notifyMessage()
-          setTimeout(() => {
-            router.push(`/clients/${clientData.clientId}/profile`)
-          }, 2300)
-        } 1
-      })
-      .catch(function (error) {
-        res.send(error)
-      }); */
+    /*  axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update`, {
+       clientData
+     })
+       .then(function (response) {
+ 
+         if (response.status === 200 || response.statusText === 'Ok') {
+           notifyMessage()
+           setTimeout(() => {
+             router.push(`/clients/${clientData.clientId}/profile`)
+           }, 2300)
+         } 1
+       })
+       .catch(function (error) {
+         res.send(error)
+       }); */
   }
 
   const crearFecha = () => {
@@ -208,7 +209,7 @@ console.log(FormTitles);
         <div className="container mx-auto">
           <h3 className="font-black text-center my-5">DES Edit MSA FORM</h3>
         </div>
-       {/*  <div className="container bg-blue-50 rounded-xl p-5 mx-auto">
+        {/*  <div className="container bg-blue-50 rounded-xl p-5 mx-auto">
           <div className="flex flex-col items-center max-w-fit">
             <svg
               width="24"
@@ -412,22 +413,24 @@ console.log(FormTitles);
           <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
             Indicate which of the following forms you have uploaded to the client&apos;s Dropbox
           </h6>
-          <section
+ <section
             id="form"
-            className={`relative border-dark-blue rounded-xl mb-5`}
-          >
+            className="relative border-dark-blue rounded-xl mb-5"
+           >
+            
             {/* {TABLE HEAD} */}
+            <div className={`${MSAStyles.line}`}></div>
             <div
               id="form-head"
-              className={`${MSAStyles.formRowsContainerDesFormEdit} grid gap-5 justify-center items-end rounded-tl-lg rounded-tr-lg py-1 mx-1`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} relative grid gap-5 justify-center items-end rounded-tl-lg rounded-tr-lg py-1 mx-1`}
             >
-
+              
               <div></div>
               <div></div>
-              <p className="text-center">Date added</p>
-              <p className="text-center">Dropbox Folder</p>
-              <p className="text-center">Date last updated</p>
-              <div className="flex items-center">
+              <p className="text-center ">Date added</p>
+              <p className="text-center ">Dropbox Folder</p>
+              <p className="text-center ">Date last updated</p>
+              <div className="flex items-center ">
                 <svg
                   width="24"
                   height="24"
@@ -460,9 +463,9 @@ console.log(FormTitles);
                     strokeWidth="2"
                   />
                 </svg>
-                <p className="text-start">PDF version uploaded</p>
+                <p className="text-start ">PDF version uploaded</p>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center ">
                 <svg
                   width="24"
                   height="24"
@@ -503,31 +506,28 @@ console.log(FormTitles);
 
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
-            >
-              <div className="ml-1 text-center flex justify-center items-center "
-                       onClick={() => {
-                        clientData.AIRSIntakeForm ?
-                          setClientData(formState => ({
-                            ...formState,
-                            AIRSIntakeForm: !formState.AIRSIntakeForm,
-                            AIRSIntakeFormDate: ""
-                          })) :
-                          setClientData(formState => ({
-                            ...formState,
-                            AIRSIntakeForm: !formState.AIRSIntakeForm,
-                            AIRSIntakeFormDate: crearFecha()
-                          }))
-                        }
-                      } >
-               
+             >
+              <div className=" ml-1 text-center flex justify-center items-center"
+              //  onClick={() => {
+
+              //   clientData.AIRSIntakeForm &&
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSIntakeForm: !formState.AIRSIntakeForm,
+
+              //     })) 
+              //   }
+              // }
+              >
+
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSIntakeForm ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSIntakeFormDate ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-              
+
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSIntakeFormDate && "bg-white  border-2 border-dark-blue"}  appearance-none rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -545,6 +545,7 @@ console.log(FormTitles);
                   }
                   }
                   checked={clientData.AIRSIntakeForm ? 'checked' : false}
+                  disabled={clientData.AIRSIntakeForm ? true : false}
                 />
               </div>
               <div>
@@ -552,42 +553,43 @@ console.log(FormTitles);
               </div>
 
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSIntakeForm"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSIntakeFormDate &&
-                    clientData.AIRSIntakeFormDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSIntakeForm ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSIntakeFormDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.AIRSIntakeFormDate &&
+                  <input
+                    type="date"
+                    id="AIRSIntakeForm"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSIntakeForm &&
+                      clientData.AIRSIntakeFormDate.split('T')[0]
+                    }
+                    disabled={clientData.AIRSIntakeForm ? true : false}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        AIRSIntakeFormDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  className="mr-2"
-                  width="18"
-                  height="18"
+                <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
 
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Intake</p>
               </div>
@@ -596,42 +598,42 @@ console.log(FormTitles);
                   type="date"
                   id="AIRSIntakeForm"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.AIRSIntakeFormUploadDate &&
-                  clientData.AIRSIntakeFormUploadDate.split('T')[0]
-                }
-                disabled={clientData.AIRSIntakeFormUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    AIRSIntakeFormUploadDate: e.target.value,
-                  });
-                
-                }}
+                  value={
+                    clientData.AIRSIntakeFormUploadDate &&
+                    clientData.AIRSIntakeFormUploadDate.split('T')[0]
+                  }
+                  disabled={true}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSIntakeFormUploadDate: e.target.value,
+                    });
+
+                  }}
                 />
 
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-            
                 onClick={() => {
-                  clientData.AIRSIntakeFormPDF ?
-                    setClientData(formState => ({
-                      ...formState,
-                      AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
-                      AIRSIntakeFormUploadDate: ""
-                    })) :
-                    setClientData(formState => ({
-                      ...formState,
-                      AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
-                      AIRSIntakeFormUploadDate: crearFecha()
-                    }))
-                    if(!clientData.AIRSIntakeFormPDF || clientData.AIRSIntakeFormScan){
-                      setClientData(formState => ({
-                        ...formState,
-                        AIRSIntakeFormUploadDate: crearFecha()
-                      }))
-                    }
-                  }
+
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
+
+                  }))
+                  // :
+                  // setClientData(formState => ({
+                  //   ...formState,
+                  //   AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
+
+                  // }))
+                  // if(!clientData.AIRSIntakeFormPDF || clientData.AIRSIntakeFormScan){
+                  //   setClientData(formState => ({
+                  //     ...formState,
+                  //     AIRSIntakeFormUploadDate: crearFecha()
+                  //   }))
+                  // }
+                }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -639,54 +641,53 @@ console.log(FormTitles);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSIntakeForm && "bg-white  border-2 border-dark-blue"}  appearance-none rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                onChange={(e) => {
-                  clientData.AIRSIntakeFormUploadDate === "" || clientData.AIRSIntakeFormUploadDate === null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSIntakeFormPDF: !clientData.AIRSIntakeFormPDF,
-                      AIRSIntakeFormUploadDate: crearFecha()
-                    })) : setClientData({
-                      ...clientData,
-                      AIRSIntakeFormPDF: !clientData.AIRSIntakeFormPDF,
-                    })
-                }
-                }
-                checked={clientData.AIRSIntakeFormPDF ? 'checked' : false}
+                  onChange={(e) => {
+                    clientData.AIRSIntakeFormUploadDate === "" || clientData.AIRSIntakeFormUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSIntakeFormPDF: !clientData.AIRSIntakeFormPDF,
+                        AIRSIntakeFormUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSIntakeFormPDF: !clientData.AIRSIntakeFormPDF,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSIntakeFormPDF ? 'checked' : false}
                 />
               </div>
-              <div className="ml-1 text-center flex justify-center items-center " 
+              <div className="ml-1 text-center flex justify-center items-center "
                 onClick={() => {
-                  clientData.AIRSIntakeFormScan ?
-                    setClientData(formState => ({
-                      ...formState,
-                      AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
-                      AIRSIntakeFormUploadDate: ""
-                    })) :
-                    setClientData(formState => ({
-                      ...formState,
-                      AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
-                      AIRSIntakeFormUploadDate: crearFecha()
-                    }))
-                    if(clientData.AIRSIntakeFormPDF || !clientData.AIRSIntakeFormScan){
-                      setClientData(formState => ({
-                        ...formState,
-                        AIRSIntakeFormUploadDate: crearFecha()
-                      }))
-                    }
-                  }
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
+
+                  }))
+                  // setClientData(formState => ({
+                  //   ...formState,
+                  //   AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
+
+                  // }))
+                  // if(clientData.AIRSIntakeFormPDF || !clientData.AIRSIntakeFormScan){
+                  //   setClientData(formState => ({
+                  //     ...formState,
+                  //     AIRSIntakeFormUploadDate: crearFecha()
+                  //   }))
+                  // }
                 }
-                >
+                }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSIntakeFormScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSIntakeForm && "bg-white  border-2 border-dark-blue"}  appearance-none rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -710,30 +711,29 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="ml-1 text-center flex justify-center items-center " 
+              <div className="ml-1 text-center flex justify-center items-center "
                 onClick={() => {
                   clientData.ComprehensiveRiskBehaviorAssessment ?
                     setClientData(formState => ({
                       ...formState,
-                      ComprehensiveRiskBehaviorAssessment: !formState.ComprehensiveRiskBehaviorAssessment,
-                      ComprehensiveRiskBehaviorAssessmentDate: ""
+                      ComprehensiveRiskBehaviorAssessment: formState.ComprehensiveRiskBehaviorAssessment,
                     })) :
                     setClientData(formState => ({
                       ...formState,
                       ComprehensiveRiskBehaviorAssessment: !formState.ComprehensiveRiskBehaviorAssessment,
                       ComprehensiveRiskBehaviorAssessmentDate: crearFecha()
                     }))
-                  }
-                } 
-               >
-                 
+                }
+                }
+              >
+
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessment ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.ComprehensiveRiskBehaviorAssessment && "bg-white  border-2 border-dark-blue"}  appearance-none rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -757,43 +757,44 @@ console.log(FormTitles);
                 <p>Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="ComprehensiveRiskBehaviorAssessment"
+                {clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                  <input
+                    type="date"
+                    id="ComprehensiveRiskBehaviorAssessment"
 
-                  value={
-                    clientData.ComprehensiveRiskBehaviorAssessmentDate &&
-                    clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
-                  }
-                  disabled={clientData.ComprehensiveRiskBehaviorAssessment ? true : false}
-                  className={`${MSAStyles.inputDate}`}
-                  onChange={(e) => {
-                    setClientData(prevDate => ({
-                      ...clientData,
-                      ComprehensiveRiskBehaviorAssessmentDate: prevDate.e.target.value,
-                    }));
-                  }}
-                />
+                    value={
+                      clientData.ComprehensiveRiskBehaviorAssessmentDate &&
+                      clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
+                    }
+                    disabled={clientData.ComprehensiveRiskBehaviorAssessment ? true : false}
+                    className={MSAStyles.inputDate}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                      });
+                    }}
+                  />}
 
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  className="mr-2"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    width="18"
+                    height="18"
+                    className="mr-2"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">CRBA</p>
               </div>
@@ -802,40 +803,41 @@ console.log(FormTitles);
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessment"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.ComprehensiveRiskBehaviorAssessmentUploadDate &&
-                  clientData.ComprehensiveRiskBehaviorAssessmentUploadDate.split('T')[0]
-                }
-                disabled={clientData.ComprehensiveRiskBehaviorAssessmentUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    ComprehensiveRiskBehaviorAssessmentUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUploadDate &&
+                    clientData.ComprehensiveRiskBehaviorAssessmentUploadDate.split('T')[0]
+                  }
+                  disabled={true}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      ComprehensiveRiskBehaviorAssessmentUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
                 onClick={() => {
-                  clientData.ComprehensiveRiskBehaviorAssessmentPDF ?
-                    setClientData(formState => ({
-                      ...formState,
-                      ComprehensiveRiskBehaviorAssessmentPDF: !formState.ComprehensiveRiskBehaviorAssessmentPDF,
-                      ComprehensiveRiskBehaviorAssessmentUploadDate: ""
-                    })) :
-                    setClientData(formState => ({
-                      ...formState,
-                      ComprehensiveRiskBehaviorAssessmentPDF: !formState.ComprehensiveRiskBehaviorAssessmentPDF,
-                      ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
-                    }))
-                    if(!clientData.ComprehensiveRiskBehaviorAssessmentPDF || clientData.ComprehensiveRiskBehaviorAssessmentScan){
-                      setClientData(formState => ({
-                        ...formState,
-                        ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
-                      }))
-                    }
-                  }
-                } >                 
+
+                  setClientData(formState => ({
+                    ...formState,
+                    ComprehensiveRiskBehaviorAssessmentPDF: !formState.ComprehensiveRiskBehaviorAssessmentPDF,
+
+                  }))
+                  // :
+                  // setClientData(formState => ({
+                  //   ...formState,
+                  //   AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
+
+                  // }))
+                  // if(!clientData.AIRSIntakeFormPDF || clientData.AIRSIntakeFormScan){
+                  //   setClientData(formState => ({
+                  //     ...formState,
+                  //     AIRSIntakeFormUploadDate: crearFecha()
+                  //   }))
+                  // }
+                }
+                } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? "3" : "0"}>
@@ -862,28 +864,29 @@ console.log(FormTitles);
                   checked={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? 'checked' : false}
                 />
               </div>
-              <div className="ml-1 text-center flex justify-center items-center " 
-               onClick={() => {
-                clientData.ComprehensiveRiskBehaviorAssessmentScan ?
+              <div className="ml-1 text-center flex justify-center items-center "
+                onClick={() => {
+
                   setClientData(formState => ({
                     ...formState,
                     ComprehensiveRiskBehaviorAssessmentScan: !formState.ComprehensiveRiskBehaviorAssessmentScan,
-                    ComprehensiveRiskBehaviorAssessmentUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    ComprehensiveRiskBehaviorAssessmentScan: !formState.ComprehensiveRiskBehaviorAssessmentScan,
-                    ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
+
                   }))
-                  if(!clientData.ComprehensiveRiskBehaviorAssessmentScan || clientData.ComprehensiveRiskBehaviorAssessmentPDF){
-                    setClientData(formState => ({
-                      ...formState,
-                      ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
-                    }))
-                  }
+                  // :
+                  // setClientData(formState => ({
+                  //   ...formState,
+                  //   AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
+
+                  // }))
+                  // if(!clientData.AIRSIntakeFormPDF || clientData.AIRSIntakeFormScan){
+                  //   setClientData(formState => ({
+                  //     ...formState,
+                  //     AIRSIntakeFormUploadDate: crearFecha()
+                  //   }))
+                  // }
                 }
-              }
-               >
+                }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentScan ? "3" : "0"}>
@@ -915,27 +918,28 @@ console.log(FormTitles);
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.ServiceActionPlan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    ServiceActionPlan: !formState.ServiceActionPlan,
-                    ServiceActionPlanDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    ServiceActionPlan: !formState.ServiceActionPlan,
-                    ServiceActionPlanDate: crearFecha()
-                  }))
-                }
-              }>
+              //  onClick={() => {
+              //   clientData.ServiceActionPlan ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       ServiceActionPlan: formState.ServiceActionPlan,
+
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       ServiceActionPlan: !formState.ServiceActionPlan,
+              //       ServiceActionPlanDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.ServiceActionPlan && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -959,43 +963,44 @@ console.log(FormTitles);
                 <p>Service Action Plan <span className="text-red-500">*</span> </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="ServiceActionPlan"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.ServiceActionPlanDate &&
-                    clientData.ServiceActionPlanDate.split('T')[0]
-                  }
-                  disabled={clientData.ServiceActionPlan ? true : false}
-                  onChange={(e) => {
-                    setClientData(prevDate => ({
-                      ...clientData,
-                      ServiceActionPlanDate: prevDate.e.target.value,
-                    }));
-                  }}
-                />
+                {clientData.ServiceActionPlanDate &&
+                  <input
+                    type="date"
+                    id="ServiceActionPlan"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.ServiceActionPlanDate &&
+                      clientData.ServiceActionPlanDate.split('T')[0]
+                    }
+                    disabled={clientData.ServiceActionPlan ? true : false}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        ServiceActionPlanDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
 
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  className="mr-2"
-                  width="18"
-                  height="18"
+                <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
 
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Action Plans</p>
               </div>
@@ -1004,17 +1009,17 @@ console.log(FormTitles);
                   type="date"
                   id="ServiceActionPlan"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.ServiceActionPlanUploadDate &&
-                  clientData.ServiceActionPlanUploadDate.split('T')[0]
-                }
-                disabled={clientData.ServiceActionPlanUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    ServiceActionPlanUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.ServiceActionPlanUploadDate &&
+                    clientData.ServiceActionPlanUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.ServiceActionPlanUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      ServiceActionPlanUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
@@ -1045,17 +1050,25 @@ console.log(FormTitles);
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
                 onClick={() => {
-                  clientData.ServiceActionPlanScan ?
-                    setClientData(formState => ({
-                      ...formState,
-                      ServiceActionPlanScan: !formState.ServiceActionPlanScan,
-                      ServiceActionPlanUploadDate: ""
-                    })) :
-                    setClientData(formState => ({
-                      ...formState,
-                      ServiceActionPlanScan: !formState.ServiceActionPlanScan,
-                      ServiceActionPlanUploadDate: crearFecha()
-                    }))}}>
+                  setClientData(formState => ({
+                    ...formState,
+                    ServiceActionPlanScan: !formState.ServiceActionPlanScan,
+
+                  }))
+                  // setClientData(formState => ({
+                  //   ...formState,
+                  //   AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
+
+                  // }))
+                  // if(clientData.AIRSIntakeFormPDF || !clientData.AIRSIntakeFormScan){
+                  //   setClientData(formState => ({
+                  //     ...formState,
+                  //     AIRSIntakeFormUploadDate: crearFecha()
+                  //   }))
+                  // }
+                }
+                }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlanScan ? "3" : "0"}>
@@ -1086,90 +1099,93 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="ml-1 text-center flex justify-center items-center ">
-                <div className="ml-1 text-center flex justify-center items-center "
-                  onClick={() => {
-                    clientData.AIRSCollateralInformation ?
-                      setClientData(formState => ({
-                        ...formState,
-                        AIRSCollateralInformation: !formState.AIRSCollateralInformation,
-                        AIRSCollateralInformationDate: ""
-                      })) :
-                      setClientData(formState => ({
-                        ...formState,
-                        AIRSCollateralInformation: !formState.AIRSCollateralInformation,
+
+              <div className="ml-1 text-center flex justify-center items-center "
+              // onClick={() => {
+              //   clientData.AIRSCollateralInformation ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSCollateralInformation: !formState.AIRSCollateralInformation,
+              //       AIRSCollateralInformationDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSCollateralInformation: !formState.AIRSCollateralInformation,
+              //       AIRSCollateralInformationDate: crearFecha()
+              //     }))
+              // }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSCollateralInformationDate ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${clientData.AIRSCollateralInformationDate && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSCollateralInformationDate === "" || clientData.AIRSCollateralInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
                         AIRSCollateralInformationDate: crearFecha()
-                      }))
-                  }}>
-                  <svg xmlns="http://www.w3.org/2000/svg"
-                    className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    strokeWidth={clientData.AIRSCollateralInformation ? "3" : "0"}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <input
-                    className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
-                    type="checkbox"
-                    name=""
-                    id=""
-                    onChange={(e) => {
-                      clientData.AIRSCollateralInformationDate === "" || clientData.AIRSCollateralInformationDate === null ? (
-                        setClientData({
-                          ...clientData,
-                          AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
-                          AIRSCollateralInformationDate: crearFecha()
-                        })) : setClientData({
-                          ...clientData,
-                          AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
-                          AIRSCollateralInformationDate: ""
-                        })
-                    }
-                    }
-                    checked={clientData.AIRSCollateralInformation ? 'checked' : false}
-                   
-                  />
-                </div>
-                {/*  */}
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
+                        AIRSCollateralInformationDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSCollateralInformation ? 'checked' : false}
+                  disabled={clientData.AIRSCollateralInformation ? false : true}
+
+                />
               </div>
+              {/*  */}
+
               <div>
                 <p>AIRS Collateral Information </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSCollateralInformation"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSCollateralInformationDate &&
-                    clientData.AIRSCollateralInformationDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSCollateralInformationDate ? true : false}
-                  onChange={(e) => {
-                    setClientData(prevDate => ({
-                      ...clientData,
-                      AIRSCollateralInformationDate: prevDate.e.target.value,
-                    }));
-                  }}
-                />
+                {clientData.AIRSCollateralInformationDate &&
+                  <input
+                    type="date"
+                    id="AIRSCollateralInformation"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSCollateralInformationDate &&
+                      clientData.AIRSCollateralInformationDate.split('T')[0]
+                    }
+                    disabled={clientData.AIRSCollateralInformationDate ? false : true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformationDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  className="mr-2"
-                  width="18"
-                  height="18"
+                <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
 
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
@@ -1178,48 +1194,48 @@ console.log(FormTitles);
                   type="date"
                   id="AIRSCollateralInformation"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.AIRSCollateralInformationUploadDate &&
-                  clientData.AIRSCollateralInformationUploadDate.split('T')[0]
-                }
-                disabled={clientData.AIRSCollateralInformationUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    AIRSCollateralInformationUploadDate: e.target.value,
-                  });
-                }}
+                  value={(clientData.AIRSCollateralInformationPDF || clientData.AIRSCollateralInformationScan) &&
+                    clientData.AIRSCollateralInformationUploadDate &&
+                    clientData.AIRSCollateralInformationUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSCollateralInformationUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSCollateralInformationUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.AIRSCollateralInformationPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSCollateralInformationPDF: !formState.AIRSCollateralInformationPDF,
-                    AIRSCollateralInformationUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSCollateralInformationPDF: !formState.AIRSCollateralInformationPDF,
-                    AIRSCollateralInformationUploadDate: crearFecha()
-                  }))
-                  if(clientData.AIRSCollateralInformationScan || !clientData.AIRSCollateralInformationPDF){
-                    setClientData(formState => ({
-                      ...formState,
-                      AIRSCollateralInformationUploadDate: crearFecha()
-                    }))
-                  }
-                }
-               }
-               >
+              //  onClick={() => {
+              //   clientData.AIRSCollateralInformationPDF ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSCollateralInformationPDF: !formState.AIRSCollateralInformationPDF,
+              //       AIRSCollateralInformationUploadDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSCollateralInformationPDF: !formState.AIRSCollateralInformationPDF,
+              //       AIRSCollateralInformationUploadDate: crearFecha()
+              //     }))
+              //     if(clientData.AIRSCollateralInformationScan || !clientData.AIRSCollateralInformationPDF){
+              //       setClientData(formState => ({
+              //         ...formState,
+              //         AIRSCollateralInformationUploadDate: crearFecha()
+              //       }))
+              //     }
+              //   }
+              //  }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSCollateralInformationPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSCollateralInformationPDF && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1240,33 +1256,34 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-                 onClick={() => {
-                  clientData.AIRSCollateralInformationScan ?
-                    setClientData(formState => ({
-                      ...formState,
-                      AIRSCollateralInformationScan: !formState.AIRSCollateralInformationScan,
-                      AIRSCollateralInformationUploadDate: ""
-                    })) :
-                    setClientData(formState => ({
-                      ...formState,
-                      AIRSCollateralInformationScan: !formState.AIRSCollateralInformationScan,
-                      AIRSCollateralInformationUploadDate: crearFecha()
-                    }))
-                    if(!clientData.AIRSCollateralInformationScan || clientData.AIRSCollateralInformationPDF){
-                      setClientData(formState => ({
-                        ...formState,
-                        AIRSCollateralInformationUploadDate: crearFecha()
-                      }))
-                    }
-                  }
-                }>
+              //  onClick={() => {
+              //   clientData.AIRSCollateralInformationScan ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSCollateralInformationScan: !formState.AIRSCollateralInformationScan,
+              //       AIRSCollateralInformationUploadDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSCollateralInformationScan: !formState.AIRSCollateralInformationScan,
+              //       AIRSCollateralInformationUploadDate: crearFecha()
+              //     }))
+              //     if(!clientData.AIRSCollateralInformationScan || clientData.AIRSCollateralInformationPDF){
+              //       setClientData(formState => ({
+              //         ...formState,
+              //         AIRSCollateralInformationUploadDate: crearFecha()
+              //       }))
+              //     }
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSCollateralInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSCollateralInformationScan && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1291,27 +1308,22 @@ console.log(FormTitles);
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSFinancialInformation ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSFinancialInformation: !formState.AIRSFinancialInformation,
-                    AIRSFinancialInformationDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSFinancialInformation: !formState.AIRSFinancialInformation,
-                    AIRSFinancialInformationDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.AIRSFinancialInformation &&
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSFinancialInformation: formState.AIRSFinancialInformation,
+
+                    }))
                 }
-              } >
+                } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSFinancialInformation ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSFinancialInformationDate ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSFinancialInformationDate && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1334,40 +1346,42 @@ console.log(FormTitles);
                 <p>AIRS Financial Information </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSFinancialInformation"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSFinancialInformationDate &&
-                    clientData.AIRSFinancialInformationDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSFinancialInformationDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSFinancialInformationDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.AIRSFinancialInformationDate &&
+                  <input
+                    type="date"
+                    id="AIRSFinancialInformation"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSFinancialInformationDate &&
+                      clientData.AIRSFinancialInformationDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        AIRSFinancialInformationDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
@@ -1376,40 +1390,40 @@ console.log(FormTitles);
                   type="date"
                   id="AIRSFinancialInformation"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.AIRSFinancialInformationUploadDate &&
-                  clientData.AIRSFinancialInformationUploadDate.split('T')[0]
-                }
-                disabled={clientData.AIRSFinancialInformationUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    AIRSFinancialInformationUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.AIRSFinancialInformationUploadDate &&
+                    clientData.AIRSFinancialInformationUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSFinancialInformationUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSFinancialInformationUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-             onClick={() => {
-              clientData.AIRSFinancialInformationPDF ?
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSFinancialInformationPDF: !formState.AIRSFinancialInformationPDF,
-                  AIRSFinancialInformationUploadDate: ""
-                })) :
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSFinancialInformationPDF: !formState.AIRSFinancialInformationPDF,
-                  AIRSFinancialInformationUploadDate: crearFecha()
-                }))
-                if(clientData.AIRSFinancialInformationScan || !clientData.AIRSFinancialInformationPDF){
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSFinancialInformationUploadDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.AIRSFinancialInformationPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSFinancialInformationPDF: !formState.AIRSFinancialInformationPDF,
+                      AIRSFinancialInformationUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSFinancialInformationPDF: !formState.AIRSFinancialInformationPDF,
+                      AIRSFinancialInformationUploadDate: crearFecha()
+                    }))
+                  if (clientData.AIRSFinancialInformationScan || !clientData.AIRSFinancialInformationPDF) {
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSFinancialInformationUploadDate: crearFecha()
+                    }))
+                  }
                 }
-              }
-            }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformationPDF ? "3" : "0"}>
@@ -1436,26 +1450,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSFinancialInformationScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSFinancialInformationScan: !formState.AIRSFinancialInformationScan,
-                    AIRSFinancialInformationUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSFinancialInformationScan: !formState.AIRSFinancialInformationScan,
-                    AIRSFinancialInformationUploadDate: crearFecha()
-                  }))
-                  if(!clientData.AIRSFinancialInformationScan || clientData.AIRSFinancialInformationPDF){
+                onClick={() => {
+                  clientData.AIRSFinancialInformationScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSFinancialInformationScan: !formState.AIRSFinancialInformationScan,
+                      AIRSFinancialInformationUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSFinancialInformationScan: !formState.AIRSFinancialInformationScan,
+                      AIRSFinancialInformationUploadDate: crearFecha()
+                    }))
+                  if (!clientData.AIRSFinancialInformationScan || clientData.AIRSFinancialInformationPDF) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSFinancialInformationUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSFinancialInformationScan ? "3" : "0"}>
@@ -1486,27 +1500,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.AIRSHIVAIDSRiskHistory ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHIVAIDSRiskHistory: !formState.AIRSHIVAIDSRiskHistory,
-                    AIRSHIVAIDSRiskHistoryDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHIVAIDSRiskHistory: !formState.AIRSHIVAIDSRiskHistory,
-                    AIRSHIVAIDSRiskHistoryDate: crearFecha()
-                  }))
-                }
-              }>
+              //  onClick={() => {
+              //   clientData.AIRSHIVAIDSRiskHistory ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSHIVAIDSRiskHistory: !formState.AIRSHIVAIDSRiskHistory,
+              //       AIRSHIVAIDSRiskHistoryDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSHIVAIDSRiskHistory: !formState.AIRSHIVAIDSRiskHistory,
+              //       AIRSHIVAIDSRiskHistoryDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHIVAIDSRiskHistory ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHIVAIDSRiskHistoryDate ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSHIVAIDSRiskHistoryDate && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1529,40 +1544,42 @@ console.log(FormTitles);
                 <p>AIRS HIV AIDS Risk History </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSHIVAIDSRiskHistory"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSHIVAIDSRiskHistoryDate &&
-                    clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistoryDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.AIRSHIVAIDSRiskHistoryDate &&
+                  <input
+                    type="date"
+                    id="AIRSHIVAIDSRiskHistory"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSHIVAIDSRiskHistoryDate &&
+                      clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]
+                    }
+                    disabled={true}
+                  // onChange={(e) => {
+                  //   setClientData({
+                  //     ...clientData,
+                  //     AIRSHIVAIDSRiskHistoryDate: e.target.value,
+                  //   });
+                  // }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11  text-center flex justify-start items-center`}>
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
@@ -1571,40 +1588,40 @@ console.log(FormTitles);
                   type="date"
                   id="AIRSHIVAIDSRiskHistory"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.AIRSHIVAIDSRiskHistoryUploadDate &&
-                  clientData.AIRSHIVAIDSRiskHistoryUploadDate.split('T')[0]
-                }
-                disabled={clientData.AIRSHIVAIDSRiskHistoryUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    AIRSHIVAIDSRiskHistoryUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.AIRSHIVAIDSRiskHistoryUploadDate &&
+                    clientData.AIRSHIVAIDSRiskHistoryUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSHIVAIDSRiskHistoryUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSHIVAIDSRiskHistoryUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSHIVAIDSRiskHistoryPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHIVAIDSRiskHistoryPDF: !formState.AIRSHIVAIDSRiskHistoryPDF,
-                    AIRSHIVAIDSRiskHistoryUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHIVAIDSRiskHistoryPDF: !formState.AIRSHIVAIDSRiskHistoryPDF,
-                    AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
-                  }))
-                  if(clientData.AIRSHIVAIDSRiskHistoryScan || !clientData.AIRSHIVAIDSRiskHistoryPDF){
+                onClick={() => {
+                  clientData.AIRSHIVAIDSRiskHistoryPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVAIDSRiskHistoryPDF: !formState.AIRSHIVAIDSRiskHistoryPDF,
+                      AIRSHIVAIDSRiskHistoryUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVAIDSRiskHistoryPDF: !formState.AIRSHIVAIDSRiskHistoryPDF,
+                      AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
+                    }))
+                  if (clientData.AIRSHIVAIDSRiskHistoryScan || !clientData.AIRSHIVAIDSRiskHistoryPDF) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistoryPDF ? "3" : "0"}>
@@ -1631,26 +1648,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-             onClick={() => {
-              clientData.AIRSHIVAIDSRiskHistoryScan ?
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSHIVAIDSRiskHistoryScan: !formState.AIRSHIVAIDSRiskHistoryScan,
-                  AIRSHIVAIDSRiskHistoryUploadDate: ""
-                })) :
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSHIVAIDSRiskHistoryScan: !formState.AIRSHIVAIDSRiskHistoryScan,
-                  AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
-                }))
-                if(!clientData.AIRSHIVAIDSRiskHistoryScan || clientData.AIRSHIVAIDSRiskHistoryPDF){
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.AIRSHIVAIDSRiskHistoryScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVAIDSRiskHistoryScan: !formState.AIRSHIVAIDSRiskHistoryScan,
+                      AIRSHIVAIDSRiskHistoryUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVAIDSRiskHistoryScan: !formState.AIRSHIVAIDSRiskHistoryScan,
+                      AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
+                    }))
+                  if (!clientData.AIRSHIVAIDSRiskHistoryScan || clientData.AIRSHIVAIDSRiskHistoryPDF) {
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
+                    }))
+                  }
                 }
-              }
-            }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHIVAIDSRiskHistoryScan ? "3" : "0"}>
@@ -1681,27 +1698,27 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-             onClick={() => {
-              clientData.AIRSHCVHistory ?
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSHCVHistory: !formState.AIRSHCVHistory,
-                  AIRSHCVHistoryDate: ""
-                })) :
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSHCVHistory: !formState.AIRSHCVHistory,
-                  AIRSHCVHistoryDate: crearFecha()
-                }))
-              }
-            }>
+              //  onClick={() => {
+              //   clientData.AIRSHCVHistory ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSHCVHistory: !formState.AIRSHCVHistory,
+              //       AIRSHCVHistoryDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSHCVHistory: !formState.AIRSHCVHistory,
+              //       AIRSHCVHistoryDate: crearFecha()
+              //     }))
+              //  }}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSHCVHistory && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1724,40 +1741,42 @@ console.log(FormTitles);
                 <p>AIRS HCV History </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSHCVHistory"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSHCVHistoryDate &&
-                    clientData.AIRSHCVHistoryDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSHCVHistoryDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHCVHistoryDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.AIRSHCVHistoryDate &&
+                  <input
+                    type="date"
+                    id="AIRSHCVHistory"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSHCVHistoryDate &&
+                      clientData.AIRSHCVHistoryDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        AIRSHCVHistoryDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11  text-center flex justify-start items-center`}>
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
@@ -1780,26 +1799,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSHCVHistoryPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
-                    AIRSHCVHistoryUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
-                    AIRSHCVHistoryUploadDate: crearFecha()
-                  }))
-                  if(clientData.AIRSHCVHistoryScan || !clientData.AIRSHCVHistoryPDF){
+                onClick={() => {
+                  clientData.AIRSHCVHistoryPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
+                      AIRSHCVHistoryUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
+                      AIRSHCVHistoryUploadDate: crearFecha()
+                    }))
+                  if (clientData.AIRSHCVHistoryScan || !clientData.AIRSHCVHistoryPDF) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSHCVHistoryUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistoryPDF ? "3" : "0"}>
@@ -1826,26 +1845,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSHCVHistoryScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
-                    AIRSHCVHistoryUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
-                    AIRSHCVHistoryUploadDate: crearFecha()
-                  }))
-                  if(clientData.AIRSHCVHistoryPDF || !clientData.AIRSHCVHistoryScan){
+                onClick={() => {
+                  clientData.AIRSHCVHistoryScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
+                      AIRSHCVHistoryUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
+                      AIRSHCVHistoryUploadDate: crearFecha()
+                    }))
+                  if (clientData.AIRSHCVHistoryPDF || !clientData.AIRSHCVHistoryScan) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSHCVHistoryUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHCVHistoryScan ? "3" : "0"}>
@@ -1876,27 +1895,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.AIRSHousingInformation ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHousingInformation: !formState.AIRSHousingInformation,
-                    AIRSHousingInformationDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHousingInformation: !formState.AIRSHousingInformation,
-                    AIRSHousingInformationDate: crearFecha()
-                  }))
-                }
-              }>
+              //  onClick={() => {
+              //   clientData.AIRSHousingInformation ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSHousingInformation: !formState.AIRSHousingInformation,
+              //       AIRSHousingInformationDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSHousingInformation: !formState.AIRSHousingInformation,
+              //       AIRSHousingInformationDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSHousingInformation && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1919,40 +1939,42 @@ console.log(FormTitles);
                 <p>AIRS Housing Information </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSHousingInformation"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSHousingInformationDate &&
-                    clientData.AIRSHousingInformationDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSHousingInformationDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHousingInformationDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.AIRSHousingInformationDate &&
+                  <input
+                    type="date"
+                    id="AIRSHousingInformation"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSHousingInformationDate &&
+                      clientData.AIRSHousingInformationDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        AIRSHousingInformationDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
@@ -1961,40 +1983,40 @@ console.log(FormTitles);
                   type="date"
                   id="AIRSHousingInformation"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.AIRSHousingInformationUploadDate &&
-                  clientData.AIRSHousingInformationUploadDate.split('T')[0]
-                }
-                disabled={clientData.AIRSHousingInformationUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    AIRSHousingInformationUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.AIRSHousingInformationUploadDate &&
+                    clientData.AIRSHousingInformationUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSHousingInformationUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSHousingInformationUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSHousingInformationPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHousingInformationPDF: !formState.AIRSHousingInformationPDF,
-                    AIRSHousingInformationUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHousingInformationPDF: !formState.AIRSHousingInformationPDF,
-                    AIRSHousingInformationUploadDate: crearFecha()
-                  }))
-                  if(clientData.AIRSHousingInformationScan || !clientData.AIRSHousingInformationPDF){
+                onClick={() => {
+                  clientData.AIRSHousingInformationPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHousingInformationPDF: !formState.AIRSHousingInformationPDF,
+                      AIRSHousingInformationUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHousingInformationPDF: !formState.AIRSHousingInformationPDF,
+                      AIRSHousingInformationUploadDate: crearFecha()
+                    }))
+                  if (clientData.AIRSHousingInformationScan || !clientData.AIRSHousingInformationPDF) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSHousingInformationUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformationPDF ? "3" : "0"}>
@@ -2021,26 +2043,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.AIRSHousingInformationScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHousingInformationScan: !formState.AIRSHousingInformationScan,
-                    AIRSHousingInformationUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSHousingInformationScan: !formState.AIRSHousingInformationScan,
-                    AIRSHousingInformationUploadDate: crearFecha()
-                  }))
-                  if(clientData.AIRSHousingInformationPDF || !clientData.AIRSHousingInformationScan){
+                onClick={() => {
+                  clientData.AIRSHousingInformationScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHousingInformationScan: !formState.AIRSHousingInformationScan,
+                      AIRSHousingInformationUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHousingInformationScan: !formState.AIRSHousingInformationScan,
+                      AIRSHousingInformationUploadDate: crearFecha()
+                    }))
+                  if (clientData.AIRSHousingInformationPDF || !clientData.AIRSHousingInformationScan) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSHousingInformationUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSHousingInformationScan ? "3" : "0"}>
@@ -2071,20 +2093,20 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-             onClick={() => {
-              clientData.AIRSInsuranceInformation ?
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSInsuranceInformation: !formState.AIRSInsuranceInformation,
-                  AIRSInsuranceInformationDate: ""
-                })) :
-                setClientData(formState => ({
-                  ...formState,
-                  AIRSInsuranceInformation: !formState.AIRSInsuranceInformation,
-                  AIRSInsuranceInformationDate: crearFecha()
-                }))
-              }
-            }
+              //  onClick={() => {
+              //   clientData.AIRSInsuranceInformation ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSInsuranceInformation: !formState.AIRSInsuranceInformation,
+              //       AIRSInsuranceInformationDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSInsuranceInformation: !formState.AIRSInsuranceInformation,
+              //       AIRSInsuranceInformationDate: crearFecha()
+              //     }))
+              //   }
+              // }
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -2092,7 +2114,7 @@ console.log(FormTitles);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSInsuranceInformation && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2115,40 +2137,42 @@ console.log(FormTitles);
                 <p>AIRS Insurance Information </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSInsuranceInformation"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSInsuranceInformationDate &&
-                    clientData.AIRSInsuranceInformationDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSInsuranceInformationDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformationDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.AIRSInsuranceInformationDate &&
+                  <input
+                    type="date"
+                    id="AIRSInsuranceInformation"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSInsuranceInformationDate &&
+                      clientData.AIRSInsuranceInformationDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformationDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
@@ -2183,13 +2207,13 @@ console.log(FormTitles);
                       AIRSInsuranceInformationPDF: !formState.AIRSInsuranceInformationPDF,
                       AIRSInsuranceInformationUploadDate: crearFecha()
                     }))
-                    if(clientData.AIRSInsuranceInformationScan || !clientData.AIRSInsuranceInformationPDF){
-                      setClientData(formState => ({
-                        ...formState,
-                        AIRSInsuranceInformationUploadDate: crearFecha()
-                      }))
-                    }
+                  if (clientData.AIRSInsuranceInformationScan || !clientData.AIRSInsuranceInformationPDF) {
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSInsuranceInformationUploadDate: crearFecha()
+                    }))
                   }
+                }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -2217,26 +2241,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSInsuranceInformationScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSInsuranceInformationScan: !formState.AIRSInsuranceInformationScan,
-                    AIRSInsuranceInformationUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSInsuranceInformationScan: !formState.AIRSInsuranceInformationScan,
-                    AIRSInsuranceInformationUploadDate: crearFecha()
-                  }))
-                  if(!clientData.AIRSInsuranceInformationScan || clientData.AIRSInsuranceInformationPDF){
+                onClick={() => {
+                  clientData.AIRSInsuranceInformationScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSInsuranceInformationScan: !formState.AIRSInsuranceInformationScan,
+                      AIRSInsuranceInformationUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSInsuranceInformationScan: !formState.AIRSInsuranceInformationScan,
+                      AIRSInsuranceInformationUploadDate: crearFecha()
+                    }))
+                  if (!clientData.AIRSInsuranceInformationScan || clientData.AIRSInsuranceInformationPDF) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSInsuranceInformationUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSInsuranceInformationScan ? "3" : "0"}>
@@ -2267,27 +2291,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSSubstanceUseHistory ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSSubstanceUseHistory: !formState.AIRSSubstanceUseHistory,
-                    AIRSSubstanceUseHistoryDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSSubstanceUseHistory: !formState.AIRSSubstanceUseHistory,
-                    AIRSSubstanceUseHistoryDate: crearFecha()
-                  }))
-                }
-              }>
+              // onClick={() => {
+              //   clientData.AIRSSubstanceUseHistory ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSSubstanceUseHistory: !formState.AIRSSubstanceUseHistory,
+              //       AIRSSubstanceUseHistoryDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       AIRSSubstanceUseHistory: !formState.AIRSSubstanceUseHistory,
+              //       AIRSSubstanceUseHistoryDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistory ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.AIRSSubstanceUseHistory && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2310,40 +2335,42 @@ console.log(FormTitles);
                 <p>AIRS Substance Use History </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="AIRSSubstanceUseHistory"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.AIRSSubstanceUseHistoryDate &&
-                    clientData.AIRSSubstanceUseHistoryDate.split('T')[0]
-                  }
-                  disabled={clientData.AIRSSubstanceUseHistoryDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistoryDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.AIRSSubstanceUseHistoryDate &&
+                  <input
+                    type="date"
+                    id="AIRSSubstanceUseHistory"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.AIRSSubstanceUseHistoryDate &&
+                      clientData.AIRSSubstanceUseHistoryDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistoryDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Medical</p>
               </div>
@@ -2352,40 +2379,40 @@ console.log(FormTitles);
                   type="date"
                   id="AIRSSubstanceUseHistory"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.AIRSSubstanceUseHistoryUploadDate &&
-                  clientData.AIRSSubstanceUseHistoryUploadDate.split('T')[0]
-                }
-                disabled={clientData.AIRSSubstanceUseHistoryUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    AIRSSubstanceUseHistoryUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.AIRSSubstanceUseHistoryUploadDate &&
+                    clientData.AIRSSubstanceUseHistoryUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSSubstanceUseHistoryUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSSubstanceUseHistoryUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSSubstanceUseHistoryPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSSubstanceUseHistoryPDF: !formState.AIRSSubstanceUseHistoryPDF,
-                    AIRSSubstanceUseHistoryUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSSubstanceUseHistoryPDF: !formState.AIRSSubstanceUseHistoryPDF,
-                    AIRSSubstanceUseHistoryUploadDate: crearFecha()
-                  }))
-                  if(!clientData.AIRSSubstanceUseHistoryPDF || clientData.AIRSSubstanceUseHistoryScan){
+                onClick={() => {
+                  clientData.AIRSSubstanceUseHistoryPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSSubstanceUseHistoryPDF: !formState.AIRSSubstanceUseHistoryPDF,
+                      AIRSSubstanceUseHistoryUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSSubstanceUseHistoryPDF: !formState.AIRSSubstanceUseHistoryPDF,
+                      AIRSSubstanceUseHistoryUploadDate: crearFecha()
+                    }))
+                  if (!clientData.AIRSSubstanceUseHistoryPDF || clientData.AIRSSubstanceUseHistoryScan) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSSubstanceUseHistoryUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistoryPDF ? "3" : "0"}>
@@ -2412,26 +2439,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.AIRSSubstanceUseHistoryScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSSubstanceUseHistoryScan: !formState.AIRSSubstanceUseHistoryScan,
-                    AIRSSubstanceUseHistoryUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    AIRSSubstanceUseHistoryScan: !formState.AIRSSubstanceUseHistoryScan,
-                    AIRSSubstanceUseHistoryUploadDate: crearFecha()
-                  }))
-                  if(clientData.AIRSSubstanceUseHistoryPDF || !clientData.AIRSSubstanceUseHistoryScan){
+                onClick={() => {
+                  clientData.AIRSSubstanceUseHistoryScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSSubstanceUseHistoryScan: !formState.AIRSSubstanceUseHistoryScan,
+                      AIRSSubstanceUseHistoryUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSSubstanceUseHistoryScan: !formState.AIRSSubstanceUseHistoryScan,
+                      AIRSSubstanceUseHistoryUploadDate: crearFecha()
+                    }))
+                  if (clientData.AIRSSubstanceUseHistoryPDF || !clientData.AIRSSubstanceUseHistoryScan) {
                     setClientData(formState => ({
                       ...formState,
                       AIRSSubstanceUseHistoryUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.AIRSSubstanceUseHistoryScan ? "3" : "0"}>
@@ -2462,27 +2489,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-                onClick={() => {
-                  clientData.LNEClientRights ?
-                    setClientData(formState => ({
-                      ...formState,
-                      LNEClientRights: !formState.LNEClientRights,
-                      LNEClientRightsDate: ""
-                    })) :
-                    setClientData(formState => ({
-                      ...formState,
-                      LNEClientRights: !formState.LNEClientRights,
-                      LNEClientRightsDate: crearFecha()
-                    }))
-                  }
-                }>
+              // onClick={() => {
+              //   clientData.LNEClientRights ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEClientRights: !formState.LNEClientRights,
+              //       LNEClientRightsDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEClientRights: !formState.LNEClientRights,
+              //       LNEClientRightsDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRights ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEClientRights && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2505,40 +2533,42 @@ console.log(FormTitles);
                 <p>LNE Client Rights </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEClientRights"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEClientRightsDate &&
-                    clientData.LNEClientRightsDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEClientRightsDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEClientRightsDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEClientRightsDate &&
+                  <input
+                    type="date"
+                    id="LNEClientRights"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEClientRightsDate &&
+                      clientData.LNEClientRightsDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEClientRightsDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 flex justify-start items-center`}>
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Consents</p>
 
@@ -2548,17 +2578,17 @@ console.log(FormTitles);
                   type="date"
                   id="LNEClientRights"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEClientRightsUploadDate &&
-                  clientData.LNEClientRightsUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEClientRightsUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEClientRightsUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEClientRightsUploadDate &&
+                    clientData.LNEClientRightsUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEClientRightsUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEClientRightsUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
@@ -2588,18 +2618,18 @@ console.log(FormTitles);
                 /> */}
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.LNEClientRightsScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientRightsScan: !formState.LNEClientRightsScan,
-                    LNEClientRightsUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientRightsScan: !formState.LNEClientRightsScan,
-                    LNEClientRightsUploadDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.LNEClientRightsScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientRightsScan: !formState.LNEClientRightsScan,
+                      LNEClientRightsUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientRightsScan: !formState.LNEClientRightsScan,
+                      LNEClientRightsUploadDate: crearFecha()
+                    }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -2631,27 +2661,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.LNEClientGrievancePolicyProcedure ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientGrievancePolicyProcedure: !formState.LNEClientGrievancePolicyProcedure,
-                    LNEClientGrievancePolicyProcedureDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientGrievancePolicyProcedure: !formState.LNEClientGrievancePolicyProcedure,
-                    LNEClientGrievancePolicyProcedureDate: crearFecha()
-                  }))
-                }
-              }>
+              //  onClick={() => {
+              //   clientData.LNEClientGrievancePolicyProcedure ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEClientGrievancePolicyProcedure: !formState.LNEClientGrievancePolicyProcedure,
+              //       LNEClientGrievancePolicyProcedureDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEClientGrievancePolicyProcedure: !formState.LNEClientGrievancePolicyProcedure,
+              //       LNEClientGrievancePolicyProcedureDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedure ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEClientGrievancePolicyProcedure && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2674,40 +2705,42 @@ console.log(FormTitles);
                 <p>LNE Client Grievance Policy & Procedure </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEClientGrievancePolicyProcedure"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEClientGrievancePolicyProcedureDate &&
-                    clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedureDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEClientGrievancePolicyProcedureDate &&
+                  <input
+                    type="date"
+                    id="LNEClientGrievancePolicyProcedure"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEClientGrievancePolicyProcedureDate &&
+                      clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedureDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
@@ -2716,17 +2749,17 @@ console.log(FormTitles);
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEClientGrievancePolicyProcedureUploadDate &&
-                  clientData.LNEClientGrievancePolicyProcedureUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEClientGrievancePolicyProcedureUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEClientGrievancePolicyProcedureUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEClientGrievancePolicyProcedureUploadDate &&
+                    clientData.LNEClientGrievancePolicyProcedureUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEClientGrievancePolicyProcedureUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEClientGrievancePolicyProcedureUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
@@ -2756,19 +2789,19 @@ console.log(FormTitles);
                 /> */}
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-                   onClick={() => {
-                    clientData.LNEClientGrievancePolicyProcedureScan ?
-                      setClientData(formState => ({
-                        ...formState,
-                        LNEClientGrievancePolicyProcedureScan: !formState.LNEClientGrievancePolicyProcedureScan,
-                        LNEClientGrievancePolicyProcedureUploadDate: ""
-                      })) :
-                      setClientData(formState => ({
-                        ...formState,
-                        LNEClientGrievancePolicyProcedureScan: !formState.LNEClientGrievancePolicyProcedureScan,
-                        LNEClientGrievancePolicyProcedureUploadDate: crearFecha()
-                      }))
-                    }}
+                onClick={() => {
+                  clientData.LNEClientGrievancePolicyProcedureScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientGrievancePolicyProcedureScan: !formState.LNEClientGrievancePolicyProcedureScan,
+                      LNEClientGrievancePolicyProcedureUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientGrievancePolicyProcedureScan: !formState.LNEClientGrievancePolicyProcedureScan,
+                      LNEClientGrievancePolicyProcedureUploadDate: crearFecha()
+                    }))
+                }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -2800,27 +2833,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEProgramRules ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEProgramRules: !formState.LNEProgramRules,
-                    LNEProgramRulesDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEProgramRules: !formState.LNEProgramRules,
-                    LNEProgramRulesDate: crearFecha()
-                  }))
-                }
-              }>
+              // onClick={() => {
+              //   clientData.LNEProgramRules ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEProgramRules: !formState.LNEProgramRules,
+              //       LNEProgramRulesDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEProgramRules: !formState.LNEProgramRules,
+              //       LNEProgramRulesDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRules ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEProgramRules && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2843,40 +2877,42 @@ console.log(FormTitles);
                 <p>LNE Program Rules </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEProgramRules"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEProgramRulesDate &&
-                    clientData.LNEProgramRulesDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEProgramRulesDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEProgramRulesDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEProgramRulesDate &&
+                  <input
+                    type="date"
+                    id="LNEProgramRules"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEProgramRulesDate &&
+                      clientData.LNEProgramRulesDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEProgramRulesDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
@@ -2885,17 +2921,17 @@ console.log(FormTitles);
                   type="date"
                   id="LNEProgramRules"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEProgramRulesUploadDate &&
-                  clientData.LNEProgramRulesUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEProgramRulesUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEProgramRulesUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEProgramRulesUploadDate &&
+                    clientData.LNEProgramRulesUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEProgramRulesUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEProgramRulesUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
@@ -2925,18 +2961,18 @@ console.log(FormTitles);
                 /> */}
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEProgramRulesScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEProgramRulesScan: !formState.LNEProgramRulesScan,
-                    LNEProgramRulesUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEProgramRulesScan: !formState.LNEProgramRulesScan,
-                    LNEProgramRulesUploadDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.LNEProgramRulesScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEProgramRulesScan: !formState.LNEProgramRulesScan,
+                      LNEProgramRulesUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEProgramRulesScan: !formState.LNEProgramRulesScan,
+                      LNEProgramRulesUploadDate: crearFecha()
+                    }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -2968,27 +3004,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.LNEEmergencyContactConsent ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEEmergencyContactConsent: !formState.LNEEmergencyContactConsent,
-                    LNEEmergencyContactConsentDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEEmergencyContactConsent: !formState.LNEEmergencyContactConsent,
-                    LNEEmergencyContactConsentDate: crearFecha()
-                  }))
-                }
-              }>
+              //  onClick={() => {
+              //   clientData.LNEEmergencyContactConsent ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEEmergencyContactConsent: !formState.LNEEmergencyContactConsent,
+              //       LNEEmergencyContactConsentDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEEmergencyContactConsent: !formState.LNEEmergencyContactConsent,
+              //       LNEEmergencyContactConsentDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsent ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEEmergencyContactConsent && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3012,40 +3049,42 @@ console.log(FormTitles);
                 <p>LNE Emergency Contact Consent </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEEmergencyContactConsent"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEEmergencyContactConsentDate &&
-                    clientData.LNEEmergencyContactConsentDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEEmergencyContactConsentDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsentDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEEmergencyContactConsentDate &&
+                  <input
+                    type="date"
+                    id="LNEEmergencyContactConsent"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEEmergencyContactConsentDate &&
+                      clientData.LNEEmergencyContactConsentDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsentDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
@@ -3054,17 +3093,17 @@ console.log(FormTitles);
                   type="date"
                   id="LNEEmergencyContactConsent"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEEmergencyContactConsentUploadDate &&
-                  clientData.LNEEmergencyContactConsentUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEEmergencyContactConsentUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEEmergencyContactConsentUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEEmergencyContactConsentUploadDate &&
+                    clientData.LNEEmergencyContactConsentUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEEmergencyContactConsentUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEEmergencyContactConsentUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
@@ -3094,18 +3133,18 @@ console.log(FormTitles);
                 /> */}
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEEmergencyContactConsentScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEEmergencyContactConsentScan: !formState.LNEEmergencyContactConsentScan,
-                    LNEEmergencyContactConsentUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEEmergencyContactConsentScan: !formState.LNEEmergencyContactConsentScan,
-                    LNEEmergencyContactConsentUploadDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.LNEEmergencyContactConsentScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEEmergencyContactConsentScan: !formState.LNEEmergencyContactConsentScan,
+                      LNEEmergencyContactConsentUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEEmergencyContactConsentScan: !formState.LNEEmergencyContactConsentScan,
+                      LNEEmergencyContactConsentUploadDate: crearFecha()
+                    }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -3137,27 +3176,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-                onClick={() => {
-                  clientData.LNEConsentForReleaseOfConfidentialInformation ?
-                    setClientData(formState => ({
-                      ...formState,
-                      LNEConsentForReleaseOfConfidentialInformation: !formState.LNEConsentForReleaseOfConfidentialInformation,
-                      LNEConsentForReleaseOfConfidentialInformationDate: ""
-                    })) :
-                    setClientData(formState => ({
-                      ...formState,
-                      LNEConsentForReleaseOfConfidentialInformation: !formState.LNEConsentForReleaseOfConfidentialInformation,
-                      LNEConsentForReleaseOfConfidentialInformationDate: crearFecha()
-                    }))
-                  }
-                }>
+              // onClick={() => {
+              //   clientData.LNEConsentForReleaseOfConfidentialInformation ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEConsentForReleaseOfConfidentialInformation: !formState.LNEConsentForReleaseOfConfidentialInformation,
+              //       LNEConsentForReleaseOfConfidentialInformationDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEConsentForReleaseOfConfidentialInformation: !formState.LNEConsentForReleaseOfConfidentialInformation,
+              //       LNEConsentForReleaseOfConfidentialInformationDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEConsentForReleaseOfConfidentialInformation && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3180,40 +3220,42 @@ console.log(FormTitles);
                 <p>LNE Consent for Release of Confidential Information </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEConsentForReleaseOfConfidentialInformation"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEConsentForReleaseOfConfidentialInformationDate &&
-                    clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEConsentForReleaseOfConfidentialInformationDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEConsentForReleaseOfConfidentialInformationDate &&
+                  <input
+                    type="date"
+                    id="LNEConsentForReleaseOfConfidentialInformation"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEConsentForReleaseOfConfidentialInformationDate &&
+                      clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEConsentForReleaseOfConfidentialInformationDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
@@ -3222,17 +3264,17 @@ console.log(FormTitles);
                   type="date"
                   id="LNEConsentForReleaseOfConfidentialInformation"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate &&
-                  clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate.split('T')[0]
-                }            LLNEConsentForReleaseOfConfidentialInformationUploadDate
-                disabled={clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEConsentForReleaseOfConfidentialInformationUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate &&
+                    clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate.split('T')[0]
+                  } LLNEConsentForReleaseOfConfidentialInformationUploadDate
+                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEConsentForReleaseOfConfidentialInformationUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
@@ -3274,10 +3316,10 @@ console.log(FormTitles);
                       LNEConsentForReleaseOfConfidentialInformationScan: !formState.LNEConsentForReleaseOfConfidentialInformationScan,
                       LNEConsentForReleaseOfConfidentialInformationUploadDate: crearFecha()
                     }))
-                  }}>
+                }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationScan? "3" : "0"}>
+                  strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationScan ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3305,27 +3347,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.HIPPAConsentForm ?
-                  setClientData(formState => ({
-                    ...formState,
-                    HIPPAConsentForm: !formState.HIPPAConsentForm,
-                    HIPPAConsentFormDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    HIPPAConsentForm: !formState.HIPPAConsentForm,
-                    HIPPAConsentFormDate: crearFecha()
-                  }))
-                }
-              }>
+              //  onClick={() => {
+              //   clientData.HIPPAConsentForm ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       HIPPAConsentForm: !formState.HIPPAConsentForm,
+              //       HIPPAConsentFormDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       HIPPAConsentForm: !formState.HIPPAConsentForm,
+              //       HIPPAConsentFormDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.HIPPAConsentForm && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3348,40 +3391,42 @@ console.log(FormTitles);
                 <p>HIPAA Consent Form (OCA Form 960)</p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="HIPPAConsentForm"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.HIPPAConsentFormDate &&
-                    clientData.HIPPAConsentFormDate.split('T')[0]
-                  }
-                  disabled={clientData.HIPPAConsentFormDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      HIPPAConsentFormDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.HIPPAConsentFormDate &&
+                  <input
+                    type="date"
+                    id="HIPPAConsentForm"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.HIPPAConsentFormDate &&
+                      clientData.HIPPAConsentFormDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        HIPPAConsentFormDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
@@ -3416,13 +3461,13 @@ console.log(FormTitles);
                       HIPPAConsentFormPDF: !formState.HIPPAConsentFormPDF,
                       HIPPAConsentFormUploadDate: crearFecha()
                     }))
-                    if(clientData.HIPPAConsentFormScan || !clientData.HIPPAConsentFormPDF){
-                      setClientData(formState => ({
-                        ...formState,
-                        HIPPAConsentFormUploadDate: crearFecha()
-                      }))
-                    }
+                  if (clientData.HIPPAConsentFormScan || !clientData.HIPPAConsentFormPDF) {
+                    setClientData(formState => ({
+                      ...formState,
+                      HIPPAConsentFormUploadDate: crearFecha()
+                    }))
                   }
+                }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -3450,26 +3495,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.HIPPAConsentFormScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
-                    HIPPAConsentFormUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
-                    HIPPAConsentFormUploadDate: crearFecha()
-                  }))
-                  if(clientData.HIPPAConsentFormPDF || !clientData.HIPPAConsentFormScan){
+                onClick={() => {
+                  clientData.HIPPAConsentFormScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
+                      HIPPAConsentFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
+                      HIPPAConsentFormUploadDate: crearFecha()
+                    }))
+                  if (clientData.HIPPAConsentFormPDF || !clientData.HIPPAConsentFormScan) {
                     setClientData(formState => ({
                       ...formState,
                       HIPPAConsentFormUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.HIPPAConsentFormScan ? "3" : "0"}>
@@ -3500,27 +3545,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.NYCDOHMHNoticeOfPrivacyPractices ?
-                  setClientData(formState => ({
-                    ...formState,
-                    NYCDOHMHNoticeOfPrivacyPractices: !formState.NYCDOHMHNoticeOfPrivacyPractices,
-                    NYCDOHMHNoticeOfPrivacyPracticesDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    NYCDOHMHNoticeOfPrivacyPractices: !formState.NYCDOHMHNoticeOfPrivacyPractices,
-                    NYCDOHMHNoticeOfPrivacyPracticesDate: crearFecha()
-                  }))
-                }
-              }>
+              //  onClick={() => {
+              //   clientData.NYCDOHMHNoticeOfPrivacyPractices ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       NYCDOHMHNoticeOfPrivacyPractices: !formState.NYCDOHMHNoticeOfPrivacyPractices,
+              //       NYCDOHMHNoticeOfPrivacyPracticesDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       NYCDOHMHNoticeOfPrivacyPractices: !formState.NYCDOHMHNoticeOfPrivacyPractices,
+              //       NYCDOHMHNoticeOfPrivacyPracticesDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPractices ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.NYCDOHMHNoticeOfPrivacyPractices && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3546,40 +3592,42 @@ console.log(FormTitles);
                 </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="NYCDOHMHNoticeOfPrivacyPractices"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate &&
-                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]
-                  }
-                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.NYCDOHMHNoticeOfPrivacyPracticesDate &&
+                  <input
+                    type="date"
+                    id="NYCDOHMHNoticeOfPrivacyPractices"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.NYCDOHMHNoticeOfPrivacyPracticesDate &&
+                      clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
                 <p className="text-dark-blue underline">Consents</p>
               </div>
@@ -3588,40 +3636,40 @@ console.log(FormTitles);
                   type="date"
                   id="NYCDOHMHNoticeOfPrivacyPractices"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate &&
-                  clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate.split('T')[0]
-                }
-                disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    NYCDOHMHNoticeOfPrivacyPracticesUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate &&
+                    clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      NYCDOHMHNoticeOfPrivacyPracticesUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesPDF: !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
-                    NYCDOHMHNoticeOfPrivacyPracticesUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesPDF: !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
-                    NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
-                  }))
-                  if(!clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF || clientData.NYCDOHMHNoticeOfPrivacyPracticesScan){
+                onClick={() => {
+                  clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      NYCDOHMHNoticeOfPrivacyPracticesPDF: !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
+                      NYCDOHMHNoticeOfPrivacyPracticesUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      NYCDOHMHNoticeOfPrivacyPracticesPDF: !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
+                      NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
+                    }))
+                  if (!clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF || clientData.NYCDOHMHNoticeOfPrivacyPracticesScan) {
                     setClientData(formState => ({
                       ...formState,
                       NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ? "3" : "0"}>
@@ -3648,26 +3696,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesScan: !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
-                    NYCDOHMHNoticeOfPrivacyPracticesUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesScan: !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
-                    NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
-                  }))
-                  if(clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF || !clientData.NYCDOHMHNoticeOfPrivacyPracticesScan){
+                onClick={() => {
+                  clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      NYCDOHMHNoticeOfPrivacyPracticesScan: !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
+                      NYCDOHMHNoticeOfPrivacyPracticesUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      NYCDOHMHNoticeOfPrivacyPracticesScan: !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
+                      NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
+                    }))
+                  if (clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF || !clientData.NYCDOHMHNoticeOfPrivacyPracticesScan) {
                     setClientData(formState => ({
                       ...formState,
                       NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ? "3" : "0"}>
@@ -3698,27 +3746,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEOutreachRetentionTrackingForm ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
-                    LNEOutreachRetentionTrackingFormDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
-                    LNEOutreachRetentionTrackingFormDate: crearFecha()
-                  }))
-                }
-              }>
+              // onClick={() => {
+              //   clientData.LNEOutreachRetentionTrackingForm ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
+              //       LNEOutreachRetentionTrackingFormDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
+              //       LNEOutreachRetentionTrackingFormDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEOutreachRetentionTrackingForm && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3741,82 +3790,84 @@ console.log(FormTitles);
                 <p>LNE Outreach Retention/Tracking Form </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEOutreachRetentionTrackingForm"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEOutreachRetentionTrackingFormDate &&
-                    clientData.LNEOutreachRetentionTrackingFormDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEOutreachRetentionTrackingFormDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingFormDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEOutreachRetentionTrackingFormDate &&
+                  <input
+                    type="date"
+                    id="LNEOutreachRetentionTrackingForm"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEOutreachRetentionTrackingFormDate &&
+                      clientData.LNEOutreachRetentionTrackingFormDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingFormDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
-                <p className="text-dark-blue underline">Medical</p>
+                <p className="text-dark-blue underline">Linkage/ Navigation</p>
               </div>
               <div className="text-center">
                 <input
                   type="date"
                   id="LNEOutreachRetentionTrackingForm"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEOutreachRetentionTrackingFormUploadDate &&
-                  clientData.LNEOutreachRetentionTrackingFormUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEOutreachRetentionTrackingFormUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEOutreachRetentionTrackingFormUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEOutreachRetentionTrackingFormUploadDate &&
+                    clientData.LNEOutreachRetentionTrackingFormUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEOutreachRetentionTrackingFormUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEOutreachRetentionTrackingFormUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-             onClick={() => {
-              clientData.LNEOutreachRetentionTrackingFormPDF ?
-                setClientData(formState => ({
-                  ...formState,
-                  LNEOutreachRetentionTrackingFormPDF: !formState.LNEOutreachRetentionTrackingFormPDF,
-                  LNEOutreachRetentionTrackingFormUploadDate: ""
-                })) :
-                setClientData(formState => ({
-                  ...formState,
-                  LNEOutreachRetentionTrackingFormPDF: !formState.LNEOutreachRetentionTrackingFormPDF,
-                  LNEOutreachRetentionTrackingFormUploadDate: crearFecha()
-                }))
-                if(clientData.LNEOutreachRetentionTrackingFormScan || !clientData.LNEOutreachRetentionTrackingFormPDF){
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEOutreachRetentionTrackingFormUploadDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.LNEOutreachRetentionTrackingFormPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEOutreachRetentionTrackingFormPDF: !formState.LNEOutreachRetentionTrackingFormPDF,
+                      LNEOutreachRetentionTrackingFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEOutreachRetentionTrackingFormPDF: !formState.LNEOutreachRetentionTrackingFormPDF,
+                      LNEOutreachRetentionTrackingFormUploadDate: crearFecha()
+                    }))
+                  if (clientData.LNEOutreachRetentionTrackingFormScan || !clientData.LNEOutreachRetentionTrackingFormPDF) {
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEOutreachRetentionTrackingFormUploadDate: crearFecha()
+                    }))
+                  }
                 }
-              }
-            }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingFormPDF ? "3" : "0"}>
@@ -3843,26 +3894,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.LNEOutreachRetentionTrackingFormScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEOutreachRetentionTrackingFormScan: !formState.LNEOutreachRetentionTrackingFormScan,
-                    LNEOutreachRetentionTrackingFormUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEOutreachRetentionTrackingFormScan: !formState.LNEOutreachRetentionTrackingFormScan,
-                    LNEOutreachRetentionTrackingFormUploadDate: crearFecha()
-                  }))
-                  if(clientData.LNEOutreachRetentionTrackingFormPDF || !clientData.LNEOutreachRetentionTrackingFormScan){
+                onClick={() => {
+                  clientData.LNEOutreachRetentionTrackingFormScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEOutreachRetentionTrackingFormScan: !formState.LNEOutreachRetentionTrackingFormScan,
+                      LNEOutreachRetentionTrackingFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEOutreachRetentionTrackingFormScan: !formState.LNEOutreachRetentionTrackingFormScan,
+                      LNEOutreachRetentionTrackingFormUploadDate: crearFecha()
+                    }))
+                  if (clientData.LNEOutreachRetentionTrackingFormPDF || !clientData.LNEOutreachRetentionTrackingFormScan) {
                     setClientData(formState => ({
                       ...formState,
                       LNEOutreachRetentionTrackingFormUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEOutreachRetentionTrackingFormScan ? "3" : "0"}>
@@ -3893,27 +3944,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEReferralInformation ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEReferralInformation: !formState.LNEReferralInformation,
-                    LNEReferralInformationDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEReferralInformation: !formState.LNEReferralInformation,
-                    LNEReferralInformationDate: crearFecha()
-                  }))
-                }
-              }>
+              // onClick={() => {
+              //   clientData.LNEReferralInformation ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEReferralInformation: !formState.LNEReferralInformation,
+              //       LNEReferralInformationDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEReferralInformation: !formState.LNEReferralInformation,
+              //       LNEReferralInformationDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEOutreachRetentionTrackingForm && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3936,82 +3988,84 @@ console.log(FormTitles);
                 <p>LNE Referral Information </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEReferralInformation"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEReferralInformationDate &&
-                    clientData.LNEReferralInformationDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEReferralInformationDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEReferralInformationDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEReferralInformationDate &&
+                  <input
+                    type="date"
+                    id="LNEReferralInformation"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEReferralInformationDate &&
+                      clientData.LNEReferralInformationDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEReferralInformationDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
-                <p className="text-dark-blue underline">Medical</p>
+                <p className="text-dark-blue underline">Linkage/ Navigation</p>
               </div>
               <div className="text-center">
                 <input
                   type="date"
                   id="LNEReferralInformation"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEReferralInformationUploadDate &&
-                  clientData.LNEReferralInformationUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEReferralInformationUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEReferralInformationUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEReferralInformationUploadDate &&
+                    clientData.LNEReferralInformationUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEReferralInformationUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEReferralInformationUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.LNEReferralInformationPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEReferralInformationPDF: !formState.LNEReferralInformationPDF,
-                    LNEReferralInformationUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEReferralInformationPDF: !formState.LNEReferralInformationPDF,
-                    LNEReferralInformationUploadDate: crearFecha()
-                  }))
-                  if(clientData.LNEReferralInformationScan || !clientData.LNEReferralInformationPDF){
+                onClick={() => {
+                  clientData.LNEReferralInformationPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEReferralInformationPDF: !formState.LNEReferralInformationPDF,
+                      LNEReferralInformationUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEReferralInformationPDF: !formState.LNEReferralInformationPDF,
+                      LNEReferralInformationUploadDate: crearFecha()
+                    }))
+                  if (clientData.LNEReferralInformationScan || !clientData.LNEReferralInformationPDF) {
                     setClientData(formState => ({
                       ...formState,
                       LNEReferralInformationUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformationPDF ? "3" : "0"}>
@@ -4038,26 +4092,26 @@ console.log(FormTitles);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEReferralInformationScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEReferralInformationScan: !formState.LNEReferralInformationScan,
-                    LNEReferralInformationUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEReferralInformationScan: !formState.LNEReferralInformationScan,
-                    LNEReferralInformationUploadDate: crearFecha()
-                  }))
-                  if(!clientData.LNEReferralInformationScan || !clientData.LNEReferralInformationPDF){
+                onClick={() => {
+                  clientData.LNEReferralInformationScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEReferralInformationScan: !formState.LNEReferralInformationScan,
+                      LNEReferralInformationUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEReferralInformationScan: !formState.LNEReferralInformationScan,
+                      LNEReferralInformationUploadDate: crearFecha()
+                    }))
+                  if (!clientData.LNEReferralInformationScan || !clientData.LNEReferralInformationPDF) {
                     setClientData(formState => ({
                       ...formState,
                       LNEReferralInformationUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEReferralInformationScan ? "3" : "0"}>
@@ -4088,27 +4142,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEClientReferralForm ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientReferralForm: !formState.LNEClientReferralForm,
-                    LNEClientReferralFormDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientReferralForm: !formState.LNEClientReferralForm,
-                    LNEClientReferralFormDate: crearFecha()
-                  }))
-                }
-              }>
+              // onClick={() => {
+              //   clientData.LNEClientReferralForm ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEClientReferralForm: !formState.LNEClientReferralForm,
+              //       LNEClientReferralFormDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEClientReferralForm: !formState.LNEClientReferralForm,
+              //       LNEClientReferralFormDate: crearFecha()
+              //     }))
+              //   }
+              // }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEClientReferralForm && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4131,82 +4186,84 @@ console.log(FormTitles);
                 <p>LNE Client Referral Form </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEClientReferralForm"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEClientReferralFormDate &&
-                    clientData.LNEClientReferralFormDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEClientReferralFormDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEClientReferralFormDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEClientReferralFormDate &&
+                  <input
+                    type="date"
+                    id="LNEClientReferralForm"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEClientReferralFormDate &&
+                      clientData.LNEClientReferralFormDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEClientReferralFormDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
-                <p className="text-dark-blue underline">Medical</p>
+                <p className="text-dark-blue underline">Linkage/ Navigation</p>
               </div>
               <div className="text-center">
                 <input
                   type="date"
                   id="LNEClientReferralForm"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEClientReferralFormUploadDate &&
-                  clientData.LNEClientReferralFormUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEClientReferralFormUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEClientReferralFormUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEClientReferralFormUploadDate &&
+                    clientData.LNEClientReferralFormUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEClientReferralFormUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEClientReferralFormUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-             onClick={() => {
-              clientData.LNEClientReferralFormPDF ?
-                setClientData(formState => ({
-                  ...formState,
-                  LNEClientReferralFormPDF: !formState.LNEClientReferralFormPDF,
-                  LNEClientReferralFormUploadDate: ""
-                })) :
-                setClientData(formState => ({
-                  ...formState,
-                  LNEClientReferralFormPDF: !formState.LNEClientReferralFormPDF,
-                  LNEClientReferralFormUploadDate: crearFecha()
-                }))
-                if(!clientData.LNEClientReferralFormPDF || clientData.LNEClientReferralFormScan){
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientReferralFormUploadDate: crearFecha()
-                  }))
+                onClick={() => {
+                  clientData.LNEClientReferralFormPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientReferralFormPDF: !formState.LNEClientReferralFormPDF,
+                      LNEClientReferralFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientReferralFormPDF: !formState.LNEClientReferralFormPDF,
+                      LNEClientReferralFormUploadDate: crearFecha()
+                    }))
+                  if (!clientData.LNEClientReferralFormPDF || clientData.LNEClientReferralFormScan) {
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientReferralFormUploadDate: crearFecha()
+                    }))
+                  }
                 }
-              }
-            }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralFormPDF ? "3" : "0"}>
@@ -4229,31 +4286,31 @@ console.log(FormTitles);
                       })
                   }
                   }
-                  
+
                   checked={clientData.LNEClientReferralFormPDF ? 'checked' : false}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-              onClick={() => {
-                clientData.LNEClientReferralFormScan ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientReferralFormScan: !formState.LNEClientReferralFormScan,
-                    LNEClientReferralFormUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEClientReferralFormScan: !formState.LNEClientReferralFormScan,
-                    LNEClientReferralFormUploadDate: crearFecha()
-                  }))
-                  if(!clientData.LNEClientReferralFormScan || clientData.LNEClientReferralFormPDF){
+                onClick={() => {
+                  clientData.LNEClientReferralFormScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientReferralFormScan: !formState.LNEClientReferralFormScan,
+                      LNEClientReferralFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEClientReferralFormScan: !formState.LNEClientReferralFormScan,
+                      LNEClientReferralFormUploadDate: crearFecha()
+                    }))
+                  if (!clientData.LNEClientReferralFormScan || clientData.LNEClientReferralFormPDF) {
                     setClientData(formState => ({
                       ...formState,
                       LNEClientReferralFormUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientReferralFormScan ? "3" : "0"}>
@@ -4284,27 +4341,28 @@ console.log(FormTitles);
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-purple grid gap-5 py-2 rounded-lg my-2`}            >
               <div className="ml-1 text-center flex justify-center items-center "
-                 onClick={() => {
-                clientData.LNEHNSEligibilityForm ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
-                    LNEHNSEligibilityFormDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
-                    LNEHNSEligibilityFormDate: crearFecha()
-                  }))
-                }
-               }>
+              //    onClick={() => {
+              //   clientData.LNEHNSEligibilityForm ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
+              //       LNEHNSEligibilityFormDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
+              //       LNEHNSEligibilityFormDate: crearFecha()
+              //     }))
+              //   }
+              //  }
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${clientData.LNEHNSEligibilityForm && "bg-white  border-2 border-dark-blue"}  appearance-none relative   rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4327,82 +4385,84 @@ console.log(FormTitles);
                 <p>LNE HNS Eligibility Form </p>
               </div>
               <div className="text-center">
-                <input
-                  type="date"
-                  id="LNEHNSEligibilityForm"
-                  className={MSAStyles.inputDate}
-                  value={
-                    clientData.LNEHNSEligibilityFormDate &&
-                    clientData.LNEHNSEligibilityFormDate.split('T')[0]
-                  }
-                  disabled={clientData.LNEHNSEligibilityFormDate ? true : false}
-                  onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityFormDate: e.target.value,
-                    });
-                  }}
-                />
+                {clientData.LNEHNSEligibilityFormDate &&
+                  <input
+                    type="date"
+                    id="LNEHNSEligibilityForm"
+                    className={MSAStyles.inputDate}
+                    value={
+                      clientData.LNEHNSEligibilityFormDate &&
+                      clientData.LNEHNSEligibilityFormDate.split('T')[0]
+                    }
+                    disabled={true}
+                    onChange={(e) => {
+                      setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityFormDate: e.target.value,
+                      });
+                    }}
+                  />}
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} ml-11 text-center flex justify-start items-center`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+                  <svg
+                    className="mr-2"
+                    width="18"
+                    height="18"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </a>
-                <p className="text-dark-blue underline">Medical</p>
+                <p className="text-dark-blue underline">Miscellaneous</p>
               </div>
               <div className="text-center">
                 <input
                   type="date"
                   id="LNEHNSEligibilityForm"
                   className={MSAStyles.inputDate}
-                value={
-                  clientData.LNEHNSEligibilityFormUploadDate &&
-                  clientData.LNEHNSEligibilityFormUploadDate.split('T')[0]
-                }
-                disabled={clientData.LNEHNSEligibilityFormUploadDate ? true : false}
-                onChange={(e) => {
-                  setClientData({
-                    ...clientData,
-                    LNEHNSEligibilityFormUploadDate: e.target.value,
-                  });
-                }}
+                  value={
+                    clientData.LNEHNSEligibilityFormUploadDate &&
+                    clientData.LNEHNSEligibilityFormUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.LNEHNSEligibilityFormUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      LNEHNSEligibilityFormUploadDate: e.target.value,
+                    });
+                  }}
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
-               onClick={() => {
-                clientData.LNEHNSEligibilityFormPDF ?
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEHNSEligibilityFormPDF: !formState.LNEHNSEligibilityFormPDF,
-                    LNEHNSEligibilityFormUploadDate: ""
-                  })) :
-                  setClientData(formState => ({
-                    ...formState,
-                    LNEHNSEligibilityFormPDF: !formState.LNEHNSEligibilityFormPDF,
-                    LNEHNSEligibilityFormUploadDate: crearFecha()
-                  }))
-                  if(!clientData.LNEHNSEligibilityFormPDF || clientData.LNEHNSEligibilityFormScan){
+                onClick={() => {
+                  clientData.LNEHNSEligibilityFormPDF ?
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEHNSEligibilityFormPDF: !formState.LNEHNSEligibilityFormPDF,
+                      LNEHNSEligibilityFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEHNSEligibilityFormPDF: !formState.LNEHNSEligibilityFormPDF,
+                      LNEHNSEligibilityFormUploadDate: crearFecha()
+                    }))
+                  if (!clientData.LNEHNSEligibilityFormPDF || clientData.LNEHNSEligibilityFormScan) {
                     setClientData(formState => ({
                       ...formState,
                       LNEHNSEligibilityFormUploadDate: crearFecha()
                     }))
                   }
                 }
-              }>
+                }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEHNSEligibilityFormPDF ? "3" : "0"}>
@@ -4441,13 +4501,13 @@ console.log(FormTitles);
                       LNEHNSEligibilityFormScan: !formState.LNEHNSEligibilityFormScan,
                       LNEHNSEligibilityFormUploadDate: crearFecha()
                     }))
-                    if(!clientData.LNEHNSEligibilityFormScan || clientData.LNEHNSEligibilityFormPDF){
-                      setClientData(formState => ({
-                        ...formState,
-                        LNEHNSEligibilityFormUploadDate: crearFecha()
-                      }))
-                    }
+                  if (!clientData.LNEHNSEligibilityFormScan || clientData.LNEHNSEligibilityFormPDF) {
+                    setClientData(formState => ({
+                      ...formState,
+                      LNEHNSEligibilityFormUploadDate: crearFecha()
+                    }))
                   }
+                }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -4474,6 +4534,7 @@ console.log(FormTitles);
                   checked={clientData.LNEHNSEligibilityFormScan ? 'checked' : false}
                 />
               </div>
+              
             </div>
           </section>
 
