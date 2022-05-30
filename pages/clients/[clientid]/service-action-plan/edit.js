@@ -158,10 +158,7 @@ const fecha =  Date.parse(date)
 const newDate= new Date(fecha).toLocaleDateString()
 const separatedDate=newDate.split('/')
 const prefinalDate=separatedDate.reverse() 
-//const orderedDate=prefinalDate[0]+prefinalDate[2]+prefinalDate[1]
 const finalDate=prefinalDate.join('-')
-console.log("finalDate",finalDate)
-/* console.log(finalDate) */
 return finalDate
 }  
 
