@@ -104,13 +104,18 @@ const handleMsaform = ()=> {
 }
 
 const crearFecha=()=>{
+
   const initialDate= new Date().toLocaleDateString()
   const newDate=initialDate.split('/')
-  const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
+  const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0x${newDate[0]}`: `${newDate[0]}`}`
+  console.log("initialDate",initialDate)
+  console.log("fixedDate",fixedDate)
   return fixedDate
 
-}
 
+
+}
+console.log(new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'}))
   return (
     <><ToastContainer autoClose={2000} />
       <Layout>
@@ -1733,7 +1738,7 @@ const crearFecha=()=>{
                   id="LNEHNSEligibilityForm"
                   value={
                     clientData.LNEHNSEligibilityFormDate &&
-                    clientData.LNEHNSEligibilityFormDate.split('T')[0]
+                    clientData.LNEHNSEligibilityFormDate.split('T')
                   }
                   /* disabled={clientData.LNEHNSEligibilityFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
