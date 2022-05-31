@@ -93,11 +93,11 @@ else if(clientData.clientFirstName.match(/[^a-zA-Z]/)
      notifyMessage()
      setTimeout(()=>{
        router.reload()
-     },2300)
+     },50000)
    } 
  })
  .catch(function (error) {
-   showErrors(error.response.data)
+   //showErrors(error.response.data)
    changeSaving(error)
  });
 }

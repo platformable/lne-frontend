@@ -49,6 +49,7 @@ console.log("data",data)
   
     let result 
 
+
     if((data[0]?.msaformairsintakeform==="0" || data[0]?.msaformairsintakeform===null) &&  data[0]?.servicesactionplanid ===null){
       result="You need to fill in the client’s Intake Form"
     } 

@@ -51,8 +51,8 @@ const EditMsaFormPage = ({ data }) => {
     // ServiceActionPlanPDF: data[0].serviceactionplanpdf === "0" ? true : false,
     ServiceActionPlanScan :  data[0].serviceactionplanscan=== "0" || data[0].serviceactionplanscan=== null ? false : true,
     ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate || null,
-    AIRSCollateralInformation: data[0].airscollateralinformation === "0" || data[0].airscollateralinformation === null ? false : true,
-    AIRSCollateralInformationDate: data[0].airscollateralinformationdate,
+    AIRSCollateralInformation: true,
+    AIRSCollateralInformationDate:data[0].serviceactionplandate,
     AIRSCollateralInformationPDF: data[0].airscollateralinformationpdf=== "0" || data[0].airscollateralinformationpdf=== null ? false : true,
     AIRSCollateralInformationScan: data[0].airscollateralinformationscan=== "0" || data[0].airscollateralinformationscan=== null ? false : true,
     AIRSCollateralInformationUploadDate: data[0].airsCollateralInformationuploaddate || null,
@@ -265,7 +265,7 @@ console.log("clientData",clientData);
               <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Back to client profile
+            Back to Dashboard
           </button>
           <section id="info" className="my-5">
             <div className="">
@@ -421,6 +421,7 @@ console.log("clientData",clientData);
             className={`relative border-dark-blue rounded-xl mb-5`}
           >
             {/* {TABLE HEAD} */}
+            {/* <div className={`${MSAStyles.line}`}></div> */}
             <div
               id="form-head"
               className={`${MSAStyles.formRowsContainerDesFormEdit} grid gap-5 justify-center items-end rounded-tl-lg rounded-tr-lg py-1 mx-1`}
@@ -532,7 +533,7 @@ console.log("clientData",clientData);
                 </svg>
               
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSIntakeForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -605,7 +606,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSIntakeForm"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} ${(clientData.AIRSIntakeForm) ? "border-2 border-dark-blue rounded-md p-px bg-white" : ""} ${(clientData.AIRSIntakeForm && clientData.AIRSIntakeFormPDF && clientData.AIRSIntakeFormScan)  ? "" :" border-2 border-dark-blue rounded-md p-px bg-white"}`}
                 value={
                   clientData.AIRSIntakeFormUploadDate &&
                   clientData.AIRSIntakeFormUploadDate.split('T')[0]
@@ -624,7 +625,7 @@ console.log("clientData",clientData);
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSIntakeFormPDF? 'pointer-events-none' :""}`}
 
             
-                onClick={() => {
+                onClick={(e) => {
                   clientData.AIRSIntakeFormPDF ?
                     setClientData(formState => ({
                       ...formState,
@@ -641,7 +642,7 @@ console.log("clientData",clientData);
                         ...formState,
                         AIRSIntakeFormUploadDate: crearFecha()
                       }))
-                    }
+                  }   
                   }
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -650,7 +651,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSIntakeForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -698,7 +699,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSIntakeForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -745,7 +746,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.ComprehensiveRiskBehaviorAssessment && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -813,7 +814,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessment"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${(clientData.ComprehensiveRiskBehaviorAssessment) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
                 value={
                   clientData.ComprehensiveRiskBehaviorAssessmentUploadDate &&
                   clientData.ComprehensiveRiskBehaviorAssessmentUploadDate.split('T')[0]
@@ -855,7 +856,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.ComprehensiveRiskBehaviorAssessment && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -904,7 +905,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.ComprehensiveRiskBehaviorAssessment && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -926,7 +927,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.ServiceActionPlan? '' :'pointer-events-none'}`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.ServiceActionPlan? '' :'pointer-events-none'}`}
             >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlan? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -949,7 +950,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.ServiceActionPlan && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -970,7 +971,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div>
-                <p>Service Action Plan <span className="text-red-500">*</span> </p>
+                <p>Service Action Plan </p>
               </div>
               <div className="text-center">
                 <input
@@ -1017,7 +1018,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="ServiceActionPlan"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${(clientData.ServiceActionPlan) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
                 value={
                   clientData.ServiceActionPlanUploadDate &&
                   clientData.ServiceActionPlanUploadDate.split('T')[0]
@@ -1031,14 +1032,34 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className="ml-1 text-center flex justify-center items-center ">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanPDF? 'pointer-events-none' :""}`}
+              onClick={() => {
+                clientData.ServiceActionPlanPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    ServiceActionPlanPDF: !formState.ServiceActionPlanPDF,
+                    ServiceActionPlanUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    ServiceActionPlanPDF: !formState.ServiceActionPlanPDF,
+                    ServiceActionPlanUploadDate: crearFecha()
+                  }))
+                  if(!clientData.ServiceActionPlanPDF || clientData.ServiceActionPlanPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      ServiceActionPlanUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.ServiceActionPlanPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.ServiceActionPlan && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1054,7 +1075,7 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.ServiceActionPlan ? 'checked' : false}
+                  checked={clientData.ServiceActionPlanPDF ? 'checked' : false}
                 />
               </div>
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanScan? 'pointer-events-none' :""}`}
@@ -1077,7 +1098,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.ServiceActionPlan && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1123,8 +1144,8 @@ console.log("clientData",clientData);
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                   <input
-                    className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
-                    type="checkbox"
+                  className={`${!clientData.AIRSCollateralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
                     name=""
                     id=""
                     onChange={(e) => {
@@ -1169,7 +1190,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
                 <svg
                   className="mr-2"
                   width="18"
@@ -1194,7 +1215,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSCollateralInformation"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${(clientData.AIRSCollateralInformation) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
                 value={
                   clientData.AIRSCollateralInformationUploadDate &&
                   clientData.AIRSCollateralInformationUploadDate.split('T')[0]
@@ -1236,24 +1257,25 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSCollateralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
                   onChange={(e) => {
-                    clientData.AIRSCollateralInformationDate === "" || clientData.AIRSCollateralInformationDate === null ? (
+                    clientData.AIRSCollateralInformationUploadDate === "" || clientData.AIRSCollateralInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
-                        AIRSCollateralInformationDate: crearFecha()
+                        AIRSCollateralInformationPDF: !clientData.AIRSCollateralInformationPDF
+                        ,
+                        AIRSCollateralInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
+                        AIRSCollateralInformationPDF: !clientData.AIRSCollateralInformationPDF,
                       })
                   }
                   }
-                  checked={clientData.AIRSCollateralInformation ? 'checked' : false}
-                  disabled={clientData.AIRSCollateralInformation ? true : false}
+                  checked={clientData.AIRSCollateralInformationPDF ? 'checked' : false}
+                  disabled={clientData.AIRSCollateralInformationPDF ? true : false}
                 />
               </div>
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSCollateralInformationScan? 'pointer-events-none' :""}`}
@@ -1284,7 +1306,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSCollateralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1329,7 +1351,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSFinancialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1393,7 +1415,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSFinancialInformation"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSFinancialInformation && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.AIRSFinancialInformationUploadDate &&
                   clientData.AIRSFinancialInformationUploadDate.split('T')[0]
@@ -1435,7 +1457,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSFinancialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1482,7 +1504,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSFinancialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1526,7 +1548,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHIVAIDSRiskHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1590,7 +1612,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSHIVAIDSRiskHistory"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSHIVAIDSRiskHistory && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.AIRSHIVAIDSRiskHistoryUploadDate &&
                   clientData.AIRSHIVAIDSRiskHistoryUploadDate.split('T')[0]
@@ -1632,7 +1654,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHIVAIDSRiskHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1678,7 +1700,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHIVAIDSRiskHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1722,7 +1744,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHCVHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1786,7 +1808,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSHCVHistory"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSHCVHistory && "border-2 border-dark-blue rounded-md p-px"}`}
                   value={
                     clientData.AIRSHCVHistoryUploadDate &&
                     clientData.AIRSHCVHistoryUploadDate.split('T')[0]
@@ -1828,7 +1850,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHCVHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1875,7 +1897,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHCVHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1920,7 +1942,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHousingInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -1984,7 +2006,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSHousingInformation"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSHousingInformation && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.AIRSHousingInformationUploadDate &&
                   clientData.AIRSHousingInformationUploadDate.split('T')[0]
@@ -2026,7 +2048,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHousingInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2073,7 +2095,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSHousingInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2119,7 +2141,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSInsuranceInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2183,7 +2205,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSInsuranceInformation"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSInsuranceInformation && "border-2 border-dark-blue rounded-md p-px"}`}
                   value={
                     clientData.AIRSInsuranceInformationUploadDate &&
                     clientData.AIRSInsuranceInformationUploadDate.split('T')[0]
@@ -2225,7 +2247,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSInsuranceInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2272,7 +2294,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSInsuranceInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2316,7 +2338,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSSubstanceUseHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2380,7 +2402,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSSubstanceUseHistory"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSSubstanceUseHistory && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.AIRSSubstanceUseHistoryUploadDate &&
                   clientData.AIRSSubstanceUseHistoryUploadDate.split('T')[0]
@@ -2422,7 +2444,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSSubstanceUseHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2469,7 +2491,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.AIRSSubstanceUseHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2491,7 +2513,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-             className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientRights? '' :'pointer-events-none'}`} >
+             className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientRights? '' :'pointer-events-none'}`} >
 
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientRights? 'pointer-events-none' :""}`}
                 onClick={() => {
@@ -2514,7 +2536,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientRights && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2579,7 +2601,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEClientRights"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEClientRights && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEClientRightsUploadDate &&
                   clientData.LNEClientRightsUploadDate.split('T')[0]
@@ -2600,7 +2622,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientRights && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2640,7 +2662,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientRights && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2662,7 +2684,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientGrievancePolicyProcedure? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientGrievancePolicyProcedure? '' :'pointer-events-none'}`} >
 
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientGrievancePolicyProcedure? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -2685,7 +2707,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientGrievancePolicyProcedure && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2749,7 +2771,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEClientGrievancePolicyProcedure && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEClientGrievancePolicyProcedureUploadDate &&
                   clientData.LNEClientGrievancePolicyProcedureUploadDate.split('T')[0]
@@ -2770,7 +2792,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientGrievancePolicyProcedure && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2811,7 +2833,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientGrievancePolicyProcedure && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2833,7 +2855,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEProgramRules? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEProgramRules? '' :'pointer-events-none'}`} >
             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEProgramRules? 'pointer-events-none' :""}`}
               onClick={() => {
                 clientData.LNEProgramRules ?
@@ -2855,7 +2877,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEProgramRules && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2919,7 +2941,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEProgramRules"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEProgramRules && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEProgramRulesUploadDate &&
                   clientData.LNEProgramRulesUploadDate.split('T')[0]
@@ -2940,7 +2962,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEProgramRules && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2980,7 +3002,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEProgramRules && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3002,7 +3024,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEEmergencyContactConsent? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEEmergencyContactConsent? '' :'pointer-events-none'}`} >
            <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEEmergencyContactConsent? 'pointer-events-none' :""}`}
                onClick={() => {
                 clientData.LNEEmergencyContactConsent ?
@@ -3024,7 +3046,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEEmergencyContactConsent && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3089,7 +3111,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEEmergencyContactConsent"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEEmergencyContactConsent && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEEmergencyContactConsentUploadDate &&
                   clientData.LNEEmergencyContactConsentUploadDate.split('T')[0]
@@ -3110,7 +3132,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEEmergencyContactConsent && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3150,7 +3172,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEEmergencyContactConsent && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3172,7 +3194,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2  ${clientData.LNEConsentForReleaseOfConfidentialInformation? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2  ${clientData.LNEConsentForReleaseOfConfidentialInformation? '' :'pointer-events-none'}`} >
                <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEConsentForReleaseOfConfidentialInformation? 'pointer-events-none' :""}`}
                 onClick={() => {
                   clientData.LNEConsentForReleaseOfConfidentialInformation ?
@@ -3194,7 +3216,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEConsentForReleaseOfConfidentialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3258,7 +3280,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEConsentForReleaseOfConfidentialInformation"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEConsentForReleaseOfConfidentialInformation && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate &&
                   clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate.split('T')[0]
@@ -3280,7 +3302,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEConsentForReleaseOfConfidentialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3319,7 +3341,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEConsentForReleaseOfConfidentialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3341,7 +3363,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.HIPPAConsentForm? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.HIPPAConsentForm? '' :'pointer-events-none'}`} >
              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HIPPAConsentForm? 'pointer-events-none' :""}`}
                onClick={() => {
                 clientData.HIPPAConsentForm ?
@@ -3363,7 +3385,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.HIPPAConsentForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3427,7 +3449,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="HIPPAConsentForm"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.HIPPAConsentForm && "border-2 border-dark-blue rounded-md p-px"}`}
                   value={
                     clientData.HIPPAConsentFormUploadDate &&
                     clientData.HIPPAConsentFormUploadDate.split('T')[0]
@@ -3469,7 +3491,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.HIPPAConsentForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3516,7 +3538,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.HIPPAConsentForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3538,7 +3560,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.NYCDOHMHNoticeOfPrivacyPractices? '' :'pointer-events-none'} `} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2 ${clientData.NYCDOHMHNoticeOfPrivacyPractices? '' :'pointer-events-none'} `} >
              <div className={`ml-1 text-center flex justify-center items-center ${clientData.NYCDOHMHNoticeOfPrivacyPractices? 'pointer-events-none' :""}`}
                onClick={() => {
                 clientData.NYCDOHMHNoticeOfPrivacyPractices ?
@@ -3560,7 +3582,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.NYCDOHMHNoticeOfPrivacyPractices && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3627,7 +3649,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="NYCDOHMHNoticeOfPrivacyPractices"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.NYCDOHMHNoticeOfPrivacyPractices && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate &&
                   clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate.split('T')[0]
@@ -3668,7 +3690,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.NYCDOHMHNoticeOfPrivacyPractices && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3715,7 +3737,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.NYCDOHMHNoticeOfPrivacyPractices && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3737,7 +3759,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEOutreachRetentionTrackingForm? '' :'pointer-events-none'} `} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEOutreachRetentionTrackingForm? '' :'pointer-events-none'} `} >
             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEOutreachRetentionTrackingForm? 'pointer-events-none' :""}`}
               onClick={() => {
                 clientData.LNEOutreachRetentionTrackingForm ?
@@ -3759,7 +3781,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEOutreachRetentionTrackingForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3823,7 +3845,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEOutreachRetentionTrackingForm"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEOutreachRetentionTrackingForm && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEOutreachRetentionTrackingFormUploadDate &&
                   clientData.LNEOutreachRetentionTrackingFormUploadDate.split('T')[0]
@@ -3864,7 +3886,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEOutreachRetentionTrackingForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3910,7 +3932,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEOutreachRetentionTrackingForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -3932,7 +3954,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEReferralInformation? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEReferralInformation? '' :'pointer-events-none'}`} >
              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEReferralInformation? 'pointer-events-none' :""}`}
               onClick={() => {
                 clientData.LNEReferralInformation ?
@@ -3954,7 +3976,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEReferralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4018,7 +4040,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEReferralInformation"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEReferralInformation && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEReferralInformationUploadDate &&
                   clientData.LNEReferralInformationUploadDate.split('T')[0]
@@ -4059,7 +4081,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEReferralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4105,7 +4127,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEReferralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4127,7 +4149,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientReferralForm? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientReferralForm? '' :'pointer-events-none'}`} >
              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientReferralForm? 'pointer-events-none' :""}`}
               onClick={() => {
                 clientData.LNEClientReferralForm ?
@@ -4149,7 +4171,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientReferralForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4213,7 +4235,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEClientReferralForm"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEClientReferralForm && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEClientReferralFormUploadDate &&
                   clientData.LNEClientReferralFormUploadDate.split('T')[0]
@@ -4254,7 +4276,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientReferralForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4301,7 +4323,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEClientReferralForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4323,7 +4345,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEHNSEligibilityForm? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-purple grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEHNSEligibilityForm? '' :'pointer-events-none'}`} >
             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEHNSEligibilityForm? 'pointer-events-none' :""}`}
                  onClick={() => {
                 clientData.LNEHNSEligibilityForm ?
@@ -4345,7 +4367,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEHNSEligibilityForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4409,7 +4431,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="LNEHNSEligibilityForm"
-                  className={MSAStyles.inputDate}
+                  className={`${MSAStyles.inputDate} {${clientData.LNEHNSEligibilityForm && "border-2 border-dark-blue rounded-md p-px"}`}
                 value={
                   clientData.LNEHNSEligibilityFormUploadDate &&
                   clientData.LNEHNSEligibilityFormUploadDate.split('T')[0]
@@ -4450,7 +4472,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEHNSEligibilityForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4496,7 +4518,7 @@ console.log("clientData",clientData);
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className="appearance-none relative bg-white border-dark-blue rounded-md  border-2 h-6 w-6 "
+                  className={`${!clientData.LNEHNSEligibilityForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -4538,11 +4560,12 @@ export default EditMsaFormPage;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const  response = await fetch(
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientid}`
     );
 
-    const data = await  response.json();
+    const data = await response.json();
     return { props: { data } };
   },
 });
+
