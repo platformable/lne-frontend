@@ -807,10 +807,14 @@ console.log("clientData",clientData)
         <div className="additional-forms-box border-r-dark-blue ">
         
         <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2  my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
             >
-              <div className="form-row-item px-5">
-                <input
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
@@ -830,25 +834,35 @@ console.log("clientData",clientData)
                     })
                     }
                   }
-                />
-              </div>
-              <div>
-                <p>AIRS Collateral Information </p>
-              </div>
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                   AIRS Collateral Information
+                   </p>
+                   
+                </div>
+              
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
                   disabled={clientData.AIRSFinancialInformation ? true : false}
-                  onChange={() => {
-                    clientData.AIRSFinancialInformationDate ==="" || clientData.AIRSFinancialInformationDate === null ? (
+                  onChange={(e) =>{
+                    clientData.AIRSFinancialInformationDate==="" || clientData.AIRSFinancialInformationDate===null ? (
                     setClientData({
                       ...clientData,
                       AIRSFinancialInformation:
@@ -859,26 +873,37 @@ console.log("clientData",clientData)
                       AIRSFinancialInformation:
                         !clientData.AIRSFinancialInformation,
                     })
-                  }}
-                />
-              </div>
-              <div>
-                <p>AIRS Financial Information </p>
-              </div>
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                   AIRS Financial Information
+                   </p>
+                   
+                </div>
               
             </div>
 
+
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
                   disabled={clientData.AIRSHIVAIDSRiskHistory ? true : false}
-                  onChange={() => {
+                  onChange={(e) =>{
                     clientData.AIRSHIVAIDSRiskHistoryDate==="" || clientData.AIRSHIVAIDSRiskHistoryDate===null ? (
                     setClientData({
                       ...clientData,
@@ -890,59 +915,78 @@ console.log("clientData",clientData)
                       AIRSHIVAIDSRiskHistory:
                         !clientData.AIRSHIVAIDSRiskHistory,
                     })
-                  }}
-                />
-              </div>
-              <div>
-                <p>AIRS HIV AIDS Risk History </p>
-              </div>
-     
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  AIRS HIV AIDS Risk History
+                   </p>
+                   
+                </div>
+              
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.AIRSHCVHistory ? 'checked' : ''}
                   disabled={clientData.AIRSHCVHistory ? true : false}
-                  onChange={() => {
+                  onChange={(e) =>{
                     clientData.AIRSHCVHistoryDate==="" || clientData.AIRSHCVHistoryDate===null ? (
                     setClientData({
                       ...clientData,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
-                      AIRSHCVHistoryDate:new Date()
+                      AIRSHCVHistory:
+                        !clientData.AIRSHCVHistory,
+                        AIRSHCVHistoryDate:new Date()
                     })):setClientData({
                       ...clientData,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                      AIRSHCVHistory:
+                        !clientData.AIRSHCVHistory,
                     })
+                    }
                   }
-                }
-                />
-              </div>
-              <div>
-                <p>AIRS HCV History </p>
-              </div>
-          
-         
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  AIRS HCV History
+                   </p>
+                   
+                </div>
+              
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.AIRSHousingInformation ? 'checked' : ''}
                   disabled={clientData.AIRSHousingInformation ? true : false}
-                  onChange={() => {
-                 
-                    clientData.AIRSHousingInformationDate==="" || clientData.AIRSHousingInformationDate=== null ? (
+                  onChange={(e) =>{
+                    clientData.AIRSHousingInformationDate==="" || clientData.AIRSHousingInformationDate===null ? (
                     setClientData({
                       ...clientData,
                       AIRSHousingInformation:
@@ -953,27 +997,36 @@ console.log("clientData",clientData)
                       AIRSHousingInformation:
                         !clientData.AIRSHousingInformation,
                     })
+                    }
                   }
-                }
-                />
-              </div>
-              <div>
-                <p>AIRS Housing Information </p>
-              </div>
- 
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  AIRS Housing Information
+                </p>
+                   
+                </div>
+              
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
                   disabled={clientData.AIRSInsuranceInformation ? true : false}
-                  onChange={() => {
+                  onChange={(e) =>{
                     clientData.AIRSInsuranceInformationDate==="" || clientData.AIRSInsuranceInformationDate===null ? (
                     setClientData({
                       ...clientData,
@@ -985,25 +1038,35 @@ console.log("clientData",clientData)
                       AIRSInsuranceInformation:
                         !clientData.AIRSInsuranceInformation,
                     })
-                  }}
-                />
-              </div>
-              <div>
-                <p>AIRS Insurance Information </p>
-              </div>
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  AIRS Insurance Information
+                </p>
+                   
+                </div>
+              
             </div>
-
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
                   disabled={clientData.AIRSSubstanceUseHistory ? true : false}
-                  onChange={() => {
+                  onChange={(e) =>{
                     clientData.AIRSSubstanceUseHistoryDate==="" || clientData.AIRSSubstanceUseHistoryDate===null ? (
                     setClientData({
                       ...clientData,
@@ -1015,54 +1078,77 @@ console.log("clientData",clientData)
                       AIRSSubstanceUseHistory:
                         !clientData.AIRSSubstanceUseHistory,
                     })
-                  }}
-                />
-              </div>
-              <div>
-                <p>AIRS Substance Use History </p>
-              </div>
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  AIRS Substance Use History
+                </p>
+                   
+                </div>
+              
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEClientRights ? 'checked' : ''}
                   disabled={clientData.LNEClientRights ? true : false}
-                  onChange={() => {
+                  onChange={(e) =>{
                     clientData.LNEClientRightsDate==="" || clientData.LNEClientRightsDate===null ? (
                     setClientData({
                       ...clientData,
-                      LNEClientRights: !clientData.LNEClientRights,
-                      LNEClientRightsDate:new Date()
+                      LNEClientRights:
+                        !clientData.LNEClientRights,
+                        LNEClientRightsDate:new Date()
                     })):setClientData({
                       ...clientData,
-                      LNEClientRights: !clientData.LNEClientRights,
-                     
+                      LNEClientRights:
+                        !clientData.LNEClientRights,
                     })
-                  }}
-                />
-              </div>
-              <div>
-                <p>LNE Client Rights </p>
-              </div>
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  LNE Client Rights
+                </p>
+                   
+                </div>
+              
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
                   disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false}
-                  onChange={() => {
+                  onChange={(e) =>{
                     clientData.LNEClientGrievancePolicyProcedureDate==="" || clientData.LNEClientGrievancePolicyProcedureDate===null ? (
                     setClientData({
                       ...clientData,
@@ -1074,13 +1160,19 @@ console.log("clientData",clientData)
                       LNEClientGrievancePolicyProcedure:
                         !clientData.LNEClientGrievancePolicyProcedure,
                     })
-                  }}
-                />
-              </div>
-              <div>
-                <p>LNE Client Grievance Policy & Procedure </p>
-              </div>
-
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  LNE Client Grievance Policy & Procedure
+                </p>
+                   
+                </div>
+              
             </div>
         
         </div>   {/* FIN DEL FORM BOX */}
@@ -1088,45 +1180,59 @@ console.log("clientData",clientData)
 
         <div className="additional-form-box">
         <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
+             >
+               
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                   
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEProgramRules ? 'checked' : ''}
                   disabled={clientData.LNEProgramRules ? true : false}
-                  onChange={() => {
+                  onChange={(e) =>{
                     clientData.LNEProgramRulesDate==="" || clientData.LNEProgramRulesDate===null ? (
                     setClientData({
                       ...clientData,
-                      LNEProgramRules: !clientData.LNEProgramRules,
-                      LNEProgramRulesDate:new Date()
+                      LNEProgramRules:
+                        !clientData.LNEProgramRules,
+                        LNEProgramRulesDate:new Date()
                     })):setClientData({
                       ...clientData,
-                      LNEProgramRules: !clientData.LNEProgramRules,
+                      LNEProgramRules:
+                        !clientData.LNEProgramRules,
                     })
+                    }
                   }
-                }
-                />
-              </div>
-              <div>
-                <p>LNE Program Rules </p>
-              </div>
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                    
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  LNE Program Rules
+                </p>
+                   
+                </div>
+              
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
+             >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
                   disabled={clientData.LNEEmergencyContactConsent ? true : false}
-                  onChange={() =>{
+                  onChange={(e) =>{
                     clientData.LNEEmergencyContactConsentDate==="" || clientData.LNEEmergencyContactConsentDate===null ? (
                     setClientData({
                       ...clientData,
@@ -1138,89 +1244,106 @@ console.log("clientData",clientData)
                       LNEEmergencyContactConsent:
                         !clientData.LNEEmergencyContactConsent,
                     })
-                  }}
-                />
-              </div>
-              <div>
-                <p>LNE Emergency Contact Consent </p>
-              </div>
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  LNE Emergency Contact Consent
+                </p>
+                </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
+              >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
                   disabled={clientData.LNEConsentForReleaseOfConfidentialInformation ? true : false}
-                  onChange={() =>{
+                  onChange={(e) =>{
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate==="" || clientData.LNEConsentForReleaseOfConfidentialInformationDate===null ? (
-                      setClientData({
-                        ...clientData,
-                        LNEConsentForReleaseOfConfidentialInformation:
-                          !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                          LNEConsentForReleaseOfConfidentialInformationDate:new Date()
-                      })
-                    ):setClientData({
+                    setClientData({
                       ...clientData,
                       LNEConsentForReleaseOfConfidentialInformation:
                         !clientData.LNEConsentForReleaseOfConfidentialInformation,
+                        LNEConsentForReleaseOfConfidentialInformationDate:new Date()
+                    })):setClientData({
+                      ...clientData,
+                      LNEConsentForReleaseOfConfidentialInformatio:
+                        !clientData.LNEConsentForReleaseOfConfidentialInformation,
                     })
+                    }
                   }
-                  }
-                />
-              </div>
-              <div>
-                <p>LNE Consent for Release of Confidential Information </p>
-              </div>
-     
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  LNE Consent for Release of Confidential Information
+                </p>
+                </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
+              >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.HIPPAConsentForm ? 'checked' : ''}
                   disabled={clientData.HIPPAConsentForm ? true : false}
-                  onChange={() =>{
+                  onChange={(e) =>{
                     clientData.HIPPAConsentFormDate==="" || clientData.HIPPAConsentFormDate===null ? (
                     setClientData({
                       ...clientData,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
-                      HIPPAConsentFormDate:new Date()
+                      HIPPAConsentForm:
+                        !clientData.HIPPAConsentForm,
+                        HIPPAConsentFormDate:new Date()
                     })):setClientData({
                       ...clientData,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                      HIPPAConsentForm:
+                        !clientData.HIPPAConsentForm,
                     })
+                    }
                   }
-                  }
-                />
-              </div>
-              <div>
-                <p>HIPAA Consent Form (OCA Form 960)</p>
-              </div>
-              
-    
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
+                  <p>
+                  HIPAA Consent Form (OCA Form 960)
+                </p>
+                </div>
             </div>
+               
+              
 
-            <div
-              className={`flex bg-light-green  py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+           
+             <div
+              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
+              >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
                   disabled={clientData.NYCDOHMHNoticeOfPrivacyPractices ? true : false}
-                  onChange={() =>{
+                  onChange={(e) =>{
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate==="" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate===null ? (
                     setClientData({
                       ...clientData,
@@ -1232,30 +1355,34 @@ console.log("clientData",clientData)
                       NYCDOHMHNoticeOfPrivacyPractices:
                         !clientData.NYCDOHMHNoticeOfPrivacyPractices,
                     })
+                    }
                   }
-                  }
-                />
-              </div>
-              <div>
-                <p className="text-sm">
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
+                  <p>
                   NYC DOHMH Notice of Privacy Practices - Acknowledgement of
                   Receipt{" "}
                 </p>
-              </div>
-          
+                </div>
             </div>
+          
+            
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
+              >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
                   disabled={clientData.LNEOutreachRetentionTrackingForm ? true : false}
-                  onChange={() =>{
+                  onChange={(e) =>{
                     clientData.LNEOutreachRetentionTrackingFormDate==="" || clientData.LNEOutreachRetentionTrackingFormDate===null ? (
                     setClientData({
                       ...clientData,
@@ -1267,29 +1394,29 @@ console.log("clientData",clientData)
                       LNEOutreachRetentionTrackingForm:
                         !clientData.LNEOutreachRetentionTrackingForm,
                     })
+                    }
                   }
-                  }
-                />
-              </div>
-              <div>
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
                 <p>LNE Outreach Retention/Tracking Form </p>
-              </div>
-             
-             
+                </div>
             </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+            
+           <div
+              className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
+              >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEReferralInformation ? 'checked' : ''}
                   disabled={clientData.LNEReferralInformation ? true : false}
-                  onChange={() => {
-                    
+                  onChange={(e) =>{
                     clientData.LNEReferralInformationDate==="" || clientData.LNEReferralInformationDate===null ? (
                     setClientData({
                       ...clientData,
@@ -1301,75 +1428,82 @@ console.log("clientData",clientData)
                       LNEReferralInformation:
                         !clientData.LNEReferralInformation,
                     })
+                    }
                   }
-                }
-                />
-              </div>
-              <div>
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
                 <p>LNE Referral Information </p>
-              </div>
-             
-            
+                </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
+              >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEClientReferralForm ? 'checked' : ''}
                   disabled={clientData.LNEClientReferralForm ? true : false}
-                  onChange={() =>
-                    clientData.LNEClientReferralFormDate ==="" || clientData.LNEClientReferralFormDate===null ? (
+                  onChange={(e) =>{
+                    clientData.LNEClientReferralFormDate==="" || clientData.LNEClientReferralFormDate===null ? (
                     setClientData({
                       ...clientData,
-                      LNEClientReferralForm: !clientData.LNEClientReferralForm,
-                      LNEClientReferralFormDate:new Date()
+                      LNEClientReferralForm:
+                        !clientData.LNEClientReferralForm,
+                        LNEClientReferralFormDate:new Date()
                     })):setClientData({
                       ...clientData,
-                      LNEClientReferralForm: !clientData.LNEClientReferralForm
+                      LNEClientReferralForm:
+                        !clientData.LNEClientReferralForm,
                     })
+                    }
                   }
-                />
-              </div>
-              <div>
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
                 <p>LNE Client Referral Form </p>
-              </div>
-              
-    
+                </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2  my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
+              className={`${MSAStyles.formRowsContainer} bg-light-purple flex gap-5 py-2 pl-2  my-2`}
+              >
+                 <label
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                  >
+                  <input
                   type="checkbox"
                   name=""
                   id=""
                   checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
                   disabled={clientData.LNEHNSEligibilityForm ? true : false}
-                  onChange={() =>{
-                    clientData.LNEHNSEligibilityFormDate==="" || clientData.LNEHNSEligibilityFormDate ===null ? (
+                  onChange={(e) =>{
+                    clientData.LNEHNSEligibilityFormDate==="" || clientData.LNEHNSEligibilityFormDate===null ? (
                     setClientData({
                       ...clientData,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                      LNEHNSEligibilityFormDate:new Date()
+                      LNEHNSEligibilityForm:
+                        !clientData.LNEHNSEligibilityForm,
+                        LNEHNSEligibilityFormDate:new Date()
                     })):setClientData({
                       ...clientData,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm
+                      LNEHNSEligibilityForm:
+                        !clientData.LNEHNSEligibilityForm,
                     })
-                  }}
-                />
-              </div>
-              <div>
+                    }
+                  }
+                 />
+                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
+                 </label>
+                <div className="pl-2">
                 <p>LNE HNS Eligibility Form </p>
-              </div>
-             
-         
+                </div>
             </div>
         </div>
     </div>
