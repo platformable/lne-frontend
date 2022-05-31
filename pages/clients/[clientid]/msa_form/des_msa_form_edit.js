@@ -199,9 +199,14 @@ console.log("clientData",clientData);
   }
 
   const crearFecha = () => {
-    const initialDate = new Date().toLocaleDateString()
-    const newDate = initialDate.split('/')
-    const fixedDate = `${newDate[2]}-${newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`}-${newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`}`
+    const initialDate= new Date().toLocaleDateString()
+    const newDate=initialDate.split('/')
+    let fixedDate;
+    if(typeof window !== 'undefined'){
+      const userLocale=window.navigator.language
+      userLocale==='en-US' ? fixedDate=`${newDate[2]}-${newDate[0].length===1? `0${newDate[0]}`:`${newDate[0]}`}-${newDate[1].length===1 ? `0${newDate[1]}`: `${newDate[1]}`}`
+      :fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
+    }
     return fixedDate
   }
 
@@ -3005,7 +3010,7 @@ console.log("clientData",clientData);
                 value={
                   clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate &&
                   clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate.split('T')[0]
-                }            LLNEConsentForReleaseOfConfidentialInformationUploadDate
+                }    
                 disabled={clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate ? true : false}
                 onChange={(e) => {
                   setClientData({
