@@ -555,6 +555,11 @@ const services = [
 
               
             </div>
+            <label className="block">
+                    <h6 className="font-black">Additional Comments</h6>
+                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
+                    onChange={(e)=>{setClientData({...clientData,comments:e.target.value})}}></textarea>
+                  </label>
           </div>
         </section>
         <section id="other" className="my-5 md:px-0 px-5">
@@ -562,11 +567,7 @@ const services = [
             <h6 className="font-black my-5 text-dark-blue">Others</h6>
           
           <div  className={`border-dark-blue  rounded-xl px-5 py-5`}>
-          <label className="block">
-                    <h6 className="font-black">Additional Comments</h6>
-                    <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
-                    onChange={(e)=>{setClientData({...clientData,comments:e.target.value})}}></textarea>
-                  </label>
+         
           
           <h6 className="font-black">Signatures</h6>
           <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">

@@ -127,6 +127,17 @@ const [serviceActionData,setServiceActionData]=useState({
     goal3targetdate:data[0]?.goal3targetdate
 })
 
+const [dataForSAP,setDataForSAP]=useState({
+  clientId: data[0]?.clientid,
+    goal1Completed:clientData.goal1Completed,
+    goal1CompletionDate:clientData.goal1CompletedDate,
+    goal2Completed:clientData.goal1Completed,
+    goal2CompletionDate:clientData.goal1CompletedDate,
+    goal3Completed:clientData.goal1Completed,
+    goal3CompletionDate:clientData.goal1CompletedDate,
+})
+
+console.log("dataForSAP",dataForSAP)
 
 const handleMsaformUpdate = ()=> {
 
@@ -144,6 +155,22 @@ const handleMsaformUpdate = ()=> {
       });
 }
 
+const handleServiceActionPlanFormUpdate = ()=> {
+
+  axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientData.clientId}/update_sap_from_progress_note`, {
+      clientData:dataForSAP
+    })
+    .then(function (response) {
+      if(response.status===200 || response.statusText==='Ok'){
+        console.log(response)
+        console.log("msa form updated successfully")
+      } 
+    })
+    .catch(function (error) {
+          console.log("an error ocurred while trying to update msa form", error)
+    });
+}
+
 const handleProgressNote=()=>{
 
     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/`, {
@@ -152,6 +179,7 @@ const handleProgressNote=()=>{
       .then(function (response) {
         if(response.status===200 || response.statusText==='Ok'){
           handleMsaformUpdate()
+          handleServiceActionPlanFormUpdate()
           notifyMessage()
           setShowImpactTrackerModal(!showImpactTrackerModal)
         } 
@@ -163,7 +191,7 @@ const handleProgressNote=()=>{
 }
 
 
-console.log("clientData",clientData)
+console.log("clientData",dataForSAP)
 
   return (
     <>
@@ -628,12 +656,12 @@ console.log("clientData",clientData)
                         <div className="workedGoals-box flex gap-5 ">
                             <p className="">Goal 01</p>
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="workedGoals" onChange={(e)=>setClientData({...clientData,goal1progress:true})}/>
+                            <input type="radio"  name="workedGoals" onChange={(e)=>setClientData({...clientData,goal1Progress:true})}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="workedGoals" onChange={(e)=>setClientData({...clientData,goal1progress:false})}/>
+                            <input type="radio"  name="workedGoals" onChange={(e)=>setClientData({...clientData,goal1Progress:false})}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
@@ -654,12 +682,12 @@ console.log("clientData",clientData)
                         <div className="workedGoals-box flex gap-5 ">
                             <p className="">Goal 02</p>
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="workedGoals2"onChange={(e)=>setClientData({...clientData,goal2progress:true})} />
+                            <input type="radio"  name="workedGoals2"onChange={(e)=>setClientData({...clientData,goal2Progress:true})} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="workedGoals2" onChange={(e)=>setClientData({...clientData,goal2progress:true})} />
+                            <input type="radio"  name="workedGoals2" onChange={(e)=>setClientData({...clientData,goal2Progress:true})} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
@@ -681,12 +709,12 @@ console.log("clientData",clientData)
                         <div className="workedGoals-box flex gap-5 ">
                             <p className="">Goal 03</p>
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3progress:true})}/>
+                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3Progress:true})}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3progress:true})}/>
+                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3Progress:true})}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
@@ -722,12 +750,19 @@ console.log("clientData",clientData)
                         <div className="workedGoals-box flex gap-5 ">
                             <p className="">Goal 01</p>
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="completedGoals1" onClick={(e)=>setClientData({...clientData,goal1Completed:true})}/>
+                            <input type="radio"  name="completedGoals1" onClick={(e)=>{
+                              setClientData({...clientData,goal1Completed:true})
+                              setDataForSAP({...dataForSAP,goal1Completed:true})
+                              }}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="completedGoals1" onClick={()=>setClientData({...clientData,goal1Completed:false})}/>
+                            <input type="radio"  name="completedGoals1" onClick={()=>{
+                              setClientData({...clientData,goal1Completed:false})
+                              setDataForSAP({...dataForSAP,goal1Completed:false})
+
+                          }}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
@@ -738,7 +773,10 @@ console.log("clientData",clientData)
                                 type="date"
                                 id=""
                                 className="rounded-lg text-sm p-1 border-dark-blue"
-                                onChange={(e)=>setClientData({...clientData,goal1CompletedDate:e.target.value})}
+                                onChange={(e)=>{
+                                  setClientData({...clientData,goal1CompletedDate:e.target.value})
+                                  setDataForSAP({...dataForSAP,goal1CompletionDate:e.target.value})
+                              }}
                                 />
                         </div>
                 </div>  
@@ -748,12 +786,18 @@ console.log("clientData",clientData)
                         <div className="workedGoals-box flex gap-5 ">
                             <p className="">Goal 02</p>
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="completedGoals2" onClick={(e)=>setClientData({...clientData,goal2Completed:true})} />
+                            <input type="radio"  name="completedGoals2" onClick={(e)=>{
+                              setClientData({...clientData,goal2Completed:true})
+                              setDataForSAP({...dataForSAP,goal2Completed:true})
+                          }} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="completedGoals2" onClick={(e)=>setClientData({...clientData,goal2Completed:false})}/>
+                            <input type="radio"  name="completedGoals2" onClick={(e)=>{
+                              setClientData({...clientData,goal2Completed:false})
+                              setDataForSAP({...dataForSAP,goal2Completed:false})
+                          }}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
@@ -764,7 +808,9 @@ console.log("clientData",clientData)
                                 type="date"
                                 id=""
                                 className="rounded-lg text-sm p-1 border-dark-blue"
-                                onChange={(e)=>setClientData({...clientData,goal2CompletedDate:e.target.value})}
+                                onChange={(e)=>{setClientData({...clientData,goal2CompletedDate:e.target.value})
+                                setDataForSAP({...dataForSAP,goal2CompletionDate:e.target.value})
+                              }}
                                 />
                         </div>
                 </div>  
@@ -775,11 +821,17 @@ console.log("clientData",clientData)
                         <div className="workedGoals-box flex gap-5 ">
                             <p className="">Goal 03</p>
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="completedGoals3" onClick={(e)=>setClientData({...clientData,goal3Completed:true})}/>
+                            <input type="radio"  name="completedGoals3" onClick={(e)=>{
+                              setClientData({...clientData,goal3Completed:true})
+                              setDataForSAP({...dataForSAP,goal3Completed:true})
+                          }}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                             <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="completedGoals3"onClick={(e)=>setClientData({...clientData,goal3Completed:false})} />
+                            <input type="radio"  name="completedGoals3"onClick={(e)=>{
+                              setClientData({...clientData,goal3Completed:false})
+                              setDataForSAP({...dataForSAP,goal3Completed:false})
+                          }} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
@@ -790,7 +842,9 @@ console.log("clientData",clientData)
                                 type="date"
                                 id=""
                                 className="rounded-lg text-sm p-1 border-dark-blue"
-                                onChange={(e)=>setClientData({...clientData,goal3CompletedDate:e.target.value})}
+                                onChange={(e)=>{setClientData({...clientData,goal3CompletedDate:e.target.value})
+                              setDataForSAP({...dataForSAP,goal3CompletionDate:e.target.value})
+                              }}
                                 />
                         </div>
                 </div>        
@@ -1383,6 +1437,13 @@ console.log("clientData",clientData)
                onClick={()=>handleProgressNote()}
               >
                 Save and Finish
+              </button>
+
+              <button
+                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+               onClick={()=>handleServiceActionPlanFormUpdate()}
+              >
+                SAP
               </button>
             </div>
           </section>
