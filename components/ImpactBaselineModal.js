@@ -62,20 +62,20 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
     const createImpactBaselineForm=()=>{
         if (
         impactBaseline.impactFormStartDate === '' ||
-        impactBaseline.barrierHIVPrimaryCare === null ||
-        impactBaseline.barrierAccessingMedications === null ||
-        impactBaseline.medicationAdherence === null ||
-        impactBaseline.CD4ViralLoad === null ||
-        impactBaseline.lastHIVTest === null ||
-        impactBaseline.PrEP === null ||
-        impactBaseline.unsafeSexualBehavior === null ||
-        impactBaseline.substanceAbuse === null ||
-        impactBaseline.riskOfOverdose === null ||
-        impactBaseline.legalIssues === null ||
-        impactBaseline.unstableEmployment === null ||
-        impactBaseline.mentalHealthIssues === null ||
-        impactBaseline.unstableHousing === null ||
-        impactBaseline.foodInsecurity === null 
+        impactBaseline.barrierHIVPrimaryCare === false ||
+        impactBaseline.barrierAccessingMedications === false ||
+        impactBaseline.medicationAdherence === false ||
+        impactBaseline.CD4ViralLoad === false ||
+        impactBaseline.lastHIVTest === false ||
+        impactBaseline.PrEP === false ||
+        impactBaseline.unsafeSexualBehavior === false ||
+        impactBaseline.substanceAbuse === false ||
+        impactBaseline.riskOfOverdose === false ||
+        impactBaseline.legalIssues === false ||
+        impactBaseline.unstableEmployment === false ||
+        impactBaseline.mentalHealthIssues === false ||
+        impactBaseline.unstableHousing === false ||
+        impactBaseline.foodInsecurity === false 
         ){
             setErrorMessage('Please fill all the fields')
         }         
