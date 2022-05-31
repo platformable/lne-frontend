@@ -502,12 +502,12 @@ const services = [
         </section>
         <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">Others</h6>
+            <h6 className="font-black my-5 text-dark-blue">Signatures</h6>
           
           <div  className={`border-dark-blue  rounded-xl px-5 py-5`}>
          
           
-          <h6 className="font-black">Signatures</h6>
+          <h6 className="font-black"></h6>
           <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
             <div className="others-container-box flex gap-2 justify-center items-center" >
               <p>Has the client signed?</p>
