@@ -366,7 +366,7 @@ return finalDate
                       onChange={(e) =>
                           setClientData({...clientData,goal1Summary:e.target.value})
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                       disabled={disableUserIfNotSupervisor()}
                     >
                      <option value={clientData.goal1Summary} selected="true">{clientData.goal1Summary}</option>
@@ -384,7 +384,7 @@ return finalDate
                         setClientData({...clientData,goal1ServiceCategory:e.target.value})
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                         <option value={clientData.goal1ServiceCategory} selected="true">{clientData.goal1ServiceCategory}</option>
                     {/*   <option  disabled="disabled">Select</option> */}
@@ -447,7 +447,7 @@ return finalDate
                           setClientData({...clientData,goal2Summary:e.target.value})
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option value={clientData.goal2Summary} selected="true">{clientData.goal2Summary}</option>
                     {/*   <option  disabled="disabled">Select</option> */}
@@ -464,7 +464,7 @@ return finalDate
                         setClientData({...clientData,goal2ServiceCategory:e.target.value})
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                           <option value={clientData.goal2ServiceCategory} selected="true">{clientData.goal2ServiceCategory}</option>
                     {/*   <option  disabled="disabled">Select</option> */}
@@ -531,7 +531,7 @@ return finalDate
                           setClientData({...clientData,goal3Summary:e.target.value})
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       
                       <option value={clientData.goal3Summary} selected="true">{clientData.goal3Summary}</option>
@@ -549,7 +549,7 @@ return finalDate
                         setClientData({...clientData,goal3ServiceCategory:e.target.value})
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option value={clientData.goal3ServiceCategory} selected="true">{clientData.goal3ServiceCategory}</option>
                     {/*   <option  disabled="disabled">Select</option> */}
