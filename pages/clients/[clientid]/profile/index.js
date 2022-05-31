@@ -49,7 +49,7 @@ console.log("data",data)
   
     let result 
 
-    if(data[0]?.msaformid==="" || data[0]?.msaformid===null && data[0]?.servicesactionplanid ==="" || data[0]?.servicesactionplanid ===null){
+    if(data[0]?.msaformid==="" || data[0]?.msaformid===null && data[0]?.servicesactionplanid ==="" || data[0]?.servicesactionplanid === null ){
       result="Please create an MSA Form & A Service Action Pan"
     } 
     

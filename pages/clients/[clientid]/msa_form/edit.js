@@ -27,7 +27,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 
   const [clientData, setClientData] = useState({
     dateFormReviewed:new Date(),
-    clientId: data[0].clientid,
+    clientId: data[0]?.clientid,
     clientFirstName: data[0].clientfirstname,
     clientLastName: data[0].clientlastname,
     clientHCWID: data[0].clienthcwid,
@@ -443,7 +443,6 @@ const crearFecha=()=>{
                         ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
                       });
                     }
-                    
                   }}
                 />
               </div>
@@ -585,7 +584,7 @@ const crearFecha=()=>{
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    if(clientData){
+                    if(clientData.AIRSCollateralInformation){
                       setClientData({
                         ...clientData,
                         AIRSCollateralInformationDate: e.target.value,
@@ -663,7 +662,7 @@ const crearFecha=()=>{
                   /* disabled={clientData.AIRSFinancialInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    if (clientData){
+                    if (clientData.AIRSFinancialInformation){
                       setClientData({
                         ...clientData,
                         AIRSFinancialInformationDate: e.target.value,
@@ -1067,7 +1066,6 @@ const crearFecha=()=>{
                           !clientData.AIRSSubstanceUseHistory,
                       });
                     }
-                    
                   }}
                 />
               </div>
@@ -1929,8 +1927,6 @@ const crearFecha=()=>{
                         LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
                       });
                     }
-            
-                    
                   }}
                 />
               </div>
