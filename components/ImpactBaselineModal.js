@@ -19,9 +19,9 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
     const router = useRouter()    
 
     const date = getDate()
-
+    const [errorMessage, setErrorMessage] = useState('')
     const [impactBaseline, setImpactBaseline] = useState({
-        impactFormStartDate: "",
+        impactFormStartDate: date,
         barrierHIVPrimaryCare: false,
         barrierAccessingMedications: false,
         medicationAdherence: false,
@@ -60,11 +60,32 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
       };
 
     const createImpactBaselineForm=()=>{
-         notifyMessage()
-         setShowImpactBaselineModal(!showImpactBaselineModal)
-         setTimeout(()=>{
-        router.push(`/clients/${clientId}/profile`)
-    },2300)
+        if (
+        impactBaseline.impactFormStartDate === '' ||
+        impactBaseline.barrierHIVPrimaryCare === null ||
+        impactBaseline.barrierAccessingMedications === null ||
+        impactBaseline.medicationAdherence === null ||
+        impactBaseline.CD4ViralLoad === null ||
+        impactBaseline.lastHIVTest === null ||
+        impactBaseline.PrEP === null ||
+        impactBaseline.unsafeSexualBehavior === null ||
+        impactBaseline.substanceAbuse === null ||
+        impactBaseline.riskOfOverdose === null ||
+        impactBaseline.legalIssues === null ||
+        impactBaseline.unstableEmployment === null ||
+        impactBaseline.mentalHealthIssues === null ||
+        impactBaseline.unstableHousing === null ||
+        impactBaseline.foodInsecurity === null 
+        ){
+            setErrorMessage('Please fill all the fields')
+        }         
+        else {
+            notifyMessage()
+            setShowImpactBaselineModal(!showImpactBaselineModal)
+            setTimeout(()=>{
+            router.push(`/clients/${clientId}/profile`)
+        },2500)
+       }
      }
     // const createImpactBaselineForm = ()=>{           
     //     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker_baseline`, {
@@ -433,6 +454,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                     </svg>
         
                     Save</button>
+                    {errorMessage && (<p className='mt-2 px-5 py-1 font-semibold border border-red-300 rounded-md text-red-600 text-lg'>{errorMessage}</p>)}
 
             </div>
         </div>   
