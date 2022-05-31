@@ -129,21 +129,22 @@ const services = [
     clientData.goal1TargetDate==="" ||
     clientData.goal1ActionStep1==="" ||
     clientData.goal1ActionStep2==="" ||
-    clientData.goal1ActionStep3==="" ||
-    clientData.goal2ServiceCategory==="" ||
-    clientData.goal2Summary==="" ||
-    clientData.goal2Details ==="" ||
-    clientData.goal2TargetDate==="" ||
-    clientData.goal2ActionStep1==="" ||
-    clientData.goal2ActionStep2==="" ||
-    clientData.goal2ActionStep3==="" ||
-    clientData.goal3ServiceCategory==="" ||
-    clientData.goal3Summary==="" ||
-    clientData.goal3Details==="" ||
-    clientData.goal3TargetDate==="" ||
-    clientData.goal3ActionStep1==="" ||
-    clientData.goal3ActionStep2==="" ||
-    clientData.goal3ActionStep3==="") {
+    clientData.goal1ActionStep3==="" 
+    // clientData.goal2ServiceCategory==="" ||
+    // clientData.goal2Summary==="" ||
+    // clientData.goal2Details ==="" ||
+    // clientData.goal2TargetDate==="" ||
+    // clientData.goal2ActionStep1==="" ||
+    // clientData.goal2ActionStep2==="" ||
+    // clientData.goal2ActionStep3==="" ||
+    // clientData.goal3ServiceCategory==="" ||
+    // clientData.goal3Summary==="" ||
+    // clientData.goal3Details==="" ||
+    // clientData.goal3TargetDate==="" ||
+    // clientData.goal3ActionStep1==="" ||
+    // clientData.goal3ActionStep2==="" ||
+    // clientData.goal3ActionStep3===""
+    ) {
       setErrorCompleteAllFieldsMessage(!errorCompleteAllFieldsMessage)
     }else{
       
@@ -182,7 +183,6 @@ const services = [
         </section>
         <section className="container mx-auto">
     
-{showImpactBaselineModal && <ImpactBaselineModal setShowImpactBaselineModal={setShowImpactBaselineModal} clientId={clientData.clientId}/>}
         <button 
         onClick={()=>router.back()}
         className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
