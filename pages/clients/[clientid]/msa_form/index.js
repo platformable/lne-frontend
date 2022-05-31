@@ -310,7 +310,7 @@ useEffect(()=>{
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <p className="text-xs"><span className="text-red-500">*</span> Mandatory fields (Please, fil out these forms to complete the process)</p>
+            <p className="text-xs"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
             <div
               id="form-head"
               className={`${MSAStyles.formRowsContainer} bg-dark-blue  text-white grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}

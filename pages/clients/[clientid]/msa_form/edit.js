@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditMsaFormPage = ({ data }) => {
-console.log("data",data)
+ 
    const router = useRouter()
 
    const notifyMessage = () => {
@@ -78,7 +78,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     LNEHNSEligibilityFormDate: data[0].lnehnseligibilityformdate
   });
 
-  const todaysDate = new Date();
+const todaysDate = new Date();
 
   console.log("data",data)
   console.log("clientData",clientData)
@@ -286,7 +286,7 @@ const crearFecha=()=>{
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <p className="text-xs"><span className="text-red-500">*</span> Mandatory fields (Please, fil out these forms to complete the process)</p>
+            <p className="text-xs"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
             <div
               id="form-head"
               className={`${MSAStyles.formRowsContainer} bg-dark-blue  text-white grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}
@@ -299,29 +299,54 @@ const crearFecha=()=>{
             {/* {TABLE HEAD} */}
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSIntakeForm? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSIntakeForm ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSIntakeForm: !formState.AIRSIntakeForm,
+                            AIRSIntakeFormDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSIntakeForm: !formState.AIRSIntakeForm,
+                            AIRSIntakeFormDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSIntakeForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSIntakeForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={(e) => {
-                    clientData.AIRSIntakeFormDate ==="" || clientData.AIRSIntakeFormDate ===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
-                      AIRSIntakeFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
-                      AIRSIntakeFormDate: ''
-                    })
+                  
+                  onChange={() => {
+                    clientData.AIRSIntakeFormDate === "" || clientData.AIRSIntakeFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                        AIRSIntakeFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                        AIRSIntakeFormDate: ""
+                      })
                   }
-                }
+                  }
                   checked={clientData.AIRSIntakeForm ? 'checked' : false}
-                  disabled={clientData.AIRSIntakeFormDate ? true : false} 
+                  disabled={clientData.AIRSIntakeForm ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS Intake Form <span className="text-red-500">*</span></p>
@@ -349,51 +374,99 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
+
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessment? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.ComprehensiveRiskBehaviorAssessment ?
+                          setClientData(formState => ({
+                            ...formState,
+                            ComprehensiveRiskBehaviorAssessment: !formState.ComprehensiveRiskBehaviorAssessment,
+                            ComprehensiveRiskBehaviorAssessmentDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            ComprehensiveRiskBehaviorAssessment: !formState.ComprehensiveRiskBehaviorAssessment,
+                            ComprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessment ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.ComprehensiveRiskBehaviorAssessment && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.ComprehensiveRiskBehaviorAssessmentDate==="" || clientData.ComprehensiveRiskBehaviorAssessmentDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      ComprehensiveRiskBehaviorAssessment:
-                        !clientData.ComprehensiveRiskBehaviorAssessment,
-                        ComprehensiveRiskBehaviorAssessmentDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      ComprehensiveRiskBehaviorAssessment:
-                        !clientData.ComprehensiveRiskBehaviorAssessment,
-                        ComprehensiveRiskBehaviorAssessmentDate: '',
-                    })
+                    clientData.ComprehensiveRiskBehaviorAssessmentDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessment: !clientData.ComprehensiveRiskBehaviorAssessment,
+                        ComprehensiveRiskBehaviorAssessmentDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessment: !clientData.ComprehensiveRiskBehaviorAssessment,
+                        ComprehensiveRiskBehaviorAssessmentDate: ""
+                      })
                   }
-                }
+                  }
                   checked={clientData.ComprehensiveRiskBehaviorAssessment ? 'checked' : false}
                   disabled={clientData.ComprehensiveRiskBehaviorAssessment ? true : false}
                 />
+                
               </div>
               <div>
                 <p>Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
@@ -420,49 +493,98 @@ const crearFecha=()=>{
               </div>
               <div className="flex justify-center">
               <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlan? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.ServiceActionPlan ?
+                          setClientData(formState => ({
+                            ...formState,
+                            ServiceActionPlan: !formState.ServiceActionPlan,
+                            ServiceActionPlanDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            ServiceActionPlan: !formState.ServiceActionPlan,
+                            ServiceActionPlanDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ServiceActionPlan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.ServiceActionPlan && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    
-                    clientData.ServiceActionPlanDate==="" || clientData.ServiceActionPlanDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      ServiceActionPlan: !clientData.ServiceActionPlan,
-                      ServiceActionPlanDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      ServiceActionPlan: !clientData.ServiceActionPlan,
-                      ServiceActionPlanDate: ''
-                    })
-                  }}
-                  checked={clientData.ServiceActionPlan ? 'checked' : ''}
+                    clientData.ServiceActionPlanDate === "" || clientData.ServiceActionPlanDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ServiceActionPlan: !clientData.ServiceActionPlan,
+                        ServiceActionPlanDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ServiceActionPlan: !clientData.ServiceActionPlan,
+                        ServiceActionPlanDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.ServiceActionPlan ? 'checked' : false}
                   disabled={clientData.ServiceActionPlan ? true : false}
                 />
+                
               </div>
               <div>
                 <p>Service Action Plan <span className="text-red-500">*</span> </p>
@@ -488,51 +610,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSCollateralInformation? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSCollateralInformation ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSCollateralInformation: !formState.AIRSCollateralInformation,
+                            AIRSCollateralInformationDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSCollateralInformation: !formState.AIRSCollateralInformation,
+                            AIRSCollateralInformationDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSCollateralInformation ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSCollateralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={(e) =>{
-                    clientData.AIRSCollateralInformationDate==="" || clientData.AIRSCollateralInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
-                        AIRSCollateralInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
-                        AIRSCollateralInformationDate: ''
-                    })
-                    }
+                  
+                  onChange={() => {
+                    clientData.AIRSCollateralInformationDate === "" || clientData.AIRSCollateralInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
+                        AIRSCollateralInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSCollateralInformation: !clientData.AIRSCollateralInformation,
+                        AIRSCollateralInformationDate: ""
+                      })
                   }
-                   checked={clientData.AIRSCollateralInformation ? true : false} 
+                  }
+                  checked={clientData.AIRSCollateralInformation ? 'checked' : false}
                   disabled={clientData.AIRSCollateralInformation ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS Collateral Information </p>
@@ -559,50 +728,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSFinancialInformation? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSFinancialInformation ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSFinancialInformation: !formState.AIRSFinancialInformation,
+                            AIRSFinancialInformationDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSFinancialInformation: !formState.AIRSFinancialInformation,
+                            AIRSFinancialInformationDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSFinancialInformation ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSFinancialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.AIRSFinancialInformationDate ==="" || clientData.AIRSFinancialInformationDate === null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                        AIRSFinancialInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                      AIRSFinancialInformationDate: ''
-                    })
-                  }}
-                  checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
+                    clientData.AIRSFinancialInformationDate === "" || clientData.AIRSFinancialInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSFinancialInformation: !clientData.AIRSFinancialInformation,
+                        AIRSFinancialInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSFinancialInformation: !clientData.AIRSFinancialInformation,
+                        AIRSFinancialInformationDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSFinancialInformation ? 'checked' : false}
                   disabled={clientData.AIRSFinancialInformation ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS Financial Information </p>
@@ -629,21 +846,45 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
@@ -651,28 +892,52 @@ const crearFecha=()=>{
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVAIDSRiskHistory? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSHIVAIDSRiskHistory ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSHIVAIDSRiskHistory: !formState.AIRSHIVAIDSRiskHistory,
+                            AIRSHIVAIDSRiskHistoryDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSHIVAIDSRiskHistory: !formState.AIRSHIVAIDSRiskHistory,
+                            AIRSHIVAIDSRiskHistoryDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHIVAIDSRiskHistory ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSHIVAIDSRiskHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.AIRSHIVAIDSRiskHistoryDate==="" || clientData.AIRSHIVAIDSRiskHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                        AIRSHIVAIDSRiskHistoryDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                      AIRSHIVAIDSRiskHistoryDate: ''
-                    })
-                  }}
-                  checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
+                    clientData.AIRSHIVAIDSRiskHistoryDate === "" || clientData.AIRSHIVAIDSRiskHistoryDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistory: !clientData.AIRSHIVAIDSRiskHistory,
+                        AIRSHIVAIDSRiskHistoryDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistory: !clientData.AIRSHIVAIDSRiskHistory,
+                        AIRSHIVAIDSRiskHistoryDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : false}
                   disabled={clientData.AIRSHIVAIDSRiskHistory ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS HIV AIDS Risk History </p>
@@ -699,49 +964,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+               <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHCVHistory? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSHCVHistory ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSHCVHistory: !formState.AIRSHCVHistory,
+                            AIRSHCVHistoryDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSHCVHistory: !formState.AIRSHCVHistory,
+                            AIRSHCVHistoryDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHCVHistory ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSHCVHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.AIRSHCVHistoryDate==="" || clientData.AIRSHCVHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
-                      AIRSHCVHistoryDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
-                      AIRSHCVHistoryDate: '',
-                    })
+                    clientData.AIRSHCVHistoryDate === "" || clientData.AIRSHCVHistoryDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                        AIRSHCVHistoryDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                        AIRSHCVHistoryDate: ""
+                      })
                   }
-                }
-                  checked={clientData.AIRSHCVHistory ? 'checked' : ''}
+                  }
+                  checked={clientData.AIRSHCVHistory ? 'checked' : false}
                   disabled={clientData.AIRSHCVHistory ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS HCV History </p>
@@ -767,52 +1081,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHousingInformation? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSHousingInformation ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSHousingInformation: !formState.AIRSHousingInformation,
+                            AIRSHousingInformationDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSHousingInformation: !formState.AIRSHousingInformation,
+                            AIRSHousingInformationDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHousingInformation ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSHousingInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                 
-                    clientData.AIRSHousingInformationDate==="" || clientData.AIRSHousingInformationDate=== null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                        AIRSHousingInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                      AIRSHousingInformationDate: '',
-                    })
+                    clientData.AIRSHousingInformationDate === "" || clientData.AIRSHousingInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHousingInformation: !clientData.AIRSHousingInformation,
+                        AIRSHousingInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHousingInformation: !clientData.AIRSHousingInformation,
+                        AIRSHousingInformationDate: ""
+                      })
                   }
-                }
-                  checked={clientData.AIRSHousingInformation ? 'checked' : ''}
+                  }
+                  checked={clientData.AIRSHousingInformation ? 'checked' : false}
                   disabled={clientData.AIRSHousingInformation ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS Housing Information </p>
@@ -839,50 +1199,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSInsuranceInformation? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSInsuranceInformation ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSInsuranceInformation: !formState.AIRSInsuranceInformation,
+                            AIRSInsuranceInformationDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSInsuranceInformation: !formState.AIRSInsuranceInformation,
+                            AIRSInsuranceInformationDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSInsuranceInformation ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSInsuranceInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.AIRSInsuranceInformationDate==="" || clientData.AIRSInsuranceInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                        AIRSInsuranceInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                      AIRSInsuranceInformationDate: ''
-                    })
-                  }}
-                  checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
+                    clientData.AIRSInsuranceInformationDate === "" || clientData.AIRSInsuranceInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformation: !clientData.AIRSInsuranceInformation,
+                        AIRSInsuranceInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformation: !clientData.AIRSInsuranceInformation,
+                        AIRSInsuranceInformationDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSInsuranceInformation ? 'checked' : false}
                   disabled={clientData.AIRSInsuranceInformation ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS Insurance Information </p>
@@ -909,50 +1317,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-blue grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSSubstanceUseHistory? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.AIRSSubstanceUseHistory ?
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSSubstanceUseHistory: !formState.AIRSSubstanceUseHistory,
+                            AIRSSubstanceUseHistoryDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            AIRSSubstanceUseHistory: !formState.AIRSSubstanceUseHistory,
+                            AIRSSubstanceUseHistoryDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSSubstanceUseHistory ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.AIRSSubstanceUseHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.AIRSSubstanceUseHistoryDate==="" || clientData.AIRSSubstanceUseHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                        AIRSSubstanceUseHistoryDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                        AIRSSubstanceUseHistoryDate: ''
-                    })
-                  }}
-                  checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
+                    clientData.AIRSSubstanceUseHistoryDate === "" || clientData.AIRSSubstanceUseHistoryDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistory: !clientData.AIRSSubstanceUseHistory,
+                        AIRSSubstanceUseHistoryDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistory: !clientData.AIRSSubstanceUseHistory,
+                        AIRSSubstanceUseHistoryDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSSubstanceUseHistory ? 'checked' : false}
                   disabled={clientData.AIRSSubstanceUseHistory ? true : false}
                 />
+                
               </div>
               <div>
                 <p>AIRS Substance Use History </p>
@@ -979,49 +1435,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientRights? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEClientRights ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientRights: !formState.LNEClientRights,
+                            LNEClientRightsDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientRights: !formState.LNEClientRights,
+                            LNEClientRightsDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEClientRights ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEClientRights && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.LNEClientRightsDate==="" || clientData.LNEClientRightsDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientRights: !clientData.LNEClientRights,
-                      LNEClientRightsDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientRights: !clientData.LNEClientRights,
-                      LNEClientRightsDate: ''
-                     
-                    })
-                  }}
-                  checked={clientData.LNEClientRights ? 'checked' : ''}
+                    clientData.LNEClientRightsDate === "" || clientData.LNEClientRightsDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEClientRights: !clientData.LNEClientRights,
+                        LNEClientRightsDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEClientRights: !clientData.LNEClientRights,
+                        LNEClientRightsDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.LNEClientRights ? 'checked' : false}
                   disabled={clientData.LNEClientRights ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Client Rights </p>
@@ -1047,50 +1552,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientGrievancePolicyProcedure? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEClientGrievancePolicyProcedure ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientRights: !formState.LNEClientGrievancePolicyProcedure,
+                            LNEClientGrievancePolicyProcedureDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientGrievancePolicyProcedure: !formState.LNEClientGrievancePolicyProcedure,
+                            LNEClientGrievancePolicyProcedureDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEClientGrievancePolicyProcedure ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEClientGrievancePolicyProcedure && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.LNEClientGrievancePolicyProcedureDate==="" || clientData.LNEClientGrievancePolicyProcedureDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                      LNEClientGrievancePolicyProcedureDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                      LNEClientGrievancePolicyProcedureDate: '',
-                    })
-                  }}
-                  checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
+                    clientData.LNEClientGrievancePolicyProcedureDate === "" || clientData.LNEClientGrievancePolicyProcedureDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedure: !clientData.LNEClientGrievancePolicyProcedure,
+                        LNEClientGrievancePolicyProcedureDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedure: !clientData.LNEClientGrievancePolicyProcedure,
+                        LNEClientGrievancePolicyProcedureDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : false}
                   disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Client Grievance Policy & Procedure </p>
@@ -1117,49 +1670,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientGrievancePolicyProcedure? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEClientGrievancePolicyProcedure ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientRights: !formState.LNEClientGrievancePolicyProcedure,
+                            LNEClientGrievancePolicyProcedureDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientGrievancePolicyProcedure: !formState.LNEClientGrievancePolicyProcedure,
+                            LNEClientGrievancePolicyProcedureDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEClientGrievancePolicyProcedure ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEClientGrievancePolicyProcedure && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    clientData.LNEProgramRulesDate==="" || clientData.LNEProgramRulesDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEProgramRules: !clientData.LNEProgramRules,
-                      LNEProgramRulesDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEProgramRules: !clientData.LNEProgramRules,
-                      LNEProgramRulesDate: '',
-                    })
+                    clientData.LNEClientGrievancePolicyProcedureDate === "" || clientData.LNEClientGrievancePolicyProcedureDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedure: !clientData.LNEClientGrievancePolicyProcedure,
+                        LNEClientGrievancePolicyProcedureDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedure: !clientData.LNEClientGrievancePolicyProcedure,
+                        LNEClientGrievancePolicyProcedureDate: ""
+                      })
                   }
-                }
-                  checked={clientData.LNEProgramRules ? 'checked' : ''}
-                  disabled={clientData.LNEProgramRules ? true : false}
+                  }
+                  checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : false}
+                  disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Program Rules </p>
@@ -1185,50 +1787,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEEmergencyContactConsent? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEEmergencyContactConsent ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEEmergencyContactConsent: !formState.LNEEmergencyContactConsent,
+                            LNEEmergencyContactConsentDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEEmergencyContactConsent: !formState.LNEEmergencyContactConsent,
+                            LNEEmergencyContactConsentDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEEmergencyContactConsent ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEEmergencyContactConsent && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEEmergencyContactConsentDate==="" || clientData.LNEEmergencyContactConsentDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                        LNEEmergencyContactConsentDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                      LNEEmergencyContactConsentDate: '',  
-                    })
-                  }}
-                  checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
+                  
+                  onChange={() => {
+                    clientData.LNEEmergencyContactConsentDate === "" || clientData.LNEEmergencyContactConsentDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsent: !clientData.LNEEmergencyContactConsent,
+                        LNEEmergencyContactConsentDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsent: !clientData.LNEEmergencyContactConsent,
+                        LNEEmergencyContactConsentDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.LNEEmergencyContactConsent ? 'checked' : false}
                   disabled={clientData.LNEEmergencyContactConsent ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Emergency Contact Consent </p>
@@ -1255,53 +1905,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEConsentForReleaseOfConfidentialInformation? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEConsentForReleaseOfConfidentialInformation ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEConsentForReleaseOfConfidentialInformation: !formState.LNEConsentForReleaseOfConfidentialInformation,
+                            LNEConsentForReleaseOfConfidentialInformationDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEConsentForReleaseOfConfidentialInformation: !formState.LNEConsentForReleaseOfConfidentialInformation,
+                            LNEConsentForReleaseOfConfidentialInformationDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformation ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEConsentForReleaseOfConfidentialInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEConsentForReleaseOfConfidentialInformationDate==="" || clientData.LNEConsentForReleaseOfConfidentialInformationDate===null ? (
+                  
+                  onChange={() => {
+                    clientData.LNEConsentForReleaseOfConfidentialInformationDate === "" || clientData.LNEConsentForReleaseOfConfidentialInformationDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEConsentForReleaseOfConfidentialInformation:
-                          !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                          LNEConsentForReleaseOfConfidentialInformationDate:crearFecha()
+                        LNEConsentForReleaseOfConfidentialInformation: !clientData.LNEConsentForReleaseOfConfidentialInformation,
+                        LNEConsentForReleaseOfConfidentialInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEConsentForReleaseOfConfidentialInformation: !clientData.LNEConsentForReleaseOfConfidentialInformation,
+                        LNEConsentForReleaseOfConfidentialInformationDate: ""
                       })
-                    ):setClientData({
-                      ...clientData,
-                      LNEConsentForReleaseOfConfidentialInformation:
-                        !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                      LNEConsentForReleaseOfConfidentialInformationDate: '',
-                    })
-                    
                   }
                   }
-                  checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
+                  checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : false}
                   disabled={clientData.LNEConsentForReleaseOfConfidentialInformation ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Consent for Release of Confidential Information </p>
@@ -1329,49 +2024,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HIPPAConsentForm? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.HIPPAConsentForm ?
+                          setClientData(formState => ({
+                            ...formState,
+                            HIPPAConsentForm: !formState.HIPPAConsentForm,
+                            HIPPAConsentFormDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            HIPPAConsentForm: !formState.HIPPAConsentForm,
+                            HIPPAConsentFormDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.HIPPAConsentForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.HIPPAConsentForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.HIPPAConsentFormDate==="" || clientData.HIPPAConsentFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
-                      HIPPAConsentFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
-                      HIPPAConsentFormDate: '',
-                    })
+                  
+                  onChange={() => {
+                    clientData.HIPPAConsentFormDate === "" || clientData.HIPPAConsentFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                        HIPPAConsentFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                        HIPPAConsentFormDate: ""
+                      })
                   }
                   }
-                  checked={clientData.HIPPAConsentForm ? 'checked' : ''}
+                  checked={clientData.HIPPAConsentForm ? 'checked' : false}
                   disabled={clientData.HIPPAConsentForm ? true : false}
                 />
+                
               </div>
               <div>
                 <p>HIPAA Consent Form (OCA Form 960)</p>
@@ -1397,51 +2141,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+               <div className={`ml-1 text-center flex justify-center items-center ${clientData.NYCDOHMHNoticeOfPrivacyPractices? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.NYCDOHMHNoticeOfPrivacyPractices ?
+                          setClientData(formState => ({
+                            ...formState,
+                            NYCDOHMHNoticeOfPrivacyPractices: !formState.NYCDOHMHNoticeOfPrivacyPractices,
+                            NYCDOHMHNoticeOfPrivacyPracticesDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            NYCDOHMHNoticeOfPrivacyPractices: !formState.NYCDOHMHNoticeOfPrivacyPractices,
+                            NYCDOHMHNoticeOfPrivacyPracticesDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPractices ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.NYCDOHMHNoticeOfPrivacyPractices && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate==="" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                        NYCDOHMHNoticeOfPrivacyPracticesDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                      NYCDOHMHNoticeOfPrivacyPracticesDate: '',
-                    })
+                  
+                  onChange={() => {
+                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate === "" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPractices: !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPractices: !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: ""
+                      })
                   }
                   }
-                  checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
+                  checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : false}
                   disabled={clientData.NYCDOHMHNoticeOfPrivacyPractices ? true : false}
                 />
+                
               </div>
               <div>
                 <p>
@@ -1471,21 +2262,45 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
@@ -1493,29 +2308,52 @@ const crearFecha=()=>{
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEOutreachRetentionTrackingForm? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEOutreachRetentionTrackingForm ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
+                            LNEOutreachRetentionTrackingFormDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
+                            LNEOutreachRetentionTrackingFormDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEOutreachRetentionTrackingForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEOutreachRetentionTrackingForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEOutreachRetentionTrackingFormDate==="" || clientData.LNEOutreachRetentionTrackingFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                        LNEOutreachRetentionTrackingFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                      LNEOutreachRetentionTrackingFormDate: '',
-                    })
+                  
+                  onChange={() => {
+                    clientData.LNEOutreachRetentionTrackingFormDate === "" || clientData.LNEOutreachRetentionTrackingFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingForm: !clientData.LNEOutreachRetentionTrackingForm,
+                        LNEOutreachRetentionTrackingFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingForm: !clientData.LNEOutreachRetentionTrackingForm,
+                        LNEOutreachRetentionTrackingFormDate: ""
+                      })
                   }
                   }
-                  checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
+                  checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : false}
                   disabled={clientData.LNEOutreachRetentionTrackingForm ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Outreach Retention/Tracking Form </p>
@@ -1542,52 +2380,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-pink grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEReferralInformation? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEReferralInformation ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEReferralInformation: !formState.LNEReferralInformation,
+                            LNEReferralInformationDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEReferralInformation: !formState.LNEReferralInformation,
+                            LNEReferralInformationDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEReferralInformation ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEReferralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
+                  
                   onChange={() => {
-                    
-                    clientData.LNEReferralInformationDate==="" || clientData.LNEReferralInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                        LNEReferralInformationDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                      LNEReferralInformationDate: ''
-                    })
+                    clientData.LNEReferralInformationDate === "" || clientData.LNEReferralInformationDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEReferralInformation: !clientData.LNEReferralInformation,
+                        LNEReferralInformationDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEReferralInformation: !clientData.LNEReferralInformation,
+                        LNEReferralInformationDate: ""
+                      })
                   }
-                }
-                  checked={clientData.LNEReferralInformation ? 'checked' : ''}
+                  }
+                  checked={clientData.LNEReferralInformation ? 'checked' : false}
                   disabled={clientData.LNEReferralInformation ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Referral Information </p>
@@ -1614,48 +2498,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-pink grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientReferralForm? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEClientReferralForm ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientReferralForm: !formState.LNEClientReferralForm,
+                            LNEClientReferralFormDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEClientReferralForm: !formState.LNEClientReferralForm,
+                            LNEClientReferralFormDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEClientReferralForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEClientReferralForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>
-                    clientData.LNEClientReferralFormDate ==="" || clientData.LNEClientReferralFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientReferralForm: !clientData.LNEClientReferralForm,
-                      LNEClientReferralFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientReferralForm: !clientData.LNEClientReferralForm,
-                      LNEClientReferralFormDate: '',
-                    })
+                  
+                  onChange={() => {
+                    clientData.LNEClientReferralFormDate === "" || clientData.LNEClientReferralFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEClientReferralForm: !clientData.LNEClientReferralForm,
+                        LNEClientReferralFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEClientReferralForm: !clientData.LNEClientReferralForm,
+                        LNEClientReferralFormDate: ""
+                      })
                   }
-                  checked={clientData.LNEClientReferralForm ? 'checked' : ''}
+                  }
+                  checked={clientData.LNEClientReferralForm ? 'checked' : false}
                   disabled={clientData.LNEClientReferralForm ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE Client Referral Form </p>
@@ -1681,48 +2615,98 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} bg-light-purple grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5">
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEHNSEligibilityForm? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.LNEHNSEligibilityForm ?
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
+                            LNEHNSEligibilityFormDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
+                            LNEHNSEligibilityFormDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.LNEHNSEligibilityForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
                 <input
+                  className={`${!clientData.LNEHNSEligibilityForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
-                  onChange={() =>{
-                    clientData.LNEHNSEligibilityFormDate==="" || clientData.LNEHNSEligibilityFormDate ===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                      LNEHNSEligibilityFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                      LNEHNSEligibilityFormDate: ''
-                    })
-                  }}
-                  checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
+                  
+                  onChange={() => {
+                    clientData.LNEHNSEligibilityFormDate === "" || clientData.LNEHNSEligibilityFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                        LNEHNSEligibilityFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                        LNEHNSEligibilityFormDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.LNEHNSEligibilityForm ? 'checked' : false}
                   disabled={clientData.LNEHNSEligibilityForm ? true : false}
                 />
+                
               </div>
               <div>
                 <p>LNE HNS Eligibility Form </p>
@@ -1749,21 +2733,45 @@ const crearFecha=()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <svg id="Dropbox_folder" dataName="Dropbox folder" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="56.734" height="43.529" viewBox="0 0 56.734 43.529">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_923" dataName="Rectangle 923" width="23.256" height="31.068" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_918" dataName="Rectangle 918" width="51.23" height="37.972" fill="#fff"/>
+    </clipPath>
+    <filter id="Path_1139" x="-0.148" y="3.322" width="53.16" height="43.994" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood floodColor="#007ee5" floodOpacity="0.153"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1259" dataName="Group 1259" transform="matrix(0.899, 0.438, -0.438, 0.899, 35.832, 0)">
+    <g id="Group_1165" dataName="Group 1165" clipPath="url(#clip-path)">
+      <path id="Path_1162" dataName="Path 1162" d="M.017,15.524H0q0,.457,0,.915.005,4.626.013,9.252c0,.693,0,1.389.055,2.079a3.261,3.261,0,0,0,.826,1.873,3.937,3.937,0,0,0,3.134,1.423c1.6,0,3.2,0,4.8,0l10.535,0a3.825,3.825,0,0,0,2.107-.612,3.9,3.9,0,0,0,1.413-1.64,4.2,4.2,0,0,0,.372-1.858q-.006-6,0-12,0-3.826,0-7.652a.627.627,0,0,0-.189-.478q-.671-.66-1.337-1.325Q19.058,2.834,16.388.166a.527.527,0,0,0-.4-.166c-.322.006-.644,0-.966,0Q9.57,0,4.119,0A4.471,4.471,0,0,0,2.366.317,3.7,3.7,0,0,0,.6,1.822,4.142,4.142,0,0,0,.013,4.091q.013,5.717,0,11.433" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_1163" dataName="Path 1163" d="M.017,15.524q0-5.717,0-11.434A4.142,4.142,0,0,1,.6,1.822,3.7,3.7,0,0,1,2.366.317,4.471,4.471,0,0,1,4.119,0q5.451.005,10.9,0c.322,0,.644,0,.966,0a.526.526,0,0,1,.4.166q2.669,2.668,5.34,5.335.666.665,1.337,1.325a.627.627,0,0,1,.189.478q0,3.826,0,7.652,0,6,0,12a4.2,4.2,0,0,1-.372,1.858,3.9,3.9,0,0,1-1.413,1.64,3.826,3.826,0,0,1-2.107.612l-10.535,0c-1.6,0-3.2-.006-4.8,0A3.937,3.937,0,0,1,.894,29.642,3.26,3.26,0,0,1,.068,27.77C.013,27.08.015,26.384.013,25.69Q0,21.065,0,16.439q0-.457,0-.915H.017M15.546.97c-.054,0-.092-.007-.13-.007H13.135Q11.068.96,9,.957c-1.673,0-3.345,0-5.018,0a3.262,3.262,0,0,0-1.156.2A2.864,2.864,0,0,0,.982,3.727c-.011.455-.007.91-.008,1.365Q.964,11.268.957,17.444c0,3.206.012,6.411.02,9.617A3.676,3.676,0,0,0,1,27.593a2.963,2.963,0,0,0,2.932,2.514c1.878-.012,3.756.006,5.634.006,3.234,0,6.468-.009,9.7-.008a2.987,2.987,0,0,0,1.971-.68,2.674,2.674,0,0,0,1.024-1.912c.036-.475.024-.954.025-1.431Q22.3,21.69,22.3,17.3c0-1.132-.009-2.265-.01-3.4q0-2.976,0-5.951V7.692H19.483a3.877,3.877,0,0,1-2.7-1.044,3.531,3.531,0,0,1-1.219-2.542c-.035-.943-.015-1.889-.02-2.833,0-.1,0-.2,0-.3M21.583,6.7,16.511,1.643c-.005.108-.01.163-.01.217,0,.611,0,1.222,0,1.833a2.968,2.968,0,0,0,.278,1.34A2.716,2.716,0,0,0,19.093,6.7c.8.06,1.609.024,2.414.03a.361.361,0,0,0,.076-.028" transform="translate(0 0)" fill="#007ee5"/>
+      <path id="Path_1164" dataName="Path 1164" d="M14.589.012c0,.105,0,.2,0,.3,0,.945-.015,1.89.02,2.833a3.531,3.531,0,0,0,1.219,2.542,3.877,3.877,0,0,0,2.7,1.044h2.809c0,.1,0,.177,0,.258q0,2.976,0,5.951c0,1.132.011,2.265.01,3.4q0,4.392-.012,8.785c0,.477.011.956-.025,1.431a2.674,2.674,0,0,1-1.024,1.912,2.987,2.987,0,0,1-1.971.68c-3.234,0-6.468.007-9.7.008-1.878,0-3.756-.018-5.634-.006A2.963,2.963,0,0,1,.045,26.636,3.675,3.675,0,0,1,.02,26.1C.012,22.9,0,19.693,0,16.487Q0,10.311.018,4.135c0-.455,0-.91.008-1.365A2.864,2.864,0,0,1,1.87.207,3.261,3.261,0,0,1,3.027,0C4.7,0,6.372,0,8.044,0Q10.111,0,12.178,0h2.281c.038,0,.076,0,.13.007M3.4,11.525H17.929v-.934H3.4Zm0,4.533H17.945c0-.249,0-.487,0-.725s0-.226-.225-.226q-3.782,0-7.564.005-3.266,0-6.532-.006H3.4Zm14.538,8.119c-.086,0-.156-.012-.226-.013H11.083l-3.249,0q-2.15,0-4.3,0c-.111,0-.144.042-.141.148.006.2,0,.4,0,.6,0,.215,0,.215.219.216q2.749,0,5.5,0c1.177,0,2.355-.006,3.532-.006q2.558,0,5.117,0a.227.227,0,0,0,.1-.006c.032-.017.077-.053.078-.082.006-.282,0-.565,0-.861m-.011-3.588c0-.283,0-.549,0-.814,0-.083-.026-.122-.114-.122-.222,0-.443-.014-.665-.014H5.187c-.544,0-1.088,0-1.632,0-.053,0-.15.045-.151.071-.011.291-.007.582-.007.878Z" transform="translate(0.957 0.957)" fill="#fff"/>
+      <path id="Path_1165" dataName="Path 1165" d="M5.083,5.058a.361.361,0,0,1-.076.028c-.8-.006-1.613.03-2.414-.03A2.716,2.716,0,0,1,.279,3.39,2.967,2.967,0,0,1,0,2.05C0,1.439,0,.828,0,.217,0,.163,0,.108.01,0L5.083,5.058" transform="translate(16.501 1.643)" fill="#fff"/>
+      <path id="Path_1168" dataName="Path 1168" d="M0,.952V0H.22Q3.486,0,6.752.006q3.782,0,7.564-.005c.223,0,.224,0,.225.226s0,.475,0,.725Z" transform="translate(3.767 19.368)" fill="#007ee5"/>
+    </g>
+  </g>
+  <g id="dropbox_folder_icon" dataName="dropbox folder icon" transform="translate(0 5.557)">
+    <g id="Group_1159" dataName="Group 1159">
+      <g id="Group_1158" dataName="Group 1158" clipPath="url(#clip-path-2)">
+        <g transform="matrix(1, 0, 0, 1, 0, -5.56)" filter="url(#Path_1139)">
+          <path id="Path_1139-2" dataName="Path 1139" d="M19.049,28.969q-8.058,0-16.116,0A2.729,2.729,0,0,1,.082,26.914,4,4,0,0,1,0,25.992Q0,14.5,0,3A2.72,2.72,0,0,1,3.018.018C7.4.012,11.775.032,16.153,0a1.313,1.313,0,0,1,1.435.862c.523,1.191,1.183,2.322,1.716,3.51a1.31,1.31,0,0,0,1.408.892c4.782-.039,9.564-.025,14.346-.011a4.141,4.141,0,0,1,1.366.2,2.6,2.6,0,0,1,1.712,2.618c.009,3.537,0,7.074,0,10.611,0,2.42-.061,4.842.019,7.259a2.919,2.919,0,0,1-3.086,3.051c-5.34-.065-10.682-.025-16.023-.025" transform="translate(7.35 8.82)" fill="#91cefe"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_1260" dataName="Group 1260" transform="translate(-722 -504.471)">
+    <path id="Polygon_12" dataName="Polygon 12" d="M5.724.955a1,1,0,0,1,1.552,0l4.4,5.414A1,1,0,0,1,10.9,8H2.1a1,1,0,0,1-.776-1.631Z" transform="translate(742 524)" fill="#007ee5"/>
+    <rect id="Rectangle_924" dataName="Rectangle 924" width="5" height="10" rx="1" transform="translate(746 529)" fill="#007ee5"/>
+  </g>
+</svg>
                 </a>
               </div>
             </div>
