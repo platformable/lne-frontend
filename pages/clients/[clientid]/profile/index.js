@@ -50,20 +50,48 @@ console.log("data",data)
     let result 
 
     if(data[0]?.msaformid==="" || data[0]?.msaformid===null && data[0]?.servicesactionplanid ==="" || data[0]?.servicesactionplanid ===null){
-      result="Please create an MSA Form & A Service Action Pan"
+      result="Please create an MSA Form & A Service Action Plan"
     } 
     
     if(data[0]?.msaformid !==""  &&  data[0]?.servicesactionplanid===null || data[0]?.servicesactionplanid==="") {
       result="Please create a Service Action Plan"
     }
    
-    
     if(data[0]?.msaformid!=="" &&  data[0]?.servicesactionplanid!==null){ 
-       result = "All forms are up to date"
+       result = "All core documents are up to date"
     }
     
     return result
 
+  }
+  const checkMessage2 =()=> {
+    const fields = {
+      goal1: data[0]?.goal1completed,
+      goal2: data[0]?.goal2completed,
+      goal3: data[0]?.goal3completed,
+    }
+    let result
+    
+    if ((fields['goal1'] !== '1'  && fields['goal2'] !== '1' && fields['goal2'] === '1')||
+    (fields['goal1'] !== '1'  && fields['goal3'] !== '1' && fields['goal2'] === '1')||
+    (fields['goal2'] !== '1' && fields['goal3'] !== '1' && fields['goal1'] === '1')) {
+      result ='There are two client goals outstanding'
+    } else {
+      result = 'There is one client goal outstanding'
+    }
+    if(Object.values(fields).every(value => value === '0' || value === null)){
+      result = 'There are three client goals outstanding'
+    };
+    if(Object.values(fields).every(value => value === '1' || value !== null)){
+      result = 'All client goals have been completed!'
+    };
+    return result
+  }
+  let fechaInicio = new Date(`2022-03-${Math.floor(Math.random() * (30 - 1 + 1) + 1)}`);
+  const checkMessage3=()=>{
+    var fechaFin    = new Date().getTime();
+    var diff = fechaFin - fechaInicio.getTime();
+    return Math.floor(diff/(1000*60*60*24)) 
   }
 
   return (<>
@@ -110,11 +138,12 @@ console.log("data",data)
                 </div>
                 <div className='flex'>
                     <Image src={infoIcon} ></Image>
-                    <p className='px-4'>Service action plan (reminders)</p>
+                    <p className='px-4'>{checkMessage2()}</p>
                 </div>
                 <div className='flex'>
                     <Image src={infoIcon} ></Image>
-                    <p className='px-4'>Tickler style updates</p>
+                    <p className='px-4'>Last date of actions with this <br/>client: 
+                      {getDate(new Date())} You last saw <br/> this  client {checkMessage3()} days ago</p>
                 </div>
             </div>   
         </article>
