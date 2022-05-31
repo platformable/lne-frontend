@@ -162,41 +162,10 @@ const crearFecha=()=>{
                 </div>
 
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 ">
-                    <svg
-                      width="24"
-                      height="24"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="black"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="font-black"
-                    >
-                      <path
-                        d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                    </svg>
-                    <h3 className="font-black mb-5">Client</h3>
-                  </div>
+                <div className="flex gap-x-2 mb-5 items-center">
+                  <img src="/client-icon.svg" width="24"/>
+                  <h3 className="font-black ">Client</h3>
+                </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
                       <span className="text-xs">First Name</span>
@@ -232,41 +201,10 @@ const crearFecha=()=>{
                 </div>
 
                 <div className="service-action-plan-page-info-box">
-                  <div className="flex gap-x-2">
-                    <svg
-                      width="24"
-                      height="24"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="black"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="font-black"
-                    >
-                      <path
-                        d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                    </svg>
-                    <h3 className="font-black mb-5">Health Care Worker</h3>
-                  </div>
+                <div className="flex gap-x-2 mb-5 items-center">
+                  <img src="/client-icon.svg" width="24"/>
+                  <h3 className="font-black ">Health Care Worker</h3>
+                </div>
                   <div className="grid grid-cols-2 gap-4">
                     <label className="block">
                       <span className="text-xs">First Name</span>
