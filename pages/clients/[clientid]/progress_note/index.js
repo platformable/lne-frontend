@@ -1439,12 +1439,7 @@ console.log("clientData",dataForSAP)
                 Save and Finish
               </button>
 
-              <button
-                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-               onClick={()=>handleServiceActionPlanFormUpdate()}
-              >
-                SAP
-              </button>
+
             </div>
           </section>
         </main>
