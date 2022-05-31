@@ -165,7 +165,7 @@ else if(clientData.clientFirstName.match(/[^a-zA-Z]/)
                   setClientData({ ...clientData, clientFirstName: e.target.value })
                 }
               />
-              {clientData.clientFirstName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>}
+              {/* {clientData.clientFirstName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>} */}
             </label>
             <label className="block">
               <span className="">Last name</span>
@@ -177,7 +177,7 @@ else if(clientData.clientFirstName.match(/[^a-zA-Z]/)
                   setClientData({ ...clientData, clientLastName: e.target.value })
                 }
               />
-            {clientData.clientLastName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>}
+            {/* {clientData.clientLastName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>} */}
 
             </label>
             <label className="block">
