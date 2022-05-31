@@ -146,7 +146,7 @@ console.log("data",data)
                 </div>
                 <div className='flex'>
                     <Image src={infoIcon} ></Image>
-                    <p className='px-4'>Last date of actions with this client: {getDatex(fechaInicio)}. <br/> You last saw this  client {checkMessage3()} days ago</p>
+                    <p className='px-4'>You saw this  client {checkMessage3()} days ago</p>
                 </div>
             </div>   
         </article>
