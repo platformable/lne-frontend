@@ -608,7 +608,7 @@ return finalDate
         </section>
         <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">Others</h6>
+            
           
           <div  className={`border-dark-blue  rounded-xl px-5 py-5`}>
           <label className="block">
