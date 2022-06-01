@@ -541,26 +541,19 @@ const services = [
  {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
             Save Progress</button> */}
 
- 
-            <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
-            onClick={(e)=>{createClientActionPlan()}}>Save</button>
-             <ReactToPrint
-                trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>}
-                content={() => componentRef.current}
-              
-              />
+              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+                onClick={(e)=>{createClientActionPlan()}}>Save
+              </button>
+              <ReactToPrint
+                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>}
+                  content={() => componentRef.current} />
           
-          <div style={{display:'none'}}>
-      <ComponentToPrint ref={componentRef} name="alexei" clientData={clientData}/>
-      </div>
+              <div style={{display:'none'}}>
+                <ComponentToPrint ref={componentRef} name="alexei" clientData={clientData}/>
+              </div>
           </div>
         </section>
 
-
-
-
-
-  
       </Layout>
       {
       showImpactBaselineModal && (
