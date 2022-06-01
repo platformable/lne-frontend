@@ -321,6 +321,8 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
                     <h5 className="font-black ">Goal 01</h5>
+                    <div className="bg-dark-blue w-56 h-px"></div>
+                    <img src={'/goal01.png'} alt=""/>
                     {clientData.goal1Completed && (
                       <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
@@ -418,7 +420,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 01</h6>
+                    <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 01</h6>
+                    <img src={"/action01.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -437,7 +442,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 02</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 02</h6>
+                    <img src={"/action02.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -456,7 +464,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 03</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 03</h6>
+                    <img src={"/action03.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -480,6 +491,8 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
                     <h5 className="font-black ">Goal 02</h5>
+                    <div className="bg-dark-blue w-56 h-px"></div>
+                    <img src={'/goal02.png'} alt=""/>
                     {clientData.goal2Completed && (
                       <span className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
@@ -578,7 +591,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 01</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 01</h6>
+                    <img src={"/action01.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -597,7 +613,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 02</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 02</h6>
+                    <img src={"/action02.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -616,7 +635,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 03</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 03</h6>
+                    <img src={"/action03.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -640,6 +662,8 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
                     <h5 className="font-black ">Goal 03</h5>
+                    <div className="bg-dark-blue w-56 h-px"></div>
+                    <img src={'/goal03.png'} alt=""/>
                     {clientData.goal3Completed && (
                       <span className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
@@ -738,7 +762,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 01</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 01</h6>
+                    <img src={"/action01.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -757,7 +784,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 02</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 02</h6>
+                    <img src={"/action02.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -776,7 +806,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 03</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 03</h6>
+                    <img src={"/action03.png"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
