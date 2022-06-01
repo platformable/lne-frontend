@@ -7,6 +7,8 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { Dropbox } from "dropbox";
 
+
+
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,12 +22,26 @@ console.log("data",data)
     });
   };
 
-  const crearFecha=()=>{
+/*   const crearFecha=()=>{
     const initialDate= new Date().toLocaleDateString()
     const newDate=initialDate.split('/')
     const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
     return fixedDate
   
+  } */
+
+
+  const crearFecha=()=>{
+
+    const initialDate= new Date().toLocaleDateString()
+    const newDate=initialDate.split('/')
+    let fixedDate;
+    if(typeof window !== 'undefined'){
+      const userLocale=window.navigator.language
+      userLocale==='en-US' ? fixedDate=`${newDate[2]}-${newDate[0].length===1? `0${newDate[0]}`:`${newDate[0]}`}-${newDate[1].length===1 ? `0${newDate[1]}`: `${newDate[1]}`}`
+      :fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
+    }
+    return fixedDate
   }
 
   const [clientData, setClientData] = useState({
@@ -173,41 +189,10 @@ useEffect(()=>{
                 </div>
 
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 ">
-                    <svg
-                      width="24"
-                      height="24"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="black"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="font-black"
-                    >
-                      <path
-                        d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                    </svg>
-                    <h3 className="font-black mb-5">Client</h3>
-                  </div>
+                <div className="flex gap-x-2 mb-5 items-center">
+                  <img src="/client-icon.svg" width="24"/>
+                  <h3 className="font-black ">Client</h3>
+                </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
                       <span className="text-xs">First Name</span>
@@ -243,41 +228,10 @@ useEffect(()=>{
                 </div>
 
                 <div className="service-action-plan-page-info-box">
-                  <div className="flex gap-x-2">
-                    <svg
-                      width="24"
-                      height="24"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="black"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="font-black"
-                    >
-                      <path
-                        d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                      <path
-                        d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                      />
-                    </svg>
-                    <h3 className="font-black mb-5">Health Care Worker</h3>
-                  </div>
+                <div className="flex gap-x-2 mb-5 items-center">
+                  <img src="/client-icon.svg" width="24"/>
+                  <h3 className="font-black ">Health Care Worker</h3>
+                </div>
                   <div className="grid grid-cols-2 gap-4">
                     <label className="block">
                       <span className="text-xs">First Name</span>
@@ -362,31 +316,26 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSIntakeFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSIntakeFormDate: e.target.value,
-                      AIRSIntakeForm: !clientData.AIRSIntakeForm,
-                    });
+                    if(clientData.AIRSIntakeForm){
+                      setClientData({
+                        ...clientData,
+               
+                        AIRSIntakeFormDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSIntakeForm: !clientData.AIRSIntakeForm,
+                        AIRSIntakeFormDate: e.target.value,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
                 <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -431,32 +380,25 @@ useEffect(()=>{
                   /* disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
-                      ComprehensiveRiskBehaviorAssessment:
-                        !clientData.ComprehensiveRiskBehaviorAssessment,
-                    });
+                    if(clientData){
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessment:
+                          !clientData.ComprehensiveRiskBehaviorAssessment,
+                        ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
+                      });
+                    }
                   }}
                 />
               </div>
               <div className="flex justify-center">
               <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -485,7 +427,7 @@ useEffect(()=>{
                 />
               </div>
               <div>
-                <p>Service Action Plan <span className="text-red-500">*</span> </p>
+                <p>Service Action Plan  </p>
               </div>
               <div className="text-center">
                 <input
@@ -498,31 +440,25 @@ useEffect(()=>{
                   /* disabled={clientData.ServiceActionPlanDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      ServiceActionPlanDate: e.target.value,
-                      ServiceActionPlan: !clientData.ServiceActionPlan,
-                    });
+                    if(clientData){
+                      setClientData({
+                        ...clientData,
+                        ServiceActionPlanDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        ServiceActionPlanDate: e.target.value,
+                        ServiceActionPlan: !clientData.ServiceActionPlan,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -567,32 +503,26 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSCollateralInformationDate: e.target.value,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
-                    });
+                    if(clientData.AIRSCollateralInformation){
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSCollateralInformationDate: e.target.value,
+                        AIRSCollateralInformation:
+                          !clientData.AIRSCollateralInformation,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -636,32 +566,25 @@ useEffect(()=>{
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSFinancialInformationDate: e.target.value,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                    });
+                    if (clientData.AIRSFinancialInformation){
+                      setClientData({
+                        ...clientData,
+                        AIRSFinancialInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSFinancialInformationDate: e.target.value,
+                        AIRSFinancialInformation:
+                          !clientData.AIRSFinancialInformation,
+                      });
+                    }
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -705,32 +628,27 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistoryDate: e.target.value,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                    });
+                    if(clientData.AIRSHIVAIDSRiskHistory){
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistoryDate: e.target.value,
+
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVAIDSRiskHistoryDate: e.target.value,
+                        AIRSHIVAIDSRiskHistory:
+                          !clientData.AIRSHIVAIDSRiskHistory,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -773,31 +691,26 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHCVHistoryDate: e.target.value,
-                      AIRSHCVHistory: !clientData.AIRSHCVHistory,
-                    });
+                    if(clientData.AIRSHCVHistory){
+                      setClientData({
+                        ...clientData,
+                        AIRSHCVHistoryDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSHCVHistoryDate: e.target.value,
+                        AIRSHCVHistory: !clientData.AIRSHCVHistory,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              
+                <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -843,32 +756,27 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSHousingInformationDate: e.target.value,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                    });
+                    if(clientData.AIRSHousingInformation){
+                      setClientData({
+                        ...clientData,
+                        AIRSHousingInformationDate: e.target.value,
+
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSHousingInformationDate: e.target.value,
+                        AIRSHousingInformation:
+                          !clientData.AIRSHousingInformation,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -912,32 +820,26 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformationDate: e.target.value,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                    });
+                    if (clientData.AIRSInsuranceInformation){
+                      setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSInsuranceInformationDate: e.target.value,
+                        AIRSInsuranceInformation:
+                          !clientData.AIRSInsuranceInformation,
+                      });
+                    }
+                   
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -981,32 +883,25 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistoryDate: e.target.value,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                    });
+                    if(clientData.AIRSSubstanceUseHistory){
+                      setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistoryDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        AIRSSubstanceUseHistoryDate: e.target.value,
+                        AIRSSubstanceUseHistory:
+                          !clientData.AIRSSubstanceUseHistory,
+                      });
+                    }
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1048,31 +943,25 @@ useEffect(()=>{
                   /* disabled={clientData.LNEClientRightsDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEClientRightsDate: e.target.value,
-                      LNEClientRights: !clientData.LNEClientRights,
-                    });
+                    if(clientData.LNEClientRights){
+                      setClientData({
+                        ...clientData,
+                        LNEClientRightsDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEClientRightsDate: e.target.value,
+                        LNEClientRights: !clientData.LNEClientRights,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1116,32 +1005,26 @@ useEffect(()=>{
                   /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedureDate: e.target.value,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                    });
+                    if(clientData.LNEClientGrievancePolicyProcedure){
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedureDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEClientGrievancePolicyProcedureDate: e.target.value,
+                        LNEClientGrievancePolicyProcedure:
+                          !clientData.LNEClientGrievancePolicyProcedure,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1184,31 +1067,25 @@ useEffect(()=>{
                   /* disabled={clientData.LNEProgramRulesDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEProgramRulesDate: e.target.value,
-                      LNEProgramRules: !clientData.LNEProgramRules,
-                    });
+                    if(clientData.LNEProgramRules){
+                      setClientData({
+                        ...clientData,
+                        LNEProgramRulesDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEProgramRulesDate: e.target.value,
+                        LNEProgramRules: !clientData.LNEProgramRules,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1252,32 +1129,26 @@ useEffect(()=>{
                   /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsentDate: e.target.value,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                    });
+                    if(clientData.LNEEmergencyContactConsent){
+                      setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsentDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEEmergencyContactConsentDate: e.target.value,
+                        LNEEmergencyContactConsent:
+                          !clientData.LNEEmergencyContactConsent,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1323,33 +1194,28 @@ useEffect(()=>{
                   /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEConsentForReleaseOfConfidentialInformationDate:
-                        e.target.value,
-                      LNEConsentForReleaseOfConfidentialInformation:
+                    if(clientData.LNEConsentForReleaseOfConfidentialInformation){
+                      setClientData({
+                        ...clientData,
+                        LNEConsentForReleaseOfConfidentialInformationDate:
+                          e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEConsentForReleaseOfConfidentialInformationDate:
+                          e.target.value,
+                        LNEConsentForReleaseOfConfidentialInformation:
                         !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                    });
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1392,31 +1258,25 @@ useEffect(()=>{
                   disabled={clientData.HIPPAConsentFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      HIPPAConsentFormDate: e.target.value,
-                      HIPPAConsentForm: !clientData.HIPPAConsentForm,
-                    });
+                    if(clientData.HIPPAConsentForm){
+                      setClientData({
+                        ...clientData,
+                        HIPPAConsentFormDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        HIPPAConsentFormDate: e.target.value,
+                        HIPPAConsentForm: !clientData.HIPPAConsentForm,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1464,32 +1324,27 @@ useEffect(()=>{
                   disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                    });
+                    if(clientData.NYCDOHMHNoticeOfPrivacyPractices){
+                      setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value
+
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        NYCDOHMHNoticeOfPrivacyPracticesDate: e.target.value,
+                        NYCDOHMHNoticeOfPrivacyPractices:
+                          !clientData.NYCDOHMHNoticeOfPrivacyPractices,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.consents_folder_url ? data[0]?.consents_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1532,32 +1387,27 @@ useEffect(()=>{
                   disabled={clientData.LNEOutreachRetentionTrackingFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingFormDate: e.target.value,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                    });
+                    if(clientData.LNEOutreachRetentionTrackingForm){
+                      setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingFormDate: e.target.value
+      
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEOutreachRetentionTrackingFormDate: e.target.value,
+                        LNEOutreachRetentionTrackingForm:
+                          !clientData.LNEOutreachRetentionTrackingForm,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1603,32 +1453,27 @@ useEffect(()=>{
                   disabled={clientData.LNEReferralInformationDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEReferralInformationDate: e.target.value,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                    });
+                    if(clientData.LNEReferralInformation){
+                      setClientData({
+                        ...clientData,
+                        LNEReferralInformationDate: e.target.value,
+              
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEReferralInformationDate: e.target.value,
+                        LNEReferralInformation:
+                          !clientData.LNEReferralInformation,
+                      });
+                    }
+                    
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1670,31 +1515,24 @@ useEffect(()=>{
                   disabled={clientData.LNEClientReferralFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
+                    if(clientData.LNEClientReferralForm){
+                      setClientData({
+                        ...clientData,
+                        LNEClientReferralFormDate: e.target.value,
+                      });
+                    } else {
                     setClientData({
                       ...clientData,
                       LNEClientReferralFormDate: e.target.value,
                       LNEClientReferralForm: !clientData.LNEClientReferralForm,
                     });
+                  }
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1736,31 +1574,26 @@ useEffect(()=>{
                   disabled={clientData.LNEHNSEligibilityFormDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityFormDate: e.target.value,
-                      LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                    });
+
+                    if(clientData.LNEHNSEligibilityForm){
+                      setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityFormDate: e.target.value,
+                    
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        LNEHNSEligibilityFormDate: e.target.value,
+                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                      });
+                    }
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-                <svg
-                  width="18"
-                  height="18"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 11V4.6C2 4.26863 2.26863 4 2.6 4H8.77805C8.92127 4 9.05977 4.05124 9.16852 4.14445L12.3315 6.85555C12.4402 6.94876 12.5787 7 12.722 7H21.4C21.7314 7 22 7.26863 22 7.6V11M2 11V19.4C2 19.7314 2.26863 20 2.6 20H21.4C21.7314 20 22 19.7314 22 19.4V11M2 11H22"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1786,11 +1619,11 @@ export default Index;
 export const getServerSideProps = withPageAuthRequired({
     async getServerSideProps(ctx) {
       let { clientid } = ctx.params;
-      const res = await fetch(
+      const  response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}`
       );
   
-      const data = await res.json();
+      const data = await  response.json();
       return { props: { data } };
     },
   });
