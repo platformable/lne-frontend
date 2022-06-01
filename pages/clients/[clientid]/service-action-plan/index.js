@@ -21,7 +21,8 @@ export default function IndexServoceActionPlan({ data }) {
   const router = useRouter()
   const [showImpactBaselineModal,setShowImpactBaselineModal]=useState(false)
 
-  const [errorCompleteAllFieldsMessage,setErrorCompleteAllFieldsMessage]=useState(false)
+  const [errorCompleteAllFieldsMessage,setErrorCompleteAllFieldsMessage]=useState('')
+  const [loading, setLoading] = useState(false)
 
 
   const [clientData, setClientData] = useState({
@@ -127,9 +128,9 @@ const services = [
     clientData.goal1Summary==="" ||
     clientData.goal1Details==="" ||
     clientData.goal1TargetDate==="" ||
-    clientData.goal1ActionStep1==="" ||
-    clientData.goal1ActionStep2==="" ||
-    clientData.goal1ActionStep3==="" 
+    clientData.goal1ActionStep1==="" 
+    //clientData.goal1ActionStep2==="" ||
+    //clientData.goal1ActionStep3==="" 
     // clientData.goal2ServiceCategory==="" ||
     // clientData.goal2Summary==="" ||
     // clientData.goal2Details ==="" ||
@@ -145,15 +146,19 @@ const services = [
     // clientData.goal3ActionStep2==="" ||
     // clientData.goal3ActionStep3===""
     ) {
-      setErrorCompleteAllFieldsMessage(!errorCompleteAllFieldsMessage)
+      setLoading(true)
+      setTimeout(()=> {
+        setErrorCompleteAllFieldsMessage('* Complete at least Action 01 of Goal 1')
+        setLoading(false)
+      }, 200)
     }else{
-      
       axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
         clientData
       })
       .then(function (response) {
         console.log("response",response)
         if(response.status===200 || response.statusText==='Ok'){
+          setErrorCompleteAllFieldsMessage('')
           setShowImpactBaselineModal(!showImpactBaselineModal)
          /*  notifyMessage()
            setTimeout(()=>{
@@ -299,7 +304,7 @@ const services = [
 
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
-                  <h5 className="font-black mt-5">Goal 01</h5>
+                  <h5 id="validation-req" className="font-black mt-5">Goal 01</h5>
 
                   <label className="block">
                     <h6 className="font-black">Summary</h6>
@@ -529,8 +534,8 @@ const services = [
           </div>
         </section>
         </main>
-
-        {errorCompleteAllFieldsMessage && <p className="text-xs text-red-500 my-3 text-center">* Please Complete all the fields</p>  }
+        {loading &&  <p className="text-xs my-3 text-center">Loading...</p>}
+        {errorCompleteAllFieldsMessage && <p className="text-xs text-red-500 my-3 text-center"><a href="#validation-req">{errorCompleteAllFieldsMessage}</a></p>  }
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
  {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
