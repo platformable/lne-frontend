@@ -530,7 +530,7 @@ console.log("clientData",dataForSAP)
               </div>
 
               <div className="goal-box">
-                <div className="goal-top flex my-2">
+                <div className="goal-top flex ">
                 <div className="goal-top flex items-center my-2">
                   <h3 className="font-black">Goal 02</h3>
                     <div className="bg-dark-blue w-52  mr-2 h-px"></div>
@@ -564,7 +564,7 @@ console.log("clientData",dataForSAP)
 
 
               <div className="goal-box">
-                <div className="goal-top flex my-2">
+                <div className="goal-top flex ">
                 <div className="goal-top flex items-center my-2">
                   <h3 className="font-black">Goal 03</h3>
                     <div className="bg-dark-blue w-52  mr-2 h-px"></div>
