@@ -221,7 +221,10 @@ return finalDate
             >
               {/*      <p>{clientData.planStartDate}</p> */}
               <div className="service-action-plan-page-info-box md:my-0 my-5">
-                <h3 className="font-black mb-5">Date</h3>
+              <div className="flex gap-x-2 mb-5 items-center">
+                    <img src="/calendar-icon.svg" width="24"/>
+                    <h3 className="font-black ">Date</h3>
+                  </div>
                 <label className="block">
                   <span className="text-xs">Plan start date</span>
                   <p>
@@ -321,6 +324,8 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
                     <h5 className="font-black ">Goal 01</h5>
+                    <div className="bg-dark-blue w-56 h-px"></div>
+                    <img src={'/goal01.svg'} alt=""/>
                     {clientData.goal1Completed && (
                       <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
@@ -344,7 +349,7 @@ return finalDate
                           goal1Summary: e.target.value,
                         })
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                       disabled={disableUserIfNotSupervisor()}
                     >
                       <option value={clientData.goal1Summary} selected="true">
@@ -367,7 +372,7 @@ return finalDate
                         })
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
                         value={clientData.goal1ServiceCategory}
@@ -418,7 +423,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 01</h6>
+                    <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 01</h6>
+                    <img src={"/action01.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -437,7 +445,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 02</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 02</h6>
+                    <img src={"/action02.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -456,7 +467,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 03</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 03</h6>
+                    <img src={"/action03.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -480,6 +494,8 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
                     <h5 className="font-black ">Goal 02</h5>
+                    <div className="bg-dark-blue w-56 h-px"></div>
+                    <img src={'/goal02.svg'} alt=""/>
                     {clientData.goal2Completed && (
                       <span className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
@@ -505,7 +521,7 @@ return finalDate
                         })
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option value={clientData.goal2Summary} selected="true">
                         {clientData.goal2Summary}
@@ -527,7 +543,7 @@ return finalDate
                         })
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
                         value={clientData.goal2ServiceCategory}
@@ -578,7 +594,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 01</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 01</h6>
+                    <img src={"/action01.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -597,7 +616,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 02</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 02</h6>
+                    <img src={"/action02.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -616,7 +638,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 03</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 03</h6>
+                    <img src={"/action03.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -640,6 +665,8 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
                     <h5 className="font-black ">Goal 03</h5>
+                    <div className="bg-dark-blue w-56 h-px"></div>
+                    <img src={'/goal03.svg'} alt=""/>
                     {clientData.goal3Completed && (
                       <span className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
@@ -665,7 +692,7 @@ return finalDate
                         })
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option value={clientData.goal3Summary} selected="true">
                         {clientData.goal3Summary}
@@ -687,7 +714,7 @@ return finalDate
                         })
                       }
                       disabled={disableUserIfNotSupervisor()}
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
                         value={clientData.goal3ServiceCategory}
@@ -738,7 +765,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 01</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 01</h6>
+                    <img src={"/action01.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -757,7 +787,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 02</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 02</h6>
+                    <img src={"/action02.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
@@ -776,7 +809,10 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Action 03</h6>
+                  <div className="flex items-center">
+                    <h6 className="font-black mr-2">Action 03</h6>
+                    <img src={"/action03.svg"} alt="" width="50" height="10"/>
+                    </div>
                     <textarea
                       name=""
                       id=""
