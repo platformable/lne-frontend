@@ -275,7 +275,7 @@ return finalDate
                     <input
                       type="text"
                       className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0]?.clientid}
+                      value={data[0]?.clientId}
                       disabled
                     />
                   </label>
