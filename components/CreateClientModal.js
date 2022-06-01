@@ -195,9 +195,9 @@ else if(clientData.clientFirstName.match(/[^a-zA-Z]/)
                   setClientData({ ...clientData, clientSSN: e.target.value })
                 }
               />
-              
+
               </div>
-              {(clientData.clientSSN.length ==0 || clientData.clientSSN.length ==4 ) ? null :
+               {(clientData.clientSSN.length ==0 || clientData.clientSSN.length ==4 ) ? null :
                clientData.clientSSN.length >4 ? <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p> : <p className="text-red-500 text-xs mt-2">Must be 4 numbers </p>}
             </label>
             {/*  <label className="block">

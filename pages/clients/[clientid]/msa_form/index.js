@@ -181,7 +181,10 @@ useEffect(()=>{
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
               >
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <h3 className="font-black mb-5">Date</h3>
+                <div className="flex gap-x-2 mb-5 items-center">
+                    <img src="/calendar-icon.svg" width="24"/>
+                    <h3 className="font-black ">Date</h3>
+                  </div>
                   <label className="block">
                     <span className="text-xs">Today&apos;s date</span>
                     <p>{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
