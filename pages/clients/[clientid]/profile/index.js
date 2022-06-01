@@ -94,7 +94,7 @@ console.log("data",data)
   
   const checkMessage3=()=>{ 
     if (!data[0]?.planstartdate) {
-      return 'undefined'
+      return '-'
     }
     const dateToday = new Date().getTime();
     const planStartDate = new Date(data[0]?.planstartdate) 
