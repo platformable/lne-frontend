@@ -322,11 +322,16 @@ return finalDate
             <div className="service-action-plan-goals-container grid md:grid-cols-3 grid-cols-1 gap-5">
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
+            
                   <div className="flex justify-between items-center ">
                     <h5 className="font-black ">Goal 01</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal01.svg'} alt=""/>
-                    {clientData.goal1Completed && (
+                    
+                  </div>
+
+                  <div className="h-2 mb-2">
+                  {clientData.goal1Completed && (
                       <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
                         {new Date(
@@ -496,8 +501,10 @@ return finalDate
                     <h5 className="font-black ">Goal 02</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal02.svg'} alt=""/>
-                    {clientData.goal2Completed && (
-                      <span className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
+                  </div>
+                  <div className="h-2 mb-2">
+                  {clientData.goal2Completed && (
+                      <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal2CompletionDate
@@ -506,10 +513,9 @@ return finalDate
                           month: "numeric",
                           day: "numeric",
                         })}
-                      </span>
+                      </p>
                     )}
                   </div>
-
                   <label className="block">
                     <h6 className="font-black">Summary</h6>
 
@@ -667,8 +673,12 @@ return finalDate
                     <h5 className="font-black ">Goal 03</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal03.svg'} alt=""/>
-                    {clientData.goal3Completed && (
-                      <span className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
+          
+                  </div>
+
+                  <div className="h-2 mb-2">
+                  {clientData.goal3Completed && (
+                      <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal3CompletionDate
@@ -677,7 +687,7 @@ return finalDate
                           month: "numeric",
                           day: "numeric",
                         })}
-                      </span>
+                      </p>
                     )}
                   </div>
 
