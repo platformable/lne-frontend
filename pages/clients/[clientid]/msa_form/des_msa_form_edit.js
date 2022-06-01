@@ -898,7 +898,7 @@ console.log("clientData",clientData);
                   strokeWidth={clientData.ServiceActionPlanPDF ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                <input
+               {/*  <input
                   className={`${!clientData.ServiceActionPlan && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
@@ -916,7 +916,7 @@ console.log("clientData",clientData);
                   }
                   }
                   checked={clientData.ServiceActionPlanPDF ? 'checked' : false}
-                />
+                /> */}
               </div>
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanScan? 'pointer-events-none' :""}`}
 
