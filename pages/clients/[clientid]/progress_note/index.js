@@ -198,7 +198,7 @@ console.log("clientData",dataForSAP)
       <ToastContainer autoClose={2000} />
       <Layout>
         <div className="container mx-auto">
-          <h3 className="font-black text-center my-5">Progress Notes</h3>
+          <h3 className="font-black text-center my-5">Progress Notes </h3>
         </div>
 
         <main className="container mx-auto">
@@ -246,7 +246,11 @@ console.log("clientData",dataForSAP)
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
               >
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <h3 className="font-black mb-5">Date</h3>
+                <div className="flex gap-x-2 mb-5 items-center">
+                    <img src="/calendar-icon.svg" width="24"/>
+                    <h3 className="font-black ">Date</h3>
+                  </div>
+                 
                   <label className="block">
                     <span className="text-xs">Today&apos;s date</span>
                     <p>{todaysDate.toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
@@ -254,10 +258,10 @@ console.log("clientData",dataForSAP)
                 </div>
 
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
-                <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Client</h3>
-                </div>
+                  <div className="flex gap-x-2 mb-5 items-center">
+                    <img src="/client-icon.svg" width="24"/>
+                    <h3 className="font-black ">Client</h3>
+                  </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
                       <span className="text-xs">First Name</span>
@@ -497,9 +501,11 @@ console.log("clientData",dataForSAP)
           >
             <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
               <div className="goal-box">
-                <div className="goal-top flex my-2">
+                <div className="goal-top flex items-center my-2">
                   <h3 className="font-black">Goal 01</h3>
-                  <div className="w-2/4 border-b px-5"></div>
+                    <div className="bg-dark-blue w-52  mr-2 h-px"></div>
+                    <img src={'/goal01.svg'} alt=""/>
+                 
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   <div>
@@ -525,8 +531,13 @@ console.log("clientData",dataForSAP)
 
               <div className="goal-box">
                 <div className="goal-top flex my-2">
+                <div className="goal-top flex items-center my-2">
                   <h3 className="font-black">Goal 02</h3>
-                  <div className="w-2/4 border-b px-5"></div>
+                    <div className="bg-dark-blue w-52  mr-2 h-px"></div>
+                    <img src={'/goal02.svg'} alt=""/>
+                 
+                </div>
+                
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   <div>
@@ -554,8 +565,12 @@ console.log("clientData",dataForSAP)
 
               <div className="goal-box">
                 <div className="goal-top flex my-2">
+                <div className="goal-top flex items-center my-2">
                   <h3 className="font-black">Goal 03</h3>
-                  <div className="w-2/4 border-b px-5"></div>
+                    <div className="bg-dark-blue w-52  mr-2 h-px"></div>
+                    <img src={'/goal03.svg'} alt=""/>
+                 
+                </div>
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   <div>
@@ -580,10 +595,10 @@ console.log("clientData",dataForSAP)
               </div>
             </div>
           </section>
-
-
-          <h6 className="font-black my-5 text-dark-blue">Which of the goals were worked on?</h6>
-
+         <div className="flex items-center ml-3 my-4">
+         <img src={"/goals-were-worked-on.svg"}/>
+          <h6 className="font-black self-end text-dark-blue">Which of the goals were worked on?</h6>
+          </div>
           <section
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
             id="workedGoals"
@@ -675,8 +690,11 @@ console.log("clientData",dataForSAP)
 
 
 
-
-          <h6 className="font-black my-5 text-dark-blue">Were any of the clients goals completed?</h6>
+          <div className="flex items-center ml-3 my-4">
+         <img src={"/goals-completed-icon.svg"}/>
+          <h6 className="font-black self-end text-dark-blue">Were any of the clients goals completed?</h6>
+          </div>
+          
 
           <section
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
