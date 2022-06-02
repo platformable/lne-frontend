@@ -507,20 +507,20 @@ console.log("clientData",clientData)
                     <img src={'/goal01.svg'} alt=""/>
                  
                 </div>
-                {/* <div className="goal-service grid grid-cols-2 my-2">
-                  <div>
+                <div className="goal-service grid grid-cols-2 my-2">
+                  {/* <div>
                     <span className="text-sm">Service Category</span>
                     <p className="text-sm text-dark-blue ">
                       {serviceActionData?.goal1servicecategory}
                     </p>
-                  </div>
+                  </div> */}
                   <div>
                     <span className="text-sm">Target Date</span>
                     <p className="text-dark-blue text-sm">
                     {new Date(serviceActionData?.goal1targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
-                </div> */}
+                </div>
                 <div className="goal-summary my-2">
                   <span className="text-sm">Summary</span>
                   <p className="text-sm text-dark-blue ">
@@ -539,20 +539,20 @@ console.log("clientData",clientData)
                 </div>
                 
                 </div>
-                {/* <div className="goal-service grid grid-cols-2 my-2">
-                  <div>
+                <div className="goal-service grid grid-cols-2 my-2">
+                  {/* <div>
                     <span className="text-sm">Service Category</span>
                     <p className="text-sm text-dark-blue ">
                     {serviceActionData?.goal2servicecategory}
                     </p>
-                  </div>
+                  </div> */}
                   <div>
                     <span className="text-sm">Target Date</span>
                     <p className="text-dark-blue text-sm">
                     {new Date(serviceActionData?.goal2targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
-                </div> */}
+                </div>
                 <div className="goal-summary my-2">
                   <span className="text-sm">Summary</span>
                   <p className="text-sm text-dark-blue ">
@@ -572,20 +572,20 @@ console.log("clientData",clientData)
                  
                 </div>
                 </div>
-                {/* <div className="goal-service grid grid-cols-2 my-2">
-                  <div>
+                <div className="goal-service grid grid-cols-2 my-2">
+                  {/* <div>
                     <span className="text-sm">Service Category</span>
                     <p className="text-sm text-dark-blue ">
                     {serviceActionData?.goal3servicecategory}
                     </p>
-                  </div>
+                  </div> */}
                   <div>
                     <span className="text-sm">Target Date</span>
                     <p className="text-dark-blue text-sm">
                     {new Date(serviceActionData?.goal3targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
-                </div> */}
+                </div>
                 <div className="goal-summary my-2">
                   <span className="text-sm">Summary</span>
                   <p className="text-sm text-dark-blue ">
