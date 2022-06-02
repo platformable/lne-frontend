@@ -126,7 +126,7 @@ const services = [
   const createClientActionPlan = ()=>{
 
     if(
-    clientData.goal1ServiceCategory==="" ||
+    //clientData.goal1ServiceCategory==="" ||
     clientData.goal1Summary==="" ||
     clientData.goal1Details==="" ||
     clientData.goal1TargetDate==="" ||
