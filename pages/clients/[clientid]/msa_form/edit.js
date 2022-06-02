@@ -483,8 +483,8 @@ const crearFecha=()=>{
                 <p>Service Action Plan</p>
               </div>
               <div className="text-center">
-              {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-5 py-1 rounded-lg"> 
-                    {clientData.ServiceActionPlanDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">"MM/DD/YYYY"</p>}
+              {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+                    {new Date(clientData.ServiceActionPlanDate).toLocaleDateString('en-US',{year:"numeric", month:'numeric', day:'numeric'})}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">"MM/DD/YYYY"</p>}
                 {/* <input
                   type="date"
                   id="AIRSIntakeForm"

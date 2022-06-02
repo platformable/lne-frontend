@@ -434,7 +434,7 @@ console.log("clientData",clientData);
                       })) : setClientData({
                         ...clientData,
                         AIRSIntakeForm: !clientData.AIRSIntakeForm,
-                        AIRSIntakeFormDate: ""
+                        AIRSIntakeFormDate:''
                       })
                   }
                   }
@@ -487,7 +487,7 @@ console.log("clientData",clientData);
                   setClientData({
                     ...clientData,
                     AIRSIntakeFormUploadDate: e.target.value,
-                  });
+                  })
                 
                 }}
                 />
