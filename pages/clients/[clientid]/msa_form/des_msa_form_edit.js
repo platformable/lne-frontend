@@ -1128,7 +1128,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div>
-                <p>Service Action Plan </p>
+                <p>Progress Note</p>
               </div>
               <div className="text-center">
                 <input
@@ -1261,7 +1261,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.StatusChangeForm? '' :'pointer-events-none'}`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.StatusChangeForm? '' :'pointer-events-none'}`}
             >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangeForm? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -1305,7 +1305,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div>
-                <p>Service Action Plan </p>
+                <p>Status Changes/Closure Forms</p>
               </div>
               <div className="text-center">
                 <input
@@ -1437,7 +1437,7 @@ console.log("clientData",clientData);
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.ComprehensiveRiskBehaviorAssessmentUpdates? '' :'pointer-events-none'}`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.ComprehensiveRiskBehaviorAssessmentUpdates? '' :'pointer-events-none'}`}
             >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdates? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -1613,7 +1613,7 @@ console.log("clientData",clientData);
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.M11QForm? '' :'pointer-events-none'}`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.M11QForm? '' :'pointer-events-none'}`}
             >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QForm? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -1657,7 +1657,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div>
-                <p>Service Action Plan </p>
+                <p>M11Q</p>
               </div>
               <div className="text-center">
                 <input
@@ -1789,7 +1789,7 @@ console.log("clientData",clientData);
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.CD4VLReports? '' :'pointer-events-none'}`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.CD4VLReports? '' :'pointer-events-none'}`}
             >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReports? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -1965,7 +1965,7 @@ console.log("clientData",clientData);
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.InitialTreatmentAdherenceIntake? '' :'pointer-events-none'}`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.InitialTreatmentAdherenceIntake? '' :'pointer-events-none'}`}
             >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntake? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -2141,7 +2141,7 @@ console.log("clientData",clientData);
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.TreatmentAdherenceUpdates? '' :'pointer-events-none'}`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.TreatmentAdherenceUpdates? '' :'pointer-events-none'}`}
             >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.TreatmentAdherenceUpdates? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -3611,7 +3611,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-             className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientRights? '' :'pointer-events-none'}`} >
+             className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientRights? '' :'pointer-events-none'}`} >
 
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientRights? 'pointer-events-none' :""}`}
                 onClick={() => {
@@ -3768,7 +3768,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientGrievancePolicyProcedure? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEClientGrievancePolicyProcedure? '' :'pointer-events-none'}`} >
 
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientGrievancePolicyProcedure? 'pointer-events-none' :""}`}
                onClick={() => {
@@ -3925,7 +3925,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEProgramRules? '' :'pointer-events-none'}`} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.LNEProgramRules? '' :'pointer-events-none'}`} >
             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEProgramRules? 'pointer-events-none' :""}`}
               onClick={() => {
                 clientData.LNEProgramRules ?
