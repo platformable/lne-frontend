@@ -484,7 +484,7 @@ const crearFecha=()=>{
               </div>
               <div className="text-center">
               {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
-                    {new Date(clientData.ServiceActionPlanDate).toLocaleDateString('en-US',{year:"numeric", month:'numeric', day:'numeric'})}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">"MM/DD/YYYY"</p>}
+                    {new Date(clientData.ServiceActionPlanDate).toLocaleDateString('en-US',{year:"numeric", month:'numeric', day:'numeric'})}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">MM/DD/YYYY</p>}
                 {/* <input
                   type="date"
                   id="AIRSIntakeForm"
