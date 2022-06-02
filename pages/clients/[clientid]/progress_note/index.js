@@ -482,7 +482,7 @@ console.log("clientData",dataForSAP)
                   <label
                     className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
                   >
-                    Other form of Assistance
+                    Other Form of Assistance
                     <input type="checkbox" 
                     onChange={()=>setClientData({...clientData,OtherAssistance:!clientData.OtherAssistance})}
                     />
@@ -502,12 +502,12 @@ console.log("clientData",dataForSAP)
             <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
               <div className="goal-box">
                 <div className="goal-top flex items-center my-2">
-                  <h3 className="font-black">Goal 01</h3>
+                  <h3 className="font-black">Goal 1</h3>
                     <div className="bg-dark-blue w-52  mr-2 h-px"></div>
                     <img src={'/goal01.svg'} alt=""/>
                  
                 </div>
-                <div className="goal-service grid grid-cols-2 my-2">
+                {/* <div className="goal-service grid grid-cols-2 my-2">
                   <div>
                     <span className="text-sm">Service Category</span>
                     <p className="text-sm text-dark-blue ">
@@ -520,7 +520,7 @@ console.log("clientData",dataForSAP)
                     {new Date(serviceActionData?.goal1targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="goal-summary my-2">
                   <span className="text-sm">Summary</span>
                   <p className="text-sm text-dark-blue ">
@@ -532,14 +532,14 @@ console.log("clientData",dataForSAP)
               <div className="goal-box">
                 <div className="goal-top flex ">
                 <div className="goal-top flex items-center my-2">
-                  <h3 className="font-black">Goal 02</h3>
+                  <h3 className="font-black">Goal 2</h3>
                     <div className="bg-dark-blue w-52  mr-2 h-px"></div>
                     <img src={'/goal02.svg'} alt=""/>
                  
                 </div>
                 
                 </div>
-                <div className="goal-service grid grid-cols-2 my-2">
+                {/* <div className="goal-service grid grid-cols-2 my-2">
                   <div>
                     <span className="text-sm">Service Category</span>
                     <p className="text-sm text-dark-blue ">
@@ -552,7 +552,7 @@ console.log("clientData",dataForSAP)
                     {new Date(serviceActionData?.goal2targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="goal-summary my-2">
                   <span className="text-sm">Summary</span>
                   <p className="text-sm text-dark-blue ">
@@ -566,13 +566,13 @@ console.log("clientData",dataForSAP)
               <div className="goal-box">
                 <div className="goal-top flex ">
                 <div className="goal-top flex items-center my-2">
-                  <h3 className="font-black">Goal 03</h3>
+                  <h3 className="font-black">Goal 3</h3>
                     <div className="bg-dark-blue w-52  mr-2 h-px"></div>
                     <img src={'/goal03.svg'} alt=""/>
                  
                 </div>
                 </div>
-                <div className="goal-service grid grid-cols-2 my-2">
+                {/* <div className="goal-service grid grid-cols-2 my-2">
                   <div>
                     <span className="text-sm">Service Category</span>
                     <p className="text-sm text-dark-blue ">
@@ -585,7 +585,7 @@ console.log("clientData",dataForSAP)
                     {new Date(serviceActionData?.goal3targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="goal-summary my-2">
                   <span className="text-sm">Summary</span>
                   <p className="text-sm text-dark-blue ">
@@ -828,8 +828,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.AIRSCollateralInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSCollateralInformation ? true : false}
+                  /* checked={clientData.AIRSCollateralInformation ? 'checked' : ''}
+                  disabled={clientData.AIRSCollateralInformation ? true : false} */
                   onChange={(e) =>{
                     clientData.AIRSCollateralInformationDate==="" || clientData.AIRSCollateralInformationDate===null ? (
                     setClientData({
@@ -869,8 +869,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSFinancialInformation ? true : false}
+                  /* checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
+                  disabled={clientData.AIRSFinancialInformation ? true : false} */
                   onChange={(e) =>{
                     clientData.AIRSFinancialInformationDate==="" || clientData.AIRSFinancialInformationDate===null ? (
                     setClientData({
@@ -911,8 +911,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
-                  disabled={clientData.AIRSHIVAIDSRiskHistory ? true : false}
+                  /* checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
+                  disabled={clientData.AIRSHIVAIDSRiskHistory ? true : false} */
                   onChange={(e) =>{
                     clientData.AIRSHIVAIDSRiskHistoryDate==="" || clientData.AIRSHIVAIDSRiskHistoryDate===null ? (
                     setClientData({
@@ -952,8 +952,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.AIRSHCVHistory ? 'checked' : ''}
-                  disabled={clientData.AIRSHCVHistory ? true : false}
+                  /* checked={clientData.AIRSHCVHistory ? 'checked' : ''}
+                  disabled={clientData.AIRSHCVHistory ? true : false} */
                   onChange={(e) =>{
                     clientData.AIRSHCVHistoryDate==="" || clientData.AIRSHCVHistoryDate===null ? (
                     setClientData({
@@ -993,8 +993,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.AIRSHousingInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSHousingInformation ? true : false}
+                  /* checked={clientData.AIRSHousingInformation ? 'checked' : ''}
+                  disabled={clientData.AIRSHousingInformation ? true : false} */
                   onChange={(e) =>{
                     clientData.AIRSHousingInformationDate==="" || clientData.AIRSHousingInformationDate===null ? (
                     setClientData({
@@ -1034,8 +1034,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSInsuranceInformation ? true : false}
+                  /* checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
+                  disabled={clientData.AIRSInsuranceInformation ? true : false} */
                   onChange={(e) =>{
                     clientData.AIRSInsuranceInformationDate==="" || clientData.AIRSInsuranceInformationDate===null ? (
                     setClientData({
@@ -1074,8 +1074,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
-                  disabled={clientData.AIRSSubstanceUseHistory ? true : false}
+                  /* checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
+                  disabled={clientData.AIRSSubstanceUseHistory ? true : false} */
                   onChange={(e) =>{
                     clientData.AIRSSubstanceUseHistoryDate==="" || clientData.AIRSSubstanceUseHistoryDate===null ? (
                     setClientData({
@@ -1115,8 +1115,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEClientRights ? 'checked' : ''}
-                  disabled={clientData.LNEClientRights ? true : false}
+                  /* checked={clientData.LNEClientRights ? 'checked' : ''}
+                  disabled={clientData.LNEClientRights ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEClientRightsDate==="" || clientData.LNEClientRightsDate===null ? (
                     setClientData({
@@ -1156,8 +1156,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
-                  disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false}
+                  /* checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
+                  disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEClientGrievancePolicyProcedureDate==="" || clientData.LNEClientGrievancePolicyProcedureDate===null ? (
                     setClientData({
@@ -1201,8 +1201,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEProgramRules ? 'checked' : ''}
-                  disabled={clientData.LNEProgramRules ? true : false}
+                  /* checked={clientData.LNEProgramRules ? 'checked' : ''}
+                  disabled={clientData.LNEProgramRules ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEProgramRulesDate==="" || clientData.LNEProgramRulesDate===null ? (
                     setClientData({
@@ -1240,8 +1240,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
-                  disabled={clientData.LNEEmergencyContactConsent ? true : false}
+                  /* checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
+                  disabled={clientData.LNEEmergencyContactConsent ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEEmergencyContactConsentDate==="" || clientData.LNEEmergencyContactConsentDate===null ? (
                     setClientData({
@@ -1276,8 +1276,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
-                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformation ? true : false}
+                  /* checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
+                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformation ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate==="" || clientData.LNEConsentForReleaseOfConfidentialInformationDate===null ? (
                     setClientData({
@@ -1312,8 +1312,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.HIPPAConsentForm ? 'checked' : ''}
-                  disabled={clientData.HIPPAConsentForm ? true : false}
+                  /* checked={clientData.HIPPAConsentForm ? 'checked' : ''}
+                  disabled={clientData.HIPPAConsentForm ? true : false} */
                   onChange={(e) =>{
                     clientData.HIPPAConsentFormDate==="" || clientData.HIPPAConsentFormDate===null ? (
                     setClientData({
@@ -1351,8 +1351,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
-                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPractices ? true : false}
+                  /* checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
+                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPractices ? true : false} */
                   onChange={(e) =>{
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate==="" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate===null ? (
                     setClientData({
@@ -1390,8 +1390,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
-                  disabled={clientData.LNEOutreachRetentionTrackingForm ? true : false}
+                  /* checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
+                  disabled={clientData.LNEOutreachRetentionTrackingForm ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEOutreachRetentionTrackingFormDate==="" || clientData.LNEOutreachRetentionTrackingFormDate===null ? (
                     setClientData({
@@ -1424,8 +1424,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEReferralInformation ? 'checked' : ''}
-                  disabled={clientData.LNEReferralInformation ? true : false}
+                  /* checked={clientData.LNEReferralInformation ? 'checked' : ''}
+                  disabled={clientData.LNEReferralInformation ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEReferralInformationDate==="" || clientData.LNEReferralInformationDate===null ? (
                     setClientData({
@@ -1458,8 +1458,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEClientReferralForm ? 'checked' : ''}
-                  disabled={clientData.LNEClientReferralForm ? true : false}
+                  /* checked={clientData.LNEClientReferralForm ? 'checked' : ''}
+                  disabled={clientData.LNEClientReferralForm ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEClientReferralFormDate==="" || clientData.LNEClientReferralFormDate===null ? (
                     setClientData({
@@ -1492,8 +1492,8 @@ console.log("clientData",dataForSAP)
                   type="checkbox"
                   name=""
                   id=""
-                  checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
-                  disabled={clientData.LNEHNSEligibilityForm ? true : false}
+                  /* checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
+                  disabled={clientData.LNEHNSEligibilityForm ? true : false} */
                   onChange={(e) =>{
                     clientData.LNEHNSEligibilityFormDate==="" || clientData.LNEHNSEligibilityFormDate===null ? (
                     setClientData({

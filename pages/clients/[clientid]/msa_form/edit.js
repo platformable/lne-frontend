@@ -233,7 +233,7 @@ const crearFecha=()=>{
             </div>
           </section>
           <h6 className="font-black my-5 text-dark-blue">
-            Forms - check if documents were added to the client&apos;s file
+          Forms - Please indicate which forms have been completed with the client
           </h6>
           <section
             id="form"
@@ -483,14 +483,16 @@ const crearFecha=()=>{
                 <p>Service Action Plan</p>
               </div>
               <div className="text-center">
-                <input
+              {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-5 py-1 rounded-lg"> 
+                    {clientData.ServiceActionPlanDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">"MM/DD/YYYY"</p>}
+                {/* <input
                   type="date"
                   id="AIRSIntakeForm"
                   value={
                     clientData.ServiceActionPlanDate &&
                     clientData.ServiceActionPlanDate.split('T')[0]
                   }
-                  /* disabled={clientData.ServiceActionPlanDate ? true: false} */
+                  disabled={clientData.ServiceActionPlanDate ? true: false}
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
                     if(clientData){
@@ -507,7 +509,7 @@ const crearFecha=()=>{
                     }
                    
                   }}
-                />
+                /> */}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
