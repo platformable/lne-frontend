@@ -72,15 +72,17 @@ export default function IndexServoceActionPlan({ data }) {
 "Start using PrEP",
 "Prevention counselling",
 "Access supportive counselling",
-"Address a problem with street drugs or substance abuse",
-"Overdose Prevention",
+"Problems with substance use",
+"Overdose prevention",
 "Assistance with employment",
 "Assistance with education",
 "Assistance with housing services",
 "Addressing a legal issue",
 "Transportation",
 "Improve food security",
-"Gain access to public assistance"
+"Gain access to public assistance",
+"Assistance with ID-related documents",
+"Other"
   ]
 
 const services = [
@@ -309,7 +311,7 @@ const services = [
                 <div className="service-action-plan-page-goals-top grid gap-5">
 
                  <div className="flex items-center justify-between">
-                  <h5 className="font-black ">Goal 01</h5>
+                  <h5 className="font-black ">Goal 1</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal01.svg'} alt=""/>
                     </div>
@@ -329,7 +331,7 @@ const services = [
                     </select>
                   </label>
 
-                  <label className="block">
+                  {/* <label className="block">
                     <h6 className="font-black">Service Category</h6>
 
                     <select
@@ -341,7 +343,7 @@ const services = [
                       <option selected="true" disabled="disabled">Select</option>
                       {displayServices(services)}
                     </select>
-                  </label>
+                  </label> */}
                   <label className="block">
                     <h6 className="font-black">Details</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -356,7 +358,7 @@ const services = [
                   
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 01</h6>
+                    <h6 className="font-black mr-2">Action 1</h6>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -365,7 +367,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 02</h6>
+                    <h6 className="font-black mr-2">Action 2</h6>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -374,7 +376,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 03</h6>
+                    <h6 className="font-black mr-2">Action 3</h6>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -387,7 +389,7 @@ const services = [
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                 <div className="flex items-center justify-between">
-                  <h5 className="font-black ">Goal 02</h5>
+                  <h5 className="font-black ">Goal 2</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal02.svg'} alt=""/>
                     </div>
@@ -407,7 +409,7 @@ const services = [
                     </select>
                   </label>
 
-                  <label className="block">
+                  {/* <label className="block">
                     <h6 className="font-black">Service Category</h6>
 
                     <select
@@ -419,7 +421,7 @@ const services = [
                       <option selected="true" disabled="disabled">Select</option>
                       {displayServices(services)}
                     </select>
-                  </label>
+                  </label> */}
                   <label className="block">
                     <h6 className="font-black">Details</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -434,7 +436,7 @@ const services = [
                   
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 01</h6>
+                    <h6 className="font-black mr-2">Action 1</h6>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -443,7 +445,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 02</h6>
+                    <h6 className="font-black mr-2">Action 2</h6>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -452,7 +454,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 03</h6>
+                    <h6 className="font-black mr-2">Action 3</h6>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -464,7 +466,7 @@ const services = [
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                 <div className="flex items-center justify-between">
-                  <h5 className="font-black ">Goal 03</h5>
+                  <h5 className="font-black ">Goal 3</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal03.svg'} alt=""/>
                     </div>
@@ -484,7 +486,7 @@ const services = [
                     </select>
                   </label>
 
-                  <label className="block">
+                  {/* <label className="block">
                     <h6 className="font-black">Service Category</h6>
 
                     <select
@@ -496,7 +498,7 @@ const services = [
                       <option selected="true" disabled="disabled">Select</option>
                       {displayServices(services)}
                     </select>
-                  </label>
+                  </label> */}
                   <label className="block">
                     <h6 className="font-black">Details</h6>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -511,7 +513,7 @@ const services = [
                   
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 01</h6>
+                    <h6 className="font-black mr-2">Action 1</h6>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -520,7 +522,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 02</h6>
+                    <h6 className="font-black mr-2">Action 2</h6>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -529,7 +531,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 03</h6>
+                    <h6 className="font-black mr-2">Action 3</h6>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 

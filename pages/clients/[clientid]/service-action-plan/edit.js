@@ -77,24 +77,26 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 
 
   const genericGoals = [
-  "Attend all health appointments",
-  "Adhere to HIV medication",
-  "Remove barriers to accessing medication",
-  "Access HIV primary care",
-  "Consistently measure CD4 Count and Viral load",
-  "Reduce unsafe sexual behavior",
-  "Start using PrEP",
-  "Prevention counselling",
-  "Access supportive counselling",
-  "Address a problem with street drugs or substance abuse",
-  "Overdose Prevention",
-  "Assistance with employment",
-  "Assistance with education",
-  "Assistance with housing services",
-  "Addressing a legal issue",
-  "Transportation",
-  "Improve food security",
-  "Gain access to public assistance"
+    "Attend all health appointments",
+    "Adhere to HIV medication",
+    "Remove barriers to accessing medication",
+    "Access HIV primary care",
+    "Consistently measure CD4 Count and Viral load",
+    "Reduce unsafe sexual behavior",
+    "Start using PrEP",
+    "Prevention counselling",
+    "Access supportive counselling",
+    "Problems with substance use",
+    "Overdose prevention",
+    "Assistance with employment",
+    "Assistance with education",
+    "Assistance with housing services",
+    "Addressing a legal issue",
+    "Transportation",
+    "Improve food security",
+    "Gain access to public assistance",
+    "Assistance with ID-related documents",
+    "Other"
   ]
 
   const services = [
@@ -324,7 +326,7 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
             
                   <div className="flex justify-between items-center ">
-                    <h5 className="font-black ">Goal 01</h5>
+                    <h5 className="font-black ">Goal 1</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal01.svg'} alt=""/>
                     
@@ -366,7 +368,7 @@ return finalDate
                     </select>
                   </label>
 
-                  <label className="block">
+                 {/*  <label className="block">
                     <h6 className="font-black">Service Category</h6>
 
                     <select
@@ -385,10 +387,10 @@ return finalDate
                       >
                         {clientData.goal1ServiceCategory}
                       </option>
-                      {/*   <option  disabled="disabled">Select</option> */}
+                      <option  disabled="disabled">Select</option> 
                       {displayServices(services)}
                     </select>
-                  </label>
+                  </label> */}
                   <label className="block">
                     <h6 className="font-black">Details</h6>
                     <textarea
@@ -429,7 +431,7 @@ return finalDate
 
                   <label className="block">
                     <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 01</h6>
+                    <h6 className="font-black mr-2">Action 1</h6>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -451,7 +453,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 02</h6>
+                    <h6 className="font-black mr-2">Action 2</h6>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -473,7 +475,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 03</h6>
+                    <h6 className="font-black mr-2">Action 3</h6>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -498,7 +500,7 @@ return finalDate
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
-                    <h5 className="font-black ">Goal 02</h5>
+                    <h5 className="font-black ">Goal 2</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal02.svg'} alt=""/>
                   </div>
@@ -538,7 +540,7 @@ return finalDate
                     </select>
                   </label>
 
-                  <label className="block">
+                  {/* <label className="block">
                     <h6 className="font-black">Service Category</h6>
 
                     <select
@@ -557,10 +559,10 @@ return finalDate
                       >
                         {clientData.goal2ServiceCategory}
                       </option>
-                      {/*   <option  disabled="disabled">Select</option> */}
+                      {<option  disabled="disabled">Select</option>}
                       {displayServices(services)}
                     </select>
-                  </label>
+                  </label> */}
                   <label className="block">
                     <h6 className="font-black">Details</h6>
                     <textarea
@@ -601,7 +603,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 01</h6>
+                    <h6 className="font-black mr-2">Action 1</h6>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -623,7 +625,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 02</h6>
+                    <h6 className="font-black mr-2">Action 2</h6>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -645,7 +647,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 03</h6>
+                    <h6 className="font-black mr-2">Action 3</h6>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -670,7 +672,7 @@ return finalDate
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
-                    <h5 className="font-black ">Goal 03</h5>
+                    <h5 className="font-black ">Goal 3</h5>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal03.svg'} alt=""/>
           
@@ -713,7 +715,7 @@ return finalDate
                     </select>
                   </label>
 
-                  <label className="block">
+                  {/* <label className="block">
                     <h6 className="font-black">Service Category</h6>
 
                     <select
@@ -732,10 +734,10 @@ return finalDate
                       >
                         {clientData.goal3ServiceCategory}
                       </option>
-                      {/*   <option  disabled="disabled">Select</option> */}
+                      <option  disabled="disabled">Select</option>
                       {displayServices(services)}
                     </select>
-                  </label>
+                  </label> */}
                   <label className="block">
                     <h6 className="font-black">Details</h6>
                     <textarea
@@ -776,7 +778,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 01</h6>
+                    <h6 className="font-black mr-2">Action 1</h6>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -798,7 +800,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 02</h6>
+                    <h6 className="font-black mr-2">Action 2</h6>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -820,7 +822,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 03</h6>
+                    <h6 className="font-black mr-2">Action 3</h6>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -961,14 +963,14 @@ return finalDate
                 Save
               </button>
             )}
-            <ReactToPrint
+            {/* <ReactToPrint
               trigger={() => (
                 <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">
                   Print
                 </button>
               )}
               content={() => componentRef.current}
-            />
+            /> */}
 
             <div style={{ display: "none" }}>
               <ComponentToPrint
