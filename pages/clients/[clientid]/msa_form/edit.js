@@ -68,23 +68,20 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     HIPPAConsentFormDate: data[0].hippaconsentformdate,
     NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices ==="0" ? false: true,
     NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate,
-    LinkageRetentionAdherenceForms: data[0].lneoutreachretentiontrackingform ==="0" ? false: true,
+    LinkageRetentionAdherenceForms: data[0].lneoutreachretentiontrackingform ==="0" || data[0].lneoutreachretentiontrackingform ===null ? false: true,
     LinkageRetentionAdherenceFormsDate: data[0].lneoutreachretentiontrackingformdate,
-    InternalReferralInformation: data[0].lnereferralinformation ==="0" ? false: true,
+    InternalReferralInformation: data[0].lnereferralinformation ==="0" || data[0].lnereferralinformation ===null ? false: true,
     InternalReferralInformationDate: data[0].lnereferralinformationdate,
-    LNEClientReferralForm: data[0].lneclientreferralform ==="0" ? false: true,
+    LNEClientReferralForm: data[0].lneclientreferralform ==="0" || data[0].lneclientreferralform ===null ? false: true,
     LNEClientReferralFormDate: data[0].lneclientreferralformdate,
-    LNEHNSEligibilityForm: data[0].lnehnseligibilityform ==="0" ? false: true,
-    LNEHNSEligibilityFormDate: data[0].lnehnseligibilityformdate,
-
-    HNSEligibilityForm: false,
-    HNSEligibilityFormDate: "",
-    HNSReadinessForm: false,
-    HNSReadinessFormDate: "",
-    SupportGroups: false,
-    SupportGroupsDate: "",
-    IDGForm: false,
-    IDGFormDate: "",
+    HNSEligibilityForm: data[0].hnseligibilityform ==="0" || data[0].hnseligibilityform ===null? false : true,
+    HNSEligibilityFormDate: data[0].hnseligibilityformdate,
+    HNSReadinessForm: data[0].hnsreadinessform ==="0" || data[0].hnsreadinessform ===null? false : true,
+    HNSReadinessFormDate: data[0].hnsreadinessformdate,
+    SupportGroups: data[0].supportgroups ==="0" || data[0].supportgroups ===null ? false : true,
+    SupportGroupsDate: data[0].supportgroupsdate,
+    IDGForm: data[0].idgform ==="0"|| data[0].idgform ===null? false : true,
+    IDGFormDate: data[0].idgformdate,
   });
 
 const todaysDate = new Date();
@@ -1319,18 +1316,18 @@ const crearFecha=()=>{
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-green grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientGrievancePolicyProcedure? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEProgramRules? 'pointer-events-none' :""}`}
                        onClick={() => {
-                        clientData.LNEClientGrievancePolicyProcedure ?
+                        clientData.LNEProgramRules ?
                           setClientData(formState => ({
                             ...formState,
-                            LNEClientRights: !formState.LNEClientGrievancePolicyProcedure,
-                            LNEClientGrievancePolicyProcedureDate: ""
+                            LNEClientRights: !formState.LNEProgramRules,
+                            LNEProgramRulesDate: ""
                           })) :
                           setClientData(formState => ({
                             ...formState,
-                            LNEClientGrievancePolicyProcedure: !formState.LNEClientGrievancePolicyProcedure,
-                            LNEClientGrievancePolicyProcedureDate: crearFecha()
+                            LNEProgramRules: !formState.LNEProgramRules,
+                            LNEProgramRulesDate: crearFecha()
                           }))
                         }
                       } >
@@ -1338,31 +1335,31 @@ const crearFecha=()=>{
                 <svg xmlns="http://www.w3.org/2000/svg"
                
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEClientGrievancePolicyProcedure ? "3" : "0"}>
+                  strokeWidth={clientData.LNEProgramRules ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               
                 <input
-                  className={`${!clientData.LNEClientGrievancePolicyProcedure && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  className={`${!clientData.LNEProgramRules && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
                   
                   onChange={() => {
-                    clientData.LNEClientGrievancePolicyProcedureDate === "" || clientData.LNEClientGrievancePolicyProcedureDate === null ? (
+                    clientData.LNEProgramRulesDate === "" || clientData.LNEProgramRulesDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEClientGrievancePolicyProcedure: !clientData.LNEClientGrievancePolicyProcedure,
-                        LNEClientGrievancePolicyProcedureDate: crearFecha()
+                        LNEProgramRules: !clientData.LNEProgramRules,
+                        LNEProgramRulesDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEClientGrievancePolicyProcedure: !clientData.LNEClientGrievancePolicyProcedure,
-                        LNEClientGrievancePolicyProcedureDate: ""
+                        LNEProgramRules: !clientData.LNEProgramRules,
+                        LNEProgramRulesDate: ""
                       })
                   }
                   }
-                  checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : false}
-                  disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false}
+                  checked={clientData.LNEProgramRules ? 'checked' : false}
+                  disabled={clientData.LNEProgramRules ? true : false}
                 />
                 
               </div>
@@ -1372,7 +1369,7 @@ const crearFecha=()=>{
               <div className="text-center">
                 <input
                   type="date"
-                  id="LNEClientGrievancePolicyProcedure"
+                  id="LNEProgramRules"
                   value={
                     clientData.LNEProgramRulesDate &&
                     clientData.LNEProgramRulesDate.split('T')[0]
@@ -1900,7 +1897,7 @@ const crearFecha=()=>{
                 
               </div>
               <div>
-                <p>LNE Referral Information </p>
+                <p>LNE Referral Information</p>
               </div>
               <div className="text-center">
                 <input
@@ -1932,7 +1929,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
@@ -1989,7 +1986,7 @@ const crearFecha=()=>{
                 
               </div>
               <div>
-                <p>LNE Client Referral Form </p>
+                <p>Identification</p>
               </div>
               <div className="text-center">
                 <input
@@ -2018,7 +2015,7 @@ const crearFecha=()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
@@ -2027,18 +2024,18 @@ const crearFecha=()=>{
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-purple grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEHNSEligibilityForm? 'pointer-events-none' :""}`}
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSEligibilityForm? 'pointer-events-none' :""}`}
                        onClick={() => {
-                        clientData.LNEHNSEligibilityForm ?
+                        clientData.HNSEligibilityForm ?
                           setClientData(formState => ({
                             ...formState,
-                            LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
-                            LNEHNSEligibilityFormDate: ""
+                            HNSEligibilityForm: !formState.HNSEligibilityForm,
+                            HNSEligibilityFormDate: ""
                           })) :
                           setClientData(formState => ({
                             ...formState,
-                            LNEHNSEligibilityForm: !formState.LNEHNSEligibilityForm,
-                            LNEHNSEligibilityFormDate: crearFecha()
+                            HNSEligibilityForm: !formState.HNSEligibilityForm,
+                            HNSEligibilityFormDate: crearFecha()
                           }))
                         }
                       } >
@@ -2046,67 +2043,329 @@ const crearFecha=()=>{
                 <svg xmlns="http://www.w3.org/2000/svg"
                
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEHNSEligibilityForm ? "3" : "0"}>
+                  strokeWidth={clientData.HNSEligibilityForm ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               
                 <input
-                  className={`${!clientData.LNEHNSEligibilityForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  className={`${!clientData.HNSEligibilityForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
                   
                   onChange={() => {
-                    clientData.LNEHNSEligibilityFormDate === "" || clientData.LNEHNSEligibilityFormDate === null ? (
+                    clientData.HNSEligibilityFormDate === "" || clientData.HNSEligibilityFormDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                        LNEHNSEligibilityFormDate: crearFecha()
+                        HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                        HNSEligibilityFormDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
-                        LNEHNSEligibilityFormDate: ""
+                        HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                        HNSEligibilityFormDate: ""
                       })
                   }
                   }
-                  checked={clientData.LNEHNSEligibilityForm ? 'checked' : false}
-                  disabled={clientData.LNEHNSEligibilityForm ? true : false}
+                  checked={clientData.HNSEligibilityForm ? 'checked' : false}
+                  disabled={clientData.HNSEligibilityForm ? true : false}
                 />
                 
               </div>
               <div>
-                <p>LNE HNS Eligibility Form </p>
+                <p>HNS Eligibility Assessment</p>
               </div>
               <div className="text-center">
                 <input
                   type="date"
-                  id="LNEHNSEligibilityForm"
+                  id="HNSEligibilityForm"
                   value={
-                    clientData.LNEHNSEligibilityFormDate &&
-                    clientData.LNEHNSEligibilityFormDate.split('T')[0] 
+                    clientData.HNSEligibilityFormDate &&
+                    clientData.HNSEligibilityFormDate.split('T')[0] 
                   }
-                  /* disabled={clientData.LNEHNSEligibilityFormDate ? true: false} */
+                  /* disabled={clientData.HNSEligibilityFormDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
 
-                    if(clientData.LNEHNSEligibilityForm){
+                    if(clientData.HNSEligibilityForm){
                       setClientData({
                         ...clientData,
-                        LNEHNSEligibilityFormDate: e.target.value,
+                        HNSEligibilityFormDate: e.target.value,
                     
                       });
                     } else {
                       setClientData({
                         ...clientData,
-                        LNEHNSEligibilityFormDate: e.target.value,
-                        LNEHNSEligibilityForm: !clientData.LNEHNSEligibilityForm,
+                        HNSEligibilityFormDate: e.target.value,
+                        HNSEligibilityForm: !clientData.HNSEligibilityForm,
                       });
                     }
                   }}
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+            
+            <div
+              className={`${MSAStyles.formRowsContainer} bg-light-purple grid items-center gap-5 py-2 rounded-lg my-2`}
+            >
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSReadinessForm? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.HNSReadinessForm ?
+                          setClientData(formState => ({
+                            ...formState,
+                            HNSReadinessForm: !formState.HNSReadinessForm,
+                            HNSReadinessFormDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            HNSReadinessForm: !formState.HNSReadinessForm,
+                            HNSReadinessFormDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.HNSReadinessForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
+                <input
+                  className={`${!clientData.HNSReadinessForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  
+                  onChange={() => {
+                    clientData.HNSReadinessFormDate === "" || clientData.HNSReadinessFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        HNSReadinessForm: !clientData.HNSReadinessForm,
+                        HNSReadinessFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        HNSReadinessForm: !clientData.HNSReadinessForm,
+                        HNSReadinessFormDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.HNSReadinessForm ? 'checked' : false}
+                  disabled={clientData.HNSReadinessForm ? true : false}
+                />
+                
+              </div>
+              <div>
+                <p>HNS Readiness Assessment</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="HNSReadinessForm"
+                  value={
+                    clientData.HNSReadinessFormDate &&
+                    clientData.HNSReadinessFormDate.split('T')[0] 
+                  }
+                  /* disabled={clientData.HNSReadinessFormDate ? true: false} */
+                  className="rounded-lg text-sm p-1"
+                  onChange={(e) => {
+
+                    if(clientData.HNSReadinessForm){
+                      setClientData({
+                        ...clientData,
+                        HNSReadinessFormDate: e.target.value,
+                    
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        HNSReadinessFormDate: e.target.value,
+                        HNSReadinessForm: !clientData.HNSReadinessForm,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainer} bg-light-purple grid items-center gap-5 py-2 rounded-lg my-2`}
+            >
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.SupportGroups? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.SupportGroups ?
+                          setClientData(formState => ({
+                            ...formState,
+                            SupportGroups: !formState.SupportGroups,
+                            SupportGroupsDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            SupportGroups: !formState.SupportGroups,
+                            SupportGroupsDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.SupportGroups ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
+                <input
+                  className={`${!clientData.SupportGroups && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  
+                  onChange={() => {
+                    clientData.SupportGroupsDate === "" || clientData.SupportGroupsDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        SupportGroups: !clientData.SupportGroups,
+                        SupportGroupsDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        SupportGroups: !clientData.SupportGroups,
+                        SupportGroupsDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.SupportGroups ? 'checked' : false}
+                  disabled={clientData.SupportGroups ? true : false}
+                />
+                
+              </div>
+              <div>
+                <p>Support Groups</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="SupportGroups"
+                  value={
+                    clientData.SupportGroupsDate &&
+                    clientData.SupportGroupsDate.split('T')[0] 
+                  }
+                  /* disabled={clientData.SupportGroupsDate ? true: false} */
+                  className="rounded-lg text-sm p-1"
+                  onChange={(e) => {
+
+                    if(clientData.SupportGroups){
+                      setClientData({
+                        ...clientData,
+                        SupportGroupsDate: e.target.value,
+                    
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        SupportGroupsDate: e.target.value,
+                        SupportGroups: !clientData.SupportGroups,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainer} bg-light-purple grid items-center gap-5 py-2 rounded-lg my-2`}
+            >
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.IDGForm? 'pointer-events-none' :""}`}
+                       onClick={() => {
+                        clientData.IDGForm ?
+                          setClientData(formState => ({
+                            ...formState,
+                            IDGForm: !formState.IDGForm,
+                            IDGFormDate: ""
+                          })) :
+                          setClientData(formState => ({
+                            ...formState,
+                            IDGForm: !formState.IDGForm,
+                            IDGFormDate: crearFecha()
+                          }))
+                        }
+                      } >
+               
+                <svg xmlns="http://www.w3.org/2000/svg"
+               
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.IDGForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              
+                <input
+                  className={`${!clientData.IDGForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  
+                  onChange={() => {
+                    clientData.IDGFormDate === "" || clientData.IDGFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        IDGForm: !clientData.IDGForm,
+                        IDGFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        IDGForm: !clientData.IDGForm,
+                        IDGFormDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.IDGForm ? 'checked' : false}
+                  disabled={clientData.IDGForm ? true : false}
+                />
+                
+              </div>
+              <div>
+                <p>IDG</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="IDGForm"
+                  value={
+                    clientData.IDGFormDate &&
+                    clientData.IDGFormDate.split('T')[0] 
+                  }
+                  /* disabled={clientData.IDGFormDate ? true: false} */
+                  className="rounded-lg text-sm p-1"
+                  onChange={(e) => {
+
+                    if(clientData.IDGForm){
+                      setClientData({
+                        ...clientData,
+                        IDGFormDate: e.target.value,
+                    
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        IDGFormDate: e.target.value,
+                        IDGForm: !clientData.IDGForm,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
