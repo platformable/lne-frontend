@@ -68,15 +68,23 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     HIPPAConsentFormDate: data[0].hippaconsentformdate,
     NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices ==="0" ? false: true,
     NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate,
-    LNEOutreachRetentionTrackingForm: data[0].lneoutreachretentiontrackingform ==="0" ? false: true,
-    LNEOutreachRetentionTrackingFormDate: data[0].lneoutreachretentiontrackingformdate,
-    LNEReferralInformation: data[0].lnereferralinformation ==="0" ? false: true,
-    LNEReferralInformationDate: data[0].lnereferralinformationdate,
+    LinkageRetentionAdherenceForms: data[0].lneoutreachretentiontrackingform ==="0" ? false: true,
+    LinkageRetentionAdherenceFormsDate: data[0].lneoutreachretentiontrackingformdate,
+    InternalReferralInformation: data[0].lnereferralinformation ==="0" ? false: true,
+    InternalReferralInformationDate: data[0].lnereferralinformationdate,
     LNEClientReferralForm: data[0].lneclientreferralform ==="0" ? false: true,
     LNEClientReferralFormDate: data[0].lneclientreferralformdate,
     LNEHNSEligibilityForm: data[0].lnehnseligibilityform ==="0" ? false: true,
     LNEHNSEligibilityFormDate: data[0].lnehnseligibilityformdate,
 
+    HNSEligibilityForm: false,
+    HNSEligibilityFormDate: "",
+    HNSReadinessForm: false,
+    HNSReadinessFormDate: "",
+    SupportGroups: false,
+    SupportGroupsDate: "",
+    IDGForm: false,
+    IDGFormDate: "",
   });
 
 const todaysDate = new Date();
@@ -1755,18 +1763,18 @@ const crearFecha=()=>{
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
             >
-             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEOutreachRetentionTrackingForm? 'pointer-events-none' :""}`}
+             <div className={`ml-1 text-center flex justify-center items-center ${clientData.LinkageRetentionAdherenceForms? 'pointer-events-none' :""}`}
                        onClick={() => {
-                        clientData.LNEOutreachRetentionTrackingForm ?
+                        clientData.LinkageRetentionAdherenceForms ?
                           setClientData(formState => ({
                             ...formState,
-                            LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
-                            LNEOutreachRetentionTrackingFormDate: ""
+                            LinkageRetentionAdherenceForms: !formState.LinkageRetentionAdherenceForms,
+                            LinkageRetentionAdherenceFormsDate: ""
                           })) :
                           setClientData(formState => ({
                             ...formState,
-                            LNEOutreachRetentionTrackingForm: !formState.LNEOutreachRetentionTrackingForm,
-                            LNEOutreachRetentionTrackingFormDate: crearFecha()
+                            LinkageRetentionAdherenceForms: !formState.LinkageRetentionAdherenceForms,
+                            LinkageRetentionAdherenceFormsDate: crearFecha()
                           }))
                         }
                       } >
@@ -1774,60 +1782,60 @@ const crearFecha=()=>{
                 <svg xmlns="http://www.w3.org/2000/svg"
                
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEOutreachRetentionTrackingForm ? "3" : "0"}>
+                  strokeWidth={clientData.LinkageRetentionAdherenceForms ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               
                 <input
-                  className={`${!clientData.LNEOutreachRetentionTrackingForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  className={`${!clientData.LinkageRetentionAdherenceForms && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
                   
                   onChange={() => {
-                    clientData.LNEOutreachRetentionTrackingFormDate === "" || clientData.LNEOutreachRetentionTrackingFormDate === null ? (
+                    clientData.LinkageRetentionAdherenceFormsDate === "" || clientData.LinkageRetentionAdherenceFormsDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEOutreachRetentionTrackingForm: !clientData.LNEOutreachRetentionTrackingForm,
-                        LNEOutreachRetentionTrackingFormDate: crearFecha()
+                        LinkageRetentionAdherenceForms: !clientData.LinkageRetentionAdherenceForms,
+                        LinkageRetentionAdherenceFormsDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEOutreachRetentionTrackingForm: !clientData.LNEOutreachRetentionTrackingForm,
-                        LNEOutreachRetentionTrackingFormDate: ""
+                        LinkageRetentionAdherenceForms: !clientData.LinkageRetentionAdherenceForms,
+                        LinkageRetentionAdherenceFormsDate: ""
                       })
                   }
                   }
-                  checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : false}
-                  disabled={clientData.LNEOutreachRetentionTrackingForm ? true : false}
+                  checked={clientData.LinkageRetentionAdherenceForms ? 'checked' : false}
+                  disabled={clientData.LinkageRetentionAdherenceForms ? true : false}
                 />
                 
               </div>
               <div>
-                <p>LNE Outreach Retention/Tracking Form </p>
+                <p>Linkage, Retention, & Adherence Forms</p>
               </div>
               <div className="text-center">
                 <input
                   type="date"
-                  id="LNEOutreachRetentionTrackingForm"
+                  id="LinkageRetentionAdherenceForms"
                   value={
-                    clientData.LNEOutreachRetentionTrackingFormDate &&
-                    clientData.LNEOutreachRetentionTrackingFormDate.split('T')[0]
+                    clientData.LinkageRetentionAdherenceFormsDate &&
+                    clientData.LinkageRetentionAdherenceFormsDate.split('T')[0]
                   }
-                  /* disabled={clientData.LNEOutreachRetentionTrackingFormDate ? true: false} */
+                  /* disabled={clientData.LinkageRetentionAdherenceFormsDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    if(clientData.LNEOutreachRetentionTrackingForm){
+                    if(clientData.LinkageRetentionAdherenceForms){
                       setClientData({
                         ...clientData,
-                        LNEOutreachRetentionTrackingFormDate: e.target.value
+                        LinkageRetentionAdherenceFormsDate: e.target.value
       
                       });
                     } else {
                       setClientData({
                         ...clientData,
-                        LNEOutreachRetentionTrackingFormDate: e.target.value,
-                        LNEOutreachRetentionTrackingForm:
-                          !clientData.LNEOutreachRetentionTrackingForm,
+                        LinkageRetentionAdherenceFormsDate: e.target.value,
+                        LinkageRetentionAdherenceForms:
+                          !clientData.LinkageRetentionAdherenceForms,
                       });
                     }
                     
@@ -1844,18 +1852,18 @@ const crearFecha=()=>{
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-pink grid items-center gap-5 py-2 rounded-lg my-2`}
             >
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEReferralInformation? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InternalReferralInformation? 'pointer-events-none' :""}`}
                        onClick={() => {
-                        clientData.LNEReferralInformation ?
+                        clientData.InternalReferralInformation ?
                           setClientData(formState => ({
                             ...formState,
-                            LNEReferralInformation: !formState.LNEReferralInformation,
-                            LNEReferralInformationDate: ""
+                            InternalReferralInformation: !formState.InternalReferralInformation,
+                            InternalReferralInformationDate: ""
                           })) :
                           setClientData(formState => ({
                             ...formState,
-                            LNEReferralInformation: !formState.LNEReferralInformation,
-                            LNEReferralInformationDate: crearFecha()
+                            InternalReferralInformation: !formState.InternalReferralInformation,
+                            InternalReferralInformationDate: crearFecha()
                           }))
                         }
                       } >
@@ -1863,31 +1871,31 @@ const crearFecha=()=>{
                 <svg xmlns="http://www.w3.org/2000/svg"
                
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEReferralInformation ? "3" : "0"}>
+                  strokeWidth={clientData.InternalReferralInformation ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               
                 <input
-                  className={`${!clientData.LNEReferralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  className={`${!clientData.InternalReferralInformation && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
                   
                   onChange={() => {
-                    clientData.LNEReferralInformationDate === "" || clientData.LNEReferralInformationDate === null ? (
+                    clientData.InternalReferralInformationDate === "" || clientData.InternalReferralInformationDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEReferralInformation: !clientData.LNEReferralInformation,
-                        LNEReferralInformationDate: crearFecha()
+                        InternalReferralInformation: !clientData.InternalReferralInformation,
+                        InternalReferralInformationDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEReferralInformation: !clientData.LNEReferralInformation,
-                        LNEReferralInformationDate: ""
+                        InternalReferralInformation: !clientData.InternalReferralInformation,
+                        InternalReferralInformationDate: ""
                       })
                   }
                   }
-                  checked={clientData.LNEReferralInformation ? 'checked' : false}
-                  disabled={clientData.LNEReferralInformation ? true : false}
+                  checked={clientData.InternalReferralInformation ? 'checked' : false}
+                  disabled={clientData.InternalReferralInformation ? true : false}
                 />
                 
               </div>
@@ -1899,24 +1907,24 @@ const crearFecha=()=>{
                   type="date"
                   id="LNEOutreachRetentionTrackingForm"
                   value={
-                    clientData.LNEReferralInformationDate &&
-                    clientData.LNEReferralInformationDate.split('T')[0]
+                    clientData.InternalReferralInformationDate &&
+                    clientData.InternalReferralInformationDate.split('T')[0]
                   }
-                  /* disabled={clientData.LNEReferralInformationDate ? true: false} */
+                  /* disabled={clientData.InternalReferralInformationDate ? true: false} */
                   className="rounded-lg text-sm p-1"
                   onChange={(e) => {
-                    if(clientData.LNEReferralInformation){
+                    if(clientData.InternalReferralInformation){
                       setClientData({
                         ...clientData,
-                        LNEReferralInformationDate: e.target.value,
+                        InternalReferralInformationDate: e.target.value,
               
                       });
                     } else {
                       setClientData({
                         ...clientData,
-                        LNEReferralInformationDate: e.target.value,
-                        LNEReferralInformation:
-                          !clientData.LNEReferralInformation,
+                        InternalReferralInformationDate: e.target.value,
+                        InternalReferralInformation:
+                          !clientData.InternalReferralInformation,
                       });
                     }
                     
