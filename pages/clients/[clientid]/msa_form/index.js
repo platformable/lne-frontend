@@ -103,8 +103,6 @@ console.log("data",data)
     SupportGroupsDate: "",
     IDGForm: false,
     IDGFormDate: "",
-<<<<<<< HEAD
-=======
     progressNote:"",
     progressNoteDate:"",
 
@@ -126,7 +124,6 @@ console.log("data",data)
     AirsHIVMedicalProviderDate:"",
     AIRSHIVStatusHistory:false,
     AIRSHIVStatusHistoryDate:""
->>>>>>> main
   });
 
   const todaysDate = new Date();
