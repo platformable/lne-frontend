@@ -53,7 +53,7 @@ const EditMsaFormPage = ({ data }) => {
     ServiceActionPlanScan :  data[0].serviceactionplanscan=== "0" || data[0].serviceactionplanscan=== null ? false : true,
     ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate || null,
 
-    ProgressNote: data[0].progressnote ==="0" || data[0].progressnote ===null? false:true,
+    ProgressNote: data[0].progressnoteid ==="" || data[0].progressnoteid ===null? false:true,
     ProgressNoteDate: data[0].progressnotedate , 
     ProgressNoteUploadDate: data[0].progressnoteuploaddate || null, 
     ProgressNoteScan: data[0].progressnotescan || data[0].progressnotescan ===null? false:true, 
@@ -65,10 +65,10 @@ const EditMsaFormPage = ({ data }) => {
     StatusChangesFormScan:data[0].statuschangesformscan ==="0" || data[0].statuschangesformscan ===null? false : true, 
     StatusChangesFormPDF:data[0].statuschangesformpdf ==="0" || data[0].statuschangesformpdf ===null? false : true,
 
-    ComprehensiveRiskBehaviorAssessmentUpdates: data[0].comprehensiveriskbehaviorassessment ==="0"|| data[0].comprehensiveriskbehaviorassessmentscan===null? false:true,
+    ComprehensiveRiskBehaviorAssessmentUpdates: data[0].comprehensiveriskbehaviorassessmentupdates ==="0"|| data[0].comprehensiveriskbehaviorassessmentupdates===null? false:true,
     ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0].comprehensiveriskbehaviorassessmentdate, 
     ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: data[0].comprehensiveriskbehaviorassessmentuploaddate, 
-    ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: data[0].comprehensiveriskbehaviorassessmentscan==="0"|| data[0].comprehensiveriskbehaviorassessmentscan===null? false:true,  
+    ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: data[0].comprehensiveriskbehaviorassessmentupdatesformscan==="0"|| data[0].comprehensiveriskbehaviorassessmentupdatesformscan===null? false:true,  
     ComprehensiveRiskBehaviorAssessmentUpdatesPDF: data[0].comprehensiveriskbehaviorassessmentpdf === "0"|| data[0].comprehensiveriskbehaviorassessmentpdf ===null? false:true,
     
     M11QForm:data[0].m11qform ==="0" || data[0].m11qform ===null? false : true, 
@@ -95,23 +95,42 @@ const EditMsaFormPage = ({ data }) => {
     TreatmentAdherenceUpdatesScan:data[0].treatmentadherenceupdatesscan ==="0" || data[0].treatmentadherenceupdatesscan ===null? false : true, 
     TreatmentAdherenceUpdatesPDF:data[0].treatmentadherenceupdatespdf ==="0" || data[0].treatmentadherenceupdatespdf ===null? false : true,
 
-    AIRSCollateralInformation: true,
-    AIRSCollateralInformationDate:data[0].serviceactionplandate,
+    AIRSCollateralInformation: data[0].airscollateralinformation ==="0" || data[0].airscollateralinformation ===null? false : true,
+    AIRSCollateralInformationDate:data[0].airscollateralinformationdate,
     AIRSCollateralInformationPDF: data[0].airscollateralinformationpdf=== "0" || data[0].airscollateralinformationpdf=== null ? false : true,
     AIRSCollateralInformationScan: data[0].airscollateralinformationscan=== "0" || data[0].airscollateralinformationscan=== null ? false : true,
-    AIRSCollateralInformationUploadDate: data[0].airsCollateralInformationuploaddate || null,
+    AIRSCollateralInformationUploadDate: data[0].airscollateralinformationuploaddate || null,
+
+    AIRSDrugRegimen: data[0].airsdrugregimen ==="0" || data[0].airsdrugregimen ===null? false : true,
+    AIRSDrugRegimenDate: data[0].airsdrugregimendate,
+    AIRSDrugRegimenPDF: data[0].airsdrugregimenpdf ==="0" || data[0].airsdrugregimenpdf ===null ? false : true,
+    AIRSDrugRegimenScan: data[0].airsdrugregimenscan ==="0" || data[0].airsdrugregimenscan ===null ? false : true,
+    AIRSDrugRegimenUploadDate: data[0].airsdrugregimenuploaddate || null, 
 
     AIRSFinancialInformation: data[0].airsfinancialinformation === "0" || data[0].airsfinancialinformation === null ? false : true,
     AIRSFinancialInformationDate: data[0].airsfinancialinformationdate,
     AIRSFinancialInformationPDF: data[0].airsfinancialinformationpdf=== "0" || data[0].airsfinancialinformationpdf=== null ? false : true,
     AIRSFinancialInformationScan: data[0].airsfinancialinformationscan=== "0" || data[0].airsfinancialinformationscan===null ? false : true,
-    AIRSFinancialInformationUploadDate: data[0].airsFinancialInformationuploaddate || null,
+    AIRSFinancialInformationUploadDate: data[0].airsfinancialinformationuploaddate || null,
 
     AIRSHIVAIDSRiskHistory: data[0].airshivaidsriskhistory === "0" || data[0].airshivaidsriskhistory === null ? false : true,
     AIRSHIVAIDSRiskHistoryDate: data[0].airshivaidsriskhistorydate,
     AIRSHIVAIDSRiskHistoryPDF: data[0].airshivaidsriskhistorypdf==="0" || data[0].airshivaidsriskhistorypdf===null ? false: true, 
     AIRSHIVAIDSRiskHistoryScan: data[0].airshivaidsriskhistoryscan==="0" || data[0].airshivaidsriskhistoryscan===null ? false: true, 
     AIRSHIVAIDSRiskHistoryUploadDate: data[0].airshivaidsriskhistoryuploaddate || null,
+
+    
+    AIRSHIVMedicalProvider: data[0].airshivmedicalprovider === "0" || data[0].airshivmedicalprovider === null ? false : true,
+    AIRSHIVMedicalProviderDate: data[0].airshivmedicalproviderdate,
+    AIRSHIVMedicalProviderPDF: data[0].airshivmedicalproviderpdf==="0" || data[0].airshivmedicalproviderpdf===null ? false: true, 
+    AIRSHIVMedicalProviderScan: data[0].airshivaidsriskhistoryscan==="0" || data[0].airshivmedicalproviderscan===null ? false: true, 
+    AIRSHIVMedicalProviderUploadDate: data[0].airshivmedicalprovideruploaddate || null,
+
+    AIRSHIVStatusHistory : data[0].airshivstatushistory === "0" || data[0].airshivstatushistory === null ? false : true,
+    AIRSHIVStatusHistoryDate: data[0].airshivstatushistorydate,
+    AIRSHIVStatusHistoryPDF: data[0].airshivstatushistorypdf==="0" || data[0].airshivstatushistorypdf===null ? false: true, 
+    AIRSHIVStatusHistoryScan: data[0].airshivstatushistoryscan==="0" || data[0].airshivstatushistoryscan===null ? false: true, 
+    AIRSHIVStatusHistoryUploadDate: data[0].airshivstatushistoryuploaddate || null,
 
     AIRSHCVHistory: data[0].airshcvhistory === "0" || data[0].airshcvhistory === null ? false : true,
     AIRSHCVHistoryDate: data[0].airshcvhistorydate,
@@ -179,35 +198,35 @@ const EditMsaFormPage = ({ data }) => {
     NYCDOHMHNoticeOfPrivacyPracticesScan : data[0].nycdohmhnoticeofprivacypracticesscan=== "0" || data[0].nycdohmhnoticeofprivacypracticesscan=== null ? false : true,
     NYCDOHMHNoticeOfPrivacyPracticesUploadDate: data[0].nycdohmhnoticeofprivacypracticesuploaddate || null,
 
-    LinkageRetentionAdherenceForms: data[0].lneoutreachretentiontrackingform === "0" || data[0].lneoutreachretentiontrackingform === null ? false : true,
-    LinkageRetentionAdherenceFormsDate: data[0].lneoutreachretentiontrackingformdate,
-    LinkageRetentionAdherenceFormsPDF: data[0].lneoutreachretentiontrackingformpdf=== "0" || data[0].lneoutreachretentiontrackingformpdf=== null ? false : true,
-    LinkageRetentionAdherenceFormsScan: data[0].lneoutreachretentiontrackingformscan=== "0" || data[0].lneoutreachretentiontrackingformscan=== null ? false : true,
-    LinkageRetentionAdherenceFormsUploadDate: data[0].lneoutreachretentiontrackingformuploaddate || null,
+    LinkageRetentionAdherenceForms: data[0].linkageretentionadherenceforms === "0" || data[0].linkageretentionadherenceforms === null ? false : true,
+    LinkageRetentionAdherenceFormsDate: data[0].linkageretentionadherenceformsdate,
+    LinkageRetentionAdherenceFormsPDF: data[0].linkageretentionadherenceformspdf=== "0" || data[0].linkageretentionadherenceformspdf=== null ? false : true,
+    LinkageRetentionAdherenceFormsScan: data[0].linkageretentionadherenceformsscan=== "0" || data[0].linkageretentionadherenceformsscan=== null ? false : true,
+    LinkageRetentionAdherenceFormsUploadDate: data[0].linkageretentionadherenceformsuploaddate || null,
 
-    InternalReferralInformation: data[0].lnereferralinformation === "0" || data[0].lnereferralinformation === null ? false : true,
-    InternalReferralInformationDate: data[0].lnereferralinformationdate,
-    InternalReferralInformationPDF:  data[0].lnereferralinformationpdf=== "0" || data[0].lnereferralinformationpdf=== null ? false : true,
-    InternalReferralInformationScan:  data[0].lnereferralinformationscan=== "0" || data[0].lnereferralinformationscan=== null ? false : true,
-    InternalReferralInformationUploadDate: data[0].lnereferralinformationuploaddate || null,
+    InternalReferralInformation: data[0].internalreferralinformation === "0" || data[0].internalreferralinformation === null ? false : true,
+    InternalReferralInformationDate: data[0].internalreferralinformationdate,
+    InternalReferralInformationPDF:  data[0].internalreferralinformationpdf=== "0" || data[0].internalreferralinformationpdf=== null ? false : true,
+    InternalReferralInformationScan:  data[0].internalreferralinformationscan=== "0" || data[0].internalreferralinformationscan=== null ? false : true,
+    InternalReferralInformationUploadDate: data[0].internalreferralinformationuploaddate || null,
 
     LNEClientReferralForm: data[0].lneclientreferralform === "0" || data[0].lneclientreferralform === null ? false : true,
     LNEClientReferralFormDate: data[0].lneclientreferralformdate,
     LNEClientReferralFormPDF: data[0].lneclientreferralformpdf=== "0" || data[0].lneclientreferralformpdf=== null ? false : true,
     LNEClientReferralFormScan: data[0].lneclientreferralformscan=== "0" || data[0].lneclientreferralformscan=== null ? false : true,
-    LNEClientReferralFormUploadDate: data[0].lnereferralinformationuploaddate || null,
+    LNEClientReferralFormUploadDate: data[0].lneclientreferralformuploaddate || null,
 
-    LNEHNSEligibilityForm: data[0].lnehnseligibilityform === "0" || data[0].lnehnseligibilityform === null ? false : true,
-    LNEHNSEligibilityFormDate: data[0].lnehnseligibilityformdate,
-    LNEHNSEligibilityFormPDF: data[0].lnehnseligibilityformpdf=== "0" || data[0].lnehnseligibilityformpdf=== null ? false : true,
-    LNEHNSEligibilityFormScan: data[0].lnehnseligibilityformscan=== "0" || data[0].lnehnseligibilityformscan=== null ? false : true,
-    LNEHNSEligibilityFormUploadDate: data[0].lnehnseligibilityformuploaddate || null,
+    LNEHNSEligibilityForm: data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null ? false : true,
+    LNEHNSEligibilityFormDate: data[0].hnseligibilityformdate,
+    LNEHNSEligibilityFormPDF: data[0].hnseligibilityformpdf=== "0" || data[0].hnseligibilityformpdf=== null ? false : true,
+    LNEHNSEligibilityFormScan: data[0].hnseligibilityformscan=== "0" || data[0].hnseligibilityformscan=== null ? false : true,
+    LNEHNSEligibilityFormUploadDate: data[0].hnseligibilityformuploaddate || null,
 
-    HNSEligibilityForm: data[0].lnehnseligibilityform === "0" || data[0].lnehnseligibilityform === null ? false : true,
-    HNSEligibilityFormDate: data[0].lnehnseligibilityformdate,
-    HNSEligibilityFormPDF: data[0].lnehnseligibilityformpdf=== "0" || data[0].lnehnseligibilityformpdf=== null ? false : true,
-    HNSEligibilityFormScan: data[0].lnehnseligibilityformscan=== "0" || data[0].lnehnseligibilityformscan=== null ? false : true,
-    HNSEligibilityFormUploadDate: data[0].lnehnseligibilityformuploaddate || null,
+    HNSEligibilityForm: data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null ? false : true,
+    HNSEligibilityFormDate: data[0].hnseligibilityformdate,
+    HNSEligibilityFormPDF: data[0].hnseligibilityformpdf=== "0" || data[0].hnseligibilityformpdf=== null ? false : true,
+    HNSEligibilityFormScan: data[0].hnseligibilityformscan=== "0" || data[0].hnseligibilityformscan=== null ? false : true,
+    HNSEligibilityFormUploadDate: data[0].hnseligibilityformuploaddate || null,
     
     HNSReadinessForm:data[0].hnsreadinessform ==="0" || data[0].hnsreadinessform === null? false : true,
     HNSReadinessFormDate: data[0].hnsreadinessformdate,
@@ -254,9 +273,9 @@ console.log("clientData",clientData);
         console.log(response)
         if (response.status === 200 || response.statusText === 'Ok') {
           notifyMessage()
-          setTimeout(() => {
+          /* setTimeout(() => {
             router.push(`/dashboard`)
-          }, 2300)
+          }, 2300) */
         
         } 
       })
@@ -2009,7 +2028,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div>
-                <p>Initial Treatment Adherence Intake</p>
+                <p>Comprehensive Behavioral Risk Assessment <span className="text-red-500">*</span> </p>
               </div>
               <div className="text-center">
                 <input
@@ -2208,6 +2227,1243 @@ console.log("clientData",clientData);
 
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Action Plans</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="TreatmentAdherenceUpdates"
+                  className={`${MSAStyles.inputDate} {${(clientData.TreatmentAdherenceUpdates) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.TreatmentAdherenceUpdatesUploadDate &&
+                  clientData.TreatmentAdherenceUpdatesUploadDate.split('T')[0]
+                }
+                disabled={clientData.TreatmentAdherenceUpdatesUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    TreatmentAdherenceUpdatesUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanPDF? 'pointer-events-none' :""}`}
+              // onClick={() => {
+              //   clientData.ServiceActionPlanPDF ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       ServiceActionPlanPDF: !formState.ServiceActionPlanPDF,
+              //       ServiceActionPlanUploadDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       ServiceActionPlanPDF: !formState.ServiceActionPlanPDF,
+              //       ServiceActionPlanUploadDate: crearFecha()
+              //     }))
+              //     if(!clientData.ServiceActionPlanPDF || clientData.ServiceActionPlanPDF){
+              //       setClientData(formState => ({
+              //         ...formState,
+              //         ServiceActionPlanUploadDate: crearFecha()
+              //       }))
+              //     }
+              //   }
+              // } 
+              >
+                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.TreatmentAdherenceUpdatesPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.ServiceActionPlan && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.TreatmentAdherenceUpdatesDate === "" || clientData.TreatmentAdherenceUpdatesDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        TreatmentAdherenceUpdates: !clientData.TreatmentAdherenceUpdates,
+                        TreatmentAdherenceUpdatesDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        TreatmentAdherenceUpdates: !clientData.TreatmentAdherenceUpdates,
+                      })
+                  }
+                  }
+                  checked={clientData.TreatmentAdherenceUpdatesPDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.TreatmentAdherenceUpdatesScan? 'pointer-events-none' :""}`}
+
+                onClick={() => {
+                  clientData.TreatmentAdherenceUpdatesScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      TreatmentAdherenceUpdatesScan: !formState.TreatmentAdherenceUpdatesScan,
+                      TreatmentAdherenceUpdatesUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      TreatmentAdherenceUpdatesScan: !formState.TreatmentAdherenceUpdatesScan,
+                      TreatmentAdherenceUpdatesUploadDate: crearFecha()
+                    }))}}>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.TreatmentAdherenceUpdatesScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.TreatmentAdherenceUpdates && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.TreatmentAdherenceUpdatesUploadDate === "" || clientData.TreatmentAdherenceUpdatesUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        TreatmentAdherenceUpdatesScan: !clientData.TreatmentAdherenceUpdatesScan,
+                        TreatmentAdherenceUpdatesUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        TreatmentAdherenceUpdatesScan: !clientData.TreatmentAdherenceUpdatesScan,
+                      })
+                  }
+                  }
+                  checked={clientData.TreatmentAdherenceUpdatesScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+            
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.ProgressNote? '' :'pointer-events-none'}`}
+            >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNote? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.ProgressNote ?
+                  setClientData(formState => ({
+                    ...formState,
+                    ProgressNote: !formState.ProgressNote,
+                    ProgressNoteDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    ProgressNote: !formState.ProgressNote,
+                    ProgressNoteDate: crearFecha()
+                  }))
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ProgressNote ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.ProgressNote && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.ProgressNoteDate === "" || clientData.ProgressNoteDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ProgressNote: !clientData.ProgressNote,
+                        ProgressNoteDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ProgressNote: !clientData.ProgressNote,
+                        ProgressNoteDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.ProgressNote ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>Progress Note</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="ProgressNote"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.ProgressNoteDate &&
+                    clientData.ProgressNoteDate.split('T')[0]
+                  }
+                  disabled={clientData.ProgressNote ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      ProgressNoteDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Action Plans</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="ProgressNote"
+                  className={`${MSAStyles.inputDate} {${(clientData.ProgressNote) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.ProgressNoteUploadDate &&
+                  clientData.ProgressNoteUploadDate.split('T')[0]
+                }
+                disabled={clientData.ProgressNoteUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    ProgressNoteUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNotePDF? 'pointer-events-none' :""}`}
+              // onClick={() => {
+              //   clientData.ProgressNotePDF ?
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       ProgressNotePDF: !formState.ProgressNotePDF,
+              //       ProgressNoteUploadDate: ""
+              //     })) :
+              //     setClientData(formState => ({
+              //       ...formState,
+              //       ProgressNotePDF: !formState.ProgressNotePDF,
+              //       ProgressNoteUploadDate: crearFecha()
+              //     }))
+              //     if(!clientData.ProgressNotePDF || clientData.ProgressNotePDF){
+              //       setClientData(formState => ({
+              //         ...formState,
+              //         ProgressNoteUploadDate: crearFecha()
+              //       }))
+              //     }
+              //   }
+              // } 
+              >
+                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ProgressNotePDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.ProgressNote && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.ProgressNoteDate === "" || clientData.ProgressNoteDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ProgressNote: !clientData.ProgressNote,
+                        ProgressNoteDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ProgressNote: !clientData.ProgressNote,
+                      })
+                  }
+                  }
+                  checked={clientData.ProgressNotePDF ? 'checked' : false}
+                /> */}
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNoteScan? 'pointer-events-none' :""}`}
+
+                onClick={() => {
+                  clientData.ProgressNoteScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      ProgressNoteScan: !formState.ProgressNoteScan,
+                      ProgressNoteUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      ProgressNoteScan: !formState.ProgressNoteScan,
+                      ProgressNoteUploadDate: crearFecha()
+                    }))}}
+                    >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ProgressNoteScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.ProgressNote && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.ProgressNoteUploadDate === "" || clientData.ProgressNoteUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ProgressNoteScan: !clientData.ProgressNoteScan,
+                        ProgressNoteUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ProgressNoteScan: !clientData.ProgressNoteScan,
+                      })
+                  }
+                  }
+                  checked={clientData.ProgressNoteScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+
+            <div 
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.StatusChangesForm? '' :'pointer-events-none'}`}
+            >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangesForm? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.StatusChangesForm ?
+                  setClientData(formState => ({
+                    ...formState,
+                    StatusChangesForm: !formState.StatusChangesForm,
+                    StatusChangesFormDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    StatusChangesForm: !formState.StatusChangesForm,
+                    StatusChangesFormDate: crearFecha()
+                  }))
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.StatusChangesForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.StatusChangesForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.StatusChangesFormDate === "" || clientData.StatusChangesFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        StatusChangesForm: !clientData.StatusChangesForm,
+                        StatusChangesFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        StatusChangesForm: !clientData.StatusChangesForm,
+                        StatusChangesFormDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.StatusChangesForm ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>Status Changes/Closure Forms</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="StatusChangeForm"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.StatusChangesFormDate &&
+                    clientData.StatusChangesFormDate.split('T')[0]
+                  }
+                  disabled={clientData.StatusChangesForm ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      StatusChangesFormDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.intake_folder_url? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Action Plans</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="StatusChangeForm"
+                  className={`${MSAStyles.inputDate} {${(clientData.StatusChangesForm) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.StatusChangesFormUploadDate &&
+                  clientData.StatusChangesFormUploadDate.split('T')[0]
+                }
+                disabled={clientData.StatusChangesFormUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    StatusChangesFormUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangesFormPDF? 'pointer-events-none' :""}`}
+              onClick={() => {
+                clientData.StatusChangesFormPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    StatusChangesFormPDF: !formState.StatusChangesFormPDF,
+                    StatusChangesFormUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    StatusChangesFormPDF: !formState.StatusChangesFormPDF,
+                    StatusChangesFormUploadDate: crearFecha()
+                  }))
+                  if(!clientData.StatusChangesFormPDF || clientData.StatusChangesFormPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      StatusChangesFormUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              } >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.StatusChangesFormPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.StatusChangesForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.StatusChangesFormDate === "" || clientData.StatusChangesFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        StatusChangesForm: !clientData.StatusChangesForm,
+                        StatusChangesFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        StatusChangesForm: !clientData.StatusChangesForm,
+                      })
+                  }
+                  }
+                  checked={clientData.StatusChangesFormPDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangesFormScan? 'pointer-events-none' :""}`}
+
+                onClick={() => {
+                  clientData.StatusChangesFormScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      StatusChangesFormScan: !formState.StatusChangesFormScan,
+                      StatusChangesFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      StatusChangesFormScan: !formState.StatusChangesFormScan,
+                      StatusChangesFormUploadDate: crearFecha()
+                    }))}}>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.StatusChangesFormScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.StatusChangesForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.StatusChangesFormUploadDate === "" || clientData.StatusChangesFormUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        StatusChangesFormScan: !clientData.StatusChangesFormScan,
+                        StatusChangeFormUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        StatusChangesFormScan: !clientData.StatusChangesFormScan,
+                      })
+                  }
+                  }
+                  checked={clientData.StatusChangesFormScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.ComprehensiveRiskBehaviorAssessmentUpdates? '' :'pointer-events-none'}`}
+            >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdates? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.ComprehensiveRiskBehaviorAssessmentUpdates ?
+                  setClientData(formState => ({
+                    ...formState,
+                    ComprehensiveRiskBehaviorAssessmentUpdates: !formState.ComprehensiveRiskBehaviorAssessmentUpdates,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    ComprehensiveRiskBehaviorAssessmentUpdates: !formState.ComprehensiveRiskBehaviorAssessmentUpdates,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesDate: crearFecha()
+                  }))
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentUpdates ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.ComprehensiveRiskBehaviorAssessmentUpdates && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentUpdates: !clientData.ComprehensiveRiskBehaviorAssessmentUpdates,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentUpdates: !clientData.ComprehensiveRiskBehaviorAssessmentUpdates,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.ComprehensiveRiskBehaviorAssessmentUpdates ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>Comprehensive Behavioral Risk Assessment Updates</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="ComprehensiveRiskBehaviorAssessmentUpdates"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate &&
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate.split('T')[0]
+                  }
+                  disabled={clientData.ComprehensiveRiskBehaviorAssessmentUpdates ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.cbra_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Action Plans</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="ComprehensiveRiskBehaviorAssessmentUpdates"
+                  className={`${MSAStyles.inputDate} {${(clientData.ComprehensiveRiskBehaviorAssessmentUpdates) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate &&
+                  clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate.split('T')[0]
+                }
+                disabled={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF? 'pointer-events-none' :""}`}
+              onClick={() => {
+                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesPDF: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesPDF,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesPDF: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesPDF,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
+                  }))
+                  if(!clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF || clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              } >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.ComprehensiveRiskBehaviorAssessmentUpdates && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentUpdates: !clientData.ComprehensiveRiskBehaviorAssessmentUpdates,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentUpdates: !clientData.ComprehensiveRiskBehaviorAssessmentUpdates,
+                      })
+                  }
+                  }
+                  checked={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan? 'pointer-events-none' :""}`}
+
+                onClick={() => {
+                  clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
+                    }))}}>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.ComprehensiveRiskBehaviorAssessmentUpdates && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                      })
+                  }
+                  }
+                  checked={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.M11QForm? '' :'pointer-events-none'}`}
+            >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QForm? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.M11QForm ?
+                  setClientData(formState => ({
+                    ...formState,
+                    M11QForm: !formState.M11QForm,
+                    M11QFormDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    M11QForm: !formState.M11QForm,
+                    M11QFormDate: crearFecha()
+                  }))
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.M11QForm ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.M11QForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.M11QFormDate === "" || clientData.M11QFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        M11QForm: !clientData.M11QForm,
+                        M11QFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        M11QForm: !clientData.M11QForm,
+                        M11QFormDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.M11QForm ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>M11Q</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="M11QForm"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.M11QFormDate &&
+                    clientData.M11QFormDate.split('T')[0]
+                  }
+                  disabled={clientData.M11QForm ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      M11QFormDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.medical_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Action Plans</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="M11QForm"
+                  className={`${MSAStyles.inputDate} {${(clientData.M11QForm) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.M11QFormUploadDate &&
+                  clientData.M11QFormUploadDate.split('T')[0]
+                }
+                disabled={clientData.M11QFormUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    M11QFormUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QFormPDF? 'pointer-events-none' :""}`}
+              onClick={() => {
+                clientData.M11QFormPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    M11QFormPDF: !formState.M11QFormPDF,
+                    M11QFormUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    M11QFormPDF: !formState.M11QFormPDF,
+                    M11QFormUploadDate: crearFecha()
+                  }))
+                  if(!clientData.M11QFormPDF || clientData.M11QFormPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      M11QFormUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              } >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.M11QFormPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.M11QForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.M11QFormDate === "" || clientData.M11QFormDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        M11QForm: !clientData.M11QForm,
+                        M11QFormDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        M11QForm: !clientData.M11QForm,
+                      })
+                  }
+                  }
+                  checked={clientData.M11QFormPDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QFormScan? 'pointer-events-none' :""}`}
+
+                onClick={() => {
+                  clientData.M11QFormScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      M11QFormScan: !formState.M11QFormScan,
+                      M11QFormUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      M11QFormScan: !formState.M11QFormScan,
+                      M11QFormUploadDate: crearFecha()
+                    }))}}>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.M11QFormScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.M11QForm && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.M11QFormUploadDate === "" || clientData.M11QFormUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        M11QFormScan: !clientData.M11QFormScan,
+                        M11QFormUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        M11QFormScan: !clientData.M11QFormScan,
+                      })
+                  }
+                  }
+                  checked={clientData.M11QFormScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.CD4VLReports? '' :'pointer-events-none'}`}
+            >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReports? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.CD4VLReports ?
+                  setClientData(formState => ({
+                    ...formState,
+                    CD4VLReports: !formState.CD4VLReports,
+                    CD4VLReportsDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    CD4VLReports: !formState.CD4VLReports,
+                    CD4VLReportsDate: crearFecha()
+                  }))
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.CD4VLReports ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.CD4VLReports && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.CD4VLReportsDate === "" || clientData.CD4VLReportsDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        CD4VLReports: !clientData.CD4VLReports,
+                        CD4VLReportsDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        CD4VLReports: !clientData.CD4VLReports,
+                        CD4VLReportsDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.CD4VLReports ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>CD4/VL Check Reports</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="CD4VLReports"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.CD4VLReportsDate &&
+                    clientData.CD4VLReportsDate.split('T')[0]
+                  }
+                  disabled={clientData.CD4VLReports ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      CD4VLReportsDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.medical_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Action Plans</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="CD4VLReports"
+                  className={`${MSAStyles.inputDate} {${(clientData.CD4VLReports) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.CD4VLReportsUploadDate &&
+                  clientData.CD4VLReportsUploadDate.split('T')[0]
+                }
+                disabled={clientData.CD4VLReportsUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    CD4VLReportsUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReportsPDF? 'pointer-events-none' :""}`}
+              onClick={() => {
+                clientData.CD4VLReportsPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    CD4VLReportsPDF: !formState.CD4VLReportsPDF,
+                    CD4VLReportsUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    CD4VLReportsPDF: !formState.CD4VLReportsPDF,
+                    CD4VLReportsUploadDate: crearFecha()
+                  }))
+                  if(!clientData.CD4VLReportsPDF || clientData.CD4VLReportsPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      CD4VLReportsUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              } >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.CD4VLReportsPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.CD4VLReports && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.CD4VLReportsDate === "" || clientData.CD4VLReportsDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        CD4VLReports: !clientData.CD4VLReports,
+                        CD4VLReportsDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        CD4VLReports: !clientData.CD4VLReports,
+                      })
+                  }
+                  }
+                  checked={clientData.CD4VLReportsPDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReportsScan? 'pointer-events-none' :""}`}
+
+                onClick={() => {
+                  clientData.CD4VLReportsScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      CD4VLReportsScan: !formState.CD4VLReportsScan,
+                      CD4VLReportsUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      CD4VLReportsScan: !formState.CD4VLReportsScan,
+                      CD4VLReportsUploadDate: crearFecha()
+                    }))}}>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.CD4VLReportsScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.CD4VLReports && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.CD4VLReportsUploadDate === "" || clientData.CD4VLReportsUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        CD4VLReportsScan: !clientData.CD4VLReportsScan,
+                        CD4VLReportsUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        CD4VLReportsScan: !clientData.CD4VLReportsScan,
+                      })
+                  }
+                  }
+                  checked={clientData.CD4VLReportsScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.InitialTreatmentAdherenceIntake? '' :'pointer-events-none'}`}
+            >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntake? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.InitialTreatmentAdherenceIntake ?
+                  setClientData(formState => ({
+                    ...formState,
+                    InitialTreatmentAdherenceIntake: !formState.InitialTreatmentAdherenceIntake,
+                    InitialTreatmentAdherenceIntakeDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    InitialTreatmentAdherenceIntake: !formState.InitialTreatmentAdherenceIntake,
+                    InitialTreatmentAdherenceIntakeDate: crearFecha()
+                  }))
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.InitialTreatmentAdherenceIntake ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.InitialTreatmentAdherenceIntake && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.InitialTreatmentAdherenceIntakeDate === "" || clientData.InitialTreatmentAdherenceIntakeDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        InitialTreatmentAdherenceIntake: !clientData.InitialTreatmentAdherenceIntake,
+                        InitialTreatmentAdherenceIntakeDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        InitialTreatmentAdherenceIntake: !clientData.InitialTreatmentAdherenceIntake,
+                        InitialTreatmentAdherenceIntakeDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.InitialTreatmentAdherenceIntake ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>Initial Treatment Adherence Intake</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="InitialTreatmentAdherenceIntake"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.InitialTreatmentAdherenceIntakeDate &&
+                    clientData.InitialTreatmentAdherenceIntakeDate.split('T')[0]
+                  }
+                  disabled={clientData.InitialTreatmentAdherenceIntake ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      InitialTreatmentAdherenceIntakeDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.medical_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Action Plans</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="InitialTreatmentAdherenceIntake"
+                  className={`${MSAStyles.inputDate} {${(clientData.InitialTreatmentAdherenceIntake) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.InitialTreatmentAdherenceIntakeUploadDate &&
+                  clientData.InitialTreatmentAdherenceIntakeUploadDate.split('T')[0]
+                }
+                disabled={clientData.InitialTreatmentAdherenceIntakeUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    InitialTreatmentAdherenceIntakeUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntakePDF? 'pointer-events-none' :""}`}
+              onClick={() => {
+                clientData.InitialTreatmentAdherenceIntakePDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    InitialTreatmentAdherenceIntakePDF: !formState.InitialTreatmentAdherenceIntakePDF,
+                    InitialTreatmentAdherenceIntakeUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    InitialTreatmentAdherenceIntakePDF: !formState.InitialTreatmentAdherenceIntakePDF,
+                    InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
+                  }))
+                  if(!clientData.InitialTreatmentAdherenceIntakePDF || clientData.InitialTreatmentAdherenceIntakePDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              } >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.InitialTreatmentAdherenceIntakePDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.InitialTreatmentAdherenceIntake && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.InitialTreatmentAdherenceIntakeDate === "" || clientData.InitialTreatmentAdherenceIntakeDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        InitialTreatmentAdherenceIntake: !clientData.InitialTreatmentAdherenceIntake,
+                        InitialTreatmentAdherenceIntakeDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        InitialTreatmentAdherenceIntake: !clientData.InitialTreatmentAdherenceIntake,
+                      })
+                  }
+                  }
+                  checked={clientData.InitialTreatmentAdherenceIntakePDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntakeScan? 'pointer-events-none' :""}`}
+
+                onClick={() => {
+                  clientData.InitialTreatmentAdherenceIntakeScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      InitialTreatmentAdherenceIntakeScan: !formState.InitialTreatmentAdherenceIntakeScan,
+                      InitialTreatmentAdherenceIntakeUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      InitialTreatmentAdherenceIntakeScan: !formState.InitialTreatmentAdherenceIntakeScan,
+                      InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
+                    }))}}>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.InitialTreatmentAdherenceIntakeScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.InitialTreatmentAdherenceIntake && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.InitialTreatmentAdherenceIntakeUploadDate === "" || clientData.InitialTreatmentAdherenceIntakeUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        InitialTreatmentAdherenceIntakeScan: !clientData.InitialTreatmentAdherenceIntakeScan,
+                        InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        InitialTreatmentAdherenceIntakeScan: !clientData.InitialTreatmentAdherenceIntakeScan,
+                      })
+                  }
+                  }
+                  checked={clientData.InitialTreatmentAdherenceIntakeScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.TreatmentAdherenceUpdates? '' :'pointer-events-none'}`}
+            >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntake? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.TreatmentAdherenceUpdates ?
+                  setClientData(formState => ({
+                    ...formState,
+                    TreatmentAdherenceUpdates: !formState.TreatmentAdherenceUpdates,
+                    TreatmentAdherenceUpdatesDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    TreatmentAdherenceUpdates: !formState.TreatmentAdherenceUpdates,
+                    TreatmentAdherenceUpdatesDate: crearFecha()
+                  }))
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.TreatmentAdherenceUpdates ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.TreatmentAdherenceUpdates && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.TreatmentAdherenceUpdatesDate === "" || clientData.TreatmentAdherenceUpdatesDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        TreatmentAdherenceUpdates: !clientData.TreatmentAdherenceUpdates,
+                        TreatmentAdherenceUpdatesDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        TreatmentAdherenceUpdates: !clientData.TreatmentAdherenceUpdates,
+                        TreatmentAdherenceUpdatesDate: ""
+                      })
+                  }
+                  }
+                  checked={clientData.TreatmentAdherenceUpdates ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>Treatment Adherence Updates</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="TreatmentAdherenceUpdates"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.TreatmentAdherenceUpdatesDate &&
+                    clientData.TreatmentAdherenceUpdatesDate.split('T')[0]
+                  }
+                  disabled={clientData.TreatmentAdherenceUpdates ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      TreatmentAdherenceUpdatesDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.medical_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
                 {/* <p className="text-dark-blue underline">Action Plans</p> */}
@@ -2508,7 +3764,198 @@ console.log("clientData",clientData);
                 />
               </div>
             </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.AIRSDrugRegimen ? '' :'pointer-events-none'}`}
+            >
+              <div className="ml-1 text-center flex justify-center items-center ">
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimen ? 'pointer-events-none' :""}`}
+                  onClick={() => {
+                    clientData.AIRSDrugRegimen  ?
+                      setClientData(formState => ({
+                        ...formState,
+                        AIRSDrugRegimen : !formState.AIRSDrugRegimen ,
+                        AIRSDrugRegimenDate: ""
+                      })) :
+                      setClientData(formState => ({
+                        ...formState,
+                        AIRSDrugRegimen : !formState.AIRSDrugRegimen ,
+                        AIRSDrugRegimenDate: crearFecha()
+                      }))
+                  }}
+                  disabled={clientData.AIRSDrugRegimen  ? true : false}>
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                    className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    strokeWidth={clientData.AIRSDrugRegimen  ? "3" : "0"}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <input
+                  className={`${!clientData.AIRSDrugRegimen  && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      clientData.AIRSDrugRegimenDate === "" || clientData.AIRSDrugRegimenDate === null ? (
+                        setClientData({
+                          ...clientData,
+                          AIRSDrugRegimen : !clientData.AIRSDrugRegimen ,
+                          AIRSDrugRegimenDate: crearFecha()
+                        })) : setClientData({
+                          ...clientData,
+                          AIRSDrugRegimen : !clientData.AIRSDrugRegimen ,
+                          AIRSDrugRegimenDate: ""
+                        })
+                    }
+                    }
+                    checked={clientData.AIRSDrugRegimen  ? 'checked' : false}
+                    disabled={clientData.AIRSDrugRegimen  ? true : false}
+                   
+                  />
+                </div>
+                {/*  */}
+              </div>
+              <div>
+                <p>AIRS Drug Regimen History </p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSCollateralInformation"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.AIRSDrugRegimenDate &&
+                    clientData.AIRSDrugRegimenDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSDrugRegimenDate ? true : false}
+                  onChange={(e) => {
+                    setClientData(prevDate => ({
+                      ...clientData,
+                      AIRSDrugRegimenDate: prevDate.e.target.value,
+                    }));
+                  }}
+                />
+              </div>
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Miscellaneous</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSCollateralInformation"
+                  className={`${MSAStyles.inputDate} {${(clientData.AIRSDrugRegimen ) ? "border-2 border-dark-blue rounded-md p-px" : ""}`}
+                value={
+                  clientData.AIRSDrugRegimenUploadDate &&
+                  clientData.AIRSDrugRegimenUploadDate.split('T')[0]
+                }
+                disabled={clientData.AIRSDrugRegimenUploadDate ? true : false}
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    AIRSDrugRegimenUploadDate: e.target.value,
+                  });
+                }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimenPDF ? 'pointer-events-none' :""}`}
+               onClick={() => {
+                clientData.AIRSDrugRegimenPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSDrugRegimenPDF: !formState.AIRSDrugRegimenPDF,
+                    AIRSDrugRegimenUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSDrugRegimenPDF: !formState.AIRSDrugRegimenPDF,
+                    AIRSDrugRegimenUploadDate: crearFecha()
+                  }))
+                  if(clientData.AIRSDrugRegimenScan || !clientData.AIRSDrugRegimenPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSDrugRegimenUploadDate: crearFecha()
+                    }))
+                  }
+                }
+               }
+               >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSDrugRegimenPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSDrugRegimenPDF && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSDrugRegimenUploadDate === "" || clientData.AIRSDrugRegimenUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSDrugRegimenPDF: !clientData.AIRSDrugRegimenPDF
+                        ,
+                        AIRSDrugRegimenUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSDrugRegimenPDF: !clientData.AIRSDrugRegimenPDF,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSDrugRegimenPDF ? 'checked' : false}
+                  disabled={clientData.AIRSDrugRegimenPDF ? true : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimenScan? 'pointer-events-none' :""}`}
 
+                 onClick={() => {
+                  clientData.AIRSDrugRegimenScan ?
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSDrugRegimenScan: !formState.AIRSDrugRegimenScan,
+                      AIRSDrugRegimenUploadDate: ""
+                    })) :
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSDrugRegimenScan: !formState.AIRSDrugRegimenScan,
+                      AIRSDrugRegimenUploadDate: crearFecha()
+                    }))
+                    if(!clientData.AIRSDrugRegimenScan || clientData.AIRSDrugRegimenScan){
+                      setClientData(formState => ({
+                        ...formState,
+                        AIRSDrugRegimenUploadDate: crearFecha()
+                      }))
+                    }
+                  }
+                }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSDrugRegimenScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSDrugRegimen && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSDrugRegimenUploadDate === "" || clientData.AIRSDrugRegimenUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSDrugRegimenScan: !clientData.AIRSDrugRegimenScan,
+                        AIRSDrugRegimenUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSDrugRegimenScan: !clientData.AIRSDrugRegimenScan,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSDrugRegimenScan ? 'checked' : false}
+                />
+              </div>
+              {console.log("clientData.AIRSDrugRegimenScan",clientData.AIRSDrugRegimenScan)}
+            </div>
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.AIRSFinancialInformation? '' :'pointer-events-none'}`}
             >
@@ -2874,7 +4321,370 @@ console.log("clientData",clientData);
                 />
               </div>
             </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.AIRSHIVMedicalProvider ? '' :'pointer-events-none'}`} >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHCVHistory? 'pointer-events-none' :""}`}
+             onClick={() => {
+              clientData.AIRSHIVMedicalProvider ?
+                setClientData(formState => ({
+                  ...formState,
+                  AIRSHIVMedicalProvider: !formState.AIRSHIVMedicalProvider,
+                  AIRSHIVMedicalProviderDate: ""
+                })) :
+                setClientData(formState => ({
+                  ...formState,
+                  AIRSHIVMedicalProvider: !formState.AIRSHIVMedicalProvider,
+                  AIRSHIVMedicalProviderDate: crearFecha()
+                }))
+              }
+            }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHIVMedicalProvider ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSHIVMedicalProvider && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSHIVMedicalProviderDate === "" || clientData.AIRSHIVMedicalProviderDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVMedicalProvider: !clientData.AIRSHIVMedicalProvider,
+                        AIRSHIVMedicalProviderDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVMedicalProvider: !clientData.AIRSHIVMedicalProvider,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSHIVMedicalProvider ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>AIRS HIV Medical Provider History </p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSHCVHistory"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.AIRSHIVMedicalProviderDate &&
+                    clientData.AIRSHIVMedicalProviderDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSHIVMedicalProviderDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSHIVMedicalProviderDate: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Medical</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSHCVHistory"
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSHIVMedicalProvider && "border-2 border-dark-blue rounded-md p-px"}`}
+                  value={
+                    clientData.AIRSHIVMedicalProviderUploadDate &&
+                    clientData.AIRSHIVMedicalProviderUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSHIVMedicalProviderUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSHIVMedicalProviderUploadDate: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderPDF? 'pointer-events-none' :""}`}
 
+              onClick={() => {
+                clientData.AIRSHIVMedicalProviderPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVMedicalProviderPDF: !formState.AIRSHIVMedicalProviderPDF,
+                    AIRSHIVMedicalProviderUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVMedicalProviderPDF: !formState.AIRSHIVMedicalProviderPDF,
+                    AIRSHIVMedicalProviderUploadDate: crearFecha()
+                  }))
+                  if(clientData.AIRSHIVMedicalProviderScan || !clientData.AIRSHIVMedicalProviderPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVMedicalProviderUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHIVMedicalProviderPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSHIVMedicalProvider && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSHIVMedicalProviderUploadDate === "" || clientData.AIRSHIVMedicalProviderUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVMedicalProviderPDF: !clientData.AIRSHIVMedicalProviderPDF,
+                        AIRSHIVMedicalProviderUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVMedicalProviderPDF: !clientData.AIRSHIVMedicalProviderPDF,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSHIVMedicalProviderPDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderScan? 'pointer-events-none' :""}`}
+
+              onClick={() => {
+                clientData.AIRSHIVMedicalProviderScan ?
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVMedicalProviderScan: !formState.AIRSHIVMedicalProviderScan,
+                    AIRSHIVMedicalProviderUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVMedicalProviderScan: !formState.AIRSHIVMedicalProviderScan,
+                    AIRSHIVMedicalProviderUploadDate: crearFecha()
+                  }))
+                  if(clientData.AIRSHIVMedicalProviderPDF || !clientData.AIRSHIVMedicalProviderScan){
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVMedicalProviderUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHIVMedicalProviderScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSHIVMedicalProvider && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSHIVMedicalProviderUploadDate === "" || clientData.AIRSHIVMedicalProviderUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVMedicalProviderScan: !clientData.AIRSHIVMedicalProviderScan,
+                        AIRSHIVMedicalProviderUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVMedicalProviderScan: !clientData.AIRSHIVMedicalProviderScan,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSHIVMedicalProviderScan ? 'checked' : false}
+                />
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.AIRSHIVStatusHistory ? '' :'pointer-events-none'}`} >
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVStatusHistory? 'pointer-events-none' :""}`}
+             onClick={() => {
+              clientData.AIRSHIVStatusHistory ?
+                setClientData(formState => ({
+                  ...formState,
+                  AIRSHIVStatusHistory: !formState.AIRSHIVStatusHistory,
+                  AIRSHIVStatusHistoryDate: ""
+                })) :
+                setClientData(formState => ({
+                  ...formState,
+                  AIRSHIVStatusHistory: !formState.AIRSHIVStatusHistory,
+                  AIRSHIVStatusHistoryDate: crearFecha()
+                }))
+              }
+            }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHIVStatusHistory ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSHIVStatusHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSHIVStatusHistoryDate === "" || clientData.AIRSHIVStatusHistoryDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVStatusHistory: !clientData.AIRSHIVStatusHistory,
+                        AIRSHIVStatusHistoryDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVStatusHistory: !clientData.AIRSHIVStatusHistory,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSHIVStatusHistory ? 'checked' : false}
+                />
+              </div>
+              <div>
+                <p>AIRS HIV Status History </p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSHCVHistory"
+                  className={MSAStyles.inputDate}
+                  value={
+                    clientData.AIRSHIVStatusHistoryDate &&
+                    clientData.AIRSHIVStatusHistoryDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSHIVStatusHistoryDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSHIVStatusHistoryDate: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+                {/* <p className="text-dark-blue underline">Medical</p> */}
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="AIRSHCVHistory"
+                  className={`${MSAStyles.inputDate} {${clientData.AIRSHIVStatusHistory && "border-2 border-dark-blue rounded-md p-px"}`}
+                  value={
+                    clientData.AIRSHIVStatusHistoryUploadDate &&
+                    clientData.AIRSHIVStatusHistoryUploadDate.split('T')[0]
+                  }
+                  disabled={clientData.AIRSHIVStatusHistoryUploadDate ? true : false}
+                  onChange={(e) => {
+                    setClientData({
+                      ...clientData,
+                      AIRSHIVStatusHistoryUploadDate: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVStatusHistoryPDF? 'pointer-events-none' :""}`}
+
+              onClick={() => {
+                clientData.AIRSHIVStatusHistoryPDF ?
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVStatusHistoryPDF: !formState.AIRSHIVStatusHistoryPDF,
+                    AIRSHIVStatusHistoryUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVStatusHistoryPDF: !formState.AIRSHIVStatusHistoryPDF,
+                    AIRSHIVStatusHistoryUploadDate: crearFecha()
+                  }))
+                  if(clientData.AIRSHIVStatusHistoryScan || !clientData.AIRSHIVStatusHistoryPDF){
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVStatusHistoryUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHIVStatusHistoryPDF ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSHIVStatusHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSHIVStatusHistoryUploadDate === "" || clientData.AIRSHIVStatusHistoryUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVStatusHistoryPDF: !clientData.AIRSHIVStatusHistoryPDF,
+                        AIRSHIVStatusHistoryUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVStatusHistoryPDF: !clientData.AIRSHIVStatusHistoryPDF,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSHIVStatusHistoryPDF ? 'checked' : false}
+                />
+              </div>
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVStatusHistoryScan? 'pointer-events-none' :""}`}
+
+              onClick={() => {
+                clientData.AIRSHIVStatusHistoryScan ?
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVStatusHistoryScan: !formState.AIRSHIVStatusHistoryScan,
+                    AIRSHIVStatusHistoryUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    AIRSHIVStatusHistoryScan: !formState.AIRSHIVStatusHistoryScan,
+                    AIRSHIVStatusHistoryUploadDate: crearFecha()
+                  }))
+                  if(clientData.AIRSHIVStatusHistoryScan || !clientData.AIRSHIVStatusHistoryScan){
+                    setClientData(formState => ({
+                      ...formState,
+                      AIRSHIVStatusHistoryUploadDate: crearFecha()
+                    }))
+                  }
+                }
+              }>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth={clientData.AIRSHIVStatusHistoryScan ? "3" : "0"}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <input
+                  className={`${!clientData.AIRSHIVStatusHistory && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={(e) => {
+                    clientData.AIRSHIVStatusHistoryUploadDate === "" || clientData.AIRSHIVStatusHistoryUploadDate === null ? (
+                      setClientData({
+                        ...clientData,
+                        AIRSHIVStatusHistoryScan: !clientData.AIRSHIVStatusHistoryScan,
+                        AIRSHIVStatusHistoryUploadDate: crearFecha()
+                      })) : setClientData({
+                        ...clientData,
+                        AIRSHIVStatusHistoryScan: !clientData.AIRSHIVStatusHistoryScan,
+                      })
+                  }
+                  }
+                  checked={clientData.AIRSHIVStatusHistoryScan ? 'checked' : false}
+                />
+              </div>
+            </div>
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.AIRSHCVHistory? '' :'pointer-events-none'}`} >
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHCVHistory? 'pointer-events-none' :""}`}
@@ -3988,7 +5798,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.consent_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
                {/*  <p className="text-dark-blue underline">Miscellaneous</p> */}
@@ -4299,7 +6109,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
-               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+               <a href={data[0]?.consents_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
                <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
                 {/* <p className="text-dark-blue underline">Consents</p> */}
@@ -4454,7 +6264,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
-              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
                 {/* <p className="text-dark-blue underline">Consents</p> */}
@@ -4574,7 +6384,7 @@ console.log("clientData",clientData);
             </div>
 
             <div
-            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-pink grid gap-5 py-2 rounded-lg my-2 ${clientData.NYCDOHMHNoticeOfPrivacyPractices? '' :'pointer-events-none'} `} >
+            className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-green grid gap-5 py-2 rounded-lg my-2 ${clientData.NYCDOHMHNoticeOfPrivacyPractices? '' :'pointer-events-none'} `} >
              <div className={`ml-1 text-center flex justify-center items-center ${clientData.NYCDOHMHNoticeOfPrivacyPractices? 'pointer-events-none' :""}`}
                onClick={() => {
                 clientData.NYCDOHMHNoticeOfPrivacyPractices ?
@@ -4640,7 +6450,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
-              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.consents_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
                 {/* <p className="text-dark-blue underline">Consents</p> */}
@@ -5003,7 +6813,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
-              <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
                 {/* <p className="text-dark-blue underline">Medical</p> */}
@@ -5183,6 +6993,7 @@ console.log("clientData",clientData);
                   }}
                 />
               </div>
+             
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
@@ -5366,7 +7177,7 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}>
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.intake_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
                 {/* <p className="text-dark-blue underline">Medical</p> */}
