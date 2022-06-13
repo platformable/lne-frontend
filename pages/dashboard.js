@@ -10,9 +10,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dropbox } from "dropbox";
 import DashboardClientCard from '../components/DashboardClientCard'
+import { useRouter } from 'next/router'
 
 import Layout from "../components/Layout";
 import ImpactBaselineModal from "../components/ImpactBaselineModal";
+import Router from "next/router";
+import Loader from "../components/Loader";
 
 export default function Dashboard({ data, hcworkers }) {
   const { user, error, isLoading } = useUser();
@@ -21,10 +24,10 @@ export default function Dashboard({ data, hcworkers }) {
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
   const userId = user?.sub
   const [noDataMessage, setNoDataMessage] = useState(false);
-
+  const router = useRouter()
   const [liveData,setLiveData]=useState(data)
+  const [loading,setLoading]=useState(true)
 
-console.log("data",data)
 
 
   const getUserClients = ()=> {
@@ -33,12 +36,12 @@ console.log("data",data)
 
       const allClients= liveData.filter(client=>client.clienthcwid===userId).sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
       const userClients = allClients.map((client,index)=>{
-        console.log("loggedUserRole1",loggedUserRole)
+
         return (<DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>)
       })
       return userClients
     } else {
-      console.log("loggedUserRole2",loggedUserRole)
+
       const hasMsaForm=liveData.filter(client=>client.msa_form_id!==null).sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
      const userClients= hasMsaForm.map((client,index)=>{
      return  <DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>
@@ -64,8 +67,7 @@ console.log("data",data)
   };
 
   const searchByUserId =(userid)=>{
-    console.log(userid)
-    console.log("data antes",data)
+
 if(userid!=="All"){
     setLiveData(data)
     const result = data.filter((client, index) => client.clienthcwid.toLowerCase()===userid.toLowerCase());
@@ -77,7 +79,6 @@ if(userid!=="All"){
     }
 } else {
   setLiveData(data)
-  console.log("data despues",data)
 }
 
 
@@ -102,7 +103,11 @@ if(userid!=="All"){
     });
   };
 
-console.log("loggedUserRole",loggedUserRole)
+    useEffect(()=>{
+    loggedUserRole==="Supervisor" ? router.push("/supervisorDashboard"):setLoading(false)
+    },[loggedUserRole])
+    console.log(loggedUserRole)
+
 
   return (
     <>
@@ -113,15 +118,19 @@ console.log("loggedUserRole",loggedUserRole)
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-<Layout>
-      <main className="my-5">
+      <Layout>
+      <main className="bg-light-blue h-screen">
         <section id="dashboard-client-list">
-          <div className="container mx-auto">
-            <h1 className="font-black my-5">
+          <div className="container mx-auto py-5">
+          {loading ? <Loader/> : (<>
+            
+            <h1 className="font-black py-5">
               Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
             </h1>
-            <h3 className="font-black my-2">What you want to do today? </h3>
-            <div className="flex mb-2">
+           
+            
+
+              {/* <div className="flex mb-2">
               {loggedUserRole === "Supervisor" && (
                 <Link href="/users">
                   <div className="text-center mr-5">
@@ -151,59 +160,15 @@ console.log("loggedUserRole",loggedUserRole)
                           </svg>
                         </div>
                       </button>
-                    </div>{" "}
+                    </div>
                     <p className="my-5">MANAGE USERS</p>
                   </div>
                 </Link>
               )}
-
-
-
-             {/*  <div
-                className="text-center mr-5"
-                onClick={() => setShowCreateClientModal(!showCreateClientModal)}
-              >
-                <div className="rounded btn-darkBlue p-5 text-center shadow-xl   mb-2 rounded-xl">
-                  <button id="myBtn">
-                    <div className="flex justify-center">
-                      <svg
-                        width="102"
-                        height="102"
-                        strokeWidth="1.5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M17 10H20M23 10H20M20 10V7M20 10V13"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                </div>{" "}
-                <p className="my-5">ADD NEW CLIENT</p>
-              </div> */}
-
-           
-            </div>
+            </div> */}
 
             <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
-            {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
+            {loggedUserRole==="DES" && (
                 <div className="search-box flex  items-center">
                   <p className="mr-5">Search by name or Client ID</p>
 
@@ -244,7 +209,7 @@ console.log("loggedUserRole",loggedUserRole)
                   </div>
                 </div>)}
 
-                {loggedUserRole ==='Supervisor' || loggedUserRole==="DES" && (
+                {loggedUserRole==="DES" && (
               <div className="search-box flex items-center justify-end gap-3">
                
                 
@@ -265,23 +230,17 @@ console.log("loggedUserRole",loggedUserRole)
               </div>
               
           
-            <div className="dashboard-client-list ">
-              <h1 className="font-black text-center my-5">Clients</h1>
+              <div className="dashboard-client-list ">
+             {loggedUserRole !=='Supervisor' &&  <><h1 className="font-black text-center my-5">Clients</h1>
               {data.length<=0 && <p className="text-center">No clients has been added</p>}
               {noDataMessage && <p className="text-center">No clients has been added with that name or id</p>}
+              </>
+            }
+             
+             
               <div className="dashboard-clients-container grid md:grid-cols-5 grid.cols-1 md:px-0 px-5 gap-5">
-            {/*  
-             {data.length > 0 && data.map((client,index)=>{
-              return (
-              <>
-              <DashboardClientCard client={client}/>
-              </>)
-            })
-            } */}
-
-            {loggedUserRole ==="Supervisor" || loggedUserRole==="HCW" && 
-            <div
-                className="p-5 text-center mb-2  text-center btn-darkBlue rounded shadow-xl rounded-xl text-white"
+               {loggedUserRole ==="HCW"  && 
+              <div className="p-5 text-center mb-2  text-center btn-darkBlue rounded shadow-xl rounded-xl text-white"
                 onClick={() => setShowCreateClientModal(!showCreateClientModal)}
               >
                 <div className="  ">
@@ -322,55 +281,15 @@ console.log("loggedUserRole",loggedUserRole)
               </div>
             }
 
-{loggedUserRole ==="HCW" || loggedUserRole==="Supervisor" && 
-            <div
-                className="p-5 text-center mb-2  text-center btn-darkBlue rounded shadow-xl rounded-xl text-white"
-                onClick={() => setShowCreateClientModal(!showCreateClientModal)}
-              >
-                <div className="  ">
-                  <button id="myBtn">
-                    <div className="flex justify-center">
-                      <svg
-                      className=""
-                        width="102"
-                        height="102"
-                        strokeWidth="1.5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M17 10H20M23 10H20M20 10V7M20 10V13"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                </div>{" "}
-                <p className="my-5 lne-text-white">ADD NEW CLIENT</p>
-              </div>
-            }
-
-              {getUserClients()}
+              {loggedUserRole !=='Supervisor' && getUserClients()}
           
-          
-                
               </div>
             </div>
+          </>)}
+            
+
+           
+            
           </div>
         </section>
       </main>
