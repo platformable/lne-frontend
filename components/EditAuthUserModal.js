@@ -22,6 +22,7 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
 
     axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers`, userData)
       .then(function (response) {
+        console.log("response",response)
         setShowEditAuthUserModal(!showEditAuthUserModal)
         router.reload()
       })
@@ -45,7 +46,7 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
           <div className="grid grid-cols-1 gap-6">
             <div className="flex ml-2.5 items-end">
               <img src="/edit-user-icon.svg" className="mr-3" alt="" width="50" />
-              <h2 className="font-black">Edit User</h2>
+              <h2 className="font-black">Edit Authorized User</h2>
             </div>
             <label className="block">
               <span className="ml-1 font-semibold">First name</span>
@@ -114,8 +115,8 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
                 }
                 className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option id="true">Active</option>
-                <option id="false">No Active</option>
+                <option>Active</option>
+                <option>No Active</option>
               </select>
             </label>
             <div className="block">

@@ -19,6 +19,7 @@ console.log('selected', selectedUser)
   const EditUser =  (user)=> {
 
    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`,userData)
+   .then(response => EditAuthUser(userData))
     .then(function (response) {
         setShowEditUserModal(!showEditUserModal)
       router.reload()
@@ -27,6 +28,20 @@ console.log('selected', selectedUser)
       console.log("client error",error);
     }); 
   }
+
+
+  const EditAuthUser =  (userData)=> {
+
+    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/update_from_users_edit`,userData)
+     .then(function (response) {
+        console.log("success")
+     })
+     .catch(function (error) {
+       console.log("client error",error);
+     }); 
+   }
+
+  console.log("userData",userData)
 
   return (
     <>
@@ -41,7 +56,7 @@ console.log('selected', selectedUser)
           <div className="grid grid-cols-1 gap-6">
             <div className="flex ml-2.5 items-end">
               <img src="/edit-user-icon.svg" className="mr-3" alt="" width="50" />
-              <h2 className="font-black">Edit User</h2>
+              <h2 className="font-black">Edit User user modal.js</h2>
             </div>
             <label className="block">
               <span className="ml-1 font-semibold">First name</span>
@@ -105,8 +120,8 @@ console.log('selected', selectedUser)
               <span className="font-semibold ml-1">Active / No active</span>
               <select
                 value={userData.useractivestatus}
-                onChange={() =>
-                  setUserData({ ...userData, useractivestatus:!userData.useractivestatus })
+                onChange={(e) =>
+                  setUserData({ ...userData, useractivestatus:e.target.value })
                 }
                 className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >

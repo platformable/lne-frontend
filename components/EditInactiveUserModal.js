@@ -21,6 +21,7 @@ export default function EditInactiveUserModal({ selectedUser, setShowEditInactiv
   const EditUser = (user) => {
 
     axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, userData)
+    .then(response => EditAuthUser(userData))
       .then(function (response) {
         setShowEditInactiveUserModal(!showEditInactiveUserModal)
         router.reload()
@@ -30,6 +31,16 @@ export default function EditInactiveUserModal({ selectedUser, setShowEditInactiv
       });
   }
 
+  const EditAuthUser =  (userData)=> {
+
+    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/update_from_users_edit`,userData)
+     .then(function (response) {
+        console.log("success")
+     })
+     .catch(function (error) {
+       console.log("client error",error);
+     }); 
+   }
 
 
   return (
