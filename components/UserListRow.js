@@ -8,7 +8,7 @@ import editIcon from '../public/edit-icon.svg'
 import Image from 'next/image';
 
 
-export default function UserListRow({authorizeduser,setSelectedUser,setShowEditAuthUserModal,showEditAuthUserModal,index,showDeleteUsermodal, setShowDeleteUserModal}) {
+export default function UserListRow({authorizeduser,setSelectedUser,setShowEditUserModal,showEditUserModal,index,showDeleteUsermodal, setShowDeleteUserModal}) {
   const {useremail,name,lastname,userrole,isactive,dateaccountactivated,datelastlogin,user_id} = authorizeduser
 
   const router = useRouter()
@@ -16,7 +16,7 @@ export default function UserListRow({authorizeduser,setSelectedUser,setShowEditA
   const handleSelectedUser =(selectedUser, action)=>{
     setSelectedUser(authorizeduser)
     action === 'EDIT'?
-    setShowEditAuthUserModal(!showEditAuthUserModal):
+    setShowEditUserModal(!showEditUserModal):
     setShowDeleteUserModal(!showDeleteUsermodal)
   }
 

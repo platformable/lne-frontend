@@ -10,7 +10,6 @@ import Layout from '../../components/Layout';
 import Image from 'next/image';
 
 import backIcon from '../../public/BACKicon.svg'
-import addUserICon from '../../public/delete-user-icon.svg'
 import authUserICon from '../../public/authorized-users-icon.svg'
 
 export default function UsersIndex({data}) {
@@ -26,7 +25,7 @@ export default function UsersIndex({data}) {
     <>
     <Layout>
     
-      <main>
+    
           <section>
            <div className=""> 
 
@@ -35,7 +34,7 @@ export default function UsersIndex({data}) {
             <div className="flex  items-center justify-between container my-5 mx-auto">
               <Link href="/authorizedusers">
                 <a className="rounded bg-yellow-400 px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
-                <Image src={authUserICon} width={30} height={30}/>
+                <Image src={authUserICon} width={40} height={40}/>
                   <p className='ml-2 text-sm'>View authorized users</p>
                 </a>
               </Link>
@@ -80,9 +79,8 @@ export default function UsersIndex({data}) {
               </button> */}
             </div>
 
-
-
-          <div id='dashboard-client-lis-container' className="bg-light-blue">
+                {/* TABLE */}
+          <div id='dashboard-client-list-container' className="bg-light-blue pb-7">
           <div className="dashboard-client-list container mx-auto">
             <h2 className="font-black text-center py-5">Active Users</h2>
               <div className={`${styles.dashboardActiveUsersListHeadRow}  pt-3 px-5`}>
@@ -133,7 +131,7 @@ export default function UsersIndex({data}) {
           </div>
          
           </section>
-      </main>
+      
       {showModal &&<AddUserModal setShowModal={setShowModal} showModal={showModal}/>}
       {showEditUserModal &&<EditUserModal setShowEditUserModal={setShowEditUserModal} showEditUserModal={showEditUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
       {showDeleteUserModal && <DeleteUserModal urlEntity={'users'}setShowDeleteUserModal={setShowDeleteUserModal} showDeleteUserModal={showDeleteUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}

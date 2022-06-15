@@ -3,26 +3,26 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Loader from "./Loader";
 
-export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserModal, showEditAuthUserModal }) {
+export default function EditInactiveUserModal({ selectedUser, setShowEditInactiveUserModal, showEditInactiveUserModal }) {
   const router = useRouter()
   console.log('selecteduser',selectedUser)
   const [userData, setUserData] = useState(selectedUser || {
-    id: selectedUser.id,
+    user_id: selectedUser.user_id,
     name: "",
     lastname: "",
-    email: "",
-    role: "",
-    isactive: ''
+    useremail: "",
+    userrole: "",
+    userstatusactive: ''
   })
-  console.log('userData',userData)
+  console.log('userDataInactive',userData)
 
   const [saving, setSaving] = useState(false)
 
   const EditUser = (user) => {
 
-    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers`, userData)
+    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, userData)
       .then(function (response) {
-        setShowEditAuthUserModal(!showEditAuthUserModal)
+        setShowEditInactiveUserModal(!showEditInactiveUserModal)
         router.reload()
       })
       .catch(function (error) {
@@ -38,7 +38,7 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
         <div className="mt-8 relative max-w-sm mx-auto bg-yellow-400 p-10 rounded-md">
           <button
             className="absolute  top-0 right-0"
-            onClick={() => setShowEditAuthUserModal(!showEditAuthUserModal)}
+            onClick={() => setShowEditInactiveUserModal(!showEditInactiveUserModal)}
           >
             <img src="/close-window-icon.svg" alt="close-window" title="close-window_" className="rounded-tr"  width="20" /> 
           </button>
@@ -77,9 +77,9 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
                 type="email"
                 className="mt-1 block w-full bg-[#f6e89e] rounded-md p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="john@example.com"
-                value={userData.email}
+                value={userData.useremail}
                 onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
+                  setUserData({ ...userData, useremail: e.target.value })
                 }
               />
             </label>
@@ -93,9 +93,9 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
             <label className="block">
               <span className="ml-1 font-semibold">User role</span>
               <select
-                value={userData.role}
+                value={userData.userrole}
                 onChange={(e) =>
-                  setUserData({ ...userData, role: e.target.value })
+                  setUserData({ ...userData, userrole: e.target.value })
                 }
                 className="select-add-edit-supervisor block w-full mt-1 text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
@@ -108,14 +108,14 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
             <label className="block">
               <span className="ml-1 font-semibold">Active / No active</span>
               <select
-                value={userData.isactive === 'false'? 'No Active' : 'Active'}
+                value={userData.useractivestatus}
                 onChange={(e) =>
-                     setUserData({ ...userData, isactive: e.target.selectedOptions[0].id.toString() })
+                  setUserData({ ...userData, useractivestatus: e.target.selectedOptions[0].id.toString() })
                 }
                 className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option id="true">Active</option>
-                <option id="false">No Active</option>
+                <option id="Active">Active</option>
+                <option id="No Active">No Active</option>
               </select>
             </label>
             <div className="block">
