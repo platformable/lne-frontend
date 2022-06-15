@@ -30,6 +30,7 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
     });
   }
 
+  console.log("userData",userData)
 
 
   return (
@@ -79,16 +80,17 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
             />
           </label> */}
             <label className="block">
-              <span className="text-gray-700">User role</span>
+              <span className="text-gray-700">User Role</span>
               <select
                 onChange={(e) =>
                   setUserData({ ...userData, role: e.target.value })
                 }
                 className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>HCW</option>
-                <option>Supervisor</option>
-                <option>DES</option>
+                <option >Select Role</option>
+                <option value="HCW">HCW</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="DES">DES</option>
               </select>
             </label>
 

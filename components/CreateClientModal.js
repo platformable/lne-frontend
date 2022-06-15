@@ -114,43 +114,15 @@ else if(
   return (
     <>
       <div className="modal">
-        <div className="mt-8 max-w-md mx-auto bg-white p-5 rounded">
-          <div className="grid grid-cols-1 gap-6">
+        <div className="mt-8 max-w-md mx-auto bg-yellow-300  rounded">
+        <div className="flex justify-end">
+              <button onClick={() => setShowCreateClientModal(!showCreateClientModal)} className="text-white bg-black px-2 py-1">X</button>
+            </div>
+          <div className="grid grid-cols-1 gap-6 p-5">
+            
             <div className="flex justify-between">
             <h1 className="font-black">Client Information</h1>
-            <button
-                    className="text-sm text-white"
-                    onClick={() => setShowCreateClientModal(!showCreateClientModal)}
-                  >
-                    <svg
-                      className="mr-1 relative "
-                      width="24"
-                      height="24"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3 17V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17Z"
-                        stroke="black"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M10 14.2426L12.1213 12.1213M12.1213 12.1213L14.2426 10M12.1213 12.1213L10 10M12.1213 12.1213L14.2426 14.2426"
-                        stroke="black"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M6 8H7"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    
-                  </button>
+            
             </div>
            
             {emptyFields  && <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">Please complete all the fields</span>} 
@@ -247,9 +219,9 @@ else if(
             
             <div className="block">
               <div className="mt-2">
-                <div className="flex ">
+                <div className="flex justify-center">
                   <button
-                    className="px-5  py-1 mr-3 font-medium bg-yellow-300  text-sm flex shadow-xl items-center rounded-md"
+                    className="px-5  py-1 mr-3 font-medium bg-green-400  text-sm flex shadow-xl items-center rounded-md"
                     onClick={() => addClient()} 
                   >
                     { saving ? (

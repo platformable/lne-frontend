@@ -150,7 +150,13 @@ input[type=number] {
 }
 
 
+.btn-yellow {
+  background-color: var(--yellow);
+  }
 
+  .btn-blue {
+    background-color: var(--blue);
+    }
 .btn-lightBlue {
   background-color: var(--lightBlue);
 }
@@ -220,6 +226,10 @@ border-left:10px solid green;
   color:var(--blue);
 }
 /* BACKGROUNDS */
+
+.bg-yellow {
+background-color: var(--yellow);
+}
 
 .bg-dark-blue{
   background-color: var(--darkBlue);
