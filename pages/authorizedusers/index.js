@@ -31,8 +31,6 @@ export default function AuthorizedUsersIndex({data, users}) {
 
     const [selectedUser,setSelectedUser]=useState({})
 
-    console.log("user",users)
-    console.log("data",data)
 
 
     useEffect(()=> {
@@ -58,7 +56,7 @@ export default function AuthorizedUsersIndex({data, users}) {
     return selected
   }
   const getNoActiveUser = (array1) => {
-    const noActive = array1.filter(user => user.useractivestatus === 'No Active')
+    const noActive = array1.filter(user => user.useractivestatus === 'No Active' || user.useractivestatus === 'false')
     console.log('lista noactive',noActive)
     setListOfNoActive(noActive)
   }
@@ -129,7 +127,7 @@ export default function AuthorizedUsersIndex({data, users}) {
           
           </div>
               {/* TABLE */}
-          <div id="dashboard-client-list" className="bg-light-blue pb-7">
+          <div id="dashboard-client-list" className="bg-light-blue pb-7 h-screen">
 
             <div className="dashboard-client-list container mx-auto">
               <h2 className="font-black text-center pt-6 pb-3">Authorized Users</h2>

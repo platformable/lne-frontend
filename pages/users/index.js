@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Link from 'next/link';
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import styles from "../../styles/Home.module.css";
@@ -20,6 +20,25 @@ export default function UsersIndex({data}) {
     const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
 
     const [selectedUser,setSelectedUser] = useState({});
+
+    const [activeUsers,setActiveUsers]=useState([])
+console.log(data)
+    const getActiveUsers=(array)=>{
+
+      const result = array.filter((user,index)=>{
+        return user.useractivestatus==='Active'
+      })
+
+      setActiveUsers(result)
+
+    }
+
+
+
+    useEffect(()=>{
+      getActiveUsers(data)
+
+    },[])
 
   return (
     <>
@@ -80,7 +99,7 @@ export default function UsersIndex({data}) {
             </div>
 
                 {/* TABLE */}
-          <div id='dashboard-client-list-container' className="bg-light-blue pb-7">
+          <div id='dashboard-client-list-container' className="bg-light-blue pb-7 h-screen">
           <div className="dashboard-client-list container mx-auto">
             <h2 className="font-black text-center py-5">Active Users</h2>
               <div className={`${styles.dashboardActiveUsersListHeadRow}  pt-3 px-5`}>
@@ -113,7 +132,7 @@ export default function UsersIndex({data}) {
             </div>
             <div className="dashboard-client-list mt-2 container mx-auto">
 
-                {data?data.map((authuser,index)=>{
+                {data?activeUsers.map((authuser,index)=>{
                    return <UserListRow 
                    authorizeduser={authuser} 
                    index={index} 
@@ -124,7 +143,7 @@ export default function UsersIndex({data}) {
                    setShowDeleteUserModal={setShowDeleteUserModal}
                    setSelectedUser={setSelectedUser}
                    />
-                }):"No hay data"}
+                }):"No Data"}
               
             </div>
           </div>

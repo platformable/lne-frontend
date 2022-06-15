@@ -30,7 +30,7 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
     });
   }
 
-
+console.log("userData",userData)
 
   return (
     <>
@@ -80,24 +80,19 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
                 }
               />
             </label>
-            {/*  <label className="block">
-            <span className="text-gray-700">When is your event?</span>
-            <input
-              type="date"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
-          </label> */}
+      
             <label className="block">
               <span className="ml-1 font-semibold ">User role</span>
               <select
                 onChange={(e) =>
-                  setUserData({ ...userData, role: e.target.value })
+                  setUserData({ ...userData, userRole: e.target.value })
                 }
                 className="select-add-edit-supervisor block text-[#00000065] w-full mt-1 rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>HCW</option>
-                <option>Supervisor</option>
-                <option>DES</option>
+                <option value={null} disabled>Select</option>
+                <option value="HCW" default>HCW</option>
+                <option value="Supervisor">Supervisor</option>
+                <option vlaue="DES">DES</option>
               </select>
             </label>
 

@@ -106,7 +106,7 @@ if(userid!=="All"){
 
     useEffect(()=>{
     loggedUserRole==="Supervisor" ? router.push("/supervisorDashboard"):setLoading(false)
-    loggedUserStatus==="false" ? router.push("/api/auth/logout"):setLoading(false)
+    loggedUserStatus==="No Active" ? router.push("/api/auth/logout"):setLoading(false)
     },[loggedUserRole,loggedUserStatus])
 
 
