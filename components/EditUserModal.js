@@ -6,13 +6,14 @@ import Loader from "./Loader";
 export default function EditUserModal({selectedUser, setShowEditUserModal, showEditUserModal }) {
   const router = useRouter()
   const [userData,setUserData]= useState(selectedUser || {
-    name:"",
-    lastname:"",
-    email:"",
-    userRole:"",
-    isactive:false
+    user_id: selectedUser.user_id,
+    name: "",
+    lastname: "",
+    useremail: "",
+    userRole: "",
+    useractivestatus: ''
   })
-
+console.log('selected', selectedUser)
   const [saving,setSaving] = useState(false)
 
   const EditUser =  (user)=> {
@@ -27,19 +28,26 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
     }); 
   }
 
-
-
   return (
     <>
       <div className="modal">
-        <div className="mt-8 max-w-md mx-auto bg-white p-5 rounded">
+        <div className="mt-8 relative max-w-sm mx-auto bg-yellow-400 p-10 rounded-md">
+          <button
+            className="absolute  top-0 right-0"
+            onClick={() => setShowEditUserModal(!showEditUserModal)}
+          >
+            <img src="/close-window-icon.svg" alt="close-window" title="close-window_" className="rounded-tr"  width="20" /> 
+          </button>
           <div className="grid grid-cols-1 gap-6">
-            <h1 className="font-black">Edit Users information</h1>
+            <div className="flex ml-2.5 items-end">
+              <img src="/edit-user-icon.svg" className="mr-3" alt="" width="50" />
+              <h2 className="font-black">Edit User</h2>
+            </div>
             <label className="block">
-              <span className="">First name</span>
+              <span className="ml-1 font-semibold">First name</span>
               <input
                 type="text"
-                className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full bg-[#f6e89e] rounded-md  p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="John Doe"
                 value={userData.name}
                 onChange={(e) =>
@@ -48,10 +56,10 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
               />
             </label>
             <label className="block">
-              <span className="">Last name</span>
+              <span className="ml-1 font-semibold">Last name</span>
               <input
                 type="text"
-                className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full bg-[#f6e89e] rounded-md p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="John Doe"
                 value={userData.lastname}
                 onChange={(e) =>
@@ -60,14 +68,14 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
               />
             </label>
             <label className="block">
-              <span className="">Email address</span>
+              <span className="ml-1 font-semibold">Email address</span>
               <input
                 type="email"
-                className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full bg-[#f6e89e] rounded-md p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="john@example.com"
                 value={userData.useremail}
                 onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
+                  setUserData({ ...userData, useremail: e.target.value })
                 }
               />
             </label>
@@ -79,13 +87,13 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
             />
           </label> */}
             <label className="block">
-              <span className="text-gray-700">User role</span>
+              <span className="font-semibold ml-1">User role</span>
               <select
-              value={userData.userrole}
+                value={userData.userrole}
                 onChange={(e) =>
                   setUserData({ ...userData, userrole: e.target.value })
                 }
-                className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="select-add-edit-supervisor block w-full mt-1 text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
                 <option>HWC</option>
                 <option>Supervisor</option>
@@ -93,25 +101,24 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
               </select>
             </label>
 
-           {/*  <label className="block">
-              <span className="text-gray-700">Active / No active</span>
+            <label className="block">
+              <span className="font-semibold ml-1">Active / No active</span>
               <select
-              value={userData.isactive}
-                onChange={(e) =>
-                  setUserData({ ...userData, role: e.target.value })
+                value={userData.useractivestatus}
+                onChange={() =>
+                  setUserData({ ...userData, useractivestatus:!userData.useractivestatus })
                 }
-                className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
                 <option>Active</option>
                 <option>No Active</option>
               </select>
-            </label> */}
-
+            </label>
             <div className="block">
               <div className="mt-2">
-                <div className="flex ">
+                <div className="flex justify-center ">
                   <button
-                    className="px-5  py-1 mr-3 font-medium bg-yellow-300  text-sm flex shadow-xl items-center rounded-md"
+                    className="px-4  py-2 mr-3 font-medium bg-[#23D3AA] hover:bg-green-500 text-sm flex shadow-xl rounded-md"
                     onClick={() => {
                       EditUser(selectedUser);
                       setSaving(!saving);
@@ -120,81 +127,20 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
                     {saving ? (
                       <Loader />
                     ) : (
-                      <svg
-                        className="mr-1"
-                        width="18"
-                        height="18"
-                        strokeWidth="1.5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M8.6 9H15.4C15.7314 9 16 8.73137 16 8.4V3.6C16 3.26863 15.7314 3 15.4 3H8.6C8.26863 3 8 3.26863 8 3.6V8.4C8 8.73137 8.26863 9 8.6 9Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                      </svg>
+                      <img src="/update-icon.svg" className="mr-2" alt="" width="18" />
+
+
                     )}
                     Update
                   </button>
-                  <button
-                    className="px-5  font-medium bg-black  text-sm text-white flex shadow-xl items-center rounded-md"
-                    onClick={() => setShowEditUserModal(!showEditUserModal)}
-                  >
-                    <svg
-                      className="mr-1 relative "
-                      width="24"
-                      height="24"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3 17V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M10 14.2426L12.1213 12.1213M12.1213 12.1213L14.2426 10M12.1213 12.1213L10 10M12.1213 12.1213L14.2426 14.2426"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M6 8H7"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Close
-                  </button>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <div id="myModal" className="modal fade">
-        <div className="modal-content rounded-xl bg-red-500">
-          <span className="close" onClick={() => setShowModal(!showModal)}>
-            &times;
-          </span>
-          <p className="font-black">Some text in the Modal..</p>
-        </div>
-      </div> */}
+      
     </>
   );
 }
