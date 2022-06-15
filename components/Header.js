@@ -9,7 +9,7 @@ export default function Header() {
   
   return (
      <header className="border-b">
-        <div className="container mx-auto py-5  grid space-between grid-cols-2">
+        <div className="container mx-auto py-5  grid space-between grid-cols-2 px-5 md:px-0">
           <Link href="/dashboard"><img src="../../../../logo.png" alt="" width={125} className="cursor-pointer" /></Link>
           <div id="head-user" className="grid place-items-end">
             <h3 className="font-black">
