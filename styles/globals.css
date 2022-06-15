@@ -119,6 +119,11 @@ input[type=number] {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+.modal-btn-close {
+  position: relative;
+  left: 93%;
+  top: -1px;
+}
 
 /* Modal Content/Box */
 .modal-content {

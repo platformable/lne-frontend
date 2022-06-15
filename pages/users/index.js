@@ -1,45 +1,51 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import Link from 'next/link';
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import styles from "../../styles/Home.module.css";
 import UserListRow from "../../components/UserListRow";
-import AuthUsersListRow from "../../components/AuthUsersComponent";
 import AddUserModal from "../../components/AddUserModal";
 import EditUserModal from "../../components/EditUserModal";
+import DeleteUserModal from '../../components/DeleteUserModal';
 import Layout from '../../components/Layout';
+import Image from 'next/image';
 
+import backIcon from '../../public/BACKicon.svg'
+import authUserICon from '../../public/authorized-users-icon.svg'
 
 export default function UsersIndex({data}) {
     const { user, error, isLoading } = useUser();
     const [showModal,setShowModal] = useState(false)
 
-    const [showEditUserModal,setShowEditUserModal] = useState(false)
-    const [selectedUser,setSelectedUser]=useState({})
+    const [showEditUserModal,setShowEditUserModal] = useState(false);
+    const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
 
+    const [selectedUser,setSelectedUser] = useState({});
 
   return (
     <>
     <Layout>
     
-      <main>
+    
           <section>
-           <div className="container mx-auto"> 
+           <div className=""> 
 
-           <div className="flex my-5">
-              <Link href="/dashboard">
-              <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
-           
-       Dashboard
-              </button>
-              </Link>
+           <div className="container mx-auto flex flex-wrap mt-5">
+              <h1 className='block font-bold'>Manage Users</h1>
+            <div className="flex  items-center justify-between container my-5 mx-auto">
               <Link href="/authorizedusers">
-              <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block mr-1" id="myBtn">
-              Authorized Users 
-
-              {" "}
-       
-              </button>
+                <a className="rounded bg-yellow-400 px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
+                <Image src={authUserICon} width={40} height={40}/>
+                  <p className='ml-2 text-sm'>View authorized users</p>
+                </a>
               </Link>
+              <Link href="/dashboard">
+                <a className="px-5 py-2 flex  items-center font-bold" id="myBtn">
+                <Image src={backIcon} />
+                  <p className='ml-2'>back to homepage</p>
+                </a>
+              </Link>
+            </div>
+              
               {/* <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block" id="myBtn" onClick={()=>setShowModal(!showModal)}>
                 <svg
                   className="mr-2"
@@ -73,39 +79,39 @@ export default function UsersIndex({data}) {
               </button> */}
             </div>
 
-
-
-
-          <div className="dashboard-client-list">
-            <h3 className="font-black text-center my-5">Active Users</h3>
-              <div className={`${styles.dashboardClientListHeadRow} py-3 px-5`}>
+                {/* TABLE */}
+          <div id='dashboard-client-list-container' className="bg-light-blue pb-7">
+          <div className="dashboard-client-list container mx-auto">
+            <h2 className="font-black text-center py-5">Active Users</h2>
+              <div className={`${styles.dashboardActiveUsersListHeadRow}  pt-3 px-5`}>
+                 
                 <div className="head-row font-black">
-                  <p className="text-center"> User ID</p>
+                  <p className="text-base text-left">Name</p>
                 </div>
                 <div className="head-row font-black">
-                  <p className="text-center"> User Role</p>
+                  <p className="text-base text-left">Lastname</p>
                 </div>
                 <div className="head-row font-black">
-                  <p className="text-center">Name</p>
+                  <p className="text-base text-left"> User Role</p>
                 </div>
                 <div className="head-row font-black">
-                  <p className="text-center">Lastname</p>
+                  <p className="text-base text-left">Email</p>
                 </div>
                 <div className="head-row font-black">
-                  <p className="text-center">Email</p>
+                  <p className="text-base text-center">Activated in</p>
                 </div>
                 <div className="head-row font-black">
-                  <p className="text-center">Last login</p>
+                  <p className="text-base text-center">Last login</p>
                 </div>
                 <div className="head-row font-black">
-                  <p className="text-center">Edit</p>
+                  <p className="text-base text-center">Edit</p>
                 </div>
                 <div className="head-row font-black">
-                  <p className="text-center">Delete</p>
+                  <p className="text-base text-center">Delete</p>
                 </div>
               </div>
             </div>
-            <div className="dashboard-client-list mt-5">
+            <div className="dashboard-client-list mt-2 container mx-auto">
 
                 {data?data.map((authuser,index)=>{
                    return <UserListRow 
@@ -114,16 +120,22 @@ export default function UsersIndex({data}) {
                    key={index}
                    setShowEditUserModal={setShowEditUserModal} 
                    showEditUserModal={showEditUserModal}
+                   showDeleteUserModal={showDeleteUserModal}
+                   setShowDeleteUserModal={setShowDeleteUserModal}
                    setSelectedUser={setSelectedUser}
                    />
                 }):"No hay data"}
               
             </div>
           </div>
+          </div>
+         
           </section>
-      </main>
+      
       {showModal &&<AddUserModal setShowModal={setShowModal} showModal={showModal}/>}
       {showEditUserModal &&<EditUserModal setShowEditUserModal={setShowEditUserModal} showEditUserModal={showEditUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
+      {showDeleteUserModal && <DeleteUserModal urlEntity={'users'}setShowDeleteUserModal={setShowDeleteUserModal} showDeleteUserModal={showDeleteUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
+
       </Layout>
     </>
   )
