@@ -56,10 +56,10 @@ h6 {
 :root {
   --yellow:#EBD841;
   --lightYellow:#FDF8CE;
-  --darkYellow:#D3C23B;
+  --darkYellow:#FFDE0B;
   --lightBlue:#D0E7FD;
   --blue:#62A6E5;
-  --darkBlue:#2278C9;
+  --darkBlue:#007FFF;
   --pink:#FF9EB6;
   --strongPink:#FF56A5;
   --purple:#AD4BBF;
@@ -160,6 +160,9 @@ background-color: var(--darkBlue);
 }
 .btn-darkYellow {
   background-color: var(--darkYellow);
+}
+.btn-darkGreen {
+  background-color: var(--green);
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

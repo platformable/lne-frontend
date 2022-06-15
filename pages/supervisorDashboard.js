@@ -142,7 +142,7 @@ useEffect(()=>{
     checkServiceActionPlanCompletedGoals(serviceactionplans)
 },[])
 
-console.log("serviceactionplans",notCompletedGoals.length)
+console.log("user",user)
 
 
   return (

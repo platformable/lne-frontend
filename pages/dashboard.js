@@ -22,6 +22,7 @@ export default function Dashboard({ data, hcworkers }) {
   const [showModal, setShowModal] = useState(false);
   const [showCreateClientModal, setShowCreateClientModal] = useState(false);
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
+  const loggedUserStatus = user && user["https://lanuevatest.herokuapp.com/activestatus"];
   const userId = user?.sub
   const [noDataMessage, setNoDataMessage] = useState(false);
   const router = useRouter()
@@ -105,8 +106,8 @@ if(userid!=="All"){
 
     useEffect(()=>{
     loggedUserRole==="Supervisor" ? router.push("/supervisorDashboard"):setLoading(false)
-    },[loggedUserRole])
-    console.log(loggedUserRole)
+    loggedUserStatus==="false" ? router.push("/api/auth/logout"):setLoading(false)
+    },[loggedUserRole,loggedUserStatus])
 
 
   return (

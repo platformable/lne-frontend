@@ -696,7 +696,7 @@ console.log("clientData",clientData);
                 <input
                   type="date"
                   id="AIRSIntakeForm"
-                  className={`${MSAStyles.inputDate} ${(clientData.AIRSIntakeForm) ? "border-2 border-dark-blue rounded-md p-px bg-white" : ""} ${(clientData.AIRSIntakeForm && clientData.AIRSIntakeFormPDF && clientData.AIRSIntakeFormScan)  ? "" :" border-2 border-dark-blue rounded-md p-px bg-white"}`}
+                  className={`${MSAStyles.inputDate} ${(clientData.AIRSIntakeForm) ? "border-2 border-dark-blue rounded-md p-px bg-white" : ""} ${(clientData.AIRSIntakeForm && clientData.AIRSIntakeFormPDF && clientData.AIRSIntakeFormIssues)  ? "" :" border-2 border-dark-blue rounded-md p-px bg-white"}`}
                 value={
                   clientData.AIRSIntakeFormUploadDate &&
                   clientData.AIRSIntakeFormUploadDate.split('T')[0]
@@ -712,22 +712,22 @@ console.log("clientData",clientData);
                 />
 
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSIntakeFormPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSIntakeFormReviewed? 'pointer-events-none' :""}`}
 
             
                 onClick={(e) => {
-                  clientData.AIRSIntakeFormPDF ?
+                  clientData.AIRSIntakeFormReviewed ?
                     setClientData(formState => ({
                       ...formState,
-                      AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
+                      AIRSIntakeFormReviewed: !formState.AIRSIntakeFormReviewed,
                       AIRSIntakeFormUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
+                      AIRSIntakeFormReviewed: !formState.AIRSIntakeFormReviewed,
                       AIRSIntakeFormUploadDate: crearFecha()
                     }))
-                    if(!clientData.AIRSIntakeFormPDF || clientData.AIRSIntakeFormScan){
+                    if(!clientData.AIRSIntakeFormReviewed || clientData.AIRSIntakeFormIssues){
                       setClientData(formState => ({
                         ...formState,
                         AIRSIntakeFormUploadDate: crearFecha()
@@ -737,7 +737,7 @@ console.log("clientData",clientData);
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSIntakeFormPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSIntakeFormReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -749,32 +749,32 @@ console.log("clientData",clientData);
                   clientData.AIRSIntakeFormUploadDate === "" || clientData.AIRSIntakeFormUploadDate === null ? (
                     setClientData({
                       ...clientData,
-                      AIRSIntakeFormPDF: !clientData.AIRSIntakeFormPDF,
+                      AIRSIntakeFormReviewed: !clientData.AIRSIntakeFormReviewed,
                       AIRSIntakeFormUploadDate: crearFecha()
                     })) : setClientData({
                       ...clientData,
-                      AIRSIntakeFormPDF: !clientData.AIRSIntakeFormPDF,
+                      AIRSIntakeFormReviewed: !clientData.AIRSIntakeFormReviewed,
                     })
                 }
                 }
-                checked={clientData.AIRSIntakeFormPDF ? 'checked' : false}
+                checked={clientData.AIRSIntakeFormReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSIntakeFormScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSIntakeFormIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.AIRSIntakeFormScan ?
+                  clientData.AIRSIntakeFormIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
+                      AIRSIntakeFormIssues: !formState.AIRSIntakeFormIssues,
                       AIRSIntakeFormUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
+                      AIRSIntakeFormIssues: !formState.AIRSIntakeFormIssues,
                       AIRSIntakeFormUploadDate: crearFecha()
                     }))
-                    if(clientData.AIRSIntakeFormPDF || !clientData.AIRSIntakeFormScan){
+                    if(clientData.AIRSIntakeFormReviewed || !clientData.AIRSIntakeFormIssues){
                       setClientData(formState => ({
                         ...formState,
                         AIRSIntakeFormUploadDate: crearFecha()
@@ -785,7 +785,7 @@ console.log("clientData",clientData);
                 >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSIntakeFormScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSIntakeFormIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -797,15 +797,15 @@ console.log("clientData",clientData);
                     clientData.AIRSIntakeFormUploadDate === "" || clientData.AIRSIntakeFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSIntakeFormScan: !clientData.AIRSIntakeFormScan,
+                        AIRSIntakeFormIssues: !clientData.AIRSIntakeFormIssues,
                         AIRSIntakeFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSIntakeFormScan: !clientData.AIRSIntakeFormScan,
+                        AIRSIntakeFormIssues: !clientData.AIRSIntakeFormIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSIntakeFormScan ? 'checked' : false}
+                  checked={clientData.AIRSIntakeFormIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -903,21 +903,21 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentReviewed? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.ComprehensiveRiskBehaviorAssessmentPDF ?
+                  clientData.ComprehensiveRiskBehaviorAssessmentReviewed ?
                     setClientData(formState => ({
                       ...formState,
-                      ComprehensiveRiskBehaviorAssessmentPDF: !formState.ComprehensiveRiskBehaviorAssessmentPDF,
+                      ComprehensiveRiskBehaviorAssessmentReviewed: !formState.ComprehensiveRiskBehaviorAssessmentReviewed,
                       ComprehensiveRiskBehaviorAssessmentUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      ComprehensiveRiskBehaviorAssessmentPDF: !formState.ComprehensiveRiskBehaviorAssessmentPDF,
+                      ComprehensiveRiskBehaviorAssessmentReviewed: !formState.ComprehensiveRiskBehaviorAssessmentReviewed,
                       ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
                     }))
-                    if(!clientData.ComprehensiveRiskBehaviorAssessmentPDF || clientData.ComprehensiveRiskBehaviorAssessmentScan){
+                    if(!clientData.ComprehensiveRiskBehaviorAssessmentReviewed || clientData.ComprehensiveRiskBehaviorAssessmentIssues){
                       setClientData(formState => ({
                         ...formState,
                         ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
@@ -927,7 +927,7 @@ console.log("clientData",clientData);
                 } >                 
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? "3" : "0"}>
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -939,33 +939,33 @@ console.log("clientData",clientData);
                     clientData.ComprehensiveRiskBehaviorAssessmentUploadDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        ComprehensiveRiskBehaviorAssessmentPDF: !clientData.ComprehensiveRiskBehaviorAssessmentPDF,
+                        ComprehensiveRiskBehaviorAssessmentReviewed: !clientData.ComprehensiveRiskBehaviorAssessmentReviewed,
                         ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        ComprehensiveRiskBehaviorAssessmentPDF: !clientData.ComprehensiveRiskBehaviorAssessmentPDF,
+                        ComprehensiveRiskBehaviorAssessmentReviewed: !clientData.ComprehensiveRiskBehaviorAssessmentReviewed,
                       })
                   }
                   }
                   disabled={clientData.ComprehensiveRiskBehaviorAssessment ? true : false}
-                  checked={clientData.ComprehensiveRiskBehaviorAssessmentPDF ? 'checked' : false}
+                  checked={clientData.ComprehensiveRiskBehaviorAssessmentReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentIssues? 'pointer-events-none' :""}`}
 
                onClick={() => {
-                clientData.ComprehensiveRiskBehaviorAssessmentScan ?
+                clientData.ComprehensiveRiskBehaviorAssessmentIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    ComprehensiveRiskBehaviorAssessmentScan: !formState.ComprehensiveRiskBehaviorAssessmentScan,
+                    ComprehensiveRiskBehaviorAssessmentIssues: !formState.ComprehensiveRiskBehaviorAssessmentIssues,
                     ComprehensiveRiskBehaviorAssessmentUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    ComprehensiveRiskBehaviorAssessmentScan: !formState.ComprehensiveRiskBehaviorAssessmentScan,
+                    ComprehensiveRiskBehaviorAssessmentIssues: !formState.ComprehensiveRiskBehaviorAssessmentIssues,
                     ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
                   }))
-                  if(!clientData.ComprehensiveRiskBehaviorAssessmentScan || clientData.ComprehensiveRiskBehaviorAssessmentPDF){
+                  if(!clientData.ComprehensiveRiskBehaviorAssessmentIssues || clientData.ComprehensiveRiskBehaviorAssessmentReviewed){
                     setClientData(formState => ({
                       ...formState,
                       ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
@@ -976,7 +976,7 @@ console.log("clientData",clientData);
                >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentScan ? "3" : "0"}>
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -988,15 +988,15 @@ console.log("clientData",clientData);
                     clientData.ComprehensiveRiskBehaviorAssessmentUploadDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        ComprehensiveRiskBehaviorAssessmentScan: !clientData.ComprehensiveRiskBehaviorAssessmentScan,
+                        ComprehensiveRiskBehaviorAssessmentIssues: !clientData.ComprehensiveRiskBehaviorAssessmentIssues,
                         ComprehensiveRiskBehaviorAssessmentUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        ComprehensiveRiskBehaviorAssessmentScan: !clientData.ComprehensiveRiskBehaviorAssessmentScan,
+                        ComprehensiveRiskBehaviorAssessmentIssues: !clientData.ComprehensiveRiskBehaviorAssessmentIssues,
                       })
                   }
                   }
-                  checked={clientData.ComprehensiveRiskBehaviorAssessmentScan ? 'checked' : false}
+                  checked={clientData.ComprehensiveRiskBehaviorAssessmentIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -1091,31 +1091,31 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanPDF? 'pointer-events-none' :""}`}
-              // onClick={() => {
-              //   clientData.ServiceActionPlanPDF ?
-              //     setClientData(formState => ({
-              //       ...formState,
-              //       ServiceActionPlanPDF: !formState.ServiceActionPlanPDF,
-              //       ServiceActionPlanUploadDate: ""
-              //     })) :
-              //     setClientData(formState => ({
-              //       ...formState,
-              //       ServiceActionPlanPDF: !formState.ServiceActionPlanPDF,
-              //       ServiceActionPlanUploadDate: crearFecha()
-              //     }))
-              //     if(!clientData.ServiceActionPlanPDF || clientData.ServiceActionPlanPDF){
-              //       setClientData(formState => ({
-              //         ...formState,
-              //         ServiceActionPlanUploadDate: crearFecha()
-              //       }))
-              //     }
-              //   }
-              // } 
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanReviewed? 'pointer-events-none' :""}`}
+               onClick={() => {
+                 clientData.ServiceActionPlanReviewed ?
+                   setClientData(formState => ({
+                     ...formState,
+                     ServiceActionPlanReviewed: !formState.ServiceActionPlanReviewed,
+                     ServiceActionPlanUploadDate: ""
+                   })) :
+                   setClientData(formState => ({
+                     ...formState,
+                     ServiceActionPlanReviewed: !formState.ServiceActionPlanReviewed,
+                     ServiceActionPlanUploadDate: crearFecha()
+                   }))
+                   if(!clientData.ServiceActionPlanReviewed || clientData.ServiceActionPlanReviewed){
+                     setClientData(formState => ({
+                       ...formState,
+                       ServiceActionPlanUploadDate: crearFecha()
+                     }))
+                   }
+                 }
+              } 
               >
-                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ServiceActionPlanPDF ? "3" : "0"}>
+                  strokeWidth={clientData.ServiceActionPlanReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1135,26 +1135,26 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.ServiceActionPlanPDF ? 'checked' : false}
-                /> */}
+                  checked={clientData.ServiceActionPlanReviewed ? 'checked' : false}
+                />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ServiceActionPlanIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.ServiceActionPlanScan ?
+                  clientData.ServiceActionPlanIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      ServiceActionPlanScan: !formState.ServiceActionPlanScan,
+                      ServiceActionPlanIssues: !formState.ServiceActionPlanIssues,
                       ServiceActionPlanUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      ServiceActionPlanScan: !formState.ServiceActionPlanScan,
+                      ServiceActionPlanIssues: !formState.ServiceActionPlanIssues,
                       ServiceActionPlanUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ServiceActionPlanScan ? "3" : "0"}>
+                  strokeWidth={clientData.ServiceActionPlanIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1166,15 +1166,15 @@ console.log("clientData",clientData);
                     clientData.ServiceActionPlanUploadDate === "" || clientData.ServiceActionPlanUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        ServiceActionPlanScan: !clientData.ServiceActionPlanScan,
+                        ServiceActionPlanIssues: !clientData.ServiceActionPlanIssues,
                         ServiceActionPlanUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        ServiceActionPlanScan: !clientData.ServiceActionPlanScan,
+                        ServiceActionPlanIssues: !clientData.ServiceActionPlanIssues,
                       })
                   }
                   }
-                  checked={clientData.ServiceActionPlanScan ? 'checked' : false}
+                  checked={clientData.ServiceActionPlanIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -1269,31 +1269,31 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNotePDF? 'pointer-events-none' :""}`}
-              // onClick={() => {
-              //   clientData.ProgressNotePDF ?
-              //     setClientData(formState => ({
-              //       ...formState,
-              //       ProgressNotePDF: !formState.ProgressNotePDF,
-              //       ProgressNoteUploadDate: ""
-              //     })) :
-              //     setClientData(formState => ({
-              //       ...formState,
-              //       ProgressNotePDF: !formState.ProgressNotePDF,
-              //       ProgressNoteUploadDate: crearFecha()
-              //     }))
-              //     if(!clientData.ProgressNotePDF || clientData.ProgressNotePDF){
-              //       setClientData(formState => ({
-              //         ...formState,
-              //         ProgressNoteUploadDate: crearFecha()
-              //       }))
-              //     }
-              //   }
-              // } 
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNoteReviewed? 'pointer-events-none' :""}`}
+               onClick={() => {
+                 clientData.ProgressNoteReviewed ?
+                   setClientData(formState => ({
+                     ...formState,
+                     ProgressNoteReviewed: !formState.ProgressNoteReviewed,
+                     ProgressNoteUploadDate: ""
+                   })) :
+                   setClientData(formState => ({
+                     ...formState,
+                     ProgressNoteReviewed: !formState.ProgressNoteReviewed,
+                     ProgressNoteUploadDate: crearFecha()
+                   }))
+                   if(!clientData.ProgressNoteReviewed || clientData.ProgressNoteReviewed){
+                     setClientData(formState => ({
+                       ...formState,
+                       ProgressNoteUploadDate: crearFecha()
+                     }))
+                   }
+                 }
+               } 
               >
-                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ProgressNotePDF ? "3" : "0"}>
+                  strokeWidth={clientData.ProgressNoteReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1313,27 +1313,27 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.ProgressNotePDF ? 'checked' : false}
-                /> */}
+                  checked={clientData.ProgressNoteReviewed ? 'checked' : false}
+                />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNoteScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNoteIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.ProgressNoteScan ?
+                  clientData.ProgressNoteIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      ProgressNoteScan: !formState.ProgressNoteScan,
+                      ProgressNoteIssues: !formState.ProgressNoteIssues,
                       ProgressNoteUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      ProgressNoteScan: !formState.ProgressNoteScan,
+                      ProgressNoteIssues: !formState.ProgressNoteIssues,
                       ProgressNoteUploadDate: crearFecha()
                     }))}}
                     >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ProgressNoteScan ? "3" : "0"}>
+                  strokeWidth={clientData.ProgressNoteIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1345,15 +1345,15 @@ console.log("clientData",clientData);
                     clientData.ProgressNoteUploadDate === "" || clientData.ProgressNoteUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        ProgressNoteScan: !clientData.ProgressNoteScan,
+                        ProgressNoteIssues: !clientData.ProgressNoteIssues,
                         ProgressNoteUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        ProgressNoteScan: !clientData.ProgressNoteScan,
+                        ProgressNoteIssues: !clientData.ProgressNoteIssues,
                       })
                   }
                   }
-                  checked={clientData.ProgressNoteScan ? 'checked' : false}
+                  checked={clientData.ProgressNoteIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -1448,20 +1448,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangesFormPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangesFormReviewed? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.StatusChangesFormPDF ?
+                clientData.StatusChangesFormReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    StatusChangesFormPDF: !formState.StatusChangesFormPDF,
+                    StatusChangesFormReviewed: !formState.StatusChangesFormReviewed,
                     StatusChangesFormUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    StatusChangesFormPDF: !formState.StatusChangesFormPDF,
+                    StatusChangesFormReviewed: !formState.StatusChangesFormReviewed,
                     StatusChangesFormUploadDate: crearFecha()
                   }))
-                  if(!clientData.StatusChangesFormPDF || clientData.StatusChangesFormPDF){
+                  if(!clientData.StatusChangesFormReviewed || clientData.StatusChangesFormReviewed){
                     setClientData(formState => ({
                       ...formState,
                       StatusChangesFormUploadDate: crearFecha()
@@ -1471,7 +1471,7 @@ console.log("clientData",clientData);
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.StatusChangesFormPDF ? "3" : "0"}>
+                  strokeWidth={clientData.StatusChangesFormReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1491,26 +1491,26 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.StatusChangesFormPDF ? 'checked' : false}
+                  checked={clientData.StatusChangesFormReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangesFormScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.StatusChangesFormIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.StatusChangesFormScan ?
+                  clientData.StatusChangesFormIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      StatusChangesFormScan: !formState.StatusChangesFormScan,
+                      StatusChangesFormIssues: !formState.StatusChangesFormIssues,
                       StatusChangesFormUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      StatusChangesFormScan: !formState.StatusChangesFormScan,
+                      StatusChangesFormIssues: !formState.StatusChangesFormIssues,
                       StatusChangesFormUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.StatusChangesFormScan ? "3" : "0"}>
+                  strokeWidth={clientData.StatusChangesFormIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1522,15 +1522,15 @@ console.log("clientData",clientData);
                     clientData.StatusChangesFormUploadDate === "" || clientData.StatusChangesFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        StatusChangesFormScan: !clientData.StatusChangesFormScan,
+                        StatusChangesFormIssues: !clientData.StatusChangesFormIssues,
                         StatusChangeFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        StatusChangesFormScan: !clientData.StatusChangesFormScan,
+                        StatusChangesFormIssues: !clientData.StatusChangesFormIssues,
                       })
                   }
                   }
-                  checked={clientData.StatusChangesFormScan ? 'checked' : false}
+                  checked={clientData.StatusChangesFormIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -1624,20 +1624,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF ?
+                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    ComprehensiveRiskBehaviorAssessmentUpdatesPDF: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesPDF,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesReviewed: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed,
                     ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    ComprehensiveRiskBehaviorAssessmentUpdatesPDF: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesPDF,
+                    ComprehensiveRiskBehaviorAssessmentUpdatesReviewed: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed,
                     ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
                   }))
-                  if(!clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF || clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF){
+                  if(!clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed || clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed){
                     setClientData(formState => ({
                       ...formState,
                       ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
@@ -1647,7 +1647,7 @@ console.log("clientData",clientData);
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF ? "3" : "0"}>
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1667,26 +1667,26 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF ? 'checked' : false}
+                  checked={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan ?
+                  clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues,
                       ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                      ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues: !formState.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues,
                       ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan ? "3" : "0"}>
+                  strokeWidth={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1698,15 +1698,15 @@ console.log("clientData",clientData);
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate === "" || clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues: !clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues,
                         ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: !clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues: !clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues,
                       })
                   }
                   }
-                  checked={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormScan ? 'checked' : false}
+                  checked={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -1800,20 +1800,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QFormPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QFormReviewed? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.M11QFormPDF ?
+                clientData.M11QFormReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    M11QFormPDF: !formState.M11QFormPDF,
+                    M11QFormReviewed: !formState.M11QFormReviewed,
                     M11QFormUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    M11QFormPDF: !formState.M11QFormPDF,
+                    M11QFormReviewed: !formState.M11QFormReviewed,
                     M11QFormUploadDate: crearFecha()
                   }))
-                  if(!clientData.M11QFormPDF || clientData.M11QFormPDF){
+                  if(!clientData.M11QFormReviewed || clientData.M11QFormReviewed){
                     setClientData(formState => ({
                       ...formState,
                       M11QFormUploadDate: crearFecha()
@@ -1823,7 +1823,7 @@ console.log("clientData",clientData);
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.M11QFormPDF ? "3" : "0"}>
+                  strokeWidth={clientData.M11QFormReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1843,26 +1843,26 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.M11QFormPDF ? 'checked' : false}
+                  checked={clientData.M11QFormReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QFormScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.M11QFormIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.M11QFormScan ?
+                  clientData.M11QFormIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      M11QFormScan: !formState.M11QFormScan,
+                      M11QFormIssues: !formState.M11QFormIssues,
                       M11QFormUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      M11QFormScan: !formState.M11QFormScan,
+                      M11QFormIssues: !formState.M11QFormIssues,
                       M11QFormUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.M11QFormScan ? "3" : "0"}>
+                  strokeWidth={clientData.M11QFormIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -1874,15 +1874,15 @@ console.log("clientData",clientData);
                     clientData.M11QFormUploadDate === "" || clientData.M11QFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        M11QFormScan: !clientData.M11QFormScan,
+                        M11QFormIssues: !clientData.M11QFormIssues,
                         M11QFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        M11QFormScan: !clientData.M11QFormScan,
+                        M11QFormIssues: !clientData.M11QFormIssues,
                       })
                   }
                   }
-                  checked={clientData.M11QFormScan ? 'checked' : false}
+                  checked={clientData.M11QFormIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -1976,20 +1976,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReportsPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReportsReviewed? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.CD4VLReportsPDF ?
+                clientData.CD4VLReportsReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    CD4VLReportsPDF: !formState.CD4VLReportsPDF,
+                    CD4VLReportsReviewed: !formState.CD4VLReportsReviewed,
                     CD4VLReportsUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    CD4VLReportsPDF: !formState.CD4VLReportsPDF,
+                    CD4VLReportsReviewed: !formState.CD4VLReportsReviewed,
                     CD4VLReportsUploadDate: crearFecha()
                   }))
-                  if(!clientData.CD4VLReportsPDF || clientData.CD4VLReportsPDF){
+                  if(!clientData.CD4VLReportsReviewed || clientData.CD4VLReportsReviewed){
                     setClientData(formState => ({
                       ...formState,
                       CD4VLReportsUploadDate: crearFecha()
@@ -1999,7 +1999,7 @@ console.log("clientData",clientData);
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.CD4VLReportsPDF ? "3" : "0"}>
+                  strokeWidth={clientData.CD4VLReportsReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2019,26 +2019,26 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.CD4VLReportsPDF ? 'checked' : false}
+                  checked={clientData.CD4VLReportsReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReportsScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.CD4VLReportsIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.CD4VLReportsScan ?
+                  clientData.CD4VLReportsIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      CD4VLReportsScan: !formState.CD4VLReportsScan,
+                      CD4VLReportsIssues: !formState.CD4VLReportsIssues,
                       CD4VLReportsUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      CD4VLReportsScan: !formState.CD4VLReportsScan,
+                      CD4VLReportsIssues: !formState.CD4VLReportsIssues,
                       CD4VLReportsUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.CD4VLReportsScan ? "3" : "0"}>
+                  strokeWidth={clientData.CD4VLReportsIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2050,15 +2050,15 @@ console.log("clientData",clientData);
                     clientData.CD4VLReportsUploadDate === "" || clientData.CD4VLReportsUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        CD4VLReportsScan: !clientData.CD4VLReportsScan,
+                        CD4VLReportsIssues: !clientData.CD4VLReportsIssues,
                         CD4VLReportsUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        CD4VLReportsScan: !clientData.CD4VLReportsScan,
+                        CD4VLReportsIssues: !clientData.CD4VLReportsIssues,
                       })
                   }
                   }
-                  checked={clientData.CD4VLReportsScan ? 'checked' : false}
+                  checked={clientData.CD4VLReportsIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -2152,20 +2152,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntakePDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntakeReviewed? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.InitialTreatmentAdherenceIntakePDF ?
+                clientData.InitialTreatmentAdherenceIntakeReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    InitialTreatmentAdherenceIntakePDF: !formState.InitialTreatmentAdherenceIntakePDF,
+                    InitialTreatmentAdherenceIntakeReviewed: !formState.InitialTreatmentAdherenceIntakeReviewed,
                     InitialTreatmentAdherenceIntakeUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    InitialTreatmentAdherenceIntakePDF: !formState.InitialTreatmentAdherenceIntakePDF,
+                    InitialTreatmentAdherenceIntakeReviewed: !formState.InitialTreatmentAdherenceIntakeReviewed,
                     InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
                   }))
-                  if(!clientData.InitialTreatmentAdherenceIntakePDF || clientData.InitialTreatmentAdherenceIntakePDF){
+                  if(!clientData.InitialTreatmentAdherenceIntakeReviewed || clientData.InitialTreatmentAdherenceIntakeReviewed){
                     setClientData(formState => ({
                       ...formState,
                       InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
@@ -2175,7 +2175,7 @@ console.log("clientData",clientData);
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.InitialTreatmentAdherenceIntakePDF ? "3" : "0"}>
+                  strokeWidth={clientData.InitialTreatmentAdherenceIntakeReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2195,26 +2195,26 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.InitialTreatmentAdherenceIntakePDF ? 'checked' : false}
+                  checked={clientData.InitialTreatmentAdherenceIntakeReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntakeScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InitialTreatmentAdherenceIntakeIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.InitialTreatmentAdherenceIntakeScan ?
+                  clientData.InitialTreatmentAdherenceIntakeIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      InitialTreatmentAdherenceIntakeScan: !formState.InitialTreatmentAdherenceIntakeScan,
+                      InitialTreatmentAdherenceIntakeIssues: !formState.InitialTreatmentAdherenceIntakeIssues,
                       InitialTreatmentAdherenceIntakeUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      InitialTreatmentAdherenceIntakeScan: !formState.InitialTreatmentAdherenceIntakeScan,
+                      InitialTreatmentAdherenceIntakeIssues: !formState.InitialTreatmentAdherenceIntakeIssues,
                       InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.InitialTreatmentAdherenceIntakeScan ? "3" : "0"}>
+                  strokeWidth={clientData.InitialTreatmentAdherenceIntakeIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2226,15 +2226,15 @@ console.log("clientData",clientData);
                     clientData.InitialTreatmentAdherenceIntakeUploadDate === "" || clientData.InitialTreatmentAdherenceIntakeUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        InitialTreatmentAdherenceIntakeScan: !clientData.InitialTreatmentAdherenceIntakeScan,
+                        InitialTreatmentAdherenceIntakeIssues: !clientData.InitialTreatmentAdherenceIntakeIssues,
                         InitialTreatmentAdherenceIntakeUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        InitialTreatmentAdherenceIntakeScan: !clientData.InitialTreatmentAdherenceIntakeScan,
+                        InitialTreatmentAdherenceIntakeIssues: !clientData.InitialTreatmentAdherenceIntakeIssues,
                       })
                   }
                   }
-                  checked={clientData.InitialTreatmentAdherenceIntakeScan ? 'checked' : false}
+                  checked={clientData.InitialTreatmentAdherenceIntakeIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -2328,20 +2328,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.TreatmentAdherenceUpdatesPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.TreatmentAdherenceUpdatesReviewed? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.TreatmentAdherenceUpdatesPDF ?
+                clientData.TreatmentAdherenceUpdatesReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    TreatmentAdherenceUpdatesPDF: !formState.TreatmentAdherenceUpdatesPDF,
+                    TreatmentAdherenceUpdatesReviewed: !formState.TreatmentAdherenceUpdatesReviewed,
                     TreatmentAdherenceUpdatesUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    TreatmentAdherenceUpdatesPDF: !formState.TreatmentAdherenceUpdatesPDF,
+                    TreatmentAdherenceUpdatesReviewed: !formState.TreatmentAdherenceUpdatesReviewed,
                     TreatmentAdherenceUpdatesUploadDate: crearFecha()
                   }))
-                  if(!clientData.TreatmentAdherenceUpdatesPDF || clientData.TreatmentAdherenceUpdatesPDF){
+                  if(!clientData.TreatmentAdherenceUpdatesReviewed || clientData.TreatmentAdherenceUpdatesReviewed){
                     setClientData(formState => ({
                       ...formState,
                       TreatmentAdherenceUpdatesUploadDate: crearFecha()
@@ -2351,7 +2351,7 @@ console.log("clientData",clientData);
               } >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.TreatmentAdherenceUpdatesPDF ? "3" : "0"}>
+                  strokeWidth={clientData.TreatmentAdherenceUpdatesReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2371,26 +2371,26 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.TreatmentAdherenceUpdatesPDF ? 'checked' : false}
+                  checked={clientData.TreatmentAdherenceUpdatesReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.TreatmentAdherenceUpdatesScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.TreatmentAdherenceUpdatesIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.TreatmentAdherenceUpdatesScan ?
+                  clientData.TreatmentAdherenceUpdatesIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      TreatmentAdherenceUpdatesScan: !formState.TreatmentAdherenceUpdatesScan,
+                      TreatmentAdherenceUpdatesIssues: !formState.TreatmentAdherenceUpdatesIssues,
                       TreatmentAdherenceUpdatesUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      TreatmentAdherenceUpdatesScan: !formState.TreatmentAdherenceUpdatesScan,
+                      TreatmentAdherenceUpdatesIssues: !formState.TreatmentAdherenceUpdatesIssues,
                       TreatmentAdherenceUpdatesUploadDate: crearFecha()
                     }))}}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.TreatmentAdherenceUpdatesScan ? "3" : "0"}>
+                  strokeWidth={clientData.TreatmentAdherenceUpdatesIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2402,15 +2402,15 @@ console.log("clientData",clientData);
                     clientData.TreatmentAdherenceUpdatesUploadDate === "" || clientData.TreatmentAdherenceUpdatesUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        TreatmentAdherenceUpdatesScan: !clientData.TreatmentAdherenceUpdatesScan,
+                        TreatmentAdherenceUpdatesIssues: !clientData.TreatmentAdherenceUpdatesIssues,
                         TreatmentAdherenceUpdatesUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        TreatmentAdherenceUpdatesScan: !clientData.TreatmentAdherenceUpdatesScan,
+                        TreatmentAdherenceUpdatesIssues: !clientData.TreatmentAdherenceUpdatesIssues,
                       })
                   }
                   }
-                  checked={clientData.TreatmentAdherenceUpdatesScan ? 'checked' : false}
+                  checked={clientData.TreatmentAdherenceUpdatesIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -2509,20 +2509,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSCollateralInformationPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSCollateralInformationReviewed? 'pointer-events-none' :""}`}
                onClick={() => {
-                clientData.AIRSCollateralInformationPDF ?
+                clientData.AIRSCollateralInformationReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSCollateralInformationPDF: !formState.AIRSCollateralInformationPDF,
+                    AIRSCollateralInformationReviewed: !formState.AIRSCollateralInformationReviewed,
                     AIRSCollateralInformationUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSCollateralInformationPDF: !formState.AIRSCollateralInformationPDF,
+                    AIRSCollateralInformationReviewed: !formState.AIRSCollateralInformationReviewed,
                     AIRSCollateralInformationUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSCollateralInformationScan || !clientData.AIRSCollateralInformationPDF){
+                  if(clientData.AIRSCollateralInformationIssues || !clientData.AIRSCollateralInformationReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSCollateralInformationUploadDate: crearFecha()
@@ -2533,7 +2533,7 @@ console.log("clientData",clientData);
                >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSCollateralInformationPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSCollateralInformationReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2545,34 +2545,34 @@ console.log("clientData",clientData);
                     clientData.AIRSCollateralInformationUploadDate === "" || clientData.AIRSCollateralInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSCollateralInformationPDF: !clientData.AIRSCollateralInformationPDF
+                        AIRSCollateralInformationReviewed: !clientData.AIRSCollateralInformationReviewed
                         ,
                         AIRSCollateralInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSCollateralInformationPDF: !clientData.AIRSCollateralInformationPDF,
+                        AIRSCollateralInformationReviewed: !clientData.AIRSCollateralInformationReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSCollateralInformationPDF ? 'checked' : false}
-                  disabled={clientData.AIRSCollateralInformationPDF ? true : false}
+                  checked={clientData.AIRSCollateralInformationReviewed ? 'checked' : false}
+                  disabled={clientData.AIRSCollateralInformationReviewed ? true : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSCollateralInformationScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSCollateralInformationIssues? 'pointer-events-none' :""}`}
 
                  onClick={() => {
-                  clientData.AIRSCollateralInformationScan ?
+                  clientData.AIRSCollateralInformationIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      AIRSCollateralInformationScan: !formState.AIRSCollateralInformationScan,
+                      AIRSCollateralInformationIssues: !formState.AIRSCollateralInformationIssues,
                       AIRSCollateralInformationUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      AIRSCollateralInformationScan: !formState.AIRSCollateralInformationScan,
+                      AIRSCollateralInformationIssues: !formState.AIRSCollateralInformationIssues,
                       AIRSCollateralInformationUploadDate: crearFecha()
                     }))
-                    if(!clientData.AIRSCollateralInformationScan || clientData.AIRSCollateralInformationPDF){
+                    if(!clientData.AIRSCollateralInformationIssues || clientData.AIRSCollateralInformationReviewed){
                       setClientData(formState => ({
                         ...formState,
                         AIRSCollateralInformationUploadDate: crearFecha()
@@ -2582,7 +2582,7 @@ console.log("clientData",clientData);
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSCollateralInformationScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSCollateralInformationIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2594,15 +2594,15 @@ console.log("clientData",clientData);
                     clientData.AIRSCollateralInformationUploadDate === "" || clientData.AIRSCollateralInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSCollateralInformationScan: !clientData.AIRSCollateralInformationScan,
+                        AIRSCollateralInformationIssues: !clientData.AIRSCollateralInformationIssues,
                         AIRSCollateralInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSCollateralInformationScan: !clientData.AIRSCollateralInformationScan,
+                        AIRSCollateralInformationIssues: !clientData.AIRSCollateralInformationIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSCollateralInformationScan ? 'checked' : false}
+                  checked={clientData.AIRSCollateralInformationIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -2700,20 +2700,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimenPDF ? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimenReviewed ? 'pointer-events-none' :""}`}
                onClick={() => {
-                clientData.AIRSDrugRegimenPDF ?
+                clientData.AIRSDrugRegimenReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSDrugRegimenPDF: !formState.AIRSDrugRegimenPDF,
+                    AIRSDrugRegimenReviewed: !formState.AIRSDrugRegimenReviewed,
                     AIRSDrugRegimenUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSDrugRegimenPDF: !formState.AIRSDrugRegimenPDF,
+                    AIRSDrugRegimenReviewed: !formState.AIRSDrugRegimenReviewed,
                     AIRSDrugRegimenUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSDrugRegimenScan || !clientData.AIRSDrugRegimenPDF){
+                  if(clientData.AIRSDrugRegimenIssues || !clientData.AIRSDrugRegimenReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSDrugRegimenUploadDate: crearFecha()
@@ -2724,11 +2724,11 @@ console.log("clientData",clientData);
                >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSDrugRegimenPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSDrugRegimenReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
-                  className={`${!clientData.AIRSDrugRegimenPDF && "bg-slate-300"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+                  className={`${!clientData.AIRSDrugRegimenReviewed && "bg-white"} appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
                   type="checkbox"
                   name=""
                   id=""
@@ -2736,34 +2736,34 @@ console.log("clientData",clientData);
                     clientData.AIRSDrugRegimenUploadDate === "" || clientData.AIRSDrugRegimenUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSDrugRegimenPDF: !clientData.AIRSDrugRegimenPDF
+                        AIRSDrugRegimenReviewed: !clientData.AIRSDrugRegimenReviewed
                         ,
                         AIRSDrugRegimenUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSDrugRegimenPDF: !clientData.AIRSDrugRegimenPDF,
+                        AIRSDrugRegimenReviewed: !clientData.AIRSDrugRegimenReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSDrugRegimenPDF ? 'checked' : false}
-                  disabled={clientData.AIRSDrugRegimenPDF ? true : false}
+                  checked={clientData.AIRSDrugRegimenReviewed ? 'checked' : false}
+                  disabled={clientData.AIRSDrugRegimenReviewed ? true : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimenScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimenIssues? 'pointer-events-none' :""}`}
 
                  onClick={() => {
-                  clientData.AIRSDrugRegimenScan ?
+                  clientData.AIRSDrugRegimenIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      AIRSDrugRegimenScan: !formState.AIRSDrugRegimenScan,
+                      AIRSDrugRegimenIssues: !formState.AIRSDrugRegimenIssues,
                       AIRSDrugRegimenUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      AIRSDrugRegimenScan: !formState.AIRSDrugRegimenScan,
+                      AIRSDrugRegimenIssues: !formState.AIRSDrugRegimenIssues,
                       AIRSDrugRegimenUploadDate: crearFecha()
                     }))
-                    if(!clientData.AIRSDrugRegimenScan || clientData.AIRSDrugRegimenScan){
+                    if(!clientData.AIRSDrugRegimenIssues || clientData.AIRSDrugRegimenIssues){
                       setClientData(formState => ({
                         ...formState,
                         AIRSDrugRegimenUploadDate: crearFecha()
@@ -2773,7 +2773,7 @@ console.log("clientData",clientData);
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSDrugRegimenScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSDrugRegimenIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2785,18 +2785,18 @@ console.log("clientData",clientData);
                     clientData.AIRSDrugRegimenUploadDate === "" || clientData.AIRSDrugRegimenUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSDrugRegimenScan: !clientData.AIRSDrugRegimenScan,
+                        AIRSDrugRegimenIssues: !clientData.AIRSDrugRegimenIssues,
                         AIRSDrugRegimenUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSDrugRegimenScan: !clientData.AIRSDrugRegimenScan,
+                        AIRSDrugRegimenIssues: !clientData.AIRSDrugRegimenIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSDrugRegimenScan ? 'checked' : false}
+                  checked={clientData.AIRSDrugRegimenIssues ? 'checked' : false}
                 />
               </div>
-              {console.log("clientData.AIRSDrugRegimenScan",clientData.AIRSDrugRegimenScan)}
+              {console.log("clientData.AIRSDrugRegimenIssues",clientData.AIRSDrugRegimenIssues)}
             </div>
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.AIRSFinancialInformation? '' :'pointer-events-none'}`}
@@ -2886,21 +2886,21 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSFinancialInformationPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSFinancialInformationReviewed? 'pointer-events-none' :""}`}
 
              onClick={() => {
-              clientData.AIRSFinancialInformationPDF ?
+              clientData.AIRSFinancialInformationReviewed ?
                 setClientData(formState => ({
                   ...formState,
-                  AIRSFinancialInformationPDF: !formState.AIRSFinancialInformationPDF,
+                  AIRSFinancialInformationReviewed: !formState.AIRSFinancialInformationReviewed,
                   AIRSFinancialInformationUploadDate: ""
                 })) :
                 setClientData(formState => ({
                   ...formState,
-                  AIRSFinancialInformationPDF: !formState.AIRSFinancialInformationPDF,
+                  AIRSFinancialInformationReviewed: !formState.AIRSFinancialInformationReviewed,
                   AIRSFinancialInformationUploadDate: crearFecha()
                 }))
-                if(clientData.AIRSFinancialInformationScan || !clientData.AIRSFinancialInformationPDF){
+                if(clientData.AIRSFinancialInformationIssues || !clientData.AIRSFinancialInformationReviewed){
                   setClientData(formState => ({
                     ...formState,
                     AIRSFinancialInformationUploadDate: crearFecha()
@@ -2910,7 +2910,7 @@ console.log("clientData",clientData);
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSFinancialInformationPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSFinancialInformationReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2922,32 +2922,32 @@ console.log("clientData",clientData);
                     clientData.AIRSFinancialInformationUploadDate === "" || clientData.AIRSFinancialInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSFinancialInformationPDF: !clientData.AIRSFinancialInformationPDF,
+                        AIRSFinancialInformationReviewed: !clientData.AIRSFinancialInformationReviewed,
                         AIRSFinancialInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSFinancialInformationPDF: !clientData.AIRSFinancialInformationPDF,
+                        AIRSFinancialInformationReviewed: !clientData.AIRSFinancialInformationReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSFinancialInformationPDF ? 'checked' : false}
+                  checked={clientData.AIRSFinancialInformationReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSFinancialInformationScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSFinancialInformationIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSFinancialInformationScan ?
+                clientData.AIRSFinancialInformationIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSFinancialInformationScan: !formState.AIRSFinancialInformationScan,
+                    AIRSFinancialInformationIssues: !formState.AIRSFinancialInformationIssues,
                     AIRSFinancialInformationUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSFinancialInformationScan: !formState.AIRSFinancialInformationScan,
+                    AIRSFinancialInformationIssues: !formState.AIRSFinancialInformationIssues,
                     AIRSFinancialInformationUploadDate: crearFecha()
                   }))
-                  if(!clientData.AIRSFinancialInformationScan || clientData.AIRSFinancialInformationPDF){
+                  if(!clientData.AIRSFinancialInformationIssues || clientData.AIRSFinancialInformationReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSFinancialInformationUploadDate: crearFecha()
@@ -2957,7 +2957,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSFinancialInformationScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSFinancialInformationIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -2969,15 +2969,15 @@ console.log("clientData",clientData);
                     clientData.AIRSFinancialInformationUploadDate === "" || clientData.AIRSFinancialInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSFinancialInformationScan: !clientData.AIRSFinancialInformationScan,
+                        AIRSFinancialInformationIssues: !clientData.AIRSFinancialInformationIssues,
                         AIRSFinancialInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSFinancialInformationScan: !clientData.AIRSFinancialInformationScan,
+                        AIRSFinancialInformationIssues: !clientData.AIRSFinancialInformationIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSFinancialInformationScan ? 'checked' : false}
+                  checked={clientData.AIRSFinancialInformationIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -3069,21 +3069,21 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVAIDSRiskHistoryPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVAIDSRiskHistoryReviewed? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHIVAIDSRiskHistoryPDF ?
+                clientData.AIRSHIVAIDSRiskHistoryReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVAIDSRiskHistoryPDF: !formState.AIRSHIVAIDSRiskHistoryPDF,
+                    AIRSHIVAIDSRiskHistoryReviewed: !formState.AIRSHIVAIDSRiskHistoryReviewed,
                     AIRSHIVAIDSRiskHistoryUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVAIDSRiskHistoryPDF: !formState.AIRSHIVAIDSRiskHistoryPDF,
+                    AIRSHIVAIDSRiskHistoryReviewed: !formState.AIRSHIVAIDSRiskHistoryReviewed,
                     AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHIVAIDSRiskHistoryScan || !clientData.AIRSHIVAIDSRiskHistoryPDF){
+                  if(clientData.AIRSHIVAIDSRiskHistoryIssues || !clientData.AIRSHIVAIDSRiskHistoryReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
@@ -3093,7 +3093,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHIVAIDSRiskHistoryPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHIVAIDSRiskHistoryReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3105,31 +3105,31 @@ console.log("clientData",clientData);
                     clientData.AIRSHIVAIDSRiskHistoryUploadDate === "" || clientData.AIRSHIVAIDSRiskHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHIVAIDSRiskHistoryPDF: !clientData.AIRSHIVAIDSRiskHistoryPDF,
+                        AIRSHIVAIDSRiskHistoryReviewed: !clientData.AIRSHIVAIDSRiskHistoryReviewed,
                         AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHIVAIDSRiskHistoryPDF: !clientData.AIRSHIVAIDSRiskHistoryPDF,
+                        AIRSHIVAIDSRiskHistoryReviewed: !clientData.AIRSHIVAIDSRiskHistoryReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSHIVAIDSRiskHistoryPDF ? 'checked' : false}
+                  checked={clientData.AIRSHIVAIDSRiskHistoryReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVAIDSRiskHistoryScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVAIDSRiskHistoryIssues? 'pointer-events-none' :""}`}
              onClick={() => {
-              clientData.AIRSHIVAIDSRiskHistoryScan ?
+              clientData.AIRSHIVAIDSRiskHistoryIssues ?
                 setClientData(formState => ({
                   ...formState,
-                  AIRSHIVAIDSRiskHistoryScan: !formState.AIRSHIVAIDSRiskHistoryScan,
+                  AIRSHIVAIDSRiskHistoryIssues: !formState.AIRSHIVAIDSRiskHistoryIssues,
                   AIRSHIVAIDSRiskHistoryUploadDate: ""
                 })) :
                 setClientData(formState => ({
                   ...formState,
-                  AIRSHIVAIDSRiskHistoryScan: !formState.AIRSHIVAIDSRiskHistoryScan,
+                  AIRSHIVAIDSRiskHistoryIssues: !formState.AIRSHIVAIDSRiskHistoryIssues,
                   AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
                 }))
-                if(!clientData.AIRSHIVAIDSRiskHistoryScan || clientData.AIRSHIVAIDSRiskHistoryPDF){
+                if(!clientData.AIRSHIVAIDSRiskHistoryIssues || clientData.AIRSHIVAIDSRiskHistoryReviewed){
                   setClientData(formState => ({
                     ...formState,
                     AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
@@ -3139,7 +3139,7 @@ console.log("clientData",clientData);
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHIVAIDSRiskHistoryScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHIVAIDSRiskHistoryIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3151,15 +3151,15 @@ console.log("clientData",clientData);
                     clientData.AIRSHIVAIDSRiskHistoryUploadDate === "" || clientData.AIRSHIVAIDSRiskHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHIVAIDSRiskHistoryScan: !clientData.AIRSHIVAIDSRiskHistoryScan,
+                        AIRSHIVAIDSRiskHistoryIssues: !clientData.AIRSHIVAIDSRiskHistoryIssues,
                         AIRSHIVAIDSRiskHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHIVAIDSRiskHistoryScan: !clientData.AIRSHIVAIDSRiskHistoryScan,
+                        AIRSHIVAIDSRiskHistoryIssues: !clientData.AIRSHIVAIDSRiskHistoryIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSHIVAIDSRiskHistoryScan ? 'checked' : false}
+                  checked={clientData.AIRSHIVAIDSRiskHistoryIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -3250,21 +3250,21 @@ console.log("clientData",clientData);
                   }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderReviewed? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHIVMedicalProviderPDF ?
+                clientData.AIRSHIVMedicalProviderReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVMedicalProviderPDF: !formState.AIRSHIVMedicalProviderPDF,
+                    AIRSHIVMedicalProviderReviewed: !formState.AIRSHIVMedicalProviderReviewed,
                     AIRSHIVMedicalProviderUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVMedicalProviderPDF: !formState.AIRSHIVMedicalProviderPDF,
+                    AIRSHIVMedicalProviderReviewed: !formState.AIRSHIVMedicalProviderReviewed,
                     AIRSHIVMedicalProviderUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHIVMedicalProviderScan || !clientData.AIRSHIVMedicalProviderPDF){
+                  if(clientData.AIRSHIVMedicalProviderIssues || !clientData.AIRSHIVMedicalProviderReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHIVMedicalProviderUploadDate: crearFecha()
@@ -3274,7 +3274,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHIVMedicalProviderPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHIVMedicalProviderReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3286,32 +3286,32 @@ console.log("clientData",clientData);
                     clientData.AIRSHIVMedicalProviderUploadDate === "" || clientData.AIRSHIVMedicalProviderUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHIVMedicalProviderPDF: !clientData.AIRSHIVMedicalProviderPDF,
+                        AIRSHIVMedicalProviderReviewed: !clientData.AIRSHIVMedicalProviderReviewed,
                         AIRSHIVMedicalProviderUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHIVMedicalProviderPDF: !clientData.AIRSHIVMedicalProviderPDF,
+                        AIRSHIVMedicalProviderReviewed: !clientData.AIRSHIVMedicalProviderReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSHIVMedicalProviderPDF ? 'checked' : false}
+                  checked={clientData.AIRSHIVMedicalProviderReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHIVMedicalProviderScan ?
+                clientData.AIRSHIVMedicalProviderIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVMedicalProviderScan: !formState.AIRSHIVMedicalProviderScan,
+                    AIRSHIVMedicalProviderIssues: !formState.AIRSHIVMedicalProviderIssues,
                     AIRSHIVMedicalProviderUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVMedicalProviderScan: !formState.AIRSHIVMedicalProviderScan,
+                    AIRSHIVMedicalProviderIssues: !formState.AIRSHIVMedicalProviderIssues,
                     AIRSHIVMedicalProviderUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHIVMedicalProviderPDF || !clientData.AIRSHIVMedicalProviderScan){
+                  if(clientData.AIRSHIVMedicalProviderReviewed || !clientData.AIRSHIVMedicalProviderIssues){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHIVMedicalProviderUploadDate: crearFecha()
@@ -3321,7 +3321,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHIVMedicalProviderScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHIVMedicalProviderIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3333,15 +3333,15 @@ console.log("clientData",clientData);
                     clientData.AIRSHIVMedicalProviderUploadDate === "" || clientData.AIRSHIVMedicalProviderUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHIVMedicalProviderScan: !clientData.AIRSHIVMedicalProviderScan,
+                        AIRSHIVMedicalProviderIssues: !clientData.AIRSHIVMedicalProviderIssues,
                         AIRSHIVMedicalProviderUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHIVMedicalProviderScan: !clientData.AIRSHIVMedicalProviderScan,
+                        AIRSHIVMedicalProviderIssues: !clientData.AIRSHIVMedicalProviderIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSHIVMedicalProviderScan ? 'checked' : false}
+                  checked={clientData.AIRSHIVMedicalProviderIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -3432,21 +3432,21 @@ console.log("clientData",clientData);
                   }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVStatusHistoryPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVStatusHistoryReviewed? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHIVStatusHistoryPDF ?
+                clientData.AIRSHIVStatusHistoryReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVStatusHistoryPDF: !formState.AIRSHIVStatusHistoryPDF,
+                    AIRSHIVStatusHistoryReviewed: !formState.AIRSHIVStatusHistoryReviewed,
                     AIRSHIVStatusHistoryUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVStatusHistoryPDF: !formState.AIRSHIVStatusHistoryPDF,
+                    AIRSHIVStatusHistoryReviewed: !formState.AIRSHIVStatusHistoryReviewed,
                     AIRSHIVStatusHistoryUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHIVStatusHistoryScan || !clientData.AIRSHIVStatusHistoryPDF){
+                  if(clientData.AIRSHIVStatusHistoryIssues || !clientData.AIRSHIVStatusHistoryReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHIVStatusHistoryUploadDate: crearFecha()
@@ -3456,7 +3456,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHIVStatusHistoryPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHIVStatusHistoryReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3468,32 +3468,32 @@ console.log("clientData",clientData);
                     clientData.AIRSHIVStatusHistoryUploadDate === "" || clientData.AIRSHIVStatusHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHIVStatusHistoryPDF: !clientData.AIRSHIVStatusHistoryPDF,
+                        AIRSHIVStatusHistoryReviewed: !clientData.AIRSHIVStatusHistoryReviewed,
                         AIRSHIVStatusHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHIVStatusHistoryPDF: !clientData.AIRSHIVStatusHistoryPDF,
+                        AIRSHIVStatusHistoryReviewed: !clientData.AIRSHIVStatusHistoryReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSHIVStatusHistoryPDF ? 'checked' : false}
+                  checked={clientData.AIRSHIVStatusHistoryReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVStatusHistoryScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVStatusHistoryIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHIVStatusHistoryScan ?
+                clientData.AIRSHIVStatusHistoryIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVStatusHistoryScan: !formState.AIRSHIVStatusHistoryScan,
+                    AIRSHIVStatusHistoryIssues: !formState.AIRSHIVStatusHistoryIssues,
                     AIRSHIVStatusHistoryUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHIVStatusHistoryScan: !formState.AIRSHIVStatusHistoryScan,
+                    AIRSHIVStatusHistoryIssues: !formState.AIRSHIVStatusHistoryIssues,
                     AIRSHIVStatusHistoryUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHIVStatusHistoryScan || !clientData.AIRSHIVStatusHistoryScan){
+                  if(clientData.AIRSHIVStatusHistoryIssues || !clientData.AIRSHIVStatusHistoryIssues){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHIVStatusHistoryUploadDate: crearFecha()
@@ -3503,7 +3503,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHIVStatusHistoryScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHIVStatusHistoryIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3515,15 +3515,15 @@ console.log("clientData",clientData);
                     clientData.AIRSHIVStatusHistoryUploadDate === "" || clientData.AIRSHIVStatusHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHIVStatusHistoryScan: !clientData.AIRSHIVStatusHistoryScan,
+                        AIRSHIVStatusHistoryIssues: !clientData.AIRSHIVStatusHistoryIssues,
                         AIRSHIVStatusHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHIVStatusHistoryScan: !clientData.AIRSHIVStatusHistoryScan,
+                        AIRSHIVStatusHistoryIssues: !clientData.AIRSHIVStatusHistoryIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSHIVStatusHistoryScan ? 'checked' : false}
+                  checked={clientData.AIRSHIVStatusHistoryIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -3614,21 +3614,21 @@ console.log("clientData",clientData);
                   }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHCVHistoryPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHCVHistoryReviewed? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHCVHistoryPDF ?
+                clientData.AIRSHCVHistoryReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
+                    AIRSHCVHistoryReviewed: !formState.AIRSHCVHistoryReviewed,
                     AIRSHCVHistoryUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
+                    AIRSHCVHistoryReviewed: !formState.AIRSHCVHistoryReviewed,
                     AIRSHCVHistoryUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHCVHistoryScan || !clientData.AIRSHCVHistoryPDF){
+                  if(clientData.AIRSHCVHistoryIssues || !clientData.AIRSHCVHistoryReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHCVHistoryUploadDate: crearFecha()
@@ -3638,7 +3638,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHCVHistoryPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHCVHistoryReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3650,32 +3650,32 @@ console.log("clientData",clientData);
                     clientData.AIRSHCVHistoryUploadDate === "" || clientData.AIRSHCVHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHCVHistoryPDF: !clientData.AIRSHCVHistoryPDF,
+                        AIRSHCVHistoryReviewed: !clientData.AIRSHCVHistoryReviewed,
                         AIRSHCVHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHCVHistoryPDF: !clientData.AIRSHCVHistoryPDF,
+                        AIRSHCVHistoryReviewed: !clientData.AIRSHCVHistoryReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSHCVHistoryPDF ? 'checked' : false}
+                  checked={clientData.AIRSHCVHistoryReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHCVHistoryScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHCVHistoryIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHCVHistoryScan ?
+                clientData.AIRSHCVHistoryIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
+                    AIRSHCVHistoryIssues: !formState.AIRSHCVHistoryIssues,
                     AIRSHCVHistoryUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
+                    AIRSHCVHistoryIssues: !formState.AIRSHCVHistoryIssues,
                     AIRSHCVHistoryUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHCVHistoryPDF || !clientData.AIRSHCVHistoryScan){
+                  if(clientData.AIRSHCVHistoryReviewed || !clientData.AIRSHCVHistoryIssues){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHCVHistoryUploadDate: crearFecha()
@@ -3685,7 +3685,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHCVHistoryScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHCVHistoryIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3697,15 +3697,15 @@ console.log("clientData",clientData);
                     clientData.AIRSHCVHistoryUploadDate === "" || clientData.AIRSHCVHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHCVHistoryScan: !clientData.AIRSHCVHistoryScan,
+                        AIRSHCVHistoryIssues: !clientData.AIRSHCVHistoryIssues,
                         AIRSHCVHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHCVHistoryScan: !clientData.AIRSHCVHistoryScan,
+                        AIRSHCVHistoryIssues: !clientData.AIRSHCVHistoryIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSHCVHistoryScan ? 'checked' : false}
+                  checked={clientData.AIRSHCVHistoryIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -3798,21 +3798,21 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHousingInformationPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHousingInformationReviewed? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSHousingInformationPDF ?
+                clientData.AIRSHousingInformationReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHousingInformationPDF: !formState.AIRSHousingInformationPDF,
+                    AIRSHousingInformationReviewed: !formState.AIRSHousingInformationReviewed,
                     AIRSHousingInformationUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHousingInformationPDF: !formState.AIRSHousingInformationPDF,
+                    AIRSHousingInformationReviewed: !formState.AIRSHousingInformationReviewed,
                     AIRSHousingInformationUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHousingInformationScan || !clientData.AIRSHousingInformationPDF){
+                  if(clientData.AIRSHousingInformationIssues || !clientData.AIRSHousingInformationReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHousingInformationUploadDate: crearFecha()
@@ -3822,7 +3822,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHousingInformationPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHousingInformationReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3834,32 +3834,32 @@ console.log("clientData",clientData);
                     clientData.AIRSHousingInformationUploadDate === "" || clientData.AIRSHousingInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHousingInformationPDF: !clientData.AIRSHousingInformationPDF,
+                        AIRSHousingInformationReviewed: !clientData.AIRSHousingInformationReviewed,
                         AIRSHousingInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHousingInformationPDF: !clientData.AIRSHousingInformationPDF,
+                        AIRSHousingInformationReviewed: !clientData.AIRSHousingInformationReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSHousingInformationPDF ? 'checked' : false}
+                  checked={clientData.AIRSHousingInformationReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHousingInformationScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHousingInformationIssues? 'pointer-events-none' :""}`}
 
                onClick={() => {
-                clientData.AIRSHousingInformationScan ?
+                clientData.AIRSHousingInformationIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHousingInformationScan: !formState.AIRSHousingInformationScan,
+                    AIRSHousingInformationIssues: !formState.AIRSHousingInformationIssues,
                     AIRSHousingInformationUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSHousingInformationScan: !formState.AIRSHousingInformationScan,
+                    AIRSHousingInformationIssues: !formState.AIRSHousingInformationIssues,
                     AIRSHousingInformationUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSHousingInformationPDF || !clientData.AIRSHousingInformationScan){
+                  if(clientData.AIRSHousingInformationReviewed || !clientData.AIRSHousingInformationIssues){
                     setClientData(formState => ({
                       ...formState,
                       AIRSHousingInformationUploadDate: crearFecha()
@@ -3869,7 +3869,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSHousingInformationScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSHousingInformationIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -3881,15 +3881,15 @@ console.log("clientData",clientData);
                     clientData.AIRSHousingInformationUploadDate === "" || clientData.AIRSHousingInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSHousingInformationScan: !clientData.AIRSHousingInformationScan,
+                        AIRSHousingInformationIssues: !clientData.AIRSHousingInformationIssues,
                         AIRSHousingInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSHousingInformationScan: !clientData.AIRSHousingInformationScan,
+                        AIRSHousingInformationIssues: !clientData.AIRSHousingInformationIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSHousingInformationScan ? 'checked' : false}
+                  checked={clientData.AIRSHousingInformationIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -3983,21 +3983,21 @@ console.log("clientData",clientData);
                   }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSInsuranceInformationPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSInsuranceInformationReviewed? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.AIRSInsuranceInformationPDF ?
+                  clientData.AIRSInsuranceInformationReviewed ?
                     setClientData(formState => ({
                       ...formState,
-                      AIRSInsuranceInformationPDF: !formState.AIRSInsuranceInformationPDF,
+                      AIRSInsuranceInformationReviewed: !formState.AIRSInsuranceInformationReviewed,
                       AIRSInsuranceInformationUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      AIRSInsuranceInformationPDF: !formState.AIRSInsuranceInformationPDF,
+                      AIRSInsuranceInformationReviewed: !formState.AIRSInsuranceInformationReviewed,
                       AIRSInsuranceInformationUploadDate: crearFecha()
                     }))
-                    if(clientData.AIRSInsuranceInformationScan || !clientData.AIRSInsuranceInformationPDF){
+                    if(clientData.AIRSInsuranceInformationIssues || !clientData.AIRSInsuranceInformationReviewed){
                       setClientData(formState => ({
                         ...formState,
                         AIRSInsuranceInformationUploadDate: crearFecha()
@@ -4007,7 +4007,7 @@ console.log("clientData",clientData);
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSInsuranceInformationPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSInsuranceInformationReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4019,32 +4019,32 @@ console.log("clientData",clientData);
                     clientData.AIRSInsuranceInformationUploadDate === "" || clientData.AIRSInsuranceInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSInsuranceInformationPDF: !clientData.AIRSInsuranceInformationPDF,
+                        AIRSInsuranceInformationReviewed: !clientData.AIRSInsuranceInformationReviewed,
                         AIRSInsuranceInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSInsuranceInformationPDF: !clientData.AIRSInsuranceInformationPDF,
+                        AIRSInsuranceInformationReviewed: !clientData.AIRSInsuranceInformationReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSInsuranceInformationPDF ? 'checked' : false}
+                  checked={clientData.AIRSInsuranceInformationReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSInsuranceInformationScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSInsuranceInformationIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSInsuranceInformationScan ?
+                clientData.AIRSInsuranceInformationIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSInsuranceInformationScan: !formState.AIRSInsuranceInformationScan,
+                    AIRSInsuranceInformationIssues: !formState.AIRSInsuranceInformationIssues,
                     AIRSInsuranceInformationUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSInsuranceInformationScan: !formState.AIRSInsuranceInformationScan,
+                    AIRSInsuranceInformationIssues: !formState.AIRSInsuranceInformationIssues,
                     AIRSInsuranceInformationUploadDate: crearFecha()
                   }))
-                  if(!clientData.AIRSInsuranceInformationScan || clientData.AIRSInsuranceInformationPDF){
+                  if(!clientData.AIRSInsuranceInformationIssues || clientData.AIRSInsuranceInformationReviewed){
                     setClientData(formState => ({
                       ...formState,
                       AIRSInsuranceInformationUploadDate: crearFecha()
@@ -4054,7 +4054,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSInsuranceInformationScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSInsuranceInformationIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4066,15 +4066,15 @@ console.log("clientData",clientData);
                     clientData.AIRSInsuranceInformationUploadDate === "" || clientData.AIRSInsuranceInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSInsuranceInformationScan: !clientData.AIRSInsuranceInformationScan,
+                        AIRSInsuranceInformationIssues: !clientData.AIRSInsuranceInformationIssues,
                         AIRSInsuranceInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSInsuranceInformationScan: !clientData.AIRSInsuranceInformationScan,
+                        AIRSInsuranceInformationIssues: !clientData.AIRSInsuranceInformationIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSInsuranceInformationScan ? 'checked' : false}
+                  checked={clientData.AIRSInsuranceInformationIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -4166,21 +4166,21 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSSubstanceUseHistoryPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSSubstanceUseHistoryReviewed? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSSubstanceUseHistoryPDF ?
+                clientData.AIRSSubstanceUseHistoryReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSSubstanceUseHistoryPDF: !formState.AIRSSubstanceUseHistoryPDF,
+                    AIRSSubstanceUseHistoryReviewed: !formState.AIRSSubstanceUseHistoryReviewed,
                     AIRSSubstanceUseHistoryUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSSubstanceUseHistoryPDF: !formState.AIRSSubstanceUseHistoryPDF,
+                    AIRSSubstanceUseHistoryReviewed: !formState.AIRSSubstanceUseHistoryReviewed,
                     AIRSSubstanceUseHistoryUploadDate: crearFecha()
                   }))
-                  if(!clientData.AIRSSubstanceUseHistoryPDF || clientData.AIRSSubstanceUseHistoryScan){
+                  if(!clientData.AIRSSubstanceUseHistoryReviewed || clientData.AIRSSubstanceUseHistoryIssues){
                     setClientData(formState => ({
                       ...formState,
                       AIRSSubstanceUseHistoryUploadDate: crearFecha()
@@ -4190,7 +4190,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSSubstanceUseHistoryPDF ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSSubstanceUseHistoryReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4202,32 +4202,32 @@ console.log("clientData",clientData);
                     clientData.AIRSSubstanceUseHistoryUploadDate === "" || clientData.AIRSSubstanceUseHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSSubstanceUseHistoryPDF: !clientData.AIRSSubstanceUseHistoryPDF,
+                        AIRSSubstanceUseHistoryReviewed: !clientData.AIRSSubstanceUseHistoryReviewed,
                         AIRSSubstanceUseHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSSubstanceUseHistoryPDF: !clientData.AIRSSubstanceUseHistoryPDF,
+                        AIRSSubstanceUseHistoryReviewed: !clientData.AIRSSubstanceUseHistoryReviewed,
                       })
                   }
                   }
-                  checked={clientData.AIRSSubstanceUseHistoryPDF ? 'checked' : false}
+                  checked={clientData.AIRSSubstanceUseHistoryReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSSubstanceUseHistoryScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSSubstanceUseHistoryIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.AIRSSubstanceUseHistoryScan ?
+                clientData.AIRSSubstanceUseHistoryIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    AIRSSubstanceUseHistoryScan: !formState.AIRSSubstanceUseHistoryScan,
+                    AIRSSubstanceUseHistoryIssues: !formState.AIRSSubstanceUseHistoryIssues,
                     AIRSSubstanceUseHistoryUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    AIRSSubstanceUseHistoryScan: !formState.AIRSSubstanceUseHistoryScan,
+                    AIRSSubstanceUseHistoryIssues: !formState.AIRSSubstanceUseHistoryIssues,
                     AIRSSubstanceUseHistoryUploadDate: crearFecha()
                   }))
-                  if(clientData.AIRSSubstanceUseHistoryPDF || !clientData.AIRSSubstanceUseHistoryScan){
+                  if(clientData.AIRSSubstanceUseHistoryReviewed || !clientData.AIRSSubstanceUseHistoryIssues){
                     setClientData(formState => ({
                       ...formState,
                       AIRSSubstanceUseHistoryUploadDate: crearFecha()
@@ -4237,7 +4237,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.AIRSSubstanceUseHistoryScan ? "3" : "0"}>
+                  strokeWidth={clientData.AIRSSubstanceUseHistoryIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4249,15 +4249,15 @@ console.log("clientData",clientData);
                     clientData.AIRSSubstanceUseHistoryUploadDate === "" || clientData.AIRSSubstanceUseHistoryUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        AIRSSubstanceUseHistoryScan: !clientData.AIRSSubstanceUseHistoryScan,
+                        AIRSSubstanceUseHistoryIssues: !clientData.AIRSSubstanceUseHistoryIssues,
                         AIRSSubstanceUseHistoryUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        AIRSSubstanceUseHistoryScan: !clientData.AIRSSubstanceUseHistoryScan,
+                        AIRSSubstanceUseHistoryIssues: !clientData.AIRSSubstanceUseHistoryIssues,
                       })
                   }
                   }
-                  checked={clientData.AIRSSubstanceUseHistoryScan ? 'checked' : false}
+                  checked={clientData.AIRSSubstanceUseHistoryIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -4352,9 +4352,9 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
-                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEClientRightsPDF ? "3" : "0"}>
+                  strokeWidth={clientData.LNEClientRightsReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4375,26 +4375,26 @@ console.log("clientData",clientData);
                   }
                   }
                   checked={clientData.LNEClientRights ? 'checked' : false}
-                /> */}
+                />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientRightsScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientRightsIssues? 'pointer-events-none' :""}`}
 
                onClick={() => {
-                clientData.LNEClientRightsScan ?
+                clientData.LNEClientRightsIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    LNEClientRightsScan: !formState.LNEClientRightsScan,
+                    LNEClientRightsIssues: !formState.LNEClientRightsIssues,
                     LNEClientRightsUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    LNEClientRightsScan: !formState.LNEClientRightsScan,
+                    LNEClientRightsIssues: !formState.LNEClientRightsIssues,
                     LNEClientRightsUploadDate: crearFecha()
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEClientRightsScan ? "3" : "0"}>
+                  strokeWidth={clientData.LNEClientRightsIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4406,15 +4406,15 @@ console.log("clientData",clientData);
                     clientData.LNEClientRightsUploadDate === "" || clientData.LNEClientRightsUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEClientRightsScan: !clientData.LNEClientRightsScan,
+                        LNEClientRightsIssues: !clientData.LNEClientRightsIssues,
                         LNEClientRightsUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEClientRightsScan: !clientData.LNEClientRightsScan,
+                        LNEClientRightsIssues: !clientData.LNEClientRightsIssues,
                       })
                   }
                   }
-                  checked={clientData.LNEClientRightsScan ? 'checked' : false}
+                  checked={clientData.LNEClientRightsIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -4508,9 +4508,9 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
-                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEClientGrievancePolicyProcedurePDF ? "3" : "0"}>
+                  strokeWidth={clientData.LNEClientGrievancePolicyProcedureReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4531,27 +4531,27 @@ console.log("clientData",clientData);
                   }
                   }
                   checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : false}
-                /> */}
+                />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientGrievancePolicyProcedureScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientGrievancePolicyProcedureIssues? 'pointer-events-none' :""}`}
 
                    onClick={() => {
-                    clientData.LNEClientGrievancePolicyProcedureScan ?
+                    clientData.LNEClientGrievancePolicyProcedureIssues ?
                       setClientData(formState => ({
                         ...formState,
-                        LNEClientGrievancePolicyProcedureScan: !formState.LNEClientGrievancePolicyProcedureScan,
+                        LNEClientGrievancePolicyProcedureIssues: !formState.LNEClientGrievancePolicyProcedureIssues,
                         LNEClientGrievancePolicyProcedureUploadDate: ""
                       })) :
                       setClientData(formState => ({
                         ...formState,
-                        LNEClientGrievancePolicyProcedureScan: !formState.LNEClientGrievancePolicyProcedureScan,
+                        LNEClientGrievancePolicyProcedureIssues: !formState.LNEClientGrievancePolicyProcedureIssues,
                         LNEClientGrievancePolicyProcedureUploadDate: crearFecha()
                       }))
                     }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEClientGrievancePolicyProcedureScan ? "3" : "0"}>
+                  strokeWidth={clientData.LNEClientGrievancePolicyProcedureIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4563,15 +4563,15 @@ console.log("clientData",clientData);
                     clientData.LNEClientGrievancePolicyProcedureUploadDate === "" || clientData.LNEClientGrievancePolicyProcedureUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEClientGrievancePolicyProcedureScan: !clientData.LNEClientGrievancePolicyProcedureScan,
+                        LNEClientGrievancePolicyProcedureIssues: !clientData.LNEClientGrievancePolicyProcedureIssues,
                         LNEClientGrievancePolicyProcedureUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEClientGrievancePolicyProcedureScan: !clientData.LNEClientGrievancePolicyProcedureScan,
+                        LNEClientGrievancePolicyProcedureIssues: !clientData.LNEClientGrievancePolicyProcedureIssues,
                       })
                   }
                   }
-                  checked={clientData.LNEClientGrievancePolicyProcedureScan ? 'checked' : false}
+                  checked={clientData.LNEClientGrievancePolicyProcedureIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -4664,9 +4664,9 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
-                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEProgramRulesPDF ? "3" : "0"}>
+                  strokeWidth={clientData.LNEProgramRulesReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4687,26 +4687,26 @@ console.log("clientData",clientData);
                   }
                   }
                   checked={clientData.LNEProgramRules ? 'checked' : false}
-                /> */}
+                />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEProgramRulesScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEProgramRulesIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.LNEProgramRulesScan ?
+                clientData.LNEProgramRulesIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    LNEProgramRulesScan: !formState.LNEProgramRulesScan,
+                    LNEProgramRulesIssues: !formState.LNEProgramRulesIssues,
                     LNEProgramRulesUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    LNEProgramRulesScan: !formState.LNEProgramRulesScan,
+                    LNEProgramRulesIssues: !formState.LNEProgramRulesIssues,
                     LNEProgramRulesUploadDate: crearFecha()
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEProgramRulesScan ? "3" : "0"}>
+                  strokeWidth={clientData.LNEProgramRulesIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4718,15 +4718,15 @@ console.log("clientData",clientData);
                     clientData.LNEProgramRulesUploadDate === "" || clientData.LNEProgramRulesUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEProgramRulesScan: !clientData.LNEProgramRulesScan,
+                        LNEProgramRulesIssues: !clientData.LNEProgramRulesIssues,
                         LNEProgramRulesUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEProgramRulesScan: !clientData.LNEProgramRulesScan,
+                        LNEProgramRulesIssues: !clientData.LNEProgramRulesIssues,
                       })
                   }
                   }
-                  checked={clientData.LNEProgramRulesScan ? 'checked' : false}
+                  checked={clientData.LNEProgramRulesIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -4820,9 +4820,9 @@ console.log("clientData",clientData);
                 />
               </div>
               <div className="ml-1 text-center flex justify-center items-center ">
-                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEEmergencyContactConsentPDF ? "3" : "0"}>
+                  strokeWidth={clientData.LNEEmergencyContactConsentReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4843,26 +4843,26 @@ console.log("clientData",clientData);
                   }
                   }
                   checked={clientData.LNEEmergencyContactConsent ? 'checked' : false}
-                /> */}
+                />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEEmergencyContactConsentScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEEmergencyContactConsentIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.LNEEmergencyContactConsentScan ?
+                clientData.LNEEmergencyContactConsentIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    LNEEmergencyContactConsentScan: !formState.LNEEmergencyContactConsentScan,
+                    LNEEmergencyContactConsentIssues: !formState.LNEEmergencyContactConsentIssues,
                     LNEEmergencyContactConsentUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    LNEEmergencyContactConsentScan: !formState.LNEEmergencyContactConsentScan,
+                    LNEEmergencyContactConsentIssues: !formState.LNEEmergencyContactConsentIssues,
                     LNEEmergencyContactConsentUploadDate: crearFecha()
                   }))
                 }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEEmergencyContactConsentScan ? "3" : "0"}>
+                  strokeWidth={clientData.LNEEmergencyContactConsentIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4874,15 +4874,15 @@ console.log("clientData",clientData);
                     clientData.LNEEmergencyContactConsentUploadDate === "" || clientData.LNEEmergencyContactConsentUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEEmergencyContactConsentScan: !clientData.LNEEmergencyContactConsentScan,
+                        LNEEmergencyContactConsentIssues: !clientData.LNEEmergencyContactConsentIssues,
                         LNEEmergencyContactConsentUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEEmergencyContactConsentScan: !clientData.LNEEmergencyContactConsentScan,
+                        LNEEmergencyContactConsentIssues: !clientData.LNEEmergencyContactConsentIssues,
                       })
                   }
                   }
-                  checked={clientData.LNEEmergencyContactConsentScan ? 'checked' : false}
+                  checked={clientData.LNEEmergencyContactConsentIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -4976,9 +4976,9 @@ console.log("clientData",clientData);
               </div>
               {/* REVIEW HERE */}
               <div className="ml-1 text-center flex justify-center items-center "> 
-                {/* <svg xmlns="http://www.w3.org/2000/svg"
+                <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationPDF ? "3" : "0"}>
+                  strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -4999,25 +4999,25 @@ console.log("clientData",clientData);
                   }
                   }
                   checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : false}
-                /> */}
+                />
               </div>
               <div className="ml-1 text-center flex justify-center items-center "
                 onClick={() => {
-                  clientData.LNEConsentForReleaseOfConfidentialInformationScan ?
+                  clientData.LNEConsentForReleaseOfConfidentialInformationIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      LNEConsentForReleaseOfConfidentialInformationScan: !formState.LNEConsentForReleaseOfConfidentialInformationScan,
+                      LNEConsentForReleaseOfConfidentialInformationIssues: !formState.LNEConsentForReleaseOfConfidentialInformationIssues,
                       LNEConsentForReleaseOfConfidentialInformationUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      LNEConsentForReleaseOfConfidentialInformationScan: !formState.LNEConsentForReleaseOfConfidentialInformationScan,
+                      LNEConsentForReleaseOfConfidentialInformationIssues: !formState.LNEConsentForReleaseOfConfidentialInformationIssues,
                       LNEConsentForReleaseOfConfidentialInformationUploadDate: crearFecha()
                     }))
                   }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationScan? "3" : "0"}>
+                  strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationIssues? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5029,15 +5029,15 @@ console.log("clientData",clientData);
                     clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate === "" || clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEConsentForReleaseOfConfidentialInformationScan: !clientData.LNEConsentForReleaseOfConfidentialInformationScan,
+                        LNEConsentForReleaseOfConfidentialInformationIssues: !clientData.LNEConsentForReleaseOfConfidentialInformationIssues,
                         LNEConsentForReleaseOfConfidentialInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEConsentForReleaseOfConfidentialInformationScan: !clientData.LNEConsentForReleaseOfConfidentialInformationScan,
+                        LNEConsentForReleaseOfConfidentialInformationIssues: !clientData.LNEConsentForReleaseOfConfidentialInformationIssues,
                       })
                   }
                   }
-                  checked={clientData.LNEConsentForReleaseOfConfidentialInformationScan ? 'checked' : false}
+                  checked={clientData.LNEConsentForReleaseOfConfidentialInformationIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -5129,21 +5129,21 @@ console.log("clientData",clientData);
                   }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HIPPAConsentFormPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HIPPAConsentFormReviewed? 'pointer-events-none' :""}`}
 
                 onClick={() => {
-                  clientData.HIPPAConsentFormPDF ?
+                  clientData.HIPPAConsentFormReviewed ?
                     setClientData(formState => ({
                       ...formState,
-                      HIPPAConsentFormPDF: !formState.HIPPAConsentFormPDF,
+                      HIPPAConsentFormReviewed: !formState.HIPPAConsentFormReviewed,
                       HIPPAConsentFormUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      HIPPAConsentFormPDF: !formState.HIPPAConsentFormPDF,
+                      HIPPAConsentFormReviewed: !formState.HIPPAConsentFormReviewed,
                       HIPPAConsentFormUploadDate: crearFecha()
                     }))
-                    if(clientData.HIPPAConsentFormScan || !clientData.HIPPAConsentFormPDF){
+                    if(clientData.HIPPAConsentFormIssues || !clientData.HIPPAConsentFormReviewed){
                       setClientData(formState => ({
                         ...formState,
                         HIPPAConsentFormUploadDate: crearFecha()
@@ -5153,7 +5153,7 @@ console.log("clientData",clientData);
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.HIPPAConsentFormPDF ? "3" : "0"}>
+                  strokeWidth={clientData.HIPPAConsentFormReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5165,32 +5165,32 @@ console.log("clientData",clientData);
                     clientData.HIPPAConsentFormUploadDate === "" || clientData.HIPPAConsentFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        HIPPAConsentFormPDF: !clientData.HIPPAConsentFormPDF,
+                        HIPPAConsentFormReviewed: !clientData.HIPPAConsentFormReviewed,
                         HIPPAConsentFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        HIPPAConsentFormPDF: !clientData.HIPPAConsentFormPDF,
+                        HIPPAConsentFormReviewed: !clientData.HIPPAConsentFormReviewed,
                       })
                   }
                   }
-                  checked={clientData.HIPPAConsentFormPDF ? 'checked' : false}
+                  checked={clientData.HIPPAConsentFormReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HIPPAConsentFormScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HIPPAConsentFormIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.HIPPAConsentFormScan ?
+                clientData.HIPPAConsentFormIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
+                    HIPPAConsentFormIssues: !formState.HIPPAConsentFormIssues,
                     HIPPAConsentFormUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
+                    HIPPAConsentFormIssues: !formState.HIPPAConsentFormIssues,
                     HIPPAConsentFormUploadDate: crearFecha()
                   }))
-                  if(clientData.HIPPAConsentFormPDF || !clientData.HIPPAConsentFormScan){
+                  if(clientData.HIPPAConsentFormReviewed || !clientData.HIPPAConsentFormIssues){
                     setClientData(formState => ({
                       ...formState,
                       HIPPAConsentFormUploadDate: crearFecha()
@@ -5200,7 +5200,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.HIPPAConsentFormScan ? "3" : "0"}>
+                  strokeWidth={clientData.HIPPAConsentFormIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5212,11 +5212,11 @@ console.log("clientData",clientData);
                     clientData.HIPPAConsentFormUploadDate === "" || clientData.HIPPAConsentFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        HIPPAConsentFormScan: !clientData.HIPPAConsentFormScan,
+                        HIPPAConsentFormIssues: !clientData.HIPPAConsentFormIssues,
                         HIPPAConsentFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        HIPPAConsentFormScan: !clientData.HIPPAConsentFormScan,
+                        HIPPAConsentFormIssues: !clientData.HIPPAConsentFormIssues,
                       })
                   }
                   }
@@ -5315,20 +5315,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed? 'pointer-events-none' :""}`}
                onClick={() => {
-                clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ?
+                clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesPDF: !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
+                    NYCDOHMHNoticeOfPrivacyPracticesReviewed: !formState.NYCDOHMHNoticeOfPrivacyPracticesReviewed,
                     NYCDOHMHNoticeOfPrivacyPracticesUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesPDF: !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
+                    NYCDOHMHNoticeOfPrivacyPracticesReviewed: !formState.NYCDOHMHNoticeOfPrivacyPracticesReviewed,
                     NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
                   }))
-                  if(!clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF || clientData.NYCDOHMHNoticeOfPrivacyPracticesScan){
+                  if(!clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed || clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues){
                     setClientData(formState => ({
                       ...formState,
                       NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
@@ -5338,7 +5338,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ? "3" : "0"}>
+                  strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5350,32 +5350,32 @@ console.log("clientData",clientData);
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate === "" || clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        NYCDOHMHNoticeOfPrivacyPracticesPDF: !clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF,
+                        NYCDOHMHNoticeOfPrivacyPracticesReviewed: !clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed,
                         NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        NYCDOHMHNoticeOfPrivacyPracticesPDF: !clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF,
+                        NYCDOHMHNoticeOfPrivacyPracticesReviewed: !clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed,
                       })
                   }
                   }
-                  checked={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ? 'checked' : false}
+                  checked={clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.NYCDOHMHNoticeOfPrivacyPracticesScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues? 'pointer-events-none' :""}`}
 
               onClick={() => {
-                clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ?
+                clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesScan: !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
+                    NYCDOHMHNoticeOfPrivacyPracticesIssues: !formState.NYCDOHMHNoticeOfPrivacyPracticesIssues,
                     NYCDOHMHNoticeOfPrivacyPracticesUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    NYCDOHMHNoticeOfPrivacyPracticesScan: !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
+                    NYCDOHMHNoticeOfPrivacyPracticesIssues: !formState.NYCDOHMHNoticeOfPrivacyPracticesIssues,
                     NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
                   }))
-                  if(clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF || !clientData.NYCDOHMHNoticeOfPrivacyPracticesScan){
+                  if(clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed || !clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues){
                     setClientData(formState => ({
                       ...formState,
                       NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
@@ -5385,7 +5385,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ? "3" : "0"}>
+                  strokeWidth={clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5397,15 +5397,15 @@ console.log("clientData",clientData);
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate === "" || clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        NYCDOHMHNoticeOfPrivacyPracticesScan: !clientData.NYCDOHMHNoticeOfPrivacyPracticesScan,
+                        NYCDOHMHNoticeOfPrivacyPracticesIssues: !clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues,
                         NYCDOHMHNoticeOfPrivacyPracticesUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        NYCDOHMHNoticeOfPrivacyPracticesScan: !clientData.NYCDOHMHNoticeOfPrivacyPracticesScan,
+                        NYCDOHMHNoticeOfPrivacyPracticesIssues: !clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues,
                       })
                   }
                   }
-                  checked={clientData.NYCDOHMHNoticeOfPrivacyPracticesScan ? 'checked' : false}
+                  checked={clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -5497,20 +5497,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LinkageRetentionAdherenceFormsPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LinkageRetentionAdherenceFormsReviewed? 'pointer-events-none' :""}`}
              onClick={() => {
-              clientData.LinkageRetentionAdherenceFormsPDF ?
+              clientData.LinkageRetentionAdherenceFormsReviewed ?
                 setClientData(formState => ({
                   ...formState,
-                  LinkageRetentionAdherenceFormsPDF: !formState.LinkageRetentionAdherenceFormsPDF,
+                  LinkageRetentionAdherenceFormsReviewed: !formState.LinkageRetentionAdherenceFormsReviewed,
                   LinkageRetentionAdherenceFormsUploadDate: ""
                 })) :
                 setClientData(formState => ({
                   ...formState,
-                  LinkageRetentionAdherenceFormsPDF: !formState.LinkageRetentionAdherenceFormsPDF,
+                  LinkageRetentionAdherenceFormsReviewed: !formState.LinkageRetentionAdherenceFormsReviewed,
                   LinkageRetentionAdherenceFormsUploadDate: crearFecha()
                 }))
-                if(clientData.LinkageRetentionAdherenceFormsScan || !clientData.LinkageRetentionAdherenceFormsPDF){
+                if(clientData.LinkageRetentionAdherenceFormsIssues || !clientData.LinkageRetentionAdherenceFormsReviewed){
                   setClientData(formState => ({
                     ...formState,
                     LinkageRetentionAdherenceFormsUploadDate: crearFecha()
@@ -5520,7 +5520,7 @@ console.log("clientData",clientData);
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LinkageRetentionAdherenceFormsPDF ? "3" : "0"}>
+                  strokeWidth={clientData.LinkageRetentionAdherenceFormsReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5532,31 +5532,31 @@ console.log("clientData",clientData);
                     clientData.LinkageRetentionAdherenceFormsUploadDate === "" || clientData.LinkageRetentionAdherenceFormsUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LinkageRetentionAdherenceFormsPDF: !clientData.LinkageRetentionAdherenceFormsPDF,
+                        LinkageRetentionAdherenceFormsReviewed: !clientData.LinkageRetentionAdherenceFormsReviewed,
                         LinkageRetentionAdherenceFormsUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LinkageRetentionAdherenceFormsPDF: !clientData.LinkageRetentionAdherenceFormsPDF,
+                        LinkageRetentionAdherenceFormsReviewed: !clientData.LinkageRetentionAdherenceFormsReviewed,
                       })
                   }
                   }
-                  checked={clientData.LinkageRetentionAdherenceFormsPDF ? 'checked' : false}
+                  checked={clientData.LinkageRetentionAdherenceFormsReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LinkageRetentionAdherenceFormsScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LinkageRetentionAdherenceFormsIssues? 'pointer-events-none' :""}`}
                onClick={() => {
-                clientData.LinkageRetentionAdherenceFormsScan ?
+                clientData.LinkageRetentionAdherenceFormsIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    LinkageRetentionAdherenceFormsScan: !formState.LinkageRetentionAdherenceFormsScan,
+                    LinkageRetentionAdherenceFormsIssues: !formState.LinkageRetentionAdherenceFormsIssues,
                     LinkageRetentionAdherenceFormsUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    LinkageRetentionAdherenceFormsScan: !formState.LinkageRetentionAdherenceFormsScan,
+                    LinkageRetentionAdherenceFormsIssues: !formState.LinkageRetentionAdherenceFormsIssues,
                     LinkageRetentionAdherenceFormsUploadDate: crearFecha()
                   }))
-                  if(clientData.LinkageRetentionAdherenceFormsPDF || !clientData.LinkageRetentionAdherenceFormsScan){
+                  if(clientData.LinkageRetentionAdherenceFormsReviewed || !clientData.LinkageRetentionAdherenceFormsIssues){
                     setClientData(formState => ({
                       ...formState,
                       LinkageRetentionAdherenceFormsUploadDate: crearFecha()
@@ -5566,7 +5566,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LinkageRetentionAdherenceFormsScan ? "3" : "0"}>
+                  strokeWidth={clientData.LinkageRetentionAdherenceFormsIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5578,15 +5578,15 @@ console.log("clientData",clientData);
                     clientData.LinkageRetentionAdherenceFormsUploadDate === "" || clientData.LinkageRetentionAdherenceFormsUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LinkageRetentionAdherenceFormsScan: !clientData.LinkageRetentionAdherenceFormsScan,
+                        LinkageRetentionAdherenceFormsIssues: !clientData.LinkageRetentionAdherenceFormsIssues,
                         LinkageRetentionAdherenceFormsUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LinkageRetentionAdherenceFormsScan: !clientData.LinkageRetentionAdherenceFormsScan,
+                        LinkageRetentionAdherenceFormsIssues: !clientData.LinkageRetentionAdherenceFormsIssues,
                       })
                   }
                   }
-                  checked={clientData.LinkageRetentionAdherenceFormsScan ? 'checked' : false}
+                  checked={clientData.LinkageRetentionAdherenceFormsIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -5678,20 +5678,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InternalReferralInformationPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InternalReferralInformationReviewed? 'pointer-events-none' :""}`}
                onClick={() => {
-                clientData.InternalReferralInformationPDF ?
+                clientData.InternalReferralInformationReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    InternalReferralInformationPDF: !formState.InternalReferralInformationPDF,
+                    InternalReferralInformationReviewed: !formState.InternalReferralInformationReviewed,
                     InternalReferralInformationUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    InternalReferralInformationPDF: !formState.InternalReferralInformationPDF,
+                    InternalReferralInformationReviewed: !formState.InternalReferralInformationReviewed,
                     InternalReferralInformationUploadDate: crearFecha()
                   }))
-                  if(clientData.InternalReferralInformationScan || !clientData.InternalReferralInformationPDF){
+                  if(clientData.InternalReferralInformationIssues || !clientData.InternalReferralInformationReviewed){
                     setClientData(formState => ({
                       ...formState,
                       InternalReferralInformationUploadDate: crearFecha()
@@ -5701,7 +5701,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.InternalReferralInformationPDF ? "3" : "0"}>
+                  strokeWidth={clientData.InternalReferralInformationReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5713,31 +5713,31 @@ console.log("clientData",clientData);
                     clientData.InternalReferralInformationUploadDate === "" || clientData.InternalReferralInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        InternalReferralInformationPDF: !clientData.InternalReferralInformationPDF,
+                        InternalReferralInformationReviewed: !clientData.InternalReferralInformationReviewed,
                         InternalReferralInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        InternalReferralInformationPDF: !clientData.InternalReferralInformationPDF,
+                        InternalReferralInformationReviewed: !clientData.InternalReferralInformationReviewed,
                       })
                   }
                   }
-                  checked={clientData.InternalReferralInformationPDF ? 'checked' : false}
+                  checked={clientData.InternalReferralInformationReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InternalReferralInformationScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.InternalReferralInformationIssues? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.InternalReferralInformationScan ?
+                clientData.InternalReferralInformationIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    InternalReferralInformationScan: !formState.InternalReferralInformationScan,
+                    InternalReferralInformationIssues: !formState.InternalReferralInformationIssues,
                     InternalReferralInformationUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    InternalReferralInformationScan: !formState.InternalReferralInformationScan,
+                    InternalReferralInformationIssues: !formState.InternalReferralInformationIssues,
                     InternalReferralInformationUploadDate: crearFecha()
                   }))
-                  if(!clientData.InternalReferralInformationScan || !clientData.InternalReferralInformationPDF){
+                  if(!clientData.InternalReferralInformationIssues || !clientData.InternalReferralInformationReviewed){
                     setClientData(formState => ({
                       ...formState,
                       InternalReferralInformationUploadDate: crearFecha()
@@ -5747,7 +5747,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.InternalReferralInformationScan ? "3" : "0"}>
+                  strokeWidth={clientData.InternalReferralInformationIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5759,15 +5759,15 @@ console.log("clientData",clientData);
                     clientData.InternalReferralInformationUploadDate === "" || clientData.InternalReferralInformationUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        InternalReferralInformationScan: !clientData.InternalReferralInformationScan,
+                        InternalReferralInformationIssues: !clientData.InternalReferralInformationIssues,
                         InternalReferralInformationUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        InternalReferralInformationScan: !clientData.InternalReferralInformationScan,
+                        InternalReferralInformationIssues: !clientData.InternalReferralInformationIssues,
                       })
                   }
                   }
-                  checked={clientData.InternalReferralInformationScan ? 'checked' : false}
+                  checked={clientData.InternalReferralInformationIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -5860,20 +5860,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientReferralFormPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientReferralFormReviewed? 'pointer-events-none' :""}`}
              onClick={() => {
-              clientData.LNEClientReferralFormPDF ?
+              clientData.LNEClientReferralFormReviewed ?
                 setClientData(formState => ({
                   ...formState,
-                  LNEClientReferralFormPDF: !formState.LNEClientReferralFormPDF,
+                  LNEClientReferralFormReviewed: !formState.LNEClientReferralFormReviewed,
                   LNEClientReferralFormUploadDate: ""
                 })) :
                 setClientData(formState => ({
                   ...formState,
-                  LNEClientReferralFormPDF: !formState.LNEClientReferralFormPDF,
+                  LNEClientReferralFormReviewed: !formState.LNEClientReferralFormReviewed,
                   LNEClientReferralFormUploadDate: crearFecha()
                 }))
-                if(!clientData.LNEClientReferralFormPDF || clientData.LNEClientReferralFormScan){
+                if(!clientData.LNEClientReferralFormReviewed || clientData.LNEClientReferralFormIssues){
                   setClientData(formState => ({
                     ...formState,
                     LNEClientReferralFormUploadDate: crearFecha()
@@ -5883,7 +5883,7 @@ console.log("clientData",clientData);
             }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEClientReferralFormPDF ? "3" : "0"}>
+                  strokeWidth={clientData.LNEClientReferralFormReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5895,32 +5895,32 @@ console.log("clientData",clientData);
                     clientData.LNEClientReferralFormUploadDate === "" || clientData.LNEClientReferralFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEClientReferralFormPDF: !clientData.LNEClientReferralFormPDF,
+                        LNEClientReferralFormReviewed: !clientData.LNEClientReferralFormReviewed,
                         LNEClientReferralFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEClientReferralFormPDF: !clientData.LNEClientReferralFormPDF,
+                        LNEClientReferralFormReviewed: !clientData.LNEClientReferralFormReviewed,
                       })
                   }
                   }
                   
-                  checked={clientData.LNEClientReferralFormPDF ? 'checked' : false}
+                  checked={clientData.LNEClientReferralFormReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientReferralFormScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientReferralFormIssues? 'pointer-events-none' :""}`}
               onClick={() => {
-                clientData.LNEClientReferralFormScan ?
+                clientData.LNEClientReferralFormIssues ?
                   setClientData(formState => ({
                     ...formState,
-                    LNEClientReferralFormScan: !formState.LNEClientReferralFormScan,
+                    LNEClientReferralFormIssues: !formState.LNEClientReferralFormIssues,
                     LNEClientReferralFormUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    LNEClientReferralFormScan: !formState.LNEClientReferralFormScan,
+                    LNEClientReferralFormIssues: !formState.LNEClientReferralFormIssues,
                     LNEClientReferralFormUploadDate: crearFecha()
                   }))
-                  if(!clientData.LNEClientReferralFormScan || clientData.LNEClientReferralFormPDF){
+                  if(!clientData.LNEClientReferralFormIssues || clientData.LNEClientReferralFormReviewed){
                     setClientData(formState => ({
                       ...formState,
                       LNEClientReferralFormUploadDate: crearFecha()
@@ -5930,7 +5930,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.LNEClientReferralFormScan ? "3" : "0"}>
+                  strokeWidth={clientData.LNEClientReferralFormIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -5942,15 +5942,15 @@ console.log("clientData",clientData);
                     clientData.LNEClientReferralFormUploadDate === "" || clientData.LNEClientReferralFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEClientReferralFormScan: !clientData.LNEClientReferralFormScan,
+                        LNEClientReferralFormIssues: !clientData.LNEClientReferralFormIssues,
                         LNEClientReferralFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEClientReferralFormScan: !clientData.LNEClientReferralFormScan,
+                        LNEClientReferralFormIssues: !clientData.LNEClientReferralFormIssues,
                       })
                   }
                   }
-                  checked={clientData.LNEClientReferralFormScan ? 'checked' : false}
+                  checked={clientData.LNEClientReferralFormIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -6042,20 +6042,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSEligibilityFormPDF? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSEligibilityFormReviewed? 'pointer-events-none' :""}`}
                onClick={() => {
-                clientData.HNSEligibilityFormPDF ?
+                clientData.HNSEligibilityFormReviewed ?
                   setClientData(formState => ({
                     ...formState,
-                    HNSEligibilityFormPDF: !formState.HNSEligibilityFormPDF,
+                    HNSEligibilityFormReviewed: !formState.HNSEligibilityFormReviewed,
                     HNSEligibilityFormUploadDate: ""
                   })) :
                   setClientData(formState => ({
                     ...formState,
-                    HNSEligibilityFormPDF: !formState.HNSEligibilityFormPDF,
+                    HNSEligibilityFormReviewed: !formState.HNSEligibilityFormReviewed,
                     HNSEligibilityFormUploadDate: crearFecha()
                   }))
-                  if(!clientData.HNSEligibilityFormPDF || clientData.HNSEligibilityFormScan){
+                  if(!clientData.HNSEligibilityFormReviewed || clientData.HNSEligibilityFormIssues){
                     setClientData(formState => ({
                       ...formState,
                       HNSEligibilityFormUploadDate: crearFecha()
@@ -6065,7 +6065,7 @@ console.log("clientData",clientData);
               }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.HNSEligibilityFormPDF ? "3" : "0"}>
+                  strokeWidth={clientData.HNSEligibilityFormReviewed ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -6077,31 +6077,31 @@ console.log("clientData",clientData);
                     clientData.HNSEligibilityFormUploadDate === "" || clientData.HNSEligibilityFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        HNSEligibilityFormPDF: !clientData.HNSEligibilityFormPDF,
+                        HNSEligibilityFormReviewed: !clientData.HNSEligibilityFormReviewed,
                         HNSEligibilityFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        HNSEligibilityFormPDF: !clientData.HNSEligibilityFormPDF,
+                        HNSEligibilityFormReviewed: !clientData.HNSEligibilityFormReviewed,
                       })
                   }
                   }
-                  checked={clientData.HNSEligibilityFormPDF ? 'checked' : false}
+                  checked={clientData.HNSEligibilityFormReviewed ? 'checked' : false}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSEligibilityFormScan? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSEligibilityFormIssues? 'pointer-events-none' :""}`}
                 onClick={() => {
-                  clientData.HNSEligibilityFormScan ?
+                  clientData.HNSEligibilityFormIssues ?
                     setClientData(formState => ({
                       ...formState,
-                      HNSEligibilityFormScan: !formState.HNSEligibilityFormScan,
+                      HNSEligibilityFormIssues: !formState.HNSEligibilityFormIssues,
                       HNSEligibilityFormUploadDate: ""
                     })) :
                     setClientData(formState => ({
                       ...formState,
-                      HNSEligibilityFormScan: !formState.HNSEligibilityFormScan,
+                      HNSEligibilityFormIssues: !formState.HNSEligibilityFormIssues,
                       HNSEligibilityFormUploadDate: crearFecha()
                     }))
-                    if(!clientData.HNSEligibilityFormScan || clientData.HNSEligibilityFormPDF){
+                    if(!clientData.HNSEligibilityFormIssues || clientData.HNSEligibilityFormReviewed){
                       setClientData(formState => ({
                         ...formState,
                         HNSEligibilityFormUploadDate: crearFecha()
@@ -6111,7 +6111,7 @@ console.log("clientData",clientData);
                 }>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  strokeWidth={clientData.HNSEligibilityFormScan ? "3" : "0"}>
+                  strokeWidth={clientData.HNSEligibilityFormIssues ? "3" : "0"}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 <input
@@ -6123,15 +6123,15 @@ console.log("clientData",clientData);
                     clientData.HNSEligibilityFormUploadDate === "" || clientData.HNSEligibilityFormUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        HNSEligibilityFormScan: !clientData.HNSEligibilityFormScan,
+                        HNSEligibilityFormIssues: !clientData.HNSEligibilityFormIssues,
                         HNSEligibilityFormUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        HNSEligibilityFormScan: !clientData.HNSEligibilityFormScan,
+                        HNSEligibilityFormIssues: !clientData.HNSEligibilityFormIssues,
                       })
                   }
                   }
-                  checked={clientData.HNSEligibilityFormScan ? 'checked' : false}
+                  checked={clientData.HNSEligibilityFormIssues ? 'checked' : false}
                 />
               </div>
             </div>
@@ -6222,20 +6222,20 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
     }}
     />
   </div>
-  <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSReadinessFormPDF? 'pointer-events-none' :""}`}
+  <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSReadinessFormReviewed? 'pointer-events-none' :""}`}
    onClick={() => {
-    clientData.HNSReadinessFormPDF ?
+    clientData.HNSReadinessFormReviewed ?
       setClientData(formState => ({
         ...formState,
-        HNSReadinessFormPDF: !formState.HNSReadinessFormPDF,
+        HNSReadinessFormReviewed: !formState.HNSReadinessFormReviewed,
         HNSReadinessFormUploadDate: ""
       })) :
       setClientData(formState => ({
         ...formState,
-        HNSReadinessFormPDF: !formState.HNSReadinessFormPDF,
+        HNSReadinessFormReviewed: !formState.HNSReadinessFormReviewed,
         HNSReadinessFormUploadDate: crearFecha()
       }))
-      if(!clientData.HNSReadinessFormPDF || clientData.HNSReadinessFormScan){
+      if(!clientData.HNSReadinessFormReviewed || clientData.HNSReadinessFormIssues){
         setClientData(formState => ({
           ...formState,
           HNSReadinessFormUploadDate: crearFecha()
@@ -6245,7 +6245,7 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
   }>
     <svg xmlns="http://www.w3.org/2000/svg"
       className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-      strokeWidth={clientData.HNSReadinessFormPDF ? "3" : "0"}>
+      strokeWidth={clientData.HNSReadinessFormReviewed ? "3" : "0"}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
     <input
@@ -6257,31 +6257,31 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
         clientData.HNSReadinessFormUploadDate === "" || clientData.HNSReadinessFormUploadDate === null ? (
           setClientData({
             ...clientData,
-            HNSReadinessFormPDF: !clientData.HNSReadinessFormPDF,
+            HNSReadinessFormReviewed: !clientData.HNSReadinessFormReviewed,
             HNSReadinessFormUploadDate: crearFecha()
           })) : setClientData({
             ...clientData,
-            HNSReadinessFormPDF: !clientData.HNSReadinessFormPDF,
+            HNSReadinessFormReviewed: !clientData.HNSReadinessFormReviewed,
           })
       }
       }
-      checked={clientData.HNSReadinessFormPDF ? 'checked' : false}
+      checked={clientData.HNSReadinessFormReviewed ? 'checked' : false}
     />
   </div>
-  <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSReadinessFormScan? 'pointer-events-none' :""}`}
+  <div className={`ml-1 text-center flex justify-center items-center ${clientData.HNSReadinessFormIssues? 'pointer-events-none' :""}`}
     onClick={() => {
-      clientData.HNSReadinessFormScan ?
+      clientData.HNSReadinessFormIssues ?
         setClientData(formState => ({
           ...formState,
-          HNSReadinessFormScan: !formState.HNSReadinessFormScan,
+          HNSReadinessFormIssues: !formState.HNSReadinessFormIssues,
           HNSReadinessFormUploadDate: ""
         })) :
         setClientData(formState => ({
           ...formState,
-          HNSReadinessFormScan: !formState.HNSReadinessFormScan,
+          HNSReadinessFormIssues: !formState.HNSReadinessFormIssues,
           HNSReadinessFormUploadDate: crearFecha()
         }))
-        if(!clientData.HNSReadinessFormScan || clientData.HNSReadinessFormPDF){
+        if(!clientData.HNSReadinessFormIssues || clientData.HNSReadinessFormReviewed){
           setClientData(formState => ({
             ...formState,
             HNSReadinessFormUploadDate: crearFecha()
@@ -6291,7 +6291,7 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
     }>
     <svg xmlns="http://www.w3.org/2000/svg"
       className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-      strokeWidth={clientData.HNSReadinessFormScan ? "3" : "0"}>
+      strokeWidth={clientData.HNSReadinessFormIssues ? "3" : "0"}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
     <input
@@ -6303,15 +6303,15 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
         clientData.HNSReadinessFormUploadDate === "" || clientData.HNSReadinessFormUploadDate === null ? (
           setClientData({
             ...clientData,
-            HNSReadinessFormScan: !clientData.HNSReadinessFormScan,
+            HNSReadinessFormIssues: !clientData.HNSReadinessFormIssues,
             HNSReadinessFormUploadDate: crearFecha()
           })) : setClientData({
             ...clientData,
-            HNSReadinessFormScan: !clientData.HNSReadinessFormScan,
+            HNSReadinessFormIssues: !clientData.HNSReadinessFormIssues,
           })
       }
       }
-      checked={clientData.HNSReadinessFormScan ? 'checked' : false}
+      checked={clientData.HNSReadinessFormIssues ? 'checked' : false}
     />
   </div>
 </div>
@@ -6402,20 +6402,20 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
     }}
     />
   </div>
-  <div className={`ml-1 text-center flex justify-center items-center ${clientData.SupportGroupsPDF? 'pointer-events-none' :""}`}
+  <div className={`ml-1 text-center flex justify-center items-center ${clientData.SupportGroupsReviewed? 'pointer-events-none' :""}`}
    onClick={() => {
-    clientData.SupportGroupsPDF ?
+    clientData.SupportGroupsReviewed ?
       setClientData(formState => ({
         ...formState,
-        SupportGroupsPDF: !formState.SupportGroupsPDF,
+        SupportGroupsReviewed: !formState.SupportGroupsReviewed,
         SupportGroupsUploadDate: ""
       })) :
       setClientData(formState => ({
         ...formState,
-        SupportGroupsPDF: !formState.SupportGroupsPDF,
+        SupportGroupsReviewed: !formState.SupportGroupsReviewed,
         SupportGroupsUploadDate: crearFecha()
       }))
-      if(!clientData.SupportGroupsPDF || clientData.SupportGroupsScan){
+      if(!clientData.SupportGroupsReviewed || clientData.SupportGroupsIssues){
         setClientData(formState => ({
           ...formState,
           SupportGroupsUploadDate: crearFecha()
@@ -6425,7 +6425,7 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
   }>
     <svg xmlns="http://www.w3.org/2000/svg"
       className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-      strokeWidth={clientData.SupportGroupsPDF ? "3" : "0"}>
+      strokeWidth={clientData.SupportGroupsReviewed ? "3" : "0"}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
     <input
@@ -6437,31 +6437,31 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
         clientData.SupportGroupsUploadDate === "" || clientData.SupportGroupsUploadDate === null ? (
           setClientData({
             ...clientData,
-            SupportGroupsPDF: !clientData.SupportGroupsPDF,
+            SupportGroupsReviewed: !clientData.SupportGroupsReviewed,
             SupportGroupsUploadDate: crearFecha()
           })) : setClientData({
             ...clientData,
-            SupportGroupsPDF: !clientData.SupportGroupsPDF,
+            SupportGroupsReviewed: !clientData.SupportGroupsReviewed,
           })
       }
       }
-      checked={clientData.SupportGroupsPDF ? 'checked' : false}
+      checked={clientData.SupportGroupsReviewed ? 'checked' : false}
     />
   </div>
-  <div className={`ml-1 text-center flex justify-center items-center ${clientData.SupportGroupsScan? 'pointer-events-none' :""}`}
+  <div className={`ml-1 text-center flex justify-center items-center ${clientData.SupportGroupsIssues? 'pointer-events-none' :""}`}
     onClick={() => {
-      clientData.SupportGroupsScan ?
+      clientData.SupportGroupsIssues ?
         setClientData(formState => ({
           ...formState,
-          SupportGroupsScan: !formState.SupportGroupsScan,
+          SupportGroupsIssues: !formState.SupportGroupsIssues,
           SupportGroupsUploadDate: ""
         })) :
         setClientData(formState => ({
           ...formState,
-          SupportGroupsScan: !formState.SupportGroupsScan,
+          SupportGroupsIssues: !formState.SupportGroupsIssues,
           SupportGroupsUploadDate: crearFecha()
         }))
-        if(!clientData.SupportGroupsScan || clientData.SupportGroupsPDF){
+        if(!clientData.SupportGroupsIssues || clientData.SupportGroupsReviewed){
           setClientData(formState => ({
             ...formState,
             SupportGroupsUploadDate: crearFecha()
@@ -6471,7 +6471,7 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
     }>
     <svg xmlns="http://www.w3.org/2000/svg"
       className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-      strokeWidth={clientData.SupportGroupsScan ? "3" : "0"}>
+      strokeWidth={clientData.SupportGroupsIssues ? "3" : "0"}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
     <input
@@ -6483,15 +6483,15 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
         clientData.SupportGroupsUploadDate === "" || clientData.SupportGroupsUploadDate === null ? (
           setClientData({
             ...clientData,
-            SupportGroupsScan: !clientData.SupportGroupsScan,
+            SupportGroupsIssues: !clientData.SupportGroupsIssues,
             SupportGroupsUploadDate: crearFecha()
           })) : setClientData({
             ...clientData,
-            SupportGroupsScan: !clientData.SupportGroupsScan,
+            SupportGroupsIssues: !clientData.SupportGroupsIssues,
           })
       }
       }
-      checked={clientData.SupportGroupsScan ? 'checked' : false}
+      checked={clientData.SupportGroupsIssues ? 'checked' : false}
     />
   </div>
 </div>
@@ -6583,20 +6583,20 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
     }}
     />
   </div>
-  <div className={`ml-1 text-center flex justify-center items-center ${clientData.IDGFormPDF? 'pointer-events-none' :""}`}
+  <div className={`ml-1 text-center flex justify-center items-center ${clientData.IDGFormReviewed? 'pointer-events-none' :""}`}
    onClick={() => {
-    clientData.IDGFormPDF ?
+    clientData.IDGFormReviewed ?
       setClientData(formState => ({
         ...formState,
-        IDGFormPDF: !formState.IDGFormPDF,
+        IDGFormReviewed: !formState.IDGFormReviewed,
         IDGFormUploadDate: ""
       })) :
       setClientData(formState => ({
         ...formState,
-        IDGFormPDF: !formState.IDGFormPDF,
+        IDGFormReviewed: !formState.IDGFormReviewed,
         IDGFormUploadDate: crearFecha()
       }))
-      if(!clientData.IDGFormPDF || clientData.IDGFormScan){
+      if(!clientData.IDGFormReviewed || clientData.IDGFormIssues){
         setClientData(formState => ({
           ...formState,
           IDGFormUploadDate: crearFecha()
@@ -6606,7 +6606,7 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
   }>
     <svg xmlns="http://www.w3.org/2000/svg"
       className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-      strokeWidth={clientData.IDGFormPDF ? "3" : "0"}>
+      strokeWidth={clientData.IDGFormReviewed ? "3" : "0"}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
     <input
@@ -6618,31 +6618,31 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
         clientData.IDGFormUploadDate === "" || clientData.IDGFormUploadDate === null ? (
           setClientData({
             ...clientData,
-            IDGFormPDF: !clientData.IDGFormPDF,
+            IDGFormReviewed: !clientData.IDGFormReviewed,
             IDGFormUploadDate: crearFecha()
           })) : setClientData({
             ...clientData,
-            IDGFormPDF: !clientData.IDGFormPDF,
+            IDGFormReviewed: !clientData.IDGFormReviewed,
           })
       }
       }
-      checked={clientData.IDGFormPDF ? 'checked' : false}
+      checked={clientData.IDGFormReviewed ? 'checked' : false}
     />
   </div>
-  <div className={`ml-1 text-center flex justify-center items-center ${clientData.IDGFormScan? 'pointer-events-none' :""}`}
+  <div className={`ml-1 text-center flex justify-center items-center ${clientData.IDGFormIssues? 'pointer-events-none' :""}`}
     onClick={() => {
-      clientData.IDGFormScan ?
+      clientData.IDGFormIssues ?
         setClientData(formState => ({
           ...formState,
-          IDGFormScan: !formState.IDGFormScan,
+          IDGFormIssues: !formState.IDGFormIssues,
           IDGFormUploadDate: ""
         })) :
         setClientData(formState => ({
           ...formState,
-          IDGFormScan: !formState.IDGFormScan,
+          IDGFormIssues: !formState.IDGFormIssues,
           IDGFormUploadDate: crearFecha()
         }))
-        if(!clientData.IDGFormScan || clientData.IDGFormPDF){
+        if(!clientData.IDGFormIssues || clientData.IDGFormReviewed){
           setClientData(formState => ({
             ...formState,
             IDGFormUploadDate: crearFecha()
@@ -6652,7 +6652,7 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
     }>
     <svg xmlns="http://www.w3.org/2000/svg"
       className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-      strokeWidth={clientData.IDGFormScan ? "3" : "0"}>
+      strokeWidth={clientData.IDGFormIssues ? "3" : "0"}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
     <input
@@ -6664,15 +6664,15 @@ className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-cente
         clientData.IDGFormUploadDate === "" || clientData.IDGFormUploadDate === null ? (
           setClientData({
             ...clientData,
-            IDGFormScan: !clientData.IDGFormScan,
+            IDGFormIssues: !clientData.IDGFormIssues,
             IDGFormUploadDate: crearFecha()
           })) : setClientData({
             ...clientData,
-            IDGFormScan: !clientData.IDGFormScan,
+            IDGFormIssues: !clientData.IDGFormIssues,
           })
       }
       }
-      checked={clientData.IDGFormScan ? 'checked' : false}
+      checked={clientData.IDGFormIssues ? 'checked' : false}
     />
   </div>
 </div>

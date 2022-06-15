@@ -114,14 +114,15 @@ else if(
   return (
     <>
       <div className="modal">
-        <div className="mt-8 max-w-md mx-auto bg-yellow-300  rounded">
+        <div className="mt-8 max-w-md mx-auto bg-dark-blue  rounded">
         <div className="flex justify-end">
               <button onClick={() => setShowCreateClientModal(!showCreateClientModal)} className="text-white bg-black px-2 py-1">X</button>
             </div>
           <div className="grid grid-cols-1 gap-6 p-5">
             
-            <div className="flex justify-between">
-            <h1 className="font-black">Client Information</h1>
+            <div className="flex items-center gap-4">
+              <img src="/add_new_client_icon.svg" alt="" />
+            <h1 className="font-black text-white">Client Information</h1>
             
             </div>
            
@@ -129,7 +130,7 @@ else if(
             {errorsInFields  && <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">Some information is not correct</span>} 
 
             <label className="block">
-              <span className="">First name</span>
+              <span className="text-white">First name</span>
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -141,7 +142,7 @@ else if(
               {/* {clientData.clientFirstName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>} */}
             </label>
             <label className="block">
-              <span className="">Last name</span>
+              <span className="text-white">Last name</span>
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -154,7 +155,7 @@ else if(
 
             </label>
             <label className="block">
-              <span className="">Last 4 digits of social security number </span>
+              <span className="text-white">Last 4 digits of social security number </span>
               <div>
               <input
                 type="number"
@@ -182,7 +183,7 @@ else if(
           </label> */}
           {loggeduserId === "Supervisor" ? (
             <label className="block">
-            <span className="text-gray-700">Asign user</span>
+            <span className="text-white">Asign user</span>
             <select
               onChange={(e) =>
                  
@@ -200,7 +201,7 @@ else if(
             
 
             <label className="block">
-              <span className="text-gray-700">is Active / No active</span>
+              <span className="text-white">is Active / No active</span>
               <select
                 onChange={() =>
                   setClientData({ ...clientData, isactive:!clientData.isactive })
@@ -221,7 +222,7 @@ else if(
               <div className="mt-2">
                 <div className="flex justify-center">
                   <button
-                    className="px-5  py-1 mr-3 font-medium bg-green-400  text-sm flex shadow-xl items-center rounded-md"
+                    className="px-5  py-1 mr-3 font-medium btn-darkGreen  text-sm flex shadow-xl items-center rounded-md"
                     onClick={() => addClient()} 
                   >
                     { saving ? (
