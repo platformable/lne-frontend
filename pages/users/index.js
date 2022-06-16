@@ -52,7 +52,7 @@ console.log(data)
               <h1 className='block font-bold'>Manage Users</h1>
             <div className="flex  items-center justify-between container my-5 mx-auto">
               <Link href="/authorizedusers">
-                <a className="rounded bg-yellow-400 px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
+                <a className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
                 <Image src={authUserICon} width={40} height={40}/>
                   <p className='ml-2 text-sm'>View authorized users</p>
                 </a>

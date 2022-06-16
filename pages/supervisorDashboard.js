@@ -159,16 +159,16 @@ console.log("user",user)
         <section id="dashboard-client-list">
           <div className="container mx-auto">
             <section className=" py-5">
-            <h1 className="font-black py-5">
+            <h1 className="font-black py-5 md:px-0 px-5">
               Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
             </h1>
                 <div className="supervisor-dashboard-top-container  px-5 py-5 mb-1 bg-white">
              
-                    <div className="supervisor-dashboard-top flex wrap md:no-wrap justify-between">
+                    <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
                         <div>
                         <h1 className="font-black my-2">Here is a quick view of how things are doing</h1>
                         </div>
-                        <div className="flex ">
+                        <div className="flex wrap justify-end">
                             <div className="px-5 py-1 bg-green-100 w-40 mr-2 flex items-center justify-center">
                                 on-track
                             </div>
@@ -181,7 +181,7 @@ console.log("user",user)
                         </div>
                     </div>
                 </div>
-                <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-2">
+                <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
                     <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
                         <h4 className="text-center mb-5 px-10">MSA Forms completed but not uploaded</h4>
                         <h1 className="text-center font-black">{totalMsaFormsNotCompleted.length}</h1>
@@ -201,8 +201,8 @@ console.log("user",user)
 
                 </div>
             </section>
-            <h3 className="font-black my-2">What do you want to do today?</h3>
-            <div className="flex mb-2">
+            <h3 className="font-black my-2 md:px-0 px-5">What do you want to do today?</h3>
+            <div className="grid md:grid-cols-8 grid-cols-1 mb-2">
               {loggedUserRole === "Supervisor" && (
                 <Link href="/users">
                   <div className="text-center mr-5 ">
@@ -223,7 +223,7 @@ console.log("user",user)
             {loggedUserRole === "Supervisor" && (
                 <Link href="/clients">
                   <div className="text-center mr-5">
-                    <div className="rounded btn-blue p-5 text-center shadow-xl   mb-2 rounded-xl">
+                    <div className="rounded btn-darkBlue p-5 text-center shadow-xl   mb-2 rounded-xl">
                       <button id="myBtn">
                         <div className="flex justify-center">
                         <img src="/manage-clients-icon.svg" alt="" />
