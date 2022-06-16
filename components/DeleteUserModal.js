@@ -7,10 +7,12 @@ import deleteUserIcon from '../public/delete-user-icon.svg'
 
 const DeleteUserModal = ({urlEntity,selectedUser, showDeleteUserModal, setShowDeleteUserModal}) => {
     const router = useRouter()
-    const {id, name, lastname} = selectedUser
+    const {user_id, name, lastname} = selectedUser
 
+    console.log("id",user_id)
+    console.log("selected",selectedUser)
     const handleAuthUserDelete = ({})=>{
-        axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/${urlEntity}/`,{data:{id}})
+        axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/`,{ data: { user_id } })
         .then(response=>{
           router.reload()
         })
