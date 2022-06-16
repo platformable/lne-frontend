@@ -66,7 +66,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     ProgressNoteUploadDate: data[0].progressnoteuploaddate || null, 
     ProgressNoteScan: data[0].progressnotescan || data[0].progressnotescan ===null? false:true, 
     ProgressNotePDF: data[0].progressnotepdf || data[0].progressnotepdf ===null? false:true,
-    ProgressNoteReviewed: data[0].progressnotereview || data[0].progressnotereview ===null? false:true,
+    ProgressNoteReviewed: data[0].progressnotereviewed || data[0].progressnotereviewed ===null? false:true,
 ProgressNoteIssues: data[0].progressnoteissues || data[0].progressnoteissues ===null? false:true,
 
     StatusChangesForm:data[0].statuschangesform ==="0" || data[0].statuschangesform ===null? false : true, 
@@ -75,7 +75,7 @@ ProgressNoteIssues: data[0].progressnoteissues || data[0].progressnoteissues ===
     StatusChangesFormScan:data[0].statuschangesformscan ==="0" || data[0].statuschangesformscan ===null? false : true, 
     StatusChangesFormPDF:data[0].statuschangesformpdf ==="0" || data[0].statuschangesformpdf ===null? false : true,
     StatusChangesFormReviewed:data[0].statuschangesformreviewed ==="0" || data[0].statuschangesformreviewed ===null? false : true,
-StatusChangesFormIssues:data[0].statuschangesformissues ==="0" || data[0].statuschangesformissues ===null? false : true,
+    StatusChangesFormIssues:data[0].statuschangesformissues ==="0" || data[0].statuschangesformissues ===null? false : true,
 
     ComprehensiveRiskBehaviorAssessmentUpdates: data[0].comprehensiveriskbehaviorassessmentupdates ==="0"|| data[0].comprehensiveriskbehaviorassessmentupdates===null? false:true,
     ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0].comprehensiveriskbehaviorassessmentdate, 
@@ -91,7 +91,7 @@ StatusChangesFormIssues:data[0].statuschangesformissues ==="0" || data[0].status
     M11QFormScan:data[0].m11qformscan ==="0" || data[0].m11qformscan ===null? false : true, 
     M11QFormPDF:data[0].m11qformpdf ==="0" || data[0].m11qformpdf ===null? false : true,
     M11QFormReviewed:data[0].m11qformreviewed ==="0" || data[0].m11qformreviewed ===null? false : true, 
-    M11QFormIssues:data[0].M11QFormissues ==="0" || data[0].M11QFormissues ===null? false : true,
+    M11QFormIssues:data[0].m11qformissues ==="0" || data[0].m11qformissues ===null? false : true,
     
     CD4VLReports:data[0].cd4vlreports ==="0" || data[0].cd4vlreports ===null? false : true,
     CD4VLReportsDate:data[0].cd4vlreportsdate, 
