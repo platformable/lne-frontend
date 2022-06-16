@@ -196,7 +196,7 @@ console.log("user",user)
                     </div>
                     <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
                         <h4 className="text-center mb-5 px-10">Security incidents or <br />   data breaches</h4>
-                        <h1 className="text-center font-black">23</h1>
+                        <h1 className="text-center font-black">0</h1>
                     </div>
 
                 </div>
