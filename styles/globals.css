@@ -279,27 +279,11 @@ background-color: var(--blue);
 }
 
 .border-l-dark-blue {
-border-left:2px solid var(--darkBlue);
+  border-left:1px solid var(--darkBlue);
 }
 
 /*Client profile style */
-#user-box-container {
-  width: 110px;
-  height: 36px;
-  border: 2px solid #2278C9;
-  margin-bottom: -2px;
-  border-radius: 12px 12px 0 0;
-}
-#client-profile-page-client-information::before {
-    content: "";
-    position: relative;
-    display: block;
-    top: 64px;
-    width: 106px;
-    height: 5px;
-    left: 2px;
-    background-color: white;
-}
+
 
 .border-r-dark-blue {
   border-right: 1px solid var(--darkBlue);
