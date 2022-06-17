@@ -6,7 +6,6 @@ import Image from "next/image";
 
 import infoIcon from "../../../../public/client/info-icon.svg"
 import userIcon from "../../../../public/client/USERicon.svg"
-import ImpactTrackerModal from '../../../../components/ImpactTrackerModal'
 
 import { useRouter } from "next/router";
 
@@ -36,6 +35,7 @@ const getDate=(date)=>{
 
 export default function ClientProfilePage({ data }) {
 
+
 console.log("data",data)
  /*  const clientJoinedDate = getDate(new Date())
   const cleanDate = setLocaleDateString(data[0].clientdatecreated) */
@@ -45,58 +45,93 @@ console.log("data",data)
 
   const router = useRouter()
 
-  const checkForms=()=>{
-  
-    let result 
-
-
+  const checkMessage1=()=>{
+    let result;
+    let color;
     if((data[0]?.msaformairsintakeform==="0" || data[0]?.msaformairsintakeform===null) &&  data[0]?.servicesactionplanid ===null){
       result="You need to fill in the client’s Intake Form"
+      color = 'bg-red-400'
     } 
     if(data[0]?.msaformairsintakeform==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment !=='1' ) {
       result = 'You need to fill in the client’s CBRA Form'
-    }
-    if(data[0]?.msaformairsintakeform==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==='1' && data[0]?.servicesactionplanid !== '1') {
-      result = 'You need to draft the client’s Service Action Plan and sign'
+      color = 'bg-red-400'
     }
    
-    if(data[0]?.msaformairsintakeform === "1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==="1" && data[0]?.servicesactionplanid !== null){ 
-       result = "All core documents are up to date"
+    if(data[0]?.msaformairsintakeform==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==='1' && data[0]?.servicesactionplanid !== '1') {
+      result = 'You need to draft the client’s Service Action Plan and sign'
+      color = 'bg-orange-300'
     }
-    
-    return result
 
+    if(data[0]?.msaformairsintakeform==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==='1' && data[0]?.servicesactionplanid !== null && (
+    data[0]?.msahnselegibilityform !== "1" || data[0]?.msaformhnsreadinessform !=='1')) {
+      result = 'You need to fill in the client’s HNS Forms'
+      color = 'bg-orange-300'
+    }
+
+    if(data[0]?.msaformairsintakeform === "1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==="1" && data[0]?.servicesactionplanid !== null 
+    //  && (data[0]?.msahnselegibilityform === "1" && data[0]?.msaformhnsreadinessform ==='1')
+      ){ 
+       result = "All core documents are up to date"
+        color = 'bg-green-300'
+      }
+    
+    return  (<div className={`flex ${color} h-14 px-5  items-center`}>
+    <img src="/client/alerticonMSAdoc.svg" alt="" />
+    <p className='px-4 font-semibold '>{result}</p>
+    </div>)
   }
+
   const checkMessage2 =()=> {
     const fields = {
       goal1: data[0]?.goal1completed,
       goal2: data[0]?.goal2completed,
       goal3: data[0]?.goal3completed,
     }
-    let result
+    let result;
+    let color;
     
     if ((fields['goal1'] !== '1'  && fields['goal2'] !== '1' && fields['goal2'] === '1')||
     (fields['goal1'] !== '1'  && fields['goal3'] !== '1' && fields['goal2'] === '1')||
     (fields['goal2'] !== '1' && fields['goal3'] !== '1' && fields['goal1'] === '1')) {
       result ='There are two client goals outstanding'
+      color = 'bg-orange-300'
+
     } else {
       result = 'There is one client goal outstanding'
+      color = 'bg-orange-300'
+
     }
     if(Object.values(fields).every(value => value === '0' || value === null)){
       result = 'There are three client goals outstanding'
+      color = 'bg-red-400'
     };
     if(Object.values(fields).every(value => value === '1' || value !== null)){
       result = 'All client goals have been completed!'
+      color = 'bg-green-300'
     };
-    return result
+    return (
+      <div className={`flex ${color} h-14 px-5 my-1 items-center`}>
+                <img src="/client/alerticonserviceactionplan.svg" alt="" />
+                    <p className='px-4 font-semibold'>{result}</p>
+      </div>
+    )
   }
   let fechaInicio = new Date(`2022-03-${Math.floor(Math.random() * (30 - 1 + 1) + 1)}`);
   
   const checkMessage3=()=>{
-    var fechaFin    = new Date().getTime();
-    var diff = fechaFin - new Date(data[0].planstartdate).getTime();
-    let TotalDays = Math.ceil(diff / (1000 * 3600 * 24));
-    return TotalDays
+    let color = 'bg-red-400'
+    let fechaFin = new Date().getTime();
+    let diff = fechaFin - new Date(data[0].planstartdate).getTime();
+    let totalDays = Math.ceil(diff / (1000 * 3600 * 24));
+    if (totalDays <= 14 ) color='bg-green-300'
+    if (totalDays > 14 && totalDays < 30) color = 'bg-orange-300'
+    return (
+      <div className={`flex ${color} h-14 px-5 items-center`}>
+            <img src="/client/alert-icon-progress-note.svg" alt="" />
+            <p className='px-4 font-semibold'>
+              {totalDays > 0? `You saw this  client ${totalDays} days ago` : `You saw this  client today`} </p>
+      </div>
+    )
   }
 
   return (<>
@@ -109,7 +144,7 @@ console.log("data",data)
 
       <button 
         onClick={()=>loggedUserRole ==='Supervisor' ? router.push('/clients'): router.push('/dashboard')}
-        className=" px-5 mb-5 py-1 rounded  inline-block text-xs mr-5 flex items-center text-dark-blue">
+        className=" px-5 mb-5 py-1 rounded  inline-block text-sm mr-5 flex items-center text-dark-blue">
         <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
@@ -118,43 +153,34 @@ console.log("data",data)
         </button>
 
 
-        <div className="profile-card-container grid md:grid-cols-2 grid-cols-1 bg-white  pl-5 rounded-xl shadow">
-          <div className="profile-card-left py-5">
+        <div className="profile-card-container grid md:grid-cols-2 grid-cols-1 bg-white rounded-xl shadow-md">
+          <div className="profile-card-left p-10">
 
-              <div className='flex gap-5 pt-5'>
+              <div className='flex gap-5 pb-7'>
               <Image src={userIcon} className="mr-5"></Image>
              <div> <p className='text-dark-blue font-black text-lg'>{data[0]?.clientfirstname}{' '}{data[0]?.clientlastname.charAt(0)}</p>
               <p className='text-dark-blue text-xs'>{data[0]?.clientid}</p>
               </div>
               </div>
 
-              <div className='grid mt-4 grid-rows-2 md:flex md:items-center md:justify-between my-5 pr-5'>
-                <p className="">Date Client Joined LNE</p>
-                <p className='justify-self-end'>{new Date(data[0]?.clientdatecreated).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
+              <div className='grid mt-4 grid-rows-2 md:flex md:items-center md:justify-between my-5'>
+                <p className="font-semibold">Date Client Joined LNE</p>
+                <p className='justify-self-end font-semibold text-dark-blue'>{new Date(data[0]?.clientdatecreated).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
                 </div>
-                <hr className='border-blue-600'></hr>
+                <hr className='border-blue-500'></hr>
 
-                <div className='grid grid-rows-2 md:flex md:items-center md:justify-between my-5 pr-5'>
-                <p  className="">Date Of Last Action</p>
-                <p className='justify-self-end'>{new Date(data[0]?.planstartdate).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
+                <div className='grid grid-rows-2 md:flex md:items-center md:justify-between my-5'>
+                <p  className="font-semibold">Date Of Last Action</p>
+                <p className='justify-self-end font-semibold text-dark-blue'>{new Date(data[0]?.planstartdate).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
                 </div>
-                <hr className='border-blue-600 hidden md:block'></hr>
+                <hr className='border-blue-500 hidden md:block'></hr>
               
           </div>
-          <div className="profile card-right border-l-dark-blue pt-5">
-           <div className="flex justify-end mb-5 px-5"> <img src="/alert-icon.svg" alt="" /></div>
-              <div className='flex bg-green-300 h-14 px-5 items-center'>
-                    <img src="/client/alerticonMSAdoc.svg" alt="" />
-                    <p className='px-4 '>{checkForms()}</p>
-                </div>
-                <div className='flex bg-orange-300 h-14 px-5 items-center'>
-                <img src="/client/alerticonserviceactionplan.svg" alt="" />
-                    <p className='px-4'>{checkMessage2()}</p>
-                </div>
-                <div className='flex bg-red-400 h-14 px-5 items-center'>
-                <img src="/client/alert-icon-progress-note.svg" alt="" />
-                    <p className='px-4'>You saw this  client {checkMessage3()} days ago</p>
-                </div>
+          <div className="profile card-right border-l-dark-blue flex flex-col justify-end pt-5">
+           <div className="flex justify-end mb-11 px-5"> <img src="/alert-icon.svg" alt="" /></div>
+                {checkMessage1()}
+                {checkMessage2()}
+                {checkMessage3()}      
           </div>
         </div>
        {/*  <article className='container mx-auto border-2 border-blue-600 rounded-xl rounded-tl-none text-black md:grid md:grid-cols-2 font-bold shadow-xl'>
