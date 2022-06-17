@@ -100,13 +100,13 @@ export default function AuthorizedUsersIndex({data, users}) {
            
             <div className='button-container flex justify-between items-center mt-3 mb-5'>
                <div className="flex justify-center items-center">
-                <button className="rounded bg-yellow-400 px-5 py-2 flex items-center  font-semibold shadow-xl mr-4" id="myBtn" onClick={() => setShowModal(!showModal)}>
+                <button className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl mr-4" id="myBtn" onClick={() => setShowModal(!showModal)}>
                 <Image src={addUserICon} width={35} height={35}/>
                 <p className='ml-2 text-sm'>Add a new user</p>
                 
                  </button>
                 <Link href="/users">
-                <a className="rounded bg-yellow-400 px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
+                <a className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
                 <Image src={authUserICon} width={40} height={40}/>
                   <p className='ml-2 text-sm'>View active users</p>
                 </a>
