@@ -342,7 +342,7 @@ console.log("clientData",clientData);
             router.push(`/clients/${clientData.clientId}/profile`)
           }, 2300) */
 
-    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update_des_msa_form`, {
+    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update_supervisor_msa_form`, {
       clientData
     })
       .then(function (response) {

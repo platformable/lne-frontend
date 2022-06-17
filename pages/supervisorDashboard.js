@@ -202,7 +202,7 @@ console.log("user",user)
                 </div>
             </section>
             <h3 className="font-black my-2 md:px-0 px-5">What do you want to do today?</h3>
-            <div className="grid md:grid-cols-8 grid-cols-1 mb-2">
+            <div className="grid md:grid-cols-6 grid-cols-1 mb-2">
               {loggedUserRole === "Supervisor" && (
                 <Link href="/users">
                   <div className="text-center mr-5 ">
