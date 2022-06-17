@@ -17,6 +17,8 @@ export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
   let componentRef = useRef();
 
+  const [activeActionPlan, setActiveActionPlan] = useState(false)
+
   console.log("data",data)
 
   const notifyMessage = () => {
@@ -28,10 +30,9 @@ export default function EditServiceActionPlan({ data }) {
   const { user, error, isLoading } = useUser();
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
 
-const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 
   const [clientData, setClientData] = useState({
-    clientId:data[0]?.clientid,
+    clientId:data[0]?.clientId,
     clientFirstName:data[0]?.clientfirstname,
     clientLastName :data[0]?.clientlastname,
     planStartDate:data[0]?.planstartdate,
@@ -133,8 +134,8 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     });
   };
 
-
   const updateClientActionPlan = ()=>{
+    console.log('id before put',clientData.clientId)
     axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientData.clientId}`, {
       clientData
     })
@@ -239,7 +240,6 @@ return finalDate
                     type="date"
                     className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
                     value={getDate(clientData.planStartDate)}
-                    disabled={disableUserIfNotSupervisor()}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
                     /> */}
                 </label>
@@ -319,7 +319,8 @@ return finalDate
             <h6 className="font-black my-5 text-dark-blue">Client Goals</h6>
           </div>
           <div
-            className={`border-dark-blue container mx-auto rounded-xl px-5 py-5`}
+            className={`border-dark-blue container mx-auto rounded-xl px-5 py-5 
+            ${!activeActionPlan? 'pointer-events-none' : ''}`}
           >
             <div className="service-action-plan-goals-container grid md:grid-cols-3 grid-cols-1 gap-5">
               <div className="service-action-plan-goal-box">
@@ -356,8 +357,7 @@ return finalDate
                           goal1Summary: e.target.value,
                         })
                       }
-                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                      disabled={disableUserIfNotSupervisor()}
+                      className={`${!activeActionPlan? 'appearance-none':'' } text-xs w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal1Summary} selected="true">
                         {clientData.goal1Summary}
@@ -378,7 +378,6 @@ return finalDate
                           goal1ServiceCategory: e.target.value,
                         })
                       }
-                      disabled={disableUserIfNotSupervisor()}
                       className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
@@ -406,7 +405,6 @@ return finalDate
                         });
                       }}
                       value={clientData.goal1Details}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -419,7 +417,6 @@ return finalDate
                         clientData.goal1TargetDate &&
                         clientData.goal1TargetDate.split("T")[0]
                       }
-                      disabled={disableUserIfNotSupervisor()}
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
@@ -446,7 +443,6 @@ return finalDate
                           goal1ActionStep1: e.target.value,
                         });
                       }}
-                      disabled={disableUserIfNotSupervisor()}
                       value={clientData.goal1ActionStep1}
                     ></textarea>
                   </label>
@@ -468,7 +464,6 @@ return finalDate
                           goal1ActionStep2: e.target.value,
                         });
                       }}
-                      disabled={disableUserIfNotSupervisor()}
                       value={clientData.goal1ActionStep2}
                     ></textarea>
                   </label>
@@ -491,7 +486,6 @@ return finalDate
                         });
                       }}
                       value={clientData.goal1ActionStep3}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
                 </div>
@@ -528,8 +522,7 @@ return finalDate
                           goal2Summary: e.target.value,
                         })
                       }
-                      disabled={disableUserIfNotSupervisor()}
-                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className={`${!activeActionPlan? 'appearance-none':'' } text-xs w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal2Summary} selected="true">
                         {clientData.goal2Summary}
@@ -550,7 +543,6 @@ return finalDate
                           goal2ServiceCategory: e.target.value,
                         })
                       }
-                      disabled={disableUserIfNotSupervisor()}
                       className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
@@ -578,7 +570,6 @@ return finalDate
                         });
                       }}
                       value={clientData.goal2Details}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -597,7 +588,6 @@ return finalDate
                         clientData.goal2TargetDate &&
                         clientData.goal2TargetDate.split("T")[0]
                       }
-                      disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
 
@@ -619,7 +609,6 @@ return finalDate
                         });
                       }}
                       value={clientData.goal2ActionStep1}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -641,7 +630,6 @@ return finalDate
                         });
                       }}
                       value={clientData.goal2ActionStep2}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -663,7 +651,6 @@ return finalDate
                           goal2ActionStep3: e.target.value,
                         });
                       }}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
                 </div>
@@ -703,8 +690,7 @@ return finalDate
                           goal3Summary: e.target.value,
                         })
                       }
-                      disabled={disableUserIfNotSupervisor()}
-                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className={`${!activeActionPlan? 'appearance-none':'' } text-xs w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal3Summary} selected="true">
                         {clientData.goal3Summary}
@@ -725,7 +711,6 @@ return finalDate
                           goal3ServiceCategory: e.target.value,
                         })
                       }
-                      disabled={disableUserIfNotSupervisor()}
                       className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
@@ -753,7 +738,6 @@ return finalDate
                         });
                       }}
                       value={clientData.goal3Details}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -772,7 +756,6 @@ return finalDate
                         clientData.goal1TargetDate &&
                         clientData.goal1TargetDate.split("T")[0]
                       }
-                      disabled={disableUserIfNotSupervisor()}
                     />
                   </label>
 
@@ -794,7 +777,6 @@ return finalDate
                         });
                       }}
                       value={clientData.goal3ActionStep1}
-                      disabled={disableUserIfNotSupervisor()}
                     ></textarea>
                   </label>
 
@@ -815,7 +797,6 @@ return finalDate
                           goal3ActionStep2: e.target.value,
                         });
                       }}
-                      disabled={disableUserIfNotSupervisor()}
                       value={clientData.goal3ActionStep2}
                     ></textarea>
                   </label>
@@ -837,7 +818,6 @@ return finalDate
                           goal3ActionStep3: e.target.value,
                         });
                       }}
-                      disabled={disableUserIfNotSupervisor()}
                       value={clientData.goal3ActionStep3}
                     ></textarea>
                   </label>
@@ -855,7 +835,6 @@ return finalDate
                 onChange={(e) => {
                   setClientData({ ...clientData, comments: e.target.value });
                 }}
-                disabled={disableUserIfNotSupervisor()}
                 value={clientData.comments || ""}
               ></textarea>
             </label>
@@ -865,7 +844,7 @@ return finalDate
           <div className="container mx-auto">
             <h6 className="font-black my-5 text-dark-blue">Signatures</h6>
 
-            <div className={`border-dark-blue  rounded-xl px-5 py-5`}>
+            <div className={`${!activeActionPlan? 'pointer-events-none' : ''} border-dark-blue  rounded-xl px-5 py-5`}>
               <h6 className="font-black"></h6>
               <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
                 <div className="others-container-box flex gap-2 justify-center items-center">
@@ -879,7 +858,6 @@ return finalDate
                         clientSignature: !clientData.clientSignature,
                       });
                     }}
-                    disabled={disableUserIfNotSupervisor()}
                     checked={clientData?.clientSignature ? true : false}
                   />
                 </div>
@@ -894,7 +872,6 @@ return finalDate
                         HCWSignature: !clientData.HCWSignature,
                       });
                     }}
-                    disabled={disableUserIfNotSupervisor()}
                     checked={clientData?.HCWSignature ? true : false}
                   />
                 </div>
@@ -909,7 +886,6 @@ return finalDate
                         supervisorSignature: !clientData.supervisorSignature,
                       });
                     }}
-                    disabled={disableUserIfNotSupervisor()}
                     checked={clientData?.supervisorSignature ? true : false}
                   />
                 </div>
@@ -922,7 +898,7 @@ return finalDate
           <div className="container mx-auto">
             <h6 className="font-black my-5 text-dark-blue">Progress Notes</h6>
 
-            <div className={`border-dark-blue  rounded-xl px-5 py-5`}>
+            <div className="border-dark-blue  rounded-xl px-5 py-5">
               <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
                 <div className="others-container-box flex gap-2 ">
                   <p>
@@ -954,23 +930,30 @@ return finalDate
             {loggedUserRole === "HCW" ? (
               ""
             ) : (
-              <button
-                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+              <div id="buttons-container" className="flex items-center justify-around">
+                <button className={`${!activeActionPlan? 'block':'hidden'} w-28 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 text-xs`}
+                onClick={() => setActiveActionPlan(!activeActionPlan)}>Edit Action Plan
+                </button>
+                
+                <button
+                className="bg-blue-500 hover:bg-blue-300 w-28 py-1 mx-4 rounded text-white  text-xs"
                 onClick={(e) => {
                   updateClientActionPlan();
-                }}
-              >
-                Save
+                }}>
+                Save and finish
               </button>
-            )}
-            {/* <ReactToPrint
+              <ReactToPrint
               trigger={() => (
-                <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">
-                  Print
+                <button className="bg-black hover:bg-gray-700 w-28 py-1 rounded text-white  text-xs">
+                  Print and sign
                 </button>
               )}
               content={() => componentRef.current}
-            /> */}
+              /> 
+             
+              </div>
+            )}
+            
 
             <div style={{ display: "none" }}>
               <ComponentToPrint
