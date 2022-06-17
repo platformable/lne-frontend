@@ -14,7 +14,9 @@ export default function DashboardClientCard({client,index,loggedUserRole}) {
 
 
   return (
-    <div className="dashboard-clients-box" key={index}>
+    <Link href={loggedUserRole ==='DES'  ? `/clients/${client.clientid}/msa_form/des_msa_form_edit/`:`/clients/${client.clientid}/profile/`}>
+   <a>
+    <div className="dashboard-clients-box cursor-pointer" key={index}>
     <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm ">
       <div className="grid dashboard-card-name-box gap-5 ">
 
@@ -49,7 +51,7 @@ export default function DashboardClientCard({client,index,loggedUserRole}) {
       </div>
      
       <div className="">
-      <a><Link href={loggedUserRole ==='DES'  ? `/clients/${client.clientid}/msa_form/des_msa_form_edit/`:`/clients/${client.clientid}/profile/`}>
+      
         <button
         type="button"
         className="mt-1 w-full flex items-center gap-x-2 justify-center px-6 py-3 btn-darkBlue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover-bg-dark-blue hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-500 active:shadow-lg transition duration-150 ease-in-out"
@@ -63,10 +65,12 @@ export default function DashboardClientCard({client,index,loggedUserRole}) {
 
         View Client
       </button>
-      </Link>
-      </a>
+     
+     
       </div>
     </div>
   </div>
+  </a>
+   </Link>
   )
 }
