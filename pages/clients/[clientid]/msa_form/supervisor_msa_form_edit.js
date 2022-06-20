@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const EditSupervisorMSAFormPage = ({ data }) => {
 
-  console.log("data",data)
+console.log("data",data)
 
   const router = useRouter()
 
@@ -58,7 +58,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     // ServiceActionPlanPDF: data[0].serviceactionplanpdf === "0" ? true : false,
     ServiceActionPlanScan :  data[0].serviceactionplanscan=== "0" || data[0].serviceactionplanscan=== null ? false : true,
     ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate || null,
-    ServiceActionPlanReview:data[0].serviceactionplanreview==="0" || data[0].serviceactionplanreview===null ? false: true,
+    ServiceActionPlanReviewed:data[0].serviceactionplanreviewed==="0" || data[0].serviceactionplanreviewed===null ? false: true,
     ServiceActionPlanIssues:data[0].serviceactionplanissues==="0" || data[0].serviceactionplanissues===null ? false:true,
 
     ProgressNote: data[0].progressnoteid ==="" || data[0].progressnoteid ===null? false:true,
@@ -66,8 +66,8 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     ProgressNoteUploadDate: data[0].progressnoteuploaddate || null, 
     ProgressNoteScan: data[0].progressnotescan || data[0].progressnotescan ===null? false:true, 
     ProgressNotePDF: data[0].progressnotepdf || data[0].progressnotepdf ===null? false:true,
-    ProgressNoteReviewed: data[0].progressnotereviewed || data[0].progressnotereviewed ===null? false:true,
-ProgressNoteIssues: data[0].progressnoteissues || data[0].progressnoteissues ===null? false:true,
+    ProgressNoteReviewed: data[0].progressnotereviewed==="0" || data[0].progressnotereviewed ===null? false:true,
+ProgressNoteIssues: data[0].progressnoteissues==="0" || data[0].progressnoteissues ===null? false:true,
 
     StatusChangesForm:data[0].statuschangesform ==="0" || data[0].statuschangesform ===null? false : true, 
     StatusChangesFormDate:data[0].statuschangesformdate, 
@@ -83,7 +83,7 @@ ProgressNoteIssues: data[0].progressnoteissues || data[0].progressnoteissues ===
     ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: data[0].comprehensiveriskbehaviorassessmentupdatesformscan==="0"|| data[0].comprehensiveriskbehaviorassessmentupdatesformscan===null? false:true,  
     ComprehensiveRiskBehaviorAssessmentUpdatesPDF: data[0].comprehensiveriskbehaviorassessmentpdf === "0"|| data[0].comprehensiveriskbehaviorassessmentpdf ===null? false:true,
     ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:data[0].comprehensiveriskbehaviorassessmentreviewed === "0"|| data[0].comprehensiveriskbehaviorassessmentreviewed ===null? false:true,
-    ComprehensiveRiskBehaviorAssessmentUpdatesIssues:data[0].comprehensiveriskbehaviorassessmentissues === "0"|| data[0].comprehensiveriskbehaviorassessmentissues ===null? false:true,
+    ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues:data[0].comprehensiveriskbehaviorassessmentupdatesformissues === "0"|| data[0].comprehensiveriskbehaviorassessmentupdatesformissues ===null? false:true,
     
     M11QForm:data[0].m11qform ==="0" || data[0].m11qform ===null? false : true, 
     M11QFormDate:data[0].m11qformdate, 
@@ -131,8 +131,8 @@ AIRSCollateralInformationIssues : data[0].airscollateralinformationissues=== "0"
     AIRSDrugRegimenPDF: data[0].airsdrugregimenpdf ==="0" || data[0].airsdrugregimenpdf ===null ? false : true,
     AIRSDrugRegimenScan: data[0].airsdrugregimenscan ==="0" || data[0].airsdrugregimenscan ===null ? false : true,
     AIRSDrugRegimenUploadDate: data[0].airsdrugregimenuploaddate || null, 
-    AirsDrugRegimenReviewed:data[0].airsdrugregimenreviewed ==="0" || data[0].airsdrugregimenreviewed ===null ? false : true,  
-AirsDrugRegimenIssues :data[0].airsdrugregimenissues ==="0" || data[0].airsdrugregimenissues ===null ? false : true,
+    AIRSDrugRegimenReviewed:data[0].airsdrugregimenreviewed ==="0" || data[0].airsdrugregimenreviewed ===null ? false : true,  
+AIRSDrugRegimenIssues :data[0].airsdrugregimenissues ==="0" || data[0].airsdrugregimenissues ===null ? false : true,
 
     AIRSFinancialInformation: data[0].airsfinancialinformation === "0" || data[0].airsfinancialinformation === null ? false : true,
     AIRSFinancialInformationDate: data[0].airsfinancialinformationdate,
@@ -156,8 +156,8 @@ AIRSHIVAIDSRiskHistoryIssues : data[0].airshivaidsriskhistoryissues==="0" || dat
     AIRSHIVMedicalProviderPDF: data[0].airshivmedicalproviderpdf==="0" || data[0].airshivmedicalproviderpdf===null ? false: true, 
     AIRSHIVMedicalProviderScan: data[0].airshivaidsriskhistoryscan==="0" || data[0].airshivmedicalproviderscan===null ? false: true, 
     AIRSHIVMedicalProviderUploadDate: data[0].airshivmedicalprovideruploaddate || null,
-    AirsHIVMedicalProviderReviewed :data[0].airshivmedicalproviderreviewed==="0" || data[0].airshivmedicalproviderreviewed===null ? false: true, 
-AirsHIVMedicalProviderIssues :data[0].airshivmedicalproviderissues==="0" || data[0].airshivmedicalproviderissues===null ? false: true, 
+    AIRSHIVMedicalProviderReviewed:data[0].airshivmedicalproviderreviewed==="0" || data[0].airshivmedicalproviderreviewed===null ? false: true, 
+    AIRSHIVMedicalProviderIssues :data[0].airshivmedicalproviderissues==="0" || data[0].airshivmedicalproviderissues===null ? false: true, 
 
     AIRSHIVStatusHistory : data[0].airshivstatushistory === "0" || data[0].airshivstatushistory === null ? false : true,
     AIRSHIVStatusHistoryDate: data[0].airshivstatushistorydate,
@@ -173,7 +173,7 @@ AIRSHIVStatusHistoryIssues:data[0].airshivstatushistoryissues==="0" || data[0].a
     AIRSHCVHistoryScan: data[0].airshcvhistoryscan=== "0"  || data[0].airshcvhistoryscan=== null ? false : true, 
     AIRSHCVHistoryUploadDate: data[0].airshcvhistoryuploaddate || null,
     AIRSHCVHistoryReviewed: data[0].airshcvhistoryreviewed=== "0"  || data[0].airshcvhistoryreviewed=== null ? false : true, 
-AIRSHCVHistoryIssues:data[0].airshcvhistoryissues=== "0"  || data[0].airshcvhistoryissues=== null ? false : true,  
+    AIRSHCVHistoryIssues:data[0].airshcvhistoryissues=== "0"  || data[0].airshcvhistoryissues=== null ? false : true,  
 
     AIRSHousingInformation: data[0].airshousinginformation === "0" || data[0].airshousinginformation === null ? false : true,
     AIRSHousingInformationDate: data[0].airshousinginformationdate,
@@ -249,8 +249,8 @@ LNEConsentForReleaseOfConfidentialInformationIssues : data[0].lneconsentforrelea
     HIPPAConsentFormPDF: data[0].hippaconsentformpdf=== "0" || data[0].hippaconsentformpdf=== null ? false : true,
     HIPPAConsentFormScan : data[0].hippaconsentformscan=== "0" || data[0].hippaconsentformscan=== null ? false : true,
     HIPPAConsentFormUploadDate: data[0].hippaconsentformuploaddate || null,
-    HIPAAConsentFormReviewed : data[0].hipaaconsentformreviewed=== "0" || data[0].hipaaconsentformreviewed=== null ? false : true,
-HIPAAConsentFormIssues : data[0].hipaaconsentformissues=== "0" || data[0].hipaaconsentformissues=== null ? false : true,
+    HIPPAConsentFormReviewed : data[0].hippaconsentformreviewed=== "0" || data[0].hippaconsentformreviewed=== null ? false : true,
+    HIPPAConsentFormIssues: data[0].hippaconsentformissues=== "0" || data[0].hippaconsentformissues=== null ? false : true,
 
     NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices === "0" || data[0].nycdohmhnoticeofprivacypractices === null ? false : true,
     NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate,
@@ -281,6 +281,8 @@ NYCDOHMHNoticeOfPrivacyPracticesIssues : data[0].nycdohmhnoticeofprivacypractice
     LNEClientReferralFormDate: data[0].lneclientreferralformdate,
     LNEClientReferralFormPDF: data[0].lneclientreferralformpdf=== "0" || data[0].lneclientreferralformpdf=== null ? false : true,
     LNEClientReferralFormScan: data[0].lneclientreferralformscan=== "0" || data[0].lneclientreferralformscan=== null ? false : true,
+    LNEClientReferralFormReviewed: data[0].lneclientreferralformreviewed=== "0" || data[0].lneclientreferralformreviewed=== null ? false : true,
+    LNEClientReferralFormIssues: data[0].lneclientreferralformissues=== "0" || data[0].lneclientreferralformissues=== null ? false : true,
     LNEClientReferralFormUploadDate: data[0].lneclientreferralformuploaddate || null,
 
     LNEHNSEligibilityForm: data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null ? false : true,
@@ -294,7 +296,7 @@ NYCDOHMHNoticeOfPrivacyPracticesIssues : data[0].nycdohmhnoticeofprivacypractice
     HNSEligibilityFormPDF: data[0].hnseligibilityformpdf=== "0" || data[0].hnseligibilityformpdf=== null ? false : true,
     HNSEligibilityFormScan: data[0].hnseligibilityformscan=== "0" || data[0].hnseligibilityformscan=== null ? false : true,
     HNSEligibilityFormReviewed: data[0].hnseligibilityformreviewed==="0" || data[0].hnseligibilityformreviewed===null ? false: true, 
-HNSEligibilityFormIssue:data[0].hnseligibilityformissue==="0" || data[0].hnseligibilityformissue===null ? false : true,
+    HNSEligibilityFormIssues:data[0].hnseligibilityformissues==="0" || data[0].hnseligibilityformissues===null ? false : true,
     HNSEligibilityFormUploadDate: data[0].hnseligibilityformuploaddate || null,
     
     HNSReadinessForm:data[0].hnsreadinessform ==="0" || data[0].hnsreadinessform === null? false : true,
@@ -324,7 +326,8 @@ HNSEligibilityFormIssue:data[0].hnseligibilityformissue==="0" || data[0].hnselig
   });
   const todaysDate = new Date();
 
-
+console.log("airsintakeformuploaddate",clientData.airsintakeformuploaddate)
+console.log("clientData",clientData)
 
 //WORK IN PROGRESS, TRYING TO ITERATE THE STATE
   // [['AIRSIntakeForm', true], [...]...]
@@ -334,7 +337,7 @@ HNSEligibilityFormIssue:data[0].hnseligibilityformissue==="0" || data[0].hnselig
   const CompRiskBehASS = `${FormTitles[1][0].slice(0, 13)} ${FormTitles[1][0].slice(13, 17)} ${FormTitles[1][0].slice(17, 25)} ${FormTitles[2][0].slice(25)}`;
   const ServActioPla = `${FormTitles[2][0].slice(0, 7)} ${FormTitles[2][0].slice(7, 13)} ${FormTitles[2][0].slice(13, 17)}`
 
-console.log("clientData",clientData);
+
   const handleMsaform = () => {
 
 /*     notifyMessage()
@@ -357,7 +360,6 @@ console.log("clientData",clientData);
       })
       .catch(function (error) {
         console.log(error)
-        res.send(error)
       });
   }
 
@@ -1316,6 +1318,7 @@ console.log("clientData",clientData);
                   checked={clientData.ProgressNoteReviewed ? 'checked' : false}
                 />
               </div>
+              {clientData.ProgressNoteReviewed}
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.ProgressNoteIssues? 'pointer-events-none' :""}`}
 
                 onClick={() => {
@@ -2745,8 +2748,8 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.AIRSDrugRegimenReviewed ? 'checked' : false}
-                  disabled={clientData.AIRSDrugRegimenReviewed ? true : false}
+                  checked={clientData.AirsDrugRegimenReviewed ? 'checked' : false}
+                 /*  disabled={clientData.AIRSDrugRegimenReviewed ? true : false} */
                 />
               </div>
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSDrugRegimenIssues? 'pointer-events-none' :""}`}
@@ -2796,7 +2799,7 @@ console.log("clientData",clientData);
                   checked={clientData.AIRSDrugRegimenIssues ? 'checked' : false}
                 />
               </div>
-              {console.log("clientData.AIRSDrugRegimenIssues",clientData.AIRSDrugRegimenIssues)}
+ 
             </div>
             <div
               className={`${MSAStyles.formRowsContainerDesFormEdit} justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${clientData.AIRSFinancialInformation? '' :'pointer-events-none'}`}
@@ -3250,7 +3253,7 @@ console.log("clientData",clientData);
                   }}
                 />
               </div>
-              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderReviewed? 'pointer-events-none' :""}`}
+              <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderReviewed ? 'pointer-events-none' :""}`}
 
               onClick={() => {
                 clientData.AIRSHIVMedicalProviderReviewed ?
@@ -3295,7 +3298,10 @@ console.log("clientData",clientData);
                   }
                   }
                   checked={clientData.AIRSHIVMedicalProviderReviewed ? 'checked' : false}
+                  
                 />
+            
+                {/* {JSON.stringify(clientData.AirsHIVMedicalProviderReviewed)} */}
               </div>
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.AIRSHIVMedicalProviderIssues? 'pointer-events-none' :""}`}
 
@@ -3341,8 +3347,9 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.AIRSHIVMedicalProviderIssues ? 'checked' : false}
+                  checked={clientData.AIRSHIVMedicalProviderIssues  ? 'checked' : ''}
                 />
+
               </div>
             </div>
             <div
@@ -4351,7 +4358,21 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className="ml-1 text-center flex justify-center items-center ">
+              <div className="ml-1 text-center flex justify-center items-center "
+               onClick={() => {
+                clientData.LNEClientRightsReviewed ?
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEClientRightsReviewed: !formState.LNEClientRightsReviewed,
+                    LNEClientRightsUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEClientRightsReviewed: !formState.LNEClientRightsReviewed,
+                    LNEClientRightsUploadDate: crearFecha()
+                  }))
+                }}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientRightsReviewed ? "3" : "0"}>
@@ -4363,18 +4384,19 @@ console.log("clientData",clientData);
                   name=""
                   id=""
                   onChange={(e) => {
-                    clientData.LNEClientRightsDate === "" || clientData.LNEClientRightsDate === null ? (
+                   console.log(clientData.LNEClientRightsReviewed)
+                    clientData.LNEClientRightsUploadDate === "" || clientData.LNEClientRightsUploadDate === null ? (
                       setClientData({
                         ...clientData,
-                        LNEClientRights: !clientData.LNEClientRights,
-                        LNEClientRightsDate: crearFecha()
+                        LNEClientRightsReviewed: !clientData.LNEClientRightsReviewed,
+                        LNEClientRightsUploadDate: crearFecha()
                       })) : setClientData({
                         ...clientData,
-                        LNEClientRights: !clientData.LNEClientRights,
+                        LNEClientRightsReviewed: !clientData.LNEClientRightsReviewed,
                       })
                   }
                   }
-                  checked={clientData.LNEClientRights ? 'checked' : false}
+                  checked={clientData.LNEClientRightsReviewed ? 'checked' : false}
                 />
               </div>
               <div className={`ml-1 text-center flex justify-center items-center ${clientData.LNEClientRightsIssues? 'pointer-events-none' :""}`}
@@ -4507,7 +4529,22 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className="ml-1 text-center flex justify-center items-center ">
+              <div className="ml-1 text-center flex justify-center items-center "
+               onClick={() => {
+                clientData.LNEClientGrievancePolicyProcedureReviewed ?
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEClientGrievancePolicyProcedureReviewed: !formState.LNEClientGrievancePolicyProcedureReviewed,
+                    LNEClientGrievancePolicyProcedureUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEClientGrievancePolicyProcedureReviewed: !formState.LNEClientGrievancePolicyProcedureReviewed,
+                    LNEClientGrievancePolicyProcedureUploadDate: crearFecha()
+                  }))
+                }}
+              
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEClientGrievancePolicyProcedureReviewed ? "3" : "0"}>
@@ -4663,7 +4700,20 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className="ml-1 text-center flex justify-center items-center ">
+              <div className="ml-1 text-center flex justify-center items-center "
+              onClick={() => {
+                clientData.LNEProgramRulesReviewed ?
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEProgramRulesReviewed: !formState.LNEProgramRulesReviewed,
+                    LNEProgramRulesUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEProgramRulesReviewed: !formState.LNEProgramRulesReviewed,
+                    LNEProgramRulesUploadDate: crearFecha()
+                  }))
+                }}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEProgramRulesReviewed ? "3" : "0"}>
@@ -4819,7 +4869,21 @@ console.log("clientData",clientData);
                 }}
                 />
               </div>
-              <div className="ml-1 text-center flex justify-center items-center ">
+              <div className="ml-1 text-center flex justify-center items-center "
+              onClick={() => {
+                clientData.LNEEmergencyContactConsentReviewed ?
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEEmergencyContactConsentReviewed: !formState.LNEEmergencyContactConsentReviewed,
+                    LNEEmergencyContactConsentUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEEmergencyContactConsentReviewed: !formState.LNEEmergencyContactConsentReviewed,
+                    LNEEmergencyContactConsentUploadDate: crearFecha()
+                  }))
+                }}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEEmergencyContactConsentReviewed ? "3" : "0"}>
@@ -4975,7 +5039,21 @@ console.log("clientData",clientData);
                 />
               </div>
               {/* REVIEW HERE */}
-              <div className="ml-1 text-center flex justify-center items-center "> 
+              <div className="ml-1 text-center flex justify-center items-center "
+               onClick={() => {
+                clientData.LNEConsentForReleaseOfConfidentialInformationReviewed ?
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEConsentForReleaseOfConfidentialInformationReviewed: !formState.LNEConsentForReleaseOfConfidentialInformationReviewed,
+                    LNEConsentForReleaseOfConfidentialInformationUploadDate: ""
+                  })) :
+                  setClientData(formState => ({
+                    ...formState,
+                    LNEConsentForReleaseOfConfidentialInformationReviewed: !formState.LNEConsentForReleaseOfConfidentialInformationReviewed,
+                    LNEConsentForReleaseOfConfidentialInformationUploadDate: crearFecha()
+                  }))
+                }}
+              > 
                 <svg xmlns="http://www.w3.org/2000/svg"
                   className="absolute z-10 text-dark-blue h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   strokeWidth={clientData.LNEConsentForReleaseOfConfidentialInformationReviewed ? "3" : "0"}>
@@ -5220,7 +5298,7 @@ console.log("clientData",clientData);
                       })
                   }
                   }
-                  checked={clientData.HIPPAConsentFormUploadDate ? 'checked' : false}
+                  checked={clientData.HIPPAConsentFormIssues ? 'checked' : false}
                 />
               </div>
             </div>
