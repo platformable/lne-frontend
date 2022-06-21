@@ -26,12 +26,14 @@ export default function CreateClientModal({ setShowCreateClientModal, showCreate
     clientDateCreated:new Date(),
     clientActive:true,
     clientHCWID: loggeduserId !== "Supervisor" ? user.sub : "",
-    clientHCWName: loggedUserName,
-    clientHCWLastname: loggedUserLastname,
-    clientID:""
+    clientHCWName: loggeduserId !== "Supervisor" ? loggedUserName : "",
+    clientHCWLastname:  loggeduserId !== "Supervisor" ? loggedUserLastname : "",
+    clientID:"",
+    clientHCWemail:loggeduserId !== "Supervisor" ? user.email : "",
   })
 
-
+  
+console.log(user)
   const createClientId=()=>{
     const firstNameLetter = clientData?.clientFirstName?.slice(0,1)
     let shortSsn=String(clientData?.clientSSN)?.slice(-4)
@@ -104,10 +106,29 @@ else if(
 }
  
   }
+console.log("clientData",clientData)
+
+const assignUser = async (clientHCWID)=>{
+  console.log("ejecutandose assign",clientHCWID)
+const filteredusers= await users.filter((user,index)=>user.user_id===clientHCWID)
+
+console.log("filteredusers",filteredusers)
+setClientData({...clientData,clientHCWemail:filteredusers[0].useremail,
+clientHCWID:filteredusers[0]?.user_id,
+clientHCWName:filteredusers[0]?.name,
+clientHCWLastname:filteredusers[0]?.lastname
+})
+/* createClientId() */
+/*  
+    clientHCWName
+    clientHCWLastname */
+}
+
 
   useEffect(()=>{
     getUsers()
     createClientId()
+  /*   assignUser(clientData.clientHCWID) */
 },[clientData.clientFirstName,clientData.clientLastName,clientData.clientSSN,saving])
 
 
@@ -185,14 +206,15 @@ else if(
             <label className="block">
             <span className="text-white">Asign user</span>
             <select
-              onChange={(e) =>
-                 
-                setClientData({ ...clientData, clientHCWID: e.target.value })
+              onChange={(e) =>{
+      assignUser(e.target.value)
+                //setClientData({ ...clientData, clientHCWID: e.target.value })
+              }
               }
               className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             ><option>-</option>
                 {users && users?.map((user,index)=>{
-              return <option value={user.user_id} key={index}>{user.useremail}</option>
+              return <option value={user.user_id} key={index} >{user.useremail}</option>
                 })}
 
             </select>
