@@ -20,7 +20,7 @@ export default function UsersIndex({data}) {
     const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
 
     const [selectedUser,setSelectedUser] = useState({});
-
+    const [selectedEntity,setSelectedEntity]=useState("")
     const [activeUsers,setActiveUsers]=useState([])
 console.log(data)
     const getActiveUsers=(array)=>{
@@ -142,6 +142,7 @@ console.log(data)
                    showDeleteUserModal={showDeleteUserModal}
                    setShowDeleteUserModal={setShowDeleteUserModal}
                    setSelectedUser={setSelectedUser}
+                   setSelectedEntity={setSelectedEntity}
                    />
                 }):"No Data"}
               

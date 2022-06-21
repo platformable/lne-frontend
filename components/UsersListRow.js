@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
-export default function AuthUserListRow({showDeleteUserModal,setShowDeleteUserModal,authorizeduser,setShowEditAuthUserModal,showEditAuthUserModal,
+export default function UsersListRow({showDeleteUserModal,setShowDeleteUserModal,authorizeduser,setShowEditAuthUserModal,showEditAuthUserModal,
   index,setSelectedUser, showEditInactiveUserModal, setShowEditInactiveUserModal,selectedEntity,setSelectedEntity}) {
   const {email,name,lastname,role,isactive,datelastlogin,id,dateaccountactivated} = authorizeduser
   const router = useRouter()
@@ -22,7 +22,7 @@ export default function AuthUserListRow({showDeleteUserModal,setShowDeleteUserMo
 
 
   const handleAuthUserDelete = (id)=>{
-    setSelectedEntity("authorizedusers")
+    setSelectedEntity("users")
     setSelectedUser(authorizeduser)
     setShowDeleteUserModal(!showDeleteUserModal)
    

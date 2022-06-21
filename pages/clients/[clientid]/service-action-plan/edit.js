@@ -19,7 +19,7 @@ export default function EditServiceActionPlan({ data }) {
 
   const [activeActionPlan, setActiveActionPlan] = useState(false)
 
-  console.log("data",data)
+console.log("data",data)
 
   const notifyMessage = () => {
     toast.success("Service Action Plan updated!", {
@@ -32,9 +32,11 @@ export default function EditServiceActionPlan({ data }) {
 
 
   const [clientData, setClientData] = useState({
+    role:loggedUserRole,
     clientId:data[0]?.clientId,
     clientFirstName:data[0]?.clientfirstname,
     clientLastName :data[0]?.clientlastname,
+    clientHCWEmail:data[0]?.clienthcwemail,
     planStartDate:data[0]?.planstartdate,
     userFirstName :data[0]?.userfirstname,
     userLastName:data[0]?.userlastname,
@@ -933,7 +935,7 @@ return finalDate
               <div id="buttons-container" className="flex items-center justify-around">
                 <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 text-xs`}
                 onClick={() => setActiveActionPlan(!activeActionPlan)}>
-                  <img src='/edit-action-plan-button.svg' alt='edit action plan button'></img>
+                  <img src='/edit-action-plan-button.svg' alt='edit action plan button' ></img>
                   Edit Action Plan
                 </button>
                 
@@ -942,14 +944,14 @@ return finalDate
                 onClick={(e) => {
                   updateClientActionPlan();
                 }}>
-                  <img src='/check-save-and-finish.svg' alt='save and finish button'></img>
+                  <img src='/check-save-and-finish.svg' alt='save and finish button' ></img>
 
                 Save and finish
               </button>
               <ReactToPrint
               trigger={() => (
-                <button className="flex items-center justify-around w-36 bg-black hover:bg-gray-700  py-1 rounded text-white  text-xs">
-                  <img src='/print-and-sign.svg' alt='Print and sign button'></img>
+                <button className="flex items-center justify-around w-36 bg-black hover:bg-gray-700  py-1 rounded text-white  text-xs ">
+                  <img src='/print-and-sign.svg' alt='Print and sign button' ></img>
 
                   Print and sign
                 </button>

@@ -5,16 +5,15 @@ import Image from 'next/image';
 
 import deleteUserIcon from '../public/delete-user-icon.svg'
 
-const DeleteUserModal = ({urlEntity,selectedUser, showDeleteUserModal, setShowDeleteUserModal}) => {
+const DeleteAuthUserModal = ({urlEntity,selectedUser, showDeleteAuthUserModal, setShowDeleteAuthUserModal}) => {
     const router = useRouter()
-    const {user_id, name, lastname,email} = selectedUser
+    const {id, name, lastname,email} = selectedUser
 
-    console.log("id",user_id)
+ 
     console.log("selected",selectedUser)
+
     const handleAuthUserDelete = ({})=>{
-        urlEntity==="users" ?axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/${urlEntity}/`,{ data: { user_id } }):
-        axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/${urlEntity}/`,{ data: { email } })
-        
+        axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/`,{ data: { email } })
         .then(response=>{
           router.reload()
         })
@@ -26,14 +25,14 @@ const DeleteUserModal = ({urlEntity,selectedUser, showDeleteUserModal, setShowDe
             <div className='relative max-w-sm mx-auto bg-yellow-400 p-10 rounded-md h-4/6'>
             <button
             className="absolute  top-0 right-0"
-            onClick={() => setShowDeleteUserModal(!showDeleteUserModal)}
+            onClick={() => setShowDeleteAuthUserModal(!showDeleteAuthUserModal)}
             >
                 <img src="/close-window-icon.svg" alt="close-window" title="close-window_" className="rounded-tr"  width="20" /> 
             </button>
                 <div className='flex flex-col justify-between items-start  h-full'>
                     <div className='flex items-center'>
                         <Image src={deleteUserIcon}/>
-                        <p className='font-bold text-xl ml-2'>Delete User</p>
+                        <p className='font-bold text-xl ml-2'>Delete Authorized User</p>
                     </div>
                     <label id="name" className="block font-semibold ">Name
                         <input id="name" value={name +' '+ lastname} className="text-lg rounded-lg bg-yellow-100 block mt-2 p-2 px-3"></input>
@@ -43,7 +42,7 @@ const DeleteUserModal = ({urlEntity,selectedUser, showDeleteUserModal, setShowDe
                         <button className='text-black font-semibold shadow-md bg-[#23D3AA] hover:text-white hover:bg-green-500 cursor-pointer rounded-md p-1 px-10 mx-1 my-5'
                         onClick={()=> handleAuthUserDelete()} >Yes</button>
                         <button className='text-white font-semibold shadow-md bg-black hover:text-white hover:bg-blue-900 cursor-pointer rounded-md p-1 px-10 mx-1 my-5' 
-                            onClick={() => setShowDeleteUserModal(!showDeleteUserModal)}>No
+                            onClick={() => setShowDeleteAuthUserModal(!showDeleteAuthUserModal)}>No
                         </button>
                     </div>
                 </div>
@@ -54,4 +53,4 @@ const DeleteUserModal = ({urlEntity,selectedUser, showDeleteUserModal, setShowDe
     );
 };
 
-export default DeleteUserModal;
+export default DeleteAuthUserModal;
