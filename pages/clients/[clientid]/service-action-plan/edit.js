@@ -931,20 +931,26 @@ return finalDate
               ""
             ) : (
               <div id="buttons-container" className="flex items-center justify-around">
-                <button className={`${!activeActionPlan? 'block':'hidden'} w-28 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 text-xs`}
-                onClick={() => setActiveActionPlan(!activeActionPlan)}>Edit Action Plan
+                <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 text-xs`}
+                onClick={() => setActiveActionPlan(!activeActionPlan)}>
+                  <img src='/edit-action-plan-button.svg' alt='edit action plan button'></img>
+                  Edit Action Plan
                 </button>
                 
                 <button
-                className="bg-blue-500 hover:bg-blue-300 w-28 py-1 mx-4 rounded text-white  text-xs"
+                className="flex items-center justify-around w-36 bg-blue-500 hover:bg-blue-300  py-1 mx-4 rounded text-white  text-xs"
                 onClick={(e) => {
                   updateClientActionPlan();
                 }}>
+                  <img src='/check-save-and-finish.svg' alt='save and finish button'></img>
+
                 Save and finish
               </button>
               <ReactToPrint
               trigger={() => (
-                <button className="bg-black hover:bg-gray-700 w-28 py-1 rounded text-white  text-xs">
+                <button className="flex items-center justify-around w-36 bg-black hover:bg-gray-700  py-1 rounded text-white  text-xs">
+                  <img src='/print-and-sign.svg' alt='Print and sign button'></img>
+
                   Print and sign
                 </button>
               )}
