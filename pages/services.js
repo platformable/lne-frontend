@@ -28,7 +28,7 @@ const Services = () => {
               <h2 className="font-bold">
                 Are We Meeting Funding Requirements?
               </h2>
-              <p className="">
+              <div className="">
                 Data for the:
                 <div className="text-xs flex justify-between">
                   <span className="mr-2 md:mx-2 md:mr-3 lg:mx-4 xl:ml-0">
@@ -50,9 +50,9 @@ const Services = () => {
                     <label>Year</label>
                   </span>
                 </div>
-              </p>
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-1">
+            <div className="grid md:grid-cols-2 gap-1">
               <div className=" bg-white px-5 py-2">
                 <ChartGraphic />
               </div>
