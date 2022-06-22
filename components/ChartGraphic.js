@@ -5,6 +5,8 @@ import {
   CategoryScale,
   BarElement,
   PointElement,
+  BarController,
+  LineController,
   LineElement,
   Legend,
   Tooltip,
@@ -20,6 +22,8 @@ import {
 ChartJS.register(
   LinearScale,
   CategoryScale,
+  BarController,
+  LineController,
   BarElement,
   PointElement,
   LineElement,
@@ -100,24 +104,24 @@ const ChartGraphic = () => {
   const chartRef = useRef();
 
   const onClick = (event) => {
-    const { current: chart } = chartRef;
+    const { current } = chartRef;
 
-    if (!chart) {
+    if (!current) {
       return;
     }
 
-    printDatasetAtEvent(getDatasetAtEvent(chart, event));
-    printElementAtEvent(getElementAtEvent(chart, event));
-    printElementsAtEvent(getElementsAtEvent(chart, event));
+    printDatasetAtEvent(getDatasetAtEvent(current, event));
+    printElementAtEvent(getElementAtEvent(current, event));
+    printElementsAtEvent(getElementsAtEvent(current, event));
   };
 
   return (
     <Chart
-      ref={chartRef}
       type="bar"
-      onClick={onClick}
-      options={options}
+      ref={chartRef}
       data={data}
+      options={options}
+      onClick={onClick}
     />
   );
 };
