@@ -1,11 +1,81 @@
-import React from "react";
+import React,{useEffect} from "react";
 import backIcon from "../public/BACKicon.svg";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import ChartGraphic from "../components/ChartGraphic";
+import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const Services = () => {
+const Services = ({clients,hcworkers}) => {
+
+
+  const months =[
+    { month:7,
+      total:5,
+    },
+    {month:8,
+      total:10,
+    },
+    {month:9,
+      total:15,
+    },
+    {month:10,
+      total:20,
+    },
+    {month:11,
+      total:25,
+    },
+    {month:12,
+      total:30,
+    },
+    {month:1,
+      total:35,
+    },
+    {month:2,
+      total:40,
+    },
+    {month:3,
+      total:45,
+    },
+    {month:4,
+      total:50,
+    },
+    {month:5,
+      may:55,
+    },
+    {month:6,
+      total:60,
+    },
+  ]
+  const date = new Date();
+  let currentMonth = date.getMonth()+1;
+ 
+
+  const clientsCount =(clients)=>{
+const totalActiveClients=clients?.filter(client=>client.clientactive==="1").length  
+const found= months.find(element => element.month===currentMonth)
+const fiftyPercent=found.total/2
+const seventifyPercent=(found.total*75)/100
+if(totalActiveClients<fiftyPercent){
+  console.log("red")
+}
+if(totalActiveClients>fiftyPercent && totalActiveClients<seventifyPercent){
+  console.log("orange")
+}
+
+if(totalActiveClients>seventifyPercent){
+  console.log("green")
+}
+console.log("seventifyPercent",seventifyPercent)
+console.log("totalActiveClients",totalActiveClients)
+  }
+
+
+
+  useEffect(() => {
+    clientsCount(clients)
+
+  }, []);
   return (
     <Layout>
       <div className="bg-light-blue">
@@ -28,7 +98,7 @@ const Services = () => {
               <h2 className="font-bold">
                 Are We Meeting Funding Requirements?
               </h2>
-              <p className="">
+              <div className="">
                 Data for the:
                 <div className="text-xs flex justify-between">
                   <span className="mr-2 md:mx-2 md:mr-3 lg:mx-4 xl:ml-0">
@@ -50,7 +120,7 @@ const Services = () => {
                     <label>Year</label>
                   </span>
                 </div>
-              </p>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-1">
               <div className=" bg-white px-5 py-2">
@@ -175,3 +245,18 @@ const Services = () => {
 };
 
 export default Services;
+
+
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+    const [clients, hcworkers] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+        r.json()
+      ),
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`).then((r) =>
+        r.json()
+      ),
+    ]);
+    return { props: { clients: clients, hcworkers: hcworkers } };
+  },
+});

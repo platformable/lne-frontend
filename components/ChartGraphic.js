@@ -8,7 +8,8 @@ import {
   LineElement,
   Legend,
   Tooltip,
-  Title,
+  Title
+
 } from "chart.js";
 import {
   Chart,
@@ -25,7 +26,7 @@ ChartJS.register(
   LineElement,
   Legend,
   Tooltip,
-  Title
+  Title,
 );
 export const options = {
   plugins: {
