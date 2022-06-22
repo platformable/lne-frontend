@@ -122,7 +122,7 @@ console.log("totalActiveClients",totalActiveClients)
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-1">
+            <div className="grid md:grid-cols-2 gap-1">
               <div className=" bg-white px-5 py-2">
                 <ChartGraphic />
               </div>
