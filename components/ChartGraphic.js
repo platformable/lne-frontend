@@ -32,54 +32,62 @@ ChartJS.register(
   Tooltip,
   Title,
 );
-export const options = {
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "December 2022 - Number of new clients this month",
-      position: "top",
-    },
-  },
-  scales: {
-    y: {
-      beginAtZero: true,
+
+
+const ChartGraphic = ({chartData}) => {
+  const week1=chartData?.group1
+  const week2=chartData?.group2
+  const week3=chartData?.group3
+  const week4=chartData?.group4
+
+
+
+ const options = {
+    plugins: {
+      legend: {
+        position: "top",
+      },
       title: {
         display: true,
-        text: "Number of new clients",
+        text: "December 2022 - Number of new clients this month",
+        position: "top",
       },
     },
-  },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      type: "bar",
-      label: "number of new clients",
-      backgroundColor: "rgb(45, 82, 192)",
-      data: [24, 22, 34, 15, 25, 53, 45],
-      borderColor: "white",
-      borderWidth: 2,
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Number of new clients",
+        },
+      },
     },
-    {
-      type: "line",
-      label: "required n of clients",
-      borderColor: "rgb(255, 99, 132)",
-      borderWidth: 2,
-      borderDash: [5, 5],
-      fill: false,
-      data: [20, 30, 25, 30, 35, 45, 50],
-    },
-  ],
-};
-
-const ChartGraphic = () => {
+  };
+  
+  const labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
+  
+ const data = {
+    labels,
+    datasets: [
+      {
+        type: "bar",
+        label: "number of new clients",
+        backgroundColor: "rgb(45, 82, 192)",
+        data: [week1, week2, week3, week4],
+        borderColor: "white",
+        borderWidth: 2,
+      },
+      {
+        type: "line",
+        label: "required n of clients",
+        borderColor: "rgb(255, 99, 132)",
+        borderWidth: 2,
+        borderDash: [5, 5],
+        fill: false,
+        data: [5, 5, 5, 5],
+      },
+    ],
+  };
   const printDatasetAtEvent = (dataset) => {
     if (!dataset.length) return;
 
