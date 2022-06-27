@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import ChartGraphic from "../components/ChartGraphic";
+import ClientsEncounterCharts from '../components/ClientsEncounterCharts'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 const Services = ({clients,averageNumbers}) => {
@@ -19,6 +20,13 @@ const Services = ({clients,averageNumbers}) => {
     color:""})
 
     const [newClientsChart,setNewClientsChart]=useState({
+      group1:0,
+      group2:0,
+      group3:0,
+      group4:0
+    })
+
+    const [numberOfClientsEncounter,setNumberOfClientsEncounter]=useState({
       group1:0,
       group2:0,
       group3:0,
@@ -168,50 +176,73 @@ if(average < 1.5){
 
 
 const chart1Data= async (averageNumbers)=>{
-
     const clientsOfTheMonth= await averageNumbers.filter((client,index)=>{
     const clientDate=new Date(client.planstartdate)
     const result=clientDate.getMonth()+1===currentMonth
     return result
     })
-
-
 let total1=0;
 let total2=0;
 let total3=0;
 let total4=0;
 const numberOfClients= clientsOfTheMonth.forEach((client,index)=>{
   const planstartdate=new Date(client.planstartdate).getDate();
-
   if(planstartdate >=1 && planstartdate <= 7){
     total1=total1+1
-
   }
   if(planstartdate>=8 && planstartdate<=14){
     total2=total2+1
    
   }
-
   if(planstartdate>=15 && planstartdate<=22){
     total3=total3+1
-
   }
   if(planstartdate>=23 && planstartdate<=30){
     total4=total4+1
-
   }
-
   setNewClientsChart({...newClientsChart,group1:total1,group2:total2,group3:total3,group4:total4})
 })
-
 return numberOfClients
-
-
 }
+
+
 
 
 const clientsWithProgressNotes=averageNumbers?.filter((client,index)=>{return client.progressnotedate !==null})
 
+
+const chart2Data= async (averageNumbers)=>{
+
+  const activeProgressNotes= await clientsWithProgressNotes.filter((client,index)=>{
+    const clientDate=new Date(client.planstartdate)
+    const result=clientDate.getMonth()+1===currentMonth
+    return result
+    })
+
+let total1=0;
+let total2=0;
+let total3=0;
+let total4=0;
+const numberOfClients= activeProgressNotes.forEach((client,index)=>{
+const progressnotedate=new Date(client.progressnotedate).getDate();
+if(progressnotedate >=1 && progressnotedate <= 7){
+  total1=total1+1
+}
+if(progressnotedate>=8 && progressnotedate<=14){
+  total2=total2+1
+ 
+}
+if(progressnotedate>=15 && progressnotedate<=22){
+  total3=total3+1
+}
+if(progressnotedate>=23 && progressnotedate<=30){
+  total4=total4+1
+}
+console.log(total1,total2,total3,total4)
+setNumberOfClientsEncounter({...numberOfClientsEncounter,group1:total1,group2:total2,group3:total3,group4:total4})
+})
+return numberOfClients
+}
 
 
   useEffect(() => {
@@ -219,7 +250,7 @@ const clientsWithProgressNotes=averageNumbers?.filter((client,index)=>{return cl
     calculateAverageDays(averageNumbers)
     calculateNumberOfGoals(averageNumbers)
     chart1Data(averageNumbers)
-   
+    chart2Data(averageNumbers)
   }, []);
   return (
     <Layout>
@@ -344,7 +375,7 @@ const clientsWithProgressNotes=averageNumbers?.filter((client,index)=>{return cl
                 <ChartGraphic chartData={newClientsChart}/>
               </div>
               <div className=" bg-white px-5 py-2">
-                <ChartGraphic chartData={newClientsChart}/>
+                <ClientsEncounterCharts numberOfClientsEncounter={numberOfClientsEncounter}/>
               </div>
             </div>
           </div>
