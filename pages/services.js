@@ -154,13 +154,13 @@ const checkGoals=averageNumbers.forEach((client,index)=>{
 
 let average=total/totalActiveClients
 if(average > 2.5){
-  setAverageGoals({...averageGoals,total:averagetoFixed(2),color:"bg-light-red"})
+  setAverageGoals({...averageGoals,total:averagetoFixed(1),color:"bg-light-red"})
 }
 if(average > 2.5 && average < 1.5){
-  setAverageGoals({...averageGoals,total:average.toFixed(2),color:"bg-orange"})
+  setAverageGoals({...averageGoals,total:average.toFixed(1),color:"bg-orange"})
 }
 if(average < 1.5){
-  setAverageGoals({...averageGoals,total:average.toFixed(2),color:"bg-middle-green"})
+  setAverageGoals({...averageGoals,total:average.toFixed(1),color:"bg-middle-green"})
 }
 
 }
@@ -200,7 +200,7 @@ const numberOfClients= clientsOfTheMonth.forEach((client,index)=>{
     total4=total4+1
 
   }
-  console.log(total1,total2,total3,total4)
+
   setNewClientsChart({...newClientsChart,group1:total1,group2:total2,group3:total3,group4:total4})
 })
 
@@ -210,13 +210,17 @@ return numberOfClients
 }
 
 
+const clientsWithProgressNotes=averageNumbers?.filter((client,index)=>{return client.progressnotedate !==null})
+
+
+
   useEffect(() => {
     clientsCount(clients)
     calculateAverageDays(averageNumbers)
     calculateNumberOfGoals(averageNumbers)
     chart1Data(averageNumbers)
    
-  }, [newClientsChart.group1,newClientsChart.group2,newClientsChart.group3,newClientsChart.group4]);
+  }, []);
   return (
     <Layout>
       <div className="bg-light-blue">
@@ -340,7 +344,7 @@ return numberOfClients
                 <ChartGraphic chartData={newClientsChart}/>
               </div>
               <div className=" bg-white px-5 py-2">
-                <ChartGraphic />
+                <ChartGraphic chartData={newClientsChart}/>
               </div>
             </div>
           </div>
