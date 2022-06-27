@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import backIcon from "../public/BACKicon.svg";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,11 +6,26 @@ import Layout from "../components/Layout";
 import ChartGraphic from "../components/ChartGraphic";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-const Services = ({clients,hcworkers}) => {
+const Services = ({clients,averageNumbers}) => {
 
 
-  const months =[
-    { month:7,
+  const [numberOfActiveClients,setNumberOfActiveClients]=useState(
+    {total:"",
+    color:""})
+
+    const [averageDays,setAverageDays]=useState({total:"",
+    color:""})
+    const [averageGoals,setAverageGoals]=useState({total:"",
+    color:""})
+
+    const [newClientsChart,setNewClientsChart]=useState({
+      group1:0,
+      group2:0,
+      group3:0,
+      group4:0
+    })
+
+  const months =[ { month:7,
       total:5,
     },
     {month:8,
@@ -49,6 +64,7 @@ const Services = ({clients,hcworkers}) => {
   ]
   const date = new Date();
   let currentMonth = date.getMonth()+1;
+
  
 
   const clientsCount =(clients)=>{
@@ -57,31 +73,157 @@ const found= months.find(element => element.month===currentMonth)
 const fiftyPercent=found.total/2
 const seventifyPercent=(found.total*75)/100
 if(totalActiveClients<fiftyPercent){
-  console.log("red")
+  setNumberOfActiveClients({...numberOfActiveClients,total:totalActiveClients,color:"bg-light-red"})
 }
 if(totalActiveClients>fiftyPercent && totalActiveClients<seventifyPercent){
-  console.log("orange")
+  setNumberOfActiveClients({...numberOfActiveClients,total:totalActiveClients,color:"bg-orange"})
 }
 
 if(totalActiveClients>seventifyPercent){
-  console.log("green")
+  setNumberOfActiveClients({...numberOfActiveClients,total:totalActiveClients,color:"bg-middle-green"})
 }
-console.log("seventifyPercent",seventifyPercent)
-console.log("totalActiveClients",totalActiveClients)
+
   }
 
+
+const calculateAverageDays=(averageNumbers)=>{
+  let total=0
+  const totalActiveClients=clients?.filter(client=>client.clientactive==="1").length  
+
+
+/*   const clientsWithSAP=averageNumbers.filter((client,index)=>{
+    return client.planstartdate!==null
+  }) */
+
+  const x = averageNumbers.forEach((client,index)=>{
+
+    const {planstartdate,progressnotedate}=client
+
+
+    if(progressnotedate==="" || progressnotedate===null){
+      var date1 = new Date(planstartdate);
+      var date2 = new Date();
+    var difference = date2.getTime() - date1.getTime();
+    var days = Math.ceil(difference / (1000 * 3600 * 24));
+
+    total=total+days
+    }
+    else{
+      var date1 = new Date(progressnotedate);
+      var date2 = new Date();
+    var difference = date2.getTime() - date1.getTime();
+    var days = Math.ceil(difference / (1000 * 3600 * 24));
+ 
+    total=total+days
+    }
+  })
+
+
+let average=total/totalActiveClients
+
+if(average > 30){
+  setAverageDays({...averageDays,total:average.toFixed(0),color:"bg-light-red"})
+}
+if(average > 15 && average < 30){
+  setAverageDays({...averageDays,total:average.toFixed(0),color:"bg-orange"})
+}
+if(average < 15){
+  setAverageDays({...averageDays,total:average.toFixed(0),color:"bg-middle-green"})
+}
+}
+
+
+const calculateNumberOfGoals=(averageNumbers)=>{
+
+let total=0
+
+const totalActiveClients=clients?.filter(client=>client.clientactive==="1").length  
+
+const checkGoals=averageNumbers.forEach((client,index)=>{
+  if(client.goal1targetdate!==null && client.goal1completiondate===null){
+    total=total+1
+  } 
+  if(client.goal2targetdate!==null && client.goal2completiondate===null){
+    total=total+1
+  } 
+  if(client.goal3targetdate!==null && client.goal3completiondate===null){
+    total=total+1
+  } 
+  
+})
+
+let average=total/totalActiveClients
+if(average > 2.5){
+  setAverageGoals({...averageGoals,total:averagetoFixed(2),color:"bg-light-red"})
+}
+if(average > 2.5 && average < 1.5){
+  setAverageGoals({...averageGoals,total:average.toFixed(2),color:"bg-orange"})
+}
+if(average < 1.5){
+  setAverageGoals({...averageGoals,total:average.toFixed(2),color:"bg-middle-green"})
+}
+
+}
+
+
+
+const chart1Data= async (averageNumbers)=>{
+
+    const clientsOfTheMonth= await averageNumbers.filter((client,index)=>{
+    const clientDate=new Date(client.planstartdate)
+    const result=clientDate.getMonth()+1===currentMonth
+    return result
+    })
+
+
+let total1=0;
+let total2=0;
+let total3=0;
+let total4=0;
+const numberOfClients= clientsOfTheMonth.forEach((client,index)=>{
+  const planstartdate=new Date(client.planstartdate).getDate();
+
+  if(planstartdate >=1 && planstartdate <= 7){
+    total1=total1+1
+
+  }
+  if(planstartdate>=8 && planstartdate<=14){
+    total2=total2+1
+   
+  }
+
+  if(planstartdate>=15 && planstartdate<=22){
+    total3=total3+1
+
+  }
+  if(planstartdate>=23 && planstartdate<=30){
+    total4=total4+1
+
+  }
+  console.log(total1,total2,total3,total4)
+  setNewClientsChart({...newClientsChart,group1:total1,group2:total2,group3:total3,group4:total4})
+})
+
+return numberOfClients
+
+
+}
 
 
   useEffect(() => {
     clientsCount(clients)
-
-  }, []);
+    calculateAverageDays(averageNumbers)
+    calculateNumberOfGoals(averageNumbers)
+    chart1Data(averageNumbers)
+   
+  }, [newClientsChart.group1,newClientsChart.group2,newClientsChart.group3,newClientsChart.group4]);
   return (
     <Layout>
       <div className="bg-light-blue">
         <section className="container mx-auto grid-cols-1 gap-5">
           <div className="grid grid-cols-2 py-5">
             <h1 className="font-bold px-2">Manage Services</h1>
+            
             <Link href="/dashboard">
               <a
                 className="px-5 py-2 flex  items-center font-bold justify-self-end"
@@ -92,6 +234,77 @@ console.log("totalActiveClients",totalActiveClients)
               </a>
             </Link>
           </div>
+
+
+
+
+
+        {/* KEY METRICS */}
+
+        <div className="key-metrics grid grid-cols-1 gap-1 bg-light-blue shadow mx-3 md:mx-0">
+            <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
+              <h2 className="font-bold">Key Metrics</h2>
+              <div className="grid grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-2 md:w-5/6 md:justify-self-end">
+                <p className="font-bold px-3 text-center py-2 bg-middle-green">
+                  on track
+                </p>
+                <p className="font-bold px-3 text-center py-2 bg-orange">
+                  warning
+                </p>
+                <p className="font-bold px-3 text-center py-2 bg-light-red">
+                  alert
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:px-1 md:pb-1 .bg-middle-white shadow-md">
+              <div className="grid grid-rows-2">
+                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
+                  Number of active clients
+                </p>
+                <p className={`${numberOfActiveClients?numberOfActiveClients.color:"bg-white"} flex items-center justify-center text-2xl font-bold`}>
+                  {numberOfActiveClients?numberOfActiveClients.total:"0"}
+                </p>
+              </div>
+              <div className="grid grid-rows-2">
+                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
+                  Average # of days between client visits
+                </p>
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                {averageDays?averageDays.total:"0"}
+                </p>
+              </div>
+              <div className="grid grid-rows-2">
+                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
+                  Average number of client goals outstanding
+                </p>
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                  {averageGoals?averageGoals.total:"0"}
+                </p>
+              </div>
+              <div className="grid grid-rows-2">
+                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
+                  % of clients who say they have reduced unsafe sexual behavior
+                  after 3 months
+                </p>
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                  72%
+                </p>
+              </div>
+              <div className="grid grid-rows-2">
+                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
+                  % of clients who say they are undetectable after 3 months
+                </p>
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                  63%
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* KEY METRICS */}
+
+
+
 
           <div className="graphic-metrics grid grid-cols-1 bg-light-blue shadow gap-1 my-3 mx-3 md:mx-0">
             <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
@@ -124,7 +337,7 @@ console.log("totalActiveClients",totalActiveClients)
             </div>
             <div className="grid md:grid-cols-2 gap-1">
               <div className=" bg-white px-5 py-2">
-                <ChartGraphic />
+                <ChartGraphic chartData={newClientsChart}/>
               </div>
               <div className=" bg-white px-5 py-2">
                 <ChartGraphic />
@@ -132,65 +345,7 @@ console.log("totalActiveClients",totalActiveClients)
             </div>
           </div>
 
-          <div className="key-metrics grid grid-cols-1 gap-1 bg-light-blue shadow mx-3 md:mx-0">
-            <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
-              <h2 className="font-bold">Key Metrics</h2>
-              <div className="grid grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-2 md:w-5/6 md:justify-self-end">
-                <p className="font-bold px-3 text-center py-2 bg-middle-green">
-                  on track
-                </p>
-                <p className="font-bold px-3 text-center py-2 bg-orange">
-                  warning
-                </p>
-                <p className="font-bold px-3 text-center py-2 bg-light-red">
-                  alert
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:px-1 md:pb-1 .bg-middle-white shadow-md">
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  Number of active clients
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
-                  45
-                </p>
-              </div>
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  Average # of days between client visits
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
-                  18
-                </p>
-              </div>
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  Average number of client goals outstanding
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
-                  1.3
-                </p>
-              </div>
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  % of clients who say they have reduced unsafe sexual behavior
-                  after 3 months
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
-                  72%
-                </p>
-              </div>
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  % of clients who say they are undetectable after 3 months
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
-                  63%
-                </p>
-              </div>
-            </div>
-          </div>
+          
 
           <h1 className="font-bold px-2 md:px-0 py-5">
             What do you want <span className="bg-yellow px-2">to do</span>{" "}
@@ -249,14 +404,14 @@ export default Services;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const [clients, hcworkers] = await Promise.all([
+    const [clients, averageNumbers] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
         r.json()
       ),
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`).then((r) =>
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/manage_services/manage_services_metric`).then((r) =>
         r.json()
       ),
     ]);
-    return { props: { clients: clients, hcworkers: hcworkers } };
+    return { props: { clients: clients, averageNumbers: averageNumbers } };
   },
 });
