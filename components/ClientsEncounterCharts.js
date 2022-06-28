@@ -34,11 +34,11 @@ ChartJS.register(
 );
 
 
-const ChartGraphic = ({chartData}) => {
-  const week1=chartData?.group1
-  const week2=chartData?.group2
-  const week3=chartData?.group3
-  const week4=chartData?.group4
+const ClientsEncountersCharts = ({numberOfClientsEncounter}) => {
+  const week1=numberOfClientsEncounter?.group1
+  const week2=numberOfClientsEncounter?.group2
+  const week3=numberOfClientsEncounter?.group3
+  const week4=numberOfClientsEncounter?.group4
 
 
 
@@ -135,4 +135,4 @@ const ChartGraphic = ({chartData}) => {
   );
 };
 
-export default ChartGraphic;
+export default ClientsEncountersCharts;
