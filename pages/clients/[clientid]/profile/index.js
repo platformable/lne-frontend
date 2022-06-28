@@ -36,7 +36,7 @@ const getDate=(date)=>{
 export default function ClientProfilePage({ data }) {
 
 
-console.log("data",data)
+
  /*  const clientJoinedDate = getDate(new Date())
   const cleanDate = setLocaleDateString(data[0].clientdatecreated) */
 
@@ -121,7 +121,7 @@ console.log("data",data)
   const checkMessage3=()=>{
     let color = 'bg-red-400'
     let fechaFin = new Date().getTime();
-    let diff = fechaFin - new Date(data[0].planstartdate).getTime();
+    let diff = fechaFin - data[0].planstartdate===null ? new Date() : new Date(data[0].planstartdate).getTime();
     let totalDays = Math.ceil(diff / (1000 * 3600 * 24));
     if (totalDays <= 14 ) color='bg-green-300'
     if (totalDays > 14 && totalDays < 30) color = 'bg-orange-300'
@@ -133,6 +133,8 @@ console.log("data",data)
       </div>
     )
   }
+
+  console.log("data",data)
 
   return (<>
     <Layout>
@@ -171,7 +173,7 @@ console.log("data",data)
 
                 <div className='grid grid-rows-2 md:flex md:items-center md:justify-between my-5'>
                 <p  className="font-semibold">Date Of Last Action</p>
-                <p className='justify-self-end font-semibold text-dark-blue'>{new Date(data[0]?.planstartdate).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
+                <p className='justify-self-end font-semibold text-dark-blue'>{data[0].planstartdate===null ? "-":new Date(data[0]?.planstartdate).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
                 </div>
                 <hr className='border-blue-500 hidden md:block'></hr>
               

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import styles from "../../styles/Home.module.css";
 import AuthUserListRow from "../../components/AuthUserListRow";
+import UserListRow from "../../components/UserListRow";
+import UsersListRow from "../../components/UsersListRow";
 import AddUserModal from "../../components/AddUserModal";
 import EditAuthUserModal from "../../components/EditAuthUserModal";
 import EditInactiveUserModal from '../../components/EditInactiveUserModal';
@@ -24,6 +26,7 @@ export default function AuthorizedUsersIndex({data, users}) {
     const [notificationMessage,setNotificationMessage]=useState(false)
     const [listOfNonRegistered,setListOfNonRegistered]=useState([])
     const [listOfNoActive, setListOfNoActive] = useState([])
+    const [selectedEntity,setSelectedEntity]=useState("")
 
     const [showEditAuthUserModal,setShowEditAuthUserModal] = useState(false)
     const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
@@ -31,7 +34,7 @@ export default function AuthorizedUsersIndex({data, users}) {
 
     const [selectedUser,setSelectedUser]=useState({})
 
-
+console.log("selectedEntity",selectedEntity)
 
     useEffect(()=> {
       getNotRegisteredUser(data, users)
@@ -169,6 +172,8 @@ export default function AuthorizedUsersIndex({data, users}) {
                    setSelectedUser={setSelectedUser}
                    showDeleteUserModal={showDeleteUserModal}
                    setShowDeleteUserModal={setShowDeleteUserModal}
+                   selectedEntity={selectedEntity}
+                   setSelectedEntity={setSelectedEntity}
                    />
                 }): "No data"}
               
@@ -207,7 +212,7 @@ export default function AuthorizedUsersIndex({data, users}) {
               </div>
               <div className="dashboard-client-list mt-2 container mx-auto">
               {users? listOfNoActive?.map((authuser,index)=>{
-                   return <AuthUserListRow
+                   return <UsersListRow
                    authorizeduser={authuser}
                    index={index}
                    key={index}
@@ -218,6 +223,8 @@ export default function AuthorizedUsersIndex({data, users}) {
                    setSelectedUser={setSelectedUser}
                    showDeleteUserModal={showDeleteUserModal}
                    setShowDeleteUserModal={setShowDeleteUserModal}
+                   selectedEntity={selectedEntity}
+                   setSelectedEntity={setSelectedEntity}
                    />
                 }): "No data"}
               
@@ -238,7 +245,7 @@ export default function AuthorizedUsersIndex({data, users}) {
       />}
       {showEditAuthUserModal &&<EditAuthUserModal setShowEditAuthUserModal={setShowEditAuthUserModal}  showEditAuthUserModal={showEditAuthUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
       {showEditInactiveUserModal &&<EditInactiveUserModal setShowEditInactiveUserModal={setShowEditInactiveUserModal}  showEditInactiveUserModal={showEditInactiveUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
-      {showDeleteUserModal && <DeleteUserModal urlEntity={'authorizedusers'} setShowDeleteUserModal={setShowDeleteUserModal} showDeleteUserModal={showDeleteUserModal} selectedUser={selectedUser}/>}
+      {showDeleteUserModal && <DeleteUserModal urlEntity={selectedEntity} setShowDeleteUserModal={setShowDeleteUserModal} showDeleteUserModal={showDeleteUserModal} selectedUser={selectedUser}/>}
     </>
   )
 }

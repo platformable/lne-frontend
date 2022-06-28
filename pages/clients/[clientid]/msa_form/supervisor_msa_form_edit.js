@@ -352,9 +352,9 @@ console.log("clientData",clientData)
         console.log(response)
         if (response.status === 200 || response.statusText === 'Ok') {
           notifyMessage()
-          /* setTimeout(() => {
-            router.push(`/dashboard`)
-          }, 2300) */
+          setTimeout(() => {
+            router.push(`/supervisorDashboard`)
+          }, 2300)
         
         } 
       })

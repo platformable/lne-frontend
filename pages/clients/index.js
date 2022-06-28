@@ -13,8 +13,7 @@ import { useRouter } from 'next/router'
 const ClientsIndex = ({ data, hcworkers }) => {
   const router = useRouter()
   const { user, error, isLoading } = useUser();
-  const loggedUserRole =
-    user && user["https://lanuevatest.herokuapp.com/roles"];
+  const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
   const userId = user?.sub;
   const [showCreateClientModal, setShowCreateClientModal] = useState(false);
   const [liveData, setLiveData] = useState(data);
@@ -105,6 +104,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
   };
   return (
     <Layout>
+      <ToastContainer autoClose={2000} />
       <section id="search" className="py-5">
         <div className="container mx-auto">
           <div className="flex justify-between">
