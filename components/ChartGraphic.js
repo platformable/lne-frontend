@@ -10,8 +10,7 @@ import {
   LineElement,
   Legend,
   Tooltip,
-  Title
-
+  Title,
 } from "chart.js";
 import {
   Chart,
@@ -30,19 +29,16 @@ ChartJS.register(
   LineElement,
   Legend,
   Tooltip,
-  Title,
+  Title
 );
 
+const ChartGraphic = ({ chartData }) => {
+  const week1 = chartData?.group1;
+  const week2 = week1 + chartData?.group2;
+  const week3 = week2 + chartData?.group3;
+  const week4 = week3 + chartData?.group4;
 
-const ChartGraphic = ({chartData}) => {
-  const week1=chartData?.group1
-  const week2=chartData?.group2
-  const week3=chartData?.group3
-  const week4=chartData?.group4
-
-
-
- const options = {
+  const options = {
     plugins: {
       legend: {
         position: "top",
@@ -52,6 +48,19 @@ const ChartGraphic = ({chartData}) => {
         text: "December 2022 - Number of new clients this month",
         position: "top",
       },
+      datalabels: {
+        display: true,
+        color: "#000",
+        formatter: function (value, context) {
+          return value > 0 ? value : "";
+        },
+        font: {
+          weight: "bold",
+        },
+        anchor: "end",
+        offset: -20,
+        align: "start",
+      },
     },
     scales: {
       y: {
@@ -60,19 +69,24 @@ const ChartGraphic = ({chartData}) => {
           display: true,
           text: "Number of new clients",
         },
+        ticks: {
+          precision: 0,
+        },
+        min: 0,
+        max: 10,
       },
     },
   };
-  
-  const labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
-  
- const data = {
+
+  const labels = ["Week 1", "Week 2", "Week 3", "Week 4+"];
+
+  const data = {
     labels,
     datasets: [
       {
         type: "bar",
         label: "number of new clients",
-        backgroundColor: "rgb(45, 82, 192)",
+        backgroundColor: "#2B80F5",
         data: [week1, week2, week3, week4],
         borderColor: "white",
         borderWidth: 2,
@@ -80,11 +94,14 @@ const ChartGraphic = ({chartData}) => {
       {
         type: "line",
         label: "required n of clients",
-        borderColor: "rgb(255, 99, 132)",
+        borderColor: "#6ddfb7",
         borderWidth: 2,
         borderDash: [5, 5],
         fill: false,
         data: [5, 5, 5, 5],
+        datalabels: {
+          display: false,
+        },
       },
     ],
   };

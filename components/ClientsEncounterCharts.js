@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import {
   Chart as ChartJS,
   LinearScale,
@@ -10,8 +11,7 @@ import {
   LineElement,
   Legend,
   Tooltip,
-  Title
-
+  Title,
 } from "chart.js";
 import {
   Chart,
@@ -31,18 +31,16 @@ ChartJS.register(
   Legend,
   Tooltip,
   Title,
+  ChartDataLabels
 );
 
+const ClientsEncountersCharts = ({ numberOfClientsEncounter }) => {
+  const week1 = numberOfClientsEncounter?.group1;
+  const week2 = week1 + numberOfClientsEncounter?.group2;
+  const week3 = week2 + numberOfClientsEncounter?.group3;
+  const week4 = week3 + numberOfClientsEncounter?.group4;
 
-const ClientsEncountersCharts = ({numberOfClientsEncounter}) => {
-  const week1=numberOfClientsEncounter?.group1
-  const week2=numberOfClientsEncounter?.group2
-  const week3=numberOfClientsEncounter?.group3
-  const week4=numberOfClientsEncounter?.group4
-
-
-
- const options = {
+  const options = {
     plugins: {
       legend: {
         position: "top",
@@ -52,6 +50,21 @@ const ClientsEncountersCharts = ({numberOfClientsEncounter}) => {
         text: "December 2022 - Number of new clients this month",
         position: "top",
       },
+      datalabels: {
+        display: true,
+        color: "#000",
+        // show datalabel only if value > 0
+        formatter: function (value, context) {
+          return value > 0 ? value : "";
+        },
+        font: {
+          weight: "bold",
+        },
+        //set datalabels on top
+        anchor: "end",
+        offset: -15,
+        align: "start",
+      },
     },
     scales: {
       y: {
@@ -60,19 +73,27 @@ const ClientsEncountersCharts = ({numberOfClientsEncounter}) => {
           display: true,
           text: "Number of new clients",
         },
+        ticks: {
+          precision: 0,
+        },
+        min: 0,
+        max: 20,
+      },
+      x: {
+        beginAtZero: true,
       },
     },
   };
-  
-  const labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
-  
- const data = {
+
+  const labels = ["Week 1", "Week 2", "Week 3", "Week 4+"];
+
+  const data = {
     labels,
     datasets: [
       {
         type: "bar",
         label: "number of new clients",
-        backgroundColor: "rgb(45, 82, 192)",
+        backgroundColor: "#b15cef",
         data: [week1, week2, week3, week4],
         borderColor: "white",
         borderWidth: 2,
@@ -80,11 +101,15 @@ const ClientsEncountersCharts = ({numberOfClientsEncounter}) => {
       {
         type: "line",
         label: "required n of clients",
-        borderColor: "rgb(255, 99, 132)",
+        borderColor: "#6ddfb7",
         borderWidth: 2,
         borderDash: [5, 5],
         fill: false,
         data: [5, 5, 5, 5],
+        datalabels: {
+          // unset datalabel(numbers) on line graph
+          display: false,
+        },
       },
     ],
   };
