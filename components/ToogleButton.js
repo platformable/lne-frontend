@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 
-const ToogleButton = () => {
+const ToogleButton = ({ dataGraphicPeriod, setDataGraphicPeriod }) => {
   const toogleRef = useRef();
-  const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
 
   const handleToogle = () => {
     toogleRef.current.innerText === "Month"
