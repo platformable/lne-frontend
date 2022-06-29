@@ -9,7 +9,6 @@ import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import ToogleButton from "../components/ToogleButton";
 
 const Services = ({ clients, averageNumbers }) => {
-  console.log(averageNumbers);
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
 
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
@@ -50,6 +49,7 @@ const Services = ({ clients, averageNumbers }) => {
   ];
   const date = new Date();
   let currentMonth = date.getMonth() + 1;
+  let currentYear = date.getFullYear();
 
   const clientsCount = (clients) => {
     const totalActiveClients = clients?.filter(
@@ -195,13 +195,26 @@ const Services = ({ clients, averageNumbers }) => {
   const chart1Data = async (averageNumbers) => {
     const clientsOfTheMonth = await averageNumbers.filter((client, index) => {
       const clientDate = new Date(client.planstartdate);
+      if (dataGraphicPeriod === "Year") {
+        return clientDate.getFullYear() === currentYear;
+      }
       const result = clientDate.getMonth() + 1 === currentMonth;
       return result;
     });
+    console.log(clientsOfTheMonth);
     let total1 = 0;
     let total2 = 0;
     let total3 = 0;
     let total4 = 0;
+    let total5 = 0;
+    let total6 = 0;
+    let total7 = 0;
+    let total8 = 0;
+    let total9 = 0;
+    let total10 = 0;
+    let total11 = 0;
+    let total12 = 0;
+
     const numberOfClients = clientsOfTheMonth.forEach((client, index) => {
       const planstartdate = new Date(client.planstartdate).getDate();
       if (planstartdate >= 1 && planstartdate <= 7) {
@@ -224,6 +237,45 @@ const Services = ({ clients, averageNumbers }) => {
         group4: total4,
       });
     });
+    const numberOfClientsPerMonth = clientsOfTheMonth.forEach(
+      (client, index) => {
+        const planstartdate = new Date(client.planstartdate).getMonth();
+        const fn = (number) => {
+          const x = {
+            1: () => total1 + 1,
+            2: () => total2 + 1,
+            3: () => total3 + 1,
+            4: () => total4 + 1,
+            5: () => total5 + 1,
+            6: () => total6 + 1,
+            7: () => total7 + 1,
+            8: () => total8 + 1,
+            9: () => total9 + 1,
+            10: () => total10 + 1,
+            11: () => total11 + 1,
+            12: () => total12 + 1,
+          };
+          return x[number];
+        };
+        fn(planstartdate);
+        setNewClientsChart({
+          ...newClientsChart,
+          group1: total1,
+          group2: total2,
+          group3: total3,
+          group4: total4,
+          group5: total5,
+          group6: total6,
+          group7: total7,
+          group8: total8,
+          group9: total9,
+          group10: total10,
+          group11: total11,
+          group12: total12,
+        });
+      }
+    );
+    if (dataGraphicPeriod === "Year") return numberOfClientsPerMonth;
     return numberOfClients;
   };
 
@@ -276,7 +328,7 @@ const Services = ({ clients, averageNumbers }) => {
     calculateNumberOfGoals(averageNumbers);
     chart1Data(averageNumbers);
     chart2Data(averageNumbers);
-  }, []);
+  }, [dataGraphicPeriod]);
   return (
     <Layout>
       <div className="bg-light-blue">
@@ -377,11 +429,15 @@ const Services = ({ clients, averageNumbers }) => {
             </div>
             <div className="grid md:grid-cols-2 gap-1">
               <div className=" bg-white px-5 py-2">
-                <ChartGraphic chartData={newClientsChart} />
+                <ChartGraphic
+                  chartData={newClientsChart}
+                  dataGraphicPeriod={dataGraphicPeriod}
+                />
               </div>
               <div className=" bg-white px-5 py-2">
                 <ClientsEncounterCharts
                   numberOfClientsEncounter={numberOfClientsEncounter}
+                  dataGraphicPeriod={dataGraphicPeriod}
                 />
               </div>
             </div>
