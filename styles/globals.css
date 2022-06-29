@@ -318,6 +318,7 @@ input[type="checkbox"] {
 }
 
 
+
 .button-toogle:checked ~ .dot {
   transform: translateX(100%);
 }
@@ -329,3 +330,4 @@ input[type="checkbox"] {
 .eUeqdG {
 white-space: normal !important;
 }
+
