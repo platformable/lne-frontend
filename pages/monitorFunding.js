@@ -7,11 +7,12 @@ import ChartGraphic from "../components/ChartGraphic";
 import ClientsEncounterCharts from "../components/ClientsEncounterCharts";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import DataTable from "react-data-table-component";
+import ToogleButton from "../components/ToogleButton";
 
 const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorMetricsData, setMonitorMetricsData] = useState([]);
   console.log("monitorMetrics", monitorMetrics);
-
+  const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
   const updateMonitorMetricData = async () => {
     const clients = [];
   
@@ -340,6 +341,9 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const chart1Data = async (averageNumbers) => {
     const clientsOfTheMonth = await averageNumbers.filter((client, index) => {
       const clientDate = new Date(client.planstartdate);
+      if (dataGraphicPeriod === "Year") {
+        return clientDate.getFullYear() === currentYear;
+      }
       const result = clientDate.getMonth() + 1 === currentMonth;
       return result;
     });
@@ -347,6 +351,15 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     let total2 = 0;
     let total3 = 0;
     let total4 = 0;
+    let total5 = 0;
+    let total6 = 0;
+    let total7 = 0;
+    let total8 = 0;
+    let total9 = 0;
+    let total10 = 0;
+    let total11 = 0;
+    let total12 = 0;
+
     const numberOfClients = clientsOfTheMonth.forEach((client, index) => {
       const planstartdate = new Date(client.planstartdate).getDate();
       if (planstartdate >= 1 && planstartdate <= 7) {
@@ -369,6 +382,45 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
         group4: total4,
       });
     });
+    const numberOfClientsPerMonth = clientsOfTheMonth.forEach(
+      (client, index) => {
+        const planstartdate = new Date(client.planstartdate).getMonth();
+        const fn = (number) => {
+          const x = {
+            1: () => total1 + 1,
+            2: () => total2 + 1,
+            3: () => total3 + 1,
+            4: () => total4 + 1,
+            5: () => total5 + 1,
+            6: () => total6 + 1,
+            7: () => total7 + 1,
+            8: () => total8 + 1,
+            9: () => total9 + 1,
+            10: () => total10 + 1,
+            11: () => total11 + 1,
+            12: () => total12 + 1,
+          };
+          return x[number];
+        };
+        fn(planstartdate);
+        setNewClientsChart({
+          ...newClientsChart,
+          group1: total1,
+          group2: total2,
+          group3: total3,
+          group4: total4,
+          group5: total5,
+          group6: total6,
+          group7: total7,
+          group8: total8,
+          group9: total9,
+          group10: total10,
+          group11: total11,
+          group12: total12,
+        });
+      }
+    );
+    if (dataGraphicPeriod === "Year") return numberOfClientsPerMonth;
     return numberOfClients;
   };
 
@@ -380,15 +432,25 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     const activeProgressNotes = await clientsWithProgressNotes.filter(
       (client, index) => {
         const clientDate = new Date(client.planstartdate);
+        if (dataGraphicPeriod === "Year") {
+          return clientDate.getFullYear() === currentYear;
+        }
         const result = clientDate.getMonth() + 1 === currentMonth;
         return result;
       }
     );
-
     let total1 = 0;
     let total2 = 0;
     let total3 = 0;
     let total4 = 0;
+    let total5 = 0;
+    let total6 = 0;
+    let total7 = 0;
+    let total8 = 0;
+    let total9 = 0;
+    let total10 = 0;
+    let total11 = 0;
+    let total12 = 0;
     const numberOfClients = activeProgressNotes.forEach((client, index) => {
       const progressnotedate = new Date(client.progressnotedate).getDate();
       if (progressnotedate >= 1 && progressnotedate <= 7) {
@@ -403,7 +465,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       if (progressnotedate >= 23 && progressnotedate <= 30) {
         total4 = total4 + 1;
       }
-
+      console.log(total1, total2, total3, total4);
       setNumberOfClientsEncounter({
         ...numberOfClientsEncounter,
         group1: total1,
@@ -412,6 +474,45 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
         group4: total4,
       });
     });
+    const numberOfClientsEnconuntersPerMonth = activeProgressNotes.forEach(
+      (client, index) => {
+        const planstartdate = new Date(client.planstartdate).getMonth();
+        const fn = (number) => {
+          const x = {
+            1: () => total1 + 1,
+            2: () => total2 + 1,
+            3: () => total3 + 1,
+            4: () => total4 + 1,
+            5: () => total5 + 1,
+            6: () => total6 + 1,
+            7: () => total7 + 1,
+            8: () => total8 + 1,
+            9: () => total9 + 1,
+            10: () => total10 + 1,
+            11: () => total11 + 1,
+            12: () => total12 + 1,
+          };
+          return x[number];
+        };
+        fn(planstartdate);
+        setNumberOfClientsEncounter({
+          ...numberOfClientsEncounter,
+          group1: total1,
+          group2: total2,
+          group3: total3,
+          group4: total4,
+          group5: total5,
+          group6: total6,
+          group7: total7,
+          group8: total8,
+          group9: total9,
+          group10: total10,
+          group11: total11,
+          group12: total12,
+        });
+      }
+    );
+    if (dataGraphicPeriod === "Year") return numberOfClientsEnconuntersPerMonth;
     return numberOfClients;
   };
 
@@ -449,7 +550,10 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
 
           <div className="key-metrics grid grid-cols-1 gap-1 bg-light-blue shadow mx-3 md:mx-0">
             <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
-              <h2 className="font-bold">Key Metrics</h2>
+              <div className="flex">
+                <img src="/supervisor/key-metrics.svg" />
+                <h2 className="font-bold ml-3">Key Metrics</h2>
+              </div>
               <div className="grid grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-2 md:w-5/6 md:justify-self-end">
                 <p className="font-bold px-3 text-center py-2 bg-middle-green">
                   on track
@@ -517,40 +621,28 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
 
           <div className="graphic-metrics grid grid-cols-1 bg-light-blue shadow gap-1 my-3 mx-3 md:mx-0">
             <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
-              <h2 className="font-bold">
-                Are We Meeting Funding Requirements?
-              </h2>
-              <div className="">
-                Data for the:
-                <div className="text-xs flex justify-between">
-                  <span className="mr-2 md:mx-2 md:mr-3 lg:mx-4 xl:ml-0">
-                    <input
-                      className="mr-1 md:mr-2"
-                      type="radio"
-                      name="month"
-                      value={true}
-                    />
-                    <label>Month</label>
-                  </span>
-                  <span className="mx-7 md:mx-3 lg:mr-4 xl:mx-6">
-                    <input
-                      className="mx-1 md:mr-2"
-                      type="radio"
-                      name="year"
-                      value={false}
-                    />
-                    <label>Year</label>
-                  </span>
-                </div>
+              <div className="flex">
+                <img src="/supervisor/meeting-funding.svg" />
+                <h2 className="font-bold ml-3">
+                  Are We Meeting Funding Requirements?
+                </h2>
               </div>
+              <ToogleButton
+                dataGraphicPeriod={dataGraphicPeriod}
+                setDataGraphicPeriod={setDataGraphicPeriod}
+              />
             </div>
             <div className="grid md:grid-cols-2 gap-1">
               <div className=" bg-white px-5 py-2">
-                <ChartGraphic chartData={newClientsChart} />
+                <ChartGraphic
+                  chartData={newClientsChart}
+                  dataGraphicPeriod={dataGraphicPeriod}
+                />
               </div>
               <div className=" bg-white px-5 py-2">
                 <ClientsEncounterCharts
                   numberOfClientsEncounter={numberOfClientsEncounter}
+                  dataGraphicPeriod={dataGraphicPeriod}
                 />
               </div>
             </div>

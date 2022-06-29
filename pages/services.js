@@ -502,13 +502,18 @@ const Services = ({ clients, averageNumbers }) => {
             today?
           </h1>
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
-            <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+            <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
+              <Link href={"/monitorFunding"}>
+              <figure className="flex flex-col items-center">
+                <img  
+                  src="/supervisor/monitor-staff-progres.svg"
+                  className="mb-5"
+                  alt="monitor STAFF PROGRESS"></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR FUNDING REQUIREMENTS
                 </figcaption>
               </figure>
+              </Link>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
