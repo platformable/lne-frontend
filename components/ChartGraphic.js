@@ -60,6 +60,9 @@ const ChartGraphic = ({ chartData, dataGraphicPeriod }) => {
         display: true,
         text: "December 2022 - Number of new clients this month",
         position: "top",
+        font: {
+          size: 18,
+        },
       },
       datalabels: {
         display: true,
@@ -81,6 +84,9 @@ const ChartGraphic = ({ chartData, dataGraphicPeriod }) => {
         title: {
           display: true,
           text: "Number of new clients",
+          font: {
+            weight: "bold",
+          },
         },
         ticks: {
           precision: 0,
@@ -112,7 +118,7 @@ const ChartGraphic = ({ chartData, dataGraphicPeriod }) => {
     datasets: [
       {
         type: "bar",
-        label: "number of new clients",
+        label: "# of new clients",
         backgroundColor: "#2B80F5",
         data:
           dataGraphicPeriod === "Month"
@@ -136,7 +142,7 @@ const ChartGraphic = ({ chartData, dataGraphicPeriod }) => {
       },
       {
         type: "line",
-        label: "required n of clients",
+        label: "Required # of clients",
         borderColor: "#6ddfb7",
         borderWidth: 2,
         borderDash: [5, 5],

@@ -63,8 +63,11 @@ const ClientsEncountersCharts = ({
       },
       title: {
         display: true,
-        text: "December 2022 - Number of new clients this month",
+        text: "December 2022 - Number of client encounters this month",
         position: "top",
+        font: {
+          size: 18,
+        },
       },
       datalabels: {
         display: true,
@@ -87,7 +90,10 @@ const ClientsEncountersCharts = ({
         beginAtZero: true,
         title: {
           display: true,
-          text: "Number of new clients",
+          text: "Number of client encounters",
+          font: {
+            weight: "bold",
+          },
         },
         ticks: {
           precision: 0,
@@ -122,7 +128,7 @@ const ClientsEncountersCharts = ({
     datasets: [
       {
         type: "bar",
-        label: "number of new clients",
+        label: "# of new clients",
         backgroundColor: "#b15cef",
         data:
           dataGraphicPeriod === "Month"
@@ -146,7 +152,7 @@ const ClientsEncountersCharts = ({
       },
       {
         type: "line",
-        label: "required n of clients",
+        label: "Required # of client encounters",
         borderColor: "#6ddfb7",
         borderWidth: 2,
         borderDash: [5, 5],

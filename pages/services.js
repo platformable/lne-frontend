@@ -201,7 +201,6 @@ const Services = ({ clients, averageNumbers }) => {
       const result = clientDate.getMonth() + 1 === currentMonth;
       return result;
     });
-    console.log(clientsOfTheMonth);
     let total1 = 0;
     let total2 = 0;
     let total3 = 0;
@@ -287,15 +286,25 @@ const Services = ({ clients, averageNumbers }) => {
     const activeProgressNotes = await clientsWithProgressNotes.filter(
       (client, index) => {
         const clientDate = new Date(client.planstartdate);
+        if (dataGraphicPeriod === "Year") {
+          return clientDate.getFullYear() === currentYear;
+        }
         const result = clientDate.getMonth() + 1 === currentMonth;
         return result;
       }
     );
-
     let total1 = 0;
     let total2 = 0;
     let total3 = 0;
     let total4 = 0;
+    let total5 = 0;
+    let total6 = 0;
+    let total7 = 0;
+    let total8 = 0;
+    let total9 = 0;
+    let total10 = 0;
+    let total11 = 0;
+    let total12 = 0;
     const numberOfClients = activeProgressNotes.forEach((client, index) => {
       const progressnotedate = new Date(client.progressnotedate).getDate();
       if (progressnotedate >= 1 && progressnotedate <= 7) {
@@ -319,6 +328,45 @@ const Services = ({ clients, averageNumbers }) => {
         group4: total4,
       });
     });
+    const numberOfClientsEnconuntersPerMonth = activeProgressNotes.forEach(
+      (client, index) => {
+        const planstartdate = new Date(client.planstartdate).getMonth();
+        const fn = (number) => {
+          const x = {
+            1: () => total1 + 1,
+            2: () => total2 + 1,
+            3: () => total3 + 1,
+            4: () => total4 + 1,
+            5: () => total5 + 1,
+            6: () => total6 + 1,
+            7: () => total7 + 1,
+            8: () => total8 + 1,
+            9: () => total9 + 1,
+            10: () => total10 + 1,
+            11: () => total11 + 1,
+            12: () => total12 + 1,
+          };
+          return x[number];
+        };
+        fn(planstartdate);
+        setNumberOfClientsEncounter({
+          ...numberOfClientsEncounter,
+          group1: total1,
+          group2: total2,
+          group3: total3,
+          group4: total4,
+          group5: total5,
+          group6: total6,
+          group7: total7,
+          group8: total8,
+          group9: total9,
+          group10: total10,
+          group11: total11,
+          group12: total12,
+        });
+      }
+    );
+    if (dataGraphicPeriod === "Year") return numberOfClientsEnconuntersPerMonth;
     return numberOfClients;
   };
 
@@ -351,7 +399,10 @@ const Services = ({ clients, averageNumbers }) => {
 
           <div className="key-metrics grid grid-cols-1 gap-1 bg-light-blue shadow mx-3 md:mx-0">
             <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
-              <h2 className="font-bold">Key Metrics</h2>
+              <div className="flex">
+                <img src="/supervisor/key-metrics.svg" />
+                <h2 className="font-bold ml-3">Key Metrics</h2>
+              </div>
               <div className="grid grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-2 md:w-5/6 md:justify-self-end">
                 <p className="font-bold px-3 text-center py-2 bg-middle-green">
                   on track
@@ -419,9 +470,12 @@ const Services = ({ clients, averageNumbers }) => {
 
           <div className="graphic-metrics grid grid-cols-1 bg-light-blue shadow gap-1 my-3 mx-3 md:mx-0">
             <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
-              <h2 className="font-bold">
-                Are We Meeting Funding Requirements?
-              </h2>
+              <div className="flex">
+                <img src="/supervisor/meeting-funding.svg" />
+                <h2 className="font-bold ml-3">
+                  Are We Meeting Funding Requirements?
+                </h2>
+              </div>
               <ToogleButton
                 dataGraphicPeriod={dataGraphicPeriod}
                 setDataGraphicPeriod={setDataGraphicPeriod}
@@ -447,7 +501,7 @@ const Services = ({ clients, averageNumbers }) => {
             What do you want <span className="bg-yellow px-2">to do</span>{" "}
             today?
           </h1>
-          <div className="grid md:grid-cols-6 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
+          <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
             <div className="p-3 rounded-md bg-white shadow-md">
               <figure>
                 <img src=""></img>
@@ -457,32 +511,48 @@ const Services = ({ clients, averageNumbers }) => {
               </figure>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/monitor-staff-progres.svg"
+                  className="mb-5"
+                  alt="monitor STAFF PROGRESS"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR STAFF PROGRESS
                 </figcaption>
               </figure>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/monitor-impacts-icon.svg"
+                  className="mb-1"
+                  alt="monitor IMPACTS"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR IMPACTS
                 </figcaption>
               </figure>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/monitor-quality-icon.svg"
+                  className="mb-5"
+                  alt="monitor QUALITY"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR QUALITY
                 </figcaption>
               </figure>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/plan-for-community-needs-icon.svg"
+                  className="mb-5"
+                  alt="monitor COMMUNITY NEEDS"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   PLAN FOR COMMUNITY NEEDS
                 </figcaption>
