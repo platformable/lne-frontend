@@ -659,42 +659,63 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
             What do you want <span className="bg-yellow px-2">to do</span>{" "}
             today?
           </h1>
-          <div className="grid md:grid-cols-6 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
-            <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+          <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
+            <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
+              <Link href={"/monitorFunding"}>
+              <figure className="flex flex-col items-center">
+                <img  
+                  src="/supervisor/monitor-staff-progres.svg"
+                  className="mb-5"
+                  alt="monitor STAFF PROGRESS"></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR FUNDING REQUIREMENTS
                 </figcaption>
               </figure>
+              </Link>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/monitor-staff-progres.svg"
+                  className="mb-5"
+                  alt="monitor STAFF PROGRESS"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR STAFF PROGRESS
                 </figcaption>
               </figure>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/monitor-impacts-icon.svg"
+                  className="mb-1"
+                  alt="monitor IMPACTS"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR IMPACTS
                 </figcaption>
               </figure>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/monitor-quality-icon.svg"
+                  className="mb-5"
+                  alt="monitor QUALITY"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   MONITOR QUALITY
                 </figcaption>
               </figure>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
-              <figure>
-                <img src=""></img>
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/plan-for-community-needs-icon.svg"
+                  className="mb-5"
+                  alt="monitor COMMUNITY NEEDS"
+                ></img>
                 <figcaption className="font-bold text-xs text-center">
                   PLAN FOR COMMUNITY NEEDS
                 </figcaption>
