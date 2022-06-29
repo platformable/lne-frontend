@@ -317,6 +317,17 @@ input[type="checkbox"] {
   padding: 10px;
 }
 
+
+
 .button-toogle:checked ~ .dot {
   transform: translateX(100%);
 }
+/* MONITOR FUNDING */
+
+.monitor-funding .rdt_TableRow:nth-of-type(odd) {
+  background-color:var(--lightBlue);
+  }
+.eUeqdG {
+white-space: normal !important;
+}
+
