@@ -318,6 +318,9 @@ input[type="checkbox"] {
 }
 
 
+.button-toogle:checked ~ .dot {
+  transform: translateX(100%);
+}
 /* MONITOR FUNDING */
 
 .monitor-funding .rdt_TableRow:nth-of-type(odd) {
