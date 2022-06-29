@@ -316,3 +316,13 @@ input[type="checkbox"] {
   transform: scale(1.3);
   padding: 10px;
 }
+
+
+/* MONITOR FUNDING */
+
+.monitor-funding .rdt_TableRow:nth-of-type(odd) {
+  background-color:var(--lightBlue);
+  }
+.eUeqdG {
+white-space: normal !important;
+}
