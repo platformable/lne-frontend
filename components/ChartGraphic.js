@@ -32,11 +32,24 @@ ChartJS.register(
   Title
 );
 
-const ChartGraphic = ({ chartData }) => {
+const ChartGraphic = ({ chartData, dataGraphicPeriod }) => {
   const week1 = chartData?.group1;
   const week2 = week1 + chartData?.group2;
   const week3 = week2 + chartData?.group3;
   const week4 = week3 + chartData?.group4;
+
+  const month1 = chartData?.group1;
+  const month2 = month1 + chartData?.group2;
+  const month3 = month2 + chartData?.group3;
+  const month4 = month3 + chartData?.group4;
+  const month5 = month4 + chartData?.group5;
+  const month6 = month5 + chartData?.group6;
+  const month7 = month6 + chartData?.group7;
+  const month8 = month7 + chartData?.group8;
+  const month9 = month8 + chartData?.group9;
+  const month10 = month9 + chartData?.group10;
+  const month11 = month10 + chartData?.group11;
+  const month12 = month11 + chartData?.group12;
 
   const options = {
     plugins: {
@@ -79,15 +92,45 @@ const ChartGraphic = ({ chartData }) => {
   };
 
   const labels = ["Week 1", "Week 2", "Week 3", "Week 4+"];
+  const labelsPerYear = [
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+  ];
 
   const data = {
-    labels,
+    labels: dataGraphicPeriod === "Month" ? labels : labelsPerYear,
     datasets: [
       {
         type: "bar",
         label: "number of new clients",
         backgroundColor: "#2B80F5",
-        data: [week1, week2, week3, week4],
+        data:
+          dataGraphicPeriod === "Month"
+            ? [week1, week2, week3, week4]
+            : [
+                month1,
+                month2,
+                month3,
+                month4,
+                month5,
+                month6,
+                month7,
+                month8,
+                month9,
+                month10,
+                month11,
+                month12,
+              ],
         borderColor: "white",
         borderWidth: 2,
       },
@@ -98,7 +141,7 @@ const ChartGraphic = ({ chartData }) => {
         borderWidth: 2,
         borderDash: [5, 5],
         fill: false,
-        data: [5, 5, 5, 5],
+        data: dataGraphicPeriod === "Month" ? [5, 5, 5, 5] : Array(12).fill(5),
         datalabels: {
           display: false,
         },
