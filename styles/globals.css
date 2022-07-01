@@ -331,3 +331,23 @@ input[type="checkbox"] {
 white-space: normal !important;
 }
 
+table {
+  font-size:8px;
+}
+
+table td, #customers th {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+table tr:nth-child(even){background-color: #fff;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #000;
+  color: white;
+}

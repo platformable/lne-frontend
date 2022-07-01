@@ -99,7 +99,7 @@ const ClientsEncountersCharts = ({
           precision: 0,
         },
         min: 0,
-        max: 20,
+        max: 50,
       },
       x: {
         beginAtZero: true,
@@ -157,7 +157,7 @@ const ClientsEncountersCharts = ({
         borderWidth: 2,
         borderDash: [5, 5],
         fill: false,
-        data: dataGraphicPeriod === "Month" ? [5, 5, 5, 5] : Array(12).fill(5),
+        data: dataGraphicPeriod === "Month" ? [39, 39, 39, 39] : Array(12).fill(5),
         datalabels: {
           // unset datalabel(numbers) on line graph
           display: false,
