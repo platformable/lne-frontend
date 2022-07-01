@@ -569,6 +569,13 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   
   }, []);
 
+  const paginationComponentOptions = {
+    rowsPerPageText: 'Rows per page',
+    rangeSeparatorText: 'of',
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'All',
+};
+
   const tableData = {
     columns,
     monitorMetricsData
@@ -716,6 +723,9 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
           <DataTable 
             columns={columns} 
             data={monitorMetricsData} 
+            pagination
+            paginationComponentOptions={paginationComponentOptions}
+            paginationTotalRows={monitorMetricsData.length}
             />       
 
          
