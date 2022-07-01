@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import backIcon from "../public/BACKicon.svg";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,12 +6,18 @@ import Layout from "../components/Layout";
 import ChartGraphic from "../components/ChartGraphic";
 import ClientsEncounterCharts from "../components/ClientsEncounterCharts";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import DataTable from "react-data-table-component";
 import ToogleButton from "../components/ToogleButton";
+import DataTable from "react-data-table-component";
+/* import DataTableExtensions from 'react-data-table-component-extensions'; */
+import 'react-data-table-component-extensions/dist/index.css';
+import Export from "react-data-table-component"
+import ReactToPrint from 'react-to-print'
+import ComponentToPrint from "../components/ComponentToPrint";
+import MonitorFundingTableToPrint from "../components/MonitorFundingTableToPrint";
 
 const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorMetricsData, setMonitorMetricsData] = useState([]);
-  console.log("monitorMetrics", monitorMetrics);
+  let componentRef = useRef();
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
   const updateMonitorMetricData = async () => {
     const clients = [];
@@ -25,7 +31,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       newClient.lastname=client.clientlastname
       newClient.clienthcwname=client.clienthcwname
       newClient.progressnotes=client.progressnotes.length
-      newClient.lastEncounter=client.progressnotes.length>1?1:2
+      newClient.lastEncounter=calculateLastEncounter(client.planstartdate,client.progressnotes)
       newClient.joining=calculateDaysBetweenDates(client.clientdatecreated)
       newClient.goals=parseInt(client.goal1completed)+parseInt(client.goal2completed)+parseInt(client.goal3completed)
       clients.push(newClient)
@@ -35,12 +41,31 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   };
 
 
+
+
   const calculateDaysBetweenDates=(clientStartDate)=>{
     let date_1 = new Date(clientStartDate);
     let date_2 = new Date();
     let difference = date_2.getTime() - date_1.getTime();
     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
     return TotalDays
+  }
+
+  const calculateLastEncounter=(planstartdate,progressnotes)=>{
+      if(progressnotes.length===0 || progressnotes===null){
+        let date_1 = new Date(planstartdate);
+        let date_2 = new Date();
+        let difference = date_2.getTime() - date_1.getTime();
+        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+        return TotalDays
+      } else {
+        let date_1 = new Date(progressnotes[0]);
+        let date_2 = new Date();
+        let difference = date_2.getTime() - date_1.getTime();
+        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+        return TotalDays
+      }
+
   }
 
   const columns = [
@@ -54,14 +79,14 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     {
       name: "Client ID",
       selector: (row) => row.clientid,
-      sortable: true,
+      //sortable: true,
       wrap: true,
       width: "110px",
     },
     {
       name: "Client first name",
       selector: (row) => row.firstname,
-      sortable: true,
+      //sortable: true,
       wrap: true,
       width: "50",
     },
@@ -82,7 +107,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     {
       name: "Time since joining LNE",
       selector: (row) => row.joining,
-      sortable: true,
+      //sortable: true,
       wrap: true,
       // width:'50'
     },
@@ -91,21 +116,60 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       selector: (row) => row.progressnotes,
       sortable: true,
       wrap: true,
-      //width:'50'
+      conditionalCellStyles:[
+        {
+        when: row => row.progressnotes <15,
+        style: {backgroundColor: 'red',color:'white'},
+       },
+       {
+        when: row => row.progressnotes >15 && row.progressnotes<30,
+        style: {backgroundColor: 'orange',color:'white'},
+       }, 
+       {
+        when: row => row.progressnotes >30,
+        style: {backgroundColor: 'green',color:'white'},
+       },
+      ]
     },
     {
       name: "Last encounter",
       selector: (row) => row.lastEncounter,
       sortable: true,
       wrap: true,
-      // width:'50'
+      conditionalCellStyles:[
+        {
+        when: row => row.lastEncounter >30,
+        style: {backgroundColor: 'red',color:'white'},
+       },
+       {
+        when: row => row.lastEncounter >14 && row.lastEncounter<30,
+        style: {backgroundColor: 'orange',color:'white'},
+       },
+       {
+        when: row => row.lastEncounter <14,
+        style: {backgroundColor: 'green',color:'white'},
+       },
+      ]
     },
     {
       name: "Goals completed",
       selector: (row) => row.goals,
       sortable: true,
       wrap: true,
-      //width:'50'
+      conditionalCellStyles:[
+        {
+        when: row => row.goals ===0,
+        style: {backgroundColor: 'red',color:'white'},
+       },
+       {
+        when: row => row.goals >=1 && row.goals<=2,
+        style: {backgroundColor: 'orange',color:'white'},
+       },
+       {
+        when: row => row.goals ===3,
+        style: {backgroundColor: 'green',color:'white'},
+       },
+      ]
     },
     {
       name: "Outdated MSA forms",
@@ -115,6 +179,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       //width:'50'
     },
   ];
+
+ 
 
   const data = [
     {
@@ -130,33 +196,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       goals: 2,
       outdatedMsa: 1,
     },
-    {
-      id: 1,
-      startDate: "02/05/2022",
-      clientId: "W1988B",
-      firstName: "Alexei",
-      lastName: "Garban",
-      hcw: "Mark",
-      joining: 30,
-      encounters: 5,
-      lastEncounter: 5,
-      goals: 2,
-      outdatedMsa: 1,
-    },
-    {
-      id: 1,
-      startDate: "02/05/2022",
-      clientId: "W1988B",
-      firstName: "Alexei",
-      lastName: "Garban",
-      hcw: "Mark",
-      joining: 30,
-      encounters: 5,
-      lastEncounter: 5,
-      goals: 2,
-      outdatedMsa: 1,
-    },
   ];
+
 
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
     total: "",
@@ -337,6 +378,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       });
     }
   };
+
+ 
 
   const chart1Data = async (averageNumbers) => {
     const clientsOfTheMonth = await averageNumbers.filter((client, index) => {
@@ -526,7 +569,10 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   
   }, []);
 
-  console.log("monitorMetricsData",monitorMetricsData)
+  const tableData = {
+    columns,
+    monitorMetricsData
+  };
   return (
     <Layout>
 
@@ -648,11 +694,33 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
             </div>
           </div>
 
-          <div className="bg-white py-3">
-            <h1 className="px-5 font-black">Funding Goal Progress</h1>
+          <div className="bg-white py-3 flex justify-between px-5 items-center">
+     
+          <div className="flex  w-2/4">
+            <img src="/funding-goals.svg" className="mr-3" alt="" />
+            <h3 className="font-black">Funding Goal Progress</h3>
+        
+            </div>
+            <ReactToPrint
+                  trigger={() => <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white  text-xs">
+                 {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
+                      Print Report
+                      </button>}
+                  content={() => componentRef.current} />
           </div>
           <div className="table py-5 mt-1 bg-white w-full monitor-funding shadow-xl">
-            <DataTable columns={columns} data={monitorMetricsData} responsive={true} />
+          
+                    <div style={{display:'none'}} className="p-5">
+                  <MonitorFundingTableToPrint ref={componentRef} data={monitorMetricsData} />
+                  </div>
+          <DataTable 
+            columns={columns} 
+            data={monitorMetricsData} 
+            />       
+
+         
+
+  
           </div>
 
           <h1 className="font-bold px-2 md:px-0 py-5">
@@ -661,14 +729,14 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
           </h1>
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
             <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
-              <Link href={"/monitorFunding"}>
+              <Link href={"/services"}>
               <figure className="flex flex-col items-center">
                 <img  
                   src="/supervisor/monitor-staff-progres.svg"
                   className="mb-5"
                   alt="monitor STAFF PROGRESS"></img>
                 <figcaption className="font-bold text-xs text-center">
-                  MONITOR FUNDING REQUIREMENTS
+                  MANAGE SERVICES
                 </figcaption>
               </figure>
               </Link>
