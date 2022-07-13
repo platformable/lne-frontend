@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import backIcon from "../public/BACKicon.svg";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,65 +8,97 @@ import ClientsEncounterCharts from "../components/ClientsEncounterCharts";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import ToogleButton from "../components/ToogleButton";
 import DataTable from "react-data-table-component";
-/* import DataTableExtensions from 'react-data-table-component-extensions'; */
-import 'react-data-table-component-extensions/dist/index.css';
-import Export from "react-data-table-component"
-import ReactToPrint from 'react-to-print'
+
+/* import DataTableExtensions from "react-data-table-component-extensions"; */
+
+import "react-data-table-component-extensions/dist/index.css";
+import Export from "react-data-table-component";
+import ReactToPrint from "react-to-print";
 import ComponentToPrint from "../components/ComponentToPrint";
 import MonitorFundingTableToPrint from "../components/MonitorFundingTableToPrint";
 
 const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorMetricsData, setMonitorMetricsData] = useState([]);
+//  console.log("clients",clients)
+  console.log("monitorMetrics",monitorMetrics)
   let componentRef = useRef();
+
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
+
   const updateMonitorMetricData = async () => {
     const clients = [];
-  
+
     const result = await monitorMetrics.forEach((client, index) => {
-        const newClient = {};
+      const newClient = {};
       /*   newClient.progressnote = []; */
       newClient.clientid = client.id;
-      newClient.startdate = new Date(client.clientdatecreated).toLocaleDateString('en-En',{year:'numeric',month:'numeric',day:'numeric'})
-      newClient.firstname = client.clientfirstname
-      newClient.lastname=client.clientlastname
-      newClient.clienthcwname=client.clienthcwname
-      newClient.progressnotes=client.progressnotes.length
-      newClient.lastEncounter=calculateLastEncounter(client.planstartdate,client.progressnotes)
-      newClient.joining=calculateDaysBetweenDates(client.clientdatecreated)
-      newClient.goals=parseInt(client.goal1completed)+parseInt(client.goal2completed)+parseInt(client.goal3completed)
-      clients.push(newClient)
-
+      newClient.startdate = new Date(
+        client.clientdatecreated
+      ).toLocaleDateString("en-En", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      });
+      newClient.firstname = client.clientfirstname;
+      newClient.lastname = client.clientlastname;
+      newClient.clienthcwname = client.clienthcwname;
+      newClient.progressnotes = client.progressnotes.length;
+      newClient.lastEncounter = calculateLastEncounter(
+        client.planstartdate,
+        client.progressnotes,
+        client.clientdatecreated
+      );
+      newClient.joining = calculateDaysBetweenDates(client.clientdatecreated);
+      newClient.goals =
+        parseInt(client.goal1completed) +
+        parseInt(client.goal2completed) +
+        parseInt(client.goal3completed);
+      clients.push(newClient);
     });
-    setMonitorMetricsData(clients)
+    setMonitorMetricsData(clients);
   };
 
-
-
-
-  const calculateDaysBetweenDates=(clientStartDate)=>{
+  const calculateDaysBetweenDates = (clientStartDate) => {
     let date_1 = new Date(clientStartDate);
     let date_2 = new Date();
     let difference = date_2.getTime() - date_1.getTime();
     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-    return TotalDays
-  }
+    return TotalDays;
+  };
 
-  const calculateLastEncounter=(planstartdate,progressnotes)=>{
-      if(progressnotes.length===0 || progressnotes===null){
-        let date_1 = new Date(planstartdate);
-        let date_2 = new Date();
-        let difference = date_2.getTime() - date_1.getTime();
-        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-        return TotalDays
-      } else {
-        let date_1 = new Date(progressnotes[0]);
-        let date_2 = new Date();
-        let difference = date_2.getTime() - date_1.getTime();
-        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-        return TotalDays
-      }
+  const calculateLastEncounter = (planstartdate, progressnotes,clientdatecreated) => {
+console.log("planstartdate",planstartdate)
+  /*   if (progressnotes === null && planstartdate === null) {
+      console.log("no progress")
+      let date_1 = planstartdate===null ? new Date(clientstartdate) : new Date(planstartdate)
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    } 
+    if(progressnotes.length>=1){
+      console.log("with progress")
+      let date_1 = new Date(progressnotes[0]);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    } */
 
-  }
+    if(planstartdate===null){
+      let date_1 = new Date(clientdatecreated);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    } else {
+      let date_1 = new Date(progressnotes[0]);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    }
+  };
 
   const columns = [
     {
@@ -116,60 +148,60 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       selector: (row) => row.progressnotes,
       sortable: true,
       wrap: true,
-      conditionalCellStyles:[
+      conditionalCellStyles: [
         {
-        when: row => row.progressnotes <15,
-        style: {backgroundColor: 'red',color:'white'},
-       },
-       {
-        when: row => row.progressnotes >15 && row.progressnotes<30,
-        style: {backgroundColor: 'orange',color:'white'},
-       }, 
-       {
-        when: row => row.progressnotes >30,
-        style: {backgroundColor: 'green',color:'white'},
-       },
-      ]
+          when: (row) => row.progressnotes < 15,
+          style: { backgroundColor: "red", color: "white" },
+        },
+        {
+          when: (row) => row.progressnotes > 15 && row.progressnotes < 30,
+          style: { backgroundColor: "orange", color: "white" },
+        },
+        {
+          when: (row) => row.progressnotes > 30,
+          style: { backgroundColor: "green", color: "white" },
+        },
+      ],
     },
     {
       name: "Last encounter",
       selector: (row) => row.lastEncounter,
       sortable: true,
       wrap: true,
-      conditionalCellStyles:[
+      conditionalCellStyles: [
         {
-        when: row => row.lastEncounter >30,
-        style: {backgroundColor: 'red',color:'white'},
-       },
-       {
-        when: row => row.lastEncounter >14 && row.lastEncounter<30,
-        style: {backgroundColor: 'orange',color:'white'},
-       },
-       {
-        when: row => row.lastEncounter <14,
-        style: {backgroundColor: 'green',color:'white'},
-       },
-      ]
+          when: (row) => row.lastEncounter > 30,
+          style: { backgroundColor: "red", color: "white" },
+        },
+        {
+          when: (row) => row.lastEncounter > 14 && row.lastEncounter < 30,
+          style: { backgroundColor: "orange", color: "white" },
+        },
+        {
+          when: (row) => row.lastEncounter < 14,
+          style: { backgroundColor: "green", color: "white" },
+        },
+      ],
     },
     {
       name: "Goals completed",
       selector: (row) => row.goals,
       sortable: true,
       wrap: true,
-      conditionalCellStyles:[
+      conditionalCellStyles: [
         {
-        when: row => row.goals ===0,
-        style: {backgroundColor: 'red',color:'white'},
-       },
-       {
-        when: row => row.goals >=1 && row.goals<=2,
-        style: {backgroundColor: 'orange',color:'white'},
-       },
-       {
-        when: row => row.goals ===3,
-        style: {backgroundColor: 'green',color:'white'},
-       },
-      ]
+          when: (row) => row.goals === 0,
+          style: { backgroundColor: "red", color: "white" },
+        },
+        {
+          when: (row) => row.goals >= 1 && row.goals <= 2,
+          style: { backgroundColor: "orange", color: "white" },
+        },
+        {
+          when: (row) => row.goals === 3,
+          style: { backgroundColor: "green", color: "white" },
+        },
+      ],
     },
     {
       name: "Outdated MSA forms",
@@ -179,8 +211,6 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       //width:'50'
     },
   ];
-
- 
 
   const data = [
     {
@@ -197,7 +227,6 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       outdatedMsa: 1,
     },
   ];
-
 
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
     total: "",
@@ -282,7 +311,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     return client.planstartdate!==null
   }) */
 
-    const x = averageNumbers.forEach((client, index) => {
+    const calculate = averageNumbers.forEach((client, index) => {
       const { planstartdate, progressnotedate } = client;
 
       if (progressnotedate === "" || progressnotedate === null) {
@@ -378,8 +407,6 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       });
     }
   };
-
- 
 
   const chart1Data = async (averageNumbers) => {
     const clientsOfTheMonth = await averageNumbers.filter((client, index) => {
@@ -566,23 +593,23 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     chart1Data(averageNumbers);
     chart2Data(averageNumbers);
     updateMonitorMetricData();
-  
   }, []);
 
   const paginationComponentOptions = {
-    rowsPerPageText: 'Rows per page',
-    rangeSeparatorText: 'of',
+    rowsPerPageText: "Rows per page",
+    rangeSeparatorText: "of",
     selectAllRowsItem: true,
-    selectAllRowsItemText: 'All',
-};
+    selectAllRowsItemText: "All",
+  };
 
   const tableData = {
     columns,
-    monitorMetricsData
+    monitorMetricsData,
   };
+
+  console.log("monitorMetrics data",monitorMetrics)
   return (
     <Layout>
-
       <div className="bg-light-blue">
         <section className="container mx-auto grid-cols-1 gap-5">
           <div className="grid grid-cols-2 py-5">
@@ -702,35 +729,34 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
           </div>
 
           <div className="bg-white py-3 flex justify-between px-5 items-center">
-     
-          <div className="flex  w-2/4">
-            <img src="/funding-goals.svg" className="mr-3" alt="" />
-            <h3 className="font-black">Funding Goal Progress</h3>
-        
+            <div className="flex  w-2/4">
+              <img src="/funding-goals.svg" className="mr-3" alt="" />
+              <h3 className="font-black">Funding Goal Progress</h3>
             </div>
             <ReactToPrint
-                  trigger={() => <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white  text-xs">
-                 {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
-                      Print Report
-                      </button>}
-                  content={() => componentRef.current} />
+              trigger={() => (
+                <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white  text-xs">
+                  {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
+                  Print Report
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
           </div>
-          <div className="table py-5 mt-1 bg-white w-full monitor-funding shadow-xl">
-          
-                    <div style={{display:'none'}} className="p-5">
-                  <MonitorFundingTableToPrint ref={componentRef} data={monitorMetricsData} />
-                  </div>
-          <DataTable 
-            columns={columns} 
-            data={monitorMetricsData} 
-            pagination
-            paginationComponentOptions={paginationComponentOptions}
-            paginationTotalRows={monitorMetricsData.length}
-            />       
-
-         
-
-  
+          <div className="table py-5 mt-1 bg-white w-full monitor-funding-data-table shadow-xl">
+            <div style={{ display: "none" }} className="p-5">
+              <MonitorFundingTableToPrint
+                ref={componentRef}
+                data={monitorMetricsData}
+              />
+            </div>
+            <DataTable
+              columns={columns}
+              data={monitorMetricsData}
+              pagination
+              paginationComponentOptions={paginationComponentOptions}
+              paginationTotalRows={monitorMetricsData.length}
+            />
           </div>
 
           <h1 className="font-bold px-2 md:px-0 py-5">
@@ -740,15 +766,16 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
             <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
               <Link href={"/services"}>
-              <figure className="flex flex-col items-center">
-                <img  
-                  src="/supervisor/monitor-staff-progres.svg"
-                  className="mb-5"
-                  alt="monitor STAFF PROGRESS"></img>
-                <figcaption className="font-bold text-xs text-center">
-                  MANAGE SERVICES
-                </figcaption>
-              </figure>
+                <figure className="flex flex-col items-center">
+                  <img
+                    src="/supervisor/monitor-staff-progres.svg"
+                    className="mb-5"
+                    alt="monitor STAFF PROGRESS"
+                  ></img>
+                  <figcaption className="font-bold text-xs text-center">
+                    MANAGE SERVICES
+                  </figcaption>
+                </figure>
               </Link>
             </div>
             <div className="p-3 rounded-md bg-white shadow-md">
