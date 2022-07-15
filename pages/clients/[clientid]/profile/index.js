@@ -35,7 +35,7 @@ const getDate=(date)=>{
 
 export default function ClientProfilePage({ data }) {
 
-
+console.log(data[0])
 
  /*  const clientJoinedDate = getDate(new Date())
   const cleanDate = setLocaleDateString(data[0].clientdatecreated) */
@@ -119,17 +119,29 @@ export default function ClientProfilePage({ data }) {
   let fechaInicio = new Date(`2022-03-${Math.floor(Math.random() * (30 - 1 + 1) + 1)}`);
   
   const checkMessage3=()=>{
+
+    const planstartdate = data[0].planstartdate
+
+    let date_1 = planstartdate===null ? new Date(data[0].clientdatecreated) : new Date(planstartdate);
+    let date_2 = new Date();
+    let difference = date_2.getTime() - date_1.getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    //return TotalDays;
+  
+   
     let color = 'bg-red-400'
-    let fechaFin = new Date().getTime();
-    let diff = fechaFin - data[0].planstartdate===null ? new Date() : new Date(data[0].planstartdate).getTime();
-    let totalDays = Math.ceil(diff / (1000 * 3600 * 24));
+    let fechaFin = new Date();
+   // let diff = fechaFin - new Date(data[0].planstartdate)===null ? new Date() : new Date(data[0].planstartdate).getTime();
+   //let diff = planstartdate===null? fechaFin - new Date(data[0].clientdatecreated) :new Date(planstartdate)
+   //console.log("diff",diff)
+   let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
     if (totalDays <= 14 ) color='bg-green-300'
     if (totalDays > 14 && totalDays < 30) color = 'bg-orange-300'
     return (
       <div className={`flex ${color} h-14 px-5 items-center`}>
             <img src="/client/alert-icon-progress-note.svg" alt="" />
             <p className='px-4 font-semibold'>
-              {totalDays > 0? `You saw this  client ${totalDays} days ago` : `You saw this  client today`} </p>
+              {totalDays > 0? `You saw this client ${totalDays} days ago` : `You saw this client today`} </p>
       </div>
     )
   }
@@ -173,7 +185,7 @@ export default function ClientProfilePage({ data }) {
 
                 <div className='grid grid-rows-2 md:flex md:items-center md:justify-between my-5'>
                 <p  className="font-semibold">Date Of Last Action</p>
-                <p className='justify-self-end font-semibold text-dark-blue'>{data[0].planstartdate===null ? "-":new Date(data[0]?.planstartdate).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
+                <p className='justify-self-end font-semibold text-dark-blue'>{data[0].planstartdate===null ? new Date(data[0].clientdatecreated).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'}) :new Date(data[0]?.planstartdate).toLocaleDateString('en-EN',{year:'numeric',month:'numeric', day:'numeric'})}</p>
                 </div>
                 <hr className='border-blue-500 hidden md:block'></hr>
               

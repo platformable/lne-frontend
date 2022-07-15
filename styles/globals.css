@@ -23,6 +23,9 @@ p {
   font-size: 14px;
 }
 
+.font-xxs {
+  font-size: 0.68rem;
+}
 h1 {
   font-size: 28px;
   margin: 0;
