@@ -19,8 +19,10 @@ import MonitorFundingTableToPrint from "../components/MonitorFundingTableToPrint
 
 const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorMetricsData, setMonitorMetricsData] = useState([]);
-//  console.log("clients",clients)
-  console.log("monitorMetrics",monitorMetrics)
+  const [monitorFundingTableDataSortingByName,setMonitorFundingTableDataSortingByName]=useState(false)
+  const [monitorFundingTableDataSortingByLastname,setMonitorFundingTableDataSortingByLastname]=useState(false)
+  const [monitorFundingTableDataSortingByDate,setMonitorFundingTableDataSortingByDate]=useState(false)
+
   let componentRef = useRef();
 
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
@@ -66,9 +68,13 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     return TotalDays;
   };
 
-  const calculateLastEncounter = (planstartdate, progressnotes,clientdatecreated) => {
-console.log("planstartdate",planstartdate)
-  /*   if (progressnotes === null && planstartdate === null) {
+  const calculateLastEncounter = (
+    planstartdate,
+    progressnotes,
+    clientdatecreated
+  ) => {
+
+    /*   if (progressnotes === null && planstartdate === null) {
       console.log("no progress")
       let date_1 = planstartdate===null ? new Date(clientstartdate) : new Date(planstartdate)
       let date_2 = new Date();
@@ -85,7 +91,7 @@ console.log("planstartdate",planstartdate)
       return TotalDays;
     } */
 
-    if(planstartdate===null){
+    if (planstartdate === null) {
       let date_1 = new Date(clientdatecreated);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
@@ -170,11 +176,11 @@ console.log("planstartdate",planstartdate)
       wrap: true,
       conditionalCellStyles: [
         {
-          when: (row) => row.lastEncounter > 30,
+          when: (row) => row.lastEncounter >= 30,
           style: { backgroundColor: "red", color: "white" },
         },
         {
-          when: (row) => row.lastEncounter > 14 && row.lastEncounter < 30,
+          when: (row) => row.lastEncounter >= 14 && row.lastEncounter < 30,
           style: { backgroundColor: "orange", color: "white" },
         },
         {
@@ -535,7 +541,7 @@ console.log("planstartdate",planstartdate)
       if (progressnotedate >= 23 && progressnotedate <= 30) {
         total4 = total4 + 1;
       }
-      console.log(total1, total2, total3, total4);
+     
       setNumberOfClientsEncounter({
         ...numberOfClientsEncounter,
         group1: total1,
@@ -586,14 +592,7 @@ console.log("planstartdate",planstartdate)
     return numberOfClients;
   };
 
-  useEffect(() => {
-    clientsCount(clients);
-    calculateAverageDays(averageNumbers);
-    calculateNumberOfGoals(averageNumbers);
-    chart1Data(averageNumbers);
-    chart2Data(averageNumbers);
-    updateMonitorMetricData();
-  }, []);
+ 
 
   const paginationComponentOptions = {
     rowsPerPageText: "Rows per page",
@@ -607,7 +606,107 @@ console.log("planstartdate",planstartdate)
     monitorMetricsData,
   };
 
-  console.log("monitorMetrics data",monitorMetrics)
+
+  const getColorOfNumberOfEncounters=(encounters)=>{
+    if(encounters < 15){
+      return 'bg-red-500 text-white'
+    }
+    if(encounters > 15 && encounters > 30){
+      return 'bg-orange-100 text-white'
+    }
+    if(encounters > 30){
+      return 'bg-green-100 text-white'
+    }
+
+  }
+
+  const getColorOfLastEncounter=(lastEncounter)=>{
+    if(lastEncounter >= 30){
+      return 'bg-red-500 text-white'
+    }
+    if(lastEncounter >= 14 && lastEncounter <30){
+      return 'bg-orange-500 text-white'
+    }
+    if(lastEncounter < 14){
+      return 'bg-green-500 text-white'
+    }
+
+  }
+
+  const getColorOfCompletedGoals=(goals)=>{
+    if(goals === 0){
+      return 'bg-red-500 text-white'
+    }
+    if(goals >= 1 && goals <=2){
+      return 'bg-orange-500 text-white'
+    }
+    if(goals ===3 ){
+      return 'bg-green-500 text-white'
+    }
+
+  }
+
+  const handleSortByName=()=>{
+ /*    const result = monitorMetricsData.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(b.startdate) - new Date(a.startdate);
+    }); */
+    setMonitorFundingTableDataSortingByName(!monitorFundingTableDataSortingByName)
+   if(monitorFundingTableDataSortingByName){
+    const result= monitorMetricsData.sort((a, b) => a.firstname.localeCompare(b.firstname))
+    setMonitorMetricsData(prevMovies => ([...result])); 
+   } else {
+    const result= monitorMetricsData.sort((a, b) => b.firstname.localeCompare(a.firstname))
+    setMonitorMetricsData(prevMovies => ([...result]));
+   } 
+  }
+
+  const handleSortByLastname=()=>{
+    /*    const result = monitorMetricsData.sort(function(a,b){
+         // Turn your strings into dates, and then subtract them
+         // to get a value that is either negative, positive, or zero.
+         return new Date(b.startdate) - new Date(a.startdate);
+       }); */
+       setMonitorFundingTableDataSortingByLastname(!monitorFundingTableDataSortingByLastname)
+      if(monitorFundingTableDataSortingByLastname){
+       const result= monitorMetricsData.sort((a, b) => a.lastname.localeCompare(b.lastname))
+       setMonitorMetricsData(prevMovies => ([...result])); 
+      } else {
+       const result= monitorMetricsData.sort((a, b) => b.lastname.localeCompare(a.lastname))
+       setMonitorMetricsData(prevMovies => ([...result]));
+      } 
+     }
+
+     const handleSortByDate=()=>{
+        
+         setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
+        if(monitorFundingTableDataSortingByDate){
+          const result = monitorMetricsData.sort(function(a,b){
+            return new Date(b.startdate) - new Date(a.startdate);
+             
+          });
+          setMonitorMetricsData(prevMovies => ([...result]));
+       
+        } else {
+          const result = monitorMetricsData.sort(function(a,b){
+            return new Date(a.startdate) - new Date(b.startdate);
+             
+          });
+          setMonitorMetricsData(prevMovies => ([...result]));
+        } 
+
+     
+       }
+
+  useEffect(() => {
+    clientsCount(clients);
+    calculateAverageDays(averageNumbers);
+    calculateNumberOfGoals(averageNumbers);
+    chart1Data(averageNumbers);
+    chart2Data(averageNumbers);
+   updateMonitorMetricData();
+  }, []);
   return (
     <Layout>
       <div className="bg-light-blue">
@@ -728,7 +827,7 @@ console.log("planstartdate",planstartdate)
             </div>
           </div>
 
-          <div className="bg-white py-3 flex justify-between px-5 items-center">
+          <div className="bg-white py-3 flex justify-between px-5 items-center mb-1">
             <div className="flex  w-2/4">
               <img src="/funding-goals.svg" className="mr-3" alt="" />
               <h3 className="font-black">Funding Goal Progress</h3>
@@ -743,6 +842,178 @@ console.log("planstartdate",planstartdate)
               content={() => componentRef.current}
             />
           </div>
+
+          <div className="monitor-funding-table bg-white  px-5 ">
+            <div className="monitor-funding-table-column-container grid grid-cols-10">
+              <div className="monitor-funding-table-col flex  items-center  flex gap-x-2">
+                <p className="font-xxs  cursor-pointer">Client Start Date</p>
+                <svg
+                onClick={()=>handleSortByDate()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div className="monitor-funding-table-col flex  items-center px-5 ">
+                <p className="font-xxs ">Client ID</p>
+              </div>
+              <div className="monitor-funding-table-col flex  items-center  px-5">
+                <p className="font-xxs ">Client first name</p>
+                <svg
+                onClick={()=>handleSortByName()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div className="monitor-funding-table-col flex  items-center  px-5">
+                <p className="font-xxs ">Client last name</p>
+                <svg
+                onClick={()=>handleSortByLastname()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div className="monitor-funding-table-col flex   items-center  px-5">
+                <p className="font-xxs ">Health Care Worker assigned</p>
+              </div>
+              <div className="monitor-funding-table-col flex  items-center  px-5">
+                <p className="font-xxs ">Time since joining LNE</p>
+              </div>
+              <div className="monitor-funding-table-col flex  items-center  px-5">
+                <p className="font-xxs ">Number of encounters</p>
+              </div>
+              <div className="monitor-funding-table-col flex  items-center  px-5 ">
+                <p className="font-xxs ">Last encounter</p>
+              </div>
+              <div className="monitor-funding-table-col flex   items-center  px-5">
+                <p className="font-xxs ">Goals completed</p>
+              </div>
+              <div className="monitor-funding-table-col flex  items-center px-5">
+                <p className="font-xxs ">Outdated MSA</p>
+              </div>
+            </div>
+          </div>
+          <div className="monitor-funding-table bg-white mb-5 ">
+            {monitorMetricsData ? monitorMetricsData.map((client,index)=>{
+              return (
+           
+              <div className="monitor-funding-table-row-container grid grid-cols-10 border-t-2 " key={index}>
+              <div className={`monitor-funding-table-row px-5 text-left py-3`}>
+                <p className="font-xxs">{client.startdate}</p>
+                
+              </div>
+              <div className="monitor-funding-table-row px-5 text-left py-3">
+                <p className="font-xxs">{client.clientid}</p>
+                
+              </div>
+              <div className="monitor-funding-table-row px-5 text-left py-3">
+                <p className="font-xxs">{client.firstname}</p>
+                
+              </div>
+              <div className="monitor-funding-table-row px-5 text-left py-3">
+                <p className="font-xxs">{client.lastname}</p>
+                
+              </div>
+              <div className="monitor-funding-table-row px-5 text-left py-3">
+                <p className="font-xxs">{client.clienthcwname}</p>
+                
+              </div>
+              <div className="monitor-funding-table-row px-5 text-left py-3">
+                <p className="font-xxs">{client.joining}</p>
+                
+              </div>
+              <div className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfNumberOfEncounters(client.progressnotes)}`}>
+                <p className="font-xxs">{client.progressnotes}</p>
+                
+              </div>
+              <div className={`monitor-funding-table-row px-5 text-left py-3 ${ getColorOfLastEncounter(client.lastEncounter)}`}>
+                <p className="font-xxs">{client.lastEncounter}</p>
+                
+              </div>
+              <div className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfCompletedGoals(client.goals)}`}>
+                <p className="font-xxs">{client.goals}</p>
+                
+              </div>
+              <div className="monitor-funding-table-row px-5 text-left py-3">
+                <p className="font-xxs">0</p>
+                
+              </div>
+         
+            </div>
+              )
+            }):"No data"}
+            
+            
+          </div>
+
+          <div className="bg-white py-3 flex justify-between px-5 items-center">
+            <div className="flex  w-2/4">
+              <img src="/funding-goals.svg" className="mr-3" alt="" />
+              <h3 className="font-black">Funding Goal Progress</h3>
+            </div>
+            <ReactToPrint
+              trigger={() => (
+                <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white  text-xs">
+             
+                  Print Report
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
+          </div>
           <div className="table py-5 mt-1 bg-white w-full monitor-funding-data-table shadow-xl">
             <div style={{ display: "none" }} className="p-5">
               <MonitorFundingTableToPrint
@@ -750,13 +1021,13 @@ console.log("planstartdate",planstartdate)
                 data={monitorMetricsData}
               />
             </div>
-            <DataTable
+   {/*          <DataTable
               columns={columns}
               data={monitorMetricsData}
               pagination
               paginationComponentOptions={paginationComponentOptions}
               paginationTotalRows={monitorMetricsData.length}
-            />
+            /> */}
           </div>
 
           <h1 className="font-bold px-2 md:px-0 py-5">
