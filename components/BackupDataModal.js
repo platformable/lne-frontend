@@ -3,7 +3,7 @@ import React from "react";
 const BackupDataModal = ({ dataBackup, setDataBackup }) => {
   return (
     <div className="modal flex items-center ">
-      <div className="relative max-w-sm mx-auto bg-middle-green p-10 rounded-md h-4/6">
+      <div className="relative max-w-sm mx-auto bg-yellow p-10 rounded-md h-3/6">
         <button
           className="absolute  top-0 right-0"
           onClick={() => setDataBackup(!dataBackup)}
@@ -16,32 +16,19 @@ const BackupDataModal = ({ dataBackup, setDataBackup }) => {
             width="20"
           />
         </button>
-        <div className="flex flex-col justify-between items-start  h-full">
-          <div className="flex items-center">
-            {/* <Image src={deleteUserIcon}/> */}
-            <p className="font-bold text-xl ml-2">
-              Would you like to Backup Data?
-            </p>
-          </div>
+        <div className="flex flex-col justify-center items-center  h-full">
+          <h3 className="font-bold text-xl ml-2 mb-5">Backup saved to dropbox!</h3>
 
-          <p className="self-center text-center text-lg font-semibold ">
-            Are you sure you want <br />
-            to Backup Data?
+          <button
+            className="flex items-center justify-around text-black font-semibold shadow-md btn-darkGreen hover:text-white hover:bg-green-500 cursor-pointer rounded-md p-1 px-6 mx-1 my-5"
+            // onClick={()=> handleAuthUserDelete()}
+          >
+            <img src="./supervisor/key-metrics.svg" alt="download backup" className="mr-2"></img>
+            Download
+          </button>
+          <p className="self-center text-center text-md font-semibold ">
+            To save a copy in your computer
           </p>
-          <div className="w-full flex justify-between self-center">
-            <button
-              className="text-black font-semibold shadow-md bg-[#23D3AA] hover:text-white hover:bg-green-500 cursor-pointer rounded-md p-1 px-10 mx-1 my-5"
-              // onClick={()=> handleAuthUserDelete()}
-            >
-              Yes
-            </button>
-            <button
-              className="text-white font-semibold shadow-md bg-black hover:text-white hover:bg-blue-900 cursor-pointer rounded-md p-1 px-10 mx-1 my-5"
-              onClick={() => setDataBackup(!dataBackup)}
-            >
-              No
-            </button>
-          </div>
         </div>
       </div>
     </div>
