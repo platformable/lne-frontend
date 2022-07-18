@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import BackupDataModal from "../components/BackupDataModal";
+import backIcon from "../public/BACKicon.svg";
+import Image from "next/image";
 import Layout from "../components/Layout";
-
+import Link from "next/link";
 export default function Software() {
   const [dataBackup, setDataBackup] = useState(false);
 
@@ -9,6 +11,21 @@ export default function Software() {
     <>
       <Layout>
         <section className="bg-light-blue md:h-screen">
+          <div className="container mx-auto">
+        <div className="grid grid-cols-2 py-5">
+            <h1 className="font-bold px-2">Manage Sowftware</h1>
+
+            <Link href="/dashboard">
+              <a
+                className="px-5 py-2 flex  items-center font-bold justify-self-end"
+                id="myBtn"
+              >
+                <Image src={backIcon} alt="back arrow to homepage" />
+                <p className="ml-2">back to homepage</p>
+              </a>
+            </Link>
+          </div>
+          </div>
           <section id="dashboard-client-list">
             <div className="container mx-auto py-5">
               <section className=" border-2 border-white shadow ">
@@ -32,7 +49,7 @@ export default function Software() {
                     </div>
                   </div>
                 </div>
-                <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
+                <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1 bg-white">
                   <div className="supervisor-dashboard-top-bottom-box bg-white grid items-center">
                     <div className="px-4 flex py-5">
                       <img src="./supervisor/software/icon-backup-folder.svg"></img>
@@ -104,7 +121,7 @@ export default function Software() {
                 <div className="p-3 rounded-md bg-white shadow-md">
                   <figure className="flex flex-col items-center">
                     <img
-                      src="/supervisor/software/upload-software/icon-backup-folder.svg"
+                      src="/supervisor/software/icon-backup-folder.svg"
                       className="mb-5"
                       alt="upload incident response checklist"
                     ></img>
