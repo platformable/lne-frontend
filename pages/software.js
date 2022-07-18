@@ -5,9 +5,7 @@ import Layout from "../components/Layout";
 export default function Software() {
   const [dataBackup, setDataBackup] = useState(false);
 
-  const showDataBackupModal = () => {
-    setDataBackup(!dataBackup);
-  };
+
   return (
     <>
       <Layout>
@@ -37,9 +35,9 @@ export default function Software() {
                 </div>
                 <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
                   <div className="supervisor-dashboard-top-bottom-box bg-white grid items-center">
-                    <div className="p-3">
-                      <img src=""></img>
-                      <p className="font-semibold text-lg">
+                    <div className="px-4 flex py-5">
+                      <img src="./supervisor/key-metrics.svg"></img>
+                      <p className="font-semibold text-lg underline ml-3">
                         Days since last backup
                       </p>
                     </div>
@@ -48,9 +46,9 @@ export default function Software() {
                     </h1>
                   </div>
                   <div className="supervisor-dashboard-top-bottom-box bg-white ">
-                    <div className="p-3">
-                      <img src=""></img>
-                      <p className="font-semibold text-lg">
+                    <div className="px-4 flex py-5">
+                      <img src="./supervisor/key-metrics.svg"></img>
+                      <p className="font-semibold text-lg underline ml-3">
                         Security incidents or data breaches
                       </p>
                     </div>
@@ -67,13 +65,13 @@ export default function Software() {
               <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
                 <div
                   className="p-3 rounded-md bg-white shadow-md cursor-pointer"
-                  onClick={showDataBackupModal}
+                  onClick={() => setDataBackup(!dataBackup)}
                 >
                   <figure className="flex flex-col items-center">
                     <img
                       src="/supervisor/monitor-staff-progres.svg"
                       className="mb-5"
-                      alt="monitor STAFF PROGRESS"
+                      alt="data backup"
                     ></img>
                     <figcaption className="font-bold text-xs text-center">
                       BACKUP DATA
@@ -85,7 +83,7 @@ export default function Software() {
                     <img
                       src="/supervisor/monitor-staff-progres.svg"
                       className="mb-5"
-                      alt="monitor STAFF PROGRESS"
+                      alt="review data security plan"
                     ></img>
                     <figcaption className="font-bold text-xs text-center">
                       REVIEW DATA SECURITY PLAN
@@ -97,7 +95,7 @@ export default function Software() {
                     <img
                       src="/supervisor/monitor-impacts-icon.svg"
                       className="mb-1"
-                      alt="monitor IMPACTS"
+                      alt="complete incident response checklist"
                     ></img>
                     <figcaption className="font-bold text-xs text-center">
                       COMPLETE INCIDENT RESPONSE CHECKLIST
@@ -109,7 +107,7 @@ export default function Software() {
                     <img
                       src="/supervisor/monitor-quality-icon.svg"
                       className="mb-5"
-                      alt="monitor QUALITY"
+                      alt="upload incident response checklist"
                     ></img>
                     <figcaption className="font-bold text-xs text-center">
                       UPLOAD INCIDENT RESPONSE CHECKLIST
