@@ -26,6 +26,10 @@ p {
 .font-xxs {
   font-size: 0.68rem;
 }
+
+.text-xxs {
+  font-size: 0.58rem;
+}
 h1 {
   font-size: 28px;
   margin: 0;
