@@ -280,7 +280,7 @@ if(userid!=="All"){
                 )}
 
                 {loggedUserRole === "Supervisor" && (
-                  <Link href="#">
+                  <Link href="/software">
                     <div className="text-center mr-5">
                       <div className="rounded btn-yellow p-5 text-center shadow-xl   mb-2 rounded-xl">
                         <button id="myBtn">
