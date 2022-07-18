@@ -5,7 +5,6 @@ import Layout from "../components/Layout";
 export default function Software() {
   const [dataBackup, setDataBackup] = useState(false);
 
-
   return (
     <>
       <Layout>
@@ -36,7 +35,7 @@ export default function Software() {
                 <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
                   <div className="supervisor-dashboard-top-bottom-box bg-white grid items-center">
                     <div className="px-4 flex py-5">
-                      <img src="./supervisor/key-metrics.svg"></img>
+                      <img src="./supervisor/software/icon-backup-folder.svg"></img>
                       <p className="font-semibold text-lg underline ml-3">
                         Days since last backup
                       </p>
@@ -47,7 +46,7 @@ export default function Software() {
                   </div>
                   <div className="supervisor-dashboard-top-bottom-box bg-white ">
                     <div className="px-4 flex py-5">
-                      <img src="./supervisor/key-metrics.svg"></img>
+                      <img src="./supervisor/software/icon-security-incidents-folder.svg"></img>
                       <p className="font-semibold text-lg underline ml-3">
                         Security incidents or data breaches
                       </p>
@@ -69,7 +68,7 @@ export default function Software() {
                 >
                   <figure className="flex flex-col items-center">
                     <img
-                      src="/supervisor/monitor-staff-progres.svg"
+                      src="/supervisor/software/backup-data-icon.svg"
                       className="mb-5"
                       alt="data backup"
                     ></img>
@@ -81,7 +80,7 @@ export default function Software() {
                 <div className="p-3 rounded-md bg-white shadow-md">
                   <figure className="flex flex-col items-center">
                     <img
-                      src="/supervisor/monitor-staff-progres.svg"
+                      src="/supervisor/software/review-data-security-plan-icon.svg"
                       className="mb-5"
                       alt="review data security plan"
                     ></img>
@@ -93,7 +92,7 @@ export default function Software() {
                 <div className="p-3 rounded-md bg-white shadow-md">
                   <figure className="flex flex-col items-center">
                     <img
-                      src="/supervisor/monitor-impacts-icon.svg"
+                      src="/supervisor/software/complete-incident-icon.svg"
                       className="mb-1"
                       alt="complete incident response checklist"
                     ></img>
@@ -105,7 +104,7 @@ export default function Software() {
                 <div className="p-3 rounded-md bg-white shadow-md">
                   <figure className="flex flex-col items-center">
                     <img
-                      src="/supervisor/monitor-quality-icon.svg"
+                      src="/supervisor/software/upload-software/icon-backup-folder.svg"
                       className="mb-5"
                       alt="upload incident response checklist"
                     ></img>
