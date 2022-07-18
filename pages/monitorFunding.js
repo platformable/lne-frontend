@@ -16,12 +16,19 @@ import Export from "react-data-table-component";
 import ReactToPrint from "react-to-print";
 import ComponentToPrint from "../components/ComponentToPrint";
 import MonitorFundingTableToPrint from "../components/MonitorFundingTableToPrint";
+import Pagination from "../components/Pagination";
 
 const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorMetricsData, setMonitorMetricsData] = useState([]);
   const [monitorFundingTableDataSortingByName,setMonitorFundingTableDataSortingByName]=useState(false)
   const [monitorFundingTableDataSortingByLastname,setMonitorFundingTableDataSortingByLastname]=useState(false)
   const [monitorFundingTableDataSortingByDate,setMonitorFundingTableDataSortingByDate]=useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(4)
+
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexofFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = monitorMetricsData.slice(indexofFirstPost, indexOfLastPost)
 
   let componentRef = useRef();
 
@@ -699,6 +706,27 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
      
        }
 
+
+       const handleTableSearch=(value)=>{
+        console.log("value",value)
+        if(value===""){
+          updateMonitorMetricData()
+        } else {
+          const result = monitorMetricsData.filter(
+            (client, index) =>
+            client.lastname.toLowerCase().includes(value.toLowerCase()) || client.firstname.toLowerCase().includes(value.toLowerCase())
+        );
+        setMonitorMetricsData(prevMovies => ([...result]));
+        }
+        
+       }
+
+       //PAGINATION
+
+       const paginate = pageNumber => {
+        setCurrentPage(pageNumber)
+      }
+
   useEffect(() => {
     clientsCount(clients);
     calculateAverageDays(averageNumbers);
@@ -842,6 +870,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
               content={() => componentRef.current}
             />
           </div>
+{/* <input type="text" onChange={(e)=>handleTableSearch(e.target.value)} placeholder="search..." /> */}
 
           <div className="monitor-funding-table bg-white  px-5 ">
             <div className="monitor-funding-table-column-container grid grid-cols-10">
@@ -947,7 +976,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
             </div>
           </div>
           <div className="monitor-funding-table bg-white mb-5 ">
-            {monitorMetricsData ? monitorMetricsData.map((client,index)=>{
+            {monitorMetricsData ? currentPosts.map((client,index)=>{
               return (
            
               <div className="monitor-funding-table-row-container grid grid-cols-10 border-t-2 " key={index}>
@@ -996,10 +1025,11 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
               )
             }):"No data"}
             
-            
+           
           </div>
+          <div className="flex gap-x-5"><p>Pagination:</p><Pagination postsPerPage={postsPerPage} TotalPosts={monitorMetricsData.length} paginate={paginate}/></div>
 
-          <div className="bg-white py-3 flex justify-between px-5 items-center">
+       {/*    <div className="bg-white py-3 flex justify-between px-5 items-center">
             <div className="flex  w-2/4">
               <img src="/funding-goals.svg" className="mr-3" alt="" />
               <h3 className="font-black">Funding Goal Progress</h3>
@@ -1013,22 +1043,14 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
               )}
               content={() => componentRef.current}
             />
-          </div>
-          <div className="table py-5 mt-1 bg-white w-full monitor-funding-data-table shadow-xl">
-            <div style={{ display: "none" }} className="p-5">
+          </div> */}
+       <div style={{ display: "none" }} className="p-5">
               <MonitorFundingTableToPrint
                 ref={componentRef}
                 data={monitorMetricsData}
               />
-            </div>
-   {/*          <DataTable
-              columns={columns}
-              data={monitorMetricsData}
-              pagination
-              paginationComponentOptions={paginationComponentOptions}
-              paginationTotalRows={monitorMetricsData.length}
-            /> */}
-          </div>
+            </div> 
+
 
           <h1 className="font-bold px-2 md:px-0 py-5">
             What do you want <span className="bg-yellow px-2">to do</span>{" "}
