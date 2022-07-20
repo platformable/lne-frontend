@@ -4,27 +4,43 @@ import backIcon from "../public/BACKicon.svg";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import Link from "next/link";
+
 export default function Software() {
   const [dataBackup, setDataBackup] = useState(false);
+  const [messageBackup, setMessageBackup] = useState("");
+
+  const doBackUpData = async () => {
+    try {
+      const response = await fetch("https://google.com");
+      const data = await response.json();
+      if (data) {
+        setMessageBackup("Backup saved to Dropbox");
+      }
+    } catch (error) {
+      setMessageBackup("Error: Can't perform backup");
+    } finally {
+      setDataBackup(!dataBackup);
+    }
+  };
 
   return (
     <>
       <Layout>
         <section className="bg-light-blue md:h-screen">
           <div className="container mx-auto">
-        <div className="grid grid-cols-2 py-5">
-            <h1 className="font-bold px-2">Manage Sowftware</h1>
+            <div className="grid grid-cols-2 py-5">
+              <h1 className="font-bold px-2">Manage Software</h1>
 
-            <Link href="/dashboard">
-              <a
-                className="px-5 py-2 flex  items-center font-bold justify-self-end"
-                id="myBtn"
-              >
-                <Image src={backIcon} alt="back arrow to homepage" />
-                <p className="ml-2">back to homepage</p>
-              </a>
-            </Link>
-          </div>
+              <Link href="/dashboard">
+                <a
+                  className="px-5 py-2 flex  items-center font-bold justify-self-end"
+                  id="myBtn"
+                >
+                  <Image src={backIcon} alt="back arrow to homepage" />
+                  <p className="ml-2">back to homepage</p>
+                </a>
+              </Link>
+            </div>
           </div>
           <section id="dashboard-client-list">
             <div className="container mx-auto py-5">
@@ -81,7 +97,7 @@ export default function Software() {
               <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
                 <div
                   className="p-3 rounded-md bg-white shadow-md cursor-pointer"
-                  onClick={() => setDataBackup(!dataBackup)}
+                  onClick={doBackUpData}
                 >
                   <figure className="flex flex-col items-center">
                     <img
@@ -110,7 +126,7 @@ export default function Software() {
                   <figure className="flex flex-col items-center">
                     <img
                       src="/supervisor/software/complete-incident-icon.svg"
-                      className="mb-1"
+                      className="mb-3"
                       alt="complete incident response checklist"
                     ></img>
                     <figcaption className="font-bold text-xs text-center">
@@ -122,7 +138,7 @@ export default function Software() {
                   <figure className="flex flex-col items-center">
                     <img
                       src="/supervisor/software/icon-backup-folder.svg"
-                      className="mb-5"
+                      className="mb-3"
                       alt="upload incident response checklist"
                     ></img>
                     <figcaption className="font-bold text-xs text-center">
@@ -139,6 +155,7 @@ export default function Software() {
         <BackupDataModal
           dataBackup={dataBackup}
           setDataBackup={setDataBackup}
+          messageBackup={messageBackup}
         />
       )}
     </>
