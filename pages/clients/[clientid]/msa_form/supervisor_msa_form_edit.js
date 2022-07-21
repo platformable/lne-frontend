@@ -1088,7 +1088,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
                   <h3 className="font-black mb-5">Date</h3>
                   <label className="block">
-                    <span className="text-xs md:text-sm">Todays date</span>
+                    <span className="text-xs">Todays date</span>
                     <p>{todaysDate.toLocaleDateString()}</p>
                   </label>
                 </div>
@@ -1100,19 +1100,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
-                      <span className="text-xs md:text-sm">First Name</span>
+                      <span className="text-xs">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
+                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
                         value={data[0].clientfirstname}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs md:text-sm">Last Name</span>
+                      <span className="text-xs">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
+                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
                         onChange={(e) =>
                           setUserData({ ...clientData, email: e.target.value })
                         }
@@ -1121,10 +1121,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs md:text-sm">Client ID</span>
+                      <span className="text-xs">Client ID</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
+                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
                         value={data[0].clientid}
                         disabled
                       />
@@ -1139,19 +1139,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <label className="block">
-                      <span className="text-xs md:text-sm">First Name</span>
+                      <span className="text-xs">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
                         value={clientData.userFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs md:text-sm">Last Name</span>
+                      <span className="text-xs">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
                         value={clientData.userLastName}
                         disabled
                       />
