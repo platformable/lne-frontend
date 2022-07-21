@@ -8,8 +8,11 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import RowMsaFormSupervisor from "../../../../components/RowMsaFormSupervisor";
 import "react-toastify/dist/ReactToastify.css";
-import { Image } from "next/image";
+import Image from "next/image";
+
 import backIcon from "../../../../public/BACKicon.svg";
+import checkUpdateicon from "../../../../public/check-save-and-finish.svg"
+
 const EditSupervisorMSAFormPage = ({ data }) => {
   console.log("data", data);
 
@@ -1063,58 +1066,17 @@ const EditSupervisorMSAFormPage = ({ data }) => {
             Supervisor Edit MSA FORM
           </h3>
         </div>
-        {/*  <div className="container bg-blue-50 rounded-xl p-5 mx-auto">
-          <div className="flex flex-col items-center max-w-fit">
-            <svg
-              width="24"
-              height="24"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="black"
-              xmlns="http://www.w3.org/2000/svg"
-              className="font-black"
-            >
-              <path
-                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-              <path
-                d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-              <path
-                d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-            </svg>
-            <p className="text-dark-blue">{clientData.clientId}</p>
-            <button className="flex items-center bg-blue-500 hover:bg-blue-300 px-3 py-1 rounded text-white inline-block text-xs"
-           onClick={() => router.push("/dashboard")}>
-              <svg className="mr-1" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>Dashboard
-            </button>
-          </div>
-        </div> */}
+
         <main className="container mx-auto">
+          <div className="flex items-center justify-end">
           <button
             onClick={() => router.back()}
-            className="px-5 py-1  mr-5 flex items-center font-bold"
+            className="py-1 flex items-center font-bold"
           >
             <Image src={backIcon} />
-            back to Dashboard
-          </button>
+            <p className="ml-1">back to Dashboard</p>
+            </button>
+          </div>
           <section id="info" className="my-5">
             <div className="">
               <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
@@ -1126,7 +1088,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
                   <h3 className="font-black mb-5">Date</h3>
                   <label className="block">
-                    <span className="text-xs">Todays date</span>
+                    <span className="text-xs md:text-sm">Todays date</span>
                     <p>{todaysDate.toLocaleDateString()}</p>
                   </label>
                 </div>
@@ -1138,19 +1100,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className="text-xs md:text-sm">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
                         value={data[0].clientfirstname}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span className="text-xs md:text-sm">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
                         onChange={(e) =>
                           setUserData({ ...clientData, email: e.target.value })
                         }
@@ -1159,10 +1121,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Client ID</span>
+                      <span className="text-xs md:text-sm">Client ID</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
                         value={data[0].clientid}
                         disabled
                       />
@@ -1177,19 +1139,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className="text-xs md:text-sm">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
                         value={clientData.userFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span className="text-xs md:text-sm">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs md:text-sm"
                         value={clientData.userLastName}
                         disabled
                       />
@@ -10669,10 +10631,11 @@ const EditSupervisorMSAFormPage = ({ data }) => {
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button
-                className="btn-darkBlue hover:btn-blue px-5 py-1 rounded text-white inline-block mr-5"
+                className="btn-darkBlue hover:btn-blue px-5 py-1 rounded text-white flex items-center justify-between mr-5"
                 onClick={() => handleMsaform()}
               >
-                Save and Update
+                <Image src={checkUpdateicon} />
+                <p className="ml-2">Save and Update</p>
               </button>
             </div>
           </section>
