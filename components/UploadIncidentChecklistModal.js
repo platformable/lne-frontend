@@ -6,28 +6,33 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState("");
     const [loading, setLoading] = useState(false);
-    const [uploadSuccess, setUploadSuccess] = useState(false)
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+    const [error, setError] = useState("")
     
     const onSubmitFile = async(e) => {
         e.preventDefault()
+    
         setLoading(true)
 
         const form = new FormData();
         form.append('file', file);  
-        const dateNow = JSON.stringify(new Date())
+        const dateNow = JSON.stringify(new Date());
+       
         const headerDataForUpload = {
             "autorename": false,
             "mode": "add",
             "mute": false,
             "path": `/uploads/incident_response_checklist_${dateNow}`,
             "strict_conflict": false
-        }
+        };
+        
         try {
-            
+            const tokenResponse = await fetch (`${process.env.NEXT_PUBLIC_SERVER_URL}/access_token`)
+            const token = await tokenResponse.json()
             const response = await fetch("https://content.dropboxapi.com/2/files/upload", {
                 method: "POST",
                 headers: {
-                    "Authorization": `Bearer sl.BL1rkIEXAV9m6BKHtoIqjNHMwKzzuEU7z4PzK7c5MS3lXVTE2ptTj2_-7LYFwIRgSe05mplKKS2vAoLOlEfcN8Zp-Jl-OuEBJDhpuBad0Z6b7pYFAlhsMfG8apVIEktgEWqXUrwZW9s5`,
+                    "Authorization": `Bearer ${token.access_token}`,
                     "Content-Type":"application/octet-stream",
                     'Dropbox-API-Arg': JSON.stringify(headerDataForUpload),
               },
@@ -43,8 +48,10 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                 setUploadSuccess(!uploadSuccess)
             }
         } catch(error) {
+            setLoading(false)
+            setError(error.message)
             console.log(error)
-        }
+        };
         
     };
     const onHandleFile = (event) => {
@@ -79,10 +86,9 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                     <label className="cursor-pointer font-bold flex flex-col w-full items-center justify-around" >
                     <input
                     type="file"
-                    name="file-6"
+                    name="file"
                     onChange={(event) => onHandleFile(event)}
-                    id="file-6"
-                    className="inputfile inputfile-6 cursor-pointer absolute overflow-hidden opacity-0 w-20 h-1/6"
+                    className="cursor-pointer absolute overflow-hidden opacity-0 w-20 h-1/6"
                     accept=".txt"
                     />
                     <figure className="w-3/5 cursor-pointer mb-2">
@@ -90,9 +96,13 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                          alt="upload file to dropbox" className="align-middle w-full cursor-pointer"/>
                          
                     </figure>
-                    {!uploadSuccess ? 
-                    <span className="text-sm font-bold">{fileName || "Seleccionar archivo"}</span> : 
-                    <span className="text-md font-bold text-">File was uploaded!</span>
+                    {error ? 
+                    <span className="text-md font-bold text-center">{error}</span> :
+
+                    !uploadSuccess ? 
+                    <span className="text-sm font-bold text-center w-36 overflow-hidden">{fileName || "Seleccionar archivo"}</span> : 
+                    <span className="text-md font-bold text-center">File was uploaded!</span>
+
                     } 
                     </label>
 
