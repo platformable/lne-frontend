@@ -4,25 +4,12 @@ import backIcon from "../public/BACKicon.svg";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import Link from "next/link";
+import UploadIncidentChecklistModal from "../components/UploadIncidentChecklistModal";
 
 export default function Software() {
   const [dataBackup, setDataBackup] = useState(false);
-  const [messageBackup, setMessageBackup] = useState("");
-
-  const doBackUpData = async () => {
-    try {
-      const response = await fetch("https://google.com");
-      const data = await response.json();
-      if (data) {
-        setMessageBackup("Backup saved to Dropbox");
-      }
-    } catch (error) {
-      setMessageBackup("Error: Can't perform backup");
-    } finally {
-      setDataBackup(!dataBackup);
-    }
-  };
-
+  const  [uploadIncidentModal, setUploadIncidentModal] = useState(false);
+  
   return (
     <>
       <Layout>
@@ -97,7 +84,7 @@ export default function Software() {
               <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
                 <div
                   className="p-3 rounded-md bg-white shadow-md cursor-pointer"
-                  onClick={doBackUpData}
+                  onClick={() => setDataBackup(!dataBackup)}
                 >
                   <figure className="flex flex-col items-center">
                     <img
@@ -110,7 +97,9 @@ export default function Software() {
                     </figcaption>
                   </figure>
                 </div>
-                <div className="p-3 rounded-md bg-white shadow-md">
+                <Link href="https://www.dropbox.com/sh/mezbgitgnspr8zo/AACi3MciNLcTaCRNj0pLzhT5a?dl=0"passHref >
+                  <a target="_blank">
+                  <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
                   <figure className="flex flex-col items-center">
                     <img
                       src="/supervisor/software/review-data-security-plan-icon.svg"
@@ -122,7 +111,12 @@ export default function Software() {
                     </figcaption>
                   </figure>
                 </div>
-                <div className="p-3 rounded-md bg-white shadow-md">
+                  </a>
+                
+                </Link>
+                <Link href="https://www.dropbox.com/sh/2wi3kpyifi4zo9f/AAAw0h4tG8J1wXTgPPOZ8Qpza?dl=0" passHref>
+                <a target="_blank">
+                <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
                   <figure className="flex flex-col items-center">
                     <img
                       src="/supervisor/software/complete-incident-icon.svg"
@@ -134,7 +128,10 @@ export default function Software() {
                     </figcaption>
                   </figure>
                 </div>
-                <div className="p-3 rounded-md bg-white shadow-md">
+                </a>
+                </Link>
+                
+                <div className="p-3 rounded-md bg-white shadow-md cursor-pointer" onClick={() => setUploadIncidentModal(!uploadIncidentModal)}>
                   <figure className="flex flex-col items-center">
                     <img
                       src="/supervisor/software/icon-backup-folder.svg"
@@ -146,6 +143,7 @@ export default function Software() {
                     </figcaption>
                   </figure>
                 </div>
+               
               </div>
             </div>
           </section>
@@ -155,9 +153,9 @@ export default function Software() {
         <BackupDataModal
           dataBackup={dataBackup}
           setDataBackup={setDataBackup}
-          messageBackup={messageBackup}
         />
       )}
+      {uploadIncidentModal && (<UploadIncidentChecklistModal setUploadIncidentModal={setUploadIncidentModal}/>)}
     </>
   );
 }
