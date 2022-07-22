@@ -15,14 +15,19 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
         setLoading(true)
 
         const form = new FormData();
-        form.append('file', file);  
+        const blob = new Blob([file], {
+            type: "text/plain"
+        })
+        form.append('file', blob);  
+        const fileFormat= fileName.split(".")[1];
+
         const dateNow = JSON.stringify(new Date());
        
         const headerDataForUpload = {
             "autorename": false,
             "mode": "add",
             "mute": false,
-            "path": `/uploads/incident_response_checklist_${dateNow}`,
+            "path": `/uploads/incident_response_checklist_${dateNow}.${fileFormat}`,
             "strict_conflict": false
         };
         
@@ -36,7 +41,7 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                     "Content-Type":"application/octet-stream",
                     'Dropbox-API-Arg': JSON.stringify(headerDataForUpload),
               },
-              data: form
+              body: blob
 
             })
             setLoading(false)
@@ -50,7 +55,7 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
         } catch(error) {
             setLoading(false)
             setError(error.message)
-            console.log(error)
+            console.error(error)
         };
         
     };
@@ -89,7 +94,7 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                     name="file"
                     onChange={(event) => onHandleFile(event)}
                     className="cursor-pointer absolute overflow-hidden opacity-0 w-20 h-1/6"
-                    accept=".txt"
+                    accept=".txt,.pdf,.csv,.xlsx"
                     />
                     <figure className="w-3/5 cursor-pointer mb-2">
                         <img src="supervisor/software/backup-data-icon.svg"
@@ -100,8 +105,8 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                     <span className="text-md font-bold text-center">{error}</span> :
 
                     !uploadSuccess ? 
-                    <span className="text-sm font-bold text-center w-36 overflow-hidden">{fileName || "Seleccionar archivo"}</span> : 
-                    <span className="text-md font-bold text-center">File was uploaded!</span>
+                    <span className="text-sm font-bold text-center w-36 overflow-hidden">{fileName || "Select File"}</span> : 
+                    <span className="text-md font-bold text-center">File uploaded</span>
 
                     } 
                     </label>
@@ -111,7 +116,7 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                     ): 
                     <>
                     <Loader />
-                    <p className="text-sm mt-4">Loading..</p>
+                    <p className="text-sm mt-4">Loading...</p>
                     </>}
                 </form>
             </div>
