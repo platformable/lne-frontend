@@ -23,6 +23,7 @@ export default function IndexServoceActionPlan({ data }) {
 
   const [errorCompleteAllFieldsMessage,setErrorCompleteAllFieldsMessage]=useState('')
   const [loading, setLoading] = useState(false)
+  const [serviceActionPlanId,setServiceActionPlanId]=useState("")
 
 
   const [clientData, setClientData] = useState({
@@ -158,9 +159,11 @@ const services = [
         clientData
       })
       .then(function (response) {
-        console.log("response",response)
+        //console.log("response",response)
+        console.log(response.data)
         if(response.status===200 || response.statusText==='Ok'){
           setErrorCompleteAllFieldsMessage('')
+          setServiceActionPlanId(response.data.service_action_plan_id)
           setShowImpactBaselineModal(!showImpactBaselineModal)
           notifyMessage()
          /*   setTimeout(()=>{
@@ -601,10 +604,11 @@ const services = [
 
       </Layout>
       {
-      showImpactBaselineModal && (
+      showImpactBaselineModal && serviceActionPlanId && (
       <ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
        setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}
-       clientId={clientData.clientId}/>)
+       clientId={clientData.clientId}
+       serviceActionPlanId={serviceActionPlanId}/>)
       }
     </>
   );

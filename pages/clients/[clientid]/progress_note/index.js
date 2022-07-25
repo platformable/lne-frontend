@@ -13,11 +13,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ProgressNotesIndex = ({ data }) => {
 
-    console.log("data",data)
+
    const router = useRouter()
 
    const [showImpactTrackerModal,setShowImpactTrackerModal]=useState(false)
-
+  const [progressNoteId,setProgressNoteId]=useState("")
 
   const notifyMessage = () => {
     toast.success("Progress Note Saved!", {
@@ -147,7 +147,6 @@ const handleMsaformUpdate = ()=> {
       .then(function (response) {
         if(response.status===200 || response.statusText==='Ok'){
           console.log(response)
-          console.log("msa form updated successfully")
         } 
       })
       .catch(function (error) {
@@ -163,6 +162,7 @@ const handleServiceActionPlanFormUpdate = ()=> {
     .then(function (response) {
       if(response.status===200 || response.statusText==='Ok'){
         console.log(response)
+        setProgressNoteId(response.data.progress_note_id)
         console.log("msa form updated successfully")
       } 
     })
@@ -178,6 +178,7 @@ const handleProgressNote=()=>{
       })
       .then(function (response) {
         if(response.status===200 || response.statusText==='Ok'){
+          console.log("pn response:",response)
           handleMsaformUpdate()
           handleServiceActionPlanFormUpdate()
           notifyMessage()
@@ -1534,10 +1535,11 @@ console.log("clientData",clientData)
           </section>
         </main>
       </Layout>
-      {showImpactTrackerModal && (
+      {showImpactTrackerModal && progressNoteId &&(
       <ImpactTrackerModal showImpactTrackerModal={showImpactTrackerModal} 
        setShowImpactTrackerModal={setShowImpactTrackerModal} notifyMessage={notifyMessage}
        clientId={clientData.clientId}
+       progress_note_id={progressNoteId}
        />)
       }
     </>

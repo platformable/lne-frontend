@@ -30,10 +30,11 @@ export default function CreateClientModal({ setShowCreateClientModal, showCreate
     clientHCWLastname:  loggeduserId !== "Supervisor" ? loggedUserLastname : "",
     clientID:"",
     clientHCWemail:loggeduserId !== "Supervisor" ? user.email : "",
+    clientCategory:""
   })
 
   
-console.log(user)
+
   const createClientId=()=>{
     const firstNameLetter = clientData?.clientFirstName?.slice(0,1)
     let shortSsn=String(clientData?.clientSSN)?.slice(-4)
@@ -106,13 +107,13 @@ else if(
 }
  
   }
-console.log("clientData",clientData)
+
 
 const assignUser = async (clientHCWID)=>{
   console.log("ejecutandose assign",clientHCWID)
 const filteredusers= await users.filter((user,index)=>user.user_id===clientHCWID)
 
-console.log("filteredusers",filteredusers)
+
 setClientData({...clientData,clientHCWemail:filteredusers[0].useremail,
 clientHCWID:filteredusers[0]?.user_id,
 clientHCWName:filteredusers[0]?.name,
@@ -232,6 +233,21 @@ clientHCWLastname:filteredusers[0]?.lastname
               >
                 <option>Active</option>
                 <option>No Active</option>
+              </select>
+            </label>
+
+            <label className="block">
+              <span className="text-white">Client category</span>
+              <select
+                onChange={(e) =>
+                  setClientData({ ...clientData, clientCategory:e.target.value })
+                }
+                className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              
+              >
+                <option value="" disabled selected>Select a category</option>
+                <option value="MSA client">MSA client</option>
+                <option value="Hight risk client">Hight risk client</option>
               </select>
             </label>
 

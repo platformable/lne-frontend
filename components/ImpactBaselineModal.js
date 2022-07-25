@@ -15,7 +15,7 @@ export function getDate () {
     return result
 }
 
-const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModal, clientId}) => {
+const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModal, clientId,serviceActionPlanId}) => {
     const router = useRouter()    
 
     const date = getDate()
@@ -118,7 +118,6 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                             <path d="M12 17.01L12.01 16.9989" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
-
                             <p className='w-4/5 text-blue-500 font-semibold'>
                                 Please complete the following summary to describe the health and wellbeing of your new client.
                             </p>
