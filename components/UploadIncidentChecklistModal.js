@@ -63,6 +63,7 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
         setUploadSuccess(false)
         setFile(event.target.files[0])
         setFileName(event.target.files[0].name)
+        onSubmitFile(event)
     }
 
     return (
@@ -81,44 +82,52 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                     width="20"
                 />
             </button>
-            <div className="flex flex-col justify-around items-center  h-full">
-                <h3 className="font-bold text-xl ml-2 mb-5 text-center">Upload Incident Response Checklist to Dropbox</h3>
-                <form className="flex flex-col justify-between items-center" onSubmit={onSubmitFile}>
+            <div className={`flex flex-col ${!loading? "justify-around" : "justify-center"} items-center w-56 h-full`}>
+               
                    
-                    {!loading ? (
+                    {!uploadSuccess ? (!loading ? (
                         <>
-                        
-                    <label className="cursor-pointer font-bold flex flex-col w-full items-center justify-around" >
-                    <input
-                    type="file"
-                    name="file"
-                    onChange={(event) => onHandleFile(event)}
-                    className="cursor-pointer absolute overflow-hidden opacity-0 w-20 h-1/6"
-                    accept=".txt,.pdf,.csv,.xlsx"
-                    />
-                    <figure className="w-3/5 cursor-pointer mb-2">
-                        <img src="supervisor/software/backup-data-icon.svg"
-                         alt="upload file to dropbox" className="align-middle w-full cursor-pointer"/>
-                         
-                    </figure>
-                    {error ? 
-                    <span className="text-md font-bold text-center">{error}</span> :
+                         <figure className="mb-2">
+                            <img src="supervisor/software/incident_response_checklist_popup_icon.svg"
+                            alt="select file to upload" className="align-middle w-full cursor-pointer"/>
+                            
+                        </figure>
+                        {error ? 
+                            <span className="text-md font-bold text-center">{error}</span> :
+                            <h3 className="font-bold text-center w-48">{fileName || "Incident Response Checklist"}</h3> 
+                        } 
+                       
+                        <label className="cursor-pointer font-bold flex flex-col w-full items-center justify-around" >
+                           
+                            <button  className="mt-7 btn-darkGreen shadow cursor-pointer flex items-center font-bold py-1 px-5 rounded" >
+                                <img src="supervisor/software/backup-data-icon.svg"
+                                alt="upload file to dropbox" 
+                                width="25px" className="mr-1"
+                            />
+                            Upload to Dropbox
+                            <input
+                            type="file"
+                            name="file"
+                            onChange={(event) => onHandleFile(event)}
+                            className="cursor-pointer absolute overflow-hidden opacity-0 w-8/12"
+                            accept=".txt,.pdf,.csv,.xlsx"
+                            />
+                            </button>
+                         </label>
 
-                    !uploadSuccess ? 
-                    <span className="text-sm font-bold text-center w-36 overflow-hidden">{fileName || "Select File"}</span> : 
-                    <span className="text-md font-bold text-center">File uploaded</span>
-
-                    } 
-                    </label>
-
-                    <button type="submit" className="mt-7 btn-darkBlue text-white font-bold py-1 px-5 rounded" disabled={!file ? true : false}>Upload</button>
                         </>
                     ): 
                     <>
                     <Loader />
-                    <p className="text-sm mt-4">Loading...</p>
-                    </>}
-                </form>
+                    <p className="mt-4">Loading...</p>
+                    </>):
+                    (<>
+                        <img src="supervisor/software/incident_response_Uploaded_popup_icon.svg" />
+                        <h3 className="font-bold text-xl ml-2 mb-5 text-center">File uploaded successfully</h3>
+                        <a className="mt-7 btn-darkGreen font-bold py-1 px-5 rounded shadow"
+                        href="https://www.dropbox.com/sh/vjgzdma9pq19wz3/AADj8-d8q8PTu0UhYdAe_nDua?dl=0" target="_blank" rel='noreferrer'>Check Dropbox Folder</a>
+                    </>)
+                    }
             </div>
             </div>
         </div>
