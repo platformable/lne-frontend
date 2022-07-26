@@ -12,13 +12,11 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProgressNotesIndex = ({ data }) => {
+  const router = useRouter()
 
-
-   const router = useRouter()
-
-   const [showImpactTrackerModal,setShowImpactTrackerModal]=useState(false)
+  const [showImpactTrackerModal,setShowImpactTrackerModal]=useState(false)
   const [progressNoteId,setProgressNoteId]=useState("")
-
+  console.log("id: ", progressNoteId);
   const notifyMessage = () => {
     toast.success("Progress Note Saved!", {
       position: toast.POSITION.TOP_CENTER,
@@ -137,7 +135,6 @@ const [dataForSAP,setDataForSAP]=useState({
     goal3CompletionDate:clientData.goal1CompletedDate,
 })
 
-console.log("dataForSAP",dataForSAP)
 
 const handleMsaformUpdate = ()=> {
 
@@ -160,11 +157,7 @@ const handleServiceActionPlanFormUpdate = ()=> {
       clientData:dataForSAP
     })
     .then(function (response) {
-      if(response.status===200 || response.statusText==='Ok'){
-        console.log(response)
-        setProgressNoteId(response.data.progress_note_id)
-        console.log("msa form updated successfully")
-      } 
+      console.log("msa form updated successfully")
     })
     .catch(function (error) {
           console.log("an error ocurred while trying to update msa form", error)
@@ -179,6 +172,7 @@ const handleProgressNote=()=>{
       .then(function (response) {
         if(response.status===200 || response.statusText==='Ok'){
           console.log("pn response:",response)
+          setProgressNoteId(response.data.progress_note_id)
           handleMsaformUpdate()
           handleServiceActionPlanFormUpdate()
           notifyMessage()
@@ -190,9 +184,6 @@ const handleProgressNote=()=>{
       });
    
 }
-
-
-console.log("clientData",clientData)
 
   return (
     <>
@@ -1535,7 +1526,7 @@ console.log("clientData",clientData)
           </section>
         </main>
       </Layout>
-      {showImpactTrackerModal && progressNoteId &&(
+      {(showImpactTrackerModal && progressNoteId) &&(
       <ImpactTrackerModal showImpactTrackerModal={showImpactTrackerModal} 
        setShowImpactTrackerModal={setShowImpactTrackerModal} notifyMessage={notifyMessage}
        clientId={clientData.clientId}
@@ -1553,7 +1544,6 @@ export const getServerSideProps = withPageAuthRequired({
       let { clientid } = ctx.params;
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}`)
       const data = await response.json();
-      console.log("data del server:",data)
       return { props: { data } };
     },
   });
