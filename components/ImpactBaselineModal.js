@@ -38,8 +38,14 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         // foodInsecurity: null,
     })
 
+    const [dogs,setDogs]=useState({
+        dog1:"alex",
+        dog2:"murray"
+    })
+
     const onValueChange=(event)=>{
-        console.log(!!event.target.value, typeof !!event.target.value)
+        console.log()
+        console.log(event.target.value, typeof event.target.value)
         // if(event.target.value == 'true' || event.target.value == 'false') {
             setImpactBaseline({
                 ...impactBaseline,
@@ -77,32 +83,29 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                 setErrorMessage('Please fill all the fields')
                 return 
             } 
-        try {
+       
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'  
-                },
-                body: impactBaseline
-            })
-            const data = await response.json()
+        axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/`, {
+            impactBaseline
+          })
+          .then(function (response) {
             if(response.status===200 || response.statusText==='Ok'){
-                notifyMessage()
+               notifyMessage()
                 setShowImpactBaselineModal(!showImpactBaselineModal)
     
                 setTimeout(()=>{
                   router.push(`/clients/${clientId}/profile`)
                 },2300)
             } 
-            console.log("data: ", data)
-        }catch(error) {
-            setErrorMessage("An error ocurred, try again...")
-            console.log(error)
-        }
+          })
+          .catch(function (error) {
+                console.log(error)
+          });
         
      }
 
+
+     console.log("impactBaseline",impactBaseline)
      return (
         <>
         
