@@ -16,6 +16,8 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
     const router = useRouter()  
     const date = getDate()
 
+    console.log("progress_note_id",progress_note_id)
+
     const [errorMessage, setErrorMessage] = useState('')
     const [impactTracker, setImpactTracker] = useState({
         clientId,
@@ -45,7 +47,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                  
         if (!isEmpty) {
             axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker`, {
-                ...impactTracker
+                impactTracker
               })
               .then(function (response) {
                 if(response.status===200 || response.statusText==='Ok'){
