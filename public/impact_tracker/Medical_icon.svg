@@ -1,0 +1,15 @@
+<svg id="Medical" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_734" data-name="Rectangle 734" width="20" height="19" fill="#007fff"/>
+    </clipPath>
+  </defs>
+  <g id="Group_945" data-name="Group 945">
+    <g id="Ellipse_381" data-name="Ellipse 381" fill="#007fff" stroke="#007fff" stroke-width="1">
+      <circle cx="13" cy="13" r="13" stroke="none"/>
+      <circle cx="13" cy="13" r="12.5" fill="none"/>
+    </g>
+    <path id="Path_1021" data-name="Path 1021" d="M14.662,242.684V245.2a1.1,1.1,0,0,1-.973,1.185H.973A1.1,1.1,0,0,1,0,245.2v-2.513A1.1,1.1,0,0,1,.973,241.5H13.689a1.1,1.1,0,0,1,.973,1.185" transform="translate(6.021 -230.704)" fill="#fff"/>
+    <path id="Path_1022" data-name="Path 1022" d="M14.257,1.14V3.555a1.057,1.057,0,0,1-.946,1.139H.946A1.057,1.057,0,0,1,0,3.555V1.14A1.057,1.057,0,0,1,.946,0H13.31a1.057,1.057,0,0,1,.946,1.14" transform="translate(15.716 6.097) rotate(90)" fill="#fff"/>
+  </g>
+</svg>
