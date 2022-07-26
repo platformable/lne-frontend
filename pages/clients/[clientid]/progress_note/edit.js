@@ -1356,12 +1356,7 @@ const handleProgressNote=()=>{
           </section>
         </main>
       </Layout>
-      {showImpactTrackerModal && (
-      <ImpactTrackerModal showImpactTrackerModal={showImpactTrackerModal} 
-       setShowImpactTrackerModal={setShowImpactTrackerModal} notifyMessage={notifyMessage}
-       clientId={clientData.clientId}
-       />)
-      }
+      
     </>
   );
 };
