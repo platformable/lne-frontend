@@ -1,245 +1,161 @@
-import React from "react";
+import React, { useState,useEffect, useMemo } from "react";
 import MSAStyles from "../styles/MSA.module.css";
 
+function iterateFormStringNames(raizName) {
+
+  const date = raizName + "Date"
+  const uploadDate = raizName + "UploadDate"
+  const issues = raizName + "Issues";
+  const reviewed = raizName + "Reviewed"
+
+  return [date, uploadDate, issues, reviewed]
+} 
+
 const RowMsaFormSupervisor = ({
+  fieldName,
   form,
   formDate,
   formUploadDate,
-  formScan,
   formPDF,
   formReviewed,
   formIssues,
+  formString,
   setClientData,
-  crearFecha,
-  clientData,
+  onChangeInputCheckbox,
+  folder_url,
+  dependency_folder_url
 }) => {
+
+
+  const nameStrings = useMemo(() => iterateFormStringNames(formString), [])
+  const [strings, setStrings] = useState({
+    formDate: nameStrings[0],
+    formUploadDate: nameStrings [1],
+    formIssues: nameStrings[2],
+    formReviewed: nameStrings[3],
+  });
+  useEffect(() => {
+    console.log(nameStrings)
+  } ,[])
   return (
     <div
       className={`${
         MSAStyles.formRowsContainerDesFormEdit
-      } justify-center items-center bg-light-purple grid gap-5 py-2 rounded-lg my-2 ${
+      } justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${
         form ? "" : "pointer-events-none"
       }`}
     >
       <div
-        className={`ml-1 text-center flex justify-center items-center ${
-          form ? "pointer-events-none" : ""
-        }`}
-        onClick={() => {
-          form
-            ? setClientData((formState) => ({
-                ...formState,
-                IDGForm: !formState.IDGForm,
-                IDGFormDate: "",
-              }))
-            : setClientData((formState) => ({
-                ...formState,
-                IDGForm: !formState.IDGForm,
-                IDGFormDate: crearFecha(),
-              }));
-        }}
+        className={`ml-1 text-center flex justify-center items-center `}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute z-10 text-dark-blue h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={form ? "3" : "0"}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
-        <input
-          className={`${
-            !form && "bg-slate-300"
-          } appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+        <input  className={`bg-white rounded-md  h-6 w-6 `}
           type="checkbox"
           name=""
           id=""
-          onChange={(e) => {
-            formDate === "" || formDate === null
-              ? setClientData({
-                  ...clientData,
-                  IDGForm: !form,
-                  IDGFormDate: crearFecha(),
-                })
-              : setClientData({
-                  ...clientData,
-                  IDGForm: !form,
-                });
-          }}
+          onClick={() => onChangeInputCheckbox(strings.form, strings.formDate, strings.formIssues)}
           checked={form ? "checked" : false}
+          disabled={form ? true : false}  
         />
       </div>
+
       <div>
-        <p>IDG</p>
+        <p>
+          {fieldName}
+           {/* <span className="text-red-500">*</span> */}
+        </p>
       </div>
+
       <div className="text-center">
         <input
           type="date"
-          id="IDGForm"
+          id={formString}
           className={MSAStyles.inputDate}
-          value={formDate && formDate.split("T")[0]}
-          disabled={formDate ? true : false}
+          value={
+            formDate &&
+            formDate.split("T")[0]
+          }
+          disabled={form ? true : false}
           onChange={(e) => {
-            setClientData({
-              ...clientData,
-              IDGFormDate: e.target.value,
-            });
+            setClientData((prev) => ({
+              ...prev,
+              [formDateString]: e.target.value,
+            }));
           }}
         />
       </div>
       <div
-        className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}
+        className={`${MSAStyles.dropboxFolderNames}  text-center flex justify-center items-center border-l-dark-blue`}
       >
-        {/* <a
-          href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""}
+        <a
+          href={
+            dependency_folder_url ? folder_url : ""
+          }
+          id={formString}
           target="_blank"
           rel="noreferrer"
         >
           <img src={"/dropbox-folder.png"} alt="" width="34" />
-        </a> */}
-        {/* <p className="text-dark-blue underline">Medical</p> */}
+        </a>
+        {/*  <p className="text-dark-blue underline">Intake</p> */}
       </div>
       <div className="text-center">
         <input
           type="date"
-          id="IDGForm"
-          className={`${MSAStyles.inputDate} {${
-            form && "border-2 border-dark-blue rounded-md p-px"
+          id={strings.form}
+          className={`${MSAStyles.inputDate} ${
+            form
+              ? "border-2 border-dark-blue rounded-md p-px bg-white"
+              : ""
+          } ${
+            form &&
+            formPDF &&
+            formIssues
+              ? ""
+              : " border-2 border-dark-blue rounded-md p-px bg-white"
           }`}
-          value={formUploadDate && formUploadDate.split("T")[0]}
+          value={
+            formUploadDate &&
+            formUploadDate.split("T")[0]
+          }
           disabled={formUploadDate ? true : false}
           onChange={(e) => {
-            setClientData({
-              ...clientData,
-              IDGFormUploadDate: e.target.value,
-            });
+            setClientData((prev) => ({
+              ...prev,
+              [strings.formUploadDate]: e.target.value,
+            }));
           }}
         />
       </div>
-      <div
-        className={`ml-1 text-center flex justify-center items-center ${
-          formReviewed ? "pointer-events-none" : ""
-        }`}
-        onClick={() => {
-          formReviewed
-            ? setClientData((formState) => ({
-                ...formState,
-                IDGFormReviewed: !formState.IDGFormReviewed,
-                IDGFormUploadDate: "",
-              }))
-            : setClientData((formState) => ({
-                ...formState,
-                IDGFormReviewed: !formState.IDGFormReviewed,
-                IDGFormUploadDate: crearFecha(),
-              }));
-          if (!clientData.IDGFormReviewed || clientData.IDGFormIssues) {
-            setClientData((formState) => ({
-              ...formState,
-              IDGFormUploadDate: crearFecha(),
-            }));
-          }
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute z-10 text-dark-blue h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={formReviewed ? "3" : "0"}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
+        <div
+        className="ml-1 text-center flex justify-center items-center"> 
         <input
           className={`${
-            !form && "bg-slate-300"
-          } appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+            !form && "pointer-events-none"
+          } bg-white border-dark-blue rounded-md  h-6 w-6 `}
           type="checkbox"
-          name=""
-          id=""
-          onChange={(e) => {
-            formUploadDate === "" || formUploadDate === null
-              ? setClientData({
-                  ...clientData,
-                  IDGFormReviewed: !formReviewed,
-                  IDGFormUploadDate: crearFecha(),
-                })
-              : setClientData({
-                  ...clientData,
-                  IDGFormReviewed: !formReviewed,
-                });
-          }}
-          checked={formReviewed ? "checked" : false}
+          name="review"
+          id="review"
+          onChange={(e) => onChangeInputCheckbox(strings.form, strings.formUploadDate, strings.formIssues)}
+          checked={
+            formReviewed ? "checked" : false
+          }
+          disabled={form}
         />
-      </div>
+      </div> 
       <div
-        className={`ml-1 text-center flex justify-center items-center ${
-          formIssues ? "pointer-events-none" : ""
-        }`}
-        onClick={() => {
-          formIssues
-            ? setClientData((formState) => ({
-                ...formState,
-                IDGFormIssues: !formState.IDGFormIssues,
-                IDGFormUploadDate: "",
-              }))
-            : setClientData((formState) => ({
-                ...formState,
-                IDGFormIssues: !formState.IDGFormIssues,
-                IDGFormUploadDate: crearFecha(),
-              }));
-          if (!clientData.IDGFormIssues || clientData.IDGFormReviewed) {
-            setClientData((formState) => ({
-              ...formState,
-              IDGFormUploadDate: crearFecha(),
-            }));
-          }
-        }}
+        className={`ml-1 text-center flex justify-center items-center`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute z-10 text-dark-blue h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={formIssues ? "3" : "0"}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
+        
         <input
           className={`${
             !form && "bg-slate-300"
-          } appearance-none relative bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
+          } bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
           type="checkbox"
-          name=""
-          id=""
-          onChange={(e) => {
-            formUploadDate === "" || formUploadDate === null
-              ? setClientData({
-                  ...clientData,
-                  IDGFormIssues: !formIssues,
-                  IDGFormUploadDate: crearFecha(),
-                })
-              : setClientData({
-                  ...clientData,
-                  IDGFormIssues: !formIssues,
-                });
-          }}
+          name="issues"
+          id="issues"
+          onClick={(e) => onChangeInputCheckbox(strings.form, strings.formUploadDate,strings.formReviewed)}
           checked={formIssues ? "checked" : false}
+          disabled={form}
         />
       </div>
     </div>
