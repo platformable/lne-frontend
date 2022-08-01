@@ -23,7 +23,10 @@ const RowMsaFormSupervisor = ({
   setClientData,
   onChangeInputCheckbox,
   folder_url,
-  dependency_folder_url
+  dependency_folder_url,
+  setIssueFounded,
+  setShowIssuesFoundModal,
+  showIssuesFoundModal
 }) => {
 
 
@@ -36,7 +39,15 @@ const RowMsaFormSupervisor = ({
   });
   useEffect(() => {
     console.log(nameStrings)
-  } ,[])
+  } ,[]);
+
+  const onChangeInputIssues = (e) => {
+    setIssueFounded((previousState) => ({...previousState, field_title: e.target.name, date_updated: formUploadDate }))
+    setShowIssuesFoundModal((previousState) => !previousState)
+    onChangeInputCheckbox(strings.formIssues);
+    onChangeInputCheckbox(strings.formReviewed);
+  }
+
   return (
     <div
       className={`${
@@ -48,14 +59,14 @@ const RowMsaFormSupervisor = ({
       <div
         className={`ml-1 text-center flex justify-center items-center `}
       >
-        <input  className={`bg-white rounded-md  h-6 w-6 `}
+        {/* <input  className={`bg-white rounded-md  h-6 w-6 `}
           type="checkbox"
           name=""
           id=""
           onClick={() => onChangeInputCheckbox(strings.form, strings.formDate, strings.formIssues)}
           checked={form ? "checked" : false}
           disabled={form ? true : false}  
-        />
+        /> */}
       </div>
 
       <div>
@@ -101,15 +112,10 @@ const RowMsaFormSupervisor = ({
       <div className="text-center">
         <input
           type="date"
-          id={strings.form}
-          className={`${MSAStyles.inputDate} ${
-            form
-              ? "border-2 border-dark-blue rounded-md p-px bg-white"
-              : ""
-          } ${
-            form &&
-            formPDF &&
-            formIssues
+          id={strings.formUploadDate}
+          className={`${MSAStyles.inputDate} 
+           ${
+            formReviewed 
               ? ""
               : " border-2 border-dark-blue rounded-md p-px bg-white"
           }`}
@@ -127,19 +133,20 @@ const RowMsaFormSupervisor = ({
         />
       </div>
         <div
-        className="ml-1 text-center flex justify-center items-center"> 
+        //handles the prohibition to change review`s input once was issue checked
+        className={`ml-1 text-center flex justify-center items-center ${formIssues && "pointer-events-none"}`}> 
         <input
           className={`${
             !form && "pointer-events-none"
           } bg-white border-dark-blue rounded-md  h-6 w-6 `}
           type="checkbox"
-          name="review"
-          id="review"
-          onChange={(e) => onChangeInputCheckbox(strings.form, strings.formUploadDate, strings.formIssues)}
+          name={strings.formReviewed}
+          id={strings.formReviewed}
+          onChange={(e) => onChangeInputCheckbox(strings.formReviewed)}
           checked={
-            formReviewed ? "checked" : false
+            formReviewed || formIssues ? "checked" : false
           }
-          disabled={form}
+          disabled={!form}
         />
       </div> 
       <div
@@ -148,14 +155,14 @@ const RowMsaFormSupervisor = ({
         
         <input
           className={`${
-            !form && "bg-slate-300"
+            formIssues && "pointer-events-none" 
           } bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
           type="checkbox"
-          name="issues"
-          id="issues"
-          onClick={(e) => onChangeInputCheckbox(strings.form, strings.formUploadDate,strings.formReviewed)}
+          name={fieldName}
+          id={strings.formIssues}
+          onChange={(e) => onChangeInputIssues(e)}
           checked={formIssues ? "checked" : false}
-          disabled={form}
+          disabled={!form}
         />
       </div>
     </div>

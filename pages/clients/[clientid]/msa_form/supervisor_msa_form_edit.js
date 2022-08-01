@@ -12,15 +12,16 @@ import Image from "next/image";
 
 import backIcon from "../../../../public/BACKicon.svg";
 import checkUpdateicon from "../../../../public/check-save-and-finish.svg"
+import IssuesFoundModal from "../../../../components/IssuesFoundModal";
 
-const AsignProperties = (data, clientData,fn) => {
+const AsignProperties = (data, clientData,set) => {
   for (const [key, value] of Object.entries(data[0])) { 
    if (value === "0" || value === null) {
-    fn({...clientData,  [key]: false })
+    set({...clientData,  [key]: false })
    } else if (value === "1") {
-   fn({...clientData,  [key]: true })
+   set({...clientData,  [key]: true })
    } else {
-    fn({...clientData, [key]: value})
+    set({...clientData, [key]: value})
    }
  }
 }
@@ -987,6 +988,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
   });
+  const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
+  const [issueFounded, setIssueFounded] = useState({
+    field_title: "",
+    date_updated: null,
+    
+  })
 
   // useMemo(() => AsignProperties(data, clientData, setClientData), [data])
 
@@ -1069,27 +1076,28 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     }
     return fixedDate;
   };
-  const onChangeInputCheckbox = (objectKey, objectKeyDate, objectKeyIssue) => {
-     console.log([...args])
-    clientData[objectKeyDate] && clientData[objectKeyIssue] ?
-    setClientData(prev => ({...prev, [objectKeyDate]: ""})) : null
+  const onChangeInputCheckbox = (objectKey,) => {
+
+    // clientData[objectKeyDate] && clientData[objectKeyIssue] ?
+    // setClientData(prev => ({...prev, [objectKeyDate]: ""})) : null
     
     clientData[objectKey] 
         ? setClientData((prevState) => ({
             ...prevState,
             [objectKey]:
               !prevState[objectKey],
-             [objectKeyDate]: "",
+            //  [objectKeyDate]: "",
           }))
         : setClientData((prevState) => ({
             ...prevState,
             [objectKey]:
               !prevState[objectKey],
-            [objectKeyDate]: crearFecha(),
+            // [objectKeyDate]: crearFecha(),
         }));
       
      
   }
+
   return (
     <>
       <ToastContainer autoClose={2000} />
@@ -1304,7 +1312,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox} 
             />
 
@@ -1325,7 +1335,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].cbra_folder_url}
               dependency_folder_url={data[0].cbra_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1345,7 +1357,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].action_plans_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1365,7 +1379,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].linkage_navigation_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
@@ -1386,7 +1402,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
@@ -1406,7 +1424,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].cbra_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1426,6 +1446,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
@@ -1445,7 +1468,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1465,7 +1490,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1485,7 +1512,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1505,7 +1534,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1525,7 +1556,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
@@ -1545,7 +1578,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1565,7 +1600,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1585,7 +1622,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1605,7 +1644,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
@@ -1625,7 +1666,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
@@ -1646,7 +1689,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               />
             
             <RowMsaFormSupervisor
@@ -1665,6 +1711,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
@@ -1684,7 +1733,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1704,6 +1755,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1723,6 +1777,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1742,7 +1799,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].miscellaneous_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
@@ -1762,7 +1821,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
@@ -1782,7 +1843,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1802,7 +1865,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
@@ -1822,7 +1887,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1842,7 +1909,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].linkage_navigation_folder_url}
               dependency_folder_url={data[0].linkage_navigation_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1862,7 +1931,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].miscellaneous_folder_url}
               dependency_folder_url={data[0].linkage_navigation_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
@@ -1882,7 +1953,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].miscellaneous_folder_url}
               dependency_folder_url={data[0].miscellaneous_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1902,7 +1975,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].miscellaneous_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
@@ -1922,7 +1997,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
@@ -1942,7 +2019,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
@@ -1963,7 +2042,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
-            
+              setIssueFounded={setIssueFounded}
+              showIssuesFoundModal={showIssuesFoundModal}
+              setShowIssuesFoundModal={setShowIssuesFoundModal}
               onChangeInputCheckbox={onChangeInputCheckbox}
               />
           </section>
@@ -1981,6 +2062,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
           </section>
         </main>
       </Layout>
+      {showIssuesFoundModal && <IssuesFoundModal 
+      clientId={clientData.clientId} 
+      HCW={clientData.userFirstName +" "+ clientData.userLastName}
+      MSAfield={issueFounded}
+      showIssuesFoundModal={showIssuesFoundModal}
+      setShowIssuesFoundModal={setShowIssuesFoundModal}
+      />}
     </>
   );
 };
