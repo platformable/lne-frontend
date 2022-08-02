@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const EditMsaFormPage = ({ data }) => {
+const EditMsaFormPage2 = ({ data }) => {
   console.log("data", data);
 
   const router = useRouter();
@@ -58,8 +58,7 @@ const EditMsaFormPage = ({ data }) => {
     ComprehensiveRiskBehaviorAssessmentScan: false,
     ComprehensiveRiskBehaviorAssessmentUploadDate:
       data[0].comprehensiveriskbehaviorassessmentuploaddate || null,
-      comprehensiveriskbehaviorassessmentreviewed:data[0].comprehensiveriskbehaviorassessment,
-      comprehensiveriskbehaviorissues:data[0].comprehensiveriskbehaviorissues,
+
     ServiceActionPlan:
       data[0].serviceactionplan === "0" || data[0].serviceactionplan === null
         ? false
@@ -72,8 +71,6 @@ const EditMsaFormPage = ({ data }) => {
         ? false
         : true,
     ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate || null,
-    servicesactionreviewed:data[0].servicesactionplanreviewed,
-    servicesactionplanissues:data[0].servicesactionplanissues,
 
     ProgressNote:
       data[0].progressnoteid === "" || data[0].progressnoteid === null
@@ -89,8 +86,6 @@ const EditMsaFormPage = ({ data }) => {
       data[0].progressnotepdf || data[0].progressnotepdf === null
         ? false
         : true,
-        progressnotesreviewed:data[0].progressnotereviewed,
-        progressnoteissues:data[0].progressnoteissues,
 
     StatusChangesForm:
       data[0].statuschangesform === "0" || data[0].statuschangesform === null
@@ -100,8 +95,6 @@ const EditMsaFormPage = ({ data }) => {
     StatusChangesFormUploadDate: data[0].statuschangesformuploaddate,
     StatusChangesFormScan: false,
     StatusChangesFormPDF: false,
-    statuschangesformreviewed:data[0].statuschangesformreviewed,
-    statuschangesformissues:data[0].statuschangesformissues,
 
     ComprehensiveRiskBehaviorAssessmentUpdates:
       data[0].comprehensiveriskbehaviorassessmentupdates === "0" ||
@@ -114,8 +107,6 @@ const EditMsaFormPage = ({ data }) => {
       data[0].comprehensiveriskbehaviorassessmentuploaddate,
     ComprehensiveRiskBehaviorAssessmentUpdatesFormScan: false,
     ComprehensiveRiskBehaviorAssessmentUpdatesPDF: false,
-    comprehensiveriskbehaviorassessmentupdatesreviewed:data[0].comprehensiveriskbehaviorassessmentupdatesreviewed,
-    comprehensiveriskbehaviorassessmentupdatesissues:data[0].comprehensiveriskbehaviorassessmentupdatesissues,
 
     M11QForm:
       data[0].m11qform === "0" || data[0].m11qform === null ? false : true,
@@ -123,8 +114,6 @@ const EditMsaFormPage = ({ data }) => {
     M11QFormUploadDate: data[0].m11qformuploaddate,
     M11QFormScan: false,
     M11QFormPDF: false,
-    m11qformreviewed:data[0].m11qformreviewed,
-    m11qformissues:data[0].m11qformissues,
 
     CD4VLReports:
       data[0].cd4vlreports === "0" || data[0].cd4vlreports === null
@@ -134,8 +123,6 @@ const EditMsaFormPage = ({ data }) => {
     CD4VLReportsUploadDate: data[0].cd4vlreportsuploaddate,
     CD4VLReportsScan: false,
     CD4VLReportsPDF: false,
-    cd4vlreportsreviewed:data[0].cd4vlreportsreviewed,
-    cd4vlreportsissues:data[0].cd4vlreportsissues,
 
     InitialTreatmentAdherenceIntake:
       data[0].initialtreatmentadherenceintake === "0" ||
@@ -148,8 +135,6 @@ const EditMsaFormPage = ({ data }) => {
       data[0].initialtreatmentadherenceintakeuploaddate,
     InitialTreatmentAdherenceIntakeScan: false,
     InitialTreatmentAdherenceIntakePDF: false,
-    initialtreatmentadherenceintakereviewed:data[0].initialtreatmentadherenceintakereviewed,
-    initialtreatmentadherenceissues:data[0].initialtreatmentadherenceissues,
 
     TreatmentAdherenceUpdates:
       data[0].treatmentadherenceupdates === "0" ||
@@ -161,8 +146,6 @@ const EditMsaFormPage = ({ data }) => {
       data[0].treatmentadherenceupdatesuploaddate,
     TreatmentAdherenceUpdatesScan: false,
     TreatmentAdherenceUpdatesPDF: false,
-    treatmentadherenceupdatesreviewed:data[0].treatmentadherenceupdatesreviewed,
-    treatmentadherenceupdatesissues:data[0].treatmentadherenceupdatesissues,
 
     AIRSCollateralInformation:
       data[0].airscollateralinformation === "0" ||
@@ -172,9 +155,8 @@ const EditMsaFormPage = ({ data }) => {
     AIRSCollateralInformationDate: data[0].airscollateralinformationdate,
     AIRSCollateralInformationPDF: false,
     AIRSCollateralInformationScan: false,
-    AIRSCollateralInformationUploadDate:data[0].airscollateralinformationuploaddate || null,
-    airscollateralinformationreviewed:data[0].airscollateralinformationreviewed,
-    airscollateralinformationissues:data[0].airscollateralinformationissues,
+    AIRSCollateralInformationUploadDate:
+      data[0].airscollateralinformationuploaddate || null,
 
     AIRSDrugRegimen:
       data[0].airsdrugregimen === "0" || data[0].airsdrugregimen === null
@@ -184,8 +166,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSDrugRegimenPDF: false,
     AIRSDrugRegimenScan: false,
     AIRSDrugRegimenUploadDate: data[0].airsdrugregimenuploaddate || null,
-    airsdrugregimenreviewed:data[0].airsdrugregimenreviewed,
-    airsdrugregimenissues:data[0].airsdrugregimenissues,
 
     AIRSFinancialInformation:
       data[0].airsfinancialinformation === "0" ||
@@ -197,8 +177,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSFinancialInformationScan: false,
     AIRSFinancialInformationUploadDate:
       data[0].airsfinancialinformationuploaddate || null,
-      airsfinancialinformationreviewed:data[0].airsfinancialinformationreviewed,
-      airsfinancialinformationissues:data[0].airsfinancialinformationissues,
 
     AIRSHIVAIDSRiskHistory:
       data[0].airshivaidsriskhistory === "0" ||
@@ -210,8 +188,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSHIVAIDSRiskHistoryScan: false,
     AIRSHIVAIDSRiskHistoryUploadDate:
       data[0].airshivaidsriskhistoryuploaddate || null,
-      airshivaidsriskhistoryreviewed:data[0].airshivaidsriskhistoryreviewed,
-      airshivaidsriskhistoryissues:data[0].airshivaidsriskhistoryissues,
 
     AIRSHIVMedicalProvider:
       data[0].airshivmedicalprovider === "0" ||
@@ -223,8 +199,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSHIVMedicalProviderScan: false,
     AIRSHIVMedicalProviderUploadDate:
       data[0].airshivmedicalprovideruploaddate || null,
-      airshivmedicalproviderreviewed:data[0].airshivmedicalproviderreviewed,
-      airshivmedicalproviderissues:data[0].airshivmedicalproviderissues,
 
     AIRSHIVStatusHistory:
       data[0].airshivstatushistory === "0" ||
@@ -236,8 +210,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSHIVStatusHistoryScan: false,
     AIRSHIVStatusHistoryUploadDate:
       data[0].airshivstatushistoryuploaddate || null,
-      airshivstatushistoryreviewed:data[0].airshivstatushistoryreviewed,
-      airshivstatushistoryissues:data[0].airshivstatushistoryissues,
 
     AIRSHCVHistory:
       data[0].airshcvhistory === "0" || data[0].airshcvhistory === null
@@ -247,8 +219,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSHCVHistoryPDF: false,
     AIRSHCVHistoryScan: false,
     AIRSHCVHistoryUploadDate: data[0].airshcvhistoryuploaddate || null,
-    airshcvhistoryreviewed:data[0].airshcvhistoryreviewed,
-    airshcvhistoryissues:data[0].airshcvhistoryissues,
 
     AIRSHousingInformation:
       data[0].airshousinginformation === "0" ||
@@ -260,8 +230,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSHousingInformationScan: false,
     AIRSHousingInformationUploadDate:
       data[0].airshousinginformationuploaddate || null,
-      airshousinginformationreviewed:data[0].airshousinginformationreviewed,
-      airshousinginformationissues:data[0].airshousinginformationissues,
 
     AIRSInsuranceInformation:
       data[0].airsinsuranceinformation === "0" ||
@@ -273,8 +241,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSInsuranceInformationScan: false,
     AIRSInsuranceInformationUploadDate:
       data[0].airsinsuranceinformationuploaddate || null,
-      airsinsuranceinformationreviewed:data[0].airsinsuranceinformationreviewed,
-      airsinsuranceinformationissues:data[0].airsinsuranceinformationissues,
 
     AIRSSubstanceUseHistory:
       data[0].airssubstanceusehistory === "0" ||
@@ -286,8 +252,6 @@ const EditMsaFormPage = ({ data }) => {
     AIRSSubstanceUseHistoryScan: false,
     AIRSSubstanceUseHistoryUploadDate:
       data[0].airssubstanceusehistoryuploaddate || null,
-      airssubstanceusehistoryreviewed:data[0].airssubstanceusehistoryreviewed,
-      airssubstanceusehistoryissues:data[0].airssubstanceusehistoryissues,
 
     LNEClientRights:
       data[0].lneclientrights === "0" || data[0].lneclientrights === null
@@ -297,8 +261,6 @@ const EditMsaFormPage = ({ data }) => {
     LNEClientRightsPDF: false,
     LNEClientRightsScan: false,
     LNEClientRightsUploadDate: data[0].lneclientrightsuploaddate || null,
-    lneclientrightsreviewed:data[0].lneclientrightsreviewed,
-    lneclientrightsissues:data[0].lneclientrightsissues,
 
     LNEClientGrievancePolicyProcedure:
       data[0].lneclientgrievancepolicyprocedure === "0" ||
@@ -311,8 +273,6 @@ const EditMsaFormPage = ({ data }) => {
     LNEClientGrievancePolicyProcedureScan: false,
     LNEClientGrievancePolicyProcedureUploadDate:
       data[0].lneclientgrievancepolicyprocedureuploaddate || null,
-      lneclientgrievancepolicyprocedurereviewed:data[0].lneclientgrievancepolicyprocedurereviewed,
-      lneclientgrievancepolicyprocedureissues:data[0].lneclientgrievancepolicyprocedureissues,
 
     LNEProgramRules:
       data[0].lneprogramrules === "0" || data[0].lneprogramrules === null
@@ -322,8 +282,6 @@ const EditMsaFormPage = ({ data }) => {
     LNEProgramRulesPDF: false,
     LNEProgramRulesScan: false,
     LNEProgramRulesUploadDate: data[0].lneprogramrulesuploaddate || null,
-    lneprogramrulesreviewed:data[0].lneprogramrulesreviewed,
-    lneprogramrulesissues:data[0].lneprogramrulesissues,
 
     LNEEmergencyContactConsent:
       data[0].lneemergencycontactconsent === "0" ||
@@ -335,8 +293,6 @@ const EditMsaFormPage = ({ data }) => {
     LNEEmergencyContactConsentScan: false,
     LNEEmergencyContactConsentUploadDate:
       data[0].lneemergencycontactconsentuploaddate || null,
-      lneemergencycontactconsentreviewed:data[0].lneemergencycontactconsentreviewed,
-      lneemergencycontactconsentissues:data[0].lneemergencycontactconsentissues,
 
     LNEConsentForReleaseOfConfidentialInformation:
       data[0].lneconsentforreleaseofconfidentialinformation === "0" ||
@@ -349,8 +305,6 @@ const EditMsaFormPage = ({ data }) => {
     LNEConsentForReleaseOfConfidentialInformationScan: false,
     LNEConsentForReleaseOfConfidentialInformationUploadDate:
       data[0].lneconsentforreleaseofconfidentialinformationuploaddate || null,
-      lneconsentforreleaseofconfidentialinformationreviewed:data[0].lneconsentforreleaseofconfidentialinformationreviewed,
-      lneconsentforreleaseofconfidentialinformationissues:data[0].lneconsentforreleaseofconfidentialinformationissues,
 
     HIPPAConsentForm:
       data[0].hippaconsentform === "0" || data[0].hippaconsentform === null
@@ -360,8 +314,6 @@ const EditMsaFormPage = ({ data }) => {
     HIPPAConsentFormPDF: false,
     HIPPAConsentFormScan: false,
     HIPPAConsentFormUploadDate: data[0].hippaconsentformuploaddate || null,
-    hippaconsentformreviewed:data[0].hippaconsentformreviewed,
-    hippaconsentformissues:data[0].hippaconsentformissues,
 
     NYCDOHMHNoticeOfPrivacyPractices:
       data[0].nycdohmhnoticeofprivacypractices === "0" ||
@@ -374,8 +326,6 @@ const EditMsaFormPage = ({ data }) => {
     NYCDOHMHNoticeOfPrivacyPracticesScan: false,
     NYCDOHMHNoticeOfPrivacyPracticesUploadDate:
       data[0].nycdohmhnoticeofprivacypracticesuploaddate || null,
-      nycdohmhnoticeofprivacypracticesreviewed:data[0].nycdohmhnoticeofprivacypracticesreviewed,
-      nycdohmhnoticeofprivacypracticesissues:data[0].nycdohmhnoticeofprivacypracticesissues,
 
     LinkageRetentionAdherenceForms:
       data[0].linkageretentionadherenceforms === "0" ||
@@ -388,8 +338,6 @@ const EditMsaFormPage = ({ data }) => {
     LinkageRetentionAdherenceFormsScan: false,
     LinkageRetentionAdherenceFormsUploadDate:
       data[0].linkageretentionadherenceformsuploaddate || null,
-      linkageretentionadherenceformsreviewed:data[0].linkageretentionadherenceformsreviewed,
-      linkageretentionadherenceformsissues:data[0].linkageretentionadherenceformsissues,
 
     InternalReferralInformation:
       data[0].internalreferralinformation === "0" ||
@@ -401,8 +349,6 @@ const EditMsaFormPage = ({ data }) => {
     InternalReferralInformationScan: false,
     InternalReferralInformationUploadDate:
       data[0].internalreferralinformationuploaddate || null,
-      internalreferralinformationreviewed:data[0].internalreferralinformationreviewed,
-      internalreferralinformationissues:data[0].internalreferralinformationissues,  
 
     LNEClientReferralForm:
       data[0].lneclientreferralform === "0" ||
@@ -414,8 +360,6 @@ const EditMsaFormPage = ({ data }) => {
     LNEClientReferralFormScan: false,
     LNEClientReferralFormUploadDate:
       data[0].lneclientreferralformuploaddate || null,
-      lneclientreferralformreviewed:data[0].lneclientreferralformreviewed,
-      lneclientreferralformissues:data[0].lneclientreferralformissues,
 
     LNEHNSEligibilityForm:
       data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null
@@ -426,8 +370,6 @@ const EditMsaFormPage = ({ data }) => {
     LNEHNSEligibilityFormScan: false,
     LNEHNSEligibilityFormUploadDate:
       data[0].hnseligibilityformuploaddate || null,
-      lnehnseligibilityformreviewed:data[0].lnehnseligibilityformreviewed,
-      lnehnseligibilityformissues:data[0].lnehnseligibilityformissues,  
 
     HNSEligibilityForm:
       data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null
@@ -437,8 +379,6 @@ const EditMsaFormPage = ({ data }) => {
     HNSEligibilityFormPDF: false,
     HNSEligibilityFormScan: false,
     HNSEligibilityFormUploadDate: data[0].hnseligibilityformuploaddate || null,
-    hnseligibilityformreviewed:data[0].hnseligibilityformreviewed,
-    hnseligibilityformissues:data[0].hnseligibilityformissues,
 
     HNSReadinessForm:
       data[0].hnsreadinessform === "0" || data[0].hnsreadinessform === null
@@ -448,8 +388,6 @@ const EditMsaFormPage = ({ data }) => {
     HNSReadinessFormUploadDate: data[0].hnsreadinessformuploaddate || null,
     HNSReadinessFormScan: false,
     HNSReadinessFormPDF: false,
-    hnsreadinessformreviewed:data[0].hnsreadinessformreviewed,
-    hnsreadinessformissues:data[0].hnsreadinessformissues,
 
     SupportGroups:
       data[0].supportgroups === "0" || data[0].supportgroups === null
@@ -459,16 +397,12 @@ const EditMsaFormPage = ({ data }) => {
     SupportGroupsUploadDate: data[0].supportgroupsuploaddate,
     SupportGroupsScan: false,
     SupportGroupsPDF: false,
-    supportgroupsreviewed:data[0].supportgroupsreviewed,
-    supportgroupsissues:data[0].supportgroupsissues,
 
     IDGForm: data[0].idgform === "0" || data[0].idgform === null ? false : true,
     IDGFormDate: data[0].idgformdate,
     IDGFormUploadDate: data[0].idgformuploaddate || null,
     IDGFormScan: false,
     IDGFormPDF: false,
-    idgformreviewed:data[0].idgformreviewed,
-    idgformissues:data[0].idgformissues,
   });
   const todaysDate = new Date();
 
@@ -515,6 +449,7 @@ const EditMsaFormPage = ({ data }) => {
       })
       .catch(function (error) {
         console.log(error);
+        res.send(error);
       });
   };
 
@@ -924,17 +859,13 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
                         AIRSIntakeFormUploadDate: "",
-                        airsintakeformreviewed:data[0].airsintakeformreviewed,
-                        airsintakeformissues:data[0].airsintakeformissues
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSIntakeFormPDF: !formState.AIRSIntakeFormPDF,
                         AIRSIntakeFormUploadDate: crearFecha(),
-                        airsintakeformreviewed:false,
-                        airsintakeformissues:false
                       }));
-                  if (
+                  /* if (
                     !clientData.AIRSIntakeFormPDF ||
                     clientData.AIRSIntakeFormScan
                   ) {
@@ -942,7 +873,7 @@ const EditMsaFormPage = ({ data }) => {
                       ...formState,
                       AIRSIntakeFormUploadDate: crearFecha(),
                     }));
-                  }
+                  } */
                 }}
               >
                 <svg
@@ -992,15 +923,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
                         AIRSIntakeFormUploadDate: "",
-                        airsintakeformreviewed:data[0].airsintakeformreviewed,
-                        airsintakeformissues:data[0].airsintakeformissues
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSIntakeFormScan: !formState.AIRSIntakeFormScan,
                         AIRSIntakeFormUploadDate: crearFecha(),
-                        airsintakeformreviewed:false,
-                        airsintakeformissues:false
                       }));
                   if (
                     clientData.AIRSIntakeFormPDF ||
@@ -1192,8 +1119,6 @@ const EditMsaFormPage = ({ data }) => {
                         ComprehensiveRiskBehaviorAssessmentPDF:
                           !formState.ComprehensiveRiskBehaviorAssessmentPDF,
                         ComprehensiveRiskBehaviorAssessmentUploadDate: "",
-                        comprehensiveriskbehaviorassessmentreviewed:data[0].comprehensiveriskbehaviorassessmentreviewed,
-                        comprehensiveriskbehaviorissues:data[0].comprehensiveriskbehaviorissues
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -1201,8 +1126,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.ComprehensiveRiskBehaviorAssessmentPDF,
                         ComprehensiveRiskBehaviorAssessmentUploadDate:
                           crearFecha(),
-                          comprehensiveriskbehaviorassessmentreviewed:false,
-                          comprehensiveriskbehaviorissues:false
                       }));
                   if (
                     !clientData.ComprehensiveRiskBehaviorAssessmentPDF ||
@@ -1540,15 +1463,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         ServiceActionPlanScan: !formState.ServiceActionPlanScan,
                         ServiceActionPlanUploadDate: "",
-                        servicesactionplanissues:data[0].servicesactionplanissues,
-                        servicesactionreviewed:data[0].servicesactionplanreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         ServiceActionPlanScan: !formState.ServiceActionPlanScan,
                         ServiceActionPlanUploadDate: crearFecha(),
-                        servicesactionplanissues:false,
-                        servicesactionreviewed:false
                       }));
                 }}
               >
@@ -1712,15 +1631,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         ProgressNotePDF: !formState.ProgressNotePDF,
                         ProgressNoteUploadDate: "",
-                        progressnoteissues:data[0].progressnoteissues,
-                        progressnotesreviewed:data[0].progressnotereviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         ProgressNotePDF: !formState.ProgressNotePDF,
                         ProgressNoteUploadDate: crearFecha(),
-                        progressnoteissues:false,
-                        progressnotesreviewed:false
                       }));
                   if (
                     !clientData.ProgressNotePDF ||
@@ -1777,15 +1692,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         ProgressNoteScan: !formState.ProgressNoteScan,
                         ProgressNoteUploadDate: "",
-                        progressnoteissues:data[0].progressnoteissues,
-                        progressnotesreviewed:data[0].progressnotereviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         ProgressNoteScan: !formState.ProgressNoteScan,
                         ProgressNoteUploadDate: crearFecha(),
-                        progressnoteissues:false,
-                        progressnotesreviewed:false
                       }));
                 }}
               >
@@ -1949,15 +1860,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         StatusChangesFormPDF: !formState.StatusChangesFormPDF,
                         StatusChangesFormUploadDate: "",
-                        statuschangesformissues:data[0].statuschangesformissues,
-                        statuschangesformreviewed:data[0].statuschangesformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         StatusChangesFormPDF: !formState.StatusChangesFormPDF,
                         StatusChangesFormUploadDate: crearFecha(),
-                        statuschangesformissues:false,
-                        statuschangesformreviewed:false
                       }));
                   if (
                     !clientData.StatusChangesFormPDF ||
@@ -2205,8 +2112,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.ComprehensiveRiskBehaviorAssessmentUpdatesPDF,
                         ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate:
                           "",
-                          comprehensiveriskbehaviorassessmentupdatesissues:data[0].comprehensiveriskbehaviorassessmentupdatesissues,
-                          comprehensiveriskbehaviorassessmentupdatesreviewed:data[0].comprehensiveriskbehaviorassessmentupdatesreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -2214,8 +2119,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.ComprehensiveRiskBehaviorAssessmentUpdatesPDF,
                         ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate:
                           crearFecha(),
-                          comprehensiveriskbehaviorassessmentupdatesissues:false,
-                          comprehensiveriskbehaviorassessmentupdatesreviewed:false
                       }));
                   if (
                     !clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF ||
@@ -2294,8 +2197,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.ComprehensiveRiskBehaviorAssessmentUpdatesScan,
                         ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate:
                           "",
-                          comprehensiveriskbehaviorassessmentupdatesissues:data[0].comprehensiveriskbehaviorassessmentupdatesissues,
-                          comprehensiveriskbehaviorassessmentupdatesreviewed:data[0].comprehensiveriskbehaviorassessmentupdatesreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -2303,8 +2204,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.ComprehensiveRiskBehaviorAssessmentUpdatesScan,
                         ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate:
                           crearFecha(),
-                          comprehensiveriskbehaviorassessmentupdatesissues:false,
-                          comprehensiveriskbehaviorassessmentupdatesreviewed:false
                       }));
                 }}
               >
@@ -2479,15 +2378,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         M11QFormPDF: !formState.M11QFormPDF,
                         M11QFormUploadDate: "",
-                        m11qformissues:data[0].m11qformissues,
-                        m11qformreviewed:data[0].m11qformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         M11QFormPDF: !formState.M11QFormPDF,
                         M11QFormUploadDate: crearFecha(),
-                        m11qformissues:false,
-                        m11qformreviewed:false
                       }));
                   if (!clientData.M11QFormPDF || clientData.M11QFormPDF) {
                     setClientData((formState) => ({
@@ -2544,16 +2439,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         M11QFormScan: !formState.M11QFormScan,
                         M11QFormUploadDate: "",
-                        m11qformissues:data[0].m11qformissues,
-                        m11qformreviewed:data[0].m11qformreviewed
-
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         M11QFormScan: !formState.M11QFormScan,
                         M11QFormUploadDate: crearFecha(),
-                        m11qformissues:false,
-                        m11qformreviewed:false
                       }));
                 }}
               >
@@ -2714,15 +2604,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         CD4VLReportsPDF: !formState.CD4VLReportsPDF,
                         CD4VLReportsUploadDate: "",
-                        cd4vlreportsissues:data[0].cd4vlreportsissues,
-                        cd4vlreportsreviewed:data[0].cd4vlreportsreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         CD4VLReportsPDF: !formState.CD4VLReportsPDF,
                         CD4VLReportsUploadDate: crearFecha(),
-                        cd4vlreportsissues:false,
-                        cd4vlreportsreviewed:false
                       }));
                   if (
                     !clientData.CD4VLReportsPDF ||
@@ -2782,15 +2668,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         CD4VLReportsScan: !formState.CD4VLReportsScan,
                         CD4VLReportsUploadDate: "",
-                        cd4vlreportsissues:data[0].cd4vlreportsissues,
-                        cd4vlreportsreviewed:data[0].cd4vlreportsreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         CD4VLReportsScan: !formState.CD4VLReportsScan,
                         CD4VLReportsUploadDate: crearFecha(),
-                        cd4vlreportsissues:false,
-                        cd4vlreportsreviewed:false
                       }));
                 }}
               >
@@ -2966,16 +2848,12 @@ const EditMsaFormPage = ({ data }) => {
                         InitialTreatmentAdherenceIntakePDF:
                           !formState.InitialTreatmentAdherenceIntakePDF,
                         InitialTreatmentAdherenceIntakeUploadDate: "",
-                        initialtreatmentadherenceissues:data[0].initialtreatmentadherenceissues,
-                        initialtreatmentadherenceintakereviewed:data[0].initialtreatmentadherenceintakereviewed
-                        }))
+                      }))
                     : setClientData((formState) => ({
                         ...formState,
                         InitialTreatmentAdherenceIntakePDF:
                           !formState.InitialTreatmentAdherenceIntakePDF,
                         InitialTreatmentAdherenceIntakeUploadDate: crearFecha(),
-                        initialtreatmentadherenceissues:false,
-                        initialtreatmentadherenceintakereviewed:false
                       }));
                   if (
                     !clientData.InitialTreatmentAdherenceIntakePDF ||
@@ -3047,16 +2925,12 @@ const EditMsaFormPage = ({ data }) => {
                         InitialTreatmentAdherenceIntakeScan:
                           !formState.InitialTreatmentAdherenceIntakeScan,
                         InitialTreatmentAdherenceIntakeUploadDate: "",
-                        initialtreatmentadherenceintakereviewed:data[0].initialtreatmentadherenceintakereviewed,
-                        initialtreatmentadherenceissues:data[0].initialtreatmentadherenceintakereviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         InitialTreatmentAdherenceIntakeScan:
                           !formState.InitialTreatmentAdherenceIntakeScan,
                         InitialTreatmentAdherenceIntakeUploadDate: crearFecha(),
-                        initialtreatmentadherenceintakereviewed:false,
-                        initialtreatmentadherenceissues:false
                       }));
                 }}
               >
@@ -3238,16 +3112,12 @@ const EditMsaFormPage = ({ data }) => {
                         TreatmentAdherenceUpdatesPDF:
                           !formState.TreatmentAdherenceUpdatesPDF,
                         TreatmentAdherenceUpdatesUploadDate: "",
-                        treatmentadherenceupdatesissues:data[0].treatmentadherenceupdatesissues,
-                        treatmentadherenceupdatesreviewed:data[0].treatmentadherenceupdatesreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         TreatmentAdherenceUpdatesPDF:
                           !formState.TreatmentAdherenceUpdatesPDF,
                         TreatmentAdherenceUpdatesUploadDate: crearFecha(),
-                        treatmentadherenceupdatesissues:false,
-                        treatmentadherenceupdatesreviewed:false
                       }));
                   if (
                     !clientData.TreatmentAdherenceUpdatesPDF ||
@@ -3316,16 +3186,12 @@ const EditMsaFormPage = ({ data }) => {
                         TreatmentAdherenceUpdatesScan:
                           !formState.TreatmentAdherenceUpdatesScan,
                         TreatmentAdherenceUpdatesUploadDate: "",
-                        treatmentadherenceupdatesissues:data[0].treatmentadherenceupdatesissues,
-                        treatmentadherenceupdatesreviewed:data[0].treatmentadherenceupdatesreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         TreatmentAdherenceUpdatesScan:
                           !formState.TreatmentAdherenceUpdatesScan,
                         TreatmentAdherenceUpdatesUploadDate: crearFecha(),
-                        treatmentadherenceupdatesissues:false,
-                        treatmentadherenceupdatesreviewed:false
                       }));
                 }}
               >
@@ -3360,7 +3226,6 @@ const EditMsaFormPage = ({ data }) => {
                           TreatmentAdherenceUpdatesScan:
                             !clientData.TreatmentAdherenceUpdatesScan,
                           TreatmentAdherenceUpdatesUploadDate: crearFecha(),
-                          
                         })
                       : setClientData({
                           ...clientData,
@@ -3508,16 +3373,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSCollateralInformationPDF:
                           !formState.AIRSCollateralInformationPDF,
                         AIRSCollateralInformationUploadDate: "",
-                        airscollateralinformationissues:data[0].airscollateralinformationissues,
-                        airscollateralinformationreviewed:data[0].airscollateralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSCollateralInformationPDF:
                           !formState.AIRSCollateralInformationPDF,
                         AIRSCollateralInformationUploadDate: crearFecha(),
-                        airscollateralinformationissues:false,
-                        airscollateralinformationreviewed:false
                       }));
                   if (
                     clientData.AIRSCollateralInformationScan ||
@@ -3589,16 +3450,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSCollateralInformationScan:
                           !formState.AIRSCollateralInformationScan,
                         AIRSCollateralInformationUploadDate: "",
-                        airscollateralinformationissues:data[0].airscollateralinformationissues,
-                        airscollateralinformationreviewed:data[0].airscollateralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSCollateralInformationScan:
                           !formState.AIRSCollateralInformationScan,
                         AIRSCollateralInformationUploadDate: crearFecha(),
-                        airscollateralinformationissues:false,
-                        airscollateralinformationreviewed:false
                       }));
                   if (
                     !clientData.AIRSCollateralInformationScan ||
@@ -3778,15 +3635,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         AIRSDrugRegimenPDF: !formState.AIRSDrugRegimenPDF,
                         AIRSDrugRegimenUploadDate: "",
-                        airsdrugregimenissues:data[0].airsdrugregimenissues,
-                        airsdrugregimenreviewed:data[0].airscollateralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSDrugRegimenPDF: !formState.AIRSDrugRegimenPDF,
                         AIRSDrugRegimenUploadDate: crearFecha(),
-                        airsdrugregimenissues:false,
-                        airsdrugregimenreviewed:false
                       }));
                   if (
                     clientData.AIRSDrugRegimenScan ||
@@ -3847,15 +3700,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         AIRSDrugRegimenScan: !formState.AIRSDrugRegimenScan,
                         AIRSDrugRegimenUploadDate: "",
-                        airsdrugregimenissues:data[0].airsdrugregimenissues,
-                        airsdrugregimenreviewed:data[0].airscollateralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSDrugRegimenScan: !formState.AIRSDrugRegimenScan,
                         AIRSDrugRegimenUploadDate: crearFecha(),
-                        airsdrugregimenissues:false,
-                        airsdrugregimenreviewed:false
                       }));
                   if (
                     !clientData.AIRSDrugRegimenScan ||
@@ -4033,16 +3882,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSFinancialInformationPDF:
                           !formState.AIRSFinancialInformationPDF,
                         AIRSFinancialInformationUploadDate: "",
-                        airsfinancialinformationissues:data[0].airsfinancialinformationissues,
-                        airsfinancialinformationreviewed:data[0].airsfinancialinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSFinancialInformationPDF:
                           !formState.AIRSFinancialInformationPDF,
                         AIRSFinancialInformationUploadDate: crearFecha(),
-                        airsfinancialinformationissues:false,
-                        airsfinancialinformationreviewed:false
                       }));
                   if (
                     clientData.AIRSFinancialInformationScan ||
@@ -4111,16 +3956,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSFinancialInformationScan:
                           !formState.AIRSFinancialInformationScan,
                         AIRSFinancialInformationUploadDate: "",
-                        airsfinancialinformationissues:data[0].airsfinancialinformationissues,
-                        airsfinancialinformationreviewed:data[0].airsfinancialinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSFinancialInformationScan:
                           !formState.AIRSFinancialInformationScan,
                         AIRSFinancialInformationUploadDate: crearFecha(),
-                        airsfinancialinformationissues:false,
-                        airsfinancialinformationreviewed:false
                       }));
                   if (
                     !clientData.AIRSFinancialInformationScan ||
@@ -4301,16 +4142,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHIVAIDSRiskHistoryPDF:
                           !formState.AIRSHIVAIDSRiskHistoryPDF,
                         AIRSHIVAIDSRiskHistoryUploadDate: "",
-                        airshivaidsriskhistoryissues:data[0].airscollateralinformationissues,
-                        airshivaidsriskhistoryreviewed:data[0].airshivaidsriskhistoryreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHIVAIDSRiskHistoryPDF:
                           !formState.AIRSHIVAIDSRiskHistoryPDF,
                         AIRSHIVAIDSRiskHistoryUploadDate: crearFecha(),
-                        airshivaidsriskhistoryissues:false,
-                        airshivaidsriskhistoryreviewed:false
                       }));
                   if (
                     clientData.AIRSHIVAIDSRiskHistoryScan ||
@@ -4377,16 +4214,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHIVAIDSRiskHistoryScan:
                           !formState.AIRSHIVAIDSRiskHistoryScan,
                         AIRSHIVAIDSRiskHistoryUploadDate: "",
-                        airshivaidsriskhistoryissues:data[0].airscollateralinformationissues,
-                        airshivaidsriskhistoryreviewed:data[0].airshivaidsriskhistoryreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHIVAIDSRiskHistoryScan:
                           !formState.AIRSHIVAIDSRiskHistoryScan,
                         AIRSHIVAIDSRiskHistoryUploadDate: crearFecha(),
-                        airshivaidsriskhistoryissues:false,
-                        airshivaidsriskhistoryreviewed:false
                       }));
                   if (
                     !clientData.AIRSHIVAIDSRiskHistoryScan ||
@@ -4566,16 +4399,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHIVMedicalProviderPDF:
                           !formState.AIRSHIVMedicalProviderPDF,
                         AIRSHIVMedicalProviderUploadDate: "",
-                        airshivmedicalproviderissues:data[0].airshivmedicalproviderissues,
-                        airshivmedicalproviderreviewed:data[0].airshivmedicalproviderreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHIVMedicalProviderPDF:
                           !formState.AIRSHIVMedicalProviderPDF,
                         AIRSHIVMedicalProviderUploadDate: crearFecha(),
-                        airshivmedicalproviderissues:false,
-                        airshivmedicalproviderreviewed:false
                       }));
                   if (
                     clientData.AIRSHIVMedicalProviderScan ||
@@ -4642,16 +4471,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHIVMedicalProviderScan:
                           !formState.AIRSHIVMedicalProviderScan,
                         AIRSHIVMedicalProviderUploadDate: "",
-                        airshivmedicalproviderissues:data[0].airshivmedicalproviderissues,
-                        airshivmedicalproviderreviewed:data[0].airshivmedicalproviderreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHIVMedicalProviderScan:
                           !formState.AIRSHIVMedicalProviderScan,
                         AIRSHIVMedicalProviderUploadDate: crearFecha(),
-                        airshivmedicalproviderissues:false,
-                        airshivmedicalproviderreviewed:false
                       }));
                   if (
                     clientData.AIRSHIVMedicalProviderPDF ||
@@ -4829,16 +4654,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHIVStatusHistoryPDF:
                           !formState.AIRSHIVStatusHistoryPDF,
                         AIRSHIVStatusHistoryUploadDate: "",
-                        airshivstatushistoryissues:data[0].airshivstatushistoryissues,
-                        airshivstatushistoryreviewed:data[0].airshivstatushistoryreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHIVStatusHistoryPDF:
                           !formState.AIRSHIVStatusHistoryPDF,
                         AIRSHIVStatusHistoryUploadDate: crearFecha(),
-                        airshivstatushistoryissues:false,
-                        airshivstatushistoryreviewed:false
                       }));
                   if (
                     clientData.AIRSHIVStatusHistoryScan ||
@@ -4905,16 +4726,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHIVStatusHistoryScan:
                           !formState.AIRSHIVStatusHistoryScan,
                         AIRSHIVStatusHistoryUploadDate: "",
-                        airshivstatushistoryissues:data[0].airshivstatushistoryissues,
-                        airshivstatushistoryreviewed:data[0].airshivstatushistoryreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHIVStatusHistoryScan:
                           !formState.AIRSHIVStatusHistoryScan,
                         AIRSHIVStatusHistoryUploadDate: crearFecha(),
-                        airshivstatushistoryissues:false,
-                        airshivstatushistoryreviewed:false
                       }));
                   if (
                     clientData.AIRSHIVStatusHistoryScan ||
@@ -5085,15 +4902,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
                         AIRSHCVHistoryUploadDate: "",
-                        airshcvhistoryissues:data[0].airshcvhistoryissues,
-                        airshcvhistoryreviewed:data[0].airshcvhistoryreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHCVHistoryPDF: !formState.AIRSHCVHistoryPDF,
                         AIRSHCVHistoryUploadDate: crearFecha(),
-                        airshcvhistoryissues:false,
-                        airshcvhistoryreviewed:false
                       }));
                   if (
                     clientData.AIRSHCVHistoryScan ||
@@ -5153,15 +4966,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
                         AIRSHCVHistoryUploadDate: "",
-                        airshcvhistoryissues:data[0].airshcvhistoryissues,
-                        airshcvhistoryreviewed:data[0].airshcvhistoryreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHCVHistoryScan: !formState.AIRSHCVHistoryScan,
                         AIRSHCVHistoryUploadDate: crearFecha(),
-                        airshcvhistoryissues:false,
-                        airshcvhistoryreviewed:false
                       }));
                   if (
                     clientData.AIRSHCVHistoryPDF ||
@@ -5336,16 +5145,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHousingInformationPDF:
                           !formState.AIRSHousingInformationPDF,
                         AIRSHousingInformationUploadDate: "",
-                        airshousinginformationissues:data[0].airshousinginformationissues,
-                        airshousinginformationreviewed:data[0].airshousinginformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHousingInformationPDF:
                           !formState.AIRSHousingInformationPDF,
                         AIRSHousingInformationUploadDate: crearFecha(),
-                        airshousinginformationissues:false,
-                        airshousinginformationreviewed:false
                       }));
                   if (
                     clientData.AIRSHousingInformationScan ||
@@ -5412,16 +5217,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSHousingInformationScan:
                           !formState.AIRSHousingInformationScan,
                         AIRSHousingInformationUploadDate: "",
-                        airshousinginformationissues:data[0].airshousinginformationissues,
-                        airshousinginformationreviewed:data[0].airshousinginformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSHousingInformationScan:
                           !formState.AIRSHousingInformationScan,
                         AIRSHousingInformationUploadDate: crearFecha(),
-                        airshousinginformationissues:false,
-                        airshousinginformationreviewed:false
                       }));
                   if (
                     clientData.AIRSHousingInformationPDF ||
@@ -5603,16 +5404,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSInsuranceInformationPDF:
                           !formState.AIRSInsuranceInformationPDF,
                         AIRSInsuranceInformationUploadDate: "",
-                        airsinsuranceinformationissues:data[0].airsinsuranceinformationissues,
-                        airsinsuranceinformationreviewed:data[0].airsinsuranceinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSInsuranceInformationPDF:
                           !formState.AIRSInsuranceInformationPDF,
                         AIRSInsuranceInformationUploadDate: crearFecha(),
-                        airsinsuranceinformationissues:false,
-                        airsinsuranceinformationreviewed:false
                       }));
                   if (
                     clientData.AIRSInsuranceInformationScan ||
@@ -5681,16 +5478,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSInsuranceInformationScan:
                           !formState.AIRSInsuranceInformationScan,
                         AIRSInsuranceInformationUploadDate: "",
-                        airsinsuranceinformationissues:data[0].airsinsuranceinformationissues,
-                        airsinsuranceinformationreviewed:data[0].airsinsuranceinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSInsuranceInformationScan:
                           !formState.AIRSInsuranceInformationScan,
                         AIRSInsuranceInformationUploadDate: crearFecha(),
-                        airsinsuranceinformationissues:false,
-                        airsinsuranceinformationreviewed:false
                       }));
                   if (
                     !clientData.AIRSInsuranceInformationScan ||
@@ -5871,16 +5664,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSSubstanceUseHistoryPDF:
                           !formState.AIRSSubstanceUseHistoryPDF,
                         AIRSSubstanceUseHistoryUploadDate: "",
-                        airssubstanceusehistoryissues:data[0].airssubstanceusehistoryissues,
-                        airssubstanceusehistoryreviewed:data[0].airscollateralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSSubstanceUseHistoryPDF:
                           !formState.AIRSSubstanceUseHistoryPDF,
                         AIRSSubstanceUseHistoryUploadDate: crearFecha(),
-                        airssubstanceusehistoryissues:false,
-                        airssubstanceusehistoryreviewed:false
                       }));
                   if (
                     !clientData.AIRSSubstanceUseHistoryPDF ||
@@ -5949,16 +5738,12 @@ const EditMsaFormPage = ({ data }) => {
                         AIRSSubstanceUseHistoryScan:
                           !formState.AIRSSubstanceUseHistoryScan,
                         AIRSSubstanceUseHistoryUploadDate: "",
-                        airssubstanceusehistoryissues:data[0].airssubstanceusehistoryissues,
-                        airssubstanceusehistoryreviewed:data[0].airscollateralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         AIRSSubstanceUseHistoryScan:
                           !formState.AIRSSubstanceUseHistoryScan,
                         AIRSSubstanceUseHistoryUploadDate: crearFecha(),
-                        airssubstanceusehistoryissues:false,
-                        airssubstanceusehistoryreviewed:false
                       }));
                   if (
                     clientData.AIRSSubstanceUseHistoryPDF ||
@@ -6158,15 +5943,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         LNEClientRightsScan: !formState.LNEClientRightsScan,
                         LNEClientRightsUploadDate: "",
-                        lneclientrightsissues:data[0].lneclientrightsissues,
-                        lneclientrightsreviewed:data[0].lneclientrightsreviewed  
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         LNEClientRightsScan: !formState.LNEClientRightsScan,
                         LNEClientRightsUploadDate: crearFecha(),
-                        lneclientrightsissues:false,
-                        lneclientrightsreviewed:false
                       }));
                 }}
               >
@@ -6369,8 +6150,6 @@ const EditMsaFormPage = ({ data }) => {
                         LNEClientGrievancePolicyProcedureScan:
                           !formState.LNEClientGrievancePolicyProcedureScan,
                         LNEClientGrievancePolicyProcedureUploadDate: "",
-                        lneclientgrievancepolicyprocedureissues:data[0].lneclientgrievancepolicyprocedureissues,
-                        lneclientgrievancepolicyprocedurereviewed:data[0].lneclientgrievancepolicyprocedurereviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -6378,8 +6157,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.LNEClientGrievancePolicyProcedureScan,
                         LNEClientGrievancePolicyProcedureUploadDate:
                           crearFecha(),
-                          lneclientgrievancepolicyprocedureissues:false,
-                        lneclientgrievancepolicyprocedurereviewed:false
                       }));
                 }}
               >
@@ -6576,15 +6353,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         LNEProgramRulesScan: !formState.LNEProgramRulesScan,
                         LNEProgramRulesUploadDate: "",
-                        lneprogramrulesissues:data[0].lneprogramrulesissues,
-                        lneprogramrulesreviewed:data[0].lneprogramrulesreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         LNEProgramRulesScan: !formState.LNEProgramRulesScan,
                         LNEProgramRulesUploadDate: crearFecha(),
-                        lneprogramrulesissues:false,
-                        lneprogramrulesreviewed:false
                       }));
                 }}
               >
@@ -6783,16 +6556,12 @@ const EditMsaFormPage = ({ data }) => {
                         LNEEmergencyContactConsentScan:
                           !formState.LNEEmergencyContactConsentScan,
                         LNEEmergencyContactConsentUploadDate: "",
-                        lneemergencycontactconsentissues:data[0].lneemergencycontactconsentissues,
-                        lneemergencycontactconsentreviewed:data[0].lneemergencycontactconsentreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         LNEEmergencyContactConsentScan:
                           !formState.LNEEmergencyContactConsentScan,
                         LNEEmergencyContactConsentUploadDate: crearFecha(),
-                        lneemergencycontactconsentissues:false,
-                        lneemergencycontactconsentreviewed:false
                       }));
                 }}
               >
@@ -7002,8 +6771,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.LNEConsentForReleaseOfConfidentialInformationScan,
                         LNEConsentForReleaseOfConfidentialInformationUploadDate:
                           "",
-                          lneconsentforreleaseofconfidentialinformationissues:data[0].lneconsentforreleaseofconfidentialinformationissues,
-                          lneconsentforreleaseofconfidentialinformationreviewed:data[0].lneconsentforreleaseofconfidentialinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -7011,8 +6778,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.LNEConsentForReleaseOfConfidentialInformationScan,
                         LNEConsentForReleaseOfConfidentialInformationUploadDate:
                           crearFecha(),
-                          lneconsentforreleaseofconfidentialinformationissues:false,
-                          lneconsentforreleaseofconfidentialinformationreviewed:false
                       }));
                 }}
               >
@@ -7187,15 +6952,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         HIPPAConsentFormPDF: !formState.HIPPAConsentFormPDF,
                         HIPPAConsentFormUploadDate: "",
-                        hippaconsentformissues:data[0].hippaconsentformissues,
-                        hippaconsentformreviewed:data[0].hippaconsentformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         HIPPAConsentFormPDF: !formState.HIPPAConsentFormPDF,
                         HIPPAConsentFormUploadDate: crearFecha(),
-                        hippaconsentformissues:false,
-                        hippaconsentformreviewed:false
                       }));
                   if (
                     clientData.HIPPAConsentFormScan ||
@@ -7255,15 +7016,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
                         HIPPAConsentFormUploadDate: "",
-                        hippaconsentformissues:data[0].hippaconsentformissues,
-                        hippaconsentformreviewed:data[0].hippaconsentformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         HIPPAConsentFormScan: !formState.HIPPAConsentFormScan,
                         HIPPAConsentFormUploadDate: crearFecha(),
-                        hippaconsentformissues:false,
-                        hippaconsentformreviewed:false
                       }));
                   if (
                     clientData.HIPPAConsentFormPDF ||
@@ -7456,8 +7213,6 @@ const EditMsaFormPage = ({ data }) => {
                         NYCDOHMHNoticeOfPrivacyPracticesPDF:
                           !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
                         NYCDOHMHNoticeOfPrivacyPracticesUploadDate: "",
-                        nycdohmhnoticeofprivacypracticesissues:data[0].nycdohmhnoticeofprivacypracticesissues,
-                        nycdohmhnoticeofprivacypracticesreviewed:data[0].nycdohmhnoticeofprivacypracticesreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -7465,8 +7220,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.NYCDOHMHNoticeOfPrivacyPracticesPDF,
                         NYCDOHMHNoticeOfPrivacyPracticesUploadDate:
                           crearFecha(),
-                          nycdohmhnoticeofprivacypracticesissues:false,
-                        nycdohmhnoticeofprivacypracticesreviewed:false
                       }));
                   if (
                     !clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ||
@@ -7541,8 +7294,6 @@ const EditMsaFormPage = ({ data }) => {
                         NYCDOHMHNoticeOfPrivacyPracticesScan:
                           !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
                         NYCDOHMHNoticeOfPrivacyPracticesUploadDate: "",
-                        nycdohmhnoticeofprivacypracticesissues:data[0].nycdohmhnoticeofprivacypracticesissues,
-                        nycdohmhnoticeofprivacypracticesreviewed:data[0].nycdohmhnoticeofprivacypracticesreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -7550,8 +7301,6 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.NYCDOHMHNoticeOfPrivacyPracticesScan,
                         NYCDOHMHNoticeOfPrivacyPracticesUploadDate:
                           crearFecha(),
-                          nycdohmhnoticeofprivacypracticesissues:false,
-                          nycdohmhnoticeofprivacypracticesreviewed:false
                       }));
                   if (
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF ||
@@ -7744,16 +7493,12 @@ const EditMsaFormPage = ({ data }) => {
                         LinkageRetentionAdherenceFormsPDF:
                           !formState.LinkageRetentionAdherenceFormsPDF,
                         LinkageRetentionAdherenceFormsUploadDate: "",
-                        linkageretentionadherenceformsissues:data[0].linkageretentionadherenceformsissues,
-                        linkageretentionadherenceformsreviewed:data[0].linkageretentionadherenceformsreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         LinkageRetentionAdherenceFormsPDF:
                           !formState.LinkageRetentionAdherenceFormsPDF,
                         LinkageRetentionAdherenceFormsUploadDate: crearFecha(),
-                        linkageretentionadherenceformsissues:false,
-                        linkageretentionadherenceformsreviewed:false
                       }));
                   if (
                     clientData.LinkageRetentionAdherenceFormsScan ||
@@ -7826,16 +7571,12 @@ const EditMsaFormPage = ({ data }) => {
                         LinkageRetentionAdherenceFormsScan:
                           !formState.LinkageRetentionAdherenceFormsScan,
                         LinkageRetentionAdherenceFormsUploadDate: "",
-                        linkageretentionadherenceformsissues:data[0].linkageretentionadherenceformsissues,
-                        linkageretentionadherenceformsreviewed:data[0].linkageretentionadherenceformsreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         LinkageRetentionAdherenceFormsScan:
                           !formState.LinkageRetentionAdherenceFormsScan,
                         LinkageRetentionAdherenceFormsUploadDate: crearFecha(),
-                        linkageretentionadherenceformsissues:false,
-                        linkageretentionadherenceformsreviewed:false
                       }));
                   if (
                     clientData.LinkageRetentionAdherenceFormsPDF ||
@@ -8026,16 +7767,12 @@ const EditMsaFormPage = ({ data }) => {
                         InternalReferralInformationPDF:
                           !formState.InternalReferralInformationPDF,
                         InternalReferralInformationUploadDate: "",
-                        internalreferralinformationissues:data[0].internalreferralinformationissues,
-                        internalreferralinformationreviewed:data[0].internalreferralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         InternalReferralInformationPDF:
                           !formState.InternalReferralInformationPDF,
                         InternalReferralInformationUploadDate: crearFecha(),
-                        internalreferralinformationissues:false,
-                        internalreferralinformationreviewed:false
                       }));
                   if (
                     clientData.InternalReferralInformationScan ||
@@ -8106,16 +7843,12 @@ const EditMsaFormPage = ({ data }) => {
                         InternalReferralInformationScan:
                           !formState.InternalReferralInformationScan,
                         InternalReferralInformationUploadDate: "",
-                        internalreferralinformationissues:data[0].internalreferralinformationissues,
-                        internalreferralinformationreviewed:data[0].internalreferralinformationreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         InternalReferralInformationScan:
                           !formState.InternalReferralInformationScan,
                         InternalReferralInformationUploadDate: crearFecha(),
-                        internalreferralinformationissues:false,
-                        internalreferralinformationreviewed:false
                       }));
                   if (
                     !clientData.InternalReferralInformationScan ||
@@ -8297,16 +8030,12 @@ const EditMsaFormPage = ({ data }) => {
                         LNEClientReferralFormPDF:
                           !formState.LNEClientReferralFormPDF,
                         LNEClientReferralFormUploadDate: "",
-                        lneclientreferralformissues:data[0].lneclientreferralformissues,
-                        lneclientreferralformreviewed:data[0].lneclientgrievancepolicyprocedurereviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         LNEClientReferralFormPDF:
                           !formState.LNEClientReferralFormPDF,
                         LNEClientReferralFormUploadDate: crearFecha(),
-                        lneclientreferralformissues:false,
-                        lneclientreferralformreviewed:false
                       }));
                   if (
                     !clientData.LNEClientReferralFormPDF ||
@@ -8373,16 +8102,12 @@ const EditMsaFormPage = ({ data }) => {
                         LNEClientReferralFormScan:
                           !formState.LNEClientReferralFormScan,
                         LNEClientReferralFormUploadDate: "",
-                        lneclientreferralformissues:data[0].lneclientreferralformissues,
-                        lneclientreferralformreviewed:data[0].lneclientgrievancepolicyprocedurereviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         LNEClientReferralFormScan:
                           !formState.LNEClientReferralFormScan,
                         LNEClientReferralFormUploadDate: crearFecha(),
-                        lneclientreferralformissues:false,
-                        lneclientreferralformreviewed:false
                       }));
                   if (
                     !clientData.LNEClientReferralFormScan ||
@@ -8556,15 +8281,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         HNSEligibilityFormPDF: !formState.HNSEligibilityFormPDF,
                         HNSEligibilityFormUploadDate: "",
-                        hnseligibilityformissues:data[0].hnseligibilityformissues,
-                        hnseligibilityformreviewed:data[0].hnseligibilityformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         HNSEligibilityFormPDF: !formState.HNSEligibilityFormPDF,
                         HNSEligibilityFormUploadDate: crearFecha(),
-                        hnseligibilityformissues:false,
-                        hnseligibilityformreviewed:false
                       }));
                   if (
                     !clientData.HNSEligibilityFormPDF ||
@@ -8627,16 +8348,12 @@ const EditMsaFormPage = ({ data }) => {
                         HNSEligibilityFormScan:
                           !formState.HNSEligibilityFormScan,
                         HNSEligibilityFormUploadDate: "",
-                        hnseligibilityformissues:data[0].hnseligibilityformissues,
-                        hnseligibilityformreviewed:data[0].hnseligibilityformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         HNSEligibilityFormScan:
                           !formState.HNSEligibilityFormScan,
                         HNSEligibilityFormUploadDate: crearFecha(),
-                        hnseligibilityformissues:false,
-                        hnseligibilityformreviewed:false
                       }));
                   if (
                     !clientData.HNSEligibilityFormScan ||
@@ -8807,15 +8524,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         HNSReadinessFormPDF: !formState.HNSReadinessFormPDF,
                         HNSReadinessFormUploadDate: "",
-                        hnsreadinessformissues:data[0].hnsreadinessformissues,
-                        hnsreadinessformreviewed:data[0].hnsreadinessformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         HNSReadinessFormPDF: !formState.HNSReadinessFormPDF,
                         HNSReadinessFormUploadDate: crearFecha(),
-                        hnsreadinessformissues:false,
-                        hnsreadinessformreviewed:false
                       }));
                   if (
                     !clientData.HNSReadinessFormPDF ||
@@ -8875,15 +8588,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         HNSReadinessFormScan: !formState.HNSReadinessFormScan,
                         HNSReadinessFormUploadDate: "",
-                        hnsreadinessformissues:data[0].hnsreadinessformissues,
-                        hnsreadinessformreviewed:data[0].hnsreadinessformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         HNSReadinessFormScan: !formState.HNSReadinessFormScan,
                         HNSReadinessFormUploadDate: crearFecha(),
-                        hnsreadinessformissues:false,
-                        hnsreadinessformreviewed:false
                       }));
                   if (
                     !clientData.HNSReadinessFormScan ||
@@ -9050,15 +8759,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         SupportGroupsPDF: !formState.SupportGroupsPDF,
                         SupportGroupsUploadDate: "",
-                        supportgroupsissues:data[0].supportgroupsissues,
-                        supportgroupsreviewed:data[0].supportgroupsreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         SupportGroupsPDF: !formState.SupportGroupsPDF,
                         SupportGroupsUploadDate: crearFecha(),
-                        supportgroupsissues:false,
-                        supportgroupsreviewed:false
                       }));
                   if (
                     !clientData.SupportGroupsPDF ||
@@ -9099,7 +8804,6 @@ const EditMsaFormPage = ({ data }) => {
                           ...clientData,
                           SupportGroupsPDF: !clientData.SupportGroupsPDF,
                           SupportGroupsUploadDate: crearFecha(),
-                          
                         })
                       : setClientData({
                           ...clientData,
@@ -9119,15 +8823,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         SupportGroupsScan: !formState.SupportGroupsScan,
                         SupportGroupsUploadDate: "",
-                        supportgroupsissues:data[0].supportgroupsissues,
-                        supportgroupsreviewed:data[0].supportgroupsreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         SupportGroupsScan: !formState.SupportGroupsScan,
                         SupportGroupsUploadDate: crearFecha(),
-                        supportgroupsissues:data[0].supportgroupsissues,
-                        supportgroupsreviewed:data[0].supportgroupsreviewed
                       }));
                   if (
                     !clientData.SupportGroupsScan ||
@@ -9293,15 +8993,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         IDGFormPDF: !formState.IDGFormPDF,
                         IDGFormUploadDate: "",
-                        idgformissues:data[0].idgformissues,
-                        idgformreviewed:data[0].idgformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         IDGFormPDF: !formState.IDGFormPDF,
                         IDGFormUploadDate: crearFecha(),
-                        idgformissues:false,
-                        idgformreviewed:false
                       }));
                   if (!clientData.IDGFormPDF || clientData.IDGFormScan) {
                     setClientData((formState) => ({
@@ -9358,15 +9054,11 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         IDGFormScan: !formState.IDGFormScan,
                         IDGFormUploadDate: "",
-                        idgformissues:data[0].idgformissues,
-                        idgformreviewed:data[0].idgformreviewed
                       }))
                     : setClientData((formState) => ({
                         ...formState,
                         IDGFormScan: !formState.IDGFormScan,
                         IDGFormUploadDate: crearFecha(),
-                        idgformissues:false,
-                        idgformreviewed:false
                       }));
                   if (!clientData.IDGFormScan || clientData.IDGFormPDF) {
                     setClientData((formState) => ({
@@ -9432,7 +9124,7 @@ const EditMsaFormPage = ({ data }) => {
   );
 };
 
-export default EditMsaFormPage;
+export default EditMsaFormPage2;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
