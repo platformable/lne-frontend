@@ -9,8 +9,10 @@ import { ToastContainer, toast } from "react-toastify";
 import RowMsaFormSupervisor from "../../../../components/RowMsaFormSupervisor";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
+import Link from "next/link";
 
 import backIcon from "../../../../public/BACKicon.svg";
+
 import checkUpdateicon from "../../../../public/check-save-and-finish.svg"
 import IssuesFoundModal from "../../../../components/IssuesFoundModal";
 
@@ -990,9 +992,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
   });
   const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
   const [issueFounded, setIssueFounded] = useState({
-    field_title: "",
-    date_updated: null,
-    
+    clientId: clientData.clientId,
+    msaform: "",
+    description: "",
+    lastdateupdated: null,
+    form_issues: "",
+    form_reviewed: "",
+    hcw: `${clientData.userFirstName} ${clientData.userLastName}`
   })
 
   // useMemo(() => AsignProperties(data, clientData, setClientData), [data])
@@ -1002,6 +1008,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       position: toast.POSITION.TOP_CENTER,
     });
   };
+  const resetIssuesAndReviewCheckbox = () => {
+   setClientData({...clientData,[issueFounded.form_reviewed]: false, [issueFounded.form_issues]: false })
+
+  }
 
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
@@ -1011,7 +1021,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
 
   const todaysDate = new Date();
 
-  console.log("clientData", clientData);
+  // console.log("clientData", clientData);
 
   //WORK IN PROGRESS, TRYING TO ITERATE THE STATE
   // [['AIRSIntakeForm', true], [...]...]
@@ -1077,24 +1087,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     return fixedDate;
   };
   const onChangeInputCheckbox = (objectKey,) => {
-
-    // clientData[objectKeyDate] && clientData[objectKeyIssue] ?
-    // setClientData(prev => ({...prev, [objectKeyDate]: ""})) : null
     
-    clientData[objectKey] 
-        ? setClientData((prevState) => ({
+     setClientData((prevState) => ({
             ...prevState,
             [objectKey]:
               !prevState[objectKey],
-            //  [objectKeyDate]: "",
-          }))
-        : setClientData((prevState) => ({
-            ...prevState,
-            [objectKey]:
-              !prevState[objectKey],
-            // [objectKeyDate]: crearFecha(),
-        }));
-      
+            
+          }));  
      
   }
 
@@ -1109,7 +1108,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         </div>
 
         <main className="container mx-auto">
-          <div className="flex items-center justify-end">
+          {/* <div className="flex items-center justify-end">
           <button
             onClick={() => router.back()}
             className="py-1 flex items-center font-bold"
@@ -1117,7 +1116,21 @@ const EditSupervisorMSAFormPage = ({ data }) => {
             <Image src={backIcon} />
             <p className="ml-1">back to Dashboard</p>
             </button>
-          </div>
+          </div> */}
+          <div className="flex items-center">
+                <button onClick={() => router.back()} className="bg-light-blue rounded px-2 mr-2">
+                  <a className="pr-5 py-2 flex  items-center font-bold" id="myBtn">
+                  <Image src="/back_button_icon.svg" width={22} height={20} />
+                    <p className='ml-2'>Back</p>
+                  </a>
+                </button>
+                <button onClick={() => router.push("/dashboard")} className="bg-light-blue rounded px-2">
+                <a className="py-2 flex items-center font-bold" id="myBtn">
+                <Image src="/dashboard_icon.svg" width={22} height={20}/>
+                  <p className='ml-2'>Dashboard</p>
+                </a>
+                </button>
+              </div>
           <section id="info" className="my-5">
             <div className="">
               <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
@@ -1126,12 +1139,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
               >
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <h3 className="font-black mb-5">Date</h3>
-                  <label className="block">
-                    <span className="text-xs">Todays date</span>
-                    <p>{todaysDate.toLocaleDateString()}</p>
-                  </label>
+                <div className="service-action-plan-page-info-box flex items-end md:my-0 my-5">
+                  <div className="flex items-center mr-5"> 
+                  <img src="/msa_form/calendar_black_icon.svg" width="24" />
+                  <h3 className="font-black ml-1">Date</h3>
+                  </div>  
+                  <p>{todaysDate.toLocaleDateString()}</p>
                 </div>
 
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
@@ -1141,26 +1154,15 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className="text-xs">Client Name</span>
                       <input
                         type="text"
                         className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0].clientfirstname}
+                        value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
                         disabled
                       />
                     </label>
-                    <label className="block">
-                      <span className="text-xs">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        onChange={(e) =>
-                          setUserData({ ...clientData, email: e.target.value })
-                        }
-                        value={data[0].clientlastname.charAt(0)}
-                        disabled
-                      />
-                    </label>
+                   
                     <label className="block">
                       <span className="text-xs">Client ID</span>
                       <input
@@ -1175,7 +1177,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
 
                 <div className="service-action-plan-page-info-box">
                   <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
+                    <img src="/msa_form/LNEuser.svg" width="24" />
                     <h3 className="font-black ">Health Care Worker</h3>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -1215,84 +1217,25 @@ const EditSupervisorMSAFormPage = ({ data }) => {
             {/* <div className={`${MSAStyles.line}`}></div> */}
             <div
               id="form-head"
-              className={`${MSAStyles.formRowsContainerDesFormEdit} grid gap-5 justify-center items-end rounded-tl-lg rounded-tr-lg py-1 mx-1`}
+              className={`${MSAStyles.formHeadTitlesSupervisor} grid gap-5 justify-center items-end rounded-tl-lg rounded-tr-lg py-1 mx-1`}
             >
-              <div></div>
               <div></div>
               <p className="text-center">Date added</p>
               <p className="text-center">Dropbox Folder</p>
-              <p className="text-center">Date last updated</p>
-              <div className="flex items-center">
-                <svg
-                  width="24"
-                  height="24"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-3 font-black"
-                >
-                  <path
-                    d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-                <p className="text-start">Supervisor has reviewed</p>
-              </div>
-              <div className="flex items-center">
-                <svg
-                  width="24"
-                  height="24"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-3 font-black"
-                >
-                  <path
-                    d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-                <p className="text-start">Issues found</p>
-                {/* what about Original Version Scanned */}
-              </div>
+              <p className="text-center flex items-center justify-center">
+                <img src="/msa_form/calendar_blue_icon.svg" className="mr-1"/>
+                Date last updated</p>
+
+                <p className="text-center flex items-center justify-center px-3">
+                <img src="/msa_form/supervisor_reviewed_icon.svg" className="self-end"/>  
+                  Supervisor has reviewed
+                  </p>
+
+                  <p className="text-center flex items-center justify-center">
+                    <img src="/msa_form/issues_found_icon.svg" className="mr-1 self-end"/>  
+                     Issues found
+                  </p>
+              
             </div>
             {/* {TABLE HEAD} */}
 
@@ -2065,9 +2008,11 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       {showIssuesFoundModal && <IssuesFoundModal 
       clientId={clientData.clientId} 
       HCW={clientData.userFirstName +" "+ clientData.userLastName}
-      MSAfield={issueFounded}
+      issueFounded={issueFounded}
+      setIssueFounded={setIssueFounded}
       showIssuesFoundModal={showIssuesFoundModal}
       setShowIssuesFoundModal={setShowIssuesFoundModal}
+      resetIssuesAndReviewCheckbox={resetIssuesAndReviewCheckbox}
       />}
     </>
   );

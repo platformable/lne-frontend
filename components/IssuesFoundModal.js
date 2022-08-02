@@ -1,18 +1,39 @@
 import { useState } from "react";
 import Loader from "./Loader";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const  IssuesFoundModal = ({clientId, HCW, MSAfield, setShowIssuesFoundModal, showIssuesFoundModal}) => {
-    // const [issueFound, setIssueFound] = useState({
 
-    // })
+const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundModal, showIssuesFoundModal, resetIssuesAndReviewCheckbox}) => {
+    
     const [saving,setSaving] = useState(false)
+    
     const closeModal = () => {
-        
-        setShowIssuesFoundModal(!showIssuesFoundModal)
-    }
+      resetIssuesAndReviewCheckbox()
+      setShowIssuesFoundModal(!showIssuesFoundModal)
+    };
 
+    const notifyMessage = () => {
+      toast.success("Issue reported with success", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    };
+
+    const submitIssue = () => {
+        axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/issues`, {issueFounded})
+        .then(data => {
+          notifyMessage()
+          setShowIssuesFoundModal(!showIssuesFoundModal)
+        }).catch(error => {
+          console.log(error)
+        });
+        
+    };
+    
     return (
         <>
+      <ToastContainer autoClose={2000} />
             <div className="modal">
         <div className="bg-yellow relative mt-8 max-w-sm mx-auto p-10 rounded">
         <button
@@ -23,7 +44,7 @@ const  IssuesFoundModal = ({clientId, HCW, MSAfield, setShowIssuesFoundModal, sh
                   </button>
           <div className="grid grid-cols-1 gap-6">
           <div className="flex ml-2.5 items-end">
-            <img src="/add-new-user-icon.svg" className="mr-3" alt="" width="50"/>
+            <img src="/msa_form/Issues_found_popup_icon.svg" className="mr-3" alt="" width="50"/>
             <h2 className="font-black">Issues Found</h2>
             </div>
             <label className="block">
@@ -31,7 +52,7 @@ const  IssuesFoundModal = ({clientId, HCW, MSAfield, setShowIssuesFoundModal, sh
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                value={clientId}
+                value={issueFounded.clientId}
                 disabled
               />
             </label>
@@ -40,7 +61,7 @@ const  IssuesFoundModal = ({clientId, HCW, MSAfield, setShowIssuesFoundModal, sh
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                value={HCW}
+                value={issueFounded.hcw}
                disabled
               />
             </label>
@@ -49,7 +70,7 @@ const  IssuesFoundModal = ({clientId, HCW, MSAfield, setShowIssuesFoundModal, sh
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                value={MSAfield.field_title}
+                value={issueFounded.msaform}
                 disabled
               />
             </label>
@@ -59,18 +80,15 @@ const  IssuesFoundModal = ({clientId, HCW, MSAfield, setShowIssuesFoundModal, sh
                 <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                value={MSAfield.date_updated?MSAfield.date_updated.split("T")[0]:"-"}
+                value={issueFounded.lastdateupdated ? issueFounded.lastdateupdated.split("T")[0]:"-"}
                 disabled
               />
             </label>
             <label className="block">
                <span className="ml-1 font-semibold text-xs">Describe the issue that needs to be addressed:</span>
-              {/*  <input
-                type="textarea"
-                placeholder="Description here..."
-                className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              /> */}
-              <span className="p-2 block bg-white rounded-md overflow-hidden" role="textbox" contentEditable></span>
+              
+              <span className="p-2 block bg-white break-all rounded-md overflow-hidden" role="textbox" name="" contentEditable 
+              onInput={(e) => setIssueFounded({...issueFounded, description: e.target.innerText})}></span>
             </label>
 
            
@@ -79,19 +97,18 @@ const  IssuesFoundModal = ({clientId, HCW, MSAfield, setShowIssuesFoundModal, sh
               <div className="mt-2">
                 <div className="flex justify-center">
                   <button
-                    className="px-4  py-2 mr-3 font-medium bg-[#23D3AA]  hover:bg-green-500 text-sm flex shadow-xl rounded-md"
+                    className="px-4  py-2 mr-3 font-medium bg-dark-green hover:bg-green-500 text-sm flex shadow-xl rounded-md"
                     onClick={() => {
-                      addUser();
-                      setSaving(!saving);
+                      submitIssue();
                     }}
                   >
                     {saving ? (
                       <Loader />
                     ) : (
-                      <img src="/check-save-and-finish.svg" className="mr-3" alt="" width="18"/>
+                      <img src="/msa_form/Save_and_send_icon.svg" className="mr-1" alt="" width="18"/>
 
                     )}
-                    Save and Send
+                    Save 
                   </button>
                  
                 </div>

@@ -29,45 +29,55 @@ const RowMsaFormSupervisor = ({
   showIssuesFoundModal
 }) => {
 
-
   const nameStrings = useMemo(() => iterateFormStringNames(formString), [])
+
+  // names to use in the form  
   const [strings, setStrings] = useState({
     formDate: nameStrings[0],
     formUploadDate: nameStrings [1],
     formIssues: nameStrings[2],
     formReviewed: nameStrings[3],
   });
-  useEffect(() => {
-    console.log(nameStrings)
-  } ,[]);
+  // console.log("form : ",form);
+  // console.log("form name: ", formString, formDate)
+  
 
   const onChangeInputIssues = (e) => {
-    setIssueFounded((previousState) => ({...previousState, field_title: e.target.name, date_updated: formUploadDate }))
+    //set info to display in issue popup
+    setIssueFounded((previousState) => ({...previousState,
+      form_issues: strings.formIssues,
+      form_reviewed: strings.formReviewed,
+      msaform: e.target.name, 
+      lastdateupdated: formUploadDate,
+       }));
+
     setShowIssuesFoundModal((previousState) => !previousState)
-    onChangeInputCheckbox(strings.formIssues);
-    onChangeInputCheckbox(strings.formReviewed);
+    setClientData(previousState => ({...previousState, [strings.formIssues]: true, [strings.formReviewed]: true}));
   }
 
-  return (
+  return (  
     <div
       className={`${
-        MSAStyles.formRowsContainerDesFormEdit
+        MSAStyles.formHeadTitlesSupervisor
       } justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${
-        form ? "" : "pointer-events-none"
+        form  ? "" : "pointer-events-none"
       }`}
     >
+      {/* 
       <div
         className={`ml-1 text-center flex justify-center items-center `}
       >
-        {/* <input  className={`bg-white rounded-md  h-6 w-6 `}
+        <input  className={`bg-white rounded-md  h-6 w-6 `}
           type="checkbox"
           name=""
           id=""
           onClick={() => onChangeInputCheckbox(strings.form, strings.formDate, strings.formIssues)}
           checked={form ? "checked" : false}
           disabled={form ? true : false}  
-        /> */}
-      </div>
+      
+      /> 
+      </div>*/}
+      
 
       <div>
         <p>
@@ -75,8 +85,9 @@ const RowMsaFormSupervisor = ({
            {/* <span className="text-red-500">*</span> */}
         </p>
       </div>
-
+       
       <div className="text-center">
+      {formDate &&(
         <input
           type="date"
           id={formString}
@@ -92,7 +103,7 @@ const RowMsaFormSupervisor = ({
               [formDateString]: e.target.value,
             }));
           }}
-        />
+        />)}
       </div>
       <div
         className={`${MSAStyles.dropboxFolderNames}  text-center flex justify-center items-center border-l-dark-blue`}
@@ -110,12 +121,13 @@ const RowMsaFormSupervisor = ({
         {/*  <p className="text-dark-blue underline">Intake</p> */}
       </div>
       <div className="text-center">
+        {formUploadDate && (
         <input
           type="date"
           id={strings.formUploadDate}
           className={`${MSAStyles.inputDate} 
            ${
-            formReviewed 
+            formReviewed || !form
               ? ""
               : " border-2 border-dark-blue rounded-md p-px bg-white"
           }`}
@@ -131,6 +143,7 @@ const RowMsaFormSupervisor = ({
             }));
           }}
         />
+        )}
       </div>
         <div
         //handles the prohibition to change review`s input once was issue checked
