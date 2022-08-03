@@ -878,6 +878,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     LNEHNSEligibilityFormUploadDate:
       data[0].hnseligibilityformuploaddate || null,
+      LNEHNSEligibilityFormPDF:
+      data[0].hnseligibilityformpdf === "0" ||
+      data[0].hnseligibilityformpdf === null
+        ? false
+        : true,
+
+    
 
     HNSEligibilityForm:
       data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null
@@ -977,7 +984,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
   });
 
-  // console.log("data", client);
+  console.log("clientDAta", clientData);
+  console.log("data", data[0]);
+
   const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
   const [issueFounded, setIssueFounded] = useState({
     clientId: clientData.clientId,
@@ -1365,7 +1374,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formUploadDate={clientData.TreatmentAdherenceUpdatesUploadDate}
               formPDF={clientData.TreatmentAdherenceUpdatesPDF}
               formReviewed={clientData.TreatmentAdherenceUpdatesReviewed}
-              formIssues={clientData.TreatmentAdherenceUpdatesFormIssues}
+              formIssues={clientData.TreatmentAdherenceUpdatesIssues}
               formString={"TreatmentAdherenceUpdates"}
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
@@ -1467,7 +1476,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formUploadDate={clientData.AIRSHIVStatusHistoryUploadDate}
               formPDF={clientData.AIRSHIVStatusHistoryPDF}
               formReviewed={clientData.AIRSHIVStatusHistoryReviewed}
-              formIssues={clientData.AIRSHIVStatusHistoryFormIssues}
+              formIssues={clientData.AIRSHIVStatusHistoryIssues}
               formString={"AIRSHIVStatusHistory"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
@@ -1479,13 +1488,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
            
             <RowMsaFormSupervisor
               fieldName={"AIRS HCV History"}
-              form={clientData.ComprehensiveRiskBehaviorAssessmentUpdates}
-              formDate={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate}
-              formUploadDate={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate}
-              formPDF={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF}
-              formReviewed={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed}
-              formIssues={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues}
-              formString={"ComprehensiveRiskBehaviorAssessmentUpdates"}
+              form={clientData.AIRSHCVHistory}
+              formDate={clientData.AIRSHCVHistoryDate}
+              formUploadDate={clientData.AIRSHCVHistoryUploadDate}
+              formPDF={clientData.AIRSHCVHistoryPDF}
+              formReviewed={clientData.AIRSHCVHistoryReviewed}
+              formIssues={clientData.AIRSHCVHistoryIssues}
+              formString={"AIRSHCVHistory"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
@@ -1587,7 +1596,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formUploadDate={clientData.LNEProgramRulesUploadDate}
               formPDF={clientData.LNEProgramRulesPDF}
               formReviewed={clientData.LNEProgramRulesReviewed}
-              formIssues={clientData.LNEProgramRulesFormIssues}
+              formIssues={clientData.LNEProgramRulesIssues}
               formString={"LNEProgramRules"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].miscellaneous_folder_url}
@@ -1757,7 +1766,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formUploadDate={clientData.SupportGroupsUploadDate}
               formPDF={clientData.SupportGroupsPDF}
               formReviewed={clientData.SupportGroupsReviewed}
-              formIssues={clientData.SupportGroupsFormIssues}
+              formIssues={clientData.SupportGroupsIssues}
               formString={"SupportGroups"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
@@ -1775,7 +1784,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formUploadDate={clientData.IDGFormUploadDate}
               formPDF={clientData.IDGFormPDF}
               formReviewed={clientData.IDGFormReviewed}
-              formIssues={clientData.IDGFormFormIssues}
+              formIssues={clientData.IDGFormIssues}
               formString={"IDGForm"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}

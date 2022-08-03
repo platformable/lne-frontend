@@ -56,23 +56,24 @@ const RowMsaFormSupervisor = ({
     return fixedDate;
   };
   const onChangeInputCheckbox = (e) => {
-    !formUploadDate ?  
+    formUploadDate ?  
     setClientData((prevState) => ({
            ...prevState,
            [e.target.name]:
              !prevState[e.target.name],
-           [strings.formUploadDate]: crearFecha()
+          //  [strings.formUploadDate]: ""
     })) :
     setClientData((prevState) => ({
       ...prevState,
       [e.target.name]:
         !prevState[e.target.name],
-      [strings.formUploadDate]: ""
+      [strings.formUploadDate]: crearFecha()
 }))
 
     
  }
   const onChangeInputIssues = (e) => {
+    console.log(strings)
     //set info to display in issue popup
     setIssueFounded((previousState) => ({...previousState,
       form_issues: strings.formIssues,
@@ -162,7 +163,7 @@ const RowMsaFormSupervisor = ({
           id={strings.formUploadDate}
           className={`${MSAStyles.inputDate} 
            ${
-            formReviewed || !form
+            formReviewed || formIssues
               ? ""
               : " border-2 border-dark-blue rounded-md p-px bg-white"
           }`}
