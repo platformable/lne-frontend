@@ -21,7 +21,6 @@ const RowMsaFormSupervisor = ({
   formIssues,
   formString,
   setClientData,
-  onChangeInputCheckbox,
   folder_url,
   dependency_folder_url,
   setIssueFounded,
@@ -40,19 +39,55 @@ const RowMsaFormSupervisor = ({
   });
   // console.log("form : ",form);
   // console.log("form name: ", formString, formDate)
-  
+  const crearFecha = () => {
+    const initialDate = new Date().toLocaleDateString();
+    const newDate = initialDate.split("/");
+    let fixedDate;
+    if (typeof window !== "undefined") {
+      const userLocale = window.navigator.language;
+      userLocale === "en-US"
+        ? (fixedDate = `${newDate[2]}-${
+            newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`
+          }-${newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`}`)
+        : (fixedDate = `${newDate[2]}-${
+            newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`
+          }-${newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`}`);
+    }
+    return fixedDate;
+  };
+  const onChangeInputCheckbox = (e) => {
+    !formUploadDate ?  
+    setClientData((prevState) => ({
+           ...prevState,
+           [e.target.name]:
+             !prevState[e.target.name],
+           [strings.formUploadDate]: crearFecha()
+    })) :
+    setClientData((prevState) => ({
+      ...prevState,
+      [e.target.name]:
+        !prevState[e.target.name],
+      [strings.formUploadDate]: ""
+}))
 
+    
+ }
   const onChangeInputIssues = (e) => {
     //set info to display in issue popup
     setIssueFounded((previousState) => ({...previousState,
       form_issues: strings.formIssues,
       form_reviewed: strings.formReviewed,
+      form_uploadDate: strings.formUploadDate,
       msaform: e.target.name, 
-      lastdateupdated: formUploadDate,
+      lastdateupdated: formUploadDate || crearFecha(),
        }));
 
     setShowIssuesFoundModal((previousState) => !previousState)
-    setClientData(previousState => ({...previousState, [strings.formIssues]: true, [strings.formReviewed]: true}));
+    setClientData(previousState => ({...previousState,
+      [strings.formIssues]: true, 
+      [strings.formReviewed]: true, 
+      [strings.formUploadDate]: crearFecha()
+    }));
   }
 
   return (  
@@ -71,7 +106,7 @@ const RowMsaFormSupervisor = ({
           type="checkbox"
           name=""
           id=""
-          onClick={() => onChangeInputCheckbox(strings.form, strings.formDate, strings.formIssues)}
+          onClick={() => onChangeInputCheckbox()}
           checked={form ? "checked" : false}
           disabled={form ? true : false}  
       
@@ -87,10 +122,10 @@ const RowMsaFormSupervisor = ({
       </div>
        
       <div className="text-center">
-      {formDate &&(
+      
         <input
           type="date"
-          id={formString}
+          id={strings.formDate}
           className={MSAStyles.inputDate}
           value={
             formDate &&
@@ -100,10 +135,10 @@ const RowMsaFormSupervisor = ({
           onChange={(e) => {
             setClientData((prev) => ({
               ...prev,
-              [formDateString]: e.target.value,
+              [strings.formDate]: e.target.value,
             }));
           }}
-        />)}
+        />
       </div>
       <div
         className={`${MSAStyles.dropboxFolderNames}  text-center flex justify-center items-center border-l-dark-blue`}
@@ -121,7 +156,7 @@ const RowMsaFormSupervisor = ({
         {/*  <p className="text-dark-blue underline">Intake</p> */}
       </div>
       <div className="text-center">
-        {formUploadDate && (
+        
         <input
           type="date"
           id={strings.formUploadDate}
@@ -133,7 +168,7 @@ const RowMsaFormSupervisor = ({
           }`}
           value={
             formUploadDate &&
-            formUploadDate.split("T")[0]
+            formUploadDate.split("T")[0] 
           }
           disabled={formUploadDate ? true : false}
           onChange={(e) => {
@@ -143,7 +178,7 @@ const RowMsaFormSupervisor = ({
             }));
           }}
         />
-        )}
+        
       </div>
         <div
         //handles the prohibition to change review`s input once was issue checked
@@ -155,7 +190,7 @@ const RowMsaFormSupervisor = ({
           type="checkbox"
           name={strings.formReviewed}
           id={strings.formReviewed}
-          onChange={(e) => onChangeInputCheckbox(strings.formReviewed)}
+          onChange={(e) => onChangeInputCheckbox(e)}
           checked={
             formReviewed || formIssues ? "checked" : false
           }
