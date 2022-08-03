@@ -16,7 +16,7 @@ const ProgressNotesIndex = ({ data }) => {
 
   const [showImpactTrackerModal,setShowImpactTrackerModal]=useState(false)
   const [progressNoteId,setProgressNoteId]=useState("")
-  console.log("id: ", progressNoteId);
+
   const notifyMessage = () => {
     toast.success("Progress Note Saved!", {
       position: toast.POSITION.TOP_CENTER,
