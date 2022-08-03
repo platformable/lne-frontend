@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, {  useState } from "react";
 import Layout from "../../../../components/Layout";
-import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Styles from "../../../../styles/ServiceAP.module.css";
 import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from "axios";
@@ -9,28 +9,12 @@ import { ToastContainer, toast } from "react-toastify";
 import RowMsaFormSupervisor from "../../../../components/RowMsaFormSupervisor";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
-import Link from "next/link";
-
-import backIcon from "../../../../public/BACKicon.svg";
 
 import checkUpdateicon from "../../../../public/check-save-and-finish.svg"
 import IssuesFoundModal from "../../../../components/IssuesFoundModal";
 
-const AsignProperties = (data, clientData,set) => {
-  for (const [key, value] of Object.entries(data[0])) { 
-   if (value === "0" || value === null) {
-    set({...clientData,  [key]: false })
-   } else if (value === "1") {
-   set({...clientData,  [key]: true })
-   } else {
-    set({...clientData, [key]: value})
-   }
- }
-}
 
 const EditSupervisorMSAFormPage = ({ data }) => {
-  console.log("data", data);
-
   const { user, error, isLoading } = useUser();
   const router = useRouter();
   const [clientData, setClientData] = useState({
@@ -192,13 +176,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:
-      data[0].comprehensiveriskbehaviorassessmentreviewed === "0" ||
-      data[0].comprehensiveriskbehaviorassessmentreviewed === null
+      data[0].comprehensiveriskbehaviorassessmentupdatesreviewed === "0" ||
+      data[0].comprehensiveriskbehaviorassessmentupdatesreviewed === null
+      
         ? false
         : true,
-    ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues:
-      data[0].comprehensiveriskbehaviorassessmentupdatesformissues === "0" ||
-      data[0].comprehensiveriskbehaviorassessmentupdatesformissues === null
+    ComprehensiveRiskBehaviorAssessmentUpdatesIssues:
+      data[0].comprehensiveriskbehaviorassessmentupdatesissues === "0" ||
+      data[0].comprehensiveriskbehaviorassessmentupdatesissues === null
         ? false
         : true,
 
@@ -990,18 +975,21 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
   });
+
+  // console.log("data", client);
   const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
   const [issueFounded, setIssueFounded] = useState({
     clientId: clientData.clientId,
     msaform: "",
     description: "",
     lastdateupdated: null,
-    form_issues: "",
-    form_reviewed: "",
-    hcw: `${clientData.userFirstName} ${clientData.userLastName}`
+    form_issues: "", //string used to update clientData
+    form_reviewed: "", //string to update clientData
+    form_uploadDate: "", //string to update clientData
+    hcw: `${clientData.userFirstName} ${clientData.userLastName}`,
+    hcwemail: data[0].clienthcwemail
   })
 
-  // useMemo(() => AsignProperties(data, clientData, setClientData), [data])
 
   const notifyMessage = () => {
     toast.success("MSA Form updated!", {
@@ -1009,7 +997,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     });
   };
   const resetIssuesAndReviewCheckbox = () => {
-   setClientData({...clientData,[issueFounded.form_reviewed]: false, [issueFounded.form_issues]: false })
+   setClientData({...clientData,[issueFounded.form_reviewed]: false, 
+    [issueFounded.form_issues]: false, 
+    [issueFounded.form_uploadDate]: ""})
 
   }
 
@@ -1044,11 +1034,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
   // )} ${FormTitles[2][0].slice(7, 13)} ${FormTitles[2][0].slice(13, 17)}`;
 
   const handleMsaform = () => {
-    /*     notifyMessage()
-          setTimeout(() => {
-            router.push(`/clients/${clientData.clientId}/profile`)
-          }, 2300) */
-
     axios
       .put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update_supervisor_msa_form`,
@@ -1070,32 +1055,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       });
   };
 
-  const crearFecha = () => {
-    const initialDate = new Date().toLocaleDateString();
-    const newDate = initialDate.split("/");
-    let fixedDate;
-    if (typeof window !== "undefined") {
-      const userLocale = window.navigator.language;
-      userLocale === "en-US"
-        ? (fixedDate = `${newDate[2]}-${
-            newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`
-          }-${newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`}`)
-        : (fixedDate = `${newDate[2]}-${
-            newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`
-          }-${newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`}`);
-    }
-    return fixedDate;
-  };
-  const onChangeInputCheckbox = (objectKey,) => {
-    
-     setClientData((prevState) => ({
-            ...prevState,
-            [objectKey]:
-              !prevState[objectKey],
-            
-          }));  
-     
-  }
 
   return (
     <>
@@ -1134,27 +1093,27 @@ const EditSupervisorMSAFormPage = ({ data }) => {
           <section id="info" className="my-5">
             <div className="">
               <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
-                Information
+                Info
               </h6>
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
               >
-                <div className="service-action-plan-page-info-box flex items-end md:my-0 my-5">
+                <div className="service-action-plan-page-info-box flex items-end md:mb-1 my-5">
                   <div className="flex items-center mr-5"> 
-                  <img src="/msa_form/calendar_black_icon.svg" width="24" />
-                  <h3 className="font-black ml-1">Date</h3>
+                    <img src="/msa_form/calendar_black_icon.svg" width="24" />
+                    <h3 className="font-black ml-1">Date</h3>
                   </div>  
                   <p>{todaysDate.toLocaleDateString()}</p>
                 </div>
 
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Client</h3>
-                  </div>
                   <div className="grid grid-cols-3 gap-4">
+                    <div className="flex gap-x-2 mb-1 items-end">
+                      <img src="/client-icon.svg" width="24" />
+                      <h3 className="font-black ">Client</h3>
+                    </div>
                     <label className="block">
-                      <span className="text-xs">Client Name</span>
+                      <span className="text-xs font-bold">Client Name</span>
                       <input
                         type="text"
                         className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -1164,7 +1123,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                     </label>
                    
                     <label className="block">
-                      <span className="text-xs">Client ID</span>
+                      <span className="text-xs font-bold">Client ID</span>
                       <input
                         type="text"
                         className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -1176,13 +1135,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                 </div>
 
                 <div className="service-action-plan-page-info-box">
-                  <div className="flex gap-x-2 mb-5 items-center">
+                  
+                  <div className="grid grid-cols-3 gap-4">
+                  <div className="flex gap-x-2 mb-1 items-end">
                     <img src="/msa_form/LNEuser.svg" width="24" />
                     <h3 className="font-black ">Health Care Worker</h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className="text-xs font-bold">First Name</span>
                       <input
                         type="text"
                         className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -1191,7 +1151,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span className="text-xs font-bold">Last Name</span>
                       <input
                         type="text"
                         className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -1248,17 +1208,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSIntakeFormReviewed}
               formIssues={clientData.AIRSIntakeFormIssues}
               formString={"AIRSIntakeForm"}
-              formDateString={"AIRSIntakeFormDate"}
-              formUploadDateString={"AIRSIntakeFormUploadDate"}
-              formReviewedString={"AIRSIntakeFormReviewed"}
-              formIssuesString={"AIRSIntakeFormIssues"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox} 
+              setShowIssuesFoundModal={setShowIssuesFoundModal} 
             />
 
           
@@ -1271,17 +1226,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.ComprehensiveRiskBehaviorAssessmentReviewed}
               formIssues={clientData.ComprehensiveRiskBehaviorAssessmentIssues}
               formString={"ComprehensiveRiskBehaviorAssessment"}
-              formDateString={"ComprehensiveRiskBehaviorAssessmentDate"}
-              formUploadDateString={"ComprehensiveRiskBehaviorAssessmentUploadDate"}
-              formReviewedString={"ComprehensiveRiskBehaviorAssessmentReviewed"}
-              formIssuesString={"ComprehensiveRiskBehaviorAssessmentIssues"}
               folder_url={data[0].cbra_folder_url}
               dependency_folder_url={data[0].cbra_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1293,17 +1243,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.ServiceActionPlanReviewed}
               formIssues={clientData.ServiceActionPlanIssues}
               formString={"ServiceActionPlan"}
-              formDateString={"ServiceActionPlanDate"}
-              formUploadDateString={"ServiceActionPlanUploadDate"}
-              formReviewedString={"ServiceActionPlanReviewed"}
-              formIssuesString={"ServiceActionPlanIssues"}
               folder_url={data[0].action_plans_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1315,17 +1260,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.ProgressNoteReviewed}
               formIssues={clientData.ProgressNoteIssues}
               formString={"ProgressNote"}
-              formDateString={"ProgressNoteDate"}
-              formUploadDateString={"ProgressNoteUploadDate"}
-              formReviewedString={"ProgressNoteReviewed"}
-              formIssuesString={"ProgressNoteIssues"}
               folder_url={data[0].linkage_navigation_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
           
@@ -1338,17 +1278,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.StatusChangesFormReviewed}
               formIssues={clientData.StatusChangesFormIssues}
               formString={"StatusChangesForm"}
-              formDateString={"StatusChangesFormDate"}
-              formUploadDateString={"StatusChangesFormUploadDate"}
-              formReviewedString={"StatusChangesFormReviewed"}
-              formIssuesString={"StatusChangesFormIssues"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
             <RowMsaFormSupervisor
@@ -1358,19 +1293,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formUploadDate={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate}
               formPDF={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF}
               formReviewed={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed}
-              formIssues={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues}
+              formIssues={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesIssues}
               formString={"ComprehensiveRiskBehaviorAssessmentUpdates"}
-              formDateString={"ComprehensiveRiskBehaviorAssessmentUpdatesDate"}
-              formUploadDateString={"ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate"}
-              formReviewedString={"ComprehensiveRiskBehaviorAssessmentUpdatesReviewed"}
-              formIssuesString={"ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues"}
               folder_url={data[0].cbra_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1382,17 +1312,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.M11QFormReviewed}
               formIssues={clientData.M11QFormIssues}
               formString={"M11QForm"}
-              formDateString={"M11QFormDate"}
-              formUploadDateString={"M11QFormUploadDate"}
-              formReviewedString={"M11QFormReviewed"}
-              formIssuesString={"M11QFormIssues"}
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
             <RowMsaFormSupervisor
@@ -1404,17 +1329,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.CD4VLReportsReviewed}
               formIssues={clientData.CD4VLReportsIssues}
               formString={"CD4VLReports"}
-              formDateString={"CD4VLReportsDate"}
-              formUploadDateString={"CD4VLReportsUploadDate"}
-              formReviewedString={"CD4VLReportsReviewed"}
-              formIssuesString={"CD4VLReportsIssues"}
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1426,17 +1346,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.InitialTreatmentAdherenceIntakeReviewed}
               formIssues={clientData.InitialTreatmentAdherenceIntakeIssues}
               formString={"InitialTreatmentAdherenceIntake"}
-              formDateString={"InitialTreatmentAdherenceIntakeDate"}
-              formUploadDateString={"InitialTreatmentAdherenceIntakeUploadDate"}
-              formReviewedString={"InitialTreatmentAdherenceIntakeReviewed"}
-              formIssuesString={"InitialTreatmentAdherenceIntakeIssues"}
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1448,17 +1363,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.TreatmentAdherenceUpdatesReviewed}
               formIssues={clientData.TreatmentAdherenceUpdatesFormIssues}
               formString={"TreatmentAdherenceUpdates"}
-              formDateString={"TreatmentAdherenceUpdatesDate"}
-              formUploadDateString={"TreatmentAdherenceUpdatesUploadDate"}
-              formReviewedString={"TreatmentAdherenceUpdatesReviewed"}
-              formIssuesString={"TreatmentAdherenceUpdatesFormIssues"}
               folder_url={data[0].medical_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1470,17 +1380,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSCollateralInformationReviewed}
               formIssues={clientData.AIRSCollateralInformationIssues}
               formString={"AIRSCollateralInformation"}
-              formDateString={"AIRSCollateralInformationDate"}
-              formUploadDateString={"AIRSCollateralInformationUploadDate"}
-              formReviewedString={"AIRSCollateralInformationReviewed"}
-              formIssuesString={"AIRSCollateralInformationIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1492,17 +1397,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSDrugRegimenReviewed}
               formIssues={clientData.AIRSDrugRegimenFormIssues}
               formString={"AIRSDrugRegimen"}
-              formDateString={"AIRSDrugRegimenDate"}
-              formUploadDateString={"AIRSDrugRegimenUploadDate"}
-              formReviewedString={"AIRSDrugRegimenReviewed"}
-              formIssuesString={"AIRSDrugRegimenFormIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
             <RowMsaFormSupervisor
@@ -1514,17 +1414,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSFinancialInformationReviewed}
               formIssues={clientData.AIRSFinancialInformationIssues}
               formString={"AIRSFinancialInformation"}
-              formDateString={"AIRSFinancialInformationDate"}
-              formUploadDateString={"AIRSFinancialInformationUploadDate"}
-              formReviewedString={"AIRSFinancialInformationReviewed"}
-              formIssuesString={"AIRSFinancialInformationIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1536,17 +1431,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSHIVAIDSRiskHistoryReviewed}
               formIssues={clientData.AIRSHIVAIDSRiskHistoryIssues}
               formString={"AIRSHIVAIDSRiskHistory"}
-              formDateString={"AIRSHIVAIDSRiskHistoryDate"}
-              formUploadDateString={"AIRSHIVAIDSRiskHistoryUploadDate"}
-              formReviewedString={"AIRSHIVAIDSRiskHistoryReviewed"}
-              formIssuesString={"AIRSHIVAIDSRiskHistoryIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1558,17 +1448,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSHIVMedicalProviderReviewed}
               formIssues={clientData.AIRSHIVMedicalProviderIssues}
               formString={"AIRSHIVMedicalProvider"}
-              formDateString={"AIRSHIVMedicalProviderDate"}
-              formUploadDateString={"AIRSHIVMedicalProviderUploadDate"}
-              formReviewedString={"AIRSHIVMedicalProviderReviewed"}
-              formIssuesString={"AIRSHIVMedicalProviderIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1580,17 +1465,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSHIVStatusHistoryReviewed}
               formIssues={clientData.AIRSHIVStatusHistoryFormIssues}
               formString={"AIRSHIVStatusHistory"}
-              formDateString={"AIRSHIVStatusHistoryDate"}
-              formUploadDateString={"AIRSHIVStatusHistoryUploadDate"}
-              formReviewedString={"AIRSHIVStatusHistoryReviewed"}
-              formIssuesString={"AIRSHIVStatusHistoryFormIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
             <RowMsaFormSupervisor
@@ -1602,17 +1482,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed}
               formIssues={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues}
               formString={"ComprehensiveRiskBehaviorAssessmentUpdates"}
-              formDateString={"ComprehensiveRiskBehaviorAssessmentUpdatesDate"}
-              formUploadDateString={"ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate"}
-              formReviewedString={"ComprehensiveRiskBehaviorAssessmentUpdatesReviewed"}
-              formIssuesString={"ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
             
@@ -1625,16 +1500,11 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSHousingInformationReviewed}
               formIssues={clientData.AIRSHousingInformationIssues}
               formString={"AIRSHousingInformation"}
-              formDateString={"AIRSHousingInformationDate"}
-              formUploadDateString={"AIRSHousingInformationUploadDate"}
-              formReviewedString={"AIRSHousingInformationReviewed"}
-              formIssuesString={"AIRSHousingInformationIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
               />
             
@@ -1647,17 +1517,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSInsuranceInformationReviewed}
               formIssues={clientData.AIRSInsuranceInformationIssues}
               formString={"AIRSInsuranceInformation"}
-              formDateString={"AIRSInsuranceInformationDate"}
-              formUploadDateString={"AIRSInsuranceInformationUploadDate"}
-              formReviewedString={"AIRSInsuranceInformationReviewed"}
-              formIssuesString={"AIRSInsuranceInformationIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
             <RowMsaFormSupervisor
@@ -1669,17 +1534,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.AIRSSubstanceUseHistoryReviewed}
               formIssues={clientData.AIRSSubstanceUseHistoryIssues}
               formString={"AIRSSubstanceUseHistory"}
-              formDateString={"AIRSSubstanceUseHistoryDate"}
-              formUploadDateString={"AIRSSubstanceUseHistoryUploadDate"}
-              formReviewedString={"AIRSSubstanceUseHistoryReviewed"}
-              formIssuesString={"AIRSSubstanceUseHistoryIssues"}
               folder_url={data[0].tickler_updates_folder_url}
               dependency_folder_url={data[0].tickler_updates_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1691,17 +1551,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.LNEClientRightsReviewed}
               formIssues={clientData.LNEClientRightsIssues}
               formString={"LNEClientRights"}
-              formDateString={"LNEClientRightsDate"}
-              formUploadDateString={"LNEClientRightsUploadDate"}
-              formReviewedString={"LNEClientRightsReviewed"}
-              formIssuesString={"LNEClientRightsIssues"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1713,17 +1568,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.LNEClientGrievancePolicyProcedureReviewed}
               formIssues={clientData.LNEClientGrievancePolicyProcedureIssues}
               formString={"LNEClientGrievancePolicyProcedure"}
-              formDateString={"LNEClientGrievancePolicyProcedureDate"}
-              formUploadDateString={"LNEClientGrievancePolicyProcedureUploadDate"}
-              formReviewedString={"LNEClientGrievancePolicyProcedureReviewed"}
-              formIssuesString={"LNEClientGrievancePolicyProcedureIssues"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1735,17 +1585,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.LNEProgramRulesReviewed}
               formIssues={clientData.LNEProgramRulesFormIssues}
               formString={"LNEProgramRules"}
-              formDateString={"LNEProgramRulesDate"}
-              formUploadDateString={"LNEProgramRulesUploadDate"}
-              formReviewedString={"LNEProgramRulesReviewed"}
-              formIssuesString={"LNEProgramRulesFormIssues"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].miscellaneous_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
             <RowMsaFormSupervisor
@@ -1757,17 +1602,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.LNEEmergencyContactConsentReviewed}
               formIssues={clientData.LNEEmergencyContactConsentIssues}
               formString={"LNEEmergencyContactConsent"}
-              formDateString={"LNEEmergencyContactConsentDate"}
-              formUploadDateString={"LNEEmergencyContactConsentUploadDate"}
-              formReviewedString={"LNEEmergencyContactConsentReviewed"}
-              formIssuesString={"LNEClientGrievancePolicyProcedure"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
             <RowMsaFormSupervisor
@@ -1779,17 +1619,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.LNEConsentForReleaseOfConfidentialInformationReviewed}
               formIssues={clientData.LNEConsentForReleaseOfConfidentialInformationIssues}
               formString={"LNEConsentForReleaseOfConfidentialInformation"}
-              formDateString={"LNEConsentForReleaseOfConfidentialInformationDate"}
-              formUploadDateString={"LNEConsentForReleaseOfConfidentialInformationUploadDate"}
-              formReviewedString={"LNEConsentForReleaseOfConfidentialInformationReviewed"}
-              formIssuesString={"LNEConsentForReleaseOfConfidentialInformationIssues"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1801,17 +1636,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.HIPPAConsentFormReviewed}
               formIssues={clientData.HIPPAConsentFormIssues}
               formString={"HIPPAConsentForm"}
-              formDateString={"HIPPAConsentFormDate"}
-              formUploadDateString={"HIPPAConsentFormUploadDate"}
-              formReviewedString={"HIPPAConsentFormReviewed"}
-              formIssuesString={"HIPPAConsentFormIssues"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
             <RowMsaFormSupervisor
@@ -1823,17 +1653,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed}
               formIssues={clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues}
               formString={"NYCDOHMHNoticeOfPrivacyPractices"}
-              formDateString={"NYCDOHMHNoticeOfPrivacyPracticesDate"}
-              formUploadDateString={"NYCDOHMHNoticeOfPrivacyPracticesUploadDate"}
-              formReviewedString={"NYCDOHMHNoticeOfPrivacyPracticesReviewed"}
-              formIssuesString={"NYCDOHMHNoticeOfPrivacyPracticesIssues"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1845,17 +1670,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.LinkageRetentionAdherenceFormsReviewed}
               formIssues={clientData.LinkageRetentionAdherenceFormsIssues}
               formString={"LinkageRetentionAdherenceForms"}
-              formDateString={"LinkageRetentionAdherenceFormsDate"}
-              formUploadDateString={"LinkageRetentionAdherenceFormsUploadDate"}
-              formReviewedString={"LinkageRetentionAdherenceFormsReviewed"}
-              formIssuesString={"LinkageRetentionAdherenceFormsIssues"}
               folder_url={data[0].linkage_navigation_folder_url}
               dependency_folder_url={data[0].linkage_navigation_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1867,17 +1687,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.InternalReferralInformationReviewed}
               formIssues={clientData.InternalReferralInformationIssues}
               formString={"InternalReferralInformation"}
-              formDateString={"InternalReferralInformationDate"}
-              formUploadDateString={"InternalReferralInformationUploadDate"}
-              formReviewedString={"InternalReferralInformationReviewed"}
-              formIssuesString={"InternalReferralInformationIssues"}
               folder_url={data[0].miscellaneous_folder_url}
               dependency_folder_url={data[0].linkage_navigation_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
             <RowMsaFormSupervisor
@@ -1889,17 +1704,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.LNEClientReferralFormReviewed}
               formIssues={clientData.LNEClientReferralFormIssues}
               formString={"LNEClientReferralForm"}
-              formDateString={"LNEClientReferralFormDate"}
-              formUploadDateString={"LNEClientReferralFormUploadDate"}
-              formReviewedString={"LNEClientReferralFormReviewed"}
-              formIssuesString={"LNEClientReferralFormIssues"}
               folder_url={data[0].miscellaneous_folder_url}
               dependency_folder_url={data[0].miscellaneous_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1911,17 +1721,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.HNSEligibilityFormReviewed}
               formIssues={clientData.HNSEligibilityFormIssues}
               formString={"HNSEligibilityForm"}
-              formDateString={"HNSEligibilityFormDate"}
-              formUploadDateString={"HNSEligibilityFormUploadDate"}
-              formReviewedString={"HNSEligibilityFormReviewed"}
-              formIssuesString={"HNSEligibilityFormIssues"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].miscellaneous_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
             
             <RowMsaFormSupervisor
@@ -1933,17 +1738,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.HNSReadinessFormReviewed}
               formIssues={clientData.HNSReadinessFormIssues}
               formString={"HNSReadinessForm"}
-              formDateString={"HNSReadinessFormDate"}
-              formUploadDateString={"HNSReadinessFormUploadDate"}
-              formReviewedString={"HNSReadinessFormReviewed"}
-              formIssuesString={"HNSReadinessFormIssues"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
            
             <RowMsaFormSupervisor
@@ -1955,17 +1755,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.SupportGroupsReviewed}
               formIssues={clientData.SupportGroupsFormIssues}
               formString={"SupportGroups"}
-              formDateString={"SupportGroupsDate"}
-              formUploadDateString={"SupportGroupsUploadDate"}
-              formReviewedString={"SupportGroupsReviewed"}
-              formIssuesString={"SupportGroupsFormIssues"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
 
            
@@ -1978,17 +1773,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.IDGFormReviewed}
               formIssues={clientData.IDGFormFormIssues}
               formString={"IDGForm"}
-              formDateString={"IDGFormDate"}
-              formUploadDateString={"IDGFormUploadDate"}
-              formReviewedString={"IDGFormReviewed"}
-              formIssuesString={"IDGFormFormIssues"}
               folder_url={data[0].intake_folder_url}
               dependency_folder_url={data[0].intake_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              onChangeInputCheckbox={onChangeInputCheckbox}
               />
           </section>
 

@@ -6,8 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundModal, showIssuesFoundModal, resetIssuesAndReviewCheckbox}) => {
-    
-    const [saving,setSaving] = useState(false)
+    console.log(issueFounded)
+    const [error,setError] = useState("")
     
     const closeModal = () => {
       resetIssuesAndReviewCheckbox()
@@ -21,11 +21,13 @@ const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundMo
     };
 
     const submitIssue = () => {
+        setError("")
         axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/issues`, {issueFounded})
         .then(data => {
           notifyMessage()
           setShowIssuesFoundModal(!showIssuesFoundModal)
         }).catch(error => {
+          setError(error.message)
           console.log(error)
         });
         
@@ -80,12 +82,12 @@ const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundMo
                 <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                value={issueFounded.lastdateupdated ? issueFounded.lastdateupdated.split("T")[0]:"-"}
+                value={issueFounded.lastdateupdated ? issueFounded.lastdateupdated.split("T")[0] : ""}
                 disabled
               />
             </label>
             <label className="block">
-               <span className="ml-1 font-semibold text-xs">Describe the issue that needs to be addressed:</span>
+               <span className="ml-1 font-semibold text-xs font-bold">Describe the issue that needs to be addressed:</span>
               
               <span className="p-2 block bg-white break-all rounded-md overflow-hidden" role="textbox" name="" contentEditable 
               onInput={(e) => setIssueFounded({...issueFounded, description: e.target.innerText})}></span>
@@ -102,12 +104,6 @@ const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundMo
                       submitIssue();
                     }}
                   >
-                    {saving ? (
-                      <Loader />
-                    ) : (
-                      <img src="/msa_form/Save_and_send_icon.svg" className="mr-1" alt="" width="18"/>
-
-                    )}
                     Save 
                   </button>
                  
