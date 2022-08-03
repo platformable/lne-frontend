@@ -155,7 +155,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].statuschangesformissues === null
         ? false
         : true,
-
+    
     ComprehensiveRiskBehaviorAssessmentUpdates:
       data[0].comprehensiveriskbehaviorassessmentupdates === "0" ||
       data[0].comprehensiveriskbehaviorassessmentupdates === null
@@ -182,6 +182,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesIssues:
+
       data[0].comprehensiveriskbehaviorassessmentupdatesissues === "0" ||
       data[0].comprehensiveriskbehaviorassessmentupdatesissues === null
         ? false
@@ -1011,7 +1012,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
 
   const todaysDate = new Date();
 
+
   // console.log("clientData", clientData);
+
 
   //WORK IN PROGRESS, TRYING TO ITERATE THE STATE
   // [['AIRSIntakeForm', true], [...]...]
@@ -1045,9 +1048,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         console.log(response);
         if (response.status === 200 || response.statusText === "Ok") {
           notifyMessage();
-          setTimeout(() => {
-            router.push(`/supervisorDashboard`);
-          }, 2300);
+          // setTimeout(() => {
+          //   router.push(`/supervisorDashboard`);
+          // }, 2300);
         }
       })
       .catch(function (error) {
@@ -1198,6 +1201,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               
             </div>
             {/* {TABLE HEAD} */}
+
 
             <RowMsaFormSupervisor
               fieldName={"AIRS Intake Form"}
