@@ -169,7 +169,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].statuschangesformissues === null
         ? false
         : true,
-
+    
     ComprehensiveRiskBehaviorAssessmentUpdates:
       data[0].comprehensiveriskbehaviorassessmentupdates === "0" ||
       data[0].comprehensiveriskbehaviorassessmentupdates === null
@@ -190,13 +190,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:
-      data[0].comprehensiveriskbehaviorassessmentreviewed === "0" ||
-      data[0].comprehensiveriskbehaviorassessmentreviewed === null
+      data[0].comprehensiveriskbehaviorassessmentupdatesreviewed === "0" ||
+      data[0].comprehensiveriskbehaviorassessmentupdatesreviewed === null
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues:
-      data[0].comprehensiveriskbehaviorassessmentupdatesformissues === "0" ||
-      data[0].comprehensiveriskbehaviorassessmentupdatesformissues === null
+                   
+      data[0].comprehensiveriskbehaviorassessmentupdatesissues === "0" ||
+      data[0].comprehensiveriskbehaviorassessmentupdatesissues === null
         ? false
         : true,
 
@@ -990,7 +991,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
   });
   const todaysDate = new Date();
 
-  console.log("airsintakeformuploaddate", clientData.airsintakeformuploaddate);
+  console.log("ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues", clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues);
   console.log("clientData", clientData);
 
   //WORK IN PROGRESS, TRYING TO ITERATE THE STATE
@@ -1030,9 +1031,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         console.log(response);
         if (response.status === 200 || response.statusText === "Ok") {
           notifyMessage();
-          setTimeout(() => {
-            router.push(`/supervisorDashboard`);
-          }, 2300);
+          // setTimeout(() => {
+          //   router.push(`/supervisorDashboard`);
+          // }, 2300);
         }
       })
       .catch(function (error) {
@@ -2858,6 +2859,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   }
                 />
               </div>
+
               <div
                 className={`ml-1 text-center flex justify-center items-center ${
                   clientData.ComprehensiveRiskBehaviorAssessmentUpdatesFormIssues
