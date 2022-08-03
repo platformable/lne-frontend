@@ -163,7 +163,7 @@ const RowMsaFormSupervisor = ({
           id={strings.formUploadDate}
           className={`${MSAStyles.inputDate} 
            ${
-            formReviewed || !form
+            formReviewed || formIssues
               ? ""
               : " border-2 border-dark-blue rounded-md p-px bg-white"
           }`}
