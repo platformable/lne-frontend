@@ -58,7 +58,7 @@ const EditMsaFormPage = ({ data }) => {
     ComprehensiveRiskBehaviorAssessmentScan: false,
     ComprehensiveRiskBehaviorAssessmentUploadDate:
       data[0].comprehensiveriskbehaviorassessmentuploaddate || null,
-      comprehensiveriskbehaviorassessmentreviewed:data[0].comprehensiveriskbehaviorassessment,
+      comprehensiveriskbehaviorassessmentreviewed:data[0].comprehensiveriskbehaviorassessmentreviewed,
       comprehensiveriskbehaviorissues:data[0].comprehensiveriskbehaviorissues,
     ServiceActionPlan:
       data[0].serviceactionplan === "0" || data[0].serviceactionplan === null
@@ -74,6 +74,8 @@ const EditMsaFormPage = ({ data }) => {
     ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate || null,
     servicesactionreviewed:data[0].servicesactionplanreviewed,
     servicesactionplanissues:data[0].servicesactionplanissues,
+    ServiceActionPlanPDF:false,
+    ServiceActionPlanScan:false,
 
     ProgressNote:
       data[0].progressnoteid === "" || data[0].progressnoteid === null
@@ -149,7 +151,7 @@ const EditMsaFormPage = ({ data }) => {
     InitialTreatmentAdherenceIntakeScan: false,
     InitialTreatmentAdherenceIntakePDF: false,
     initialtreatmentadherenceintakereviewed:data[0].initialtreatmentadherenceintakereviewed,
-    initialtreatmentadherenceissues:data[0].initialtreatmentadherenceissues,
+    initialtreatmentadherenceintakeissues:data[0].initialtreatmentadherenceintakeissues,
 
     TreatmentAdherenceUpdates:
       data[0].treatmentadherenceupdates === "0" ||
@@ -2197,6 +2199,7 @@ const EditMsaFormPage = ({ data }) => {
                     ? "pointer-events-none"
                     : ""
                 }`}
+                
                 onClick={() => {
                   clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF
                     ? setClientData((formState) => ({
@@ -2966,7 +2969,7 @@ const EditMsaFormPage = ({ data }) => {
                         InitialTreatmentAdherenceIntakePDF:
                           !formState.InitialTreatmentAdherenceIntakePDF,
                         InitialTreatmentAdherenceIntakeUploadDate: "",
-                        initialtreatmentadherenceissues:data[0].initialtreatmentadherenceissues,
+                        initialtreatmentadherenceintakeissues:data[0].initialtreatmentadherenceintakeissues,
                         initialtreatmentadherenceintakereviewed:data[0].initialtreatmentadherenceintakereviewed
                         }))
                     : setClientData((formState) => ({
@@ -2974,7 +2977,7 @@ const EditMsaFormPage = ({ data }) => {
                         InitialTreatmentAdherenceIntakePDF:
                           !formState.InitialTreatmentAdherenceIntakePDF,
                         InitialTreatmentAdherenceIntakeUploadDate: crearFecha(),
-                        initialtreatmentadherenceissues:false,
+                        initialtreatmentadherenceintakeissues:false,
                         initialtreatmentadherenceintakereviewed:false
                       }));
                   if (
@@ -3048,7 +3051,7 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.InitialTreatmentAdherenceIntakeScan,
                         InitialTreatmentAdherenceIntakeUploadDate: "",
                         initialtreatmentadherenceintakereviewed:data[0].initialtreatmentadherenceintakereviewed,
-                        initialtreatmentadherenceissues:data[0].initialtreatmentadherenceintakereviewed
+                        initialtreatmentadherenceintakeissues:data[0].initialtreatmentadherenceintakeissues
                       }))
                     : setClientData((formState) => ({
                         ...formState,
@@ -3056,7 +3059,7 @@ const EditMsaFormPage = ({ data }) => {
                           !formState.InitialTreatmentAdherenceIntakeScan,
                         InitialTreatmentAdherenceIntakeUploadDate: crearFecha(),
                         initialtreatmentadherenceintakereviewed:false,
-                        initialtreatmentadherenceissues:false
+                        initialtreatmentadherenceintakeissues:false
                       }));
                 }}
               >
@@ -9126,8 +9129,8 @@ const EditMsaFormPage = ({ data }) => {
                         ...formState,
                         SupportGroupsScan: !formState.SupportGroupsScan,
                         SupportGroupsUploadDate: crearFecha(),
-                        supportgroupsissues:data[0].supportgroupsissues,
-                        supportgroupsreviewed:data[0].supportgroupsreviewed
+                        supportgroupsissues:false,
+                        supportgroupsreviewed:false
                       }));
                   if (
                     !clientData.SupportGroupsScan ||
