@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import ReactToPrint from 'react-to-print'
 import ComponentToPrint from "../../../../components/ComponentToPrint";
+import BackButton from "../../../../components/BackButton";
+import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 
 export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
@@ -186,135 +188,90 @@ return finalDate
             </div>
           </div>
         </section>
-        <section className="container mx-auto">
-          <button
-            onClick={() => router.back()}
-            className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center"
-          >
-            <svg
-              className="mr-2"
-              width="20"
-              height="20"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Back to client profile
-          </button>
+        <section className="container mx-auto grid grid-cols-9 gap-4">
+           <BackToDashboardButton /> 
+          <BackButton />
         </section>
-        <section id="info" className="my-5 px-5">
-          <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">
-              Client Information <br />
-            </h6>
-            <div
-              className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
-            >
-              {/*      <p>{clientData.planStartDate}</p> */}
-              <div className="service-action-plan-page-info-box md:my-0 my-5">
-              <div className="flex gap-x-2 mb-5 items-center">
+        <section id="info" className="my-5 container mx-auto">
+            <div className="">
+              <h6 className="font-black my-5 text-dark-blue">
+                 Client Information
+              </h6>
+              <div
+                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
+              >
+                <div className="service-action-plan-page-info-box md:my-1 my-5">
+                  <h3 className="font-black ">Todays date</h3>
+
+                  <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    <h3 className="font-black ">Date</h3>
+                    <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
+
                   </div>
-                <label className="block">
-                  <span className="text-xs">Plan start date</span>
-                  <p>
-                    {new Date(clientData.planStartDate).toLocaleDateString(
-                      "en",
-                      { year: "numeric", month: "numeric", day: "numeric" }
-                    )}
-                  </p>
-                  {/* <input
-                    type="date"
-                    className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                    value={getDate(clientData.planStartDate)}
-                    onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
-                    /> */}
-                </label>
-              </div>
 
-              <div className="service-action-plan-page-info-box md:my-0 my-5">
-              <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Client</h3>
                 </div>
-                <div className="grid grid-cols-3 gap-4">
-                  <label className="block">
-                    <span className="text-xs">First Name</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0]?.clientfirstname}
-                      disabled
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="text-xs">Last Name</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      onChange={(e) =>
-                        setUserData({ ...clientData, email: e.target.value })
-                      }
-                      value={data[0]?.clientlastname.charAt(0)}
-                      disabled
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="text-xs">Client ID</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0]?.clientId}
-                      disabled
-                    />
-                  </label>
-                </div>
-              </div>
 
-              <div className="service-action-plan-page-info-box">
-              <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Health Care Worker</h3>
+                  <div className="service-action-plan-page-info-box md:my-0 my-5">
+                  
+                      <div className="grid grid-cols-3 gap-4">
+                      <div className="flex gap-x-2 mb-1 items-end">
+                        <img src="/client-icon.svg" width="24" />
+                        <h3 className="font-black ">Client</h3>
+                      </div>
+                      <label className="block">
+                        <span className=" font-bold">Client Name</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
+                          disabled
+                        />
+                      </label>
+                    
+                      <label className="block">
+                        <span className=" font-bold">Client ID</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={data[0].clientId}
+                          disabled
+                        />
+                      </label>
+                      </div>
+                    
+                  </div>
+                  <div className="service-action-plan-page-info-box">
+                  
+                  <div className="grid grid-cols-3 gap-4">
+                  <div className="flex gap-x-2 mb-1 items-end">
+                    <img src="/msa_form/LNEuser.svg" width="24" />
+                    <h3 className="font-black ">Health Care Worker</h3>
+                  </div>
+                    <label className="block">
+                      <span className=" font-bold">First Name</span>
+                      <input
+                        type="text"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                        value={clientData.userFirstName}
+                        disabled
+                      />
+                    </label>
+                    <label className="block">
+                      <span className=" font-bold">Last Name</span>
+                      <input
+                        type="text"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                        value={clientData.userLastName}
+                        disabled
+                      />
+                    </label>
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <label className="block">
-                    <span className="text-xs">First Name</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0]?.userfirstname}
-                      disabled
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="text-xs">Last Name</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0]?.userlastname}
-                      disabled
-                    />
-                  </label>
-                </div>
-              </div>
+             </div>
+
+               
             </div>
-          </div>
-        </section>
+          </section>
 
         <section id="goals" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
@@ -337,7 +294,7 @@ return finalDate
 
                   <div className="h-2 mb-2">
                   {clientData.goal1Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
+                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal1CompletionDate
@@ -359,7 +316,7 @@ return finalDate
                           goal1Summary: e.target.value,
                         })
                       }
-                      className={`${!activeActionPlan? 'appearance-none':'' } text-xs w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
+                      className={`${!activeActionPlan? 'appearance-none':'' }  w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal1Summary} selected="true">
                         {clientData.goal1Summary}
@@ -380,7 +337,7 @@ return finalDate
                           goal1ServiceCategory: e.target.value,
                         })
                       }
-                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1  w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
                         value={clientData.goal1ServiceCategory}
@@ -399,7 +356,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -414,11 +371,12 @@ return finalDate
                     <h6 className="font-black">Target Date</h6>
                     <input
                       type="date"
-                      className="border-black w-full rounded p-2 text-xs"
+                      className="border-black w-full rounded p-2 "
                       value={
                         clientData.goal1TargetDate &&
                         clientData.goal1TargetDate.split("T")[0]
                       }
+                      disabled={data[0].goal1targetdate ? true : false}
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
@@ -438,7 +396,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -459,7 +417,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -480,7 +438,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -502,7 +460,7 @@ return finalDate
                   </div>
                   <div className="h-2 mb-2">
                   {clientData.goal2Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
+                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal2CompletionDate
@@ -524,7 +482,7 @@ return finalDate
                           goal2Summary: e.target.value,
                         })
                       }
-                      className={`${!activeActionPlan? 'appearance-none':'' } text-xs w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
+                      className={`${!activeActionPlan? 'appearance-none':'' }  w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal2Summary} selected="true">
                         {clientData.goal2Summary}
@@ -545,7 +503,7 @@ return finalDate
                           goal2ServiceCategory: e.target.value,
                         })
                       }
-                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1  w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
                         value={clientData.goal2ServiceCategory}
@@ -564,7 +522,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -579,13 +537,14 @@ return finalDate
                     <h6 className="font-black">Target Date</h6>
                     <input
                       type="date"
-                      className="border-black w-full rounded p-2 text-xs"
+                      className="border-black w-full rounded p-2 "
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
                           goal2TargetDate: e.target.value,
                         })
                       }
+                      disabled={data[0].goal2targetdate ? true : false}
                       value={
                         clientData.goal2TargetDate &&
                         clientData.goal2TargetDate.split("T")[0]
@@ -603,7 +562,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -624,7 +583,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -645,7 +604,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       value={clientData.goal2ActionStep3}
                       onChange={(e) => {
                         setClientData({
@@ -669,7 +628,7 @@ return finalDate
 
                   <div className="h-2 mb-2">
                   {clientData.goal3Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black text-xs bg-green-300">
+                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal3CompletionDate
@@ -692,7 +651,7 @@ return finalDate
                           goal3Summary: e.target.value,
                         })
                       }
-                      className={`${!activeActionPlan? 'appearance-none':'' } text-xs w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
+                      className={`${!activeActionPlan? 'appearance-none':'' }  w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal3Summary} selected="true">
                         {clientData.goal3Summary}
@@ -713,7 +672,7 @@ return finalDate
                           goal3ServiceCategory: e.target.value,
                         })
                       }
-                      className="appearance-none pl-1 text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className="appearance-none pl-1  w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option
                         value={clientData.goal3ServiceCategory}
@@ -732,7 +691,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -747,13 +706,14 @@ return finalDate
                     <h6 className="font-black">Target Date</h6>
                     <input
                       type="date"
-                      className="border-black w-full rounded p-2 text-xs"
+                      className="border-black w-full rounded p-2 "
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
                           goal3TargetDate: e.target.value,
                         })
                       }
+                      disabled={data[0].goal3targetdate ? true : false}
                       value={
                         clientData.goal1TargetDate &&
                         clientData.goal1TargetDate.split("T")[0]
@@ -771,7 +731,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -792,7 +752,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -813,7 +773,7 @@ return finalDate
                       id=""
                       cols="30"
                       rows="4"
-                      className="border-black w-full rounded p-1 text-xs"
+                      className="border-black w-full rounded p-1 "
                       onChange={(e) => {
                         setClientData({
                           ...clientData,
@@ -833,7 +793,7 @@ return finalDate
                 id=""
                 cols="30"
                 rows="4"
-                className="border-black w-full rounded p-1 text-xs"
+                className="border-black w-full rounded p-1 "
                 onChange={(e) => {
                   setClientData({ ...clientData, comments: e.target.value });
                 }}
@@ -933,14 +893,14 @@ return finalDate
               ""
             ) : (
               <div id="buttons-container" className="flex items-center justify-around">
-                <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 text-xs`}
+                <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
                 onClick={() => setActiveActionPlan(!activeActionPlan)}>
                   <img src='/edit-action-plan-button.svg' alt='edit action plan button' ></img>
                   Edit Action Plan
                 </button>
                 
                 <button
-                className="flex items-center justify-around w-36 bg-blue-500 hover:bg-blue-300  py-1 mx-4 rounded text-white  text-xs"
+                className="flex items-center justify-around w-36 bg-blue-500 hover:bg-blue-300  py-1 mx-4 rounded text-white  "
                 onClick={(e) => {
                   updateClientActionPlan();
                 }}>
@@ -950,7 +910,7 @@ return finalDate
               </button>
               <ReactToPrint
               trigger={() => (
-                <button className="flex items-center justify-around w-36 bg-black hover:bg-gray-700  py-1 rounded text-white  text-xs ">
+                <button className="flex items-center justify-around w-36 bg-black hover:bg-gray-700  py-1 rounded text-white   ">
                   <img src='/print-and-sign.svg' alt='Print and sign button' ></img>
 
                   Print and sign
