@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import BackButton from "../../../../components/backButton";
 
 const EditMsaFormPage = ({ data }) => {
  
@@ -177,15 +178,8 @@ console.log("date",date)
 
         <main className="container mx-auto">
          
-        <button 
-        onClick={()=>router.back()}
-        className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5 flex items-center">
-        <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        Back to client profile
-        </button>
+        <BackButton/>
+        
           <section id="info" className="my-5">
             <div className="">
               <h6 className="font-black my-5 text-dark-blue">
