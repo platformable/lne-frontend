@@ -12,6 +12,7 @@ import ImpactBaselineModal from "../../../../components/ImpactBaselineModal";
 
 import ReactToPrint from 'react-to-print'
 import ComponentToPrint from "../../../../components/ComponentToPrint";
+import BackButton from "../../../../components/BackButton";
 
 
 export default function IndexServoceActionPlan({ data }) {
@@ -64,25 +65,22 @@ export default function IndexServoceActionPlan({ data }) {
 
 
   const genericGoals = [
-"Attend all health appointments",
+// "Attend all health appointments",
 "Adhere to HIV medication",
-"Remove barriers to accessing medication",
+// "Remove barriers to accessing medication",
 "Access HIV primary care",
-"Consistently measure CD4 Count and Viral load",
+// "Consistently measure CD4 Count and Viral load",
 "Reduce unsafe sexual behavior",
 "Start using PrEP",
-"Prevention counselling",
+// "Prevention counselling",
 "Access supportive counselling",
-"Problems with substance use",
-"Overdose prevention",
-"Assistance with employment",
-"Assistance with education",
-"Assistance with housing services",
-"Addressing a legal issue",
-"Transportation",
-"Improve food security",
-"Gain access to public assistance",
-"Assistance with ID-related documents",
+"Access drug and alcohol services",
+// "Overdose prevention",
+"Assistance with employment, housing, financial or legal issue",
+// "Addressing a legal issue",
+// "Transportation",
+// "Improve food security",
+// "Gain access to public assistance",
 "Other"
   ]
 
@@ -193,15 +191,7 @@ const services = [
         </section>
         <section className="container mx-auto">
     
-        <button 
-        onClick={()=>router.back()}
-        className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
-        <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
-        Back to client profile
-        </button>
+        <BackButton />
   
         </section>
 
@@ -212,91 +202,78 @@ const services = [
               Client Information
             </h6>
             <div
-              className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
+              className={`${Styles.serviceActionPlanPageInfoContainer} items-center gap-x-5 border-dark-blue rounded-xl p-5`}
             >
               <div className="service-action-plan-page-info-box md:my-0 my-5">
-              <div className="flex gap-x-2 mb-5 items-center">
+                 <div className="flex gap-x-2 mb-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    <h3 className="font-black ">Date</h3>
+                    <h3 className="font-black ">Plan start date</h3>
                   </div>
-                <label className="block">
-                  <span className="text-xs">Plan start date</span>
                   <input
                     type="date"
-                    className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                    className="block w-full rounded-md border p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     onChange={(e) =>
                       setClientData({ ...clientData, planStartDate: e.target.value })
                     }
                   />
-                </label>
               </div>
 
               <div className="service-action-plan-page-info-box md:my-0 my-5">
-                <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Client</h3>
-                </div>
-                <div className="grid grid-cols-3 gap-4">
+                  
+                  <div className="grid grid-cols-3 gap-4">
+                  <div className="flex gap-x-2 mb-1 items-end">
+                    <img src="/client-icon.svg" width="24" />
+                    <h3 className="font-black ">Client</h3>
+                  </div>
                   <label className="block">
-                    <span className="text-xs">First Name</span>
+                    <span className=" font-bold">Client Name</span>
                     <input
                       type="text"
-                      className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0].clientfirstname}
+                      className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
                       disabled
                     />
                   </label>
+                
                   <label className="block">
-                    <span className="text-xs">Last Name</span>
+                    <span className=" font-bold">Client ID</span>
                     <input
                       type="text"
-                      className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      onChange={(e) =>
-                        setUserData({ ...clientData, email: e.target.value })
-                      }
-                      value={data[0].clientlastname.charAt(0)}
-                      disabled
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="text-xs">Client ID</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                      className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                       value={data[0].clientid}
                       disabled
                     />
                   </label>
-                </div>
+                  </div>
+                
               </div>
-
               <div className="service-action-plan-page-info-box">
-              <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Health Care Worker</h3>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <label className="block">
-                    <span className="text-xs">First Name</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                      value={data[0].clienthcwname}
-                      disabled
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="text-xs">Last Name</span>
-                    <input
-                      type="text"
-                      className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-
-                      value={data[0].clienthcwlastname}
-                      disabled
-                    />
-                  </label>
-                </div>
+              
+              <div className="grid grid-cols-3 gap-4">
+              <div className="flex gap-x-2 mb-1 items-end">
+                <img src="/msa_form/LNEuser.svg" width="24" />
+                <h3 className="font-black ">Health Care Worker</h3>
               </div>
+                <label className="block">
+                  <span className=" font-bold">First Name</span>
+                  <input
+                    type="text"
+                    className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                    value={clientData.userFirstName}
+                    disabled
+                  />
+                </label>
+                <label className="block">
+                  <span className=" font-bold">Last Name</span>
+                  <input
+                    type="text"
+                    className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                    value={clientData.userLastName}
+                    disabled
+                  />
+                </label>
+              </div>
+            </div>
             </div>
           </div>
         </section>
@@ -326,7 +303,7 @@ const services = [
                       onChange={(e) =>
                           setClientData({...clientData,goal1Summary:e.target.value})
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className=" w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option selected="true" disabled="disabled">Select</option>
                       
@@ -341,7 +318,7 @@ const services = [
                       onChange={(e) =>
                         setClientData({...clientData,goal1ServiceCategory:e.target.value})
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className=" w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option selected="true" disabled="disabled">Select</option>
                       {displayServices(services)}
@@ -355,7 +332,7 @@ const services = [
 
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
-                    <input type="date" className="border-black w-full rounded p-2 text-xs"
+                    <input type="date" className="border-black w-full rounded p-2 "
                     onChange={(e)=>setClientData({...clientData,goal1TargetDate:e.target.value})}/>
                   </label>
                   
@@ -404,7 +381,7 @@ const services = [
                       onChange={(e) =>
                           setClientData({...clientData,goal2Summary:e.target.value})
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className=" w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option selected="true" disabled="disabled">Select</option>
                       
@@ -419,7 +396,7 @@ const services = [
                       onChange={(e) =>
                         setClientData({...clientData,goal2ServiceCategory:e.target.value})
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className=" w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option selected="true" disabled="disabled">Select</option>
                       {displayServices(services)}
@@ -433,7 +410,7 @@ const services = [
 
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
-                    <input type="date" className="border-black w-full rounded p-2 text-xs"
+                    <input type="date" className="border-black w-full rounded p-2 "
                     onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}/>
                   </label>
                   
@@ -481,7 +458,7 @@ const services = [
                       onChange={(e) =>
                           setClientData({...clientData,goal3Summary:e.target.value})
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className=" w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option selected="true" disabled="disabled">Select</option>
                       
@@ -496,7 +473,7 @@ const services = [
                       onChange={(e) =>
                         setClientData({...clientData,goal3ServiceCategory:e.target.value})
                       }
-                      className="text-xs w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                      className=" w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                     >
                       <option selected="true" disabled="disabled">Select</option>
                       {displayServices(services)}
@@ -510,7 +487,7 @@ const services = [
 
                   <label className="block">
                     <h6 className="font-black">Target Date</h6>
-                    <input type="date" className="border-black w-full rounded p-2 text-xs"
+                    <input type="date" className="border-black w-full rounded p-2 "
                     onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}/>
                   </label>
                   
@@ -582,18 +559,18 @@ const services = [
           </div>
         </section>
         </main>
-        {loading &&  <p className="text-xs my-3 text-center">Loading...</p>}
-        {errorCompleteAllFieldsMessage && <p className="text-xs text-red-500 my-3 text-center"><a href="#validation-req">{errorCompleteAllFieldsMessage}</a></p>  }
+        {loading &&  <p className=" my-3 text-center">Loading...</p>}
+        {errorCompleteAllFieldsMessage && <p className=" text-red-500 my-3 text-center"><a href="#validation-req">{errorCompleteAllFieldsMessage}</a></p>  }
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
- {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5">
+ {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5">
             Save Progress</button> */}
 
-              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
                 onClick={(e)=>{createClientActionPlan()}}>Save
               </button>
               <ReactToPrint
-                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block text-xs">Print</button>}
+                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">Print</button>}
                   content={() => componentRef.current} />
           
               <div style={{display:'none'}}>

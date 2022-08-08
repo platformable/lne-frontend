@@ -7,7 +7,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import BackButton from "../../../../components/backButton";
+import BackButton from "../../../../components/BackButton";
 
 const EditMsaFormPage = ({ data }) => {
  
@@ -424,7 +424,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].hnseligibilityform === "0" ? false:true}
+                  disabled={data[0].hnseligibilityform === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -618,7 +618,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].statuschangesform === "0" ? false:true}
+                  disabled={data[0].statuschangesform === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -655,6 +655,7 @@ console.log("date",date)
                     clientData.StatusChangesFormDate &&
                     clientData.StatusChangesFormDate.split('T')[0]
                   }
+                  // disabled={data[0].statuschangesform === "1" ? true : false}
                   className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
@@ -689,7 +690,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "0" ? false:true}
+                  disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -727,7 +728,7 @@ console.log("date",date)
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate &&
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate.split('T')[0]
                   }
-                  disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "1"? true: false} 
+                  // disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "1"? true: false} 
                   className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
@@ -763,7 +764,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].m11qform === "0" ? false:true}
+                  disabled={data[0].m11qform === "1" ? true : false}
                   name="m11qform"
                   id="m11qform"
                   onChange={(e) =>{
@@ -835,7 +836,7 @@ console.log("date",date)
               <div className="form-row-item px-5 ">
                 <input
                   type="checkbox"
-                  disabled={data[0].cd4vlreports === "0" ? false:true}
+                  disabled={data[0].cd4vlreports === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -910,7 +911,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].initialtreatmentadherenceintake === "0" ? false:true}
+                  disabled={data[0].initialtreatmentadherenceintake === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -984,7 +985,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].treatmentadherenceupdates === "0" ? false:true}
+                  disabled={data[0].treatmentadherenceupdates === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1063,7 +1064,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airscollateralinformation === "0" ? false:true}
+                  disabled={data[0].airscollateralinformation === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1133,7 +1134,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airsdrugregimen === "0" ? false:true}
+                  disabled={data[0].airsdrugregimen === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1206,7 +1207,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airsfinancialinformation === "0" ? false:true}
+                  disabled={data[0].airsfinancialinformation === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1273,7 +1274,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airshivaidsriskhistory === "0" ? false:true}
+                  disabled={data[0].airshivaidsriskhistory === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1344,7 +1345,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airshivmedicalprovider === "0" ? false:true}
+                  disabled={data[0].airshivmedicalprovider === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1416,7 +1417,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airshivstatushistory === "0" ? false:true}
+                  disabled={data[0].airshivstatushistory === "1" ? true : false}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1490,7 +1491,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airshcvhistory === "0" ? false:true}
+                  disabled={data[0].airshcvhistory === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1557,7 +1558,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airshousinginformation === "0" ? false:true}
+                  disabled={data[0].airshousinginformation === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1628,7 +1629,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airsinsuranceinformation === "0" ? false:true}
+                  disabled={data[0].airsinsuranceinformation === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1696,7 +1697,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].airssubstanceusehistory === "0" ? false:true}
+                  disabled={data[0].airssubstanceusehistory === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1763,7 +1764,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].lneclientrights === "0" ? false:true}
+                  disabled={data[0].lneclientrights === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1828,7 +1829,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].lneclientgrievancepolicyprocedure === "0" ? false:true}
+                  disabled={data[0].lneclientgrievancepolicyprocedure === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1896,7 +1897,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].lneprogramrules === "0" ? false:true}
+                  disabled={data[0].lneprogramrules === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -1962,7 +1963,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].lneemergencycontactconsent === "0" ? false:true}
+                  disabled={data[0].lneemergencycontactconsent === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2030,7 +2031,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].lneconsentforreleaseofconfidentialinformation === "0" ? false:true}
+                  disabled={data[0].lneconsentforreleaseofconfidentialinformation === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2102,7 +2103,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].hippaconsentform === "0" ? false:true}
+                  disabled={data[0].hippaconsentform === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2168,7 +2169,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].nycdohmhnoticeofprivacypractices === "0" ? false:true}
+                  disabled={data[0].nycdohmhnoticeofprivacypractices === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2239,7 +2240,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].linkageretentionadherenceforms === "0" ? false:true}
+                  disabled={data[0].linkageretentionadherenceforms === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2309,7 +2310,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].internalreferralinformation === "0" ? false:true}
+                  disabled={data[0].internalreferralinformation === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() => {
@@ -2380,7 +2381,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].lneclientreferralform === "0" ? false:true}
+                  disabled={data[0].lneclientreferralform === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>
@@ -2444,7 +2445,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].hnsreadinessform === "0" ? false:true}
+                  disabled={data[0].hnsreadinessform === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2509,7 +2510,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].supportgroups === "0" ? false:true}
+                  disabled={data[0].supportgroups === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2574,7 +2575,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  disabled={data[0].idgform === "0" ? false:true}
+                  disabled={data[0].idgform === "1" ? true : false}
                   name=""
                   id=""
                   onChange={() =>{
