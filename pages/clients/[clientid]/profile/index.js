@@ -171,7 +171,7 @@ console.log(data[0])
     <>
       <Layout>
         <div className=" bg-light-blue h-screen">
-          <section className="py-5 container mx-auto ">
+          <section className="py-5 container mx-auto md:px-0 px-5">
             <button
               onClick={() =>
                 loggedUserRole === "Supervisor"
@@ -186,7 +186,7 @@ console.log(data[0])
                 : "Back to dashboard"}
             </button>
 
-            <section className="dashboard-clients-cards">
+            <section className="dashboard-clients-cards md:px-0 px-5">
               <div className="dashboard-clients-cards-top py-5 flex gap-x-5">
                 <h3 className="font-black">Client dashboard</h3>
                 <div className="color-description flex gap-x-5">
