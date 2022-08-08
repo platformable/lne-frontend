@@ -359,3 +359,10 @@ table th {
   background-color: #000;
   color: white;
 }
+
+.dashboard-clients-cards-info-container {
+  display:grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap:10px;
+}
+
