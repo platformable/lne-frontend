@@ -179,7 +179,7 @@ console.log("date",date)
          
         <button 
         onClick={()=>router.back()}
-        className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
+        className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5 flex items-center">
         <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
@@ -192,85 +192,78 @@ console.log("date",date)
                  Client Information
               </h6>
               <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
+                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                <div className="flex gap-x-2 mb-5 items-center">
+                <div className="service-action-plan-page-info-box md:my-1 my-5">
+                  <h3 className="font-black ">Todays date</h3>
+
+                  <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    <h3 className="font-black ">Date</h3>
+                    <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
+
                   </div>
-                  <label className="block">
-                    <span className="text-xs">Todays date</span>
-                    <p>{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
-                  </label>
+
                 </div>
 
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Client</h3>
-                </div>
+                  <div className="service-action-plan-page-info-box md:my-0 my-5">
+                  
+                      <div className="grid grid-cols-3 gap-4">
+                      <div className="flex gap-x-2 mb-1 items-end">
+                        <img src="/client-icon.svg" width="24" />
+                        <h3 className="font-black ">Client</h3>
+                      </div>
+                      <label className="block">
+                        <span className=" font-bold">Client Name</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
+                          disabled
+                        />
+                      </label>
+                    
+                      <label className="block">
+                        <span className=" font-bold">Client ID</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={data[0].clientid}
+                          disabled
+                        />
+                      </label>
+                      </div>
+                    
+                  </div>
+                  <div className="service-action-plan-page-info-box">
+                  
                   <div className="grid grid-cols-3 gap-4">
-                    <label className="block">
-                      <span className="text-xs">First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0].clientfirstname}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        onChange={(e) =>
-                          setUserData({ ...clientData, email: e.target.value })
-                        }
-                        value={data[0].clientlastname.charAt(0)}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs">Client ID</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0].clientid}
-                        disabled
-                      />
-                    </label>
+                  <div className="flex gap-x-2 mb-1 items-end">
+                    <img src="/msa_form/LNEuser.svg" width="24" />
+                    <h3 className="font-black ">Health Care Worker</h3>
                   </div>
-                </div>
-
-                <div className="service-action-plan-page-info-box">
-                <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Health Care Worker</h3>
-                </div>
-                  <div className="grid grid-cols-2 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className=" font-bold">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span className=" font-bold">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userLastName}
                         disabled
                       />
                     </label>
                   </div>
                 </div>
-              </div>
+             </div>
+
+               
             </div>
           </section>
           <h6 className="font-black my-5 text-dark-blue">
@@ -281,7 +274,7 @@ console.log("date",date)
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <p className="text-xs"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
+            <p className="font-black"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
             <div
               id="form-head"
               className={`${MSAStyles.formRowsContainer} bg-dark-blue  text-white grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}
@@ -322,6 +315,11 @@ console.log("date",date)
                 <p>AIRS Intake Form <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
+                {data[0].airsintakeform === "1" ?
+              
+              <p className="inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSIntakeFormDate.split('T')[0]}</p> 
+              :
                  
                 <input
                   type="date"
@@ -331,7 +329,7 @@ console.log("date",date)
                     clientData.AIRSIntakeFormDate.split('T')[0]
                   }
                   disabled={clientData.AIRSIntakeFormDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSIntakeForm){
                       setClientData({
@@ -348,7 +346,7 @@ console.log("date",date)
                     }
                    
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
                 <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -388,6 +386,11 @@ console.log("date",date)
                 <p>Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
               </div>
               <div className="text-center">
+                {data[0].comprehensiveriskbehaviorassessment === "1" ?
+              
+              <p className=" inline-block px-8 py-1 rounded-lg"> 
+              {clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]}</p> 
+              :
                 <input
                   type="date"
                   id="AIRSIntakeForm"
@@ -396,7 +399,7 @@ console.log("date",date)
                     clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
                   }
                   disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -412,7 +415,7 @@ console.log("date",date)
                       });
                     }
                   }}
-                />
+                />}
               </div>
               <div className="flex justify-center">
               <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
@@ -422,13 +425,81 @@ console.log("date",date)
             </div>
 
             <div
+              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+            >
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  disabled={data[0].hnseligibilityform === "0" ? false:true}
+                  name=""
+                  id=""
+                  onChange={() =>{
+                    clientData.HNSEligibilityFormDate==="" || clientData.HNSEligibilityFormDate ===null ? (
+                    setClientData({
+                      ...clientData,
+                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                      HNSEligibilityFormDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                      HNSEligibilityFormDate: ''
+                    })
+                  }}
+                  checked={clientData.HNSEligibilityForm? true : false}
+                />
+              </div>
+              <div>
+                <p>HNS Eligibility Assessment <span className="text-red-500">*</span></p>
+              </div>
+              <div className="text-center">
+                {data[0].hnseligibilityform === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.HNSEligibilityFormDate.split('T')[0]}</p> 
+              :
+                <input
+                  type="date"
+                  id="HNSEligibilityForm"
+                  value={
+                    clientData.HNSEligibilityFormDate &&
+                    clientData.HNSEligibilityFormDate.split('T')[0]
+                  }
+                  disabled={clientData.HNSEligibilityFormDate ? true: false} 
+                  className="rounded-lg  p-1"
+                  onChange={(e) => {
+
+                    if(clientData.HNSEligibilityForm){
+                      setClientData({
+                        ...clientData,
+                        HNSEligibilityFormDate: e.target.value,
+                    
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        HNSEligibilityFormDate: e.target.value,
+                        HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                      });
+                    }
+                  }}
+                />}
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+
+            <div
               className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
-              <div className="form-row-item px-5 pointer-events-none">
+              <div className="form-row-item px-5">
                 <input
                   type="checkbox"
                   name=""
                   id=""
+                  disabled={data[0].serviceactionplan === "1" ? true : false}
                   onChange={() => {
                     clientData.ServiceActionPlanDate==="" || clientData.ServiceActionPlanDate===null ? (
                     setClientData({
@@ -458,7 +529,7 @@ console.log("date",date)
                     clientData.ServiceActionPlanDate
                   }
                   disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -483,7 +554,7 @@ console.log("date",date)
               </div>
             </div>
 
-            <div
+            {/* <div
               className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5 pointer-events-none">
@@ -522,7 +593,7 @@ console.log("date",date)
                     formatDate(clientData.progressNoteDate)
                   }
                   disabled={clientData.progressNoteDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -538,14 +609,14 @@ console.log("date",date)
                     }
                    
                   }}
-                /> */}
+                /> 
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
@@ -553,6 +624,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].statuschangesform === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -577,15 +649,19 @@ console.log("date",date)
                 <p>Status Changes/ClosureForms</p>
               </div>
               <div className="text-center">
+              {data[0].statuschangesform === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.StatusChangesFormDate.split('T')[0]}</p> 
+              :
                 <input
                   type="date"
-                  id="AIRSCollateralInformation"
+                  id="StatusChangeForm"
                   value={
                     clientData.StatusChangesFormDate &&
                     clientData.StatusChangesFormDate.split('T')[0]
                   }
-                  /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
                       setClientData({
@@ -602,7 +678,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                /> }
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -619,6 +695,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -642,7 +719,13 @@ console.log("date",date)
               <div>
                 <p>Comprehensive Behavioral Risk Assessment Updates </p>
               </div>
+              
               <div className="text-center">
+              {data[0].comprehensiveriskbehaviorassessmentupdates === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate.split('T')[0]}</p> 
+              :
                 <input
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessmentUpdates"
@@ -650,8 +733,8 @@ console.log("date",date)
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate &&
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate.split('T')[0]
                   }
-                  /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "1"? true: false} 
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
                       setClientData({
@@ -668,8 +751,9 @@ console.log("date",date)
                     }
                     
                   }}
-                />
-              </div>
+                /> }
+              </div> 
+              
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
@@ -685,8 +769,9 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  name=""
-                  id=""
+                  disabled={data[0].m11qform === "0" ? false:true}
+                  name="m11qform"
+                  id="m11qform"
                   onChange={(e) =>{
                     clientData.M11QFormDate==="" || clientData.M11QFormDate===null ? (
                     setClientData({
@@ -711,15 +796,19 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].m11qform === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.M11QFormDate.split('T')[0]}</p> :
                 <input
                   type="date"
-                  id="ComprehensiveRiskBehaviorAssessmentUpdates"
+                  id="M11QFormDate"
                   value={
                     clientData.M11QFormDate &&
                     clientData.M11QFormDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.M11QForm ){
                       setClientData({
@@ -736,7 +825,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -752,6 +841,7 @@ console.log("date",date)
               <div className="form-row-item px-5 ">
                 <input
                   type="checkbox"
+                  disabled={data[0].cd4vlreports === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -778,15 +868,19 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].cd4vlreports === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.CD4VLReportsDate.split('T')[0]}</p> :
                 <input
                   type="date"
-                  id="ComprehensiveRiskBehaviorAssessmentUpdates"
+                  id="CD4VLReportsDate"
                   value={
                     clientData.CD4VLReportsDate &&
                     clientData.CD4VLReportsDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.CD4VLReports ){
                       setClientData({
@@ -803,7 +897,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -822,6 +916,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].initialtreatmentadherenceintake === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -848,15 +943,19 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].initialtreatmentadherenceintake === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.InitialTreatmentAdherenceIntakeDate.split('T')[0]}</p> :
                 <input
                   type="date"
-                  id="ComprehensiveRiskBehaviorAssessmentUpdates"
+                  id="InitialTreatmentAdherenceIntakeDate"
                   value={
                     clientData.InitialTreatmentAdherenceIntakeDate &&
                     clientData.InitialTreatmentAdherenceIntakeDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.InitialTreatmentAdherenceIntake ){
                       setClientData({
@@ -873,7 +972,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -891,6 +990,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].treatmentadherenceupdates === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -917,15 +1017,19 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].treatmentadherenceupdates === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.TreatmentAdherenceUpdatesDate.split('T')[0]}</p> :
                 <input
                   type="date"
-                  id="ComprehensiveRiskBehaviorAssessmentUpdates"
+                  id="TreatmentAdherenceUpdatesDate"
                   value={
                     clientData.TreatmentAdherenceUpdatesDate &&
                     clientData.TreatmentAdherenceUpdatesDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.TreatmentAdherenceUpdates ){
                       setClientData({
@@ -942,7 +1046,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -965,6 +1069,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airscollateralinformation === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -989,15 +1094,19 @@ console.log("date",date)
                 <p>AIRS Collateral Information </p>
               </div>
               <div className="text-center">
+                {data[0].airscollateralinformationdate === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSCollateralInformationDate.split('T')[0]}</p> :
                 <input
                   type="date"
-                  id="AIRSCollateralInformation"
+                  id="AIRSCollateralInformationDate"
                   value={
                     clientData.AIRSCollateralInformationDate &&
                     clientData.AIRSCollateralInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSCollateralInformation){
                       setClientData({
@@ -1014,7 +1123,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1030,6 +1139,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airsdrugregimen === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1056,6 +1166,10 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].airsdrugregimen === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AirsDrugRegimenDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="AirsDrugRegimen"
@@ -1064,7 +1178,7 @@ console.log("date",date)
                     clientData.AirsDrugRegimenDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AirsDrugRegimen ){
                       setClientData({
@@ -1081,7 +1195,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1098,6 +1212,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airsfinancialinformation === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1121,6 +1236,10 @@ console.log("date",date)
                 <p>AIRS Financial Information </p>
               </div>
               <div className="text-center">
+                {data[0].airsfinancialinformation === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSFinancialInformationDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="AIRSFinancialInformation"
@@ -1129,7 +1248,7 @@ console.log("date",date)
                     clientData.AIRSFinancialInformationDate.split('T')[0]
                   }
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if (clientData.AIRSFinancialInformation){
                       setClientData({
@@ -1145,7 +1264,7 @@ console.log("date",date)
                       });
                     }
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1160,6 +1279,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airshivaidsriskhistory === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1183,6 +1303,10 @@ console.log("date",date)
                 <p>AIRS HIV AIDS Risk History </p>
               </div>
               <div className="text-center">
+                {data[0].airshivaidsriskhistory === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="AIRSHIVAIDSRiskHistory"
@@ -1191,7 +1315,7 @@ console.log("date",date)
                     clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHIVAIDSRiskHistory){
                       setClientData({
@@ -1209,7 +1333,7 @@ console.log("date",date)
                     }
                    
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1226,6 +1350,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airshivmedicalprovider === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1252,6 +1377,10 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].airshivmedicalprovider === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AirsHIVMedicalProviderDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessmentUpdates"
@@ -1260,7 +1389,7 @@ console.log("date",date)
                     clientData.AirsHIVMedicalProviderDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AirsHIVMedicalProvider ){
                       setClientData({
@@ -1277,7 +1406,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1293,6 +1422,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airshivstatushistory === "0" ? false:true}
                   name=""
                   id=""
                   onChange={(e) =>{
@@ -1319,6 +1449,10 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].airshivstatushistory === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSHIVStatusHistoryDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessmentUpdates"
@@ -1327,7 +1461,7 @@ console.log("date",date)
                     clientData.AIRSHIVStatusHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHIVStatusHistory ){
                       setClientData({
@@ -1344,7 +1478,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1362,6 +1496,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airshcvhistory === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1384,6 +1519,10 @@ console.log("date",date)
                 <p>AIRS HCV History </p>
               </div>
               <div className="text-center">
+                {data[0].airshcvhistory === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSHCVHistoryDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="AIRSHCVHistory"
@@ -1392,7 +1531,7 @@ console.log("date",date)
                     clientData.AIRSHCVHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHCVHistory){
                       setClientData({
@@ -1408,7 +1547,7 @@ console.log("date",date)
                     }
                    
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1424,6 +1563,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airshousinginformation === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1449,6 +1589,10 @@ console.log("date",date)
                 <p>AIRS Housing Information </p>
               </div>
               <div className="text-center">
+                {data[0].airshousinginformation === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSHousingInformationDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="AIRSHousingInformation"
@@ -1457,7 +1601,7 @@ console.log("date",date)
                     clientData.AIRSHousingInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHousingInformation){
                       setClientData({
@@ -1475,7 +1619,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1490,6 +1634,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airsinsuranceinformation === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1513,6 +1658,10 @@ console.log("date",date)
                 <p>AIRS Insurance Information </p>
               </div>
               <div className="text-center">
+                {data[0].airsinsuranceinformation === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSInsuranceInformationDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="AIRSInsuranceInformation"
@@ -1521,7 +1670,7 @@ console.log("date",date)
                     clientData.AIRSInsuranceInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if (clientData.AIRSInsuranceInformation){
                       setClientData({
@@ -1538,7 +1687,7 @@ console.log("date",date)
                     }
                    
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1553,6 +1702,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].airssubstanceusehistory === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1576,6 +1726,10 @@ console.log("date",date)
                 <p>AIRS Substance Use History </p>
               </div>
               <div className="text-center">
+                {data[0].airssubstanceusehistory === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.AIRSSubstanceUseHistoryDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="AIRSSubstanceUseHistory"
@@ -1584,7 +1738,7 @@ console.log("date",date)
                     clientData.AIRSSubstanceUseHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSSubstanceUseHistory){
                       setClientData({
@@ -1600,7 +1754,7 @@ console.log("date",date)
                       });
                     }
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1615,6 +1769,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].lneclientrights === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1636,6 +1791,10 @@ console.log("date",date)
                 <p>LNE Client Rights </p>
               </div>
               <div className="text-center">
+                {data[0].lneclientrights === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.LNEClientRightsDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LNEClientRights"
@@ -1644,7 +1803,7 @@ console.log("date",date)
                     clientData.LNEClientRightsDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEClientRightsDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientRights){
                       setClientData({
@@ -1660,7 +1819,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1675,6 +1834,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].lneclientgrievancepolicyprocedure === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1698,6 +1858,10 @@ console.log("date",date)
                 <p>LNE Client Grievance Policy & Procedure </p>
               </div>
               <div className="text-center">
+                {data[0].lneclientgrievancepolicyprocedure === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
@@ -1706,7 +1870,7 @@ console.log("date",date)
                     clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientGrievancePolicyProcedure){
                       setClientData({
@@ -1723,7 +1887,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1738,6 +1902,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].lneprogramrules === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -1760,6 +1925,10 @@ console.log("date",date)
                 <p>LNE Program Rules </p>
               </div>
               <div className="text-center">
+                {data[0].lneprogramrules === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.LNEProgramRulesDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
@@ -1768,7 +1937,7 @@ console.log("date",date)
                     clientData.LNEProgramRulesDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEProgramRulesDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEProgramRules){
                       setClientData({
@@ -1784,7 +1953,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1799,6 +1968,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].lneemergencycontactconsent === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -1822,6 +1992,10 @@ console.log("date",date)
                 <p>LNE Emergency Contact Consent </p>
               </div>
               <div className="text-center">
+                {data[0].lneemergencycontactconsent === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.LNEEmergencyContactConsentDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
@@ -1830,7 +2004,7 @@ console.log("date",date)
                     clientData.LNEEmergencyContactConsentDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEEmergencyContactConsent){
                       setClientData({
@@ -1847,7 +2021,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1862,6 +2036,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].lneconsentforreleaseofconfidentialinformation === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -1887,6 +2062,10 @@ console.log("date",date)
                 <p>LNE Consent for Release of Confidential Information </p>
               </div>
               <div className="text-center">
+                {data[0].lneconsentforreleaseofconfidentialinformation === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LNEConsentForReleaseOfConfidentialInformation"
@@ -1895,7 +2074,7 @@ console.log("date",date)
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEConsentForReleaseOfConfidentialInformation){
                       setClientData({
@@ -1914,7 +2093,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1929,6 +2108,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].hippaconsentform === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -1951,6 +2131,10 @@ console.log("date",date)
                 <p>HIPAA Consent Form (OCA Form 960)</p>
               </div>
               <div className="text-center">
+                {data[0].hippaconsentform === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.HIPPAConsentFormDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="HIPPAConsentForm"
@@ -1959,7 +2143,7 @@ console.log("date",date)
                     clientData.HIPPAConsentFormDate.split('T')[0]
                   }
                  /*  disabled={clientData.HIPPAConsentFormDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.HIPPAConsentForm){
                       setClientData({
@@ -1975,7 +2159,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1990,6 +2174,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].nycdohmhnoticeofprivacypractices === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2017,6 +2202,10 @@ console.log("date",date)
                 </p>
               </div>
               <div className="text-center">
+                {data[0].nycdohmhnoticeofprivacypractices === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="NYCDOHMHNoticeOfPrivacyPractices"
@@ -2025,7 +2214,7 @@ console.log("date",date)
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]
                   }
                   /* disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.NYCDOHMHNoticeOfPrivacyPractices){
                       setClientData({
@@ -2043,7 +2232,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2056,6 +2245,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].linkageretentionadherenceforms === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2080,6 +2270,10 @@ console.log("date",date)
                 <p>Linkage, Retention, & Adherence Forms</p>
               </div>
               <div className="text-center">
+                {data[0].linkageretentionadherenceforms === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.LinkageRetentionAdherenceFormsDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LinkageRetentionAdherenceForms"
@@ -2088,7 +2282,7 @@ console.log("date",date)
                     clientData.LinkageRetentionAdherenceFormsDate.split('T')[0]
                   }
                   /* disabled={clientData.LinkageRetentionAdherenceFormsDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LinkageRetentionAdherenceForms){
                       setClientData({
@@ -2106,7 +2300,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2121,6 +2315,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].internalreferralinformation === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() => {
@@ -2146,6 +2341,10 @@ console.log("date",date)
                 <p>Internal Referral Information</p>
               </div>
               <div className="text-center">
+                {data[0].internalreferralinformation === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.InternalReferralInformationDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LNEOutreachRetentionTrackingForm"
@@ -2154,7 +2353,7 @@ console.log("date",date)
                     clientData.InternalReferralInformationDate.split('T')[0]
                   }
                  /*  disabled={clientData.InternalReferralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.InternalReferralInformation){
                       setClientData({
@@ -2172,7 +2371,7 @@ console.log("date",date)
                     }
                     
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2187,6 +2386,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].lneclientreferralform === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>
@@ -2208,6 +2408,10 @@ console.log("date",date)
                 <p>Identification</p>
               </div>
               <div className="text-center">
+                {data[0].lneclientreferralform === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.LNEClientReferralFormDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="LNEClientReferralForm"
@@ -2216,7 +2420,7 @@ console.log("date",date)
                     clientData.LNEClientReferralFormDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEClientReferralFormDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientReferralForm){
                       setClientData({
@@ -2231,7 +2435,7 @@ console.log("date",date)
                     });
                   }
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2246,66 +2450,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
-                  name=""
-                  id=""
-                  onChange={() =>{
-                    clientData.HNSEligibilityFormDate==="" || clientData.HNSEligibilityFormDate ===null ? (
-                    setClientData({
-                      ...clientData,
-                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
-                      HNSEligibilityFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
-                      HNSEligibilityFormDate: ''
-                    })
-                  }}
-                  checked={clientData.HNSEligibilityForm? true : false}
-                />
-              </div>
-              <div>
-                <p>HNS Eligibility Assessment</p>
-              </div>
-              <div className="text-center">
-                <input
-                  type="date"
-                  id="HNSEligibilityForm"
-                  value={
-                    clientData.HNSEligibilityFormDate &&
-                    clientData.HNSEligibilityFormDate.split('T')[0]
-                  }
-                  /* disabled={clientData.HNSEligibilityFormDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
-                  onChange={(e) => {
-
-                    if(clientData.HNSEligibilityForm){
-                      setClientData({
-                        ...clientData,
-                        HNSEligibilityFormDate: e.target.value,
-                    
-                      });
-                    } else {
-                      setClientData({
-                        ...clientData,
-                        HNSEligibilityFormDate: e.target.value,
-                        HNSEligibilityForm: !clientData.HNSEligibilityForm,
-                      });
-                    }
-                  }}
-                />
-              </div>
-              <div className="text-center flex justify-center">
-              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
-                </a>
-              </div>
-            </div>
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
-                  type="checkbox"
+                  disabled={data[0].hnsreadinessform === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2327,6 +2472,10 @@ console.log("date",date)
                 <p>HNS Readiness Assessment</p>
               </div>
               <div className="text-center">
+                {data[0].hnsreadinessform === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.HNSReadinessFormDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="HNSReadinessForm"
@@ -2335,7 +2484,7 @@ console.log("date",date)
                     clientData.HNSReadinessFormDate.split('T')[0]
                   }
                   /* disabled={clientData.HNSReadinessFormDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
 
                     if(clientData.HNSReadinessForm){
@@ -2352,7 +2501,7 @@ console.log("date",date)
                       });
                     }
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2366,6 +2515,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].supportgroups === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2387,6 +2537,10 @@ console.log("date",date)
                 <p>Support Groups</p>
               </div>
               <div className="text-center">
+                {data[0].supportgroups === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.SupportGroupsDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="SupportGroups"
@@ -2395,7 +2549,7 @@ console.log("date",date)
                     clientData.SupportGroupsDate.split('T')[0]
                   }
                   /* disabled={clientData.SupportGroupsDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
 
                     if(clientData.SupportGroups){
@@ -2412,7 +2566,7 @@ console.log("date",date)
                       });
                     }
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2426,6 +2580,7 @@ console.log("date",date)
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
+                  disabled={data[0].idgform === "0" ? false:true}
                   name=""
                   id=""
                   onChange={() =>{
@@ -2447,6 +2602,10 @@ console.log("date",date)
                 <p>IDG</p>
               </div>
               <div className="text-center">
+                {data[0].idgform  === "1" ?
+              
+              <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+              {clientData.IDGFormDate.split('T')[0]}</p> :
                 <input
                   type="date"
                   id="IDGForm"
@@ -2455,7 +2614,7 @@ console.log("date",date)
                     clientData.IDGFormDate.split('T')[0]
                   }
                   /* disabled={clientData.IDGFormDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
 
                     if(clientData.IDGForm){
@@ -2472,7 +2631,7 @@ console.log("date",date)
                       });
                     }
                   }}
-                />
+                />}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2484,7 +2643,7 @@ console.log("date",date)
 
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
-              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
                 onClick={()=>handleMsaform()}
               >
                 Save and Update
