@@ -156,7 +156,7 @@ clientHCWLastname:filteredusers[0]?.lastname
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="John"
+                placeholder="Juan"
                 onChange={(e) =>
                   setClientData({ ...clientData, clientFirstName: e.target.value })
                 }
@@ -168,7 +168,7 @@ clientHCWLastname:filteredusers[0]?.lastname
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="Doe"
+                placeholder="Davila"
                 onChange={(e) =>
                   setClientData({ ...clientData, clientLastName: e.target.value })
                 }
