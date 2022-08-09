@@ -11,6 +11,7 @@ import { Dropbox } from "dropbox";
 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import BackButton from "../../../../components/BackButton";
 
 const Index = ({ data }) => {
    const router = useRouter()
@@ -192,100 +193,84 @@ useEffect(()=>{
 
         <main className="container mx-auto">
          
-        <button 
-        onClick={()=>router.back()}
-        className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center">
-        <svg className="mr-2" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        Back to client profile
-        </button>
+        <BackButton />
           <section id="info" className="my-5">
             <div className="">
               <h6 className="font-black my-5 text-dark-blue">
                 Client Information
               </h6>
+           
               <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
+                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                <div className="flex gap-x-2 mb-5 items-center">
+                <div className="service-action-plan-page-info-box md:my-1 my-5">
+                  <h3 className="font-black ">Todays date</h3>
+
+                  
+                  <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    <h3 className="font-black ">Date</h3>
+                    <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
                   </div>
-                  <label className="block">
-                    <span className="text-xs">Today&apos;s date</span>
-                    <p>{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
-                  </label>
+
                 </div>
 
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Client</h3>
-                </div>
+                  <div className="service-action-plan-page-info-box md:my-0 my-5">
+                  
+                      <div className="grid grid-cols-3 gap-4">
+                      <div className="flex gap-x-2 mb-1 items-end">
+                        <img src="/client-icon.svg" width="24" />
+                        <h3 className="font-black ">Client</h3>
+                      </div>
+                      <label className="block">
+                        <span className=" font-bold">Client Name</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
+                          disabled
+                        />
+                      </label>
+                    
+                      <label className="block">
+                        <span className=" font-bold">Client ID</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={data[0].clientid}
+                          disabled
+                        />
+                      </label>
+                      </div>
+                    
+                  </div>
+                  <div className="service-action-plan-page-info-box">
+                  
                   <div className="grid grid-cols-3 gap-4">
-                    <label className="block">
-                      <span className="text-xs">First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0]?.clientfirstname}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        onChange={(e) =>
-                          setUserData({ ...clientData, email: e.target.value })
-                        }
-                        value={data[0]?.clientlastname.charAt(0)}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs">Client ID</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0]?.clientid}
-                        disabled
-                      />
-                    </label>
+                  <div className="flex gap-x-2 mb-1 items-end">
+                    <img src="/msa_form/LNEuser.svg" width="24" />
+                    <h3 className="font-black ">Health Care Worker</h3>
                   </div>
-                </div>
-
-                <div className="service-action-plan-page-info-box">
-                <div className="flex gap-x-2 mb-5 items-center">
-                  <img src="/client-icon.svg" width="24"/>
-                  <h3 className="font-black ">Health Care Worker</h3>
-                </div>
-                  <div className="grid grid-cols-2 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className=" font-bold">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span className=" font-bold">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userLastName}
                         disabled
                       />
                     </label>
                   </div>
                 </div>
-              </div>
+             </div>
             </div>
           </section>
           <h6 className="font-black my-5 text-dark-blue">
@@ -296,7 +281,7 @@ useEffect(()=>{
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <p className="text-xs"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
+            <p className="font-black"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
             <div
               id="form-head"
               className={`${MSAStyles.formRowsContainer} bg-dark-blue  text-white grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}
@@ -346,7 +331,7 @@ useEffect(()=>{
                     clientData.AIRSIntakeFormDate
                   }
                   /* disabled={clientData.AIRSIntakeFormDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSIntakeForm){
                       setClientData({
@@ -410,7 +395,7 @@ useEffect(()=>{
                     clientData.ComprehensiveRiskBehaviorAssessmentDate
                   }
                   /* disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -430,6 +415,68 @@ useEffect(()=>{
               </div>
               <div className="flex justify-center">
               <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+
+            
+            <div
+              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+            >
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={() =>{
+                    clientData.HNSEligibilityFormDate==="" || clientData.HNSEligibilityFormDate ===null ? (
+                    setClientData({
+                      ...clientData,
+                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                      HNSEligibilityFormDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                      HNSEligibilityFormDate: ''
+                    })
+                  }}
+                  checked={clientData.HNSEligibilityForm? true : false}
+                />
+              </div>
+              <div>
+                <p>HNS Eligibility Assessment <span className="text-red-500">*</span></p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="HNSEligibilityForm"
+                  value={
+                    clientData.HNSEligibilityFormDate &&
+                    clientData.HNSEligibilityFormDate
+                  }
+                  // disabled={clientData.HNSEligibilityFormDate ? true: false}
+                  className="rounded-lg  p-1"
+                  onChange={(e) => {
+
+                    if(clientData.HNSEligibilityForm){
+                      setClientData({
+                        ...clientData,
+                        HNSEligibilityFormDate: e.target.value,
+                    
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        HNSEligibilityFormDate: e.target.value,
+                        HNSEligibilityForm: !clientData.HNSEligibilityForm,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
@@ -472,7 +519,7 @@ useEffect(()=>{
                     clientData.ServiceActionPlanDate
                   }
                   disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -497,7 +544,7 @@ useEffect(()=>{
               </div>
             </div>
 
-            <div
+            {/* <div
               className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5">
@@ -518,7 +565,7 @@ useEffect(()=>{
                     })
                   }}
                   checked={clientData.ServiceActionPlan? true : false}
-                /> */}
+                /> 
               </div>
               <div>
                 <p>Progress Note </p>
@@ -534,7 +581,7 @@ useEffect(()=>{
                     clientData.ServiceActionPlanDate
                   }
                   disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -550,14 +597,14 @@ useEffect(()=>{
                     }
                    
                   }}
-                /> */}
+                /> 
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
@@ -597,7 +644,7 @@ useEffect(()=>{
                     clientData.StatusChangesFormDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
                       setClientData({
@@ -663,7 +710,7 @@ useEffect(()=>{
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
                       setClientData({
@@ -731,7 +778,7 @@ useEffect(()=>{
                     clientData.M11QFormDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.M11QForm ){
                       setClientData({
@@ -798,7 +845,7 @@ useEffect(()=>{
                     clientData.CD4VLReportsDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.CD4VLReports ){
                       setClientData({
@@ -868,7 +915,7 @@ useEffect(()=>{
                     clientData.InitialTreatmentAdherenceIntakeDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.InitialTreatmentAdherenceIntake ){
                       setClientData({
@@ -937,7 +984,7 @@ useEffect(()=>{
                     clientData.TreatmentAdherenceUpdatesDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.TreatmentAdherenceUpdates ){
                       setClientData({
@@ -1009,7 +1056,7 @@ useEffect(()=>{
                     clientData.AIRSCollateralInformationDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSCollateralInformation){
                       setClientData({
@@ -1076,7 +1123,7 @@ useEffect(()=>{
                     clientData.AirsDrugRegimenDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AirsDrugRegimen ){
                       setClientData({
@@ -1141,7 +1188,7 @@ useEffect(()=>{
                     clientData.AIRSFinancialInformationDate
                   }
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if (clientData.AIRSFinancialInformation){
                       setClientData({
@@ -1203,7 +1250,7 @@ useEffect(()=>{
                     clientData.AIRSHIVAIDSRiskHistoryDate
                   }
                   /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHIVAIDSRiskHistory){
                       setClientData({
@@ -1272,7 +1319,7 @@ useEffect(()=>{
                     clientData.AirsHIVMedicalProviderDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AirsHIVMedicalProvider ){
                       setClientData({
@@ -1339,7 +1386,7 @@ useEffect(()=>{
                     clientData.AIRSHIVStatusHistoryDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHIVStatusHistory ){
                       setClientData({
@@ -1404,7 +1451,7 @@ useEffect(()=>{
                     clientData.AIRSHCVHistoryDate
                   }
                   /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHCVHistory){
                       setClientData({
@@ -1469,7 +1516,7 @@ useEffect(()=>{
                     clientData.AIRSHousingInformationDate
                   }
                   /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHousingInformation){
                       setClientData({
@@ -1533,7 +1580,7 @@ useEffect(()=>{
                     clientData.AIRSInsuranceInformationDate
                   }
                   /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if (clientData.AIRSInsuranceInformation){
                       setClientData({
@@ -1596,7 +1643,7 @@ useEffect(()=>{
                     clientData.AIRSSubstanceUseHistoryDate
                   }
                   /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSSubstanceUseHistory){
                       setClientData({
@@ -1656,7 +1703,7 @@ useEffect(()=>{
                     clientData.LNEClientRightsDate
                   }
                   /* disabled={clientData.LNEClientRightsDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientRights){
                       setClientData({
@@ -1718,7 +1765,7 @@ useEffect(()=>{
                     clientData.LNEClientGrievancePolicyProcedureDate
                   }
                   /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientGrievancePolicyProcedure){
                       setClientData({
@@ -1780,7 +1827,7 @@ useEffect(()=>{
                     clientData.LNEProgramRulesDate
                   }
                   /* disabled={clientData.LNEProgramRulesDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEProgramRules){
                       setClientData({
@@ -1842,7 +1889,7 @@ useEffect(()=>{
                     clientData.LNEEmergencyContactConsentDate
                   }
                   /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEEmergencyContactConsent){
                       setClientData({
@@ -1907,7 +1954,7 @@ useEffect(()=>{
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate
                   }
                   /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
-                  className="rounded-lg text-sm p-1"
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEConsentForReleaseOfConfidentialInformation){
                       setClientData({
@@ -1970,8 +2017,8 @@ useEffect(()=>{
                     clientData.HIPPAConsentFormDate &&
                     clientData.HIPPAConsentFormDate
                   }
-                  disabled={clientData.HIPPAConsentFormDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.HIPPAConsentFormDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.HIPPAConsentForm){
                       setClientData({
@@ -2036,8 +2083,8 @@ useEffect(()=>{
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate &&
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate
                   }
-                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.NYCDOHMHNoticeOfPrivacyPractices){
                       setClientData({
@@ -2099,8 +2146,8 @@ useEffect(()=>{
                     clientData.LinkageRetentionAdherenceFormsDate &&
                     clientData.LinkageRetentionAdherenceFormsDate
                   }
-                  disabled={clientData.LinkageRetentionAdherenceFormsDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.LinkageRetentionAdherenceFormsDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LinkageRetentionAdherenceForms){
                       setClientData({
@@ -2165,8 +2212,8 @@ useEffect(()=>{
                     clientData.InternalReferralInformationDate &&
                     clientData.InternalReferralInformationDate
                   }
-                  disabled={clientData.InternalReferralInformationDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.InternalReferralInformationDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.InternalReferralInformation){
                       setClientData({
@@ -2227,8 +2274,8 @@ useEffect(()=>{
                     clientData.LNEClientReferralFormDate &&
                     clientData.LNEClientReferralFormDate
                   }
-                  disabled={clientData.LNEClientReferralFormDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.LNEClientReferralFormDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientReferralForm){
                       setClientData({
@@ -2252,66 +2299,6 @@ useEffect(()=>{
               </div>
             </div>
 
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
-            >
-              <div className="form-row-item px-5">
-                <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  onChange={() =>{
-                    clientData.HNSEligibilityFormDate==="" || clientData.HNSEligibilityFormDate ===null ? (
-                    setClientData({
-                      ...clientData,
-                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
-                      HNSEligibilityFormDate:crearFecha()
-                    })):setClientData({
-                      ...clientData,
-                      HNSEligibilityForm: !clientData.HNSEligibilityForm,
-                      HNSEligibilityFormDate: ''
-                    })
-                  }}
-                  checked={clientData.HNSEligibilityForm? true : false}
-                />
-              </div>
-              <div>
-                <p>HNS Eligibility Assessment</p>
-              </div>
-              <div className="text-center">
-                <input
-                  type="date"
-                  id="HNSEligibilityForm"
-                  value={
-                    clientData.HNSEligibilityFormDate &&
-                    clientData.HNSEligibilityFormDate
-                  }
-                  disabled={clientData.HNSEligibilityFormDate ? true: false}
-                  className="rounded-lg text-sm p-1"
-                  onChange={(e) => {
-
-                    if(clientData.HNSEligibilityForm){
-                      setClientData({
-                        ...clientData,
-                        HNSEligibilityFormDate: e.target.value,
-                    
-                      });
-                    } else {
-                      setClientData({
-                        ...clientData,
-                        HNSEligibilityFormDate: e.target.value,
-                        HNSEligibilityForm: !clientData.HNSEligibilityForm,
-                      });
-                    }
-                  }}
-                />
-              </div>
-              <div className="text-center flex justify-center">
-              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
-                </a>
-              </div>
-            </div>
             <div
               className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
             >
@@ -2346,8 +2333,8 @@ useEffect(()=>{
                     clientData.HNSReadinessFormDate &&
                     clientData.HNSReadinessFormDate
                   }
-                  disabled={clientData.HNSReadinessFormDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.HNSReadinessFormDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
 
                     if(clientData.HNSReadinessForm){
@@ -2406,8 +2393,8 @@ useEffect(()=>{
                     clientData.SupportGroupsDate &&
                     clientData.SupportGroupsDate
                   }
-                  disabled={clientData.SupportGroupsDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.SupportGroupsDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
 
                     if(clientData.SupportGroups){
@@ -2466,8 +2453,8 @@ useEffect(()=>{
                     clientData.IDGFormDate &&
                     clientData.IDGFormDate
                   }
-                  disabled={clientData.IDGFormDate ? true: false}
-                  className="rounded-lg text-sm p-1"
+                  // disabled={clientData.IDGFormDate ? true: false}
+                  className="rounded-lg  p-1"
                   onChange={(e) => {
 
                     if(clientData.IDGForm){
@@ -2496,7 +2483,7 @@ useEffect(()=>{
 
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
-              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
               onClick={()=>handleMsaform()}
               >
                 Save and Update
