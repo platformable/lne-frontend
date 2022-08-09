@@ -38,10 +38,6 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         // foodInsecurity: null,
     })
 
-    const [dogs,setDogs]=useState({
-        dog1:"alex",
-        dog2:"murray"
-    })
 
     const onValueChange=(event)=>{
         console.log()
@@ -125,7 +121,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                         </div>
                     </header> 
                     <div className='flex justify-between items-center font-bold mx-6 mb-5'>
-                            <p className='text-xs'>Did the client mention any of the following:</p>
+                            <p className='text-sm'>Did the client mention any of the following:</p>
                             <div className='flex text-blue-500'>
                                 <h5 className='mr-3'>Date</h5>
                                 <p>{date}</p>
@@ -145,8 +141,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                 </div>
                                 <div className='w-full grid grid-cols-1 gap-1'>
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Barriers to accessing HIV primary care</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Barriers to accessing HIV primary care</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="barrierHIVPrimaryCare" value={true}/>
@@ -165,8 +161,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>   
                                     </div>
                                     {/* <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Barriers to accessing medications</p>
-                                        <div className='text-xs flex justify-around w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Barriers to accessing medications</p>
+                                        <div className='text-sm flex justify-around w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="barrierAccessingMedications" value={true} />
@@ -181,10 +177,10 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                     </div>  
                                     
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Difficulty to adhering to medications
+                                        <p className='font-bold text-sm w-3/6'>Difficulty to adhering to medications
                                             or <br/>treatment plan
                                         </p>
-                                        <div className='text-xs flex justify-around w-3/6'>
+                                        <div className='text-sm flex justify-around w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="medicationAdherence" value={true} />
@@ -198,8 +194,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>     
                                     </div>   */}
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Detectable viral load</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Detectable viral load</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="CD4ViralLoad" value={true} />
@@ -218,8 +214,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>     
                                     </div>  
                                     {/* <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>More than 6 months since last HIV test</p>
-                                        <div className='text-xs flex justify-between'>
+                                        <p className='font-bold text-sm w-3/6'>More than 6 months since last HIV test</p>
+                                        <div className='text-sm flex justify-between'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="lastHIVTest" value={true} />
@@ -233,8 +229,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>      
                                     </div>  
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Not knowing about PrEP or how to access it</p>
-                                        <div className='text-xs flex justify-between'>
+                                        <p className='font-bold text-sm w-3/6'>Not knowing about PrEP or how to access it</p>
+                                        <div className='text-sm flex justify-between'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="PrEP" value={true} />
@@ -263,8 +259,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                 </div>
                                 <div className='w-full grid grid-cols-1 gap-1'>
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Engaging in unsafe sexual behavior</p>
-                                        <div className='text-xs flex justify-start w-3/6 '>
+                                        <p className='font-bold text-sm w-3/6'>Engaging in unsafe sexual behavior</p>
+                                        <div className='text-sm flex justify-start w-3/6 '>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="unsafeSexualBehavior" value={true} />
@@ -278,8 +274,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>      
                                     </div>
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Problems with substance use</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Problems with substance use</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="substanceAbuse" value={true} />
@@ -293,8 +289,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>      
                                     </div>    
                                     {/* <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Fear of overdosing</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Fear of overdosing</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="riskOfOverdose" value={true} />
@@ -327,8 +323,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                 </div>
                                 <div className='w-full grid grid-cols-1 gap-1'>
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Legal issues</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Legal issues</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="legalIssues" value={true} />
@@ -342,8 +338,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>      
                                     </div> 
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Unstable employment or unemployed</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Unstable employment or unemployed</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="unstableEmployment" value={true} />
@@ -373,8 +369,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                 </div>
                                 <div className='w-full bg-light-blue grid grid-cols-1'>
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Mental health issues</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Mental health issues</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="mentalHealthIssues" value={true} />
@@ -402,8 +398,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                 </div>
                                 <div className='w-full grid grid-cols-1 gap-1'>
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>An unstable housing situation</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>An unstable housing situation</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="unstableHousing" value={true} />
@@ -432,8 +428,8 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                 </div>
                                 <div className='w-full grid grid-cols-1 gap-1'>
                                     <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
-                                        <p className='font-bold text-xs w-3/6'>Food insecurity</p>
-                                        <div className='text-xs flex justify-start w-3/6'>
+                                        <p className='font-bold text-sm w-3/6'>Food insecurity</p>
+                                        <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
                                                 <input className="mr-1 md:mr-3" type="radio" 
                                                 onChange={onValueChange} name="foodInsecurity" value={true} />
