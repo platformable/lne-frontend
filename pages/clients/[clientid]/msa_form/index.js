@@ -260,7 +260,7 @@ useEffect(()=>{
                       />
                     </label>
                     <label className="block">
-                      <span className=" font-bold">Last Name</span>
+                      <span className="font-bold">Last Name</span>
                       <input
                         type="text"
                         className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "

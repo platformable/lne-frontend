@@ -110,7 +110,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
           <div className="flex justify-between">
           <h3 className="mb-5 font-black">Manage Clients</h3>
           <div>
-            <button className=" flex gap-x-2"onClick={()=>router.push("/dashboard")}> <img src="/back-button-icon.svg" alt="" /> back to homepage</button>
+            <button className=" flex gap-x-2"onClick={()=>router.push("/dashboard")}> <img src="/back-button-icon.svg" alt="" /> Dashboard</button>
           </div>
           </div>
           <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
