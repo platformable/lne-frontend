@@ -7,6 +7,8 @@ import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import ImpactTrackerModal from "../../../../components/ImpactTrackerModal";
+import BackButton from '../../../../components/BackButton'
+import BackToDashboardButton from '../../../../components/BackToDashboardButton'
 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,12 +25,25 @@ const ProgressNotesIndex = ({ data }) => {
     });
   };
 
-  const crearFecha=(date)=>{
+/*   const crearFecha=(date)=>{
     const initialDate= date
     const newDate=initialDate.split('/')
     const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
     return fixedDate
   
+  } */
+
+  const crearFecha=()=>{
+
+    const initialDate= new Date().toLocaleDateString()
+    const newDate=initialDate.split('/')
+    let fixedDate;
+    if(typeof window !== 'undefined'){
+      const userLocale=window.navigator.language
+      userLocale==='en-US' ? fixedDate=`${newDate[2]}-${newDate[0].length===1? `0${newDate[0]}`:`${newDate[0]}`}-${newDate[1].length===1 ? `0${newDate[1]}`: `${newDate[1]}`}`
+      :fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
+    }
+    return fixedDate
   }
 
   const setLocaleDateString = (date) => {
@@ -109,6 +124,8 @@ const ProgressNotesIndex = ({ data }) => {
     LNEClientReferralFormDate :data[0]?.lneclientreferralformdate,
     LNEHNSEligibilityForm:data[0]?.lnehnseligibilityform ==="0" ? false: true,
     LNEHNSEligibilityFormDate:data[0]?.lnehnseligibilityformdate,
+    progressNoteText:"",
+    HCWSignature:data[0]?.hcwsignature ==="0" || data[0]?.hcwsignature ==="" || data[0]?.hcwsignature === null ? false : true,
 
   });
 
@@ -133,6 +150,7 @@ const [dataForSAP,setDataForSAP]=useState({
     goal2CompletionDate:clientData.goal1CompletedDate,
     goal3Completed:clientData.goal1Completed,
     goal3CompletionDate:clientData.goal1CompletedDate,
+    HCWSignature:false
 })
 
 
@@ -176,7 +194,7 @@ const handleProgressNote=()=>{
           handleMsaformUpdate()
           handleServiceActionPlanFormUpdate()
           notifyMessage()
-          setShowImpactTrackerModal(!showImpactTrackerModal)
+          //setShowImpactTrackerModal(!showImpactTrackerModal)
         } 
       })
       .catch(function (error) {
@@ -184,6 +202,8 @@ const handleProgressNote=()=>{
       });
    
 }
+
+console.log("clientData",clientData)
 
   return (
     <>
@@ -194,46 +214,15 @@ const handleProgressNote=()=>{
         </div>
 
         <main className="container mx-auto">
-{/*         <button
-            onClick={() => handleMsaformUpdate()}
-            className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center"
-          >
-
-            msa
-          </button> */}
-          <button
-            onClick={() => router.back()}
-            className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center"
-          >
-            <svg
-              className="mr-2"
-              width="20"
-              height="20"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Back to client profile
-          </button>
+          <div className="flex gap-x-5">
+          <BackToDashboardButton/>
+        <BackButton />
+        </div>
           <section id="info" className="my-5">
             <div className="">
-              <h6 className="font-black my-5 text-dark-blue">
+              <h3 className="font-black my-5 text-dark-blue">
                 Client Information
-              </h6>
+              </h3>
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
               >
@@ -318,7 +307,7 @@ const handleProgressNote=()=>{
             </div>
           </section>
 
-          <h6 className="font-black my-5 text-dark-blue">Service Provided</h6>
+          <h3 className="font-black my-5 text-dark-blue">Service Provided</h3>
 
           <section
             id="servidedProvided"
@@ -328,7 +317,7 @@ const handleProgressNote=()=>{
               <div className="services-box">
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Development of Action Plan with Client
                     <input type="checkbox" 
@@ -341,7 +330,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     CD4/VL Lab Report Check
                     <input type="checkbox" 
@@ -352,7 +341,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Transportation Coordination
                     <input type="checkbox"
@@ -363,7 +352,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Translation/Interpretation
                     <input type="checkbox" 
@@ -375,7 +364,7 @@ const handleProgressNote=()=>{
 
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Comprehensive Behavioral Risk Assessment
                     <input type="checkbox" 
@@ -389,7 +378,7 @@ const handleProgressNote=()=>{
               <div className="services-box">
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Tickler Update
                     <input type="checkbox" 
@@ -401,7 +390,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Treatment Education and Adherence Counselling
                     <input type="checkbox" 
@@ -412,7 +401,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Prevention Counselling
                     <input type="checkbox" 
@@ -423,7 +412,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Supportive Counselling
                     <input type="checkbox" 
@@ -434,7 +423,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Escort
                     <input type="checkbox" 
@@ -448,7 +437,7 @@ const handleProgressNote=()=>{
               <div className="services-box">
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Case Closure/Discharge
                     <input type="checkbox" 
@@ -459,7 +448,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Linkage to Services
                     <input type="checkbox" 
@@ -472,7 +461,7 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="flex items-center">
                   <label
-                    className={`${ProgressNotesStyles.checkboxContainer} text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} `}
                   >
                     Other Form of Assistance
                     <input type="checkbox" 
@@ -485,7 +474,7 @@ const handleProgressNote=()=>{
             </div>
           </section>
 
-          <h6 className="font-black my-5 text-dark-blue">Goals</h6>
+          <h3 className="font-black my-5 text-dark-blue">Goals</h3>
 
           <section
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 goals"
@@ -501,21 +490,21 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
-                    <span className="text-sm">Service Category</span>
-                    <p className="text-sm text-dark-blue ">
+                    <span className="">Service Category</span>
+                    <p className=" text-dark-blue ">
                       {serviceActionData?.goal1servicecategory}
                     </p>
                   </div> */}
                   <div>
-                    <span className="text-sm">Target Date</span>
-                    <p className="text-dark-blue text-sm">
+                    <span className="">Target Date</span>
+                    <p className="text-dark-blue">
                     {new Date(serviceActionData?.goal1targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
-                  <span className="text-sm">Summary</span>
-                  <p className="text-sm text-dark-blue ">
+                  <span className="">Summary</span>
+                  <p className=" text-dark-blue ">
                   {serviceActionData?.goal1summary}
                   </p>
                 </div>
@@ -533,21 +522,21 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
-                    <span className="text-sm">Service Category</span>
-                    <p className="text-sm text-dark-blue ">
+                    <span className="">Service Category</span>
+                    <p className=" text-dark-blue ">
                     {serviceActionData?.goal2servicecategory}
                     </p>
                   </div> */}
                   <div>
-                    <span className="text-sm">Target Date</span>
-                    <p className="text-dark-blue text-sm">
+                    <span className="">Target Date</span>
+                    <p className="text-dark-blue ">
                     {new Date(serviceActionData?.goal2targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
-                  <span className="text-sm">Summary</span>
-                  <p className="text-sm text-dark-blue ">
+                  <span className="">Summary</span>
+                  <p className=" text-dark-blue ">
                   {serviceActionData?.goal2summary}
                   </p>
                 </div>
@@ -566,21 +555,21 @@ const handleProgressNote=()=>{
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
-                    <span className="text-sm">Service Category</span>
-                    <p className="text-sm text-dark-blue ">
+                    <span className="">Service Category</span>
+                    <p className=" text-dark-blue ">
                     {serviceActionData?.goal3servicecategory}
                     </p>
                   </div> */}
                   <div>
-                    <span className="text-sm">Target Date</span>
-                    <p className="text-dark-blue text-sm">
+                    <span className="">Target Date</span>
+                    <p className="text-dark-blue ">
                     {new Date(serviceActionData?.goal3targetdate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
-                  <span className="text-sm">Summary</span>
-                  <p className="text-sm text-dark-blue ">
+                  <span className="">Summary</span>
+                  <p className=" text-dark-blue ">
                   {serviceActionData?.goal3summary}
                   </p>
                 </div>
@@ -589,7 +578,7 @@ const handleProgressNote=()=>{
           </section>
          <div className="flex items-center ml-3 my-4">
          <img src={"/goals-were-worked-on.svg"}/>
-          <h6 className="font-black self-end text-dark-blue">Which of the goals were worked on?</h6>
+          <h3 className="font-black self-end text-dark-blue">Which of the goals were worked on?</h3>
           </div>
           <section
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
@@ -599,24 +588,29 @@ const handleProgressNote=()=>{
 
                 <div>
                         <div className="workedGoals-box flex gap-5 ">
-                            <p className="">Goal 1</p>
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="workedGoals" onChange={(e)=>setClientData({...clientData,goal1Progress:true})}/>
+                            <p className="text-lg">Goal 1</p>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>Yes
+                            <input type="radio"  name="workedGoals" onChange={(e)=>{
+                              setClientData({...clientData,goal1Progress:true,goal1ProgressDate:crearFecha()})}
+                              }/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
+                      
 
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="workedGoals" onChange={(e)=>setClientData({...clientData,goal1Progress:false})}/>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>No
+                            <input type="radio"  name="workedGoals" onChange={(e)=>{
+                              setClientData({...clientData,goal1Progress:false,goal1ProgressDate:""})}}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
                         <div className="flex gap-5 items-center">
                         <div className={`calendarIcon`}><img src="/date-calendar.svg" width={24} alt=""/></div>
-                            <h3 className="text-sm">Date</h3>
+                            <h3 className="">Date</h3>
                             <input
                                 type="date"
                                 id=""
-                                className="rounded-lg text-sm p-1 border-dark-blue"
+                                className="rounded-lg  p-1 border-dark-blue"
+                               value={clientData.goal1ProgressDate?clientData.goal1ProgressDate:""}
                                 onChange={(e)=>setClientData({...clientData,goal1ProgressDate:e.target.value})}
                                 />
                         </div>
@@ -625,24 +619,25 @@ const handleProgressNote=()=>{
 
                 <div>
                         <div className="workedGoals-box flex gap-5 ">
-                            <p className="">Goal 2</p>
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="workedGoals2"onChange={(e)=>setClientData({...clientData,goal2Progress:true})} />
+                            <p className="text-lg">Goal 2</p>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>Yes
+                            <input type="radio"  name="workedGoals2"onChange={(e)=>setClientData({...clientData,goal2Progress:true,goal2ProgressDate:crearFecha()})} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="workedGoals2" onChange={(e)=>setClientData({...clientData,goal2Progress:true})} />
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>No
+                            <input type="radio"  name="workedGoals2" onChange={(e)=>setClientData({...clientData,goal2Progress:false,goal2ProgressDate:""})} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
                         <div className="flex gap-5 items-center">
                         <div className={`calendarIcon`}><img src="/date-calendar.svg" width={24} alt=""/></div>
-                            <h3 className="text-sm">Date</h3>
+                            <h3 className="">Date</h3>
                             <input
                                 type="date"
                                 id=""
-                                className="rounded-lg text-sm p-1 border-dark-blue"
+                                className="rounded-lg  p-1 border-dark-blue"
+                                value={clientData.goal2ProgressDate?clientData.goal2ProgressDate:""}
                                 onChange={(e)=>setClientData({...clientData,goal2ProgressDate:e.target.value})}
                                 />
                         </div>
@@ -652,24 +647,25 @@ const handleProgressNote=()=>{
 
                 <div>
                         <div className="workedGoals-box flex gap-5 ">
-                            <p className="">Goal 3</p>
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
-                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3Progress:true})}/>
+                            <p className="text-lg">Goal 3</p>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>Yes
+                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3Progress:true,goal3ProgressDate:crearFecha()})}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
-                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3Progress:true})}/>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>No
+                            <input type="radio"  name="workedGoals3" onChange={(e)=>setClientData({...clientData,goal3Progress:false,goal3ProgressDate:""})}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
                         </div>
                         <div className="flex gap-5 items-center">
                         <div className={`calendarIcon`}><img src="/date-calendar.svg" width={24} alt=""/></div>
-                            <h3 className="text-sm">Date</h3>
+                            <h3 className="">Date</h3>
                             <input
                                 type="date"
                                 id=""
-                                className="rounded-lg text-sm p-1 border-dark-blue"
+                                className="rounded-lg  p-1 border-dark-blue"
+                                value={clientData.goal3ProgressDate?clientData.goal3ProgressDate:""}
                                 onChange={(e)=>setClientData({...clientData,goal3ProgressDate:e.target.value})}
                                 />
                         </div>
@@ -684,7 +680,7 @@ const handleProgressNote=()=>{
 
           <div className="flex items-center ml-3 my-4">
          <img src={"/goals-completed-icon.svg"}/>
-          <h6 className="font-black self-end text-dark-blue">Were any of the clients goals completed?</h6>
+          <h3 className="font-black self-end text-dark-blue">Were any of the clients goals completed?</h3>
           </div>
           
 
@@ -696,18 +692,18 @@ const handleProgressNote=()=>{
 
                 <div>
                         <div className="workedGoals-box flex gap-5 ">
-                            <p className="">Goal 1</p>
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
+                            <p className="text-lg">Goal 1</p>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>Yes
                             <input type="radio"  name="completedGoals1" onClick={(e)=>{
-                              setClientData({...clientData,goal1Completed:true})
+                              setClientData({...clientData,goal1Completed:true,goal1CompletedDate:crearFecha()})
                               setDataForSAP({...dataForSAP,goal1Completed:true})
                               }}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>No
                             <input type="radio"  name="completedGoals1" onClick={()=>{
-                              setClientData({...clientData,goal1Completed:false})
+                              setClientData({...clientData,goal1Completed:false,goal1CompletedDate:""})
                               setDataForSAP({...dataForSAP,goal1Completed:false})
 
                           }}/>
@@ -716,11 +712,12 @@ const handleProgressNote=()=>{
                         </div>
                         <div className="flex gap-5 items-center">
                         <div className={`calendarIcon`}><img src="/date-calendar.svg" width={24} alt=""/></div>
-                            <h3 className="text-sm">Date</h3>
+                            <h3 className="">Date</h3>
                             <input
                                 type="date"
                                 id=""
-                                className="rounded-lg text-sm p-1 border-dark-blue"
+                                className="rounded-lg  p-1 border-dark-blue"
+                                value={clientData.goal1CompletedDate?clientData.goal1CompletedDate:""}
                                 onChange={(e)=>{
                                   setClientData({...clientData,goal1CompletedDate:e.target.value})
                                   setDataForSAP({...dataForSAP,goal1CompletionDate:e.target.value})
@@ -732,18 +729,18 @@ const handleProgressNote=()=>{
 
                 <div>
                         <div className="workedGoals-box flex gap-5 ">
-                            <p className="">Goal 2</p>
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
+                            <p className="text-lg">Goal 2</p>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>Yes
                             <input type="radio"  name="completedGoals2" onClick={(e)=>{
-                              setClientData({...clientData,goal2Completed:true})
+                              setClientData({...clientData,goal2Completed:true,goal2CompletedDate:crearFecha()})
                               setDataForSAP({...dataForSAP,goal2Completed:true})
                           }} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
 
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>No
                             <input type="radio"  name="completedGoals2" onClick={(e)=>{
-                              setClientData({...clientData,goal2Completed:false})
+                              setClientData({...clientData,goal2Completed:false,goal2CompletedDate:""})
                               setDataForSAP({...dataForSAP,goal2Completed:false})
                           }}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
@@ -751,11 +748,12 @@ const handleProgressNote=()=>{
                         </div>
                         <div className="flex gap-5 items-center">
                         <div className={`calendarIcon`}><img src="/date-calendar.svg" width={24} alt=""/></div>
-                            <h3 className="text-sm">Date</h3>
+                            <h3 className="">Date</h3>
                             <input
                                 type="date"
                                 id=""
-                                className="rounded-lg text-sm p-1 border-dark-blue"
+                                className="rounded-lg  p-1 border-dark-blue"
+                                value={clientData.goal2CompletedDate?clientData.goal2CompletedDate:""}
                                 onChange={(e)=>{setClientData({...clientData,goal2CompletedDate:e.target.value})
                                 setDataForSAP({...dataForSAP,goal2CompletionDate:e.target.value})
                               }}
@@ -767,17 +765,17 @@ const handleProgressNote=()=>{
 
                 <div>
                         <div className="workedGoals-box flex gap-5 ">
-                            <p className="">Goal 3</p>
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>Yes
+                            <p className="text-lg">Goal 3</p>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>Yes
                             <input type="radio"  name="completedGoals3" onClick={(e)=>{
-                              setClientData({...clientData,goal3Completed:true})
+                              setClientData({...clientData,goal3Completed:true,goal3CompletedDate:crearFecha()})
                               setDataForSAP({...dataForSAP,goal3Completed:true})
                           }}/>
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
                             </label>
-                            <label className={`${ProgressNotesStyles.radioBtnContainer} text-sm`}>No
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>No
                             <input type="radio"  name="completedGoals3"onClick={(e)=>{
-                              setClientData({...clientData,goal3Completed:false})
+                              setClientData({...clientData,goal3Completed:false,goal3CompletedDate:""})
                               setDataForSAP({...dataForSAP,goal3Completed:false})
                           }} />
                             <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
@@ -785,11 +783,12 @@ const handleProgressNote=()=>{
                         </div>
                         <div className="flex gap-5 items-center">
                         <div className={`calendarIcon`}><img src="/date-calendar.svg" width={24} alt=""/></div>
-                            <h3 className="text-sm">Date</h3>
+                            <h3 className="">Date</h3>
                             <input
                                 type="date"
                                 id=""
-                                className="rounded-lg text-sm p-1 border-dark-blue"
+                                className="rounded-lg  p-1 border-dark-blue"
+                                value={clientData.goal3CompletedDate?clientData.goal3CompletedDate:""}
                                 onChange={(e)=>{setClientData({...clientData,goal3CompletedDate:e.target.value})
                               setDataForSAP({...dataForSAP,goal3CompletionDate:e.target.value})
                               }}
@@ -801,7 +800,54 @@ const handleProgressNote=()=>{
             </div>
           </section>
 
-          <h6 className="font-black my-5 text-dark-blue">Were any additional forms added to the clients profile?</h6>
+
+          <div className="flex items-center ml-3 my-4 gap-x-2">
+         <img src={"/notes_icon.svg"}/>
+          <h3 className="font-black self-end text-dark-blue">Notes on the client progress</h3>
+          </div>
+
+          <section className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals" id="workedGoals">
+          <p className="text-lg">Progress Notes</p>
+          <textarea name="progressNotes" 
+          id="" cols="30" rows="5" 
+          className="border-dark-blue w-full rounded-xl py-3 my-2 px-5"
+          placeholder="Enter notes on the client progress/interaction followup here"
+          onChange={(e)=>{setClientData({...clientData,progressNoteText:e.target.value})}}
+          ></textarea>
+
+
+          <div className="progressnotes-box flex gap-x-5">
+                            <p className="text-lg">Has the health care worker signed</p>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>Yes
+                            <input type="radio"  name="workedGoals" onChange={(e)=>{
+                              setClientData({...clientData,HCWSignature:true})
+                              setDataForSAP({...dataForSAP,HCWSignature:true})
+                              }}/>
+                            <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
+                            </label>
+                            <label className={`${ProgressNotesStyles.radioBtnContainer} `}>No
+                            <input type="radio"  name="workedGoals" onChange={(e)=>{
+                              setClientData({...clientData,HCWSignature:false})
+                              setDataForSAP({...dataForSAP,HCWSignature:false})
+                              }}/>
+                            <span className={`${ProgressNotesStyles.radioBtnCheckmark}`}></span>
+                            </label>
+                        </div>
+          </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <h3 className="font-black my-5 text-dark-blue">Were any additional forms added to the clients profile?</h3>
 
 <section className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals" id="workedGoals">
 
@@ -813,7 +859,7 @@ const handleProgressNote=()=>{
             >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -854,7 +900,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -896,7 +942,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -937,7 +983,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -978,7 +1024,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -1019,7 +1065,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -1059,7 +1105,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -1100,7 +1146,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -1141,7 +1187,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -1186,7 +1232,7 @@ const handleProgressNote=()=>{
              >
                
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                    
                   <input
@@ -1226,7 +1272,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
              >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1262,7 +1308,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
               >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1298,7 +1344,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
               >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1337,7 +1383,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
               >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1376,7 +1422,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
               >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1410,7 +1456,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
               >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1444,7 +1490,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
               >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1478,7 +1524,7 @@ const handleProgressNote=()=>{
               className={`${MSAStyles.formRowsContainer} bg-light-purple flex gap-5 py-2 pl-2  my-2`}
               >
                  <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 text-sm`}
+                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                   >
                   <input
                   type="checkbox"
@@ -1515,7 +1561,7 @@ const handleProgressNote=()=>{
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block mr-5"
                onClick={()=>handleProgressNote()}
               >
                 Save and Finish
