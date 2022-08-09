@@ -189,12 +189,11 @@ const handleProgressNote=()=>{
       })
       .then(function (response) {
         if(response.status===200 || response.statusText==='Ok'){
-          console.log("pn response:",response)
           setProgressNoteId(response.data.progress_note_id)
           handleMsaformUpdate()
           handleServiceActionPlanFormUpdate()
           notifyMessage()
-          //setShowImpactTrackerModal(!showImpactTrackerModal)
+          setShowImpactTrackerModal(!showImpactTrackerModal)
         } 
       })
       .catch(function (error) {
@@ -233,7 +232,7 @@ console.log("clientData",clientData)
                   </div>
                  
                   <label className="block">
-                    <span className="text-xs">Today&apos;s date</span>
+                    <span className="">Today&apos;s date</span>
                     <p>{todaysDate.toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
                   </label>
                 </div>
@@ -245,7 +244,7 @@ console.log("clientData",clientData)
                   </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className="">First Name</span>
                       <input
                         type="text"
                         className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -254,7 +253,7 @@ console.log("clientData",clientData)
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span className="">Last Name</span>
                       <input
                         type="text"
                         className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -266,7 +265,7 @@ console.log("clientData",clientData)
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Client ID</span>
+                      <span className="">Client ID</span>
                       <input
                         type="text"
                         className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -284,7 +283,7 @@ console.log("clientData",clientData)
                 </div>
                   <div className="grid grid-cols-2 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span className="">First Name</span>
                       <input
                         type="text"
                         className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
@@ -293,7 +292,7 @@ console.log("clientData",clientData)
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span className="">Last Name</span>
                       <input
                         type="text"
                         className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"

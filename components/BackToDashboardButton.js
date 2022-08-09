@@ -10,7 +10,7 @@ export default function BackToDashboardButton() {
     className="bg-yellow hover:bg-blue-300 px-5 py-2 rounded text-black inline-block  flex items-center  gap-x-3"
   >
     <img src="/dashboard_icon.svg" alt="" />
-    Back to homepage
+    Dashboard
   </button>
   )
 }

@@ -120,7 +120,7 @@ console.log("selectedEntity",selectedEntity)
             <Link href="/dashboard">
                 <a className="px-5 py-2 flex  items-center font-bold" id="myBtn">
                 <Image src={backIcon} />
-                  <p className='ml-2'>back to homepage</p>
+                  <p className='ml-2'>Dashboard</p>
                 </a>
               </Link>
               </div>

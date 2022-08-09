@@ -390,7 +390,7 @@ const Services = ({ clients, averageNumbers }) => {
                 id="myBtn"
               >
                 <Image src={backIcon} alt="back arrow to homepage" />
-                <p className="ml-2">back to homepage</p>
+                <p className="ml-2">Dashboard</p>
               </a>
             </Link>
           </div>
