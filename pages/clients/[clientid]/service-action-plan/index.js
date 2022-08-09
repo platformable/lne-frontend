@@ -198,9 +198,9 @@ const services = [
         <main id="mainContent" >
         <section id="info" className="my-5 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">
+            <h3 className="font-black my-5 text-dark-blue">
               Client Information
-            </h6>
+            </h3>
             <div
               className={`${Styles.serviceActionPlanPageInfoContainer} items-center gap-x-5 border-dark-blue rounded-xl p-5`}
             >
@@ -280,7 +280,7 @@ const services = [
 
         <section id="goals" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">Client Goals</h6>
+            <h3 className="font-black my-5 text-dark-blue">Client Goals</h3>
           </div>
           <div
             className={`border-dark-blue container mx-auto rounded-xl px-5 py-5`}
@@ -291,13 +291,13 @@ const services = [
                 <div className="service-action-plan-page-goals-top grid gap-5">
 
                  <div className="flex items-center justify-between">
-                  <h5 className="font-black ">Goal 1</h5>
+                  <h3 className="font-black ">Goal 1</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal01.svg'} alt=""/>
                     </div>
 
                   <label className="block">
-                    <h6 className="font-black">Summary</h6>
+                    <h4 className="font-black">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -312,7 +312,7 @@ const services = [
                   </label>
 
                   {/* <label className="block">
-                    <h6 className="font-black">Service Category</h6>
+                    <h4 className="font-black">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -325,20 +325,20 @@ const services = [
                     </select>
                   </label> */}
                   <label className="block">
-                    <h6 className="font-black">Details</h6>
+                    <h4 className="font-black">Details</h4>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
                     onChange={(e)=>{setClientData({...clientData, goal1Details:e.target.value})}}></textarea>
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Target Date</h6>
+                    <h4 className="font-black">Target Date</h4>
                     <input type="date" className="border-black w-full rounded p-2 "
                     onChange={(e)=>setClientData({...clientData,goal1TargetDate:e.target.value})}/>
                   </label>
                   
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 1</h6>
+                    <h4 className="font-black mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -347,7 +347,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 2</h6>
+                    <h4 className="font-black mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -356,7 +356,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 3</h6>
+                    <h4 className="font-black mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -369,13 +369,13 @@ const services = [
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                 <div className="flex items-center justify-between">
-                  <h5 className="font-black ">Goal 2</h5>
+                  <h3 className="font-black ">Goal 2</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal02.svg'} alt=""/>
                     </div>
 
                   <label className="block">
-                    <h6 className="font-black">Summary</h6>
+                    <h4 className="font-black">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -390,7 +390,7 @@ const services = [
                   </label>
 
                   {/* <label className="block">
-                    <h6 className="font-black">Service Category</h6>
+                    <h4 className="font-black">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -403,20 +403,20 @@ const services = [
                     </select>
                   </label> */}
                   <label className="block">
-                    <h6 className="font-black">Details</h6>
+                    <h4 className="font-black">Details</h4>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
                     onChange={(e)=>{setClientData({...clientData, goal2Details:e.target.value})}}></textarea>
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Target Date</h6>
+                    <h4 className="font-black">Target Date</h4>
                     <input type="date" className="border-black w-full rounded p-2 "
                     onChange={(e)=>setClientData({...clientData,goal2TargetDate:e.target.value})}/>
                   </label>
                   
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 1</h6>
+                    <h4 className="font-black mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -425,7 +425,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 2</h6>
+                    <h4 className="font-black mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -434,7 +434,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 3</h6>
+                    <h4 className="font-black mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -446,13 +446,13 @@ const services = [
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                 <div className="flex items-center justify-between">
-                  <h5 className="font-black ">Goal 3</h5>
+                  <h3 className="font-black ">Goal 3</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal03.svg'} alt=""/>
                     </div>
 
                   <label className="block">
-                    <h6 className="font-black">Summary</h6>
+                    <h4 className="font-black">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -467,7 +467,7 @@ const services = [
                   </label>
 
                   {/* <label className="block">
-                    <h6 className="font-black">Service Category</h6>
+                    <h4 className="font-black">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -480,20 +480,20 @@ const services = [
                     </select>
                   </label> */}
                   <label className="block">
-                    <h6 className="font-black">Details</h6>
+                    <h4 className="font-black">Details</h4>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
                     onChange={(e)=>{setClientData({...clientData, goal3Details:e.target.value})}}></textarea>
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Target Date</h6>
+                    <h4 className="font-black">Target Date</h4>
                     <input type="date" className="border-black w-full rounded p-2 "
                     onChange={(e)=>setClientData({...clientData,goal3TargetDate:e.target.value})}/>
                   </label>
                   
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 1</h6>
+                    <h4 className="font-black mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -502,7 +502,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 2</h6>
+                    <h4 className="font-black mr-2">Action 2</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -511,7 +511,7 @@ const services = [
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 3</h6>
+                    <h4 className="font-black mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
@@ -524,7 +524,7 @@ const services = [
               
             </div>
             <label className="block">
-                    <h6 className="font-black">Additional Comments</h6>
+                    <h4 className="font-black">Additional Comments</h4>
                     <textarea name="" id="" cols="30" rows="4" className="border-black w-full rounded p-1" 
                     onChange={(e)=>{setClientData({...clientData,comments:e.target.value})}}></textarea>
                   </label>
@@ -532,25 +532,23 @@ const services = [
         </section>
         <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">Signatures</h6>
+            <h3 className="font-black my-5 text-dark-blue">Signatures</h3>
           
           <div  className={`border-dark-blue  rounded-xl px-5 py-5`}>
-         
-          
-          <h6 className="font-black"></h6>
+                   
           <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
             <div className="others-container-box flex gap-2 justify-center items-center" >
-              <p>Has the client signed?</p>
+              <p className="text-lg">Has the client signed?</p>
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,clientSignature:!clientData.clientSignature})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
-              <p>Has the health care worker signed?</p>
+              <p className="text-lg">Has the health care worker signed?</p>
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,HCWSignature:!clientData.HCWSignature})}}/>
             </div>
             <div className="others-container-box flex gap-2 justify-center items-center">
-              <p>Has the supervisor signed?</p>
+              <p className="text-lg">Has the supervisor signed?</p>
               <input type="checkbox" className="border-dark-blue" 
               onClick={(e)=>{setClientData({...clientData,supervisorSignature:!clientData.supervisorSignature})}}/>
             </div>

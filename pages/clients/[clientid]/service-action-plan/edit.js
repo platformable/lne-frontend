@@ -196,9 +196,9 @@ return finalDate
         </section>
         <section id="info" className="my-5 container mx-auto">
             <div className="">
-              <h6 className="font-black my-5 text-dark-blue">
+              <h3 className="font-black my-5 text-dark-blue">
                  Client Information
-              </h6>
+              </h3>
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
@@ -277,7 +277,7 @@ return finalDate
 
         <section id="goals" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">Client Goals</h6>
+            <h3 className="font-black my-5 text-dark-blue">Client Goals</h3>
           </div>
           <div
             className={`border-dark-blue container mx-auto rounded-xl px-5 py-5 
@@ -288,7 +288,7 @@ return finalDate
                 <div className="service-action-plan-page-goals-top grid gap-5">
             
                   <div className="flex justify-between items-center ">
-                    <h5 className="font-black ">Goal 1</h5>
+                    <h3 className="font-black ">Goal 1</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal01.svg'} alt=""/>
                     
@@ -309,7 +309,7 @@ return finalDate
                     )}
                   </div>
                   <label className="block">
-                    <h6 className="font-black">Summary</h6>
+                    <h4 className="font-black">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -330,7 +330,7 @@ return finalDate
                   </label>
 
                  {/*  <label className="block">
-                    <h6 className="font-black">Service Category</h6>
+                    <h4 className="font-black">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -352,7 +352,7 @@ return finalDate
                     </select>
                   </label> */}
                   <label className="block">
-                    <h6 className="font-black">Details</h6>
+                    <h4 className="font-black">Details</h4>
                     <textarea
                       name=""
                       id=""
@@ -370,7 +370,7 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Target Date</h6>
+                    <h4 className="font-black">Target Date</h4>
                     <input
                       type="date"
                       className="border-black w-full rounded p-2 "
@@ -390,7 +390,7 @@ return finalDate
 
                   <label className="block">
                     <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 1</h6>
+                    <h4 className="font-black mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -411,7 +411,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 2</h6>
+                    <h4 className="font-black mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -432,7 +432,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 3</h6>
+                    <h4 className="font-black mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -456,7 +456,7 @@ return finalDate
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
-                    <h5 className="font-black ">Goal 2</h5>
+                    <h3 className="font-black ">Goal 2</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal02.svg'} alt=""/>
                   </div>
@@ -475,7 +475,7 @@ return finalDate
                     )}
                   </div>
                   <label className="block">
-                    <h6 className="font-black">Summary</h6>
+                    <h4 className="font-black">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -496,7 +496,7 @@ return finalDate
                   </label>
 
                   {/* <label className="block">
-                    <h6 className="font-black">Service Category</h6>
+                    <h4 className="font-black">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -518,7 +518,7 @@ return finalDate
                     </select>
                   </label> */}
                   <label className="block">
-                    <h6 className="font-black">Details</h6>
+                    <h4 className="font-black">Details</h4>
                     <textarea
                       name=""
                       id=""
@@ -536,7 +536,7 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Target Date</h6>
+                    <h4 className="font-black">Target Date</h4>
                     <input
                       type="date"
                       className="border-black w-full rounded p-2 "
@@ -556,7 +556,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 1</h6>
+                    <h4 className="font-black mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -577,7 +577,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 2</h6>
+                    <h4 className="font-black mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -598,7 +598,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 3</h6>
+                    <h4 className="font-black mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -622,7 +622,7 @@ return finalDate
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
-                    <h5 className="font-black ">Goal 3</h5>
+                    <h3 className="font-black ">Goal 3</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal03.svg'} alt=""/>
           
@@ -644,7 +644,7 @@ return finalDate
                   </div>
 
                   <label className="block">
-                    <h6 className="font-black">Summary</h6>
+                    <h4 className="font-black">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -665,7 +665,7 @@ return finalDate
                   </label>
 
                   {/* <label className="block">
-                    <h6 className="font-black">Service Category</h6>
+                    <h4 className="font-black">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -687,7 +687,7 @@ return finalDate
                     </select>
                   </label> */}
                   <label className="block">
-                    <h6 className="font-black">Details</h6>
+                    <h4 className="font-black">Details</h4>
                     <textarea
                       name=""
                       id=""
@@ -705,7 +705,7 @@ return finalDate
                   </label>
 
                   <label className="block">
-                    <h6 className="font-black">Target Date</h6>
+                    <h4 className="font-black">Target Date</h4>
                     <input
                       type="date"
                       className="border-black w-full rounded p-2 "
@@ -725,7 +725,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 1</h6>
+                    <h4 className="font-black mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -746,7 +746,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 2</h6>
+                    <h4 className="font-black mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -767,7 +767,7 @@ return finalDate
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h6 className="font-black mr-2">Action 3</h6>
+                    <h4 className="font-black mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -789,7 +789,7 @@ return finalDate
               </div>
             </div>
             <label className="block">
-              <h6 className="font-black">Additional Comments</h6>
+              <h4 className="font-black">Additional Comments</h4>
               <textarea
                 name=""
                 id=""
@@ -806,13 +806,13 @@ return finalDate
         </section>
         <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">Signatures</h6>
+            <h3 className="font-black my-5 text-dark-blue">Signatures</h3>
 
             <div className={`${!activeActionPlan? 'pointer-events-none' : ''} border-dark-blue  rounded-xl px-5 py-5`}>
-              <h6 className="font-black"></h6>
+              {/* <h6 className="font-black"></h6> */}
               <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
                 <div className="others-container-box flex gap-2 justify-center items-center">
-                  <p>Has the client signed?</p>
+                  <p className="text-lg">Has the client signed?</p>
                   <input
                     type="checkbox"
                     className="border-dark-blue"
@@ -826,7 +826,7 @@ return finalDate
                   />
                 </div>
                 <div className="others-container-box flex gap-2 justify-center items-center">
-                  <p>Has the health care worker signed?</p>
+                  <p className="text-lg">Has the health care worker signed?</p>
                   <input
                     type="checkbox"
                     className="border-dark-blue"
@@ -840,7 +840,7 @@ return finalDate
                   />
                 </div>
                 <div className="others-container-box flex gap-2 justify-center items-center">
-                  <p>Has the supervisor signed?</p>
+                  <p className="text-lg">Has the supervisor signed?</p>
                   <input
                     type="checkbox"
                     className="border-dark-blue"
@@ -860,20 +860,20 @@ return finalDate
 
         <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h6 className="font-black my-5 text-dark-blue">Progress Notes</h6>
+            <h3 className="font-black my-5 text-dark-blue">Progress Notes</h3>
 
             <div className="border-dark-blue  rounded-xl px-5 py-5">
-              <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
+              <div className="others-container grid md:grid-cols-3 grid-cols-1">
                 <div className="others-container-box flex gap-2 ">
-                  <p>
+                  <p className="text-lg" >
                     Number of client progress notes:{" "}
-                    <span className="text-dark-blue font-black">
+                    <span className="text-dark-blue font-black text-lg">
                       {clientData.progressnotesid?.length}
                     </span>
                   </p>
                 </div>
                 <div className="others-container-box flex gap-2 justify-center items-center">
-                <p>
+                <p className="text-lg">
                     Dropbox folder:{" "}
                     
                   </p>
