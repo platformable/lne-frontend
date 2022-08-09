@@ -188,9 +188,11 @@ return finalDate
             </div>
           </div>
         </section>
-        <section className="container mx-auto grid grid-cols-9 gap-4">
-           <BackToDashboardButton /> 
-          <BackButton />
+        <section className="container mx-auto ">
+        <div className="flex gap-x-5">
+          <BackToDashboardButton/>
+        <BackButton />
+        </div>
         </section>
         <section id="info" className="my-5 container mx-auto">
             <div className="">
