@@ -1097,9 +1097,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               </div>
           <section id="info" className="my-5">
             <div className="">
-              <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
+              <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
                 Info
-              </h6>
+              </h3>
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
               >
@@ -1118,20 +1118,20 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                       <h3 className="font-black ">Client</h3>
                     </div>
                     <label className="block">
-                      <span className="text-xs font-bold">Client Name</span>
+                      <span className="">Client Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
                         disabled
                       />
                     </label>
                    
                     <label className="block">
-                      <span className="text-xs font-bold">Client ID</span>
+                      <span className="">Client ID</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={data[0].clientid}
                         disabled
                       />
@@ -1147,19 +1147,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                     <h3 className="font-black ">Health Care Worker</h3>
                   </div>
                     <label className="block">
-                      <span className="text-xs font-bold">First Name</span>
+                      <span className="">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs font-bold">Last Name</span>
+                      <span className="">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userLastName}
                         disabled
                       />
@@ -1169,10 +1169,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               </div>
             </div>
           </section>
-          <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
+          <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
             Indicate which of the following forms you have uploaded to the
             client&apos;s Dropbox
-          </h6>
+          </h3>
           
           <section
             id="form"
