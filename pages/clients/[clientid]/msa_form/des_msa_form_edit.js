@@ -7,6 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 
 const EditMsaFormPage = ({ data }) => {
   console.log("data", data);
@@ -579,7 +580,7 @@ const EditMsaFormPage = ({ data }) => {
               />
             </svg>
             <p className="text-dark-blue">{clientData.clientId}</p>
-            <button className="flex items-center bg-blue-500 hover:bg-blue-300 px-3 py-1 rounded text-white inline-block text-xs"
+            <button className="flex items-center bg-blue-500 hover:bg-blue-300 px-3 py-1 rounded text-white inline-block "
            onClick={() => router.push("/dashboard")}>
               <svg className="mr-1" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
@@ -589,122 +590,91 @@ const EditMsaFormPage = ({ data }) => {
           </div>
         </div> */}
         <main className="container mx-auto">
-          <button
-            onClick={() => router.back()}
-            className="bg-black hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5 flex items-center"
-          >
-            <svg
-              className="mr-2"
-              width="20"
-              height="20"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Back to Dashboard
-          </button>
+          <BackToDashboardButton />
           <section id="info" className="my-5">
             <div className="">
-              <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
+              <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
                 Information
-              </h6>
-              <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
+              </h3>
+               <div
+                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <h3 className="font-black mb-5">Date</h3>
-                  <label className="block">
-                    <span className="text-xs">Todays date</span>
-                    <p>{todaysDate.toLocaleDateString()}</p>
-                  </label>
+                <div className="service-action-plan-page-info-box md:my-1 my-5">
+                  <h3 className="font-black ">Todays date</h3>
+
+                  
+                  <div className="flex gap-x-2 items-center">
+                    <img src="/calendar-icon.svg" width="24"/>
+                    <p className=" mt-2">{todaysDate.toLocaleDateString()}</p>
+                  </div>
+
                 </div>
 
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Client</h3>
+                  <div className="service-action-plan-page-info-box md:my-0 my-5">
+                  
+                      <div className="grid grid-cols-3 gap-4">
+                      <div className="flex gap-x-2 mb-1 items-end">
+                        <img src="/client-icon.svg" width="24" />
+                        <h3 className="font-black ">Client</h3>
+                      </div>
+                      <label className="block">
+                        <span >Client Name</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
+                          disabled
+                        />
+                      </label>
+                    
+                      <label className="block">
+                        <span >Client ID</span>
+                        <input
+                          type="text"
+                          className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                          value={data[0].clientid}
+                          disabled
+                        />
+                      </label>
+                      </div>
+                    
                   </div>
+                  <div className="service-action-plan-page-info-box">
+                  
                   <div className="grid grid-cols-3 gap-4">
-                    <label className="block">
-                      <span className="text-xs">First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0].clientfirstname}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        onChange={(e) =>
-                          setUserData({ ...clientData, email: e.target.value })
-                        }
-                        value={data[0].clientlastname.charAt(0)}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs">Client ID</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0].clientid}
-                        disabled
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="service-action-plan-page-info-box">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
+                  <div className="flex gap-x-2 mb-1 items-end">
+                    <img src="/msa_form/LNEuser.svg" width="24" />
                     <h3 className="font-black ">Health Care Worker</h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
                     <label className="block">
-                      <span className="text-xs">First Name</span>
+                      <span >First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs">Last Name</span>
+                      <span >Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                         value={clientData.userLastName}
                         disabled
                       />
                     </label>
                   </div>
                 </div>
-              </div>
+             </div>
+
+
             </div>
           </section>
-          <h6 className="font-black mt-5 mb-2 px-2 text-dark-blue">
+          <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
             Indicate which of the following forms you have uploaded to the
             client&apos;s Dropbox
-          </h6>
+          </h3>
           <section
             id="form"
             className={`relative border-dark-blue rounded-xl mb-5`}
@@ -764,7 +734,7 @@ const EditMsaFormPage = ({ data }) => {
                   fill="none"
                   stroke="black"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-3 font-black"
+                  className="mr-1 font-black "
                 >
                   <path
                     d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
@@ -788,7 +758,7 @@ const EditMsaFormPage = ({ data }) => {
                     strokeWidth="2"
                   />
                 </svg>
-                <p className="text-start">Scanned version uploaded</p>
+                <p className="text-center text-lg">Scanned version uploaded</p>
                 {/* what about Original Version Scanned */}
               </div>
             </div>
@@ -9422,7 +9392,7 @@ const EditMsaFormPage = ({ data }) => {
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block text-xs mr-5"
+                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
                 onClick={() => handleMsaform()}
               >
                 Save and Update
