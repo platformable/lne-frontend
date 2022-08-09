@@ -45,7 +45,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
         //when form is complete returns false
         const isEmpty = Object.values(impactTracker).some(value => !value)
                  
-        if (!isEmpty) {
+        // if (!isEmpty) {
             axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker`, {
                 impactTracker
               })
@@ -61,9 +61,9 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                     setErrorMessage(error.message)
                     console.error("error: ", error.message)
               });
-        } else {
-            setErrorMessage('Must select all the options.')
-        } 
+        // } else {
+        //     setErrorMessage('Must select all the options.')
+        // } 
         
     }
     const notifyMessage = () => {
@@ -147,7 +147,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                                 onClick={onValueChange} name="barrierHIVPrimaryCare" value="Improved">Improved</button>
                                             </span>
                                             <span className='flex items-center mx-1'>
-                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-green-200 rounded-md hover:contrast-125 " type="button" 
+                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-yellow-200 rounded-md hover:contrast-125 " type="button" 
                                                  style={impactTracker.barrierHIVPrimaryCare === 'N/A'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                 onClick={onValueChange} name="barrierHIVPrimaryCare" value="N/A">Not applicable</button>
                                             </span>
@@ -374,7 +374,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                                  onClick={onValueChange} name="substanceAbuse" value="Improved">Improved</button>
                                             </span>
                                             <span className='flex items-center mx-1'>
-                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-green-200 rounded-md hover:contrast-125" type="button" 
+                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-yellow-200 rounded-md hover:contrast-125" type="button" 
                                                  style={impactTracker.substanceAbuse === 'N/A'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                  onClick={onValueChange} name="substanceAbuse" value="N/A">Not applicable</button>
                                             </span>
@@ -433,7 +433,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                                  onClick={onValueChange} name="legalIssues" value="Improved">Improved</button>
                                             </span>
                                             <span className='flex items-center mx-1'>
-                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-green-200 rounded-md hover:contrast-125" type="button" 
+                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-yellow-200 rounded-md hover:contrast-125" type="button" 
                                                  style={impactTracker.legalIssues === 'N/A'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                  onClick={onValueChange} name="legalIssues" value="N/A">Not applicable</button>
                                             </span>
@@ -462,7 +462,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                                  onClick={onValueChange} name="unstableEmployment" value="Improved">Improved</button>
                                             </span>
                                             <span className='flex items-center mx-1'>
-                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-green-200 rounded-md hover:contrast-125" type="button" 
+                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-yellow-200 rounded-md hover:contrast-125" type="button" 
                                                  style={impactTracker.unstableEmployment === 'N/A'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                  onClick={onValueChange} name="unstableEmployment" value="N/A">Not applicable</button>
                                             </span>
@@ -542,7 +542,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                                  onClick={onValueChange} name="unstableHousing" value="Improved">Improved</button>
                                             </span>
                                             <span className='flex items-center mx-1'>
-                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-green-200 rounded-md hover:contrast-125" type="button" 
+                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-yellow-200 rounded-md hover:contrast-125" type="button" 
                                                  style={impactTracker.unstableHousing === 'N/A'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                  onClick={onValueChange} name="unstableHousing" value="N/A">Not applicable</button>
                                             </span>
