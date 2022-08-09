@@ -179,7 +179,7 @@ console.log("date",date)
         <main className="container mx-auto">
          
         <BackButton/>
-        
+
           <section id="info" className="my-5">
             <div className="">
               <h6 className="font-black my-5 text-dark-blue">
@@ -1089,7 +1089,7 @@ console.log("date",date)
                 <p>AIRS Collateral Information </p>
               </div>
               <div className="text-center">
-                {data[0].airscollateralinformationdate === "1" ?
+                {data[0].airscollateralinformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSCollateralInformationDate.split('T')[0]}</p> :

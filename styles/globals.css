@@ -362,7 +362,13 @@ table th {
 
 .dashboard-clients-cards-info-container {
   display:grid;
-  grid-template-columns: 1.3fr 1fr 1fr 1fr;
-  gap:10px;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+gap:10px;
 }
 
+@media only screen and (max-width: 600px) {
+  .dashboard-clients-cards-info-container {
+    display:grid;
+    grid-template-columns:1fr;
+  }
+}
