@@ -572,7 +572,7 @@ const services = [
                   content={() => componentRef.current} />
           
               <div style={{display:'none'}}>
-                <ComponentToPrint ref={componentRef} name="alexei" clientData={clientData}/>
+                <ComponentToPrint ref={componentRef} name="" clientData={clientData}/>
               </div>
           </div>
         </section>
