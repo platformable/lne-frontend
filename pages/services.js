@@ -389,7 +389,7 @@ const Services = ({ clients, averageNumbers }) => {
         <section className="container mx-auto grid-cols-1 gap-5">
           <div className="grid grid-cols-2 py-5">
             <h1 className="font-bold px-2">Manage Services</h1>
-<div className="flex justify-end self-end">
+            <div className="flex justify-end self-end">
           <BackToDashboardButton/>
           </div>
            {/*  <Link href="/dashboard">
