@@ -5,7 +5,7 @@ import Image from "next/image";
 import Layout from "../components/Layout";
 import Link from "next/link";
 import UploadIncidentChecklistModal from "../components/UploadIncidentChecklistModal";
-
+import BackToDashboardButton from '../components/BackToDashboardButton'
 export default function Software() {
   const [dataBackup, setDataBackup] = useState(false);
   const  [uploadIncidentModal, setUploadIncidentModal] = useState(false);
