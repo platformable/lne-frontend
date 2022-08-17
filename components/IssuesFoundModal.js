@@ -7,10 +7,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundModal, showIssuesFoundModal, resetIssuesAndReviewCheckbox}) => {
     console.log(issueFounded)
-    const [error,setError] = useState("")
+    const [error,setError] = useState("Please fill description field")
     
     const closeModal = () => {
-      resetIssuesAndReviewCheckbox()
+      resetIssuesAndReviewCheckbox(issueFounded)
       setShowIssuesFoundModal(!showIssuesFoundModal)
     };
 
@@ -21,6 +21,9 @@ const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundMo
     };
 
     const submitIssue = () => {
+      if(issueFounded.description==="" || issueFounded.description.length <= 3){
+        setError(!error)
+      } else {
         setError("")
         axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/issues`, {issueFounded})
         .then(data => {
@@ -30,7 +33,7 @@ const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundMo
           setError(error.message)
           console.log(error)
         });
-        
+      }
     };
     
     return (
@@ -87,13 +90,15 @@ const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundMo
               />
             </label>
             <label className="block">
-               <span className="ml-1 font-semibold text-xs font-bold">Describe the issue that needs to be addressed:</span>
-              
-              <span className="p-2 block bg-white break-all rounded-md overflow-hidden" role="textbox" name="" contentEditable 
-              onInput={(e) => setIssueFounded({...issueFounded, description: e.target.innerText})}></span>
+              <span className="font-semibold font-bold">Describe the issue that needs to be addressed:</span>
+              <textarea name="" id="" cols="35" rows="5" className="rounded p-1"
+              onChange={(e) => setIssueFounded({...issueFounded, description: e.target.value})}
+              ></textarea>
+              {/* <span className="p-2 block bg-white break-all rounded-md overflow-hidden" role="textbox" name="" contentEditable 
+              onInput={(e) => setIssueFounded({...issueFounded, description: e.target.innerText})}></span> */}
             </label>
 
-           
+           {error && <p className="font-sm text-red-500 text-center">Please Complete all the fields</p>}
 
             <div className="block">
               <div className="mt-2">

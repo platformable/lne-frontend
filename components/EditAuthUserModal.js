@@ -100,9 +100,10 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
                 }
                 className="select-add-edit-supervisor block w-full mt-1 text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>HWC</option>
-                <option>Supervisor</option>
-                <option>DES</option>
+                <option value={null} disabled>Select</option>
+                <option value="HCW" default>HCW</option>
+                <option value="Supervisor">Supervisor</option>
+                <option vlaue="DES">DES</option>
               </select>
             </label>
 

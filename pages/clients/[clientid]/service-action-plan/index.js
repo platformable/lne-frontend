@@ -185,7 +185,7 @@ const services = [
         <section className="my-5">
           <div className="container mx-auto">
             <div className="md:text-center font-black md:p-0 px-5">
-              <h3>Service Action Plan</h3>
+              <h1>Service Action Plan</h1>
             </div>
           </div>
         </section>

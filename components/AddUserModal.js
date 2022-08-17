@@ -52,7 +52,7 @@ console.log("userData",userData)
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="John"
+                placeholder="Juan"
                 onChange={(e) =>
                   setUserData({ ...userData, name: e.target.value })
                 }
@@ -63,7 +63,7 @@ console.log("userData",userData)
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="Doe"
+                placeholder="Dominguez"
                 onChange={(e) =>
                   setUserData({ ...userData, lastname: e.target.value })
                 }
@@ -74,7 +74,7 @@ console.log("userData",userData)
               <input
                 type="email"
                 className="mt-1 block w-full rounded-md border-grey p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                placeholder="john@example.com"
+                placeholder="juan@example.com"
                 onChange={(e) =>
                   setUserData({ ...userData, email: e.target.value })
                 }
@@ -96,7 +96,7 @@ console.log("userData",userData)
               </select>
             </label>
 
-            <label className="block">
+            {/* <label className="block">
               <span className="ml-1 font-semibold">Active / No active</span>
               <select
                 onChange={() =>
@@ -107,7 +107,7 @@ console.log("userData",userData)
                 <option>Active</option>
                 <option>No Active</option>
               </select>
-            </label>
+            </label> */}
 
             <div className="block">
               <div className="mt-2">

@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from 'next/router'
+import BackToDashboardButton from "../../components/BackToDashboardButton";
 
 
 
@@ -107,11 +108,12 @@ const ClientsIndex = ({ data, hcworkers }) => {
       <ToastContainer autoClose={2000} />
       <section id="search" className="py-5">
         <div className="container mx-auto">
+          
+          <div className="my-5"><BackToDashboardButton/></div>
+
           <div className="flex justify-between">
-          <h3 className="mb-5 font-black">Manage Clients</h3>
-          <div>
-            <button className=" flex gap-x-2"onClick={()=>router.push("/dashboard")}> <img src="/back-button-icon.svg" alt="" /> Dashboard</button>
-          </div>
+          <h1 className="mb-5 font-black">Manage Clients</h1>
+       
           </div>
           <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
             

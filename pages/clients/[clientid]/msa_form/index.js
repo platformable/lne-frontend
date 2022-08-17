@@ -186,7 +186,7 @@ useEffect(()=>{
     <ToastContainer autoClose={2000} />
       <Layout>
         <div className="container mx-auto">
-          <h3 className="font-black text-center my-5">MSA FORM</h3>
+          <h1 className="font-black text-center my-5">MSA FORM</h1>
         </div>
 
         

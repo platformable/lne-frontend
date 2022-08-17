@@ -7,9 +7,9 @@ export default function BackToDashboardButton() {
   return (
     <button
     onClick={() => router.push('/dashboard')}
-    className="bg-yellow hover:bg-blue-300 px-5 py-2 rounded text-black inline-block  flex items-center  gap-x-3"
+    className="bg-yellow hover:bg-blue-300 px-5 py-1.5 rounded text-black inline-block  flex items-center  gap-x-3"
   >
-    <img src="/dashboard_icon.svg" alt="" />
+    <img src="/dashboard_icon.svg" alt="" width={20}/>
     Dashboard
   </button>
   )
