@@ -110,7 +110,7 @@ console.log('selected', selectedUser)
                 }
                 className="select-add-edit-supervisor block w-full mt-1 text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>HWC</option>
+                <option>HCW</option>
                 <option>Supervisor</option>
                 <option>DES</option>
               </select>
