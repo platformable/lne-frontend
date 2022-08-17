@@ -13,10 +13,11 @@ import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-
+import Layout from '../../components/Layout';
 import authUserICon from '../../public/authorized-users-icon.svg'
 import backIcon from '../../public/BACKicon.svg'
 import addUserICon from '../../public/add-new-user-icon.svg' 
+import BackToDashboardButton from '../../components/BackToDashboardButton';
 
 export default function AuthorizedUsersIndex({data, users}) {
   const router = useRouter()
@@ -66,63 +67,30 @@ console.log("selectedEntity",selectedEntity)
 
   return (
     <>
-    <header className="border-b">
-        <div className="container mx-auto pt-5 pb-0 grid space-between grid-cols-2">
-          <img
-            src="./logo.png"
-            alt=""
-            width={125}
-          />
-          <div id="head-user" className="flex place-items-end justify-end items-center">
-            <div>
-            <h4 className="font-black mr-2">
-              {user && user["https://lanuevatest.herokuapp.com/name"]} {user && user["https://lanuevatest.herokuapp.com/lastname"]}
-            </h4>
-        
-            <h6 className="">
-              {user && user["https://lanuevatest.herokuapp.com/roles"]}
-            </h6>
-            </div>
-            <Link
-              href="/api/auth/logout"
-            >
-            <a className={`bg-yellow-300 inline-block btn-index-page text-black px-3 py-1 rounded-md`}>Logout</a>
-            </Link>
-          </div>
-        </div>
-        <div className="flex mb-5 mt-1">
-             
-        
-          </div>
-      </header>
+    <Layout>
       <main>
       <ToastContainer autoClose={2000}/>
           <section>
            <div className="container mx-auto mt-5"> 
            <h1 className='block font-bold'>Manage Users</h1>
            
-            <div className='button-container flex justify-between items-center mt-3 mb-5'>
-               <div className="flex justify-center items-center">
-                <button className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl mr-4" id="myBtn" onClick={() => setShowModal(!showModal)}>
-                <Image src={addUserICon} width={35} height={35}/>
+            <div className='button-container flex gap-x-2 items-center mt-3 mb-5'>
+
+                <button className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl " id="myBtn" onClick={() => setShowModal(!showModal)}>
+                <Image src={addUserICon} width={20} height={20}/>
                 <p className='ml-2 text-sm'>Add a new user</p>
                 
                  </button>
                 <Link href="/users">
                 <a className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
-                <Image src={authUserICon} width={40} height={40}/>
+                <Image src={authUserICon} width={20} height={20}/>
                   <p className='ml-2 text-sm'>View active users</p>
                 </a>
                 </Link>
-               </div>
+          
               
               <div className="flex justify-center items-center">
-            <Link href="/dashboard">
-                <a className="px-5 py-2 flex  items-center font-bold" id="myBtn">
-                <Image src={backIcon} />
-                  <p className='ml-2'>Dashboard</p>
-                </a>
-              </Link>
+            <BackToDashboardButton/>
               </div>
               
             </div>
@@ -246,6 +214,7 @@ console.log("selectedEntity",selectedEntity)
       {showEditAuthUserModal &&<EditAuthUserModal setShowEditAuthUserModal={setShowEditAuthUserModal}  showEditAuthUserModal={showEditAuthUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
       {showEditInactiveUserModal &&<EditInactiveUserModal setShowEditInactiveUserModal={setShowEditInactiveUserModal}  showEditInactiveUserModal={showEditInactiveUserModal} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
       {showDeleteUserModal && <DeleteUserModal urlEntity={selectedEntity} setShowDeleteUserModal={setShowDeleteUserModal} showDeleteUserModal={showDeleteUserModal} selectedUser={selectedUser}/>}
+      </Layout>
     </>
   )
 }

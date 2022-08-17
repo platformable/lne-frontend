@@ -9,10 +9,13 @@ import DeleteUserModal from '../../components/DeleteUserModal';
 import Layout from '../../components/Layout';
 import Image from 'next/image';
 
+import { useRouter } from 'next/router'
 import backIcon from '../../public/BACKicon.svg'
 import authUserICon from '../../public/authorized-users-icon.svg'
+import BackToDashboardButton from '../../components/BackToDashboardButton';
 
 export default function UsersIndex({data}) {
+  const router = useRouter()
     const { user, error, isLoading } = useUser();
     const [showModal,setShowModal] = useState(false)
 
@@ -47,22 +50,23 @@ console.log(data)
     
           <section>
            <div className=""> 
-
+        
            <div className="container mx-auto flex flex-wrap mt-5">
+            
               <h1 className='block font-bold'>Manage Users</h1>
-            <div className="flex  items-center justify-between container my-5 mx-auto">
-              <Link href="/authorizedusers">
-                <a className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl" id="myBtn">
-                <Image src={authUserICon} width={40} height={40}/>
-                  <p className='ml-2 text-sm'>View authorized users</p>
-                </a>
-              </Link>
-              <Link href="/dashboard">
-                <a className="px-5 py-2 flex  items-center font-bold" id="myBtn">
-                <Image src={backIcon} />
-                  <p className='ml-2'>Dashboard</p>
-                </a>
-              </Link>
+             
+            <div className="flex gap-x-2 items-center  container my-5 mx-auto">
+            <button
+              onClick={() => router.push('/authorizedusers')}
+              className="bg-yellow hover:bg-blue-300 px-5 py-1.5 rounded text-black inline-block  flex items-center  gap-x-3"
+            >
+              <img src="/authorized-users-icon.svg" alt="" width={20}/>
+              View authorized users
+            </button>
+  
+        
+      
+              <BackToDashboardButton/>
             </div>
               
               {/* <button className="rounded btn-lightBlue px-5 py-2 flex shadow-xl inline-block" id="myBtn" onClick={()=>setShowModal(!showModal)}>

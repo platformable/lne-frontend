@@ -147,7 +147,7 @@ if(userid!=="All"){
     checkServiceActionPlanCompletedGoals(serviceactionplans);
   }, []);
 
-  console.log("user", user);
+ 
 
   return (
     <>
@@ -166,7 +166,7 @@ if(userid!=="All"){
                 <h1 className="font-black py-5 md:px-0 px-5">
                   Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
                 </h1>
-                <div className="supervisor-dashboard-top-container  px-5 py-5 mb-1 bg-white">
+               {/*  <div className="supervisor-dashboard-top-container  px-5 py-5 mb-1 bg-white">
                   <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
                     <div>
                       <h1 className="font-black my-2">
@@ -185,8 +185,8 @@ if(userid!=="All"){
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
+                </div> */}
+                {/* <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
                   <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
                     <h4 className="text-center mb-5 px-10">
                       MSA Forms completed but not uploaded
@@ -216,11 +216,12 @@ if(userid!=="All"){
                     </h4>
                     <h1 className="text-center font-black">0</h1>
                   </div>
-                </div>
+                </div> */}
               </section>
-              <h3 className="font-black my-2 md:px-0 px-5">
-                What do you want to do today?
-              </h3>
+              <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+                What do you want <span className="bg-yellow px-1"> to do</span>{" "}
+                today?
+              </h1>
               <div className="grid md:grid-cols-6 grid-cols-1 mb-2">
                 {loggedUserRole === "Supervisor" && (
                   <Link href="/users">

@@ -1052,10 +1052,10 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
             </div> 
 
 
-          <h1 className="font-bold px-2 md:px-0 py-5">
-            What do you want <span className="bg-yellow px-2">to do</span>{" "}
-            today?
-          </h1>
+            <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+                What do you want <span className="bg-yellow px-1"> to do</span>{" "}
+                today?
+              </h1>
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
             <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
               <Link href={"/services"}>

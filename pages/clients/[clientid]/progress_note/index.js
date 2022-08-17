@@ -182,34 +182,42 @@ const handleServiceActionPlanFormUpdate = ()=> {
     });
 }
 
+const [pnErrorMessage,setPNErrorMessage]=useState("")
+
 const handleProgressNote=()=>{
 
+  if(clientData.progressNoteText===""){
+    setPNErrorMessage("Please enter text to describe the progress made today")
+  } else {
+    setPNErrorMessage("")
     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/`, {
-        clientData
-      })
-      .then(function (response) {
-        if(response.status===200 || response.statusText==='Ok'){
-          setProgressNoteId(response.data.progress_note_id)
-          handleMsaformUpdate()
-          handleServiceActionPlanFormUpdate()
-          notifyMessage()
-          setShowImpactTrackerModal(!showImpactTrackerModal)
-        } 
-      })
-      .catch(function (error) {
-            console.log(error)
-      });
+      clientData
+    })
+    .then(function (response) {
+      if(response.status===200 || response.statusText==='Ok'){
+        setProgressNoteId(response.data.progress_note_id)
+        handleMsaformUpdate()
+        handleServiceActionPlanFormUpdate()
+        notifyMessage()
+        setShowImpactTrackerModal(!showImpactTrackerModal)
+      } 
+    })
+    .catch(function (error) {
+          console.log(error)
+    });
+  }
+
    
 }
 
-console.log("clientData",clientData)
+
 
   return (
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
         <div className="container mx-auto">
-          <h3 className="font-black text-center my-5">Progress Notes </h3>
+          <h1 className="font-black text-center my-5">Progress Notes </h1>
         </div>
 
         <main className="container mx-auto">
@@ -808,7 +816,7 @@ console.log("clientData",clientData)
           <section className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals" id="workedGoals">
           <p className="text-lg">Progress Notes</p>
           <textarea name="progressNotes" 
-          id="" cols="30" rows="5" 
+          id="" cols="30" rows="12" 
           className="border-dark-blue w-full rounded-xl py-3 my-2 px-5"
           placeholder="Enter notes on the client progress/interaction followup here"
           onChange={(e)=>{setClientData({...clientData,progressNoteText:e.target.value})}}
@@ -1558,7 +1566,10 @@ console.log("clientData",clientData)
 </section>
 
           <section id="save" className="my-5">
+          {pnErrorMessage && <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>}
             <div className="container mx-auto flex justify-center">
+
+            
               <button
                 className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block mr-5"
                onClick={()=>handleProgressNote()}

@@ -3,6 +3,7 @@ import Layout from "../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import Image from "next/image";
+import BackToDashboardButton from '../../../../components/BackToDashboardButton'
 
 import infoIcon from "../../../../public/client/info-icon.svg"
 import userIcon from "../../../../public/client/USERicon.svg"
@@ -165,30 +166,33 @@ console.log(data[0])
     )
   }
 
-  console.log("data",data)
 
   return (
     <>
       <Layout>
         <div className=" bg-light-blue h-screen">
           <section className="py-5 container mx-auto md:px-0 px-5">
+            <div className="flex gap-x-3">
             <button
               onClick={() =>
                 loggedUserRole === "Supervisor"
                   ? router.push("/clients")
                   : router.push("/dashboard")
               }
-              className="bg-yellow px-5 mb-5 py-2 rounded  inline-block  mr-5 flex items-center text-black gap-x-2"
+              className="bg-yellow px-5 mb-5 py-2 rounded  inline-block  flex items-center text-black gap-x-2"
             >
               <img src="/dashboard_icon.svg" alt="" width={20} />
               {loggedUserRole === "Supervisor"
-                ? "Back to clients list"
-                : "Back to dashboard"}
+                ? "Back "
+                : "Dashboard"}
             </button>
 
+   
+            
+            </div>
             <section className="dashboard-clients-cards md:px-0 px-5">
               <div className="dashboard-clients-cards-top py-5 flex gap-x-5">
-                <h3 className="font-black">Client dashboard</h3>
+                <h1 className="font-black">Client dashboard</h1>
                 <div className="color-description flex gap-x-5">
                   <div className="color-description-item flex items-center gap-x-2">
                     <div
@@ -293,7 +297,7 @@ console.log(data[0])
             className="mt-5 font-bold w-screen"
           >
             <div className=" p-5  text-black ">
-              <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 ">
+            <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>

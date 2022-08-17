@@ -7,6 +7,7 @@ import ChartGraphic from "../components/ChartGraphic";
 import ClientsEncounterCharts from "../components/ClientsEncounterCharts";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import ToogleButton from "../components/ToogleButton";
+import BackToDashboardButton from "../components/BackToDashboardButton";
 
 const Services = ({ clients, averageNumbers }) => {
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
@@ -379,12 +380,19 @@ const Services = ({ clients, averageNumbers }) => {
   }, [dataGraphicPeriod]);
   return (
     <Layout>
+      <section className="bg-yellow flex justify-center items-center py-10">
+
+        <h3 className="font-black uppercase">Page under construction</h3>
+
+      </section>
       <div className="bg-light-blue">
         <section className="container mx-auto grid-cols-1 gap-5">
           <div className="grid grid-cols-2 py-5">
             <h1 className="font-bold px-2">Manage Services</h1>
-
-            <Link href="/dashboard">
+<div className="flex justify-end self-end">
+          <BackToDashboardButton/>
+          </div>
+           {/*  <Link href="/dashboard">
               <a
                 className="px-5 py-2 flex  items-center font-bold justify-self-end"
                 id="myBtn"
@@ -392,7 +400,7 @@ const Services = ({ clients, averageNumbers }) => {
                 <Image src={backIcon} alt="back arrow to homepage" />
                 <p className="ml-2">Dashboard</p>
               </a>
-            </Link>
+            </Link> */}
           </div>
 
           {/* KEY METRICS */}
@@ -497,10 +505,10 @@ const Services = ({ clients, averageNumbers }) => {
             </div>
           </div>
 
-          <h1 className="font-bold px-2 md:px-0 py-5">
-            What do you want <span className="bg-yellow px-2">to do</span>{" "}
-            today?
-          </h1>
+          <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+                What do you want <span className="bg-yellow px-1"> to do</span>{" "}
+                today?
+              </h1>
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
             <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
               <Link href={"/monitorFunding"}>

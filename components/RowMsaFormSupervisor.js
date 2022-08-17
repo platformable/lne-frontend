@@ -33,7 +33,7 @@ const RowMsaFormSupervisor = ({
   // names to use in the form  
   const [strings, setStrings] = useState({
     formDate: nameStrings[0],
-    formUploadDate: nameStrings [1],
+    formUploadDate: nameStrings[1],
     formIssues: nameStrings[2],
     formReviewed: nameStrings[3],
   });
@@ -56,12 +56,16 @@ const RowMsaFormSupervisor = ({
     return fixedDate;
   };
   const onChangeInputCheckbox = (e) => {
-    formUploadDate ?  
+    const todaysDate = new Date();
+    const uploadDate = new Date(formUploadDate);
+    const dateComparison = todaysDate.getDate() === uploadDate.getDate();
+
+   dateComparison ?  
     setClientData((prevState) => ({
            ...prevState,
            [e.target.name]:
              !prevState[e.target.name],
-          //  [strings.formUploadDate]: ""
+           [strings.formUploadDate]: formDate
     })) :
     setClientData((prevState) => ({
       ...prevState,
@@ -70,10 +74,23 @@ const RowMsaFormSupervisor = ({
       [strings.formUploadDate]: crearFecha()
 }))
 
-    
+
+/*   formUploadDate ?  
+    setClientData((prevState) => ({
+           ...prevState,
+           [e.target.name]:
+             !prevState[e.target.name],
+           [strings.formUploadDate]: crearFecha()
+    })) :
+    setClientData((prevState) => ({
+      ...prevState,
+      [e.target.name]:
+        !prevState[e.target.name],
+      [strings.formUploadDate]: ""
+})) */
  }
   const onChangeInputIssues = (e) => {
-    console.log(strings)
+
     //set info to display in issue popup
     setIssueFounded((previousState) => ({...previousState,
       form_issues: strings.formIssues,
@@ -81,6 +98,7 @@ const RowMsaFormSupervisor = ({
       form_uploadDate: strings.formUploadDate,
       msaform: e.target.name, 
       lastdateupdated: formUploadDate || crearFecha(),
+      formDate:formDate
        }));
 
     setShowIssuesFoundModal((previousState) => !previousState)
@@ -123,8 +141,8 @@ const RowMsaFormSupervisor = ({
       </div>
        
       <div className="text-center">
-      
-        <input
+      {formDate ? <p className="text-dark-blue">{new Date(formDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'})}</p>:"-"}
+       {/* < input
           type="date"
           id={strings.formDate}
           className={MSAStyles.inputDate}
@@ -139,7 +157,7 @@ const RowMsaFormSupervisor = ({
               [strings.formDate]: e.target.value,
             }));
           }}
-        />
+        /> */}
       </div>
       <div
         className={`${MSAStyles.dropboxFolderNames}  text-center flex justify-center items-center border-l-dark-blue`}
@@ -157,8 +175,10 @@ const RowMsaFormSupervisor = ({
         {/*  <p className="text-dark-blue underline">Intake</p> */}
       </div>
       <div className="text-center">
+      {formUploadDate ? <p className="text-dark-blue">{new Date(formUploadDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'})}</p>:"-"}
+
         
-        <input
+       {/*  <input
           type="date"
           id={strings.formUploadDate}
           className={`${MSAStyles.inputDate} 
@@ -178,16 +198,16 @@ const RowMsaFormSupervisor = ({
               [strings.formUploadDate]: e.target.value,
             }));
           }}
-        />
+        /> */}
         
       </div>
         <div
         //handles the prohibition to change review`s input once was issue checked
-        className={`ml-1 text-center flex justify-center items-center ${formIssues && "pointer-events-none"}`}> 
+        className={`ml-1 text-center flex justify-center items-center  ${formIssues && "pointer-events-none"}`}> 
         <input
           className={`${
             !form && "pointer-events-none"
-          } bg-white border-dark-blue rounded-md  h-6 w-6 `}
+          } bg-white   rounded-md  h-6 w-6 `}
           type="checkbox"
           name={strings.formReviewed}
           id={strings.formReviewed}
