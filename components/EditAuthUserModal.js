@@ -8,11 +8,11 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
   console.log('selecteduser',selectedUser)
   const [userData, setUserData] = useState(selectedUser || {
     id: selectedUser.id,
-    name: "",
-    lastname: "",
-    email: "",
-    role: "",
-    isactive: ''
+    name: selectedUser.name,
+    lastname: selectedUser.lastname,
+    email: selectedUser.email,
+    role: selectedUser.role,
+    isactive: selectedUser.isactive
   })
   console.log('userData',userData)
 
@@ -108,16 +108,17 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
             </label>
 
             <label className="block">
-              <span className="ml-1 font-semibold">Active / No active</span>
+              <span className="ml-1 font-semibold">Active / Not active</span>
               <select
-                value={userData.isactive === 'false'? 'No Active' : 'Active'}
-                onChange={(e) =>
-                     setUserData({ ...userData, isactive: e.target.selectedOptions[0].id.toString() })
+                value={userData.isactive}
+                onChange={(e) => {
+                  setUserData({ ...userData, isactive: e.target.selectedOptions[0].value })
+                }
                 }
                 className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>Active</option>
-                <option>No Active</option>
+                <option value="Active">Active</option>
+                <option value="No Active">Not Active</option>
               </select>
             </label>
             <div className="block">

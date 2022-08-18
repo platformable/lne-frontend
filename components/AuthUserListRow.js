@@ -37,7 +37,7 @@ const day= date[2]
   return (
     <> 
 
-              <div className={`${styles.dashboardClientListHeadRow} bg-white border rounded-md py-3 px-5 my-1 `}>
+              <div className={`${styles.authUSerListHeadRow} bg-white border rounded-md py-3 px-5 my-1 `}>
                 {/* <div className="head-row ">
                   <p className="text-center">{id}</p>
                 </div> */}
@@ -56,6 +56,10 @@ const day= date[2]
               
                 <div className="head-row flex justify-start items-center">
                   <p className="text-center">{dateaccountactivated ? `${month}/${day}/${year}` : "-"}</p>
+                </div>
+
+                <div className="head-row flex justify-start items-center">
+                  <p className="text-center">{isactive}</p>
                 </div>
                 
                 <div className="head-row flex justify-center items-center">

@@ -35,11 +35,14 @@ export default function AuthorizedUsersIndex({data, users}) {
 
     const [selectedUser,setSelectedUser]=useState({})
 
-console.log("selectedEntity",selectedEntity)
+console.log("data",data)
+console.log("users",users)
+
 
     useEffect(()=> {
       getNotRegisteredUser(data, users)
       getNoActiveUser(users)
+      // getNoActiveUserFromNotRegisteredUsers()
     }, [data]) 
     
  const notifyMessage= ()=>{
@@ -49,21 +52,25 @@ console.log("selectedEntity",selectedEntity)
   });
  }
  const getNotRegisteredUser =  (array1,array2)=>{
-    const selected=[]
-    const alldata=array1.map((data,index)=>{
+    const noRegisteredUsers=[]
+    const noRegisteredAndInactive=array1.filter((data,index)=>{
       const filtered = array2.findIndex(user=> user.useremail===data.email)
-        if(filtered===-1){
-          selected.push(data)
+
+      if(filtered===-1 && (data.isactive === "Active" || data.isactive === "true")){
+        noRegisteredUsers.push(data)
       }
+      return data.isactive === "No Active" 
     })
-    setListOfNonRegistered(selected)
-    return selected
+    setListOfNonRegistered(noRegisteredUsers)
+    setListOfNoActive(noRegisteredAndInactive)
   }
   const getNoActiveUser = (array1) => {
     const noActive = array1.filter(user => user.useractivestatus === 'No Active' || user.useractivestatus === 'false')
-    console.log('lista noactive',noActive)
-    setListOfNoActive(noActive)
+    // console.log('lista noactive',noActive)
+    setListOfNoActive((previous) => [...previous, ...noActive])
   }
+
+  
 
   return (
     <>
@@ -102,7 +109,7 @@ console.log("selectedEntity",selectedEntity)
 
             <div className="dashboard-client-list container mx-auto">
               <h2 className="font-black text-center pt-6 pb-3">Authorized Users</h2>
-              <div className={`${styles.authUSerListHeadRow} items-end py-3 px-5 pt-5 pb-1`}>
+              <div className={`${styles.dashboardClientListHeadRow} items-end py-3 px-5 pt-5 pb-1`}>
 
                   <div className="head-row font-black">
                     <p className="text-base text-left">Name</p>
@@ -120,11 +127,6 @@ console.log("selectedEntity",selectedEntity)
                   <div className="head-row font-black">
                     <p className="text-base text-left">Date User added by the supervisor</p>
                   </div>
-
-                  <div className="head-row font-black">
-                    <p className="text-base text-left">Status</p>
-                  </div>
-
                   <div className="head-row font-black">
                     <p className="text-base text-center">Edit</p>
                   </div>
@@ -189,8 +191,8 @@ console.log("selectedEntity",selectedEntity)
                    authorizeduser={authuser}
                    index={index}
                    key={index}
-                  //  setShowEditAuthUserModal={setShowEditAuthUserModal}
-                  //  showEditAuthUserModal={showEditAuthUserModal}
+                    setShowEditAuthUserModal={setShowEditAuthUserModal}
+                  showEditAuthUserModal={showEditAuthUserModal}
                    showEditInactiveUserModal={showEditInactiveUserModal}
                    setShowEditInactiveUserModal={setShowEditInactiveUserModal}
                    setSelectedUser={setSelectedUser}
