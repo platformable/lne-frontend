@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundModal, showIssuesFoundModal, resetIssuesAndReviewCheckbox}) => {
     console.log(issueFounded)
-    const [error,setError] = useState("Please fill description field")
+    const [error,setError] = useState(false)
     
     const closeModal = () => {
       resetIssuesAndReviewCheckbox(issueFounded)
