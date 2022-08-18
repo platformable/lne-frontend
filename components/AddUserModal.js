@@ -9,8 +9,8 @@ export default function AddUserModal({ showModal, setShowModal,notificationMessa
     name:"",
     lastname:"",
     email:"",
-    userRole:"",
-    isactive:true
+    role:"",
+    isactive: "Active"
   })
 
   const [saving,setSaving] = useState(false)
@@ -85,12 +85,12 @@ console.log("userData",userData)
               <span className="ml-1 font-semibold ">User role</span>
               <select
                 onChange={(e) =>
-                  setUserData({ ...userData, userRole: e.target.value })
+                  setUserData({ ...userData, role: e.target.value })
                 }
                 className="select-add-edit-supervisor block text-[#00000065] w-full mt-1 rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option value={null} disabled>Select</option>
-                <option value="HCW" default>HCW</option>
+                <option value={null} default>Select</option>
+                <option value="HCW">HCW</option>
                 <option value="Supervisor">Supervisor</option>
                 <option vlaue="DES">DES</option>
               </select>
