@@ -16,7 +16,11 @@
   }
 }
 
+.authUSerListHeadRow {
+  display:grid;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr 2fr 2fr 1fr 1fr 1fr;
 
+}
 .dashboardClientListHeadRow {
   display:grid;
   grid-template-columns: 1.5fr 1.5fr 1.5fr 2fr 1.5fr 1fr 1fr;

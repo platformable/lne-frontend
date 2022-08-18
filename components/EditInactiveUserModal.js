@@ -6,13 +6,13 @@ import Loader from "./Loader";
 export default function EditInactiveUserModal({ selectedUser, setShowEditInactiveUserModal, showEditInactiveUserModal }) {
   const router = useRouter()
   console.log('selecteduser',selectedUser)
-  const [userData, setUserData] = useState(selectedUser || {
+  const [userData, setUserData] = useState({
     user_id: selectedUser.user_id,
-    name: "",
-    lastname: "",
-    useremail: "",
-    userrole: "",
-    userstatusactive: ''
+    name: selectedUser.name,
+    lastname: selectedUser.lastname,
+    useremail: selectedUser.useremail,
+    userrole: selectedUser.userrole,
+    useractivestatus: selectedUser.useractivestatus
   })
   console.log('userDataInactive',userData)
 
@@ -117,16 +117,16 @@ export default function EditInactiveUserModal({ selectedUser, setShowEditInactiv
             </label>
 
             <label className="block">
-              <span className="ml-1 font-semibold">Active / No active</span>
+              <span className="ml-1 font-semibold">Active / Not active</span>
               <select
-                value={userData.useractivestatus}
+                value={userData.useractivestatus || userData.isactive}
                 onChange={(e) =>
-                  setUserData({ ...userData, useractivestatus: e.target.selectedOptions[0].id.toString() })
+                  setUserData({ ...userData, useractivestatus: e.target.selectedOptions[0].value })
                 }
                 className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option id="Active">Active</option>
-                <option id="No Active">No Active</option>
+                <option value="Active">Active</option>
+                <option value="No Active">Not Active</option>
               </select>
             </label>
             <div className="block">

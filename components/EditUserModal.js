@@ -56,7 +56,7 @@ console.log('selected', selectedUser)
           <div className="grid grid-cols-1 gap-6">
             <div className="flex ml-2.5 items-end">
               <img src="/edit-user-icon.svg" className="mr-3" alt="" width="50" />
-              <h2 className="font-black">Edit User user modal.js</h2>
+              <h2 className="font-black">Edit User</h2>
             </div>
             <label className="block">
               <span className="ml-1 font-semibold">First name</span>
@@ -110,14 +110,14 @@ console.log('selected', selectedUser)
                 }
                 className="select-add-edit-supervisor block w-full mt-1 text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>HCW</option>
-                <option>Supervisor</option>
-                <option>DES</option>
+                <option value="HCW">HCW</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="DES">DES</option>
               </select>
             </label>
 
             <label className="block">
-              <span className="font-semibold ml-1">Active / No active</span>
+              <span className="font-semibold ml-1">Active / Not active</span>
               <select
                 value={userData.useractivestatus}
                 onChange={(e) =>
@@ -125,8 +125,8 @@ console.log('selected', selectedUser)
                 }
                 className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
-                <option>Active</option>
-                <option>No Active</option>
+                <option value="Active">Active</option>
+                <option value="No Active">Not Active</option>
               </select>
             </label>
             <div className="block">

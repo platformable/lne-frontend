@@ -9,15 +9,8 @@ export default function UsersListRow({showDeleteUserModal,setShowDeleteUserModal
   const router = useRouter()
 
   const handleSelectedUser =(selectedUser)=>{
-    if(selectedUser.id) {
-      setSelectedUser(selectedUser)
-      setShowEditAuthUserModal(!showEditAuthUserModal)
-    } else {
       setSelectedUser(selectedUser)
       setShowEditInactiveUserModal(!showEditInactiveUserModal)
-    }
-    
- 
   }
 
 
