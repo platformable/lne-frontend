@@ -13,9 +13,12 @@ export default function Software() {
   return (
     <>
       <Layout>
-      <section className="bg-yellow flex justify-center items-center py-10">
+      <section className="bg-yellow grid text-center justify-center items-center py-10">
 
-<h3 className="font-black uppercase">Page under construction</h3>
+      <h3 className="font-black uppercase">UNDER DEVELOPMENT</h3>
+        <p>
+These sections are in current development and are on the August - December 2022 Roadmap for feature enhancement.
+</p>
 
 </section>
         <section className="bg-light-blue md:h-screen">
@@ -96,7 +99,7 @@ export default function Software() {
                     </figcaption>
                   </figure>
                 </div>
-                <Link href="https://www.dropbox.com/sh/mezbgitgnspr8zo/AACi3MciNLcTaCRNj0pLzhT5a?dl=0"passHref >
+                <Link href="https://www.dropbox.com/sh/bul54s5xa4qf7p3/AADykEZbJ41VOgOHcYRPt8I0a?dl=0"passHref >
                   <a target="_blank">
                   <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
                   <figure className="flex flex-col items-center">
@@ -113,7 +116,7 @@ export default function Software() {
                   </a>
                 
                 </Link>
-                <Link href="https://www.dropbox.com/sh/2wi3kpyifi4zo9f/AAAw0h4tG8J1wXTgPPOZ8Qpza?dl=0" passHref>
+                <Link href="https://www.dropbox.com/sh/lda1yph0sfzxz60/AAB0CdrliTfs9bg5gHqQndmAa?dl=0" passHref>
                 <a target="_blank">
                 <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
                   <figure className="flex flex-col items-center">

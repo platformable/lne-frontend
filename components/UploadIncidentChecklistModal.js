@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Loader from "./Loader";
 
 
@@ -9,10 +9,12 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [error, setError] = useState("")
     
-    const onSubmitFile = async(e) => {
-        e.preventDefault()
-    
+    const onSubmitFile = async() => {
+ //       e.preventDefault()
+    //console.log("e",e)
         setLoading(true)
+
+        console.log("file desde el SubmitEvent",file)
 
         const form = new FormData();
         const blob = new Blob([file], {
@@ -20,7 +22,8 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
         })
         form.append('file', blob);  
         const fileFormat= fileName.split(".")[1];
-
+        
+        console.log("fileFormat",fileFormat)
         const dateNow = JSON.stringify(new Date());
        
         const headerDataForUpload = {
@@ -63,9 +66,12 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
         setUploadSuccess(false)
         setFile(event.target.files[0])
         setFileName(event.target.files[0].name)
-        onSubmitFile(event)
+       
     }
 
+useEffect(()=>{
+file?  onSubmitFile():""
+},[file])
     return (
         <>
         <div className="modal flex items-center ">
@@ -110,7 +116,7 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                             name="file"
                             onChange={(event) => onHandleFile(event)}
                             className="cursor-pointer absolute overflow-hidden opacity-0 w-8/12"
-                            accept=".txt,.pdf,.csv,.xlsx"
+                            accept=".txt,.pdf,.csv,.xlsx,.docx"
                             />
                             </button>
                          </label>
@@ -125,7 +131,7 @@ const UploadIncidentChecklistModal = ({setUploadIncidentModal}) => {
                         <img src="supervisor/software/incident_response_Uploaded_popup_icon.svg" />
                         <h3 className="font-bold text-xl ml-2 mb-5 text-center">File uploaded successfully</h3>
                         <a className="mt-7 btn-darkGreen font-bold py-1 px-5 rounded shadow"
-                        href="https://www.dropbox.com/sh/vjgzdma9pq19wz3/AADj8-d8q8PTu0UhYdAe_nDua?dl=0" target="_blank" rel='noreferrer'>Check Dropbox Folder</a>
+                        href="https://www.dropbox.com/sh/9agx6w3b3e6fuw6/AAD9DPbxO_bE_pPVwVyPiHhwa?dl=0" target="_blank" rel='noreferrer'>Check Dropbox Folder</a>
                     </>)
                     }
             </div>

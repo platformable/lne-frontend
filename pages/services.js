@@ -380,9 +380,12 @@ const Services = ({ clients, averageNumbers }) => {
   }, [dataGraphicPeriod]);
   return (
     <Layout>
-      <section className="bg-yellow flex justify-center items-center py-10">
+      <section className="bg-yellow grid justify-center text-center items-center py-10">
 
-        <h3 className="font-black uppercase">Page under construction</h3>
+        <h3 className="font-black uppercase">UNDER DEVELOPMENT</h3>
+        <p>
+These sections are in current development and are on the August - December 2022 Roadmap for feature enhancement.
+</p>
 
       </section>
       <div className="bg-light-blue">
