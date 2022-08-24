@@ -89,7 +89,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
       return userClients;
     } else {
       const hasMsaForm = liveData
-        .filter((client) => client.msa_form_id !== null)
+        //.filter((client) => client.msa_form_id !== null)
         .sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname));
       const userClients = hasMsaForm.map((client, index) => {
         return (
