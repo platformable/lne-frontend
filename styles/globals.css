@@ -64,7 +64,7 @@ h6 {
   --yellow: #ffde0b;
   --lightYellow: #fdf8ce;
   --darkYellow: #ffde0b;
-  --lightBlue: #d0e7fd;
+/*   --lightBlue: #d0e7fd; */
   --blue: #62a6e5;
   --darkBlue: #007fff;
   --pink: #ff9eb6;
@@ -255,6 +255,10 @@ input[type="number"] {
 
 .bg-light-blue {
   background-color: var(--lightBlue);
+}
+
+.bg-extraLight-blue {
+  background-color: rgba(229, 242, 255, 0.5);
 }
 
 .bg-light-green {

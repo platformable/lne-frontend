@@ -129,6 +129,13 @@ if(userid!=="All"){
               Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
             </h1>
            
+            <button
+      onClick={() => router.push("/condomsDistribution")}
+      className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
+    >
+      
+      Supplies distribution
+    </button>
             
 
               {/* <div className="flex mb-2">
