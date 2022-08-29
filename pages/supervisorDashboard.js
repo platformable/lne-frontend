@@ -297,6 +297,26 @@ if(userid!=="All"){
                     </div>
                   </Link>
                 )}
+
+                  
+                  {
+                  (loggedUserRole === "Supervisor" || loggedUserRole === "DES" ? (
+                    <Link href="/condomsDistribution">
+                    <div className="text-center mr-5">
+                      <div className="rounded btn-yellow p-5 text-center shadow-xl   mb-2 rounded-xl">
+                        <button id="myBtn">
+                          <div className="flex justify-center">
+                            <img src="/manage_software_icon.svg" alt="" />
+                          </div>
+                          <p className="my-5 uppercase">
+                            Condoms <br />
+                            Distributed
+                          </p>
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </Link>
+                  ):"")}
               </div>
 
               <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
