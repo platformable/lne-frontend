@@ -14,40 +14,8 @@ import BackButton from "../components/BackButton";
 const CondomsDistributed = () => {
   const router = useRouter();
 
-  const reorderDate=()=>{
-    const todaysdate= new Date().toLocaleDateString()
-    console.log("todaysdate",todaysdate)
-    const ordered=todaysdate[2]-todaysdate[1]-todaysdate[0]
-    ordered.toString()
-    setFormData({...formData,date:ordered})
-
-    console.log("ordered",ordered)
-
-  }
-
-
- 
-  const crearFecha = () => {
-    const initialDate = new Date().toLocaleDateString();
-    const newDate = initialDate.split("/");
-    let fixedDate;
-    if (typeof window !== "undefined") {
-      const userLocale = window.navigator.language;
-      userLocale === "en-US"
-        ? (fixedDate = `${newDate[2]}-${
-            newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`
-          }-${newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`}`)
-        : (fixedDate = `${newDate[2]}-${
-            newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`
-          }-${newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`}`);
-    }
-    return fixedDate;
-  };
-
-  
-
   const [formData, setFormData] = useState({
-    date:new Date().toISOString().slice(0,10),
+    date: new Date().toISOString().slice(0, 10),
     kitsDistributed: "0",
     extCondomsDistributed: "0",
     intCondomsDistributed: "0",
@@ -78,43 +46,23 @@ const CondomsDistributed = () => {
     });
   };
 
-/*   const crearFecha = () => {
-    const initialDate = new Date().toLocaleDateString();
-    const newDate = initialDate.split("/");
-    let fixedDate;
-    if (typeof window !== "undefined") {
-      const userLocale = window.navigator.language;
-      userLocale === "en-US"
-        ? (fixedDate = `${newDate[2]}-${
-            newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`
-          }-${newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`}`)
-        : (fixedDate = `${newDate[2]}-${
-            newDate[1].length === 1 ? `0${newDate[1]}` : `${newDate[1]}`
-          }-${newDate[0].length === 1 ? `0${newDate[0]}` : `${newDate[0]}`}`);
-    }
-    return fixedDate;
-  }; */
-
-
-
   const handleForm = () => {
-    axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`, formData)
-        .then(data => {
-          notifyMessage()
-          setTimeout(()=>{
-            router.back()
-          },1500)
-          router.back()
-        }).catch(error => {
-          setError(error.message)
-          console.log(error)
-        })
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`,
+        formData
+      )
+      .then((data) => {
+        notifyMessage();
+        setTimeout(() => {
+          router.back();
+        }, 1500);
+        router.back();
+      })
       .catch(function (error) {
         console.log("error del server", error);
       });
   };
-
-  console.log("formData",formData)
 
   return (
     <>
@@ -137,7 +85,8 @@ const CondomsDistributed = () => {
               value={formData?.date}
               className="border-dark-blue rounded p-1"
               onChange={(e) => {
-                setFormData({ ...formData, date: e.target.value })}}
+                setFormData({ ...formData, date: e.target.value });
+              }}
             />
           </div>
         </div>
@@ -150,144 +99,140 @@ const CondomsDistributed = () => {
             <h3 className="text-dark-blue font-black">Material Distributed</h3>
 
             <CondomsDistributionRowComponent
-              bg={'extraLight'}
-             
+              bg={"extraLight"}
               title={"Safe Sex kits distributed"}
               setFormData={setFormData}
               name={"kitsDistributed"}
             />
 
             <CondomsDistributionRowComponent
-           bg={'light'}
+              bg={"light"}
               title={"External condoms distributed"}
               setFormData={setFormData}
               name={"extCondomsDistributed"}
             />
 
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Internal condoms distributed"}
               setFormData={setFormData}
               name={"intCondomsDistributed"}
             />
 
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Oral condoms distributed"}
               setFormData={setFormData}
               name={"oralCondomsDistributed"}
             />
 
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Lube satchets distributed"}
               setFormData={setFormData}
               name={"lubesDistributed"}
             />
 
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Dental dams distributed"}
               setFormData={setFormData}
               name={"dentalDamsDistributed"}
             />
-           
 
-           <h3 className="text-dark-blue font-black">People seen</h3>
+            <h3 className="text-dark-blue font-black">People seen</h3>
 
-           <CondomsDistributionRowComponent
-           bg={'extraLight'}
+            <CondomsDistributionRowComponent
+              bg={"extraLight"}
               title={"Number of men seen"}
               setFormData={setFormData}
               name={"Men"}
             />
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Number of woman seen"}
               setFormData={setFormData}
               name={"Women"}
             />
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Number of trans men seen"}
               setFormData={setFormData}
               name={"TransMen"}
             />
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Number of trans women seen"}
               setFormData={setFormData}
               name={"TransWomen"}
             />
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"None of gender not specified seen"}
               setFormData={setFormData}
               name={"GenderNotSpecified"}
             />
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Number of Hispanic seen"}
               setFormData={setFormData}
               name={"Hispanic"}
             />
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Number of African-American seen"}
               setFormData={setFormData}
               name={"AfricanAmerican"}
             />
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Number of Caucasian seen"}
               setFormData={setFormData}
               name={"Caucasian"}
             />
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Number of Asian seen"}
               setFormData={setFormData}
               name={"Asian"}
             />
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Number of people (race/ethnicity not specified) seen"}
               setFormData={setFormData}
               name={"RaceEthnicityNotSpecified"}
             />
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Number of people aged 19-24 seen"}
               setFormData={setFormData}
               name={"Aged19_24"}
             />
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Number of people aged 25-34 seen"}
               setFormData={setFormData}
               name={"Aged25_35"}
             />
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Number of people aged 35-44 seen"}
               setFormData={setFormData}
               name={"Aged35_44"}
             />
             <CondomsDistributionRowComponent
-             bg={'light'}
+              bg={"light"}
               title={"Number of people 45+ seen"}
               setFormData={setFormData}
               name={"Aged45"}
             />
             <CondomsDistributionRowComponent
-            bg={'extraLight'}
+              bg={"extraLight"}
               title={"Number of people age not specified seen"}
               setFormData={setFormData}
               name={"AgeNotSpecified"}
             />
           </section>
-
-          
 
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
