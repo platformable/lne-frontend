@@ -9,8 +9,8 @@ import AddClientModal from "../components/CreateClientModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dropbox } from "dropbox";
-import DashboardClientCard from '../components/DashboardClientCard'
-import { useRouter } from 'next/router'
+import DashboardClientCard from "../components/DashboardClientCard";
+import { useRouter } from "next/router";
 
 import Layout from "../components/Layout";
 import ImpactBaselineModal from "../components/ImpactBaselineModal";
@@ -21,38 +21,48 @@ export default function Dashboard({ data, hcworkers }) {
   const { user, error, isLoading } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showCreateClientModal, setShowCreateClientModal] = useState(false);
-  const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
-  const loggedUserStatus = user && user["https://lanuevatest.herokuapp.com/activestatus"];
-  const userId = user?.sub
+  const loggedUserRole =
+    user && user["https://lanuevatest.herokuapp.com/roles"];
+  const loggedUserStatus =
+    user && user["https://lanuevatest.herokuapp.com/activestatus"];
+  const userId = user?.sub;
   const [noDataMessage, setNoDataMessage] = useState(false);
-  const router = useRouter()
-  const [liveData,setLiveData]=useState(data)
-  const [loading,setLoading]=useState(true)
+  const router = useRouter();
+  const [liveData, setLiveData] = useState(data);
+  const [loading, setLoading] = useState(true);
 
-
-
-  const getUserClients = ()=> {
-
-    if(loggedUserRole !=="Supervisor" && loggedUserRole !=="DES" ){
-
-      const allClients= liveData.filter(client=>client.clienthcwid===userId).sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
-      const userClients = allClients.map((client,index)=>{
-
-        return (<DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>)
-      })
-      return userClients
+  const getUserClients = () => {
+    if (loggedUserRole !== "Supervisor" && loggedUserRole !== "DES") {
+      const allClients = liveData
+        .filter((client) => client.clienthcwid === userId)
+        .sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname));
+      const userClients = allClients.map((client, index) => {
+        return (
+          <DashboardClientCard
+            client={client}
+            key={index}
+            loggedUserRole={loggedUserRole}
+          />
+        );
+      });
+      return userClients;
     } else {
-
-      const hasMsaForm=liveData.filter(client=>client.msa_form_id!==null).sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
-     const userClients= hasMsaForm.map((client,index)=>{
-     return  <DashboardClientCard client={client} key={index} loggedUserRole={loggedUserRole}/>
-      })
-      return userClients
+      const hasMsaForm = liveData
+        .filter((client) => client.msa_form_id !== null)
+        .sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname));
+      const userClients = hasMsaForm.map((client, index) => {
+        return (
+          <DashboardClientCard
+            client={client}
+            key={index}
+            loggedUserRole={loggedUserRole}
+          />
+        );
+      });
+      return userClients;
     }
-
-    
-   }
-   const searchByClientIdOrClientName = (text) => {
+  };
+  const searchByClientIdOrClientName = (text) => {
     const result = data.filter(
       (client, index) =>
         client.clientfirstname.toLowerCase().includes(text.toLowerCase()) ||
@@ -67,25 +77,23 @@ export default function Dashboard({ data, hcworkers }) {
     }
   };
 
-  const searchByUserId =(userid)=>{
-
-if(userid!=="All"){
-    setLiveData(data)
-    const result = data.filter((client, index) => client.clienthcwid.toLowerCase()===userid.toLowerCase());
-    setLiveData(result);
-    if (result.length <= 0) {
-      setNoDataMessage(true);
+  const searchByUserId = (userid) => {
+    if (userid !== "All") {
+      setLiveData(data);
+      const result = data.filter(
+        (client, index) =>
+          client.clienthcwid.toLowerCase() === userid.toLowerCase()
+      );
+      setLiveData(result);
+      if (result.length <= 0) {
+        setNoDataMessage(true);
+      } else {
+        setNoDataMessage(false);
+      }
     } else {
-      setNoDataMessage(false);
+      setLiveData(data);
     }
-} else {
-  setLiveData(data)
-}
-
-
-  
-  }
-
+  };
 
   const notifyMessage = () => {
     toast.success("A new client is being created!", {
@@ -94,21 +102,27 @@ if(userid!=="All"){
   };
 
   const displayUserList = () => {
-   return hcworkers && hcworkers.map((user, index) => {
-
-      return (
-        <option className="text-black" value={user.user_id} key={index}>
-          {user.name} {user.lastname}
-        </option>
-      );
-    });
+    return (
+      hcworkers &&
+      hcworkers.map((user, index) => {
+        return (
+          <option className="text-black" value={user.user_id} key={index}>
+            {user.name} {user.lastname}
+          </option>
+        );
+      })
+    );
   };
 
-    useEffect(()=>{
-    loggedUserRole==="Supervisor" ? router.push("/supervisorDashboard"):setLoading(false)
-    loggedUserStatus==="No Active" ? router.push("/api/auth/logout"):setLoading(false)
-    },[loggedUserRole,loggedUserStatus])
-
+  useEffect(() => {
+    console.log(loggedUserRole)
+    loggedUserRole === "Supervisor"
+      ? router.push("/supervisorDashboard")
+      : setLoading(false);
+    loggedUserStatus === "No Active"
+      ? router.push("/api/auth/logout")
+      : setLoading(false);
+  }, [loggedUserRole, loggedUserStatus]);
 
   return (
     <>
@@ -120,25 +134,34 @@ if(userid!=="All"){
       </Head>
 
       <Layout>
-      <main className="bg-light-blue h-screen">
-        <section id="dashboard-client-list">
-          <div className="container mx-auto py-5">
-          {loading ? <Loader/> : (<>
-            
-            <h1 className="font-black py-5">
-              Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
-            </h1>
-           
-            <button
-      onClick={() => router.push("/condomsDistribution")}
-      className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
-    >
-      
-      Supplies distribution
-    </button>
-            
+        <main className="bg-light-blue h-full">
+          <section id="dashboard-client-list">
+            <div className="container mx-auto py-5">
+              {loading ? (
+                <Loader />
+              ) : (
+                <>
+                  <h1 className="font-black py-5">
+                    Hello{" "}
+                    {user && user["https://lanuevatest.herokuapp.com/name"]}
+                  </h1>
 
-              {/* <div className="flex mb-2">
+                  <button
+                    onClick={() => router.push("/condomsDistribution")}
+                    className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
+                  >
+                    Supplies distribution
+                  </button>
+                  { loggedUserRole === "HCW" && 
+                    <button
+                    onClick={() => router.push("/supportGroups")}
+                    className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
+                  >
+                    Support Groups
+                  </button>
+                  }
+
+                  {/* <div className="flex mb-2">
               {loggedUserRole === "Supervisor" && (
                 <Link href="/users">
                   <div className="text-center mr-5">
@@ -175,105 +198,117 @@ if(userid!=="All"){
               )}
             </div> */}
 
-            <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
-            {loggedUserRole==="DES" && (
-                <div className="search-box flex  items-center">
-                  <p className="mr-5">Search by name or Client ID</p>
+                  <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
+                    {loggedUserRole === "DES" && (
+                      <div className="search-box flex  items-center">
+                        <p className="mr-5">Search by name or Client ID</p>
 
-                  <div className="flex ">
-                    <div className="flex border-1 border-black rounded-lg  rounded-lg">
-                      <input
-                        type="text"
-                        className="px-4  w-80 rounded-lg "
-                        placeholder="Search..."
-                        onChange={(e) =>
-                          searchByClientIdOrClientName(e.target.value)
-                        }
-                      />
-                      <button className="px-4 py-1 text-white bg-dark-blue border-l rounded">
-                        <svg
-                          width="24"
-                          height="24"
-                          strokeWidth="1.5"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div className="flex ">
+                          <div className="flex border-1 border-black rounded-lg  rounded-lg">
+                            <input
+                              type="text"
+                              className="px-4  w-80 rounded-lg "
+                              placeholder="Search..."
+                              onChange={(e) =>
+                                searchByClientIdOrClientName(e.target.value)
+                              }
+                            />
+                            <button className="px-4 py-1 text-white bg-dark-blue border-l rounded">
+                              <svg
+                                width="24"
+                                height="24"
+                                strokeWidth="1.5"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M15.5 15.5L19 19"
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                <path
+                                  d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z"
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {loggedUserRole === "DES" && (
+                      <div className="search-box flex items-center justify-end gap-3">
+                        <p>Filter by HCW</p>
+                        <img src="" alt="" />
+                        <select
+                          onChange={(e) => searchByUserId(e.target.value)}
+                          className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
                         >
-                          <path
-                            d="M15.5 15.5L19 19"
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z"
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
+                          <option selected="true" disabled="disabled">
+                            Select HCW
+                          </option>
+                          <option onClick={() => searchByUserId("")}>
+                            All
+                          </option>
+                          {displayUserList()}
+                        </select>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="dashboard-client-list ">
+                    {loggedUserRole !== "Supervisor" && (
+                      <>
+                        <h1 className="font-black text-center my-5">Clients</h1>
+                        {data.length <= 0 && (
+                          <p className="text-center">
+                            No clients has been added
+                          </p>
+                        )}
+                        {noDataMessage && (
+                          <p className="text-center">
+                            No clients has been added with that name or id
+                          </p>
+                        )}
+                      </>
+                    )}
+
+                    <div className="dashboard-clients-container grid md:grid-cols-5 grid.cols-1 md:px-0 px-5 gap-5">
+                      {loggedUserRole === "HCW" && (
+                        <div
+                          className="p-5 text-center mb-2  text-center btn-darkBlue rounded shadow-xl rounded-xl text-white"
+                          onClick={() =>
+                            setShowCreateClientModal(!showCreateClientModal)
+                          }
+                        >
+                          <div className="  ">
+                            <button id="myBtn">
+                              <div className="flex justify-center">
+                                <img
+                                  src="/add_new_client_icon.svg"
+                                  width={104}
+                                  alt=""
+                                />
+                              </div>
+                            </button>
+                          </div>{" "}
+                          <p className="my-5 lne-text-white">ADD NEW CLIENT</p>
+                        </div>
+                      )}
+
+                      {loggedUserRole !== "Supervisor" && getUserClients()}
                     </div>
                   </div>
-                </div>)}
-
-                {loggedUserRole==="DES" && (
-              <div className="search-box flex items-center justify-end gap-3">
-               
-                
-                  <p>Filter by HCW</p> 
-                <img src="" alt="" />
-              <select
-                    onChange={(e)=>searchByUserId(e.target.value)}
-                      className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
-                    >
-                      <option selected="true" disabled="disabled">Select HCW</option>
-                      <option onClick={()=>searchByUserId("")}>All</option>
-                      {displayUserList()}
-                 
-                    </select>
-              </div>
+                </>
               )}
-
-              </div>
-              
-          
-              <div className="dashboard-client-list ">
-             {loggedUserRole !=='Supervisor' &&  <><h1 className="font-black text-center my-5">Clients</h1>
-              {data.length<=0 && <p className="text-center">No clients has been added</p>}
-              {noDataMessage && <p className="text-center">No clients has been added with that name or id</p>}
-              </>
-            }
-             
-             
-              <div className="dashboard-clients-container grid md:grid-cols-5 grid.cols-1 md:px-0 px-5 gap-5">
-               {loggedUserRole ==="HCW"  && 
-              <div className="p-5 text-center mb-2  text-center btn-darkBlue rounded shadow-xl rounded-xl text-white"
-                onClick={() => setShowCreateClientModal(!showCreateClientModal)}
-              >
-                <div className="  ">
-                  <button id="myBtn">
-                    <div className="flex justify-center">
-                    <img src="/add_new_client_icon.svg" width={104} alt="" />
-                    </div>
-                  </button>
-                </div>{" "}
-                <p className="my-5 lne-text-white">ADD NEW CLIENT</p>
-              </div>
-            }
-
-              {loggedUserRole !=='Supervisor' && getUserClients()}
-          
-              </div>
             </div>
-          </>)}
-            
-
-           
-            
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
       </Layout>
 
       {showModal && (
@@ -287,7 +322,6 @@ if(userid!=="All"){
           user={user}
         />
       )}
-      
     </>
   );
 }

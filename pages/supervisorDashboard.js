@@ -8,9 +8,7 @@ import AddUserModal from "../components/AddUserModal";
 import AddClientModal from "../components/CreateClientModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Dropbox } from "dropbox";
-import DashboardClientCard from "../components/DashboardClientCard";
-
+import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import ImpactBaselineModal from "../components/ImpactBaselineModal";
 
@@ -26,6 +24,8 @@ export default function SupervisorDashboard({ msaforms, serviceactionplans }) {
     user && user["https://lanuevatest.herokuapp.com/roles"];
   const userId = user?.sub;
   const [noDataMessage, setNoDataMessage] = useState(false);
+  const router = useRouter();
+
 
   /*   const [liveData,setLiveData]=useState(data) */
 
@@ -166,6 +166,12 @@ if(userid!=="All"){
                 <h1 className="font-black py-5 md:px-0 px-5">
                   Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
                 </h1>
+                <button
+                    onClick={() => router.push("/supportGroups")}
+                    className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
+                  >
+                    Support Groups
+                  </button>
                {/*  <div className="supervisor-dashboard-top-container  px-5 py-5 mb-1 bg-white">
                   <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
                     <div>
