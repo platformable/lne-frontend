@@ -145,13 +145,14 @@ export default function Dashboard({ data, hcworkers }) {
                     Hello{" "}
                     {user && user["https://lanuevatest.herokuapp.com/name"]}
                   </h1>
-
+                  { loggedUserRole === "DES" && 
                   <button
                     onClick={() => router.push("/condomsDistribution")}
                     className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
                   >
                     Supplies distribution
                   </button>
+                  }
                   { loggedUserRole === "HCW" && 
                     <button
                     onClick={() => router.push("/supportGroups")}
