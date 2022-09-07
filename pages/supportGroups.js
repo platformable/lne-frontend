@@ -91,10 +91,11 @@ const SupportGroups = () => {
               <section id="save" className="my-5">
                 <div className="container mx-auto flex justify-center">
                   <button
-                    className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
+                    className="flex gap-x-2 items-center bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
                     onClick={submitForm}
                   >
-                    Save and close
+                    <img src="/check-save-and-finish.svg" alt="check and save icon" />
+                    Save
                   </button>
                 </div>
               </section>

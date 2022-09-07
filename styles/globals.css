@@ -82,7 +82,7 @@ h6 {
   --lightRed: #f9735b;
   --middleGreen: #82fdad;
   --middleWhite: #f7f9fc;
-
+  --middlePurple: #ccb9ff;
 }
 
 .lne-text-white {
@@ -295,6 +295,9 @@ input[type="number"] {
 }
 .bg-middle-white {
   background-color: var(--middleWhite);
+}
+.bg-middle-purple {
+  background-color: var(--middlePurple);
 }
 
 /* BORDERS */
