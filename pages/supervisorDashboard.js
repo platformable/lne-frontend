@@ -166,12 +166,7 @@ if(userid!=="All"){
                 <h1 className="font-black py-5 md:px-0 px-5">
                   Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
                 </h1>
-                <button
-                    onClick={() => router.push("/supportGroups")}
-                    className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
-                  >
-                    Support Groups
-                  </button>
+                
                {/*  <div className="supervisor-dashboard-top-container  px-5 py-5 mb-1 bg-white">
                   <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
                     <div>
@@ -309,10 +304,10 @@ if(userid!=="All"){
                   (loggedUserRole === "Supervisor" || loggedUserRole === "DES" ? (
                     <Link href="/condomsDistribution">
                     <div className="text-center mr-5">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl   mb-2 rounded-xl">
+                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl   mb-2 rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/manage_software_icon.svg" alt="" />
+                            <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={73}/>
                           </div>
                           <p className="my-5 uppercase">
                             Condoms <br />
@@ -323,6 +318,25 @@ if(userid!=="All"){
                     </div>
                   </Link>
                   ):"")}
+                  {
+                  (loggedUserRole === "Supervisor"  ? (
+                    <Link href="/supportGroups">
+                    <div className="text-center mr-5">
+                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl   mb-2 rounded-xl">
+                        <button id="myBtn">
+                          <div className="flex justify-center">
+                            <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={52}/>
+                          </div>
+                          <p className="my-5 uppercase">
+                            Support <br />
+                            Groups
+                          </p>
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </Link>
+                  ):"")}
+                  
               </div>
 
               <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
