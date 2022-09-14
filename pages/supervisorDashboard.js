@@ -219,20 +219,20 @@ if(userid!=="All"){
                   </div>
                 </div> */}
               </section>
-              <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+              <h1 className="mb-10 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
-              <div className="grid md:grid-cols-6 grid-cols-1 mb-2">
+              <div className="grid md:grid-cols-6 grid-cols-1 gap-5 mb-2">
                 {loggedUserRole === "Supervisor" && (
                   <Link href="/users">
-                    <div className="text-center mr-5 ">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl   mb-2 rounded-xl">
+                    <div className="text-center  ">
+                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
                             <img src="/manage-users-icon.svg" alt="" />
                           </div>
-                          <p className="my-5">
+                          <p className="mt-5">
                             MANAGE <br /> USERS
                           </p>
                         </button>
@@ -243,13 +243,13 @@ if(userid!=="All"){
 
                 {loggedUserRole === "Supervisor" && (
                   <Link href="/clients">
-                    <div className="text-center mr-5">
-                      <div className="rounded btn-darkBlue p-5 text-center shadow-xl   mb-2 rounded-xl">
+                    <div className="text-center ">
+                      <div className="rounded btn-darkBlue p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
                             <img src="/manage-clients-icon.svg" alt="" />
                           </div>
-                          <p className="my-5 text-white">
+                          <p className="mt-5 text-white">
                             MANAGE <br />
                             CLIENTS
                           </p>
@@ -261,8 +261,8 @@ if(userid!=="All"){
 
                 {loggedUserRole === "Supervisor" && (
                   <Link href="/services">
-                    <div className="text-center mr-5">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl   mb-2 rounded-xl">
+                    <div className="text-center ">
+                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
                             <img
@@ -271,7 +271,7 @@ if(userid!=="All"){
                               alt=""
                             />
                           </div>
-                          <p className="my-5">
+                          <p className="mt-5">
                             MANAGE <br />
                             SERVICES
                           </p>
@@ -283,13 +283,13 @@ if(userid!=="All"){
 
                 {loggedUserRole === "Supervisor" && (
                   <Link href="/software">
-                    <div className="text-center mr-5">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl   mb-2 rounded-xl">
+                    <div className="text-center ">
+                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
                             <img src="/manage_software_icon.svg" alt="" />
                           </div>
-                          <p className="my-5">
+                          <p className="mt-5">
                             MANAGE <br />
                             SOFTWARE
                           </p>
@@ -303,13 +303,13 @@ if(userid!=="All"){
                   {
                   (loggedUserRole === "Supervisor" || loggedUserRole === "DES" ? (
                     <Link href="/condomsDistribution">
-                    <div className="text-center mr-5">
-                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl   mb-2 rounded-xl">
+                    <div className="text-center ">
+                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
                             <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={73}/>
                           </div>
-                          <p className="my-5 uppercase">
+                          <p className="mt-5 uppercase">
                             Condoms <br />
                             Distributed
                           </p>
@@ -321,13 +321,13 @@ if(userid!=="All"){
                   {
                   (loggedUserRole === "Supervisor"  ? (
                     <Link href="/supportGroups">
-                    <div className="text-center mr-5">
-                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl   mb-2 rounded-xl">
+                    <div className="text-center ">
+                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
                             <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={52}/>
                           </div>
-                          <p className="my-5 uppercase">
+                          <p className="mt-5 uppercase">
                             Support <br />
                             Groups
                           </p>
@@ -343,7 +343,7 @@ if(userid!=="All"){
                 {loggedUserRole === "Supervisor" ||
                   (loggedUserRole === "DES" && (
                     <div className="search-box flex  items-center">
-                      <p className="mr-5">Search by name or Client ID</p>
+                      <p className="">Search by name or Client ID</p>
 
                       <div className="flex ">
                         <div className="flex border-1 border-black rounded-lg  rounded-lg">
