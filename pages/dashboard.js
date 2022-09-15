@@ -320,9 +320,10 @@ console.log("data",data)
                         </div>
                       )}
 
-                      {loggedUserRole !== "Supervisor" ? 
+                      {loggedUserRole !== "Supervisor"  && loggedUserRole !=='HCW'? 
                       
                       data
+                      //.filter((client) => client.clienthcwid === userId)
                       .filter((client, index) => {
                         if (searchWord === "") {
                           return client;
@@ -351,7 +352,39 @@ console.log("data",data)
                             loggedUserRole={loggedUserRole}
                           />
                         )
-                      }):""}
+                      }):
+                      data
+                      .filter((client) => client.clienthcwid === userId)
+                      .filter((client, index) => {
+                        if (searchWord === "") {
+                          return client;
+                        } 
+                        if (client.clientfirstname.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        client.clientid.toLowerCase().includes(searchWord.toLowerCase())
+                        ) {
+                          return client;
+                        } 
+                      })
+                      .filter((client, index) => {
+                        if (searchByUser === "All") {
+                          return client;
+                        } 
+                        if (client.clienthcwid === searchByUser )
+                         {
+                          return client;
+                        } 
+                      })
+                      .sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
+                      .map((client,index)=>{
+                        return (
+                          <DashboardClientCard
+                            client={client}
+                            key={index}
+                            loggedUserRole={loggedUserRole}
+                          />
+                        )
+                      })
+                      }
                     </div>
                   </div>
                 </>
@@ -381,7 +414,7 @@ console.log("data",data)
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const [data, hcworkers] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/dashboard_page`).then((r) =>
         r.json()
       ),
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`).then((r) =>
