@@ -20,6 +20,8 @@ const ClientsIndex = ({ data, hcworkers }) => {
   const [liveData, setLiveData] = useState(data);
   const [loading, setLoading] = useState(true);
   const [noDataMessage, setNoDataMessage] = useState(false);
+  const [searchWord, setSearchWord] = useState("");
+  const [searchByUser,setSearchByUser]=useState("All")
 
   const notifyMessage = () => {
     toast.success("A new client is being created!", {
@@ -103,6 +105,10 @@ const ClientsIndex = ({ data, hcworkers }) => {
       return userClients;
     }
   };
+
+  const searchFunction = (word) => {
+    setSearchWord(word);
+  };
   return (
     <Layout>
       <ToastContainer autoClose={2000} />
@@ -127,7 +133,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
                     className="px-4  w-80 rounded-lg"
                     placeholder="Search..."
                     onChange={(e) =>
-                      searchByClientIdOrClientName(e.target.value)
+                      searchFunction(e.target.value)
                     }
                   />
                   <button className="px-4 py-1 text-white bg-dark-blue border-l rounded">
@@ -161,13 +167,13 @@ const ClientsIndex = ({ data, hcworkers }) => {
               <p>Filter by HCW</p>
               <img src="" alt="" />
               <select
-                onChange={(e) => searchByUserId(e.target.value)}
+              onChange={(e) => setSearchByUser(e.target.value)}
                 className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
               >
                 <option selected="true" disabled="disabled">
                   Select HCW
                 </option>
-                <option onClick={() => searchByUserId("")}>All</option>
+                <option onClick={() => setSearchByUser("All")}>All</option>
                 {displayUserList()}
               </select>
             </div>
@@ -197,7 +203,36 @@ const ClientsIndex = ({ data, hcworkers }) => {
             </div>
 
             
-            {getUserClients()}
+            { data
+                      .filter((client, index) => {
+                        if (searchWord === "") {
+                          return client;
+                        } 
+                        if (client.clientfirstname.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        client.clientid.toLowerCase().includes(searchWord.toLowerCase())
+                        ) {
+                          return client;
+                        } 
+                      })
+                      .filter((client, index) => {
+                        if (searchByUser === "All") {
+                          return client;
+                        } 
+                        if (client.clienthcwid === searchByUser )
+                         {
+                          return client;
+                        } 
+                      })
+                      .sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
+                      .map((client,index)=>{
+                        return (
+                          <DashboardClientCard
+                            client={client}
+                            key={index}
+                            loggedUserRole={loggedUserRole}
+                          />
+                        )
+                      })}
           </div>
         </div>
       </section>
