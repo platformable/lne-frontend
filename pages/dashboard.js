@@ -160,7 +160,7 @@ console.log("data",data)
                        <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/>
                        <p className="p-2 uppercase">
                          Condoms 
-                         Distributed
+                         distributed
                        </p>
                      </button>
                    </div>
@@ -172,9 +172,11 @@ console.log("data",data)
                   { loggedUserRole === "HCW" && 
                     <button
                     onClick={() => router.push("/supportGroups")}
-                    className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
+                    className="bg-middle-purple hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex gap-x-3 items-center"
                   >
-                    Support Groups
+                       <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={24}/>
+
+                    Support groups
                   </button>
                   }
 
