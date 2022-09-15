@@ -30,8 +30,10 @@ export default function Dashboard({ data, hcworkers }) {
   const router = useRouter();
   const [liveData, setLiveData] = useState(data);
   const [loading, setLoading] = useState(true);
+  const [searchWord, setSearchWord] = useState("");
+  const [searchByUser,setSearchByUser]=useState("All")
 
-  const getUserClients = () => {
+/*   const getUserClients = () => {
     if (loggedUserRole !== "Supervisor" && loggedUserRole !== "DES") {
       const allClients = liveData
         .filter((client) => client.clienthcwid === userId)
@@ -61,8 +63,8 @@ export default function Dashboard({ data, hcworkers }) {
       });
       return userClients;
     }
-  };
-  const searchByClientIdOrClientName = (text) => {
+  }; */
+/*   const searchByClientIdOrClientName = (text) => {
     const result = data.filter(
       (client, index) =>
         client.clientfirstname.toLowerCase().includes(text.toLowerCase()) ||
@@ -75,9 +77,9 @@ export default function Dashboard({ data, hcworkers }) {
     } else {
       setNoDataMessage(false);
     }
-  };
+  }; */
 
-  const searchByUserId = (userid) => {
+/*   const searchByUserId = (userid) => {
     if (userid !== "All") {
       setLiveData(data);
       const result = data.filter(
@@ -93,7 +95,7 @@ export default function Dashboard({ data, hcworkers }) {
     } else {
       setLiveData(data);
     }
-  };
+  }; */
 
   const notifyMessage = () => {
     toast.success("A new client is being created!", {
@@ -113,9 +115,13 @@ export default function Dashboard({ data, hcworkers }) {
       })
     );
   };
-
+  const searchFunction = (word) => {
+    setSearchWord(word);
+  };
+  console.log("searchByUser",searchByUser)
   useEffect(() => {
-    console.log(loggedUserRole)
+console.log("data",data)
+
     loggedUserRole === "Supervisor"
       ? router.push("/supervisorDashboard")
       : setLoading(false);
@@ -145,14 +151,24 @@ export default function Dashboard({ data, hcworkers }) {
                     Hello{" "}
                     {user && user["https://lanuevatest.herokuapp.com/name"]}
                   </h1>
-                  { loggedUserRole === "DES" && 
-                  <button
-                    onClick={() => router.push("/condomsDistribution")}
-                    className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex items-center"
-                  >
-                    Supplies distribution
-                  </button>
+                  <div className="grid md:grid-cols-5 grid-cols-1 gap-5 mb-10">
+                { loggedUserRole === "DES" && 
+                 <Link href="/condomsDistribution">
+                 <div className="">
+                   <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center">
+                     <button id="myBtn" className="flex  items-center justify-center">
+                       <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/>
+                       <p className="p-2 uppercase">
+                         Condoms 
+                         Distributed
+                       </p>
+                     </button>
+                   </div>
+                 </div>
+               </Link>
                   }
+                  </div>
+                 
                   { loggedUserRole === "HCW" && 
                     <button
                     onClick={() => router.push("/supportGroups")}
@@ -211,7 +227,7 @@ export default function Dashboard({ data, hcworkers }) {
                               className="px-4  w-80 rounded-lg "
                               placeholder="Search..."
                               onChange={(e) =>
-                                searchByClientIdOrClientName(e.target.value)
+                                searchFunction(e.target.value)
                               }
                             />
                             <button className="px-4 py-1 text-white bg-dark-blue border-l rounded">
@@ -247,13 +263,13 @@ export default function Dashboard({ data, hcworkers }) {
                         <p>Filter by HCW</p>
                         <img src="" alt="" />
                         <select
-                          onChange={(e) => searchByUserId(e.target.value)}
+                          onChange={(e) => setSearchByUser(e.target.value)}
                           className="text-xs  w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
                         >
                           <option selected="true" disabled="disabled">
                             Select HCW
                           </option>
-                          <option onClick={() => searchByUserId("")}>
+                          <option onClick={() => setSearchByUser("All")}>
                             All
                           </option>
                           {displayUserList()}
@@ -302,7 +318,38 @@ export default function Dashboard({ data, hcworkers }) {
                         </div>
                       )}
 
-                      {loggedUserRole !== "Supervisor" && getUserClients()}
+                      {loggedUserRole !== "Supervisor" ? 
+                      
+                      data
+                      .filter((client, index) => {
+                        if (searchWord === "") {
+                          return client;
+                        } 
+                        if (client.clientfirstname.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        client.clientid.toLowerCase().includes(searchWord.toLowerCase())
+                        ) {
+                          return client;
+                        } 
+                      })
+                      .filter((client, index) => {
+                        if (searchByUser === "All") {
+                          return client;
+                        } 
+                        if (client.clienthcwid === searchByUser )
+                         {
+                          return client;
+                        } 
+                      })
+                      .sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
+                      .map((client,index)=>{
+                        return (
+                          <DashboardClientCard
+                            client={client}
+                            key={index}
+                            loggedUserRole={loggedUserRole}
+                          />
+                        )
+                      }):""}
                     </div>
                   </div>
                 </>
