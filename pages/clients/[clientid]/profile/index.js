@@ -9,6 +9,7 @@ import infoIcon from "../../../../public/client/info-icon.svg"
 import userIcon from "../../../../public/client/USERicon.svg"
 
 import { useRouter } from "next/router";
+import Tabla from "../../../../components/Tabla";
 
 export function getDatex (string) {
     const date = new Date(string)
@@ -417,6 +418,7 @@ console.log(data[0])
               </div>
             </div>
           </section>
+          <Tabla/>
         </div>
       </Layout>
     </>
