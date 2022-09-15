@@ -10,6 +10,9 @@ import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineD
 import infoIcon from "../../../../public/client/info-icon.svg"
 import userIcon from "../../../../public/client/USERicon.svg"
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useRouter } from "next/router";
 
 export function getDatex (string) {
@@ -36,7 +39,7 @@ const getDate=(date)=>{
   return newDate
   }  
 
-export default function ClientProfilePage({ data }) {
+export default function ClientProfilePage({ data,impactBaseline }) {
 
   const [showEditClientModal,setShowEditClientModal]=useState(false)
 
@@ -48,7 +51,7 @@ export default function ClientProfilePage({ data }) {
   const router = useRouter()
 
 
-  console.log("showEditClientModal",showEditClientModal)
+  console.log("impactBaseline",impactBaseline)
 
   const [message1,setMessage1]=useState({
     result:"",
@@ -169,11 +172,16 @@ export default function ClientProfilePage({ data }) {
       </div>
     )
   }
-
+  const notifyMessage = () => {
+    toast.success("Updating client", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
 
   return (
     <>
       <Layout>
+      <ToastContainer autoClose={3000} />
         <div className=" bg-light-blue h-screen">
           <section className="py-5 container mx-auto md:px-0 px-5">
             <div className="flex gap-x-3">
@@ -432,18 +440,41 @@ export default function ClientProfilePage({ data }) {
           </section>
         </div>
       </Layout>
-      {showEditClientModal && <EditClientModal user={user} data={data} showEditClientModal={showEditClientModal} setShowEditClientModal={setShowEditClientModal}/>}
+      {showEditClientModal && <EditClientModal user={user} data={data} 
+      showEditClientModal={showEditClientModal} 
+      setShowEditClientModal={setShowEditClientModal}
+      notifyMessage={notifyMessage}/>}
     </>
   );
 }
 
-export const getServerSideProps = withPageAuthRequired({
+/* export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
     const  response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`);
     const data = await  response.json();
     return { props: { data } };
   },
-});
+}); */
 
+
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+
+    let { clientid } = ctx.params;
+    const [data, impactBaseline] = await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`).then((r) =>
+        r.json()
+      ),
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`).then((r) =>
+        r.json()
+      ),
+    ]);
+    return { props: { data: data, impactBaseline: impactBaseline } };
+
+    /*  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
+    const data = await res.json();
+    return { props: { data } }; */
+  },
+});
 

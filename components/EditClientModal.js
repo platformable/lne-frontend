@@ -13,10 +13,6 @@ export default function EditClientModal({
   const loggedUserName=user[`https://lanuevatest.herokuapp.com/name`]
   const loggedUserLastname=user[`https://lanuevatest.herokuapp.com/lastname`]
 
-  const {current:a} = useRef(['a'])
-
-
-  console.log("data from edit",data)
 
   const client = data[0]
 
@@ -26,23 +22,24 @@ export default function EditClientModal({
   const [emptyFields,setEmptyFields]=useState(false)
   const [errorsInFields,setErrorsInFields]=useState(false)
 
-
+console.log("client",client)
 
 
   const removeFirstLetterOfId = client.clientid.slice(1);
 const IdWithNoLetters = removeFirstLetterOfId.slice(0,-1);
 
   const [clientData,setClientData]= useState({
+    id:client?.id,
     clientFirstName:client?.clientfirstname,
     clientLastName:client?.clientlastname,
     clientSSN:Number(IdWithNoLetters),
-    clientDateCreated:new Date(),
-    clientActive:client.clientactive ==='1' ? "1": "0",
-    clientHCWID: loggeduserId !== "Supervisor" ? user.sub : "",
-    clientHCWName: "MURRAY",
-    clientHCWLastname:  loggeduserId !== "Supervisor" ? loggedUserLastname : client.clienthcwlastname,
+    clientDateCreated:new Date(client.clientdatecreated),
+    clientActive:client?.clientactive ==='1' ? "1": "0",
+    clientHCWID: client?.clienthcwid,
+    clientHCWName: client?.clienthcwname,
+    clientHCWLastname:  loggeduserId !== "Supervisor" ? loggedUserLastname : client?.clienthcwlastname,
     clientID:"",
-    clientHCWemail:loggeduserId !== "Supervisor" ? user.email : client.clientHCWemail,
+    clientHCWemail:loggeduserId !== "Supervisor" ? user.email : client?.clienthcwemail,
     clientCategory:client?.clientcategory || ""
   })
 
@@ -70,7 +67,7 @@ const IdWithNoLetters = removeFirstLetterOfId.slice(0,-1);
   }
 
   const changeSaving=(error)=>{
-    if(error.response.status===409){
+    if(error){
       setSaving(prevSelected => {return !prevSelected })
     }
   }
@@ -95,22 +92,21 @@ else if(
 || clientData.clientLastName.match(/[^a-zA-Z]/)
 ||  */clientData.clientSSN.length <= 3 ||clientData.clientSSN.length >4 ){checkErrorsFields()}
  else{
-  axios(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`,{
-    method:'POST',
+  axios(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/update/${clientData.id}`,{
+    method:'PUT',
     headers: {
      'Accept': 'application/json',
      'Content-Type': 'application/json'
    },
    data: clientData
   })
- .then(function (response) {
-   if(response.status===200 || response.statusText==='Ok'){
-     setShowCreateClientModal(!showCreateClientModal)
-     notifyMessage()
-     setTimeout(()=>{
-       router.reload()
-     },50000)
-   } 
+ .then(response => {
+  console.log("response",response)
+  notifyMessage();
+  setTimeout(() => {
+    router.reload();
+  }, 1000);
+     setShowEditClientModal(!showEditClientModal);
  })
  .catch(function (error) {
    //showErrors(error.response.data)
@@ -138,7 +134,7 @@ console.log("clientData",clientData)
   useEffect(()=>{
     getUsers()
     createClientId()
-  /*   assignUser(clientData.clientHCWID) */
+
 },[clientData.clientFirstName,clientData.clientLastName,clientData.clientSSN,saving,clientData.clientHCWName])
 
 
@@ -204,7 +200,7 @@ console.log("clientData",clientData)
 
               </div>
                {(clientData.clientSSN?.length ===0 || clientData.clientSSN?.length ===4 ) ? null :
-               clientData.clientSSN?.length >4 ? <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p> : <p className="text-red-500 text-xs mt-2">Must be 4 numbers </p>}
+               clientData.clientSSN?.length <4 ? <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p> : <p className="text-red-500 text-xs mt-2">Must be 4 numbers </p>}
             </label>
             {/*  <label className="block">
             <span className="text-gray-700">When is your event?</span>
@@ -217,10 +213,12 @@ console.log("clientData",clientData)
             <label className="block">
             <span className="text-white">Asign user</span>
             <select
-            value={clientData?.clientHCWName}
+             /*  defaultValue={clientData.clientHCWName} */
+              value={clientData.clientHCWName}
               onChange={(e) =>{assignUser(e.target.value)}}
               className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             >
+              <option disabled>{clientData.clientHCWName}</option>
                 {users && users?.map((user,index)=>{
               return <option value={user.user_id} key={index}>{user.name}</option>
                 })}
