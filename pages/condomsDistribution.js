@@ -71,7 +71,7 @@ const CondomsDistributed = () => {
         <div className="container mx-auto my-5">
           <BackButton />
           <h1 className="font-black  my-5">
-            Condoms Distribution and Client recruitment
+            Condoms distributed
           </h1>
 
           <div className="flex gap-x-5 items-center">
@@ -140,95 +140,98 @@ const CondomsDistributed = () => {
               name={"dentalDamsDistributed"}
             />
 
-            <h3 className="text-dark-blue font-black">People seen</h3>
+            <h3 className="text-dark-blue font-black">People collecting safe sex resources</h3>
 
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"Number of men seen"}
+              title={"Men"}
               setFormData={setFormData}
               name={"Men"}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"Number of woman seen"}
+              title={"Women"}
               setFormData={setFormData}
               name={"Women"}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"Number of trans men seen"}
+              title={"Trans men"}
               setFormData={setFormData}
               name={"TransMen"}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"Number of trans women seen"}
+              title={"Trans women"}
               setFormData={setFormData}
               name={"TransWomen"}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"None of gender not specified seen"}
+              title={"People accessing resources (gender not-specified)"}
               setFormData={setFormData}
               name={"GenderNotSpecified"}
             />
+            <hr className="my-4"/>
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"Number of Hispanic seen"}
+              title={"Hispanic people"}
               setFormData={setFormData}
               name={"Hispanic"}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"Number of African-American seen"}
+              title={"African-American people "}
               setFormData={setFormData}
               name={"AfricanAmerican"}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"Number of Caucasian seen"}
+              title={"Caucasian people"}
               setFormData={setFormData}
               name={"Caucasian"}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"Number of Asian seen"}
+              title={"Asian people"}
               setFormData={setFormData}
               name={"Asian"}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"Number of people (race/ethnicity not specified) seen"}
+              title={"People accessing resources (race/ethnicity not specified)"}
               setFormData={setFormData}
               name={"RaceEthnicityNotSpecified"}
             />
+            <hr className="my-4" />
+
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"Number of people aged 19-24 seen"}
+              title={"People aged 19-24"}
               setFormData={setFormData}
               name={"Aged19_24"}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"Number of people aged 25-34 seen"}
+              title={"People aged 25 - 34"}
               setFormData={setFormData}
               name={"Aged25_35"}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"Number of people aged 35-44 seen"}
+              title={"People aged 35 - 44"}
               setFormData={setFormData}
               name={"Aged35_44"}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"Number of people 45+ seen"}
+              title={"People 45+"}
               setFormData={setFormData}
               name={"Aged45"}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"Number of people age not specified seen"}
+              title={"People accessing resources (age not specified)"}
               setFormData={setFormData}
               name={"AgeNotSpecified"}
             />
