@@ -4,6 +4,8 @@ import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import Image from "next/image";
 import BackToDashboardButton from '../../../../components/BackToDashboardButton'
+import EditClientModal from "../../../../components/EditClientModal";
+import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineData";
 
 import infoIcon from "../../../../public/client/info-icon.svg"
 import userIcon from "../../../../public/client/USERicon.svg"
@@ -36,15 +38,17 @@ const getDate=(date)=>{
 
 export default function ClientProfilePage({ data }) {
 
-console.log(data[0])
+  const [showEditClientModal,setShowEditClientModal]=useState(false)
 
- /*  const clientJoinedDate = getDate(new Date())
-  const cleanDate = setLocaleDateString(data[0].clientdatecreated) */
+
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
 
   const router = useRouter()
+
+
+  console.log("showEditClientModal",showEditClientModal)
 
   const [message1,setMessage1]=useState({
     result:"",
@@ -243,6 +247,8 @@ console.log(data[0])
                           <p className="text-dark-blue text-xs">
                             {data[0]?.clientid}
                           </p>
+                          <button className="bg-black rounded-md px-5 py-1 shadow-md text-white mt-5 text-sm"
+                          onClick={()=>setShowEditClientModal(!showEditClientModal)}>Edit</button>
                         </div>
                       </div>
                     </div>
@@ -417,8 +423,16 @@ console.log(data[0])
               </div>
             </div>
           </section>
+
+
+          <section id="baselineData">
+
+            <ProfilePageBaselineData/>
+
+          </section>
         </div>
       </Layout>
+      {showEditClientModal && <EditClientModal user={user} data={data} showEditClientModal={showEditClientModal} setShowEditClientModal={setShowEditClientModal}/>}
     </>
   );
 }

@@ -103,7 +103,7 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
                 <option value={null} disabled>Select</option>
                 <option value="HCW" default>HCW</option>
                 <option value="Supervisor">Supervisor</option>
-                <option vlaue="DES">DES</option>
+                <option value="DES">DES</option>
               </select>
             </label>
 
