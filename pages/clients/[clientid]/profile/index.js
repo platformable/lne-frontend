@@ -435,7 +435,7 @@ export default function ClientProfilePage({ data,impactBaseline }) {
 
           <section id="baselineData">
 
-            <ProfilePageBaselineData/>
+            <ProfilePageBaselineData impactBaseline={impactBaseline}/>
 
           </section>
         </div>
