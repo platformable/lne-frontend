@@ -355,7 +355,9 @@ table td, #customers th {
   padding: 10px;
 }
 
-table tr:nth-child(even){background-color: #fff;}
+table tr:nth-child(even){
+  background-color: #fff;
+} 
 
 table tr:hover {background-color: #ddd;}
 

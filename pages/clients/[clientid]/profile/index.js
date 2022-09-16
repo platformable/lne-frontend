@@ -1,177 +1,213 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Layout from "../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import Image from "next/image";
-import BackToDashboardButton from '../../../../components/BackToDashboardButton'
+import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 import EditClientModal from "../../../../components/EditClientModal";
 import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineData";
 
-import infoIcon from "../../../../public/client/info-icon.svg"
-import userIcon from "../../../../public/client/USERicon.svg"
+import infoIcon from "../../../../public/client/info-icon.svg";
+import userIcon from "../../../../public/client/USERicon.svg";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from "next/router";
 
-export function getDatex (string) {
-    const date = new Date(string)
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const year = date.getFullYear()
-    const result = `${month}/${day}/${year}`
-    return result
+export function getDatex(string) {
+  const date = new Date(string);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const result = `${month}/${day}/${year}`;
+  return result;
 }
-export function setLocaleDateString (date) {
-  const fecha = Date.parse(date)
-  const newDate=new Date(fecha).toLocaleDateString().replace('/”,“-').replace('/”,“-')
-  const separatedDate=newDate.split('-')
-  const finalDate=`${separatedDate[2]}-${separatedDate[1]?.length===1?`0${separatedDate[1]}`:separatedDate[1]}-${separatedDate[0]?.length===1?`0${separatedDate[0]}`:separatedDate[0]}`
-  return finalDate
+export function setLocaleDateString(date) {
+  const fecha = Date.parse(date);
+  const newDate = new Date(fecha)
+    .toLocaleDateString()
+    .replace("/”,“-")
+    .replace("/”,“-");
+  const separatedDate = newDate.split("-");
+  const finalDate = `${separatedDate[2]}-${
+    separatedDate[1]?.length === 1 ? `0${separatedDate[1]}` : separatedDate[1]
+  }-${
+    separatedDate[0]?.length === 1 ? `0${separatedDate[0]}` : separatedDate[0]
+  }`;
+  return finalDate;
 }
 
-const getDate=(date)=>{
-  const fecha =  Date.parse(date)
-  const newDate= new Date(fecha).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})
-  const separatedDate=newDate.split('/')
-  const finalDate=separatedDate.join('-')
-  return newDate
-  }  
+const getDate = (date) => {
+  const fecha = Date.parse(date);
+  const newDate = new Date(fecha).toLocaleDateString("en", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+  const separatedDate = newDate.split("/");
+  const finalDate = separatedDate.join("-");
+  return newDate;
+};
 
-export default function ClientProfilePage({ data,impactBaseline }) {
-
-  const [showEditClientModal,setShowEditClientModal]=useState(false)
-
-
+export default function ClientProfilePage({ data, impactBaseline }) {
+  const [showEditClientModal, setShowEditClientModal] = useState(false);
 
   const { user, error, isLoading } = useUser();
-  const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
+  const loggedUserRole =
+    user && user["https://lanuevatest.herokuapp.com/roles"];
 
-  const router = useRouter()
+  const router = useRouter();
 
+  console.log("impactBaseline", impactBaseline);
 
-  console.log("impactBaseline",impactBaseline)
+  const [message1, setMessage1] = useState({
+    result: "",
+    color: "",
+  });
 
-  const [message1,setMessage1]=useState({
-    result:"",
-    color:""
-  })
-
-  const checkMessage1=()=>{
+  const checkMessage1 = () => {
     let result;
     let color;
-    if((data[0]?.msaformairsintakeform==="0" || data[0]?.msaformairsintakeform===null) &&  data[0]?.servicesactionplanid ===null){
-      result="You need to fill in the client’s Intake Form"
-      color = 'bg-red-400'
-      
-
-    } 
-    if(data[0]?.msaformairsintakeform==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment !=='1' ) {
-      result = 'You need to fill in the client’s CBRA Form'
-      color = 'bg-red-400'
-
+    if (
+      (data[0]?.msaformairsintakeform === "0" ||
+        data[0]?.msaformairsintakeform === null) &&
+      data[0]?.servicesactionplanid === null
+    ) {
+      result = "You need to fill in the client’s Intake Form";
+      color = "bg-red-400";
     }
-   
-    if(data[0]?.msaformairsintakeform==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==='1' && data[0]?.servicesactionplanid !== '1') {
-      result = 'You need to draft the client’s Service Action Plan and sign'
-      color = 'bg-orange-300'
-
+    if (
+      data[0]?.msaformairsintakeform === "1" &&
+      data[0]?.msaformcomprehensiveriskbehavrioassesment !== "1"
+    ) {
+      result = "You need to fill in the client’s CBRA Form";
+      color = "bg-red-400";
     }
 
-    if(data[0]?.msaformairsintakeform==="1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==='1' && data[0]?.servicesactionplanid !== null && (
-    data[0]?.msahnselegibilityform !== "1" || data[0]?.msaformhnsreadinessform !=='1')) {
-      result = 'You need to fill in the client’s HNS Forms'
-      color = 'bg-orange-300'
-      
-  
+    if (
+      data[0]?.msaformairsintakeform === "1" &&
+      data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" &&
+      data[0]?.servicesactionplanid !== "1"
+    ) {
+      result = "You need to draft the client’s Service Action Plan and sign";
+      color = "bg-orange-300";
     }
 
-    if(data[0]?.msaformairsintakeform === "1" && data[0]?.msaformcomprehensiveriskbehavrioassesment ==="1" && data[0]?.servicesactionplanid !== null 
-    //  && (data[0]?.msahnselegibilityform === "1" && data[0]?.msaformhnsreadinessform ==='1')
-      ){ 
-       result = "All core documents are up to date"
-        color = 'bg-green-300'
-    
-      }
+    if (
+      data[0]?.msaformairsintakeform === "1" &&
+      data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" &&
+      data[0]?.servicesactionplanid !== null &&
+      (data[0]?.msahnselegibilityform !== "1" ||
+        data[0]?.msaformhnsreadinessform !== "1")
+    ) {
+      result = "You need to fill in the client’s HNS Forms";
+      color = "bg-orange-300";
+    }
 
-      return (
-        (<div className={`flex ${color} px-5  items-center rounded-xl shadow-xl`}>
-    <img src="/client/alerticonMSAdoc.svg" alt="" />
-    <p className='px-4 font-semibold '>{result}</p>
-    </div>)
-      )
-    
+    if (
+      data[0]?.msaformairsintakeform === "1" &&
+      data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" &&
+      data[0]?.servicesactionplanid !== null
+      //  && (data[0]?.msahnselegibilityform === "1" && data[0]?.msaformhnsreadinessform ==='1')
+    ) {
+      result = "All core documents are up to date";
+      color = "bg-green-300";
+    }
+
+    return (
+      <div className={`flex ${color} px-5  items-center rounded-xl shadow-xl`}>
+        <img src="/client/alerticonMSAdoc.svg" alt="" />
+        <p className="px-4 font-semibold ">{result}</p>
+      </div>
+    );
+
     /* return  (<div className={`flex ${color} h-14 px-5  items-center`}>
     <img src="/client/alerticonMSAdoc.svg" alt="" />
     <p className='px-4 font-semibold '>{result}</p>
     </div>) */
-  }
+  };
 
-  const checkMessage2 =()=> {
+  const checkMessage2 = () => {
     const fields = {
       goal1: data[0]?.goal1completed,
       goal2: data[0]?.goal2completed,
       goal3: data[0]?.goal3completed,
-    }
+    };
     let result;
     let color;
-    
-    if ((fields['goal1'] !== '1'  && fields['goal2'] !== '1' && fields['goal2'] === '1')||
-    (fields['goal1'] !== '1'  && fields['goal3'] !== '1' && fields['goal2'] === '1')||
-    (fields['goal2'] !== '1' && fields['goal3'] !== '1' && fields['goal1'] === '1')) {
-      result ='There are two client goals outstanding'
-      color = 'bg-orange-300'
 
+    if (
+      (fields["goal1"] !== "1" &&
+        fields["goal2"] !== "1" &&
+        fields["goal2"] === "1") ||
+      (fields["goal1"] !== "1" &&
+        fields["goal3"] !== "1" &&
+        fields["goal2"] === "1") ||
+      (fields["goal2"] !== "1" &&
+        fields["goal3"] !== "1" &&
+        fields["goal1"] === "1")
+    ) {
+      result = "There are two client goals outstanding";
+      color = "bg-orange-300";
     } else {
-      result = 'There is one client goal outstanding'
-      color = 'bg-orange-300'
-
+      result = "There is one client goal outstanding";
+      color = "bg-orange-300";
     }
-    if(Object.values(fields).every(value => value === '0' || value === null)){
-      result = 'There are three client goals outstanding'
-      color = 'bg-red-400'
-    };
-    if(Object.values(fields).every(value => value === '1' || value !== null)){
-      result = 'All client goals have been completed!'
-      color = 'bg-green-300'
-    };
+    if (
+      Object.values(fields).every((value) => value === "0" || value === null)
+    ) {
+      result = "There are three client goals outstanding";
+      color = "bg-red-400";
+    }
+    if (
+      Object.values(fields).every((value) => value === "1" || value !== null)
+    ) {
+      result = "All client goals have been completed!";
+      color = "bg-green-300";
+    }
     return (
       <div className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}>
-                <img src="/client/alerticonserviceactionplan.svg" alt="" />
-                    <p className='px-4 font-semibold'>{result}</p>
+        <img src="/client/alerticonserviceactionplan.svg" alt="" />
+        <p className="px-4 font-semibold">{result}</p>
       </div>
-    )
-  }
-  let fechaInicio = new Date(`2022-03-${Math.floor(Math.random() * (30 - 1 + 1) + 1)}`);
-  
-  const checkMessage3=()=>{
+    );
+  };
+  let fechaInicio = new Date(
+    `2022-03-${Math.floor(Math.random() * (30 - 1 + 1) + 1)}`
+  );
 
-    const planstartdate = data[0].planstartdate
+  const checkMessage3 = () => {
+    const planstartdate = data[0].planstartdate;
 
-    let date_1 = planstartdate===null ? new Date(data[0].clientdatecreated) : new Date(planstartdate);
+    let date_1 =
+      planstartdate === null
+        ? new Date(data[0].clientdatecreated)
+        : new Date(planstartdate);
     let date_2 = new Date();
     let difference = date_2.getTime() - date_1.getTime();
     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
     //return TotalDays;
-  
-   
-    let color = 'bg-red-400'
+
+    let color = "bg-red-400";
     let fechaFin = new Date();
-   // let diff = fechaFin - new Date(data[0].planstartdate)===null ? new Date() : new Date(data[0].planstartdate).getTime();
-   //let diff = planstartdate===null? fechaFin - new Date(data[0].clientdatecreated) :new Date(planstartdate)
-   //console.log("diff",diff)
-   let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
-    if (totalDays <= 14 ) color='bg-green-300'
-    if (totalDays > 14 && totalDays < 30) color = 'bg-orange-300'
+    // let diff = fechaFin - new Date(data[0].planstartdate)===null ? new Date() : new Date(data[0].planstartdate).getTime();
+    //let diff = planstartdate===null? fechaFin - new Date(data[0].clientdatecreated) :new Date(planstartdate)
+    //console.log("diff",diff)
+    let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    if (totalDays <= 14) color = "bg-green-300";
+    if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
     return (
       <div className={`flex ${color} rounded-xl px-5 items-center shadow-xl`}>
-            <img src="/client/alert-icon-progress-note.svg" alt="" />
-            <p className='px-4 font-semibold'>
-              {totalDays > 0? `You saw this client ${totalDays} days ago` : `You saw this client today`} </p>
+        <img src="/client/alert-icon-progress-note.svg" alt="" />
+        <p className="px-4 font-semibold">
+          {totalDays > 0
+            ? `You saw this client ${totalDays} days ago`
+            : `You saw this client today`}{" "}
+        </p>
       </div>
-    )
-  }
+    );
+  };
   const notifyMessage = () => {
     toast.success("Updating client", {
       position: toast.POSITION.TOP_CENTER,
@@ -181,26 +217,21 @@ export default function ClientProfilePage({ data,impactBaseline }) {
   return (
     <>
       <Layout>
-      <ToastContainer autoClose={3000} />
-        <div className=" bg-light-blue h-screen">
+        <ToastContainer autoClose={3000} />
+        <div className=" bg-light-blue h-full pb-20 ">
           <section className="py-5 container mx-auto md:px-0 px-5">
             <div className="flex gap-x-3">
-            <button
-              onClick={() =>
-                loggedUserRole === "Supervisor"
-                  ? router.push("/clients")
-                  : router.push("/dashboard")
-              }
-              className="bg-yellow px-5 mb-5 py-2 rounded  inline-block  flex items-center text-black gap-x-2"
-            >
-              <img src="/dashboard_icon.svg" alt="" width={20} />
-              {loggedUserRole === "Supervisor"
-                ? "Back "
-                : "Dashboard"}
-            </button>
-
-   
-            
+              <button
+                onClick={() =>
+                  loggedUserRole === "Supervisor"
+                    ? router.push("/clients")
+                    : router.push("/dashboard")
+                }
+                className="bg-yellow px-5 mb-5 py-2 rounded  inline-block  flex items-center text-black gap-x-2"
+              >
+                <img src="/dashboard_icon.svg" alt="" width={20} />
+                {loggedUserRole === "Supervisor" ? "Back " : "Dashboard"}
+              </button>
             </div>
             <section className="dashboard-clients-cards md:px-0 px-5">
               <div className="dashboard-clients-cards-top py-5 flex gap-x-5">
@@ -239,7 +270,6 @@ export default function ClientProfilePage({ data,impactBaseline }) {
                 </div>
               </div>
 
-
               <div className="dashboard-clients-cards-info">
                 <div className="dashboard-clients-cards-info-container">
                   <div className="clients-cards-item flex gap-x-5 items-center px-5 bg-white rounded-xl py-5 justify-center">
@@ -255,13 +285,19 @@ export default function ClientProfilePage({ data,impactBaseline }) {
                           <p className="text-dark-blue text-xs">
                             {data[0]?.clientid}
                           </p>
-                          <button className="bg-black rounded-md px-5 py-1 shadow-md text-white mt-5 text-sm"
-                          onClick={()=>setShowEditClientModal(!showEditClientModal)}>Edit</button>
+                          <button
+                            className="bg-black rounded-md px-5 py-1 shadow-md text-white mt-5 text-sm"
+                            onClick={() =>
+                              setShowEditClientModal(!showEditClientModal)
+                            }
+                          >
+                            Edit
+                          </button>
                         </div>
                       </div>
                     </div>
                     <div className="">
-                      <div >
+                      <div>
                         <p className="font-semibold">Date Client Joined LNE</p>
                         <p className="justify-self-end font-semibold text-dark-blue">
                           {new Date(
@@ -295,23 +331,19 @@ export default function ClientProfilePage({ data,impactBaseline }) {
                       </div>
                     </div>
                   </div>
-                 { checkMessage1()}
-                 { checkMessage2()}
-                 { checkMessage3()}
-                 
+                  {checkMessage1()}
+                  {checkMessage2()}
+                  {checkMessage3()}
                 </div>
               </div>
             </section>
-
-          
-          
           </section>
           <section
             id="client-profile-page-navigation"
             className="mt-5 font-bold w-screen"
           >
             <div className=" p-5  text-black ">
-            <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+              <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
@@ -432,18 +464,29 @@ export default function ClientProfilePage({ data,impactBaseline }) {
             </div>
           </section>
 
+          <section id="baselineData" className="mt-16 container mx-auto">
+            <ProfilePageBaselineData
+              impactBaseline={impactBaseline}
+              loggedUserRole={loggedUserRole}
+            />
+            {loggedUserRole && (
+              <button className="bg-yellow mb-7 rounded gap-2 shadow mt-2 px-7 py-2">
+              <img src="/edit-icon.svg" alt="edit icon" />
 
-          <section id="baselineData">
-
-            <ProfilePageBaselineData impactBaseline={impactBaseline}/>
-
+              </button>
+            )}
           </section>
         </div>
       </Layout>
-      {showEditClientModal && <EditClientModal user={user} data={data} 
-      showEditClientModal={showEditClientModal} 
-      setShowEditClientModal={setShowEditClientModal}
-      notifyMessage={notifyMessage}/>}
+      {showEditClientModal && (
+        <EditClientModal
+          user={user}
+          data={data}
+          showEditClientModal={showEditClientModal}
+          setShowEditClientModal={setShowEditClientModal}
+          notifyMessage={notifyMessage}
+        />
+      )}
     </>
   );
 }
@@ -457,18 +500,16 @@ export default function ClientProfilePage({ data,impactBaseline }) {
   },
 }); */
 
-
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-
     let { clientid } = ctx.params;
     const [data, impactBaseline] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`).then((r) =>
-        r.json()
-      ),
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`).then((r) =>
-        r.json()
-      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
+      ).then((r) => r.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
+      ).then((r) => r.json()),
     ]);
     return { props: { data: data, impactBaseline: impactBaseline } };
 
@@ -477,4 +518,3 @@ export const getServerSideProps = withPageAuthRequired({
     return { props: { data } }; */
   },
 });
-
