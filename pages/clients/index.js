@@ -253,7 +253,7 @@ export default ClientsIndex;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const [data, hcworkers] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/dashboard_page`).then((r) =>
         r.json()
       ),
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`).then((r) =>

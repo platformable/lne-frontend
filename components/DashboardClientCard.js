@@ -76,11 +76,13 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
               </p>
             </div>
 
+            
+
             <div className="">
               <button
-              disabled={client?.msaformid ? false : true}
+              /* disabled={client?.msaformid ? loggedUserRole==='HCW'? false:true : true} */
                 type="button"
-                className={`${client?.msaformid ? 'cursor-pointer':"cursor-not-allowed "} mt-1 w-full flex items-center gap-x-2 justify-center px-6 py-3 btn-darkBlue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover-bg-dark-blue hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-500 active:shadow-lg transition duration-150 ease-in-out`}
+                className={`${!client?.msaformid &&  loggedUserRole==='DES'? 'cursor-not-allowed':""} cursor-pointer mt-1 w-full flex items-center gap-x-2 justify-center px-6 py-3 btn-darkBlue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover-bg-dark-blue hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-500 active:shadow-lg transition duration-150 ease-in-out`}
               >
                 <svg
                   width="24"
@@ -116,7 +118,8 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
                   />
                 </svg>
 
-                {client.msaformid ? "View client" : "No MSA FORM"}
+                {loggedUserRole === 'DES' && !client.msaformid  ? "NO MSA FORM":"View client"}
+             
               </button>
             </div>
           </div>
