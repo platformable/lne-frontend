@@ -469,12 +469,7 @@ export default function ClientProfilePage({ data, impactBaseline }) {
               impactBaseline={impactBaseline}
               loggedUserRole={loggedUserRole}
             />
-            {loggedUserRole && (
-              <button className="bg-yellow mb-7 rounded gap-2 shadow mt-2 px-7 py-2">
-              <img src="/edit-icon.svg" alt="edit icon" />
-
-              </button>
-            )}
+            
           </section>
         </div>
       </Layout>
@@ -510,6 +505,9 @@ export const getServerSideProps = withPageAuthRequired({
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
       ).then((r) => r.json()),
+      // fetch(
+      //   `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/${clientid}`
+      // ).then((r) => r.json()),
     ]);
     return { props: { data: data, impactBaseline: impactBaseline } };
 
