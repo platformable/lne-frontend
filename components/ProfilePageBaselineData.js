@@ -1,85 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
-const ProfilePageBaselineData = ({ impactBaseline }) => {
-  const tableLeftHeaders = {
-    barrierHIVPrimaryCare: "Barriers to accessing HIV primary care",
-    viralLoadCount: "Viral Load Count",
-    CD4Count: "CD4 Count",
-    unsafeSexualBehavior: "Engaging in unsafe sexual behavior",
-    substanceAbuse: "Problems with substance use",
-    legalIssues: "Legal and identity documentation issues",
-    unstableEmployment: "Unstable employment situation",
-    unstableHousing: "An unstable housing situation",
+const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
+  const [selectedTrackIndex, setSelectedTrackIndex] = useState(null);
+  const [form, setForm] = useState({
+    impact_trackerID: "",
+    barrierhivprimarycare: "",
+    CD4Count: "",
+    viralLoadCount: "",
+    unsafesexualbehavior: "",
+    substanceabuse: "",
+    unstablehousing: "",
+    legalissues: "",
+    unstableemployment: "",
+  });
+  const tableLeftHeaders = [
+    {
+      text_field: "Barriers to accessing HIV primary care",
+      ddbb_label: "barrierhivprimarycare",
+      scores: ["Yes", "No", "N/A"],
+    },
+    {
+      text_field: "CD4 Count",
+      ddbb_label: "CD4Count",
+      scores: [">100", "100-500", "500+", "N/A"],
+    },
+    {
+      text_field: "Viral Load Count",
+      ddbb_label: "viralLoadCount",
+      scores: [">50", "50+", "N/A"],
+    },
+    {
+      text_field: "Engaging in unsafe sexual behavior",
+      ddbb_label: "unsafesexualbehavior",
+      scores: ["Yes", "No", "N/A"],
+    },
+    {
+      text_field: "Problems with substance use",
+      ddbb_label: "substanceabuse",
+      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
+    },
+    {
+      text_field: "An unstable housing situation",
+      ddbb_label: "unstablehousing",
+      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
+    },
+    {
+      text_field: "Legal and identity documentation issues",
+      ddbb_label: "legalissues",
+      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
+    },
+    {
+      text_field: "Unstable employment situation",
+      ddbb_label: "unstableemployment",
+      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
+    },
+  ];
+  const impactTracker = [
+    {
+      barrierhivprimarycare: "N/A",
+      cd4viralload: "Yes",
+      viralLoadCount: ">50",
+      CD4Count: "",
+      impactformstartdate: "2022-08-24T00:00:00.000Z",
+      legalissues: "0",
+      mentalhealthissues: null,
+      substanceabuse: "0",
+      unsafesexualbehavior: "0",
+      unstableemployment: "0",
+      unstablehousing: "0",
+    },
+    {
+      barrierhivprimarycare: "N/A",
+      cd4viralload: "Yes",
+      viralLoadCount: ">50",
+      CD4Count: "100-500",
+      impactformstartdate: "2022-09-24T00:00:00.000Z",
+      legalissues: "0",
+      mentalhealthissues: null,
+      substanceabuse: "0",
+      unsafesexualbehavior: "0",
+      unstableemployment: "0",
+      unstablehousing: "0",
+    },
+    {
+      barrierhivprimarycare: "N/A",
+      cd4viralload: "Yes",
+      viralLoadCount: ">50",
+      CD4Count: "100-500",
+      impactformstartdate: "2022-10-24T00:00:00.000Z",
+      legalissues: "0",
+      mentalhealthissues: null,
+      substanceabuse: "0",
+      unsafesexualbehavior: "0",
+      unstableemployment: "0",
+      unstablehousing: "0",
+    },
+    {
+      barrierhivprimarycare: "N/A",
+      cd4viralload: "Yes",
+      viralLoadCount: "50+",
+      CD4Count: "100-500",
+      impactformstartdate: "2022-11-24T00:00:00.000Z",
+      legalissues: "0",
+      mentalhealthissues: null,
+      substanceabuse: "0",
+      unsafesexualbehavior: "0",
+      unstableemployment: "0",
+      unstablehousing: "0",
+    },
+    {
+      barrierhivprimarycare: "N/A",
+      cd4viralload: "Yes",
+      viralLoadCount: "50+",
+      CD4Count: "100-500",
+      impactformstartdate: "2022-12-24T00:00:00.000Z",
+      legalissues: "0",
+      mentalhealthissues: null,
+      substanceabuse: "0",
+      unsafesexualbehavior: "0",
+      unstableemployment: "0",
+      unstablehousing: "0",
+    },
+    {
+      barrierhivprimarycare: "N/A",
+      cd4viralload: "Yes",
+      viralLoadCount: "50+",
+      CD4Count: "100-500",
+      impactformstartdate: "2023-01-24T00:00:00.000Z",
+      legalissues: "0",
+      mentalhealthissues: null,
+      substanceabuse: "0",
+      unsafesexualbehavior: "0",
+      unstableemployment: "0",
+      unstablehousing: "0",
+    },
+  ];
+  console.log(form);
+  const updateTracker = () => {
+    try {
+      axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/`)
+      .then((res) => {
+        console.log(res);
+        setSelectedTrackIndex(null);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  // const impactBaseline = [
-  //   {
-  //     barrierhivprimarycare: "N/A",
-  //     cd4viralload: "N/A",
-  //     impactformstartdate: "2022-08-24T00:00:00.000Z",
-  //     legalissues: "0",
-  //     mentalhealthissues: null,
-  //     substanceabuse: "0",
-  //     unsafesexualbehavior: "0",
-  //     unstableemployment: "0",
-  //     unstablehousing: "0",
-  //   },
-  //   {
-  //     barrierhivprimarycare: "N/A",
-  //     cd4viralload: "N/A",
-  //     impactformstartdate: "2022-08-24T00:00:00.000Z",
-  //     legalissues: "0",
-  //     mentalhealthissues: null,
-  //     substanceabuse: "0",
-  //     unsafesexualbehavior: "0",
-  //     unstableemployment: "0",
-  //     unstablehousing: "0",
-  //   },
-  //   {
-  //     barrierhivprimarycare: "N/A",
-  //     cd4viralload: "N/A",
-  //     impactformstartdate: "2022-08-24T00:00:00.000Z",
-  //     legalissues: "0",
-  //     mentalhealthissues: null,
-  //     substanceabuse: "0",
-  //     unsafesexualbehavior: "0",
-  //     unstableemployment: "0",
-  //     unstablehousing: "0",
-  //   },
-  //   {
-  //     barrierhivprimarycare: "N/A",
-  //     cd4viralload: "N/A",
-  //     impactformstartdate: "2022-08-24T00:00:00.000Z",
-  //     legalissues: "0",
-  //     mentalhealthissues: null,
-  //     substanceabuse: "0",
-  //     unsafesexualbehavior: "0",
-  //     unstableemployment: "0",
-  //     unstablehousing: "0",
-  //   },
-  //   {
-  //     barrierhivprimarycare: "N/A",
-  //     cd4viralload: "N/A",
-  //     impactformstartdate: "2022-08-24T00:00:00.000Z",
-  //     legalissues: "0",
-  //     mentalhealthissues: null,
-  //     substanceabuse: "0",
-  //     unsafesexualbehavior: "0",
-  //     unstableemployment: "0",
-  //     unstablehousing: "0",
-  //   },
-  //   {
-  //     barrierhivprimarycare: "N/A",
-  //     cd4viralload: "N/A",
-  //     impactformstartdate: "2022-08-24T00:00:00.000Z",
-  //     legalissues: "0",
-  //     mentalhealthissues: null,
-  //     substanceabuse: "0",
-  //     unsafesexualbehavior: "0",
-  //     unstableemployment: "0",
-  //     unstablehousing: "0",
-  //   },
-
-  // ];
   return (
     <>
       <div className="overflow-x-auto mx-auto container shadow-md sm:rounded-lg">
@@ -96,9 +164,12 @@ const ProfilePageBaselineData = ({ impactBaseline }) => {
                 Date: 1 September
               </th>
               {impactBaseline &&
-                impactBaseline.map((track, index) => (
+                [...impactBaseline, ...impactTracker].map((track, index) => (
                   <>
-                    <th scope="col" className="text-center py-3 px-6">
+                    <th
+                      scope="col"
+                      className="text-center py-3 px-6 hover:cursor-pointer"
+                    >
                       Date:{" "}
                       {new Date(track.impactformstartdate).toLocaleDateString(
                         "en",
@@ -109,139 +180,100 @@ const ProfilePageBaselineData = ({ impactBaseline }) => {
                 ))}
             </tr>
           </thead>
-          <tbody >
-            
-            <tr className=" border-b">
-              <td
-                scope="row"
-                className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-              >
-                Barriers to accessing HIV primary care
-              </td>
-              <td className="text-center  text-base ">0</td>
-              <td className="text-center  text-base ">-</td>
-              {impactBaseline &&
-                impactBaseline.map((e) => (
-                  <>
-                    <td className="text-center  text-base ">
-                      {e.barrieraccessingmedications}
+          <tbody>
+            {tableLeftHeaders &&
+              Object.values(tableLeftHeaders).map((header) => (
+                <>
+                  <tr className="">
+                    <td
+                      scope="row"
+                      className="py-4 px-6  text-black font-medium  whitespace-nowrap "
+                    >
+                      {header.text_field}
                     </td>
-                  </>
-                ))}
-            </tr>
-
-            <tr className="border-b bg-light-blue">
-              <td
-                scope="row"
-                className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-              >
-                Viral Load Count
-              </td>
-              <td className="text-center text-base ">0</td>
-              <td className="text-center text-base ">-</td>
-              {impactBaseline &&
-                impactBaseline.map((e) => (
-                  <>
-                    <td className="text-center text-base ">{e.cd4viralload}</td>
-                  </>
-                ))}
-            </tr>
-            <tr className=" border-b  ">
-              <td
-                scope="row"
-                className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-              >
-                Engaging in unsafe sexual behavior
-              </td>
-              <td className="text-center text-base ">0</td>
-              <td className="text-center text-base ">-</td>
-              {impactBaseline &&
-                impactBaseline.map((e) => (
-                  <>
-                    <td className="text-center text-base ">
-                      {e.unsafesexualbehavior === "0" ? "Yes" : "No"}
+                    <td className=" text-base ">
+                      {header.scores.map((score) => (
+                        <>
+                          <p>{score}</p>
+                        </>
+                      ))}
                     </td>
-                  </>
-                ))}
-            </tr>
-            <tr className=" border-b  ">
-              <td
-                scope="row"
-                className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-              >
-                Problems with substance use
-              </td>
-              <td className="text-center text-base ">0</td>
-              <td className="text-center text-base ">-</td>
-              {impactBaseline &&
-                impactBaseline.map((e) => (
-                  <>
-                    <td className="text-center text-base ">
-                      {e.substanceabuse === "0" ? "Yes" : "No"}
-                    </td>
-                  </>
-                ))}
-            </tr>
-            <tr className=" border-b  ">
-              <td
-                scope="row"
-                className="py-4 px-6  text-black font-medium whitespace-nowrap"
-              >
-                An unstable housing situation
-              </td>
-              <td className="text-center text-base ">0</td>
-              <td className="text-center text-base ">-</td>
-              {impactBaseline &&
-                impactBaseline.map((e) => (
-                  <>
-                    <td className="text-center text-base ">
-                      {e.unstablehousing === "0" ? "Yes" : "No"}
-                    </td>
-                  </>
-                ))}
-            </tr>
-            <tr className=" border-b  ">
-              <td
-                scope="row"
-                className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-              >
-                Legal and identity documentation issues
-              </td>
-              <td className="text-center text-base ">0</td>
-              <td className="text-center text-base ">-</td>
-              {impactBaseline &&
-                impactBaseline.map((e) => (
-                  <>
-                    <td className="text-center text-base ">
-                      {e.legalissues === "0" ? "Yes" : "No"}
-                    </td>
-                  </>
-                ))}
-            </tr>
-            <tr className=" border-b  ">
-              <td
-                scope="row"
-                className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-              >
-                Unstable employment situation
-              </td>
-              <td className="text-center text-base ">0</td>
-              <td className="text-center text-base ">-</td>
-              {impactBaseline &&
-                impactBaseline.map((e) => (
-                  <>
-                    <td className="text-center text-base ">
-                      {e.unstableemployment === "0" ? "Yes" : "No"}
-                    </td>
-                  </>
-                ))}
-            </tr>
-            
+                    <td className="text-center  text-base ">-</td>
+                    {impactBaseline &&
+                      [...impactBaseline, ...impactTracker].map(
+                        (e, i, array) => (
+                          <>
+                            <td className={`text-center text-base `}>
+                              <div
+                                className="text-center"
+                                onKeyUp={(e) =>
+                                  setForm({
+                                    ...form,
+                                    [header.ddbb_label]: e.target.innerText,
+                                  })
+                                }
+                                contentEditable={selectedTrackIndex === i}
+                              >
+                                {e[header.ddbb_label] === "1"
+                                  ? "Yes"
+                                  : e[header.ddbb_label] === "0"
+                                  ? "No"
+                                  : e[header.ddbb_label]}
+                              </div>
+                            </td>
+                          </>
+                        )
+                      )}
+                  </tr>
+                </>
+              ))}
+            {loggedUserRole === "Supervisor" && (
+              <>
+                <tr>
+                  <td
+                    scope="row"
+                    className="py-4 px-6  text-black font-medium  whitespace-nowrap "
+                  ></td>
+                  <td
+                    scope="row"
+                    className="py-4 px-6  text-black font-medium  whitespace-nowrap "
+                  ></td>
+                  <td
+                    scope="row"
+                    className="py-4 px-6  text-black font-medium  whitespace-nowrap "
+                  ></td>
+                  {impactBaseline &&
+                    [...impactBaseline, ...impactTracker].map((e, index) => (
+                      <>
+                        <td
+                          scope="row"
+                          className="py-4 px-6  text-black font-medium text-center  whitespace-nowrap "
+                        >
+                          {selectedTrackIndex === index ? (
+                            <button
+                              onClick={updateTracker}
+                              className="text-white bg-black px-5 py-1 rounded shadow"
+                            >
+                              Save
+                            </button>
+                          ) : (
+                            <button
+                              onClick={(e) => setSelectedTrackIndex(index)}
+                              className="text-white bg-black px-5 py-1 rounded shadow"
+                            >
+                              Edit
+                            </button>
+                          )}
+                        </td>
+                      </>
+                    ))}
+                </tr>
+              </>
+            )}
           </tbody>
+         
         </table>
-
       </div>
-
     </>
   );
 };
