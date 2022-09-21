@@ -292,8 +292,9 @@ const handleProgressNote=()=>{
 
         <main className="container mx-auto">
           <div className="flex gap-x-5">
-          <BackToDashboardButton/>
         <BackButton />
+
+          <BackToDashboardButton/>
         </div>
           <section id="info" className="my-5">
             <div className="">

@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BackButton from "../components/BackButton";
+import BackToDashboardButton from "../components/BackToDashboardButton";
 
 const CondomsDistributed = () => {
   const router = useRouter();
@@ -68,8 +69,11 @@ const CondomsDistributed = () => {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-        <div className="container mx-auto my-5">
-          <BackButton />
+        <div className="container mx-auto my-10">
+          <div className="flex gap-x-5">
+              <BackButton />
+              <BackToDashboardButton />
+              </div>
           <h1 className="font-black  my-5">
             Condoms distributed
           </h1>
