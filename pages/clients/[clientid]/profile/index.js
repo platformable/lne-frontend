@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 import EditClientModal from "../../../../components/EditClientModal";
+import DeleteClientModal from "../../../../components/DeleteClientModal";
 import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineData";
 
 import infoIcon from "../../../../public/client/info-icon.svg";
@@ -53,6 +54,7 @@ const getDate = (date) => {
 
 export default function ClientProfilePage({ data, impactBaseline }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
+  const [showDeleteClientModal,setShowDeleteClientModal]=useState(false)
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
@@ -214,6 +216,12 @@ export default function ClientProfilePage({ data, impactBaseline }) {
       position: toast.POSITION.TOP_CENTER,
     });
   };
+
+  const notifyDeleteMessage = () => {
+    toast.success("Client deleted", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
   return (
     <>
       <Layout>
@@ -222,17 +230,6 @@ export default function ClientProfilePage({ data, impactBaseline }) {
           <section className="py-5 container mx-auto md:px-0 px-5">
             <div className="flex gap-x-3">
               <BackButton />
-              {/* <button
-                onClick={() =>
-                  loggedUserRole === "Supervisor"
-                    ? router.push("/clients")
-                    : router.push("/dashboard")
-                }
-                className="bg-yellow px-5 mb-5 py-2 rounded  inline-block  flex items-center text-black gap-x-2"
-              >
-                <img src="/dashboard_icon.svg" alt="" width={20} />
-                Dashboard
-              </button> */}
               <BackToDashboardButton />
             </div>
             <section className="dashboard-clients-cards md:px-0 px-5">
@@ -298,7 +295,7 @@ export default function ClientProfilePage({ data, impactBaseline }) {
                           <button
                             className=" rounded-md px-5 py-1 block shadow-md text-white mt-5 text-sm"
                             onClick={() =>
-                              setShowEditClientModal(!showEditClientModal)
+                              setShowDeleteClientModal(!showDeleteClientModal)
                             }
                           >
                             <img src="/delete-user-icon.svg" alt="delete button" width={25}/>
@@ -490,6 +487,15 @@ export default function ClientProfilePage({ data, impactBaseline }) {
           showEditClientModal={showEditClientModal}
           setShowEditClientModal={setShowEditClientModal}
           notifyMessage={notifyMessage}
+        />
+      )}
+      {showDeleteClientModal && (
+        <DeleteClientModal
+        
+          data={data}
+          showDeleteClientModal={showDeleteClientModal}
+          setShowDeleteClientModal={setShowDeleteClientModal}
+          notifyDeleteMessage={notifyDeleteMessage}
         />
       )}
     </>

@@ -175,8 +175,8 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                     {impactBaseline.length === 1?
                      impactBaseline.map(
                         (e, i, array) => (
-                          <>
-                            <td className={`text-center text-base `}>
+                          <div key={i}>
+                            <td className={`text-center text-base `} key={i}>
                               <div
                                 className="text-center"
                                 onKeyUp={(e) =>
@@ -196,7 +196,7 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                                   }
                               </div>
                             </td>
-                          </>
+                          </div>
                         )
                       ) :
                       (
