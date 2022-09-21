@@ -6,6 +6,8 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import UploadIncidentChecklistModal from "../components/UploadIncidentChecklistModal";
 import BackToDashboardButton from '../components/BackToDashboardButton'
+import BackButton from '../components/BackButton'
+
 export default function Software() {
   const [dataBackup, setDataBackup] = useState(false);
   const  [uploadIncidentModal, setUploadIncidentModal] = useState(false);
@@ -13,42 +15,46 @@ export default function Software() {
   return (
     <>
       <Layout>
-      <section className="bg-yellow grid text-center justify-center items-center py-10">
+      {/* <section className="bg-yellow grid text-center justify-center items-center py-10">
 
       <h3 className="font-black uppercase">UNDER DEVELOPMENT</h3>
         <p>
 These sections are in current development and are on the August - December 2022 Roadmap for feature enhancement.
 </p>
 
-</section>
+</section> */}
         <section className="bg-light-blue md:h-screen">
-          <div className="container mx-auto">
+          <div className="container mx-auto pt-10">
+          <div className="flex gap-x-3">
+            <BackButton />
+            <BackToDashboardButton/>
+          </div>
+
             <div className="grid grid-cols-2 py-5">
               <h1 className="font-bold px-2">Manage Software</h1>
 
               <div className="flex justify-end self-end">
-          <BackToDashboardButton/>
           </div>
             </div>
           </div>
           <section id="dashboard-client-list">
             <div className="container mx-auto py-5">
-              <section className=" border-2 border-white shadow ">
+              <section className=" border-2 border-white shadow mb-10">
                 <div className="supervisor-dashboard-top-container  px-5 py-1 mb-1 bg-white">
                   <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
                     <div>
                       <h1 className="font-black my-2">
-                        Here is a quick view of how things are doing
+                      Key metrics
                       </h1>
                     </div>
                     <div className="flex wrap justify-end items-center">
-                      <div className="px-5 py-1 h-4/6 bg-green-100 w-40 mr-2 flex items-center justify-center">
+                      <div className="px-5 py-1 h-4/6 bg-middle-green w-40 mr-2 flex items-center justify-center">
                         on-track
                       </div>
-                      <div className="px-5 py-1 h-4/6 bg-orange-100 w-40 mr-2 flex items-center justify-center">
+                      <div className="px-5 py-1 h-4/6 bg-orange w-40 mr-2 flex items-center justify-center">
                         warning
                       </div>
-                      <div className="px-5 py-1 h-4/6 bg-red-100 w-40 flex items-center justify-center">
+                      <div className="px-5 py-1 h-4/6 bg-light-red w-40 flex items-center justify-center">
                         alert
                       </div>
                     </div>
@@ -58,7 +64,7 @@ These sections are in current development and are on the August - December 2022 
                   <div className="supervisor-dashboard-top-bottom-box bg-white grid items-center">
                     <div className="px-4 flex py-5">
                       <img src="./supervisor/software/icon-backup-folder.svg"></img>
-                      <p className="font-semibold text-lg underline ml-3">
+                      <p className="font-semibold text-lg  ml-3">
                         Days since last backup
                       </p>
                     </div>
@@ -69,7 +75,7 @@ These sections are in current development and are on the August - December 2022 
                   <div className="supervisor-dashboard-top-bottom-box bg-white ">
                     <div className="px-4 flex py-5">
                       <img src="./supervisor/software/icon-security-incidents-folder.svg"></img>
-                      <p className="font-semibold text-lg underline ml-3">
+                      <p className="font-semibold text-lg  ml-3">
                         Security incidents or data breaches
                       </p>
                     </div>
@@ -79,7 +85,7 @@ These sections are in current development and are on the August - December 2022 
                   </div>
                 </div>
               </section>
-              <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+              <h1 className="my-5 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>

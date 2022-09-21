@@ -18,48 +18,39 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
     {
       text_field: "Barriers to accessing HIV primary care",
       ddbb_label: "barrierhivprimarycare",
-      scores: ["Yes", "No", "N/A"],
     },
     {
       text_field: "CD4 Count",
       ddbb_label: "CD4Count",
-      scores: [">100", "100-500", "500+", "N/A"],
     },
     {
       text_field: "Viral Load Count",
       ddbb_label: "viralLoadCount",
-      scores: [">50", "50+", "N/A"],
     },
     {
       text_field: "Engaging in unsafe sexual behavior",
       ddbb_label: "unsafesexualbehavior",
-      scores: ["Yes", "No", "N/A"],
     },
     {
       text_field: "Problems with substance use",
       ddbb_label: "substanceabuse",
-      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
     },
     {
       text_field: "An unstable housing situation",
       ddbb_label: "unstablehousing",
-      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
     },
     {
       text_field: "Legal and identity documentation issues",
       ddbb_label: "legalissues",
-      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
     },
     {
       text_field: "Unstable employment situation",
       ddbb_label: "unstableemployment",
-      scores: ["Improved", "Stayed the same", "Worsened", "N/A"],
     },
   ];
   const impactTracker = [
     {
       barrierhivprimarycare: "N/A",
-      cd4viralload: "Yes",
       viralLoadCount: ">50",
       CD4Count: "",
       impactformstartdate: "2022-08-24T00:00:00.000Z",
@@ -71,7 +62,6 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
     },
     {
       barrierhivprimarycare: "N/A",
-      cd4viralload: "Yes",
       viralLoadCount: ">50",
       CD4Count: "100-500",
       impactformstartdate: "2022-09-24T00:00:00.000Z",
@@ -83,7 +73,6 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
     },
     {
       barrierhivprimarycare: "N/A",
-      cd4viralload: "Yes",
       viralLoadCount: ">50",
       CD4Count: "100-500",
       impactformstartdate: "2022-10-24T00:00:00.000Z",
@@ -95,7 +84,6 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
     },
     {
       barrierhivprimarycare: "N/A",
-      cd4viralload: "Yes",
       viralLoadCount: "50+",
       CD4Count: "100-500",
       impactformstartdate: "2022-11-24T00:00:00.000Z",
@@ -107,7 +95,6 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
     },
     {
       barrierhivprimarycare: "N/A",
-      cd4viralload: "Yes",
       viralLoadCount: "50+",
       CD4Count: "100-500",
       impactformstartdate: "2022-12-24T00:00:00.000Z",
@@ -119,7 +106,6 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
     },
     {
       barrierhivprimarycare: "N/A",
-      cd4viralload: "Yes",
       viralLoadCount: "50+",
       CD4Count: "100-500",
       impactformstartdate: "2023-01-24T00:00:00.000Z",
@@ -154,11 +140,9 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
               <th scope="col" className="text-center py-3 px-6">
                 Baseline scores
               </th>
-              <th scope="col" className="text-center py-3 px-6">
-                Date: 1 September
-              </th>
-              {impactBaseline &&
-                [...impactBaseline, ...impactTracker].map((track, index) => (
+              
+              {impactTracker &&
+                impactTracker.map((track, index) => (
                   <>
                     <th
                       scope="col"
@@ -177,7 +161,8 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
           <tbody>
             {tableLeftHeaders &&
               Object.values(tableLeftHeaders).map((header) => (
-                <>
+                //ROW LEFT HEADERS
+                <> 
                   <tr className="">
                     <td
                       scope="row"
@@ -185,16 +170,10 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                     >
                       {header.text_field}
                     </td>
-                    <td className=" text-base ">
-                      {header.scores.map((score) => (
-                        <>
-                          <p>{score}</p>
-                        </>
-                      ))}
-                    </td>
-                    <td className="text-center  text-base ">-</td>
-                    {impactBaseline &&
-                      [...impactBaseline, ...impactTracker].map(
+                    
+                {/* BASELINE COLUMN */}
+                    {impactBaseline.length === 1?
+                     impactBaseline.map(
                         (e, i, array) => (
                           <>
                             <td className={`text-center text-base `}>
@@ -208,11 +187,53 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                                 }
                                 contentEditable={selectedTrackIndex === i}
                               >
-                                {e[header.ddbb_label] === "1"
-                                  ? "Yes"
-                                  : e[header.ddbb_label] === "0"
-                                  ? "No"
-                                  : e[header.ddbb_label]}
+                                {e[header.ddbb_label] 
+                                // === "1"
+                                //   ? "Yes"
+                                //   : e[header.ddbb_label] === "0"
+                                //   ? "No"
+                                //   : e[header.ddbb_label]
+                                  }
+                              </div>
+                            </td>
+                          </>
+                        )
+                      ) :
+                      (
+                        <>
+                        <td className={`text-center text-base `}>
+                          <div
+                            className="text-center"
+                            onKeyUp={(e) =>
+                              setForm({
+                                ...form,
+                                [header.ddbb_label]: e.target.innerText,
+                              })
+                            }
+                            // contentEditable={selectedTrackIndex === i}
+                          >
+                            
+                          </div>
+                        </td>
+                      </>
+                      )}
+                    {/* TRACKER COLUMNS */}
+                    {impactTracker &&
+                      impactTracker.map(
+                        (e, i, array) => (
+                          <>
+                            <td className={`text-center text-base `}>
+                              <div
+                                className="text-center"
+                                onKeyUp={(e) =>
+                                  setForm({
+                                    ...form,
+                                    [header.ddbb_label]: e.target.innerText,
+                                  })
+                                }
+                                contentEditable={selectedTrackIndex === i}
+                              >
+                                {e[header.ddbb_label]}
                               </div>
                             </td>
                           </>
@@ -221,6 +242,8 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                   </tr>
                 </>
               ))}
+
+              {/* //EDIT BUTTONS */}
             {loggedUserRole === "Supervisor" && (
               <>
                 <tr>
@@ -232,12 +255,9 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                     scope="row"
                     className="py-4 px-6  text-black font-medium  whitespace-nowrap "
                   ></td>
-                  <td
-                    scope="row"
-                    className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-                  ></td>
-                  {impactBaseline &&
-                    [...impactBaseline, ...impactTracker].map((e, index) => (
+                  
+                  {impactTracker &&
+                    impactTracker.map((e, index) => (
                       <>
                         <td
                           scope="row"
