@@ -44,7 +44,7 @@ const SupportGroups = () => {
         <>
           <ToastContainer autoClose={1500} />
           <Layout>
-            <div className="container mx-auto my-5">
+            <div className="container mx-auto my-10 ">
               <div className="flex gap-x-5">
               <BackButton />
               <BackToDashboardButton />

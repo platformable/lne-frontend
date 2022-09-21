@@ -8,10 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from 'next/router'
 import BackToDashboardButton from "../../components/BackToDashboardButton";
+import BackButton from "../../components/BackButton";
 
 
 
 const ClientsIndex = ({ data, hcworkers }) => {
+  console.log("data", data)
   const router = useRouter()
   const { user, error, isLoading } = useUser();
   const loggedUserRole = user && user["https://lanuevatest.herokuapp.com/roles"];
@@ -115,7 +117,9 @@ const ClientsIndex = ({ data, hcworkers }) => {
       <section id="search" className="py-5">
         <div className="container mx-auto">
           
-          <div className="my-5"><BackToDashboardButton/></div>
+          <div className="my-10 flex gap-x-3">
+            <BackButton />
+            <BackToDashboardButton/></div>
 
           <div className="flex justify-between">
           <h1 className="mb-5 font-black">Manage Clients</h1>
@@ -223,7 +227,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
                           return client;
                         } 
                       })
-                      .sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
+                      // .sort((a, b) => (a?.clientfirstname.localeCompare(b?.clientfirstname))
                       .map((client,index)=>{
                         return (
                           <DashboardClientCard
