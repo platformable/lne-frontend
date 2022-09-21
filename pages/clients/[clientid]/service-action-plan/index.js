@@ -13,6 +13,7 @@ import ImpactBaselineModal from "../../../../components/ImpactBaselineModal";
 import ReactToPrint from 'react-to-print'
 import ComponentToPrint from "../../../../components/ComponentToPrint";
 import BackButton from "../../../../components/BackButton";
+import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 
 
 export default function IndexServoceActionPlan({ data }) {
@@ -192,6 +193,7 @@ const services = [
         <section className="container mx-auto">
     
         <BackButton />
+        <BackToDashboardButton />
   
         </section>
 
