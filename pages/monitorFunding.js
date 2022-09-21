@@ -23,6 +23,11 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorFundingTableDataSortingByName,setMonitorFundingTableDataSortingByName]=useState(false)
   const [monitorFundingTableDataSortingByLastname,setMonitorFundingTableDataSortingByLastname]=useState(false)
   const [monitorFundingTableDataSortingByDate,setMonitorFundingTableDataSortingByDate]=useState(false)
+  const [monitorFundingTableDataSortingByClientId,setMonitorFundingTableDataSortingByClientId]=useState(false)
+  const [monitorFundingTableDataSortingByEncounters,setMonitorFundingTableDataSortingByEncounters]=useState(false)
+  const [monitorFundingTableDataSortingByLastEncounters,setMonitorFundingTableDataSortingByLastEncounters]=useState(false)
+  const [monitorFundingTableDataSortingByGoals,setMonitorFundingTableDataSortingByGoals]=useState(false)
+
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(4)
 
@@ -41,13 +46,14 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       const newClient = {};
       /*   newClient.progressnote = []; */
       newClient.clientid = client.id;
-      newClient.startdate = new Date(
+    /*   newClient.startdate = new Date(
         client.clientdatecreated
-      ).toLocaleDateString("en-En", {
+      ).toLocaleDateString("en-US", {
         year: "numeric",
         month: "numeric",
         day: "numeric",
-      });
+      }); */
+      newClient.startdate=client.clientdatecreated
       newClient.firstname = client.clientfirstname;
       newClient.lastname = client.clientlastname;
       newClient.clienthcwname = client.clienthcwname;
@@ -81,9 +87,42 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     clientdatecreated
   ) => {
 
-    /*   if (progressnotes === null && planstartdate === null) {
+   /*  let date_1 = new Date(clientdatecreated);
+    let date_2 = new Date();
+    let difference = date_2.getTime() - date_1.getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    return TotalDays; */
+
+    if (planstartdate === null || planstartdate === "" || progressnotes.length===0) {
+      console.log("plan startdate null y no progressnotes")
+      let date_1 = new Date(clientdatecreated);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    }
+
+    if (planstartdate   && progressnotes[0]===null) {
+      console.log("plan startdate y no progressnotes")
+      let date_1 = new Date(planstartdate);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    }
+
+    if (planstartdate   && progressnotes[0]!==null) {
+      console.log("plan startdate y no progressnotes")
+      let date_1 = new Date(progressnotes[0]);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    }
+
+  /*     if (progressnotes === null && planstartdate === null) {
       console.log("no progress")
-      let date_1 = planstartdate===null ? new Date(clientstartdate) : new Date(planstartdate)
+      let date_1 = new Date(clientdatecreated);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
       let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
@@ -98,7 +137,9 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       return TotalDays;
     } */
 
-    if (planstartdate === null) {
+  
+
+   /*  if (planstartdate === null) {
       let date_1 = new Date(clientdatecreated);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
@@ -110,7 +151,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       let difference = date_2.getTime() - date_1.getTime();
       let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
       return TotalDays;
-    }
+    } */
   };
 
   const columns = [
@@ -669,12 +710,58 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
    } 
   }
 
+
+  const handleSortByClientId=()=>{
+
+       setMonitorFundingTableDataSortingByClientId(!monitorFundingTableDataSortingByClientId)
+      if(monitorFundingTableDataSortingByClientId){
+       const result= monitorMetricsData.sort((a, b) => a.clientid.localeCompare(b.clientid))
+       setMonitorMetricsData(prev => ([...result])); 
+      } else {
+       const result= monitorMetricsData.sort((a, b) => b.clientid.localeCompare(a.clientid))
+       setMonitorMetricsData(prev => ([...result]));
+      } 
+     }
+
+     const handleSortByEncounters=()=>{
+
+      setMonitorFundingTableDataSortingByEncounters(!monitorFundingTableDataSortingByEncounters)
+      if(monitorFundingTableDataSortingByEncounters){
+        const result=monitorMetricsData?.sort((a, b) => a.progressnotes - b.progressnotes);
+        setMonitorMetricsData(prev => ([...result])); 
+       } else {
+        const result=monitorMetricsData?.sort((a, b) => b.progressnotes - a.progressnotes);
+        setMonitorMetricsData(prev => ([...result])); 
+       } 
+    }
+
+    const handleSortByLastEncounters=()=>{
+
+      setMonitorFundingTableDataSortingByLastEncounters(!monitorFundingTableDataSortingByLastEncounters)
+     if(monitorFundingTableDataSortingByLastEncounters){
+      const result=monitorMetricsData?.sort((a, b) => a.lastEncounter - b.lastEncounter);
+      setMonitorMetricsData(prev => ([...result])); 
+     } else {
+      const result=monitorMetricsData?.sort((a, b) => b.lastEncounter - a.lastEncounter);
+      setMonitorMetricsData(prev => ([...result])); 
+     } 
+    }
+
+    const handleSortByGoals=()=>{
+
+      setMonitorFundingTableDataSortingByGoals(!monitorFundingTableDataSortingByGoals)
+      if(monitorFundingTableDataSortingByLastEncounters){
+        const result=monitorMetricsData?.sort((a, b) => a.goals - b.goals);
+        setMonitorMetricsData(prev => ([...result])); 
+       } else {
+        const result=monitorMetricsData?.sort((a, b) => b.goals - a.goals);
+        setMonitorMetricsData(prev => ([...result])); 
+       } 
+    }
+    console.log("monitorMetrics",monitorMetrics)
+    console.log("monitorMetricsData",monitorMetricsData)
+
   const handleSortByLastname=()=>{
-    /*    const result = monitorMetricsData.sort(function(a,b){
-         // Turn your strings into dates, and then subtract them
-         // to get a value that is either negative, positive, or zero.
-         return new Date(b.startdate) - new Date(a.startdate);
-       }); */
        setMonitorFundingTableDataSortingByLastname(!monitorFundingTableDataSortingByLastname)
       if(monitorFundingTableDataSortingByLastname){
        const result= monitorMetricsData.sort((a, b) => a.lastname.localeCompare(b.lastname))
@@ -708,7 +795,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
 
 
        const handleTableSearch=(value)=>{
-        console.log("value",value)
+    
         if(value===""){
           updateMonitorMetricData()
         } else {
@@ -773,7 +860,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:px-1 md:pb-1 .bg-middle-white shadow-md">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:px-1 md:pb-1 .bg-middle-white shadow-md">
               <div className="grid grid-rows-2">
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   Number of active clients
@@ -783,7 +870,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                     numberOfActiveClients
                       ? numberOfActiveClients.color
                       : "bg-white"
-                  } flex items-center justify-center text-2xl font-bold`}
+                  } flex items-center justify-center text-2xl font-bold py-5`}
                 >
                   {numberOfActiveClients ? numberOfActiveClients.total : "0"}
                 </p>
@@ -792,7 +879,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   Average # of days between client visits
                 </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold py-5">
                   {averageDays ? averageDays.total : "0"}
                 </p>
               </div>
@@ -800,11 +887,11 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   Average number of client goals outstanding
                 </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold py-5">
                   {averageGoals ? averageGoals.total : "0"}
                 </p>
               </div>
-              <div className="grid grid-rows-2">
+            {/*   <div className="grid grid-rows-2">
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   % of clients who say they have reduced unsafe sexual behavior
                   after 3 months
@@ -812,21 +899,21 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                 <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
                   72%
                 </p>
-              </div>
-              <div className="grid grid-rows-2">
+              </div> */}
+              {/* <div className="grid grid-rows-2">
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   % of clients who say they are undetectable after 3 months
                 </p>
                 <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
                   63%
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* KEY METRICS */}
 
-          <div className="graphic-metrics grid grid-cols-1 bg-light-blue shadow gap-1 my-3 mx-3 md:mx-0">
+          {/* <div className="graphic-metrics grid grid-cols-1 bg-light-blue shadow gap-1 my-3 mx-3 md:mx-0">
             <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
               <div className="flex">
                 <img src="/supervisor/meeting-funding.svg" />
@@ -853,16 +940,16 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="bg-white py-3 flex justify-between px-5 items-center mb-1">
+          <div className="bg-white py-3 flex justify-between px-5 items-center mt-10 mb-1">
             <div className="flex  w-2/4">
               <img src="/funding-goals.svg" className="mr-3" alt="" />
-              <h3 className="font-black">Funding Goal Progress</h3>
+              <h3 className="font-black">Client Support Progress</h3>
             </div>
             <ReactToPrint
               trigger={() => (
-                <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white  text-xs">
+                <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white hover:text-black  text-xs">
                   {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
                   Print Report
                 </button>
@@ -872,9 +959,9 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
           </div>
 {/* <input type="text" onChange={(e)=>handleTableSearch(e.target.value)} placeholder="search..." /> */}
 
-          <div className="monitor-funding-table bg-white  px-5 ">
-            <div className="monitor-funding-table-column-container grid grid-cols-10">
-              <div className="monitor-funding-table-col flex  items-center  flex gap-x-2">
+          <div className="monitor-funding-table bg-white  ">
+            <div className="monitor-funding-table-column-container grid grid-cols-7 overflow-x py-5 bg-yellow-50">
+              {/* <div className="monitor-funding-table-col flex  items-center  flex gap-x-2">
                 <p className="font-xxs  cursor-pointer">Client Start Date</p>
                 <svg
                 onClick={()=>handleSortByDate()}
@@ -899,12 +986,35 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </div>
+              </div> */}
               <div className="monitor-funding-table-col flex  items-center px-5 ">
-                <p className="font-xxs ">Client ID</p>
+                <p className="">Client ID</p>
+                <svg
+                onClick={()=>handleSortByClientId()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
               <div className="monitor-funding-table-col flex  items-center  px-5">
-                <p className="font-xxs ">Client first name</p>
+                <p className="">First name</p>
                 <svg
                 onClick={()=>handleSortByName()}
                   className="cursor-pointer"
@@ -930,7 +1040,9 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                 </svg>
               </div>
               <div className="monitor-funding-table-col flex  items-center  px-5">
-                <p className="font-xxs ">Client last name</p>
+                <div><p className="">Last name</p>
+                <p>initial</p></div>
+                
                 <svg
                 onClick={()=>handleSortByLastname()}
                   className="cursor-pointer"
@@ -956,70 +1068,139 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                 </svg>
               </div>
               <div className="monitor-funding-table-col flex   items-center  px-5">
-                <p className="font-xxs ">Health Care Worker assigned</p>
+                <p className="">HCW <br /> assigned</p>
               </div>
+             {/*  <div className="monitor-funding-table-col flex  items-center  px-5">
+                <p className="">Time since <br /> joining LNE</p>
+              </div> */}
               <div className="monitor-funding-table-col flex  items-center  px-5">
-                <p className="font-xxs ">Time since joining LNE</p>
-              </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5">
-                <p className="font-xxs ">Number of encounters</p>
+                <p className="">Number of <br /> encounters</p>
+                <svg
+                onClick={()=>handleSortByEncounters()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
               <div className="monitor-funding-table-col flex  items-center  px-5 ">
-                <p className="font-xxs ">Last encounter</p>
+                <p className="">Last <br />  encounter</p>
+                <svg
+                onClick={()=>handleSortByLastEncounters()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
               <div className="monitor-funding-table-col flex   items-center  px-5">
-                <p className="font-xxs ">Goals completed</p>
+                <p className="">Goals <br /> completed</p>
+                <svg
+                onClick={()=>handleSortByGoals()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center px-5">
+            {/*   <div className="monitor-funding-table-col flex  items-center px-5">
                 <p className="font-xxs ">Outdated MSA</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="monitor-funding-table bg-white mb-5 ">
-            {monitorMetricsData ? currentPosts.map((client,index)=>{
+            {monitorMetricsData ? monitorMetricsData.map((client,index)=>{
               return (
            
-              <div className="monitor-funding-table-row-container grid grid-cols-10 border-t-2 " key={index}>
-              <div className={`monitor-funding-table-row px-5 text-left py-3`}>
+              <div className="monitor-funding-table-row-container grid grid-cols-7 border-t-2 " key={index}>
+             {/*  <div className={`monitor-funding-table-row px-5 text-left py-3`}>
                 <p className="font-xxs">{client.startdate}</p>
                 
-              </div>
+              </div> */}
               <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="font-xxs">{client.clientid}</p>
+                <p className="">{client.clientid}</p>
                 
               </div>
               <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="font-xxs">{client.firstname}</p>
+                <p className="">{client.firstname}</p>
                 
               </div>
               <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="font-xxs">{client.lastname}</p>
+                <p className="">{client.lastname.charAt(0)}</p>
                 
               </div>
               <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="font-xxs">{client.clienthcwname}</p>
+                <p className="">{client.clienthcwname}</p>
                 
               </div>
-              <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="font-xxs">{client.joining}</p>
+             {/*  <div className="monitor-funding-table-row px-5 text-left py-3">
+                <p className="">{client.joining}</p>
                 
-              </div>
+              </div> */}
               <div className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfNumberOfEncounters(client.progressnotes)}`}>
-                <p className="font-xxs">{client.progressnotes}</p>
+                <p className="">{client.progressnotes}</p>
                 
               </div>
               <div className={`monitor-funding-table-row px-5 text-left py-3 ${ getColorOfLastEncounter(client.lastEncounter)}`}>
-                <p className="font-xxs">{client.lastEncounter}</p>
+                <p className="">{client.lastEncounter}</p>
                 
               </div>
               <div className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfCompletedGoals(client.goals)}`}>
-                <p className="font-xxs">{client.goals}</p>
+                <p className="">{client.goals}</p>
                 
               </div>
-              <div className="monitor-funding-table-row px-5 text-left py-3">
+              {/* <div className="monitor-funding-table-row px-5 text-left py-3">
                 <p className="font-xxs">0</p>
                 
-              </div>
+              </div> */}
          
             </div>
               )
@@ -1027,7 +1208,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
             
            
           </div>
-          <div className="flex gap-x-5"><p>Pagination:</p><Pagination postsPerPage={postsPerPage} TotalPosts={monitorMetricsData.length} paginate={paginate}/></div>
+          {/* <div className="flex gap-x-5 my-10"><p>Pagination:</p><Pagination postsPerPage={postsPerPage} TotalPosts={monitorMetricsData.length} paginate={paginate}/></div> */}
 
        {/*    <div className="bg-white py-3 flex justify-between px-5 items-center">
             <div className="flex  w-2/4">
@@ -1058,20 +1239,29 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
               </h1>
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
             <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
-              <Link href={"/services"}>
+              {/* <Link href={"/services"}> */}
                 <figure className="flex flex-col items-center">
                   <img
                     src="/supervisor/monitor-staff-progres.svg"
                     className="mb-5"
                     alt="monitor STAFF PROGRESS"
                   ></img>
-                  <figcaption className="font-bold text-xs text-center">
+                 {/*  <figcaption className="font-bold text-xs text-center">
                     MANAGE SERVICES
-                  </figcaption>
+                  </figcaption> */}
+                  <ReactToPrint
+              trigger={() => (
+                <button className="flex items-center px-5 py-1 rounded  hover:text-black  text-xs uppercase">
+                  {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
+                  Print funding report tables
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
                 </figure>
-              </Link>
+             {/*  </Link> */}
             </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+           {/*  <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/monitor-staff-progres.svg"
@@ -1082,8 +1272,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                   MONITOR STAFF PROGRESS
                 </figcaption>
               </figure>
-            </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+            </div> */}
+            {/* <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/monitor-impacts-icon.svg"
@@ -1094,8 +1284,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                   MONITOR IMPACTS
                 </figcaption>
               </figure>
-            </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+            </div> */}
+            {/* <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/monitor-quality-icon.svg"
@@ -1106,8 +1296,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                   MONITOR QUALITY
                 </figcaption>
               </figure>
-            </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+            </div> */}
+            {/* <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/plan-for-community-needs-icon.svg"
@@ -1118,7 +1308,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
                   PLAN FOR COMMUNITY NEEDS
                 </figcaption>
               </figure>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>

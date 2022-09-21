@@ -8,6 +8,7 @@ import ClientsEncounterCharts from "../components/ClientsEncounterCharts";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import ToogleButton from "../components/ToogleButton";
 import BackToDashboardButton from "../components/BackToDashboardButton";
+import BackButton from '../components/BackButton'
 
 const Services = ({ clients, averageNumbers }) => {
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
@@ -380,20 +381,23 @@ const Services = ({ clients, averageNumbers }) => {
   }, [dataGraphicPeriod]);
   return (
     <Layout>
-      <section className="bg-yellow grid justify-center text-center items-center py-10">
 
-        <h3 className="font-black uppercase">UNDER DEVELOPMENT</h3>
-        <p>
-These sections are in current development and are on the August - December 2022 Roadmap for feature enhancement.
-</p>
-
-      </section>
       <div className="bg-light-blue">
+
+
+
         <section className="container mx-auto grid-cols-1 gap-5">
+
+        <div className="py-5 flex gap-x-5">
+        <BackButton/>  
+        <BackToDashboardButton/>
+        
+        </div>
+
           <div className="grid grid-cols-2 py-5">
             <h1 className="font-bold px-2">Manage Services</h1>
             <div className="flex justify-end self-end">
-          <BackToDashboardButton/>
+   
           </div>
            {/*  <Link href="/dashboard">
               <a
@@ -426,9 +430,9 @@ These sections are in current development and are on the August - December 2022 
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:px-1 md:pb-1 .bg-middle-white shadow-md">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:px-1 md:pb-1 .bg-middle-white shadow-md">
               <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
+                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4 py-5">
                   Number of active clients
                 </p>
                 <p
@@ -445,7 +449,7 @@ These sections are in current development and are on the August - December 2022 
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   Average # of days between client visits
                 </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold py-5">
                   {averageDays ? averageDays.total : "0"}
                 </p>
               </div>
@@ -453,11 +457,11 @@ These sections are in current development and are on the August - December 2022 
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   Average number of client goals outstanding
                 </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
+                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold py-5">
                   {averageGoals ? averageGoals.total : "0"}
                 </p>
               </div>
-              <div className="grid grid-rows-2">
+             {/*  <div className="grid grid-rows-2">
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   % of clients who say they have reduced unsafe sexual behavior
                   after 3 months
@@ -465,21 +469,21 @@ These sections are in current development and are on the August - December 2022 
                 <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
                   72%
                 </p>
-              </div>
-              <div className="grid grid-rows-2">
+              </div> */}
+              {/* <div className="grid grid-rows-2">
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   % of clients who say they are undetectable after 3 months
                 </p>
                 <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
                   63%
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* KEY METRICS */}
 
-          <div className="graphic-metrics grid grid-cols-1 bg-light-blue shadow gap-1 my-3 mx-3 md:mx-0">
+         {/*  <div className="graphic-metrics grid grid-cols-1 bg-light-blue shadow gap-1 my-3 mx-3 md:mx-0">
             <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
               <div className="flex">
                 <img src="/supervisor/meeting-funding.svg" />
@@ -506,13 +510,13 @@ These sections are in current development and are on the August - December 2022 
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+          <h1 className="mb-4 my-10 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
-          <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
+          <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5 my-10">
             <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
               <Link href={"/monitorFunding"}>
               <figure className="flex flex-col items-center">
@@ -526,7 +530,7 @@ These sections are in current development and are on the August - December 2022 
               </figure>
               </Link>
             </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+            {/* <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/monitor-staff-progres.svg"
@@ -537,8 +541,8 @@ These sections are in current development and are on the August - December 2022 
                   MONITOR STAFF PROGRESS
                 </figcaption>
               </figure>
-            </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+            </div> */}
+            {/* <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/monitor-impacts-icon.svg"
@@ -549,8 +553,8 @@ These sections are in current development and are on the August - December 2022 
                   MONITOR IMPACTS
                 </figcaption>
               </figure>
-            </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+            </div> */}
+            {/* <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/monitor-quality-icon.svg"
@@ -561,8 +565,8 @@ These sections are in current development and are on the August - December 2022 
                   MONITOR QUALITY
                 </figcaption>
               </figure>
-            </div>
-            <div className="p-3 rounded-md bg-white shadow-md">
+            </div> */}
+           {/*  <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/plan-for-community-needs-icon.svg"
@@ -573,7 +577,7 @@ These sections are in current development and are on the August - December 2022 
                   PLAN FOR COMMUNITY NEEDS
                 </figcaption>
               </figure>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>

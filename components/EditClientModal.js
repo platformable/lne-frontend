@@ -200,7 +200,7 @@ console.log("clientData",clientData)
 
               </div>
                {(clientData.clientSSN?.length ===0 || clientData.clientSSN?.length ===4 ) ? null :
-               clientData.clientSSN?.length <4 ? <p className="text-red-500 text-xs mt-2">Only 4 numbers allowed</p> : <p className="text-red-500 text-xs mt-2">Must be 4 numbers </p>}
+               clientData.clientSSN?.length <4 ? <p className="text-black text-xs mt-2">Only 4 numbers allowed</p> : <p className="text-black text-xs mt-2">Must be 4 numbers </p>}
             </label>
             {/*  <label className="block">
             <span className="text-gray-700">When is your event?</span>
@@ -220,7 +220,7 @@ console.log("clientData",clientData)
             >
               <option disabled>{clientData.clientHCWName}</option>
                 {users && users?.map((user,index)=>{
-              return <option value={user.user_id} key={index}>{user.name}</option>
+              return <option value={user.user_id} key={index}>{user.name} {user.lastname}</option>
                 })}
 
             </select>

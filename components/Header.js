@@ -2,13 +2,18 @@ import React from 'react'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import Head from 'next/head'
 
 export default function Header() {
 
   const { user, error, isLoading } = useUser();
   
   return (
-     <header className="border-b">
+     <header className="border-b bg-white">
+      <Head>
+        <title>LNE APP</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
         <div className="container mx-auto py-5  grid space-between grid-cols-2 px-5 md:px-0">
           <Link href="/dashboard"><img src="../../../../logo.png" alt="" width={125} className="cursor-pointer" /></Link>
           <div id="head-user" className="grid place-items-end">

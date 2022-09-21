@@ -111,7 +111,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
   };
   return (
     <Layout>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={50000} />
       <section id="search" className="py-5">
         <div className="container mx-auto">
           

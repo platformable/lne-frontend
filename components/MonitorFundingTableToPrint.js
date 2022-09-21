@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 
 export const MonitorFundingTableToPrint = React.forwardRef((props, ref) => {
- console.log(props)
+
  const {clientid,startdate,firstname,lastname,clienthcwname,goals,joining,lastEncounter,progressnotes}=props.data
 
   return (
@@ -15,40 +15,39 @@ export const MonitorFundingTableToPrint = React.forwardRef((props, ref) => {
             </div>
             <img src="/logo.png" alt="" width={120}/>
           </div>
-     <table >
+     <table>
+     <tbody>
   <tr>
-    <th>Client Start Date</th>
+{/*     <th>Client Start Date</th> */}
     <th>Client Id</th>
     <th>Client first name</th>
     <th>Client first name</th>
     <th>Health care worker assigned</th>
-    <th>Time since joining LNE</th>
+{/*     <th>Time since joining LNE</th> */}
     <th>Number of Encounters</th>
     <th>Last Encounter</th>
     <th>Goals completed</th>
     <th>Outdate MSA forms</th>
-
-
   </tr>
+
   {props.data.map((client,index) =>{
       return (
         <tr key={index}>
-        <td>{client.startdate}</td>
+{/*         <td>{client.startdate}</td> */}
         <td>{client.clientid}</td>
         <td>{client.firstname}</td>
         <td>{client.lastname}</td>
         <td>{client.clienthcwname}</td>
-        <td>{client.joining}</td>
+{/*         <td>{client.joining}</td> */}
         <td>{client.progressnotes}</td>
         <td>{client.lastEncounter}</td>
         <td>{client.goals}</td>
         <td>0</td>
-
       </tr>
       )
   })}
  
-
+ </tbody>
 </table>
     </div>
   );
