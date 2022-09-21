@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
+const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole, impactTracker }) => {
   const [selectedTrackIndex, setSelectedTrackIndex] = useState(null);
   const [form, setForm] = useState({
     impact_trackerID: "",
@@ -48,74 +48,74 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
       ddbb_label: "unstableemployment",
     },
   ];
-  const impactTracker = [
-    {
-      barrierhivprimarycare: "N/A",
-      viralLoadCount: ">50",
-      CD4Count: "",
-      impactformstartdate: "2022-08-24T00:00:00.000Z",
-      legalissues: "Improved",
-      substanceabuse: "Improved",
-      unsafesexualbehavior: "Yes",
-      unstableemployment: "Improved",
-      unstablehousing: "Stayed the same",
-    },
-    {
-      barrierhivprimarycare: "N/A",
-      viralLoadCount: ">50",
-      CD4Count: "100-500",
-      impactformstartdate: "2022-09-24T00:00:00.000Z",
-      legalissues: "Improved",
-      substanceabuse: "Improved",
-      unsafesexualbehavior: "No",
-      unstableemployment: "Improved",
-      unstablehousing: "Stayed the same",
-    },
-    {
-      barrierhivprimarycare: "N/A",
-      viralLoadCount: ">50",
-      CD4Count: "100-500",
-      impactformstartdate: "2022-10-24T00:00:00.000Z",
-      legalissues: "Improved",
-      substanceabuse: "Improved",
-      unsafesexualbehavior: "No",
-      unstableemployment: "Improved",
-      unstablehousing: "Stayed the same",
-    },
-    {
-      barrierhivprimarycare: "N/A",
-      viralLoadCount: "50+",
-      CD4Count: "100-500",
-      impactformstartdate: "2022-11-24T00:00:00.000Z",
-      legalissues: "Improved",
-      substanceabuse: "Improved",
-      unsafesexualbehavior: "No",
-      unstableemployment: "Improved",
-      unstablehousing: "Stayed the same",
-    },
-    {
-      barrierhivprimarycare: "N/A",
-      viralLoadCount: "50+",
-      CD4Count: "100-500",
-      impactformstartdate: "2022-12-24T00:00:00.000Z",
-      legalissues: "Stayed the same",
-      substanceabuse: "Improved",
-      unsafesexualbehavior: "Yes",
-      unstableemployment: "Improved",
-      unstablehousing: "Improved",
-    },
-    {
-      barrierhivprimarycare: "N/A",
-      viralLoadCount: "50+",
-      CD4Count: "100-500",
-      impactformstartdate: "2023-01-24T00:00:00.000Z",
-      legalissues: "Worsened",
-      substanceabuse: "Improved",
-      unsafesexualbehavior: "No",
-      unstableemployment: "Improved",
-      unstablehousing: "Improved",
-    },
-  ];
+  // const impactTrackerArray = [
+  //   {
+  //     barrierhivprimarycare: "N/A",
+  //     viralLoadCount: ">50",
+  //     CD4Count: "",
+  //     impactformstartdate: "2022-08-24T00:00:00.000Z",
+  //     legalissues: "Improved",
+  //     substanceabuse: "Improved",
+  //     unsafesexualbehavior: "Yes",
+  //     unstableemployment: "Improved",
+  //     unstablehousing: "Stayed the same",
+  //   },
+  //   {
+  //     barrierhivprimarycare: "N/A",
+  //     viralLoadCount: ">50",
+  //     CD4Count: "100-500",
+  //     impactformstartdate: "2022-09-24T00:00:00.000Z",
+  //     legalissues: "Improved",
+  //     substanceabuse: "Improved",
+  //     unsafesexualbehavior: "No",
+  //     unstableemployment: "Improved",
+  //     unstablehousing: "Stayed the same",
+  //   },
+  //   {
+  //     barrierhivprimarycare: "N/A",
+  //     viralLoadCount: ">50",
+  //     CD4Count: "100-500",
+  //     impactformstartdate: "2022-10-24T00:00:00.000Z",
+  //     legalissues: "Improved",
+  //     substanceabuse: "Improved",
+  //     unsafesexualbehavior: "No",
+  //     unstableemployment: "Improved",
+  //     unstablehousing: "Stayed the same",
+  //   },
+  //   {
+  //     barrierhivprimarycare: "N/A",
+  //     viralLoadCount: "50+",
+  //     CD4Count: "100-500",
+  //     impactformstartdate: "2022-11-24T00:00:00.000Z",
+  //     legalissues: "Improved",
+  //     substanceabuse: "Improved",
+  //     unsafesexualbehavior: "No",
+  //     unstableemployment: "Improved",
+  //     unstablehousing: "Stayed the same",
+  //   },
+  //   {
+  //     barrierhivprimarycare: "N/A",
+  //     viralLoadCount: "50+",
+  //     CD4Count: "100-500",
+  //     impactformstartdate: "2022-12-24T00:00:00.000Z",
+  //     legalissues: "Stayed the same",
+  //     substanceabuse: "Improved",
+  //     unsafesexualbehavior: "Yes",
+  //     unstableemployment: "Improved",
+  //     unstablehousing: "Improved",
+  //   },
+  //   {
+  //     barrierhivprimarycare: "N/A",
+  //     viralLoadCount: "50+",
+  //     CD4Count: "100-500",
+  //     impactformstartdate: "2023-01-24T00:00:00.000Z",
+  //     legalissues: "Worsened",
+  //     substanceabuse: "Improved",
+  //     unsafesexualbehavior: "No",
+  //     unstableemployment: "Improved",
+  //     unstablehousing: "Improved",
+  //   },
+  // ];
   console.log(form);
   const updateTracker = () => {
     try {
@@ -141,12 +141,12 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                 Baseline scores
               </th>
               
-              {impactTracker &&
+              {impactTracker?.length >= 1 ?
                 impactTracker.map((track, index) => (
                   <>
                     <th
                       scope="col"
-                      className="text-center py-3 px-6 hover:cursor-pointer"
+                      className="text-center py-3 px-6 "
                     >
                       Date:{" "}
                       {new Date(track.impactformstartdate).toLocaleDateString(
@@ -155,9 +155,21 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                       )}
                     </th>
                   </>
-                ))}
+                ))
+               :
+               (<>
+                     <td scope="col"
+                       className="text-center py-3 px-6 bg-black">-</td>
+                     <td scope="col"
+                       className="text-center py-3 px-6 bg-black">-</td>
+                     <td scope="col"
+                       className="text-center py-3 px-6 bg-black">-</td>
+                     <td scope="col"
+                       className="text-center py-3 px-6 bg-black">-</td>
+               </>)
+            }
             </tr>
-          </thead>
+         </thead>
           <tbody>
             {tableLeftHeaders &&
               Object.values(tableLeftHeaders).map((header) => (
@@ -188,11 +200,10 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                                 contentEditable={selectedTrackIndex === i}
                               >
                                 {e[header.ddbb_label] 
-                                // === "1"
-                                //   ? "Yes"
-                                //   : e[header.ddbb_label] === "0"
-                                //   ? "No"
-                                //   : e[header.ddbb_label]
+                                 === true
+                                   ? "Yes"
+                                   : e[header.ddbb_label] === false ? "No" : 
+                                   e[header.ddbb_label]
                                   }
                               </div>
                             </td>
@@ -218,7 +229,7 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                       </>
                       )}
                     {/* TRACKER COLUMNS */}
-                    {impactTracker &&
+                    {impactTracker?.length >= 1 ?
                       impactTracker.map(
                         (e, i, array) => (
                           <>
@@ -238,7 +249,15 @@ const ProfilePageBaselineData = ({ impactBaseline, loggedUserRole }) => {
                             </td>
                           </>
                         )
-                      )}
+                      )
+                     :
+                     (<>
+                     <td className="text-center tezt-base">-</td>
+                     <td className="text-center tezt-base">-</td>
+                     <td className="text-center tezt-base">-</td>
+                     <td className="text-center tezt-base">-</td>
+                    </>)
+                    }
                   </tr>
                 </>
               ))}
