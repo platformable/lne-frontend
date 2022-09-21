@@ -25,7 +25,8 @@ const RowMsaFormSupervisor = ({
   dependency_folder_url,
   setIssueFounded,
   setShowIssuesFoundModal,
-  showIssuesFoundModal
+  showIssuesFoundModal,
+  bgColor
 }) => {
 
   const nameStrings = useMemo(() => iterateFormStringNames(formString), [])
@@ -113,7 +114,7 @@ const RowMsaFormSupervisor = ({
     <div
       className={`${
         MSAStyles.formHeadTitlesSupervisor
-      } justify-center items-center bg-light-blue grid gap-5 py-2 rounded-lg my-2 ${
+      } justify-center items-center ${bgColor} grid gap-5 py-2 rounded-lg my-2 ${
         form  ? "" : "pointer-events-none"
       }`}
     >
