@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ProgressNotesIndex = ({ data }) => {
   const router = useRouter()
-
+console.log("data", data)
   const [showImpactTrackerModal,setShowImpactTrackerModal]=useState(false)
   const [progressNoteId,setProgressNoteId]=useState("")
 
@@ -54,7 +54,6 @@ const ProgressNotesIndex = ({ data }) => {
     const finalDate=`${separatedDate[2]}-${separatedDate[1]?.length===1?`0${separatedDate[1]}`:separatedDate[1]}-${separatedDate[0]?.length===1?`0${separatedDate[0]}`:separatedDate[0]}`
     return finalDate
   }
-
   const [clientData, setClientData] = useState({
     clientId: data[0]?.clientid,
     clientFirstName: data[0]?.clientfirstname,
@@ -88,12 +87,42 @@ const ProgressNotesIndex = ({ data }) => {
     goal2CompletedDate:"",
     goal3Completed:false,
     goal3CompletedDate:"",
+    
+    StatusChangesForm: false,// agregar db
+    StatusChangesFormDate: null,// agregar db
+
+    ComprehensiveRiskBehaviorAssessmentUpdates: false,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate: null, 
+    
+    M11QForm: false,// agregar db
+    M11QFormDate: null, // agregar db
+    
+    CD4VLReports: false,// agregar db
+    CD4VLReportsDate: null, // agregar db
+    
+    InitialTreatmentAdherenceIntake: false,// agregar db
+    InitialTreatmentAdherenceIntakeDate: null, // agregar db
+    
+    TreatmentAdherenceUpdates: false,// agregar db
+    TreatmentAdherenceUpdatesDate: null, // agregar db
+    
     AIRSCollateralInformation:data[0]?.airscollateralinformation ==="0" ? false: true,
     AIRSCollateralInformationDate:data[0]?.airscollateralinformationdate,
+    
+    AIRSDrugRegimen: false,// agregar db
+    AIRSDrugRegimenDate: null,// agregar db
+
     AIRSFinancialInformation:data[0]?.airsfinancialinformation ==="0" ? false: true,
     AIRSFinancialInformationDate:data[0]?.airsfinancialinformationdate,
     AIRSHIVAIDSRiskHistory:data[0]?.airshivaidsriskhistory ==="0" ? false: true,
     AIRSHIVAIDSRiskHistoryDate:data[0]?.airshivaidsriskhistorydate,
+    
+    AIRSHIVStatusHistory: false,// agregar db
+    AIRSHIVStatusHistoryDate:null,// agregar db
+    
+    AIRSHIVMedicalProvider: false,// agregar db
+    AIRSHIVMedicalProviderDate: null, // agregar db
+    
     AIRSHCVHistory:data[0]?.airshcvhistory ==="0" ? false: true,
     AIRSHCVHistoryDate:data[0]?.airshcvhistorydate,
     AIRSHousingInformation:data[0]?.airshousinginformation ==="0" ? false: true,
@@ -124,10 +153,51 @@ const ProgressNotesIndex = ({ data }) => {
     LNEClientReferralFormDate :data[0]?.lneclientreferralformdate,
     LNEHNSEligibilityForm:data[0]?.lnehnseligibilityform ==="0" ? false: true,
     LNEHNSEligibilityFormDate:data[0]?.lnehnseligibilityformdate,
+
+  
+    SupportGroups: false,// agregar db
+    SupportGroupsDate: null, // agregar db
+
+    IDG: false,// agregar db
+    IDGDate: null, // agregar db
+
     progressNoteText:"",
     HCWSignature:data[0]?.hcwsignature ==="0" || data[0]?.hcwsignature ==="" || data[0]?.hcwsignature === null ? false : true,
 
   });
+  console.log("form",clientData)
+  const whichServiceBeenAded = [
+    {value:clientData.LNEHNSEligibilityForm ,state_label: "HNSEligibilityForm",row_color: "bg-light-blue", form_text: "HNS Eligibility Assessment", }, 
+    // {value:clientData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", }, 
+    {value:clientData.StatusChangesForm ,state_label: "StatusChangesForm",row_color: "bg-light-blue", form_text: "Status Changes/Closure Forms", }, 
+    {value:clientData.ComprehensiveRiskBehaviorAssessmentUpdates ,state_label: "ComprehensiveRiskBehaviorAssessmentUpdates",row_color: "bg-light-blue", form_text: "Comprehensive Behavioral Risk Assessment Updates", },
+    {value:clientData.M11QForm ,state_label: "M11QForm",row_color: "bg-light-blue", form_text: "M11Q", }, 
+    {value:clientData.CD4VLReports ,state_label: "CD4VLReports",row_color: "bg-light-blue", form_text: "CD4/VL Check Reports", },
+    {value:clientData.InitialTreatmentAdherenceIntake ,state_label: "InitialTreatmentAdherenceIntake",row_color: "bg-light-blue", form_text: "Initial Treatment Adherence Intake", }, 
+    {value:clientData.TreatmentAdherenceUpdates ,state_label: "TreatmentAdherenceUpdates",row_color: "bg-light-blue", form_text: "Treatment Adherence Updates", },
+    {value:clientData.AIRSCollateralInformation ,state_label: "AIRSCollateralInformation",row_color: "bg-light-blue", form_text: "AIRS Collateral Information", }, 
+    {value:clientData.AIRSDrugRegimen ,state_label: "AIRSDrugRegimen",row_color: "bg-light-blue", form_text: "AIRS Drug Regimen History", }, 
+    {value:clientData.AIRSFinancialInformation ,state_label: "AIRSFinancialInformation",row_color: "bg-light-blue", form_text: "AIRS Financial Information", }, 
+    {value:clientData.AIRSHIVAIDSRiskHistory ,state_label: "AIRSHIVAIDSRiskHistory",row_color: "bg-light-blue", form_text: "AIRS HIV AIDS Risk History", }, 
+    {value:clientData.AIRSHIVMedicalProvider ,state_label: "AIRSHIVMedicalProvider",row_color: "bg-light-blue", form_text: "AIRS HIV Medical Provider History", },
+    {value:clientData.AIRSHIVStatusHistory ,state_label: "AIRSHIVStatusHistory",row_color: "bg-light-blue", form_text: "AIRS HIV Status History", }, 
+    {value:clientData.AIRSHCVHistory ,state_label: "AIRSHCVHistory",row_color: "bg-light-blue", form_text: "AIRS HCV History", }, 
+    {value:clientData.AIRSHousingInformation ,state_label: "AIRSHousingInformation",row_color: "bg-light-blue", form_text: "AIRS Housing Information", }, 
+    {value:clientData.AIRSInsuranceInformation ,state_label: "AIRSInsuranceInformation",row_color: "bg-light-blue", form_text: "AIRS Insurance Information", }, 
+    {value:clientData.AIRSSubstanceUseHistory ,state_label: "AIRSSubstanceUseHistory",row_color: "bg-light-blue", form_text: "AIRS Substance Use History", }, 
+    {value:clientData.LNEClientRights ,state_label: "LNEClientRights",row_color: "bg-light-green", form_text: "LNE Client Rights", }, 
+    {value:clientData.LNEClientGrievancePolicyProcedure ,state_label: "LNEClientGrievancePolicyProcedure",row_color: "bg-light-green", form_text: "LNE Client Grievance Policy & Procedure", }, 
+    {value:clientData.LNEProgramRules ,state_label: "LNEProgramRules",row_color: "bg-light-green", form_text: "LNE Program Rules", }, 
+    {value:clientData.LNEEmergencyContactConsent ,state_label: "LNEEmergencyContactConsent",row_color: "bg-light-green", form_text: "LNE Emergency Contact Consent", }, 
+    {value:clientData.LNEConsentForReleaseOfConfidentialInformation ,state_label: "LNEConsentForReleaseOfConfidentialInformation",row_color: "bg-light-green", form_text: "LNE Consent for Release of Confidential Information", }, 
+    {value:clientData.HIPPAConsentForm ,state_label: "HIPPAConsentForm",row_color: "bg-light-green", form_text: "HIPAA Consent Form (OCA Form 960), "}, 
+    {value:clientData.NYCDOHMHNoticeOfPrivacyPractices ,state_label: "NYCDOHMHNoticeOfPrivacyPractices",row_color: "bg-light-green", form_text: "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt", }, 
+    {value:clientData.LNEOutreachRetentionTrackingForm ,state_label: "LinkageRetentionAdherenceForms",row_color: "bg-light-pink", form_text: "Linkage, Retention, & Adherence Forms", },
+    {value:clientData.LNEReferralInformation ,state_label: "InternalReferralInformation",row_color: "bg-light-pink", form_text: "Internal Referral Information", }, 
+    {value:clientData.LNEClientReferralForm ,state_label: "LNEClientReferralForm",row_color: "bg-light-pink", form_text: "Identification", }, 
+    {value:clientData.SupportGroups ,state_label: "SupportGroups",row_color: "bg-light-pink", form_text: "Support Groups", },
+    {value:clientData.IDGForm ,state_label: "IDGForm",row_color: "bg-light-pink", form_text :"IDG"},
+   ] 
 
   const todaysDate = new Date();
 const [serviceActionData,setServiceActionData]=useState({
@@ -854,15 +924,17 @@ const handleProgressNote=()=>{
 
 
 
-          <h3 className="font-black my-5 text-dark-blue">Were any additional forms added to the clients profile?</h3>
+          <h3 className="font-black my-5 text-dark-blue">Were any additional forms added to the client´s profile?</h3>
 
 <section className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals" id="workedGoals">
 
     <div className="additional-forms-container grid grid-cols-2 gap-1">
         <div className="additional-forms-box border-r-dark-blue ">
-        
-        <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
+        {whichServiceBeenAded && 
+        whichServiceBeenAded.slice(0, 15).map(service => (
+          <>
+           <div
+              className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
             >
                
                  <label
@@ -873,19 +945,19 @@ const handleProgressNote=()=>{
                   type="checkbox"
                   name=""
                   id=""
-                  /* checked={clientData.AIRSCollateralInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSCollateralInformation ? true : false} */
+                   checked={service.value ? 'checked' : ''}
+                  // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                   onChange={(e) =>{
-                    clientData.AIRSCollateralInformationDate==="" || clientData.AIRSCollateralInformationDate===null ? (
+                    clientData[service.state_label]==="" || clientData[`${service.state_label}Date`]===null ? (
                     setClientData({
                       ...clientData,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
-                        AIRSCollateralInformationDate:new Date()
+                      [service.state_label]:
+                        !service.value,
+                        [`${service.state_label}Date`]:new Date()
                     })):setClientData({
                       ...clientData,
-                      AIRSCollateralInformation:
-                        !clientData.AIRSCollateralInformation,
+                      [service.state_label]:
+                        !service.value,
                     })
                     }
                   }
@@ -895,348 +967,26 @@ const handleProgressNote=()=>{
                  </label>
                 <div className="pl-2">
                   <p>
-                   AIRS Collateral Information
+                   {service.form_text}
                    </p>
                    
                 </div>
               
             </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.AIRSFinancialInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSFinancialInformation ? true : false} */
-                  onChange={(e) =>{
-                    clientData.AIRSFinancialInformationDate==="" || clientData.AIRSFinancialInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                        AIRSFinancialInformationDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSFinancialInformation:
-                        !clientData.AIRSFinancialInformation,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                   AIRS Financial Information
-                   </p>
-                   
-                </div>
-              
-            </div>
-
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.AIRSHIVAIDSRiskHistory ? 'checked' : ''}
-                  disabled={clientData.AIRSHIVAIDSRiskHistory ? true : false} */
-                  onChange={(e) =>{
-                    clientData.AIRSHIVAIDSRiskHistoryDate==="" || clientData.AIRSHIVAIDSRiskHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                        AIRSHIVAIDSRiskHistoryDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHIVAIDSRiskHistory:
-                        !clientData.AIRSHIVAIDSRiskHistory,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  AIRS HIV AIDS Risk History
-                   </p>
-                   
-                </div>
-              
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.AIRSHCVHistory ? 'checked' : ''}
-                  disabled={clientData.AIRSHCVHistory ? true : false} */
-                  onChange={(e) =>{
-                    clientData.AIRSHCVHistoryDate==="" || clientData.AIRSHCVHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHCVHistory:
-                        !clientData.AIRSHCVHistory,
-                        AIRSHCVHistoryDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHCVHistory:
-                        !clientData.AIRSHCVHistory,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  AIRS HCV History
-                   </p>
-                   
-                </div>
-              
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.AIRSHousingInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSHousingInformation ? true : false} */
-                  onChange={(e) =>{
-                    clientData.AIRSHousingInformationDate==="" || clientData.AIRSHousingInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                        AIRSHousingInformationDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSHousingInformation:
-                        !clientData.AIRSHousingInformation,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  AIRS Housing Information
-                </p>
-                   
-                </div>
-              
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.AIRSInsuranceInformation ? 'checked' : ''}
-                  disabled={clientData.AIRSInsuranceInformation ? true : false} */
-                  onChange={(e) =>{
-                    clientData.AIRSInsuranceInformationDate==="" || clientData.AIRSInsuranceInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                        AIRSInsuranceInformationDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSInsuranceInformation:
-                        !clientData.AIRSInsuranceInformation,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  AIRS Insurance Information
-                </p>
-                   
-                </div>
-              
-            </div>
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.AIRSSubstanceUseHistory ? 'checked' : ''}
-                  disabled={clientData.AIRSSubstanceUseHistory ? true : false} */
-                  onChange={(e) =>{
-                    clientData.AIRSSubstanceUseHistoryDate==="" || clientData.AIRSSubstanceUseHistoryDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                        AIRSSubstanceUseHistoryDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      AIRSSubstanceUseHistory:
-                        !clientData.AIRSSubstanceUseHistory,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  AIRS Substance Use History
-                </p>
-                   
-                </div>
-              
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEClientRights ? 'checked' : ''}
-                  disabled={clientData.LNEClientRights ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEClientRightsDate==="" || clientData.LNEClientRightsDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientRights:
-                        !clientData.LNEClientRights,
-                        LNEClientRightsDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientRights:
-                        !clientData.LNEClientRights,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  LNE Client Rights
-                </p>
-                   
-                </div>
-              
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
-             >
-               
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                   
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEClientGrievancePolicyProcedure ? 'checked' : ''}
-                  disabled={clientData.LNEClientGrievancePolicyProcedure ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEClientGrievancePolicyProcedureDate==="" || clientData.LNEClientGrievancePolicyProcedureDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                        LNEClientGrievancePolicyProcedureDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientGrievancePolicyProcedure:
-                        !clientData.LNEClientGrievancePolicyProcedure,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                    
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  LNE Client Grievance Policy & Procedure
-                </p>
-                   
-                </div>
-              
-            </div>
+          </>
+        ))}
+        
         
         </div>   {/* FIN DEL FORM BOX */}
 
 
         <div className="additional-form-box">
-        <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
-             >
+        {whichServiceBeenAded && 
+        whichServiceBeenAded.slice(15).map(service=> (
+          <>
+          <div
+              className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
+            >
                
                  <label
                     className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
@@ -1246,19 +996,19 @@ const handleProgressNote=()=>{
                   type="checkbox"
                   name=""
                   id=""
-                  /* checked={clientData.LNEProgramRules ? 'checked' : ''}
-                  disabled={clientData.LNEProgramRules ? true : false} */
+                   checked={service.value ? 'checked' : ''}
+                  // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                   onChange={(e) =>{
-                    clientData.LNEProgramRulesDate==="" || clientData.LNEProgramRulesDate===null ? (
+                    clientData[service.state_label]==="" || clientData[`${service.state_label}Date`]===null ? (
                     setClientData({
                       ...clientData,
-                      LNEProgramRules:
-                        !clientData.LNEProgramRules,
-                        LNEProgramRulesDate:new Date()
+                      [service.state_label]:
+                        !service.value,
+                        [`${service.state_label}Date`]:new Date()
                     })):setClientData({
                       ...clientData,
-                      LNEProgramRules:
-                        !clientData.LNEProgramRules,
+                      [service.state_label]:
+                        !service.value,
                     })
                     }
                   }
@@ -1268,298 +1018,15 @@ const handleProgressNote=()=>{
                  </label>
                 <div className="pl-2">
                   <p>
-                  LNE Program Rules
-                </p>
+                   {service.form_text}
+                   </p>
                    
                 </div>
               
             </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
-             >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEEmergencyContactConsent ? 'checked' : ''}
-                  disabled={clientData.LNEEmergencyContactConsent ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEEmergencyContactConsentDate==="" || clientData.LNEEmergencyContactConsentDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                        LNEEmergencyContactConsentDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEEmergencyContactConsent:
-                        !clientData.LNEEmergencyContactConsent,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  LNE Emergency Contact Consent
-                </p>
-                </div>
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
-              >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEConsentForReleaseOfConfidentialInformation ? 'checked' : ''}
-                  disabled={clientData.LNEConsentForReleaseOfConfidentialInformation ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEConsentForReleaseOfConfidentialInformationDate==="" || clientData.LNEConsentForReleaseOfConfidentialInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEConsentForReleaseOfConfidentialInformation:
-                        !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                        LNEConsentForReleaseOfConfidentialInformationDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEConsentForReleaseOfConfidentialInformatio:
-                        !clientData.LNEConsentForReleaseOfConfidentialInformation,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  LNE Consent for Release of Confidential Information
-                </p>
-                </div>
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
-              >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.HIPPAConsentForm ? 'checked' : ''}
-                  disabled={clientData.HIPPAConsentForm ? true : false} */
-                  onChange={(e) =>{
-                    clientData.HIPPAConsentFormDate==="" || clientData.HIPPAConsentFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      HIPPAConsentForm:
-                        !clientData.HIPPAConsentForm,
-                        HIPPAConsentFormDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      HIPPAConsentForm:
-                        !clientData.HIPPAConsentForm,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  HIPAA Consent Form (OCA Form 960)
-                </p>
-                </div>
-            </div>
-               
-              
-
-           
-             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green flex gap-5 py-2 pl-2  my-2`}
-              >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.NYCDOHMHNoticeOfPrivacyPractices ? 'checked' : ''}
-                  disabled={clientData.NYCDOHMHNoticeOfPrivacyPractices ? true : false} */
-                  onChange={(e) =>{
-                    clientData.NYCDOHMHNoticeOfPrivacyPracticesDate==="" || clientData.NYCDOHMHNoticeOfPrivacyPracticesDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                        NYCDOHMHNoticeOfPrivacyPracticesDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      NYCDOHMHNoticeOfPrivacyPractices:
-                        !clientData.NYCDOHMHNoticeOfPrivacyPractices,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                  <p>
-                  NYC DOHMH Notice of Privacy Practices - Acknowledgement of
-                  Receipt{" "}
-                </p>
-                </div>
-            </div>
-          
-            
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
-              >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEOutreachRetentionTrackingForm ? 'checked' : ''}
-                  disabled={clientData.LNEOutreachRetentionTrackingForm ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEOutreachRetentionTrackingFormDate==="" || clientData.LNEOutreachRetentionTrackingFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                        LNEOutreachRetentionTrackingFormDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEOutreachRetentionTrackingForm:
-                        !clientData.LNEOutreachRetentionTrackingForm,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                <p>LNE Outreach Retention/Tracking Form </p>
-                </div>
-            </div>
-            
-           <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
-              >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEReferralInformation ? 'checked' : ''}
-                  disabled={clientData.LNEReferralInformation ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEReferralInformationDate==="" || clientData.LNEReferralInformationDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                        LNEReferralInformationDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEReferralInformation:
-                        !clientData.LNEReferralInformation,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                <p>LNE Referral Information </p>
-                </div>
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink flex gap-5 py-2 pl-2  my-2`}
-              >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEClientReferralForm ? 'checked' : ''}
-                  disabled={clientData.LNEClientReferralForm ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEClientReferralFormDate==="" || clientData.LNEClientReferralFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEClientReferralForm:
-                        !clientData.LNEClientReferralForm,
-                        LNEClientReferralFormDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEClientReferralForm:
-                        !clientData.LNEClientReferralForm,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                <p>LNE Client Referral Form </p>
-                </div>
-            </div>
-
-            <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple flex gap-5 py-2 pl-2  my-2`}
-              >
-                 <label
-                    className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                  >
-                  <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  /* checked={clientData.LNEHNSEligibilityForm ? 'checked' : ''}
-                  disabled={clientData.LNEHNSEligibilityForm ? true : false} */
-                  onChange={(e) =>{
-                    clientData.LNEHNSEligibilityFormDate==="" || clientData.LNEHNSEligibilityFormDate===null ? (
-                    setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityForm:
-                        !clientData.LNEHNSEligibilityForm,
-                        LNEHNSEligibilityFormDate:new Date()
-                    })):setClientData({
-                      ...clientData,
-                      LNEHNSEligibilityForm:
-                        !clientData.LNEHNSEligibilityForm,
-                    })
-                    }
-                  }
-                 />
-                    <span className={`${ProgressNotesStyles.checkmark}`}></span>
-                 </label>
-                <div className="pl-2">
-                <p>LNE HNS Eligibility Form </p>
-                </div>
-            </div>
+          </>
+        ))}
+        
         </div>
     </div>
 

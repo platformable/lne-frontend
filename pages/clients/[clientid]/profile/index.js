@@ -14,6 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from "next/router";
+import BackButton from "../../../../components/BackButton";
 
 export function getDatex(string) {
   const date = new Date(string);
@@ -213,7 +214,6 @@ export default function ClientProfilePage({ data, impactBaseline }) {
       position: toast.POSITION.TOP_CENTER,
     });
   };
-
   return (
     <>
       <Layout>
@@ -221,7 +221,8 @@ export default function ClientProfilePage({ data, impactBaseline }) {
         <div className=" bg-light-blue h-full pb-20 ">
           <section className="py-5 container mx-auto md:px-0 px-5">
             <div className="flex gap-x-3">
-              <button
+              <BackButton />
+              {/* <button
                 onClick={() =>
                   loggedUserRole === "Supervisor"
                     ? router.push("/clients")
@@ -230,11 +231,12 @@ export default function ClientProfilePage({ data, impactBaseline }) {
                 className="bg-yellow px-5 mb-5 py-2 rounded  inline-block  flex items-center text-black gap-x-2"
               >
                 <img src="/dashboard_icon.svg" alt="" width={20} />
-                {loggedUserRole === "Supervisor" ? "Back " : "Dashboard"}
-              </button>
+                Dashboard
+              </button> */}
+              <BackToDashboardButton />
             </div>
             <section className="dashboard-clients-cards md:px-0 px-5">
-              <div className="dashboard-clients-cards-top py-5 flex gap-x-5">
+              <div className="dashboard-clients-cards-top py-5 grid gap-y-5 md:flex gap-x-5">
                 <h1 className="font-black">Client dashboard</h1>
                 <div className="color-description flex gap-x-5">
                   <div className="color-description-item flex items-center gap-x-2">
@@ -286,12 +288,20 @@ export default function ClientProfilePage({ data, impactBaseline }) {
                             {data[0]?.clientid}
                           </p>
                           <button
-                            className="bg-black rounded-md px-5 py-1 shadow-md text-white mt-5 text-sm"
+                            className="bg-black rounded-md px-5 block py-1 shadow-md text-white mt-5 text-sm"
                             onClick={() =>
                               setShowEditClientModal(!showEditClientModal)
                             }
                           >
                             Edit
+                          </button>
+                          <button
+                            className=" rounded-md px-5 py-1 block shadow-md text-white mt-5 text-sm"
+                            onClick={() =>
+                              setShowEditClientModal(!showEditClientModal)
+                            }
+                          >
+                            <img src="/delete-user-icon.svg" alt="delete button" width={25}/>
                           </button>
                         </div>
                       </div>
@@ -469,12 +479,7 @@ export default function ClientProfilePage({ data, impactBaseline }) {
               impactBaseline={impactBaseline}
               loggedUserRole={loggedUserRole}
             />
-            {loggedUserRole && (
-              <button className="bg-yellow mb-7 rounded gap-2 shadow mt-2 px-7 py-2">
-              <img src="/edit-icon.svg" alt="edit icon" />
-
-              </button>
-            )}
+            
           </section>
         </div>
       </Layout>
@@ -510,6 +515,9 @@ export const getServerSideProps = withPageAuthRequired({
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
       ).then((r) => r.json()),
+      // fetch(
+      //   `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/${clientid}`
+      // ).then((r) => r.json()),
     ]);
     return { props: { data: data, impactBaseline: impactBaseline } };
 
