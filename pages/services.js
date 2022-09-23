@@ -12,7 +12,7 @@ import BackButton from '../components/BackButton'
 
 const Services = ({ clients, averageNumbers }) => {
 
-  console.log("clients",clients)
+
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
 
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
@@ -95,31 +95,29 @@ const Services = ({ clients, averageNumbers }) => {
       (client) => client.clientactive === "1"
     ).length;
 
-    /*   const clientsWithSAP=averageNumbers.filter((client,index)=>{
-    return client.planstartdate!==null
-  }) */
-
     const x = averageNumbers.forEach((client, index) => {
-      const { planstartdate, progressnotedate } = client;
+      const { sapstartdate, progressnotedate,clientdatecreated } = client;
 
-      if (progressnotedate === "" || progressnotedate === null) {
-        var date1 = new Date(planstartdate);
+      if (progressnotedate === null && sapstartdate === null) {
+        var date1 = new Date(clientdatecreated);
         var date2 = new Date();
         var difference = date2.getTime() - date1.getTime();
         var days = Math.ceil(difference / (1000 * 3600 * 24));
-
         total = total + days;
-      } else {
-        var date1 = new Date(progressnotedate);
+      } 
+      if(progressnotedate === null && sapstartdate){
+        var date1 = new Date(sapstartdate);
         var date2 = new Date();
         var difference = date2.getTime() - date1.getTime();
         var days = Math.ceil(difference / (1000 * 3600 * 24));
-
         total = total + days;
       }
+
+      return total
+  
     });
 
-    let average = total / totalActiveClients;
+    let average = total/ totalActiveClients;
 
     if (average > 30) {
       setAverageDays({
@@ -180,7 +178,7 @@ const Services = ({ clients, averageNumbers }) => {
         color: "bg-light-red",
       });
     }
-    if (average > 2.5 && average < 1.5) {
+    if (average > 1.5 && average < 2.5) {
       setAverageGoals({
         ...averageGoals,
         total: average.toFixed(1),
@@ -374,9 +372,11 @@ const Services = ({ clients, averageNumbers }) => {
     return numberOfClients;
   };
 
+
+  console.log("averageNumbers",averageNumbers)
   useEffect(() => {
     clientsCount(clients);
-    calculateAverageDays(averageNumbers);
+    calculateAverageDays(clients);
     calculateNumberOfGoals(averageNumbers);
     chart1Data(averageNumbers);
     chart2Data(averageNumbers);
@@ -451,7 +451,7 @@ const Services = ({ clients, averageNumbers }) => {
                 <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
                   Average # of days between client visits
                 </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold py-5">
+                <p className={`${averageDays.color} flex items-center justify-center text-2xl font-bold py-5`}>
                   {averageDays ? averageDays.total : "0"}
                 </p>
               </div>
