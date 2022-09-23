@@ -24,7 +24,7 @@ const DeleteClientModal = ({data, showDeleteClientModal, setShowDeleteClientModa
             if(response.statusText==='OK'){
                 notifyDeleteMessage()
                 setTimeout(()=>{
-                   router.push("/dasbhboard")
+                   router.push("/clients")
                 },1000)
             }
         })
