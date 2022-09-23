@@ -102,11 +102,12 @@ const ProfilePageBaselineData = ({
                 impactTracker.map((track, index) => (
                   <>
                     <th scope="col" className="text-center py-3 px-6 ">
-                      Date:{" "}
+                     <p>   Date:{" "}
                       {new Date(track.impactformstartdate).toLocaleDateString(
                         "en",
                         { year: "numeric", month: "numeric", day: "numeric" }
                       )}
+                      </p>
                     </th>
                   </>
                 ))

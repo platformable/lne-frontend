@@ -29,6 +29,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorFundingTableDataSortingByEncounters,setMonitorFundingTableDataSortingByEncounters]=useState(false)
   const [monitorFundingTableDataSortingByLastEncounters,setMonitorFundingTableDataSortingByLastEncounters]=useState(false)
   const [monitorFundingTableDataSortingByGoals,setMonitorFundingTableDataSortingByGoals]=useState(false)
+  const [monitorFundingTableDataSortingByHCW,setMonitorFundingTableDataSortingByHCW]=useState(false)
 
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(4)
@@ -36,7 +37,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const indexOfLastPost = currentPage * postsPerPage
   const indexofFirstPost = indexOfLastPost - postsPerPage
   const currentPosts = monitorMetricsData.slice(indexofFirstPost, indexOfLastPost)
-
+console.log(monitorMetricsData)
   let componentRef = useRef();
 
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
@@ -96,7 +97,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     return TotalDays; */
 
     if (planstartdate === null || planstartdate === "" || progressnotes.length===0) {
-      console.log("plan startdate null y no progressnotes")
+
       let date_1 = new Date(clientdatecreated);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
@@ -105,7 +106,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     }
 
     if (planstartdate   && progressnotes[0]===null) {
-      console.log("plan startdate y no progressnotes")
+
       let date_1 = new Date(planstartdate);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
@@ -114,7 +115,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     }
 
     if (planstartdate   && progressnotes[0]!==null) {
-      console.log("plan startdate y no progressnotes")
+
       let date_1 = new Date(progressnotes[0]);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
@@ -773,6 +774,17 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       } 
      }
 
+     const handleSortByHCW=()=>{
+      setMonitorFundingTableDataSortingByHCW(!monitorFundingTableDataSortingByHCW)
+     if(monitorFundingTableDataSortingByHCW){
+      const result= monitorMetricsData.sort((a, b) => a.clienthcwname.localeCompare(b.clienthcwname))
+      setMonitorMetricsData(prevMovies => ([...result])); 
+     } else {
+      const result= monitorMetricsData.sort((a, b) => b.clienthcwname.localeCompare(a.clienthcwname))
+      setMonitorMetricsData(prevMovies => ([...result]));
+     } 
+    }
+
      const handleSortByDate=()=>{
         
          setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
@@ -1066,6 +1078,29 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
               </div>
               <div className="monitor-funding-table-col flex   items-center  px-5">
                 <p className="">HCW <br /> assigned</p>
+                <svg
+                onClick={()=>handleSortByHCW()}
+                  className="cursor-pointer"
+                  width="20"
+                  height="20"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.5 9.5L12 6L8.5 9.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15.5 14L12 17.5L8.5 14"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
              {/*  <div className="monitor-funding-table-col flex  items-center  px-5">
                 <p className="">Time since <br /> joining LNE</p>
