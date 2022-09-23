@@ -24,21 +24,13 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
         progress_note_id,
         impactFormStartDate: date,
         barrierHIVPrimaryCare: null,
-        // barrierAccessingMedications: null,
-        // medicationAdherence: null,
-        // CD4ViralLoad: null,
         viralLoadCount: null,
         CD4Count: null,
-        // lastHIVTest: null,
-        // PrEP: null,
         unsafeSexualBehavior: null,
         substanceAbuse: null,
-        // riskOfOverdose: null,
         legalIssues: null,
         unstableEmployment: null,
-        // mentalHealthIssues: null,
         unstableHousing: null,
-        // foodInsecurity: null,
     })
 
     const createImpactTrackerForm =()=>{
@@ -154,31 +146,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                             
                                         </div>   
                                     </div>
-                                    {/* <div className="flex bg-light-blue items-center py-1 pl-6 pr-3">
-                                        <span>
-                                            <input type='checkbox' name="barrierAccessingMedications" onChange={enableFieldfromCheckbox} checked={impactTracker.barrierAccessingMedications !== null? true : false}></input>
-                                        </span>
-                                        <p className='font-bold text-xs ml-3 w-3/6'>Barriers to accessing medications  </p>
-                                        <div className={`text-xs grid w-11/12 grid-cols-4 ${impactTracker.barrierHIVPrimaryCare === null ? "pointer-events-none grayscale": ""}`}>
-                                            <span className='flex items-center mx-1'>
-                                                <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-pink-200 rounded-md hover:contrast-125" type="button" 
-                                                style={impactTracker.barrierAccessingMedications === 'Worsened'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
-                                                onClick={onValueChange} name="barrierAccessingMedications" value="Worsened">Worsened</button>
-                                            </span>
-                                            <span className='flex items-center mx-1'>
-                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-yellow-200 rounded-md hover:contrast-125" type="button" 
-                                                 style={impactTracker.barrierAccessingMedications === 'Unchanged'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
-                                                onClick={onValueChange} name="barrierAccessingMedications" value="Unchanged">Unchanged</button>
-                                            </span>
-                                            <span className='flex items-center mx-1'>
-                                            <button className="p-1 px-2 text-xxs flex items-center font-semibold bg-green-200 rounded-md hover:contrast-125" type="button" 
-                                                 style={impactTracker.barrierAccessingMedications === 'Improved'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
-                                                onClick={onValueChange} name="barrierAccessingMedications" value="Improved">Improved</button>
-                                            </span>
-                                            
-                                        </div>   
-                                    </div> */}
-                                    
+                                   
                                     {/* <div className="flex bg-light-blue items-center py-1 pl-6 pr-3">
                                         <span>
                                             <input type='checkbox' name="medicationAdherence" onChange={enableFieldfromCheckbox} checked={impactTracker.medicationAdherence !== null? true : false}></input>
@@ -202,25 +170,30 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                             </span>
                                             
                                         </div>   
-                                    </div>
+    </div> */}
                                     <div className="flex bg-light-blue justify-start items-center py-1 pl-6 pr-3">
                                         <span>
-                                            <input type='checkbox' name="CD4ViralLoad" onChange={enableFieldfromCheckbox} checked={impactTracker.CD4ViralLoad !== null !== null ? true : false}></input>
+                                            <input type='checkbox' name="viralLoadCount" onChange={enableFieldfromCheckbox} checked={impactTracker.viralLoadCount !== null !== null ? true : false}></input>
                                         </span>
-                                        <p className='font-bold text-xs  ml-3 w-1/4 md:w-2/6 lg:w-5/12 xl:w-3/6'>Detectable viral load</p>
-                                        <div className={`text-xs grid w-11/12 grid-cols-4 ${impactTracker.barrierHIVPrimaryCare === null ? "pointer-events-none grayscale": ""}`}>
+                                        <p className='font-bold text-xs  ml-3 w-1/4 md:w-2/6 lg:w-5/12 xl:w-3/6'>Viral Load Count</p>
+                                        <div className={`text-xs grid w-11/12 grid-cols-4 ${impactTracker.viralLoadCount === null ? "pointer-events-none grayscale": ""}`}>
                                             <span className='flex items-center mr-2 md:mx-2 md:mr-3 lg:mx-4 xl:ml-0'>
                                                 <input className="mr-1 md:mr-2" type="radio" 
-                                                onChange={onValueChange} name="CD4ViralLoad" value={true} />
-                                                <label>Yes</label>
+                                                onChange={onValueChange} name="viralLoadCount" value={">50"} />
+                                                <label>{">50"}</label>
                                             </span>
                                             <span className='flex items-center mx-7 md:mx-3 lg:mr-4 xl:mx-6'>
                                                 <input className="mx-1 md:mr-2" type="radio" 
-                                                onChange={onValueChange} name="CD4ViralLoad" value={false} />
-                                                <label>No</label>
+                                                onChange={onValueChange} name="viralLoadCount" value={"50+"} />
+                                                <label>50+</label>
+                                            </span>
+                                            <span className='flex items-center mx-7 md:mx-3 lg:mr-4 xl:mx-6'>
+                                                <input className="mx-1 md:mr-2" type="radio" 
+                                                onChange={onValueChange} name="ViralLoadCount" value={"N/A"} />
+                                                <label>N/A</label>
                                             </span>
                                         </div>     
-                                    </div>  */}
+                                    </div>  
                                     <div className="flex bg-light-blue items-center py-1 pl-6 pr-3"> 
                                         <span>
                                             <input type='checkbox' name="CD4Count" onChange={enableFieldfromCheckbox} checked={impactTracker.CD4Count !== null? true : false}></input>
@@ -243,7 +216,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                             <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-green-200 rounded-md hover:contrast-125" type="radio" 
                                                  style={impactTracker.CD4Count === '+500'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                  onClick={onValueChange} name="CD4Count" value="500+"/>
-                                                 <label>+500</label>
+                                                 <label>500+</label>
                                             </span>
                                             <span className='flex items-center mx-1'>
                                             <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-green-200 rounded-md hover:contrast-125" type="radio" 
@@ -254,33 +227,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                             
                                         </div>   
                                     </div>
-                                    <div className="flex bg-light-blue items-center py-1 pl-6 pr-3">
-                                        <span>
-                                            <input type='checkbox' name="viralLoadCount" onChange={enableFieldfromCheckbox} checked={impactTracker.viralLoadCount !== null? true : false}></input>
-                                        </span>
-                                        <p className='font-bold text-xs ml-3 w-3/6'>Viral Load Count</p>
-                                        <div className={`text-xs grid w-11/12 grid-cols-4 ${impactTracker.viralLoadCount === null ? "pointer-events-none grayscale": ""}`}>
-                                            <span className='flex items-center mx-1'>
-                                                <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-pink-200 rounded-md hover:contrast-125" type="radio" 
-                                                style={impactTracker.viralLoadCount === '<50'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
-                                                onClick={onValueChange} name="viralLoadCount" value="<50"/>
-                                                <label>{`<50`}</label>
-                                            </span>
-                                            <span className='flex items-center mx-1'>
-                                            <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-yellow-200 rounded-md hover:contrast-125" type="radio" 
-                                                 style={impactTracker.viralLoadCount === '50+'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
-                                                 onClick={onValueChange} name="viralLoadCount" value="50+"/>
-                                                 <label>50+</label>
-                                            </span>
-                                            <span className='flex items-center mx-1'>
-                                            <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-green-200 rounded-md hover:contrast-125" type="radio" 
-                                                 style={impactTracker.viralLoadCount === 'Improved'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
-                                                 onClick={onValueChange} name="viralLoadCount" value="N/A"/>
-                                                 <label>N/A</label>
-                                            </span>
-                                            
-                                        </div>   
-                                    </div>
+                                   
                                     {/* <div className="flex bg-light-blue items-center py-1 pl-6 pr-3">
                                         <span>
                                             <input type='checkbox' name="lastHIVTest" onChange={enableFieldfromCheckbox} checked={impactTracker.lastHIVTest !== null !== null? true : false}></input>

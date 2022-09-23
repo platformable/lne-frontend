@@ -52,10 +52,10 @@ const getDate = (date) => {
   return newDate;
 };
 
-export default function ClientProfilePage({ data, impactBaseline,tracker }) {
+export default function ClientProfilePage({ data, impactBaseline, impactTracker }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal,setShowDeleteClientModal]=useState(false)
-
+  impactTracker && console.log("tracker", impactTracker)
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
@@ -227,7 +227,7 @@ export default function ClientProfilePage({ data, impactBaseline,tracker }) {
       <Layout>
         <ToastContainer autoClose={3000} />
         <div className=" bg-light-blue h-full pb-20 ">
-          <section className="py-5 container mx-auto md:px-0 px-5">
+          <section className="pb-5 pt-10 container mx-auto md:px-0 px-5">
             <div className="flex gap-x-3">
               <BackButton />
               <BackToDashboardButton />
@@ -474,7 +474,9 @@ export default function ClientProfilePage({ data, impactBaseline,tracker }) {
           <section id="baselineData" className="mt-16 container mx-auto">
             <ProfilePageBaselineData
               impactBaseline={impactBaseline}
+              impactTracker={impactTracker}
               loggedUserRole={loggedUserRole}
+              notifyMessage={notifyMessage}
             />
             
           </section>
@@ -496,6 +498,7 @@ export default function ClientProfilePage({ data, impactBaseline,tracker }) {
           showDeleteClientModal={showDeleteClientModal}
           setShowDeleteClientModal={setShowDeleteClientModal}
           notifyDeleteMessage={notifyDeleteMessage}
+          
         />
       )}
     </>
@@ -514,7 +517,7 @@ export default function ClientProfilePage({ data, impactBaseline,tracker }) {
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const [data, impactBaseline,tracker] = await Promise.all([
+    const [data, impactBaseline,impactTracker] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
       ).then((r) => r.json()),
@@ -525,7 +528,7 @@ export const getServerSideProps = withPageAuthRequired({
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
       ).then((r) => r.json()),
     ]);
-    return { props: { data: data, impactBaseline: impactBaseline,tracker:tracker } };
+    return { props: { data: data, impactBaseline: impactBaseline, impactTracker: impactTracker  } };
 
     /*  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
     const data = await res.json();
