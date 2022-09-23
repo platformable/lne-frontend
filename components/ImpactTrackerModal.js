@@ -337,12 +337,12 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
                                         <div className={`text-xs grid w-11/12 grid-cols-4 ${impactTracker.unsafeSexualBehavior === null ? "pointer-events-none grayscale": ""}`}>
                                                 <span className='flex items-center mr-2 md:mx-2 md:mr-3 lg:mx-4 xl:ml-0'>
                                                     <input className="mr-1 md:mr-2" type="radio" 
-                                                    onChange={onValueChange} name="unsafeSexualBehavior" value="true" />
+                                                    onChange={onValueChange} name="unsafeSexualBehavior" value="Yes" />
                                                     <label>Yes</label>
                                                 </span>
                                                 <span className='flex items-center'>
                                                     <input className="mr-1 md:mr-2" type="radio" 
-                                                    onChange={onValueChange} name="unsafeSexualBehavior" value="false" />
+                                                    onChange={onValueChange} name="unsafeSexualBehavior" value="No" />
                                                     <label>No</label>
                                                 </span>
                                                 <span className='flex items-center'>
