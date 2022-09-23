@@ -52,7 +52,7 @@ const getDate = (date) => {
   return newDate;
 };
 
-export default function ClientProfilePage({ data, impactBaseline }) {
+export default function ClientProfilePage({ data, impactBaseline,tracker }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal,setShowDeleteClientModal]=useState(false)
 
@@ -514,18 +514,18 @@ export default function ClientProfilePage({ data, impactBaseline }) {
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const [data, impactBaseline] = await Promise.all([
+    const [data, impactBaseline,tracker] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
       ).then((r) => r.json()),
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
       ).then((r) => r.json()),
-      // fetch(
-      //   `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/${clientid}`
-      // ).then((r) => r.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
+      ).then((r) => r.json()),
     ]);
-    return { props: { data: data, impactBaseline: impactBaseline } };
+    return { props: { data: data, impactBaseline: impactBaseline,tracker:tracker } };
 
     /*  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
     const data = await res.json();
