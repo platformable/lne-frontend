@@ -11,6 +11,8 @@ import BackToDashboardButton from "../components/BackToDashboardButton";
 import BackButton from '../components/BackButton'
 
 const Services = ({ clients, averageNumbers }) => {
+
+  console.log("clients",clients)
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
 
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
@@ -590,7 +592,7 @@ export default Services;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const [clients, averageNumbers] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/services_page`).then((r) =>
         r.json()
       ),
       fetch(
