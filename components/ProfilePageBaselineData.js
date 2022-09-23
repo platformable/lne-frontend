@@ -98,7 +98,7 @@ const ProfilePageBaselineData = ({
                 Baseline scores
               </th>
 
-              {impactTracker?.length && (
+              {impactTracker && (
                 impactTracker.map((track, index) => (
                   <>
                     <th scope="col" className="text-center py-3 px-6 ">
@@ -166,18 +166,19 @@ const ProfilePageBaselineData = ({
                             ? "Yes"
                             : e[header.ddbb_label] === false
                             ? "No"
-                            : e[header.ddbb_label]}
+                            : e[header.ddbb_label] === null 
+                            ? "-" : e[header.ddbb_label]}
                         </td>
                       ))
                     ) : (
                       <>
                         <td className={`text-center text-base `}>
-                          <div></div>
+                          -
                         </td>
                       </>
                     )}
                     {/* TRACKER COLUMNS */}
-                    {impactTracker?.length  && (
+                    {impactTracker  && (
                       impactTracker.map((e, i, array) => (
                         <>
                           {loggedUserRole === "Supervisor" ? (

@@ -227,7 +227,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker 
       <Layout>
         <ToastContainer autoClose={3000} />
         <div className=" bg-light-blue h-full pb-20 ">
-          <section className="py-5 container mx-auto md:px-0 px-5">
+          <section className="pb-5 pt-10 container mx-auto md:px-0 px-5">
             <div className="flex gap-x-3">
               <BackButton />
               <BackToDashboardButton />
