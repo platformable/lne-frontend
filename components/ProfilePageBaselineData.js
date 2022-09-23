@@ -17,10 +17,14 @@ const ProfilePageBaselineData = ({
   impactBaseline,
   loggedUserRole,
   impactTracker,
-  notifyMessage
+  notifyMessage,
+  clientId
 }) => {
   const [selectedTrackIndex, setSelectedTrackIndex] = useState(null);
+  const [baselineEdit, setBaselineEdit] = useState(false);
+
   const [form, setForm] = useState({});
+  const [baselineForm, setBaselineForm] = useState({})
   const router = useRouter()
   useEffect(() => {
     console.log("index selected is", selectedTrackIndex);
@@ -28,53 +32,68 @@ const ProfilePageBaselineData = ({
     selectedTrackIndex >= 0
       ? setForm(impactTracker[selectedTrackIndex])
       : setForm(initialState);
-  }, [selectedTrackIndex]);
+
+    baselineEdit ? setForm(impactBaseline[0]) : setForm(initialState);
+
+  }, [selectedTrackIndex, baselineEdit]);
+
+console.log("formulario",form)
+
   const tableLeftHeaders = [
     {
       text_field: "Barriers to accessing HIV primary care",
       ddbb_label: "barrierhivprimarycare",
+      baseline_options: ["Yes", "No", "N/A"],
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
+
     },
     {
       text_field: "CD4 Count",
       ddbb_label: "cd4count",
+      baseline_options: ["Low","High","N/A"],
       options: [">100", "100-500", "500+", "N/A"],
     },
     {
       text_field: "Viral Load Count",
       ddbb_label: "viralloadcount",
+      baseline_options: [ "Low","High","N/A"],
       options: [">50", "50+", "N/A"],
     },
     {
       text_field: "Engaging in unsafe sexual behavior",
       ddbb_label: "unsafesexualbehavior",
+      baseline_options: ["Yes", "No"],
       options: ["Yes", "No", "N/A"],
     },
     {
       text_field: "Problems with substance use",
       ddbb_label: "substanceabuse",
+      baseline_options: ["Yes", "No"],
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
     },
     {
       text_field: "An unstable housing situation",
       ddbb_label: "unstablehousing",
+      baseline_options: ["Yes", "No"],
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
     },
     {
       text_field: "Legal and identity documentation issues",
       ddbb_label: "legalissues",
+      baseline_options: ["Yes", "No"],
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
     },
     {
       text_field: "Unstable employment situation",
       ddbb_label: "unstableemployment",
+      baseline_options: ["Yes", "No"],
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
     },
   ];
 
   const updateTracker = () => {
     try {
-      axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/update/${form.clientid}`, form)
+      axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/update/${clientId}`, form)
       .then((res) => {
         notifyMessage()
         setForm(initialState); // restart form to avoid misc values from different trackers
@@ -84,6 +103,21 @@ const ProfilePageBaselineData = ({
     } catch (error) {
       console.log(error);
     }
+  };
+  const updateBaseline = () => {
+    console.log(form)
+     try {
+       axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/tracker/${clientId}`, form)
+       .then((res) => {
+        console.log(res)
+         notifyMessage()
+         setForm(initialState); // restart form to avoid misc values from different trackers
+         setBaselineEdit(false);
+          setTimeout(() => router.reload(), 1500)
+       });
+     } catch (error) {
+       console.log(error);
+     }
   };
   return (
     <>
@@ -161,14 +195,53 @@ const ProfilePageBaselineData = ({
                     {/* BASELINE COLUMN */}
                     {impactBaseline.length === 1 ? (
                       impactBaseline.map((e, i, array) => (
-                        <td className={`text-center text-base `} key={i}>
-                          {e[header.ddbb_label] === true
-                            ? "Yes"
-                            : e[header.ddbb_label] === false
-                            ? "No"
-                            : e[header.ddbb_label] === null 
-                            ? "-" : e[header.ddbb_label]}
-                        </td>
+                        // <td className={`text-center text-base `} key={i}>
+                          // {e[header.ddbb_label] === true
+                          //   ? "Yes"
+                          //   : e[header.ddbb_label] === false
+                          //   ? "No"
+                          //   : e[header.ddbb_label] === null 
+                          //   ? "-" : e[header.ddbb_label]}
+                        // </td>
+                        <>
+                        {loggedUserRole === "Supervisor" ? (
+                            <>
+                            <td className={`text-center text-base `}>
+                            <select
+                              name={header.ddbb_label}
+                              onChange={(e) =>
+                                setForm((prev) => ({
+                                  ...prev,
+                                  [e.target.name]: e.target.value,
+                                }))
+                              }
+                              disabled={!baselineEdit}
+                              className="text-center py-2 rounded w-4/5 "
+                            >
+                              {header.baseline_options.map((option) => (
+                                <>
+                                  <option
+                                    value={option}
+                                    selected={ e[header.ddbb_label] === null 
+                                      ? "-" : (e[header.ddbb_label] === false || e[header.ddbb_label] === true ) ?
+                                      !e[header.ddbb_label] : e[header.ddbb_label]   }
+                                  >
+                                    {option}
+                                  </option>
+                                </>
+                              ))}
+                            </select>
+                            </td>
+                            </>
+                          ) : 
+                          (
+                            <>
+                            <td className={`text-center text-base `}>
+                              {e[header.ddbb_label]}
+                            </td>
+                            </>
+                          )}
+                        </>
                       ))
                     ) : (
                       <>
@@ -233,8 +306,24 @@ const ProfilePageBaselineData = ({
                   ></td>
                   <td
                     scope="row"
-                    className="py-4 px-6  text-black font-medium  whitespace-nowrap "
-                  ></td>
+                    className="py-4 px-6  text-black font-medium text-center  whitespace-nowrap"
+                  >
+                    {baselineEdit ? (
+                            <button
+                              onClick={updateBaseline}
+                              className="text-white bg-black px-5 py-1 rounded shadow"
+                            >
+                              Save
+                            </button>
+                          ) : (
+                            <button
+                              onClick={(e) => setBaselineEdit(true)}
+                              className="text-white bg-black px-5 py-1 rounded shadow"
+                            >
+                              Edit
+                            </button>
+                          )}
+                  </td>
 
                   {impactTracker &&
                     impactTracker.map((e, index) => (
