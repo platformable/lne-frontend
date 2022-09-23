@@ -35,7 +35,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         unstableEmployment: false,
         // mentalHealthIssues: null,
         unstableHousing: false,
-        c4dCount:"",
+        CD4Count:"",
         viralLoadCount:""
         // foodInsecurity: null,
     })
@@ -92,11 +92,11 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
           .then(function (response) {
             if(response.status===200 || response.statusText==='Ok'){
                notifyMessage()
-                // setShowImpactBaselineModal(!showImpactBaselineModal)
+                setShowImpactBaselineModal(!showImpactBaselineModal)
     
-                /* setTimeout(()=>{
+                setTimeout(()=>{
                   router.push(`/clients/${clientId}/profile`)
-                },2300) */
+                },1300)
             } 
           })
           .catch(function (error) {

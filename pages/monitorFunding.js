@@ -3,6 +3,8 @@ import backIcon from "../public/BACKicon.svg";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "../components/Layout";
+import BackButton from "../components/BackButton";
+import BackToDashboardButton from "../components/BackToDashboardButton";
 import ChartGraphic from "../components/ChartGraphic";
 import ClientsEncounterCharts from "../components/ClientsEncounterCharts";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -758,8 +760,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
         setMonitorMetricsData(prev => ([...result])); 
        } 
     }
-    console.log("monitorMetrics",monitorMetrics)
-    console.log("monitorMetricsData",monitorMetricsData)
+
 
   const handleSortByLastname=()=>{
        setMonitorFundingTableDataSortingByLastname(!monitorFundingTableDataSortingByLastname)
@@ -826,18 +827,14 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     <Layout>
       <div className="bg-light-blue">
         <section className="container mx-auto grid-cols-1 gap-5">
-          <div className="grid grid-cols-2 py-5">
-            <h1 className="font-bold px-2">Monitor Funding Requirements</h1>
 
-            <Link href="/dashboard">
-              <a
-                className="px-5 py-2 flex  items-center font-bold justify-self-end"
-                id="myBtn"
-              >
-                <Image src={backIcon} alt="back arrow to homepage" />
-                <p className="ml-2">Dashboard</p>
-              </a>
-            </Link>
+        <div className="py-5 flex gap-x-5">
+        <BackButton/>  
+        <BackToDashboardButton/>
+        
+        </div>
+          <div className=" py-5">
+            <h1 className="font-bold px-2">Monitor Funding Requirements</h1>
           </div>
 
           {/* KEY METRICS */}
