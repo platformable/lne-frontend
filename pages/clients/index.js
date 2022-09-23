@@ -66,7 +66,8 @@ const ClientsIndex = ({ data, hcworkers }) => {
   const displayUserList = () => {
     return (
       hcworkers &&
-      hcworkers.map((user, index) => {
+      hcworkers.filter(user=>user.userrole !=='DES').
+      map((user, index) => {
         return (
           <option className="text-black" value={user.user_id} key={index}>
             {user.name} {user.lastname}
@@ -207,7 +208,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
             </div>
 
             
-            { data
+            { data.sort((a, b) => a.clientfirstname.localeCompare(b.clientfirstname))
                       .filter((client, index) => {
                         if (searchWord === "") {
                           return client;
