@@ -52,10 +52,10 @@ const getDate = (date) => {
   return newDate;
 };
 
-export default function ClientProfilePage({ data, impactBaseline }) {
+export default function ClientProfilePage({ data, impactBaseline, impactTracker }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal,setShowDeleteClientModal]=useState(false)
-
+  impactTracker && console.log("tracker", impactTracker)
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
@@ -474,7 +474,9 @@ export default function ClientProfilePage({ data, impactBaseline }) {
           <section id="baselineData" className="mt-16 container mx-auto">
             <ProfilePageBaselineData
               impactBaseline={impactBaseline}
+              impactTracker={impactTracker}
               loggedUserRole={loggedUserRole}
+              notifyMessage={notifyMessage}
             />
             
           </section>
@@ -496,6 +498,7 @@ export default function ClientProfilePage({ data, impactBaseline }) {
           showDeleteClientModal={showDeleteClientModal}
           setShowDeleteClientModal={setShowDeleteClientModal}
           notifyDeleteMessage={notifyDeleteMessage}
+          
         />
       )}
     </>
@@ -514,18 +517,18 @@ export default function ClientProfilePage({ data, impactBaseline }) {
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const [data, impactBaseline] = await Promise.all([
+    const [data, impactBaseline,impactTracker] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
       ).then((r) => r.json()),
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
       ).then((r) => r.json()),
-      // fetch(
-      //   `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/${clientid}`
-      // ).then((r) => r.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
+      ).then((r) => r.json()),
     ]);
-    return { props: { data: data, impactBaseline: impactBaseline } };
+    return { props: { data: data, impactBaseline: impactBaseline, impactTracker: impactTracker  } };
 
     /*  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
     const data = await res.json();
