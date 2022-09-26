@@ -375,6 +375,12 @@ table th {
 gap:10px;
 }
 
+/* PROGRESS NOTES */
+.services-box input {
+  width: 20px;
+  height: 20px;
+}
+
 @media only screen and (max-width: 600px) {
   .dashboard-clients-cards-info-container {
     display:grid;
