@@ -351,7 +351,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker 
             className="mt-5 font-bold"
           >
             <div className="text-black ">
-              <h1 className="mb-4 container mx-auto text-center md:text-left  lg:pl-0 font-black">
+              <h1 className="mb-4 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
