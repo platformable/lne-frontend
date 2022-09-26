@@ -94,28 +94,29 @@ const Services = ({ clients, averageNumbers }) => {
     const totalActiveClients = clients?.filter(
       (client) => client.clientactive === "1"
     ).length;
-
     const x = averageNumbers.forEach((client, index) => {
-      const { sapstartdate, progressnotedate,clientdatecreated } = client;
-
-      if (progressnotedate === null && sapstartdate === null) {
-        var date1 = new Date(clientdatecreated);
-        var date2 = new Date();
-        var difference = date2.getTime() - date1.getTime();
-        var days = Math.ceil(difference / (1000 * 3600 * 24));
-        total = total + days;
-      } 
-      if(progressnotedate === null && sapstartdate){
-        var date1 = new Date(sapstartdate);
-        var date2 = new Date();
-        var difference = date2.getTime() - date1.getTime();
-        var days = Math.ceil(difference / (1000 * 3600 * 24));
-        total = total + days;
+      let date1
+      const { planstartdate, progressnotedate } = client;
+      // if (progressnotedate === null && sapstartdate === null) {
+      //   date1 = new Date(clientdatecreated);
+      // } 
+      if(progressnotedate){
+        date1 = new Date(progressnotedate);
+      } else {
+        date1= new Date(planstartdate)
       }
+      let date2 = new Date();
+      let difference = date2.getDate() - date1.getDate();
+      console.log(date1, date2)
+      console.log("diference in days", difference)
+      // let days = Math.ceil(difference / (1000 * 3600 * 24));
+      total = total + difference;
+      console.log(total)
 
       return total
   
     });
+    console.log("services",total, totalActiveClients)
 
     let average = total/ totalActiveClients;
 
@@ -376,7 +377,7 @@ const Services = ({ clients, averageNumbers }) => {
   console.log("averageNumbers",averageNumbers)
   useEffect(() => {
     clientsCount(clients);
-    calculateAverageDays(clients);
+    calculateAverageDays(averageNumbers);
     calculateNumberOfGoals(averageNumbers);
     chart1Data(averageNumbers);
     chart2Data(averageNumbers);
