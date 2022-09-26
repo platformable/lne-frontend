@@ -767,7 +767,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
               </div>
 
-              <div className="services-box grid gap-y-3 items-start justify-start">
+              <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
                 <div className="flex items-center">
                   <label
                   className="flex items-center gap-x-5"
@@ -836,7 +836,7 @@ const ProgressNotesIndex = ({ data }) => {
               <div className="goal-box">
                 <div className="goal-top flex items-center my-2">
                   <h3 className="font-black">Goal 1</h3>
-                  <div className="bg-dark-blue w-52  mr-2 h-px"></div>
+                  <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                   <img src={"/goal01.svg"} alt="" />
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
@@ -871,7 +871,7 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="goal-top flex ">
                   <div className="goal-top flex items-center my-2">
                     <h3 className="font-black">Goal 2</h3>
-                    <div className="bg-dark-blue w-52  mr-2 h-px"></div>
+                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                     <img src={"/goal02.svg"} alt="" />
                   </div>
                 </div>
@@ -907,7 +907,7 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="goal-top flex ">
                   <div className="goal-top flex items-center my-2">
                     <h3 className="font-black">Goal 3</h3>
-                    <div className="bg-dark-blue w-52  mr-2 h-px"></div>
+                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                     <img src={"/goal03.svg"} alt="" />
                   </div>
                 </div>
