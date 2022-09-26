@@ -297,6 +297,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker 
                             onClick={() =>
                               setShowDeleteClientModal(!showDeleteClientModal)
                             }
+                            title="Delete this client"
                           >
                             <img src="/delete-user-icon.svg" alt="delete button" width={25}/>
                           </button>
