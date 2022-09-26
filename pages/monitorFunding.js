@@ -363,30 +363,28 @@ console.log(monitorMetricsData)
     const totalActiveClients = clients?.filter(
       (client) => client.clientactive === "1"
     ).length;
-
     /*   const clientsWithSAP=averageNumbers.filter((client,index)=>{
     return client.planstartdate!==null
   }) */
 
     const calculate = averageNumbers.forEach((client, index) => {
+      console.log("client", client)
       const { planstartdate, progressnotedate } = client;
-
+      let date1;
       if (progressnotedate === "" || progressnotedate === null) {
-        var date1 = new Date(planstartdate);
-        var date2 = new Date();
-        var difference = date2.getTime() - date1.getTime();
-        var days = Math.ceil(difference / (1000 * 3600 * 24));
-
-        total = total + days;
+        date1 = new Date(planstartdate);
       } else {
-        var date1 = new Date(progressnotedate);
-        var date2 = new Date();
-        var difference = date2.getTime() - date1.getTime();
-        var days = Math.ceil(difference / (1000 * 3600 * 24));
-
-        total = total + days;
+        date1 = new Date(progressnotedate);
       }
+      let date2 = new Date();
+      let difference = date2.getDate() - date1.getDate();
+      console.log("diference in days", difference)
+
+      // var days = Math.ceil(difference / (1000 * 3600 * 24));
+      total = total + difference;
+
     });
+
 
     let average = total / totalActiveClients;
 
