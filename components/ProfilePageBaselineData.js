@@ -153,6 +153,7 @@ const ProfilePageBaselineData = ({
                 Baseline scores
               </th>
 
+
               {
                 impactTracker &&
                   impactTracker.map((track, index) => (
