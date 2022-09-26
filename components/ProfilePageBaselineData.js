@@ -11,21 +11,20 @@ const initialState = {
   unstablehousing: "",
   legalissues: "",
   unstableemployment: "",
-
 };
 const ProfilePageBaselineData = ({
   impactBaseline,
   loggedUserRole,
   impactTracker,
   notifyMessage,
-  clientId
+  clientId,
 }) => {
   const [selectedTrackIndex, setSelectedTrackIndex] = useState(null);
   const [baselineEdit, setBaselineEdit] = useState(false);
 
   const [form, setForm] = useState({});
-  const [baselineForm, setBaselineForm] = useState({})
-  const router = useRouter()
+  const [baselineForm, setBaselineForm] = useState({});
+  const router = useRouter();
   useEffect(() => {
     console.log("index selected is", selectedTrackIndex);
     //fill form with actual tracker selected by index
@@ -34,10 +33,9 @@ const ProfilePageBaselineData = ({
       : setForm(initialState);
 
     baselineEdit ? setForm(impactBaseline[0]) : setForm(initialState);
-
   }, [selectedTrackIndex, baselineEdit]);
 
-console.log("formulario",form)
+  console.log("formulario", form);
 
   const tableLeftHeaders = [
     {
@@ -45,18 +43,17 @@ console.log("formulario",form)
       ddbb_label: "barrierhivprimarycare",
       baseline_options: ["Yes", "No", "N/A"],
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
-
     },
     {
       text_field: "CD4 Count",
       ddbb_label: "cd4count",
-      baseline_options: ["Low","High","N/A"],
+      baseline_options: ["Low", "High", "N/A"],
       options: [">100", "100-500", "500+", "N/A"],
     },
     {
       text_field: "Viral Load Count",
       ddbb_label: "viralloadcount",
-      baseline_options: [ "Low","High","N/A"],
+      baseline_options: ["Low", "High", "N/A"],
       options: [">50", "50+", "N/A"],
     },
     {
@@ -90,34 +87,58 @@ console.log("formulario",form)
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
     },
   ];
-
+  const showBaselineResult = (value) => {
+    switch (value) {
+      case false:
+        return "No";
+        break;
+      case true:
+        return "Yes";
+        break;
+      case null:
+        return "N/A";
+        break;
+      default:
+        return value;
+        break;
+    }
+    
+  };
   const updateTracker = () => {
     try {
-      axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/update/${clientId}`, form)
-      .then((res) => {
-        notifyMessage()
-        setForm(initialState); // restart form to avoid misc values from different trackers
-        setSelectedTrackIndex(null);
-        setTimeout(() => router.reload(), 1500)
-      });
+      axios
+        .put(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/update/${clientId}`,
+          form
+        )
+        .then((res) => {
+          notifyMessage();
+          setForm(initialState); // restart form to avoid misc values from different trackers
+          setSelectedTrackIndex(null);
+          setTimeout(() => router.reload(), 1500);
+        });
     } catch (error) {
       console.log(error);
     }
   };
   const updateBaseline = () => {
-    console.log(form)
-     try {
-       axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/tracker/${clientId}`, form)
-       .then((res) => {
-        console.log(res)
-         notifyMessage()
-         setForm(initialState); // restart form to avoid misc values from different trackers
-         setBaselineEdit(false);
-          setTimeout(() => router.reload(), 1500)
-       });
-     } catch (error) {
-       console.log(error);
-     }
+    console.log(form);
+    try {
+      axios
+        .put(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/tracker/${clientId}`,
+          form
+        )
+        .then((res) => {
+          console.log(res);
+          notifyMessage();
+          setForm(initialState); // restart form to avoid misc values from different trackers
+          setBaselineEdit(false);
+          setTimeout(() => router.reload(), 1500);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -132,51 +153,51 @@ console.log("formulario",form)
                 Baseline scores
               </th>
 
-              {impactTracker && (
-                impactTracker.map((track, index) => (
-                  <>
-                    <th scope="col" className="text-center py-3 px-6 ">
-                     <p>   Date:{" "}
-                      {new Date(track.impactformstartdate).toLocaleDateString(
-                        "en",
-                        { year: "numeric", month: "numeric", day: "numeric" }
-                      )}
-                      </p>
-                    </th>
-                  </>
-                ))
-              ) 
-              // : (
-              //   <>
-              //      <th scope="col" className="text-center py-3 px-6 ">
-              //         Date:{" "}
-              //         {new Date(impactTracker[0].impactformstartdate).toLocaleDateString(
-              //           "en",
-              //           { year: "numeric", month: "numeric", day: "numeric" }
-              //         )}
-              //       </th>
-              //       <th scope="col" className="text-center py-3 px-6 ">
-              //         Date:{" "}
-              //         {new Date(impactTracker[1].impactformstartdate).toLocaleDateString(
-              //           "en",
-              //           { year: "numeric", month: "numeric", day: "numeric" }
-              //         )}
-              //       </th>
-              //       <th scope="col" className="text-center py-3 px-6 ">
-              //         Date:{" "}
-              //         {new Date(impactTracker[2].impactformstartdate).toLocaleDateString(
-              //           "en",
-              //           { year: "numeric", month: "numeric", day: "numeric" }
-              //         )}
-              //       </th>
-              //       <th scope="col" className="text-center py-3 px-6 ">
-              //         Date:{" "}
-              //         {new Date(impactTracker[3].impactformstartdate).toLocaleDateString(
-              //           "en",
-              //           { year: "numeric", month: "numeric", day: "numeric" }
-              //         )}
-              //       </th>
-              //   </>)
+
+              {
+                impactTracker &&
+                  impactTracker.map((track, index) => (
+                    <>
+                      <th scope="col" className="text-center py-3 px-6 ">
+                        Date:{" "}
+                        {new Date(track.impactformstartdate).toLocaleDateString(
+                          "en",
+                          { year: "numeric", month: "numeric", day: "numeric" }
+                        )}
+                      </th>
+                    </>
+                  ))
+                // : (
+                //   <>
+                //      <th scope="col" className="text-center py-3 px-6 ">
+                //         Date:{" "}
+                //         {new Date(impactTracker[0].impactformstartdate).toLocaleDateString(
+                //           "en",
+                //           { year: "numeric", month: "numeric", day: "numeric" }
+                //         )}
+                //       </th>
+                //       <th scope="col" className="text-center py-3 px-6 ">
+                //         Date:{" "}
+                //         {new Date(impactTracker[1].impactformstartdate).toLocaleDateString(
+                //           "en",
+                //           { year: "numeric", month: "numeric", day: "numeric" }
+                //         )}
+                //       </th>
+                //       <th scope="col" className="text-center py-3 px-6 ">
+                //         Date:{" "}
+                //         {new Date(impactTracker[2].impactformstartdate).toLocaleDateString(
+                //           "en",
+                //           { year: "numeric", month: "numeric", day: "numeric" }
+                //         )}
+                //       </th>
+                //       <th scope="col" className="text-center py-3 px-6 ">
+                //         Date:{" "}
+                //         {new Date(impactTracker[3].impactformstartdate).toLocaleDateString(
+                //           "en",
+                //           { year: "numeric", month: "numeric", day: "numeric" }
+                //         )}
+                //       </th>
+                //   </>)
               }
             </tr>
           </thead>
@@ -197,102 +218,99 @@ console.log("formulario",form)
                     {impactBaseline.length === 1 ? (
                       impactBaseline.map((e, i, array) => (
                         // <td className={`text-center text-base `} key={i}>
-                          // {e[header.ddbb_label] === true
-                          //   ? "Yes"
-                          //   : e[header.ddbb_label] === false
-                          //   ? "No"
-                          //   : e[header.ddbb_label] === null 
-                          //   ? "-" : e[header.ddbb_label]}
+                        // {e[header.ddbb_label] === true
+                        //   ? "Yes"
+                        //   : e[header.ddbb_label] === false
+                        //   ? "No"
+                        //   : e[header.ddbb_label] === null
+                        //   ? "-" : e[header.ddbb_label]}
                         // </td>
                         <>
-                        {loggedUserRole === "Supervisor" ? (
+                          {loggedUserRole === "Supervisor" ? (
                             <>
-                            <td className={`text-center text-base `}>
-                            <select
-                              name={header.ddbb_label}
-                              onChange={(e) =>
-                                setForm((prev) => ({
-                                  ...prev,
-                                  [e.target.name]: e.target.value,
-                                }))
-                              }
-                              disabled={!baselineEdit}
-                              className="text-center py-2 rounded w-4/5 "
-                            >
-                              {header.baseline_options.map((option) => (
-                                <>
-                                  <option
-                                    value={option}
-                                    selected={ e[header.ddbb_label] === null 
-                                      ? "-" : (e[header.ddbb_label] === false || e[header.ddbb_label] === true ) ?
-                                      !e[header.ddbb_label] : e[header.ddbb_label]   }
-                                  >
-                                    {option}
-                                  </option>
-                                </>
-                              ))}
-                            </select>
-                            </td>
+                              <td className={`text-center text-base `}>
+                                <select
+                                  name={header.ddbb_label}
+                                  onChange={(e) =>
+                                    setForm((prev) => ({
+                                      ...prev,
+                                      [e.target.name]: e.target.value,
+                                    }))
+                                  }
+                                  disabled={!baselineEdit}
+                                  className="text-center py-2 rounded w-4/5 "
+                                >
+                                  {header.baseline_options.map((option) => (
+                                    <>
+                                      <option
+                                        value={option}
+                                        selected={
+                                          option === showBaselineResult(e[header.ddbb_label])
+                                        }
+                                      >
+                                          {option}
+                                      </option>
+                                    </>
+                                  ))}
+                                </select>
+                              </td>
                             </>
-                          ) : 
-                          (
+                          ) : (
                             <>
-                            <td className={`text-center text-base `}>
-                              {e[header.ddbb_label]}
-                            </td>
+                              <td className={`text-center text-base `}>
+                                {e[header.ddbb_label]}
+                              </td>
                             </>
                           )}
                         </>
                       ))
                     ) : (
                       <>
-                        <td className={`text-center text-base `}>
-                          -
-                        </td>
+                        <td className={`text-center text-base `}>-</td>
                       </>
                     )}
                     {/* TRACKER COLUMNS */}
-                    {impactTracker  && (
+                    {impactTracker &&
                       impactTracker.map((e, i, array) => (
                         <>
                           {loggedUserRole === "Supervisor" ? (
                             <>
-                            <td className={`text-center text-base `}>
-                            <select
-                              name={header.ddbb_label}
-                              onChange={(e) =>
-                                setForm((prev) => ({
-                                  ...prev,
-                                  [e.target.name]: e.target.value,
-                                }))
-                              }
-                              disabled={selectedTrackIndex !== i}
-                              className="text-center py-2 rounded w-4/5 "
-                            >
-                              {header.options.map((option) => (
-                                <>
-                                  <option
-                                    value={option}
-                                    selected={e[header.ddbb_label] === option}
-                                  >
-                                    {option}
-                                  </option>
-                                </>
-                              ))}
-                            </select>
-                            </td>
+                              <td className={`text-center text-base `}>
+                                <select
+                                  name={header.ddbb_label}
+                                  onChange={(e) =>
+                                    setForm((prev) => ({
+                                      ...prev,
+                                      [e.target.name]: e.target.value,
+                                    }))
+                                  }
+                                  disabled={selectedTrackIndex !== i}
+                                  className="text-center py-2 rounded w-4/5 "
+                                >
+                                  {header.options.map((option) => (
+                                    <>
+                                      <option
+                                        value={option}
+                                        selected={
+                                          e[header.ddbb_label] === option
+                                        }
+                                      >
+                                        {option}
+                                      </option>
+                                    </>
+                                  ))}
+                                </select>
+                              </td>
                             </>
-                          ) : 
-                          (
+                          ) : (
                             <>
-                            <td className={`text-center text-base `}>
-                              {e[header.ddbb_label]}
-                            </td>
+                              <td className={`text-center text-base `}>
+                                {e[header.ddbb_label]}
+                              </td>
                             </>
                           )}
                         </>
-                      ))
-                    )}
+                      ))}
                   </tr>
                 </>
               ))}
@@ -310,20 +328,20 @@ console.log("formulario",form)
                     className="py-4 px-6  text-black font-medium text-center  whitespace-nowrap"
                   >
                     {baselineEdit ? (
-                            <button
-                              onClick={updateBaseline}
-                              className="text-white bg-black px-5 py-1 rounded shadow"
-                            >
-                              Save
-                            </button>
-                          ) : (
-                            <button
-                              onClick={(e) => setBaselineEdit(true)}
-                              className="text-white bg-black px-5 py-1 rounded shadow"
-                            >
-                              Edit
-                            </button>
-                          )}
+                      <button
+                        onClick={updateBaseline}
+                        className="text-white bg-black px-5 py-1 rounded shadow"
+                      >
+                        Save
+                      </button>
+                    ) : (
+                      <button
+                        onClick={(e) => setBaselineEdit(true)}
+                        className="text-white bg-black px-5 py-1 rounded shadow"
+                      >
+                        Edit
+                      </button>
+                    )}
                   </td>
 
                   {impactTracker &&
