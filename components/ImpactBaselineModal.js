@@ -25,7 +25,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         barrierHIVPrimaryCare: "",
         // barrierAccessingMedications: null,
         // medicationAdherence: null,
-        CD4ViralLoad: "",
+        // CD4ViralLoad: "",
         // lastHIVTest: null,
         // PrEP: null,
         unsafeSexualBehavior: false,
@@ -66,10 +66,11 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         if (
            
             impactBaseline.impactFormStartDate === '' ||
-            impactBaseline.barrierHIVPrimaryCare === null ||
+            impactBaseline.barrierHIVPrimaryCare === "" ||
             // impactBaseline.barrierAccessingMedications === null ||
             // impactBaseline.medicationAdherence === null ||
-            impactBaseline.CD4ViralLoad === null ||
+            impactBaseline.CD4Count === "" ||
+            impactBaseline.viralLoadCount === "" ||
             // impactBaseline.lastHIVTest === null ||
             // impactBaseline.PrEP === null ||
             impactBaseline.unsafeSexualBehavior === null ||

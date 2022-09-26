@@ -96,7 +96,7 @@ const ProfilePageBaselineData = ({
         return "Yes";
         break;
       case null:
-        return "-";
+        return "N/A";
         break;
       default:
         return value;
