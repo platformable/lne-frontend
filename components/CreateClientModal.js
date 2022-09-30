@@ -25,8 +25,6 @@ export default function CreateClientModal({
   const [emptyFields, setEmptyFields] = useState(false);
   const [errorsInFields, setErrorsInFields] = useState(false);
 
-
-  console.log("users",users)
   const [clientData, setClientData] = useState({
     clientFirstName: "",
     clientLastName: "",
@@ -44,15 +42,14 @@ export default function CreateClientModal({
   const createClientId = () => {
     const firstNameLetter = clientData?.clientFirstName?.slice(0, 1);
     let shortSsn = String(clientData?.clientSSN)?.slice(-4);
-    let shortSsnNumber = Number(shortSsn);
+
     const lastnameFirstLetter = clientData?.clientLastName?.slice(0, 1);
     const result =
       firstNameLetter.toUpperCase() +
-      shortSsnNumber +
+      shortSsn +
       lastnameFirstLetter.toUpperCase();
     setClientData({ ...clientData, clientID: result });
   };
-
   const getUsers = () => {
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`)
       .then((res) => res.json())
@@ -97,10 +94,11 @@ export default function CreateClientModal({
       clientData.clientLastName === "" ||
       clientData.clientSSN === "" ||
       clientData.clientID === "" ||
-      !clientData.length === 6 
+      !clientData.length === 6
     ) {
       checkEmtpyFields();
-    }  if (
+    }
+    if (
       /*   clientData.clientFirstName.match(/[^a-zA-Z]/) 
 || clientData.clientLastName.match(/[^a-zA-Z]/)
 
@@ -163,16 +161,12 @@ export default function CreateClientModal({
     clientData.clientSSN,
     saving,
   ]);
-  function isNumberKey(e){
-    const invalidChars = [
-      "-",
-      "+",
-      "e",
-    ];
+  function isNumberKey(e) {
+    const invalidChars = ["-", "+", "e"];
     if (invalidChars.includes(e.key)) {
       e.preventDefault();
-    } 
-}
+    }
+  }
   return (
     <>
       <div className="modal">
@@ -244,9 +238,9 @@ export default function CreateClientModal({
                   min="4"
                   max="4"
                   onWheel={(event) => event.currentTarget.blur()}
-                  onChange={(e) =>
-                    setClientData({ ...clientData, clientSSN: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setClientData({ ...clientData, clientSSN: e.target.value });
+                  }}
                   onKeyDown={isNumberKey}
                 />
               </div>
@@ -279,13 +273,15 @@ export default function CreateClientModal({
                 >
                   <option>-</option>
                   {users &&
-                    users?.filter(user=>user.userrole !=='DES').map((user, index) => {
-                      return (
-                        <option value={user.user_id} key={index}>
-                          {user.useremail}
-                        </option>
-                      );
-                    })}
+                    users
+                      ?.filter((user) => user.userrole !== "DES")
+                      .map((user, index) => {
+                        return (
+                          <option value={user.user_id} key={index}>
+                            {user.useremail}
+                          </option>
+                        );
+                      })}
                 </select>
               </label>
             ) : (
