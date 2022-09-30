@@ -189,7 +189,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
                 <div className="service-action-plan-page-info-box md:my-1 my-5">
-                  <h3 className="font-black ">Today's date</h3>
+                  <h3 className="font-black ">Todays date</h3>
 
                   <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
