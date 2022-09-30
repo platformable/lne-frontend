@@ -258,7 +258,7 @@ const ProfilePageBaselineData = ({
                           ) : (
                             <>
                               <td className={`text-center text-base `}>
-                                {e[header.ddbb_label]}
+                                {showBaselineResult(e[header.ddbb_label])}
                               </td>
                             </>
                           )}
@@ -327,7 +327,7 @@ const ProfilePageBaselineData = ({
                     scope="row"
                     className="py-4 px-6  text-black font-medium text-center  whitespace-nowrap"
                   >
-                    {baselineEdit ? (
+                    {impactBaseline.length < 1 ? "" : baselineEdit  ? (
                       <button
                         onClick={updateBaseline}
                         className="text-white bg-black px-5 py-1 rounded shadow"
