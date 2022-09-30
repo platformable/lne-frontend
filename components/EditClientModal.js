@@ -214,12 +214,12 @@ console.log("clientData",clientData)
             <span className="text-white">Asign user</span>
             <select
              /*  defaultValue={clientData.clientHCWName} */
-              value={clientData.clientHCWName}
+              /* value={clientData.clientHCWName} */
               onChange={(e) =>{assignUser(e.target.value)}}
               className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             >
-              <option disabled>{clientData.clientHCWName}</option>
-                {users && users?.map((user,index)=>{
+              <option >{clientData.clientHCWName} {clientData.clientHCWLastname}</option>
+                {users && users?.filter(user=>user.userrole !=='DES').filter(user=>user.name !==clientData.clientHCWName).map((user,index)=>{
               return <option value={user.user_id} key={index}>{user.name} {user.lastname}</option>
                 })}
 

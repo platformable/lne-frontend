@@ -25,6 +25,8 @@ export default function CreateClientModal({
   const [emptyFields, setEmptyFields] = useState(false);
   const [errorsInFields, setErrorsInFields] = useState(false);
 
+
+  console.log("users",users)
   const [clientData, setClientData] = useState({
     clientFirstName: "",
     clientLastName: "",
@@ -277,7 +279,7 @@ export default function CreateClientModal({
                 >
                   <option>-</option>
                   {users &&
-                    users?.map((user, index) => {
+                    users?.filter(user=>user.userrole !=='DES').map((user, index) => {
                       return (
                         <option value={user.user_id} key={index}>
                           {user.useremail}

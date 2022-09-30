@@ -175,6 +175,9 @@ const finalDate=prefinalDate.join('-')
 return finalDate
 }  
 
+
+console.log("data",data)
+
   return (
     <>
       <ToastContainer autoClose={2000} />
@@ -201,11 +204,11 @@ return finalDate
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
                 <div className="service-action-plan-page-info-box md:my-1 my-5">
-                  <h3 className="font-black ">Todays date</h3>
+                  <h3 className="font-black ">Plan start date</h3>
 
                   <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
+                    <span className="mt-2 font-black">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
 
                   </div>
 
