@@ -27,7 +27,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 
 
   const [clientData, setClientData] = useState({
-    dateFormReviewed:new Date(),
+    dateFormReviewed:new Date().toISOString().split('T')[0],
     clientId: data[0]?.clientid,
     clientFirstName: data[0].clientfirstname,
     clientLastName: data[0].clientlastname,
@@ -165,7 +165,7 @@ console.log("date",date)
   }
   return fixedDate */
 }
-
+const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
   return (
     <><ToastContainer autoClose={2000} />
       <Layout>
@@ -189,12 +189,18 @@ console.log("date",date)
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
                 <div className="service-action-plan-page-info-box md:my-1 my-5">
-                  <h3 className="font-black ">Todays date</h3>
+                  <h3 className="font-black ">Today's date</h3>
 
                   <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
-
+                    {/* <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
+                   {/*  <input type="date" name="" id="" className="border p-1 rounded-md" 
+                    defaultValue={clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]}
+                    /> */}
+                    <input type="date" name="" id="" className="border-black p-1 rounded-md" 
+                    defaultValue={clientData.dateFormReviewed}
+                    onChange={(e)=>setClientData({...clientData,dateFormReviewed:e.target.value})}
+                    />
                   </div>
 
                 </div>

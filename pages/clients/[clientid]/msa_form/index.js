@@ -315,7 +315,7 @@ useEffect(()=>{
                   }
                 }
                 checked={clientData.AIRSIntakeFormDate ? true : false} 
-                disabled={clientData.AIRSIntakeFormDate ? true : false} 
+                /* disabled={clientData.AIRSIntakeFormDate ? true : false} */ 
                 />
               </div>
               <div>

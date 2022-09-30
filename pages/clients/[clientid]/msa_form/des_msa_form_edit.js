@@ -512,9 +512,9 @@ const EditMsaFormPage = ({ data }) => {
         console.log(response);
         if (response.status === 200 || response.statusText === "Ok") {
           notifyMessage();
-          /* setTimeout(() => {
+          setTimeout(() => {
             router.push(`/dashboard`)
-          }, 2300) */
+          }, 1300)
         }
       })
       .catch(function (error) {
