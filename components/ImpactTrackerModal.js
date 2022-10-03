@@ -12,7 +12,7 @@ export function getDate () {
     return result
 }
 
-const ImpactTrackerModal = ({clientId,progress_note_id}) => {
+const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
     const router = useRouter()  
     const date = getDate()
 
@@ -31,6 +31,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id}) => {
         legalIssues: null,
         unstableEmployment: null,
         unstableHousing: null,
+        clientUniqueId
     })
 
     const createImpactTrackerForm =()=>{

@@ -197,6 +197,7 @@ const ProgressNotesIndex = ({ data }) => {
       data[0]?.hcwsignature === null
         ? false
         : true,
+        clientUniqueId:data[0].id
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
@@ -1562,6 +1563,7 @@ const ProgressNotesIndex = ({ data }) => {
           setShowImpactTrackerModal={setShowImpactTrackerModal}
           notifyMessage={notifyMessage}
           clientId={clientData.clientId}
+          clientUniqueId={clientData.clientUniqueId}
           progress_note_id={progressNoteId}
         />
       )}

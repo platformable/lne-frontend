@@ -60,7 +60,8 @@ export default function IndexServoceActionPlan({ data }) {
     HCWSignature:false,
     HCWSignatureDate:"",
     supervisorSignature:false,
-    clientSignature:false
+    clientSignature:false,
+    clientUniqueId:data[0]?.id,
   });
 
 
@@ -191,10 +192,10 @@ const services = [
           </div>
         </section>
         <section className="container mx-auto">
-    
+    <div className="flex gap-x-5">
         <BackButton />
         <BackToDashboardButton />
-  
+        </div>
         </section>
 
         <main id="mainContent" >
@@ -585,6 +586,7 @@ const services = [
       <ImpactBaselineModal showImpactBaselineModal={showImpactBaselineModal} 
        setShowImpactBaselineModal={setShowImpactBaselineModal} notifyMessage={notifyMessage}
        clientId={clientData.clientId}
+       clientUniqueId={clientData.id}
        serviceActionPlanId={serviceActionPlanId}/>)
       }
     </>

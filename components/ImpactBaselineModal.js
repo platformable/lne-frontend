@@ -13,7 +13,7 @@ export function getDate () {
     return result
 }
 
-const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModal, clientId,serviceActionPlanId}) => {
+const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModal, clientId,serviceActionPlanId,clientUniqueId}) => {
     const router = useRouter()    
 
     const date = getDate()
