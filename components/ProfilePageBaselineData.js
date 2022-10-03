@@ -1,41 +1,46 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-const initialState = {
-  id: "",
-  barrierhivprimarycare: "",
-  cd4count: "",
-  viralloadcount: "",
-  unsafesexualbehavior: "",
-  substanceabuse: "",
-  unstablehousing: "",
-  legalissues: "",
-  unstableemployment: "",
-};
+
 const ProfilePageBaselineData = ({
   impactBaseline,
   loggedUserRole,
   impactTracker,
   notifyMessage,
-  clientId,
+  clientUniqueId,
+  clientId
 }) => {
   const [selectedTrackIndex, setSelectedTrackIndex] = useState(null);
   const [baselineEdit, setBaselineEdit] = useState(false);
-
-  const [form, setForm] = useState({});
-  const [baselineForm, setBaselineForm] = useState({});
+  const initialState = {
+    id: "",
+    clientuniqueid: clientUniqueId,
+    barrierhivprimarycare: "",
+    cd4count: "",
+    viralloadcount: "",
+    unsafesexualbehavior: "",
+    substanceabuse: "",
+    unstablehousing: "",
+    legalissues: "",
+    unstableemployment: "",
+  };
+  const [form, setForm] = useState({
+    clientuniqueid: clientUniqueId,
+  });
+  const [baselineForm, setBaselineForm] = useState({
+    clientuniqueid: clientUniqueId,
+  });
   const router = useRouter();
   useEffect(() => {
-    console.log("index selected is", selectedTrackIndex);
+    console.log("index selected is", baselineEdit);
     //fill form with actual tracker selected by index
-    selectedTrackIndex >= 0
+    selectedTrackIndex >= 0 
       ? setForm(impactTracker[selectedTrackIndex])
       : setForm(initialState);
 
-    baselineEdit ? setForm(impactBaseline[0]) : setForm(initialState);
+    baselineEdit ? setBaselineForm(impactBaseline[0]) : setBaselineForm(initialState);
   }, [selectedTrackIndex, baselineEdit]);
 
-  console.log("formulario", form);
 
   const tableLeftHeaders = [
     {
@@ -108,7 +113,7 @@ const ProfilePageBaselineData = ({
     try {
       axios
         .put(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/update/${clientId}`,
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/update/${clientUniqueId}`,
           form
         )
         .then((res) => {
@@ -126,13 +131,13 @@ const ProfilePageBaselineData = ({
     try {
       axios
         .put(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/tracker/${clientId}`,
-          form
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/tracker/${clientUniqueId}`,
+          baselineForm
         )
         .then((res) => {
           console.log(res);
           notifyMessage();
-          setForm(initialState); // restart form to avoid misc values from different trackers
+          setBaselineForm(initialState); // restart form to avoid misc values from different trackers
           setBaselineEdit(false);
           setTimeout(() => router.reload(), 1500);
         });
@@ -232,7 +237,7 @@ const ProfilePageBaselineData = ({
                                 <select
                                   name={header.ddbb_label}
                                   onChange={(e) =>
-                                    setForm((prev) => ({
+                                    setBaselineForm((prev) => ({
                                       ...prev,
                                       [e.target.name]: e.target.value,
                                     }))
