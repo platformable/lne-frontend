@@ -40,14 +40,16 @@ const IdWithNoLetters = removeFirstLetterOfId.slice(0,-1);
     clientHCWLastname:  loggeduserId !== "Supervisor" ? loggedUserLastname : client?.clienthcwlastname,
     clientID:"",
     clientHCWemail:loggeduserId !== "Supervisor" ? user.email : client?.clienthcwemail,
-    clientCategory:client?.clientcategory || ""
+    clientCategory:client?.clientcategory || "",
+    clientIdFromDB:client?.clientid
   })
 
 
   const createClientId=()=>{
+    console.log("creating id")
     const firstNameLetter = clientData?.clientFirstName?.slice(0,1)
     let shortSsn=String(clientData?.clientSSN)?.slice(-4)
-    let shortSsnNumber=Number(shortSsn)
+    let shortSsnNumber=shortSsn
     const lastnameFirstLetter=clientData?.clientLastName?.slice(0,1)
     const result =firstNameLetter.toUpperCase()+shortSsnNumber+lastnameFirstLetter.toUpperCase()
     setClientData({...clientData,clientID:result})
@@ -135,7 +137,7 @@ console.log("clientData",clientData)
     getUsers()
     createClientId()
 
-},[clientData.clientFirstName,clientData.clientLastName,clientData.clientSSN,saving,clientData.clientHCWName])
+},[clientData.clientFirstName,clientData.clientLastName,clientData.clientSSN,saving,clientData.clientHCWName,clientData.clientID])
 
 
   return (
@@ -194,7 +196,7 @@ console.log("clientData",clientData)
                 max="4"
                 onWheel={event => event.currentTarget.blur()}
                 onChange={(e) =>
-                  setClientData({ ...clientData, clientSSN: e.target.value })
+                  setClientData({ ...clientData, clientSSN: (e.target.value).toString() })
                 }
               />
 

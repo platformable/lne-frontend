@@ -124,7 +124,8 @@ console.log("data",data)
     AirsHIVMedicalProvider:false,
     AirsHIVMedicalProviderDate:"",
     AIRSHIVStatusHistory:false,
-    AIRSHIVStatusHistoryDate:""
+    AIRSHIVStatusHistoryDate:"",
+    clientUniqueId:data[0]?.id,
   });
 
   const todaysDate = new Date();

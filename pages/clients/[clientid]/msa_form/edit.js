@@ -104,7 +104,8 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     AirsHIVMedicalProvider:data[0].airshivmedicalprovider ==="0"|| data[0].airshivmedicalprovider ===null? false : true,
     AirsHIVMedicalProviderDate:data[0].airshivmedicalproviderdate,
     AIRSHIVStatusHistory:data[0].airshivstatushistory ==="0"|| data[0].airshivstatushistory ===null? false : true,
-    AIRSHIVStatusHistoryDate:data[0].airshivstatushistorydate
+    AIRSHIVStatusHistoryDate:data[0].airshivstatushistorydate,
+    clientUniqueId:data[0].id
   });
 
 const todaysDate = new Date();

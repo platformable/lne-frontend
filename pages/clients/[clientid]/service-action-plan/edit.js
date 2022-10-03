@@ -21,7 +21,7 @@ export default function EditServiceActionPlan({ data }) {
 
   const [activeActionPlan, setActiveActionPlan] = useState(false)
 
-console.log("data",data)
+
 
   const notifyMessage = () => {
     toast.success("Service Action Plan updated!", {
@@ -75,9 +75,12 @@ console.log("data",data)
     supervisorSignature:data[0]?.supervisorsignature==="0" ? false : true,
     clientSignature:data[0]?.clientsignature===0 ? false : true,
     progressnotesid:data[0]?.progressnotesid.length===1 && data[0]?.progressnotesid[0]===null ? "": data[0]?.progressnotesid,
-    linkage_navigation_folder_url:data[0]?.linkage_navigation_folder_url
+    linkage_navigation_folder_url:data[0]?.linkage_navigation_folder_url,
+    clientUniqueId:data[0]?.id,
   });
 
+
+  console.log("data",data)
 
   const genericGoals = [
     "Attend all health appointments",
@@ -176,7 +179,7 @@ return finalDate
 }  
 
 
-console.log("data",data)
+console.log("clientdata",clientData)
 
   return (
     <>
@@ -191,8 +194,9 @@ console.log("data",data)
         </section>
         <section className="container mx-auto ">
         <div className="flex gap-x-5">
-          <BackToDashboardButton/>
         <BackButton />
+          <BackToDashboardButton/>
+  
         </div>
         </section>
         <section id="info" className="my-5 container mx-auto">
