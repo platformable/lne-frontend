@@ -479,6 +479,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker 
               loggedUserRole={loggedUserRole}
               notifyMessage={notifyMessage}
               clientId={data[0]?.clientid}
+              clientUniqueId={data[0]?.id}
             />
             
           </section>
