@@ -174,7 +174,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
     </div> */}
                                     <div className="flex bg-light-blue justify-start items-center py-1 pl-6 pr-3">
                                         <span>
-                                            <input type='checkbox' name="viralLoadCount" onChange={enableFieldfromCheckbox} checked={impactTracker.viralLoadCount !== null !== null ? true : false}></input>
+                                            <input type='checkbox' name="viralLoadCount" onChange={enableFieldfromCheckbox} checked={impactTracker.viralLoadCount  !== null ? true : false}></input>
                                         </span>
                                         <p className='font-bold text-xs  ml-3 w-1/4 md:w-2/6 lg:w-5/12 xl:w-3/6'>Viral Load Count</p>
                                         <div className={`text-xs grid w-11/12 grid-cols-4 ${impactTracker.viralLoadCount === null ? "pointer-events-none grayscale": ""}`}>

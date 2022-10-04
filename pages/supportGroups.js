@@ -62,7 +62,7 @@ const SupportGroups = () => {
     
                 <label className="text-lg block">
                   Date group held
-                  <input type="date" value={form.supportMeetingDate} name="supportMeetingDate" className="border-black rounded p-2 mb-2 block"/>
+                  <input type="date" value={form.supportMeetingDate} name="supportMeetingDate" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
                 </label>
                 <label className="text-lg block">
                   Name of group
