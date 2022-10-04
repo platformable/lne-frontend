@@ -168,18 +168,27 @@ console.log("data",data)
                  </div>
                </Link>
                   }
+
+              {  loggedUserRole === "HCW" || loggedUserRole==='DES' ?
+                 <Link href="/supportGroups">
+                 <div className="">
+                   <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center">
+                     <button id="myBtn" className="flex  items-center justify-center">
+                       <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
+                       <p className="p-2 uppercase">
+                       Support groups
+                       </p>
+                     </button>
+                   </div>
+                 </div>
+               </Link>
+               :null
+                  }
+
+
                   </div>
                  
-                  { loggedUserRole === "HCW" && 
-                    <button
-                    onClick={() => router.push("/supportGroups")}
-                    className="bg-middle-purple hover:bg-blue-300 px-3 py-2 rounded text-black inline-block mb-5 flex gap-x-3 items-center"
-                  >
-                       <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={24}/>
-
-                    Support groups
-                  </button>
-                  }
+                 
 
                   {/* <div className="flex mb-2">
               {loggedUserRole === "Supervisor" && (
