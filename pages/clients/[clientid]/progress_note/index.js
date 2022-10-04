@@ -1597,7 +1597,7 @@ const ProgressNotesIndex = ({ data }) => {
         </main>
 
           
-              <div style={{display:'block'}}>
+              <div style={{display:'none'}}>
                 <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
               </div>
       </Layout>
