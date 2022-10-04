@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import Layout from "../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Styles from "../../../../styles/ServiceAP.module.css";
@@ -9,7 +9,8 @@ import { useRouter } from "next/router";
 import ImpactTrackerModal from "../../../../components/ImpactTrackerModal";
 import BackButton from "../../../../components/BackButton";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
-
+import ProgressNoteToPrint from "../../../../components/ProgressNoteToPrint";
+import ReactToPrint from 'react-to-print'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,7 +19,7 @@ const ProgressNotesIndex = ({ data }) => {
   console.log("data", data);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
-
+  let componentRef = useRef();
   const notifyMessage = () => {
     toast.success("Progress Note Saved!", {
       position: toast.POSITION.TOP_CENTER,
@@ -1582,7 +1583,10 @@ const ProgressNotesIndex = ({ data }) => {
             {pnErrorMessage && (
               <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
             )}
-            <div className="container mx-auto flex justify-center">
+            <div className="container mx-auto flex justify-center gap-x-5 ">
+            <ReactToPrint
+                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">Print</button>}
+                  content={() => componentRef.current} />
               <button
                 className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block mr-5"
                 onClick={() => handleProgressNote()}
@@ -1592,6 +1596,11 @@ const ProgressNotesIndex = ({ data }) => {
             </div>
           </section>
         </main>
+
+          
+              <div style={{display:'none'}}>
+                <ProgressNoteToPrint ref={componentRef} name="" data={clientData}/>
+              </div>
       </Layout>
       {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal
