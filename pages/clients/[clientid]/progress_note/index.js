@@ -501,8 +501,8 @@ const ProgressNotesIndex = ({ data }) => {
                   </div>
 
                   <label className="block">
-                    <span className="">Progress note date</span>
-                    <input type="date" name="" id="" className="border-black p-1 rounded-md" 
+                    <p className="text-base">Progress note date</p>
+                    <input type="date" name="" id="" className="border-black px-1 rounded-md" 
 
                     onChange={(e)=>setClientData({...clientData,progressNoteDate:e.target.value})}
                     />
@@ -830,7 +830,6 @@ const ProgressNotesIndex = ({ data }) => {
               </div>
             </div>
           </section>
-
           <h3 className="font-black my-5 text-dark-blue">Goals</h3>
 
           <section
@@ -878,13 +877,13 @@ const ProgressNotesIndex = ({ data }) => {
               </div>
 
               <div className="goal-box">
-                <div className="goal-top flex ">
+                
                   <div className="goal-top flex items-center my-2">
                     <h3 className="font-black">Goal 2</h3>
                     <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                     <img src={"/goal02.svg"} alt="" />
                   </div>
-                </div>
+              
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
                     <span className="">Service Category</span>
@@ -912,7 +911,7 @@ const ProgressNotesIndex = ({ data }) => {
                     
                   </p>
                 </div>
-                <div className="my-5">
+                <div className="">
                   <span className="">Goal 2 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
                  onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}></textarea>
@@ -920,13 +919,13 @@ const ProgressNotesIndex = ({ data }) => {
               </div>
 
               <div className="goal-box">
-                <div className="goal-top flex ">
+                
                   <div className="goal-top flex items-center my-2">
                     <h3 className="font-black">Goal 3</h3>
                     <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                     <img src={"/goal03.svg"} alt="" />
                   </div>
-                </div>
+               
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
                     <span className="">Service Category</span>
@@ -953,7 +952,7 @@ const ProgressNotesIndex = ({ data }) => {
                     {serviceActionData?.goal3summary}
                   </p>
                 </div>
-                <div className="my-5">
+                <div className="">
                   <span className="">Goal 3 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
                  onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}></textarea>
@@ -1585,21 +1584,21 @@ const ProgressNotesIndex = ({ data }) => {
             )}
             <div className="container mx-auto flex justify-center gap-x-5 ">
             <ReactToPrint
-                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">Print</button>}
+                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">Save and print</button>}
                   content={() => componentRef.current} />
               <button
                 className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block mr-5"
                 onClick={() => handleProgressNote()}
               >
-                Save and Finish
+                Save and finish
               </button>
             </div>
           </section>
         </main>
 
           
-              <div style={{display:'none'}}>
-                <ProgressNoteToPrint ref={componentRef} name="" data={clientData}/>
+              <div style={{display:'block'}}>
+                <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
               </div>
       </Layout>
       {showImpactTrackerModal && progressNoteId && (
