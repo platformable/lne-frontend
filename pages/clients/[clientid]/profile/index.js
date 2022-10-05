@@ -485,7 +485,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
             />
             
           </section>
-
+{/* 
     <section id="progressnotes" className="my-10">
 
           <div className="container mx-auto">
@@ -511,7 +511,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
             </div> )
           })}
           </div>
-          </section> 
+          </section>  */}
 
       
         </div>
