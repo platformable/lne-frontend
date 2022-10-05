@@ -39,7 +39,7 @@ export default function EditServiceActionPlan({ data }) {
     clientFirstName:data[0]?.clientfirstname,
     clientLastName :data[0]?.clientlastname,
     clientHCWEmail:data[0]?.clienthcwemail,
-    planStartDate:data[0]?.planstartdate.split('T')[0],
+    planStartDate:new Date(data[0]?.planstartdate).toISOString().slice(0, 10) || new Date(data[0]?.planstartdate).split('T')[0] ||"",
     userFirstName :data[0]?.userfirstname,
     userLastName:data[0]?.userlastname,
     goal1ServiceCategory:data[0]?.goal1servicecategory,
@@ -211,7 +211,7 @@ console.log("clientdata",clientData)
                     <img src="/calendar-icon.svg" width="24"/>
                     {/* <span className="mt-2 font-black">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
                     <input type="date" name="" id="" className="border-black p-1 rounded-md" 
-                    defaultValue={clientData.planStartDate}
+                    defaultValue={clientData.planStartDate==='1970-01-01' ? "":clientData.planStartDate}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
                     />
                   </div>
