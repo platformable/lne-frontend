@@ -39,7 +39,7 @@ export default function EditServiceActionPlan({ data }) {
     clientFirstName:data[0]?.clientfirstname,
     clientLastName :data[0]?.clientlastname,
     clientHCWEmail:data[0]?.clienthcwemail,
-    planStartDate:data[0]?.planstartdate,
+    planStartDate:data[0]?.planstartdate.split('T')[0],
     userFirstName :data[0]?.userfirstname,
     userLastName:data[0]?.userlastname,
     goal1ServiceCategory:data[0]?.goal1servicecategory,
@@ -83,39 +83,36 @@ export default function EditServiceActionPlan({ data }) {
   console.log("data",data)
 
   const genericGoals = [
-    "Attend all health appointments",
+// "Attend all health appointments",
 "Adhere to HIV medication",
-"Remove barriers to accessing medication",
+// "Remove barriers to accessing medication",
 "Access HIV primary care",
-"Consistently measure CD4 Count and Viral load",
+// "Consistently measure CD4 Count and Viral load",
 "Reduce unsafe sexual behavior",
 "Start using PrEP",
-"Prevention counselling",
+// "Prevention counselling",
 "Access supportive counselling",
-"Problems with substance use",
-"Overdose prevention",
-"Assistance with employment",
-"Assistance with education",
-"Assistance with housing services",
-"Addressing a legal issue",
-"Transportation",
-"Improve food security",
-"Gain access to public assistance",
-"Assistance with ID-related documents",
+"Access drug and alcohol services",
+// "Overdose prevention",
+"Assistance with employment, housing, financial or legal issue",
+// "Addressing a legal issue",
+// "Transportation",
+// "Improve food security",
+// "Gain access to public assistance",
 "Other"
   ]
 
   const services = [
-  "CD4/VL Lab Report Check",
-  "Transportation Coordination",
-  "Translation/Interpretation",
-  "Comprehensive Behavioral Risk Assessment",
-  "Treatment Education and Adherence Counselling",
-  "Prevention Counselling",
-  "Supportive Counselling",
-  "Escort",
-  "Linkage to Services",
-  "Other form of Assistance",
+    "CD4/VL Lab Report Check",
+    "Transportation Coordination",
+    "Translation/Interpretation",
+    "Comprehensive Behavioral Risk Assessment",
+    "Treatment Education and Adherence Counselling",
+    "Prevention Counselling",
+    "Supportive Counselling",
+    "Escort",
+    "Linkage to Services",
+    "Other form of Assistance",
     ]
 
 
@@ -212,8 +209,11 @@ console.log("clientdata",clientData)
 
                   <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    <span className="mt-2 font-black">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
-
+                    {/* <span className="mt-2 font-black">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
+                    <input type="date" name="" id="" className="border-black p-1 rounded-md" 
+                    defaultValue={clientData.planStartDate}
+                    onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
+                    />
                   </div>
 
                 </div>
@@ -383,7 +383,7 @@ console.log("clientdata",clientData)
                         clientData.goal1TargetDate &&
                         clientData.goal1TargetDate.split("T")[0]
                       }
-                      disabled={data[0].goal1targetdate ? true : false}
+                      //disabled={data[0].goal1targetdate ? true : false}
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
@@ -551,7 +551,7 @@ console.log("clientdata",clientData)
                           goal2TargetDate: e.target.value,
                         })
                       }
-                      disabled={data[0].goal2targetdate ? true : false}
+                      //disabled={data[0].goal2targetdate ? true : false}
                       value={
                         clientData.goal2TargetDate &&
                         clientData.goal2TargetDate.split("T")[0]
@@ -720,10 +720,10 @@ console.log("clientdata",clientData)
                           goal3TargetDate: e.target.value,
                         })
                       }
-                      disabled={data[0].goal3targetdate ? true : false}
+                     // disabled={data[0].goal3targetdate ? true : false}
                       value={
-                        clientData.goal1TargetDate &&
-                        clientData.goal1TargetDate.split("T")[0]
+                        clientData.goal3TargetDate &&
+                        clientData.goal3TargetDate.split("T")[0]
                       }
                     />
                   </label>
@@ -896,9 +896,7 @@ console.log("clientdata",clientData)
 
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
-            {loggedUserRole === "HCW" ? (
-              ""
-            ) : (
+           
               <div id="buttons-container" className="flex items-center justify-around">
                 <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
                 onClick={() => setActiveActionPlan(!activeActionPlan)}>
@@ -927,13 +925,13 @@ console.log("clientdata",clientData)
               /> 
              
               </div>
-            )}
+            
             
 
             <div style={{ display: "none" }}>
               <ComponentToPrint
                 ref={componentRef}
-                name="alexei"
+                name="service action plan"
                 clientData={clientData}
               />
             </div>
