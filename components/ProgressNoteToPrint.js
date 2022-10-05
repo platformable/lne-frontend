@@ -1,16 +1,12 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { Component } from "react";
 import Styles from "../styles/ServiceAP.module.css";
 import ProgressNotesStyles from "../styles/ProgressNotes.module.css";
 import MSAStyles from "../styles/MSA.module.css";
 
-
-
-
 const ProgressNotesToPrint = React.forwardRef((props, ref) => {
-    let { data } = props;
+  let { data } = props;
 
   console.log("data del pn print", data);
-
 
   const whichServiceBeenAded = [
     {
@@ -192,15 +188,13 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
   ];
 
   return (
-    <div ref={ref}>
-
-
+    <>
+      <div ref={ref}>
         <div className="container mx-auto">
-          <p className="font-black text-center b-1">Progress Notes </p>
+          <h3 className="font-black text-center my-5">Progress Notes </h3>
         </div>
 
         <main className="container mx-auto px-5">
-
           <section id="info" className="my-5">
             <div className="">
               <h3 className="font-black my-1 text-dark-blue">
@@ -217,7 +211,12 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
                   <label className="block">
                     <span className="">Progress note date</span>
-                    <p className="">{new Date(data.progressNoteDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'})}</p>
+                    <p className="">
+                      {new Date(data.progressNoteDate).toLocaleDateString(
+                        "en-US",
+                        { year: "numeric", month: "numeric", day: "numeric" }
+                      )}
+                    </p>
                   </label>
                 </div>
 
@@ -294,181 +293,162 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             <div className="services-container grid md:grid-cols-3 grid-cols-1 gap-x-5">
-              <div className="services-box grid gap-y-3 items-start justify-start">
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.developmentActionPlan?true:null}
-                    />
-                    Development of Action Plan with Client
-                    {/* <span
-                      className={`${ProgressNotesStyles.checkmark} `}
-                    ></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.CD4VLLabReport?true:null}
-                    />
-                    CD4/VL Lab Report Check
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.transportationCoordination?true:null}
-                    />
-                    Transportation Coordination
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.translationInterpretation?true:null}
-                    />
-                    Translation/Interpretation
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.comprehensiveBehavioralRiskAssessment?true:null}
-                    />
-                    Comprehensive Behavioral Risk Assessment
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
+              {/* <div className="services-box grid gap-y-3 items-start justify-start"> */}
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.developmentActionPlan ? true : null}
+                  />
+                  Development of Action Plan with Client
+                  {/* <span
+              className={`${ProgressNotesStyles.checkmark} `}
+            ></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.CD4VLLabReport ? true : null}
+                  />
+                  CD4/VL Lab Report Check
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={
+                      data.transportationCoordination ? true : null
+                    }
+                  />
+                  Transportation Coordination
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={
+                      data.translationInterpretation ? true : null
+                    }
+                  />
+                  Translation/Interpretation
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
               </div>
 
-              <div className="services-box grid gap-y-3 items-start justify-start ">
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.ticklerUpdate?true:null}
-                    />
-                    Tickler Update
-                    {/* <span
-                      className={`${ProgressNotesStyles.checkmark} `}
-                    ></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.treatmentEducation?true:null}
-                    />
-                    Treatment Education and Adherence Counselling
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.preventionCounselling?true:null}
-                    />
-                    Prevention Counselling
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.supportiveCounselling?true:null}
-                    />
-                    Supportive Counselling
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.escort?true:null}
-                    />
-                    Escort
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={
+                      data.comprehensiveBehavioralRiskAssessment ? true : null
+                    }
+                  />
+                  Comprehensive Behavioral Risk Assessment
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
               </div>
+              {/* </div> */}
 
-              <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.caseClosureDischarge?true:null}
-                    />
-                    Case Closure/Discharge
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.linkageToServices?true:null}
-                    />
-                    Linkage to Services
-                    {/* <span
-                      className={`${ProgressNotesStyles.checkmark} `}
-                    ></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      defaultChecked={data.OtherAssistance?true:null}
-                    />
-                    Other Form of Assistance
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
+              {/* <div className="services-box grid gap-y-3 items-start justify-start "> */}
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.ticklerUpdate ? true : null}
+                  />
+                  Tickler Update
+                  {/* <span
+              className={`${ProgressNotesStyles.checkmark} `}
+            ></span> */}
+                </label>
               </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.treatmentEducation ? true : null}
+                  />
+                  Treatment Education and Adherence Counselling
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.preventionCounselling ? true : null}
+                  />
+                  Prevention Counselling
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.supportiveCounselling ? true : null}
+                  />
+                  Supportive Counselling
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.escort ? true : null}
+                  />
+                  Escort
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              {/* </div> */}
+
+              {/* <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start"> */}
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.caseClosureDischarge ? true : null}
+                  />
+                  Case Closure/Discharge
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.linkageToServices ? true : null}
+                  />
+                  Linkage to Services
+                  {/* <span
+              className={`${ProgressNotesStyles.checkmark} `}
+            ></span> */}
+                </label>
+              </div>
+              <div className="flex items-center">
+                <label className="flex items-center gap-x-5">
+                  <input
+                    type="checkbox"
+                    defaultChecked={data.OtherAssistance ? true : null}
+                  />
+                  Other Form of Assistance
+                  {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                </label>
+              </div>
+              {/* </div> */}
             </div>
           </section>
+          <div className="page-break"></div>
 
-          <h3 className="font-black my-5 text-dark-blue">Goals</h3>
+          <h3 className="font-black pt-10 pb-5 text-dark-blue">Goals</h3>
 
           <section
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 goals"
@@ -483,106 +463,112 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
-                    <span className="">Service Category</span>
-                    <p className=" text-dark-blue ">
-                      {serviceActionData?.goal1servicecategory}
-                    </p>
-                  </div> */}
+            <span className="">Service Category</span>
+            <p className=" text-dark-blue ">
+              {serviceActionData?.goal1servicecategory}
+            </p>
+          </div> */}
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue">
-                      {new Date(
-                        data?.goal1targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {new Date(data?.goal1targetdate).toLocaleDateString(
+                        "en",
+                        {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }
+                      )}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
-                  <p className=" text-dark-blue ">
-                    {data?.goal1summary}
-                  </p>
+                  <p className=" text-dark-blue ">{data?.goal1summary}</p>
                 </div>
                 <div className="">
                   <span className="">Goal 1 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                  value={data.goal1ProgressComments}></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black h-56 rounded-md w-full mt-1 p-1"
+                    value={data.goal1ProgressComments}
+                  ></textarea>
                 </div>
               </div>
 
               <div className="goal-box">
-                <div className="goal-top flex ">
-                  <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 2</h3>
-                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
-                    <img src={"/goal02.svg"} alt="" />
-                  </div>
+                <div className="goal-top flex items-center my-2">
+                  <h3 className="font-black">Goal 2</h3>
+                  <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
+                  <img src={"/goal02.svg"} alt="" />
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
-
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
-                        data?.goal2targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {new Date(data?.goal2targetdate).toLocaleDateString(
+                        "en",
+                        {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }
+                      )}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
-                  <p className=" text-dark-blue">
-                    {data?.goal2summary}
-                    
-                  </p>
+                  <p className=" text-dark-blue">{data?.goal2summary}</p>
                 </div>
-                <div className="my-5">
+                <div className="">
                   <span className="">Goal 2 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                 value={data.goal2ProgressComments}></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black h-56 rounded-md w-full mt-1 p-1"
+                    value={data.goal2ProgressComments}
+                  ></textarea>
                 </div>
               </div>
 
               <div className="goal-box">
-                <div className="goal-top flex ">
-                  <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 3</h3>
-                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
-                    <img src={"/goal03.svg"} alt="" />
-                  </div>
+                <div className="goal-top flex items-center my-2">
+                  <h3 className="font-black">Goal 3</h3>
+                  <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
+                  <img src={"/goal03.svg"} alt="" />
                 </div>
                 <div className="goal-service grid grid-cols-2 my-2">
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
-                        data?.goal3targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {new Date(data?.goal3targetdate).toLocaleDateString(
+                        "en",
+                        {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        }
+                      )}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2  ">
                   <span className="">Summary</span>
-                  <p className=" text-dark-blue">
-                    {data?.goal3summary}
-                  </p>
+                  <p className=" text-dark-blue">{data?.goal3summary}</p>
                 </div>
-                <div className="my-5">
+                <div className="">
                   <span className="">Goal 3 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                  value={data.goal3ProgressComments}></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black h-56 rounded-md w-full mt-1 p-1"
+                    value={data.goal3ProgressComments}
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -601,22 +587,35 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
               <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 1</p>
-                  <label
-                    className={``}
-                  >
-                    {data.goal1Progress? 'YES':'NO'}
-              
-           
+                  <label className="flex items-center ">
+                    <input
+                      type="radio"
+                      defaultChecked={data.goal1Progress ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    Yes
+                    <input
+                      type="radio"
+                      defaultChecked={!data.goal1Progress ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    No
+                    {/* {data.goal1Progress? 'YES':'NO'} */}
                   </label>
-
-               
                 </div>
                 <div className="flex gap-5 items-center">
                   <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
                   <h3 className="">Date</h3>
-                 <p>{data.goal1ProgressDate ? new Date(data.goal1ProgressDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):null}</p>
+                  <p>
+                    {data.goal1ProgressDate
+                      ? new Date(data.goal1ProgressDate).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "numeric", day: "numeric" }
+                        )
+                      : null}
+                  </p>
                 </div>
               </div>
 
@@ -624,9 +623,20 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 2</p>
                   <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
+                    className=""
                   >
-                  {data.goal2Progress? 'YES':'NO'}
+                    <input
+                      type="radio"
+                      defaultChecked={data.goal2Progress ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    Yes
+                    <input
+                      type="radio"
+                      defaultChecked={!data.goal2Progress ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    No
                   </label>
                 </div>
                 <div className="flex gap-5 items-center">
@@ -634,7 +644,14 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
                   <h3 className="">Date</h3>
-                  <p>{data.goal2ProgressDate ? new Date(data.goal2ProgressDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):null}</p>
+                  <p>
+                    {data.goal2ProgressDate
+                      ? new Date(data.goal2ProgressDate).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "numeric", day: "numeric" }
+                        )
+                      : null}
+                  </p>
                 </div>
               </div>
 
@@ -642,10 +659,20 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 3</p>
                   <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
+                    className=""
                   >
-                  {data.goal3Progress? 'YES':'NO'}
-         
+                    <input
+                      type="radio"
+                      defaultChecked={data.goal3Progress ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    Yes
+                    <input
+                      type="radio"
+                      defaultChecked={!data.goal3Progress ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    No
                   </label>
                 </div>
                 <div className="flex gap-5 items-center">
@@ -653,15 +680,23 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
                   <h3 className="">Date</h3>
-                  <p>{data.goal3ProgressDate ? new Date(data.goal3ProgressDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):null}</p>
+                  <p>
+                    {data.goal3ProgressDate
+                      ? new Date(data.goal3ProgressDate).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "numeric", day: "numeric" }
+                        )
+                      : null}
+                  </p>
                 </div>
               </div>
             </div>
           </section>
+          <div className="page-break"></div>
 
-          <div className="flex items-center ml-3 my-4">
+          <div className="flex items-center  pt-10 pb-5">
             <img src={"/goals-completed-icon.svg"} />
-            <h3 className="font-black self-end text-dark-blue">
+            <h3 className="font-black self-end ml-3 text-dark-blue">
               Were any of the clients goals completed?
             </h3>
           </div>
@@ -674,12 +709,21 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
               <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 1</p>
-              
+
                   <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
                   >
-                  {data.goal1Completed? 'YES':'NO'}
-         
+                    <input
+                      type="radio"
+                      defaultChecked={data.goal1Completed ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    Yes
+                    <input
+                      type="radio"
+                      defaultChecked={!data.goal1Completed ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    No
                   </label>
                 </div>
                 <div className="flex gap-5 items-center">
@@ -687,12 +731,24 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
                   <h3 className="">Date</h3>
-                  <p>{data.goal1CompletedDate ? new Date(data.goal1CompletedDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):null}</p>
+                  <p>
+                    {data.goal1CompletedDate
+                      ? new Date(data.goal1CompletedDate).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "numeric", day: "numeric" }
+                        )
+                      : null}
+                  </p>
                 </div>
                 <div className="my-5">
                   <span className="">Goal 1 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                      value={data.goal1CompletionComments}></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black h-56 rounded-md w-full mt-1 p-2"
+                    value={data.goal1CompletionComments}
+                  ></textarea>
                 </div>
               </div>
 
@@ -700,10 +756,19 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 2</p>
                   <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
                   >
-                    {data.goal2Completed? 'YES':'NO'}
-                
+                    <input
+                      type="radio"
+                      defaultChecked={data.goal2Completed ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    Yes
+                    <input
+                      type="radio"
+                      defaultChecked={!data.goal2Completed ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    No
                   </label>
                 </div>
                 <div className="flex gap-5 items-center">
@@ -711,13 +776,24 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
                   <h3 className="">Date</h3>
-                  <p>{data.goal2CompletedDate ? new Date(data.goal2CompletedDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):null}</p>
+                  <p>
+                    {data.goal2CompletedDate
+                      ? new Date(data.goal2CompletedDate).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "numeric", day: "numeric" }
+                        )
+                      : null}
+                  </p>
                 </div>
                 <div className="my-5">
                   <span className="">Goal 2 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                value={data.goal2CompletionComments}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black h-56 rounded-md w-full mt-1 p-2"
+                    value={data.goal2CompletionComments}
+                  ></textarea>
                 </div>
               </div>
 
@@ -725,10 +801,19 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 3</p>
                   <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
                   >
-                      {data.goal3Completed? 'YES':'NO'}
-      
+                    <input
+                      type="radio"
+                      defaultChecked={data.goal3Completed ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    Yes
+                    <input
+                      type="radio"
+                      defaultChecked={!data.goal3Completed ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    No
                   </label>
                 </div>
                 <div className="flex gap-5 items-center">
@@ -736,13 +821,24 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
                   <h3 className="">Date</h3>
-                  <p>{data.goal3CompletedDate ? new Date(data.goal3CompletedDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):null}</p>
+                  <p>
+                    {data.goal3CompletedDate
+                      ? new Date(data.goal3CompletedDate).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "numeric", day: "numeric" }
+                        )
+                      : null}
+                  </p>
                 </div>
                 <div className="my-5">
                   <span className="">Goal 3 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-               value={data.goal3CompletionComments}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black h-56 rounded-md w-full mt-1 p-2"
+                    value={data.goal3CompletionComments}
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -772,22 +868,34 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
             <div className="progressnotes-box flex gap-x-5">
               <p className="text-lg">Has the health care worker signed</p>
-              <label className={`${ProgressNotesStyles.radioBtnContainer} `}>
-                {data.HCWSignature ? 'YES':'NO'}
+              <label >
+                <input
+                      type="radio"
+                      defaultChecked={data.HCWSignature ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    Yes
+                    <input
+                      type="radio"
+                      defaultChecked={!data.HCWSignature ? "checked" : ""}
+                      className="mr-2 ml-5"
+                    />{" "}
+                    No
               </label>
             </div>
           </section>
+          <div className="page-break"></div>
 
-          <h3 className="font-black my-5 text-dark-blue">
+          <h3 className="font-black pt-10 pb-5 text-dark-blue">
             Were any additional forms added to the client´s profile?
           </h3>
 
           <section
-            className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals"
+            className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals mx-1"
             id="workedGoals"
           >
-            <div className="additional-forms-container grid grid-cols-2 gap-1">
-              <div className="additional-forms-box border-r-dark-blue ">
+            <div className="additional-forms-container grid grid-cols-2  divide-blue-500 divide-x-4">
+              <div className="additional-forms-box ">
                 {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(0, 15).map((service) => (
                     <>
@@ -829,7 +937,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                   ))}
               </div>{" "}
               {/* FIN DEL FORM BOX */}
-              <div className="additional-form-box">
+              <div className="additional-form-box ">
                 {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(15).map((service) => (
                     <>
@@ -872,11 +980,13 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
               </div>
             </div>
           </section>
-
         </main>
-    </div>
+      </div>
+    </>
   );
 });
+
+ProgressNotesToPrint.displayName = "Progress notes";
 
 export default ProgressNotesToPrint;
 
