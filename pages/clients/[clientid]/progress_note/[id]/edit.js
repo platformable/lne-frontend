@@ -1,20 +1,20 @@
 import React, { useState, useEffect,useRef } from "react";
-import Layout from "../../../../components/Layout";
+import Layout from "../../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import Styles from "../../../../styles/ServiceAP.module.css";
-import ProgressNotesStyles from "../../../../styles/ProgressNotes.module.css";
-import MSAStyles from "../../../../styles/MSA.module.css";
+import Styles from "../../../../../styles/ServiceAP.module.css";
+import ProgressNotesStyles from "../../../../../styles/ProgressNotes.module.css";
+import MSAStyles from "../../../../../styles/MSA.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
-import ImpactTrackerModal from "../../../../components/ImpactTrackerModal";
-import BackButton from "../../../../components/BackButton";
-import BackToDashboardButton from "../../../../components/BackToDashboardButton";
-import ProgressNoteToPrint from "../../../../components/ProgressNoteToPrint";
+import ImpactTrackerModal from "../../../../../components/ImpactTrackerModal";
+import BackButton from "../../../../../components/BackButton";
+import BackToDashboardButton from "../../../../../components/BackToDashboardButton";
+import ProgressNoteToPrint from "../../../../../components/ProgressNoteToPrint";
 import ReactToPrint from 'react-to-print'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ProgressNotesIndex = ({ data }) => {
+const ProgressNotesIndex = ({ data, id }) => {
   const router = useRouter();
   console.log("data", data);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
@@ -26,13 +26,6 @@ const ProgressNotesIndex = ({ data }) => {
     });
   };
 
-  /*   const crearFecha=(date)=>{
-    const initialDate= date
-    const newDate=initialDate.split('/')
-    const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
-    return fixedDate
-  
-  } */
 
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();
@@ -66,79 +59,66 @@ const ProgressNotesIndex = ({ data }) => {
     return finalDate;
   };
   const [clientData, setClientData] = useState({
+    progressNoteId: Number(id),
     clientId: data[0]?.clientid,
     clientFirstName: data[0]?.clientfirstname,
     clientLastName: data[0]?.clientlastname,
     clientHCWID: data[0]?.clienthcwid,
-    userFirstName: data[0]?.clienthcwname,
-    userLastName: data[0]?.clienthcwlastname,
-    progressNoteDate: "",
-    developmentActionPlan: false,
-    CD4VLLabReport: false,
-    transportationCoordination: false,
-    translationInterpretation: false,
-    comprehensiveBehavioralRiskAssessment: false,
-    ticklerUpdate: false,
-    treatmentEducation: false,
-    preventionCounselling: false,
-    supportiveCounselling: false,
-    escort: false,
-    caseClosureDischarge: false,
-    linkageToServices: false,
-    OtherAssistance: false,
-    goal1Progress: false,
-    goal1ProgressDate: "",
-    goal2Progress: false,
-    goal2ProgressDate: "",
-    goal3Progress: false,
-    goal3ProgressDate: "",
-    goal1Completed: false,
-    goal1CompletedDate: "",
-    goal2Completed: false,
-    goal2CompletedDate: "",
-    goal3Completed: false,
-    goal3CompletedDate: "",
+    userFirstName: data[0]?.userfirstname,
+    userLastName: data[0]?.userlastname,
+    progressNoteDate: data[0]?.progressnotedate || "",
+    developmentActionPlan: data[0]?.developmentactionplan === "0" ? false : true,
+    CD4VLLabReport: data[0]?.cd4vllabreport  === "0" ? false : true,
+    transportationCoordination: data[0]?.transportationcoordination === "0" ? false : true,
+    translationInterpretation: data[0]?.translationinterpretation === "0" ? false : true,
+    comprehensiveBehavioralRiskAssessment: data[0]?.comprehensivebehavioralriskassessment === "0" ? false : true,
+    ticklerUpdate: data[0]?.ticklerupdate === "0" ? false : true,
+    treatmentEducation: data[0]?.treatmenteducation === "0" ? false : true,
+    preventionCounselling: data[0]?.preventioncounselling === "0" ? false : true,
+    supportiveCounselling: data[0]?.supportivecounselling === "0" ? false : true,
+    escort: data[0]?.escort === "0" ? false : true,
+    caseClosureDischarge: data[0]?.caseclosuredischarge === "0" ? false : true,
+    linkageToServices: data[0]?.linkagetoservices === "0" ? false : true,
+    OtherAssistance: data[0]?.otherassistance === "0" ? false : true,
+    goal1Progress: data[0]?.goal1progress === "0" ? false : true,
+    goal1ProgressDate: data[0]?.goal1progressdate || "",
+    goal2Progress: data[0]?.goal2progress === "0" ? false : true,
+    goal2ProgressDate: data[0]?.goal2progressdate || "",
+    goal3Progress: data[0]?.goal3progress === "0" ? false : true,
+    goal3ProgressDate: data[0]?.goal3progressdate || "",
+    goal1Completed: data[0]?.goal1completed === "0" ? false : true,
+    goal1CompletedDate: data[0]?.goal1completeddate || "",
+    goal2Completed: data[0]?.goal2completed === "0" ? false : true,
+    goal2CompletedDate: data[0]?.goal2completeddate || "",
+    goal3Completed: data[0]?.goal3completed === "0" ? false : true,
+    goal3CompletedDate: data[0]?.goal3completeddate || "",
+    StatusChangesForm: data[0]?.statuschangesform  === "0" ? false : true, // agregar db
+    StatusChangesFormDate: data[0]?.statuschangesformdate  || null, // agregar db
+    ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates  === "0" ? false : true,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate  || null,
 
-    StatusChangesForm: false, // agregar db
-    StatusChangesFormDate: null, // agregar db
-
-    ComprehensiveRiskBehaviorAssessmentUpdates: false,
-    ComprehensiveRiskBehaviorAssessmentUpdatesDate: null,
-
-    M11QForm: false, // agregar db
-    M11QFormDate: null, // agregar db
-
-    CD4VLReports: false, // agregar db
-    CD4VLReportsDate: null, // agregar db
-
-    InitialTreatmentAdherenceIntake: false, // agregar db
-    InitialTreatmentAdherenceIntakeDate: null, // agregar db
-
-    TreatmentAdherenceUpdates: false, // agregar db
-    TreatmentAdherenceUpdatesDate: null, // agregar db
-
-    AIRSCollateralInformation:
-      data[0]?.airscollateralinformation === "0" ? false : true,
+    M11QForm: data[0]?.m11qform  || false, // agregar db
+    M11QFormDate: data[0]?.m11qformdate  || null, // agregar db
+    CD4VLReports: data[0]?.cd4vlreports  || false, // agregar db
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate  || null, // agregar db
+    InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake  || false, // agregar db
+    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate  || null, // agregar db
+    TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates  || false, // agregar db
+    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate  || null, // agregar db
+    AIRSCollateralInformation: data[0]?.airscollateralinformation === "0" ? false : true,
     AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate,
-
-    AIRSDrugRegimen: false, // agregar db
-    AIRSDrugRegimenDate: null, // agregar db
-
-    AIRSFinancialInformation:
-      data[0]?.airsfinancialinformation === "0" ? false : true,
+    AIRSDrugRegimen: data[0]?.airsdrugregimen || false, // agregar db
+    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, // agregar db
+    AIRSFinancialInformation: data[0]?.airsfinancialinformation === "0" ? false : true,
     AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate,
-    AIRSHIVAIDSRiskHistory:
-      data[0]?.airshivaidsriskhistory === "0" ? false : true,
-    AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate,
-
-    AIRSHIVStatusHistory: false, // agregar db
-    AIRSHIVStatusHistoryDate: null, // agregar db
-
-    AIRSHIVMedicalProvider: false, // agregar db
-    AIRSHIVMedicalProviderDate: null, // agregar db
-
+    AIRSHIVAIDSRiskHistory: data[0]?.airshivaidsriskhistory === "0" ? false : true,
+    AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
+    AIRSHIVStatusHistory: data[0]?.airshivstatushistory || false, // agregar db
+    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, // agregar db
+    AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider || false, // agregar db
+    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, // agregar db
     AIRSHCVHistory: data[0]?.airshcvhistory === "0" ? false : true,
-    AIRSHCVHistoryDate: data[0]?.airshcvhistorydate,
+    AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
     AIRSHousingInformation:
       data[0]?.airshousinginformation === "0" ? false : true,
     AIRSHousingInformationDate: data[0]?.airshousinginformationdate,
@@ -180,31 +160,28 @@ const ProgressNotesIndex = ({ data }) => {
     LNEReferralInformationDate: data[0]?.lnereferralinformationdate,
     LNEClientReferralForm:
       data[0]?.lneclientreferralform === "0" ? false : true,
-    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate,
+    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate ||null,
     LNEHNSEligibilityForm:
       data[0]?.lnehnseligibilityform === "0" ? false : true,
-    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate,
-
-    SupportGroups: false, // agregar db
-    SupportGroupsDate: null, // agregar db
-
-    IDG: false, // agregar db
-    IDGDate: null, // agregar db
-
-    progressNoteText: "",
+    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || null,
+    SupportGroups: data[0]?.supportgroups || false, // agregar db
+    SupportGroupsDate: data[0]?.supportgroupsdate || null, // agregar db
+    IDG: data[0]?.idg || false, // agregar db
+    IDGDate: data[0]?.idgdate || null, // agregar db
+    progressNoteText: data[0]?.progressnotetext || "",
     HCWSignature:
       data[0]?.hcwsignature === "0" ||
       data[0]?.hcwsignature === "" ||
       data[0]?.hcwsignature === null
         ? false
         : true,
-        clientUniqueId:data[0].id,
-        goal1ProgressComments:"",
-        goal2ProgressComments:"",
-        goal3ProgressComments:"",
-        goal1CompletionComments:"",
-        goal2CompletionComments:"",
-        goal3CompletionComments:""
+    clientUniqueId:data[0]?.id,
+    goal1ProgressComments: data[0]?.goal1progresscomments || "",
+    goal2ProgressComments: data[0]?.goal2progresscomments || "",
+    goal3ProgressComments: data[0]?.goal3progresscomments || "",
+    goal1CompletionComments: data[0]?.goal1completioncomments || "",
+    goal2CompletionComments: data[0]?.goal2completioncomments || "",
+    goal3CompletionComments: data[0]?.goal3completioncomments || ""
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
@@ -420,7 +397,7 @@ const ProgressNotesIndex = ({ data }) => {
       )
       .then(function (response) {
         if (response.status === 200 || response.statusText === "Ok") {
-          console.log(response);
+          console.log("msa form updated success",response);
         }
       })
       .catch(function (error) {
@@ -437,7 +414,7 @@ const ProgressNotesIndex = ({ data }) => {
         }
       )
       .then(function (response) {
-        console.log("msa form updated successfully");
+        console.log("Service action plan updated successfully");
       })
       .catch(function (error) {
         console.log("an error ocurred while trying to update msa form", error);
@@ -447,29 +424,29 @@ const ProgressNotesIndex = ({ data }) => {
   const [pnErrorMessage, setPNErrorMessage] = useState("");
 
   const handleProgressNote = () => {
-    if (clientData.progressNoteText === "") {
-      setPNErrorMessage(
-        "Please enter text to describe the progress made today"
-      );
-    } else {
+    // if (clientData.progressNoteText === "") {
+    //   setPNErrorMessage(
+    //     "Please enter text to describe the progress made today"
+    //   );
+    // } else {
       setPNErrorMessage("");
-      axios
-        .post(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/`, {
-          clientData,
-        })
+      axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/update`, {clientData})
         .then(function (response) {
-          if (response.status === 200 || response.statusText === "Ok") {
+          if (response.status === 200 || response.statusText === "OK") {
             setProgressNoteId(response.data.progress_note_id);
             handleMsaformUpdate();
             handleServiceActionPlanFormUpdate();
+            
+            console.log(response)
             notifyMessage();
-            setShowImpactTrackerModal(!showImpactTrackerModal);
+
+            // setShowImpactTrackerModal(!showImpactTrackerModal);
           }
         })
         .catch(function (error) {
           console.log(error);
         });
-    }
+    // }
   };
 
   return (
@@ -501,9 +478,9 @@ const ProgressNotesIndex = ({ data }) => {
                   </div>
 
                   <label className="block">
-                    <p className="text-base">Progress note date</p>
+                    <p className="text-base">Progress note date </p>
                     <input type="date" name="" id="" className="border-black px-1 rounded-md" 
-
+                    defaultValue={clientData.progressNoteDate.split("T")[0]}
                     onChange={(e)=>setClientData({...clientData,progressNoteDate:e.target.value})}
                     />
                   </label>
@@ -529,9 +506,6 @@ const ProgressNotesIndex = ({ data }) => {
                       <input
                         type="text"
                         className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        onChange={(e) =>
-                          setUserData({ ...clientData, email: e.target.value })
-                        }
                         value={data[0]?.clientlastname.charAt(0)}
                         disabled
                       />
@@ -599,6 +573,7 @@ const ProgressNotesIndex = ({ data }) => {
                             !clientData.developmentActionPlan,
                         })
                       }
+                      checked={clientData.developmentActionPlan}
                     />
                     Development of Action Plan with Client
                     {/* <span
@@ -618,6 +593,8 @@ const ProgressNotesIndex = ({ data }) => {
                           CD4VLLabReport: !clientData.CD4VLLabReport,
                         })
                       }
+                      checked={clientData.CD4VLLabReport}
+
                     />
                     CD4/VL Lab Report Check
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -636,6 +613,7 @@ const ProgressNotesIndex = ({ data }) => {
                             !clientData.transportationCoordination,
                         })
                       }
+                      checked={clientData.transportationCoordination}
                     />
                     Transportation Coordination
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -654,6 +632,8 @@ const ProgressNotesIndex = ({ data }) => {
                             !clientData.translationInterpretation,
                         })
                       }
+                      checked={clientData.translationInterpretation}
+
                     />
                     Translation/Interpretation
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -673,6 +653,7 @@ const ProgressNotesIndex = ({ data }) => {
                             !clientData.comprehensiveBehavioralRiskAssessment,
                         })
                       }
+                      checked={clientData.comprehensiveBehavioralRiskAssessment}
                     />
                     Comprehensive Behavioral Risk Assessment
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -693,6 +674,8 @@ const ProgressNotesIndex = ({ data }) => {
                           ticklerUpdate: !clientData.ticklerUpdate,
                         })
                       }
+                      checked={clientData.ticklerUpdate}
+
                     />
                     Tickler Update
                     {/* <span
@@ -712,6 +695,8 @@ const ProgressNotesIndex = ({ data }) => {
                           treatmentEducation: !clientData.treatmentEducation,
                         })
                       }
+                      checked={clientData.treatmentEducation}
+
                     />
                     Treatment Education and Adherence Counselling
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -730,6 +715,8 @@ const ProgressNotesIndex = ({ data }) => {
                             !clientData.preventionCounselling,
                         })
                       }
+                      checked={clientData.preventionCounselling}
+
                     />
                     Prevention Counselling
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -748,6 +735,8 @@ const ProgressNotesIndex = ({ data }) => {
                             !clientData.supportiveCounselling,
                         })
                       }
+                      checked={clientData.supportiveCounselling}
+
                     />
                     Supportive Counselling
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -765,6 +754,8 @@ const ProgressNotesIndex = ({ data }) => {
                           escort: !clientData.escort,
                         })
                       }
+                      checked={clientData.escort}
+
                     />
                     Escort
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -786,6 +777,8 @@ const ProgressNotesIndex = ({ data }) => {
                             !clientData.caseClosureDischarge,
                         })
                       }
+                      checked={clientData.caseClosureDischarge}
+
                     />
                     Case Closure/Discharge
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -803,6 +796,8 @@ const ProgressNotesIndex = ({ data }) => {
                           linkageToServices: !clientData.linkageToServices,
                         })
                       }
+                      checked={clientData.linkageToServices}
+
                     />
                     Linkage to Services
                     {/* <span
@@ -822,6 +817,8 @@ const ProgressNotesIndex = ({ data }) => {
                           OtherAssistance: !clientData.OtherAssistance,
                         })
                       }
+                      checked={clientData.OtherAssistance}
+
                     />
                     Other Form of Assistance
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -853,26 +850,23 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue">
-                      {new Date(
-                        serviceActionData?.goal1targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {
+                        serviceActionData?.goal1targetdate?.split("T")[0]}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue ">
-                    {serviceActionData?.goal1summary}
+                    {serviceActionData?.goal1summary || "-"}
                   </p>
                 </div>
                 <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                 onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}></textarea>
+                 onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}
+                 defaultValue={clientData.goal1ProgressComments}
+                 ></textarea>
                 </div>
               </div>
 
@@ -894,13 +888,9 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
-                        serviceActionData?.goal2targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {
+                        serviceActionData?.goal2targetdate?.split("T")[0] || "-"
+                     }
                     </p>
                   </div>
                 </div>
@@ -908,12 +898,15 @@ const ProgressNotesIndex = ({ data }) => {
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
                     {serviceActionData?.goal2summary || "-"}
+                    
                   </p>
                 </div>
                 <div className="">
                   <span className="">Goal 2 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                 onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}></textarea>
+                 onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}
+                 defaultValue={clientData.goal2ProgressComments}
+                 ></textarea>
                 </div>
               </div>
 
@@ -935,13 +928,8 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
-                        serviceActionData?.goal3targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {
+                        serviceActionData?.goal3targetdate?.split("T")[0] || "-"}
                     </p>
                   </div>
                 </div>
@@ -954,7 +942,9 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="">
                   <span className="">Goal 3 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                 onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}></textarea>
+                 onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}
+                 defaultValue={clientData.goal3ProgressComments}
+                 ></textarea>
                 </div>
               </div>
             </div>
@@ -971,7 +961,7 @@ const ProgressNotesIndex = ({ data }) => {
           >
             <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
               <div>
-                <div className="workedGoals-box flex gap-5 ">
+              <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 1</p>
                   <label
                     className={`${ProgressNotesStyles.radioBtnContainer} `}
@@ -987,6 +977,8 @@ const ProgressNotesIndex = ({ data }) => {
                           goal1ProgressDate: crearFecha(),
                         });
                       }}
+                      defaultChecked={clientData.goal1Progress === true? "true" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1007,6 +999,8 @@ const ProgressNotesIndex = ({ data }) => {
                           goal1ProgressDate: "",
                         });
                       }}
+                      defaultChecked={clientData.goal1Progress === false? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1022,10 +1016,8 @@ const ProgressNotesIndex = ({ data }) => {
                     type="date"
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal1ProgressDate
-                        ? clientData.goal1ProgressDate
-                        : ""
+                    defaultValue={
+                      clientData.goal1ProgressDate?.split("T")[0]
                     }
                     onChange={(e) =>
                       setClientData({
@@ -1054,6 +1046,8 @@ const ProgressNotesIndex = ({ data }) => {
                           goal2ProgressDate: crearFecha(),
                         })
                       }
+                      defaultChecked={clientData.goal2Progress === true? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1074,6 +1068,8 @@ const ProgressNotesIndex = ({ data }) => {
                           goal2ProgressDate: "",
                         })
                       }
+                      defaultChecked={clientData.goal2Progress === false? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1090,9 +1086,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal2ProgressDate
-                        ? clientData.goal2ProgressDate
-                        : ""
+                      clientData.goal2ProgressDate?.split("T")[0]
                     }
                     onChange={(e) =>
                       setClientData({
@@ -1121,6 +1115,8 @@ const ProgressNotesIndex = ({ data }) => {
                           goal3ProgressDate: crearFecha(),
                         })
                       }
+                      defaultChecked={clientData.goal3Progress === true? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1141,6 +1137,8 @@ const ProgressNotesIndex = ({ data }) => {
                           goal3ProgressDate: "",
                         })
                       }
+                      defaultChecked={clientData.goal3Progress === false? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1157,9 +1155,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal3ProgressDate
-                        ? clientData.goal3ProgressDate
-                        : ""
+                      clientData.goal3ProgressDate?.split("T")[0]
                     }
                     onChange={(e) =>
                       setClientData({
@@ -1203,6 +1199,8 @@ const ProgressNotesIndex = ({ data }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal1Completed: true });
                       }}
+                      defaultChecked={clientData.goal1Completed === true? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1224,6 +1222,8 @@ const ProgressNotesIndex = ({ data }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal1Completed: false });
                       }}
+                      defaultChecked={clientData.goal1Completed === false? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1240,9 +1240,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal1CompletedDate
-                        ? clientData.goal1CompletedDate
-                        : ""
+                      clientData.goal1CompletedDate?.split("T")[0]
                     }
                     onChange={(e) => {
                       setClientData({
@@ -1259,7 +1257,9 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="my-5">
                   <span className="">Goal 1 Completion Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                     onChange={(e)=>setClientData({...clientData,goal1CompletionComments:e.target.value})}></textarea>
+                     onChange={(e)=>setClientData({...clientData,goal1CompletionComments:e.target.value})}
+                 defaultValue={clientData.goal1CompletionComments}
+                 ></textarea>
                 </div>
               </div>
 
@@ -1281,6 +1281,8 @@ const ProgressNotesIndex = ({ data }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal2Completed: true });
                       }}
+                      defaultChecked={clientData.goal2Completed === true? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1302,6 +1304,8 @@ const ProgressNotesIndex = ({ data }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal2Completed: false });
                       }}
+                      defaultChecked={clientData.goal2Completed === false? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1318,9 +1322,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal2CompletedDate
-                        ? clientData.goal2CompletedDate
-                        : ""
+                      clientData.goal2CompletedDate?.split("T")[0]
                     }
                     onChange={(e) => {
                       setClientData({
@@ -1338,6 +1340,7 @@ const ProgressNotesIndex = ({ data }) => {
                   <span className="">Goal 2 Completion Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal2CompletionComments:e.target.value})}
+                 defaultValue={clientData.goal2CompletionComments}
                  ></textarea>
                 </div>
               </div>
@@ -1360,6 +1363,8 @@ const ProgressNotesIndex = ({ data }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal3Completed: true });
                       }}
+                      defaultChecked={clientData.goal3Completed === true? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1380,6 +1385,8 @@ const ProgressNotesIndex = ({ data }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal3Completed: false });
                       }}
+                      defaultChecked={clientData.goal3Completed === false? "checked" : ""}
+
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1396,9 +1403,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal3CompletedDate
-                        ? clientData.goal3CompletedDate
-                        : ""
+                      clientData.goal3CompletedDate?.split("T")[0]
                     }
                     onChange={(e) => {
                       setClientData({
@@ -1416,6 +1421,8 @@ const ProgressNotesIndex = ({ data }) => {
                   <span className="">Goal 3 Completion Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal3CompletionComments:e.target.value})}
+                 defaultValue={clientData.goal3CompletionComments}
+                 
                  ></textarea>
                 </div>
               </div>
@@ -1447,6 +1454,8 @@ const ProgressNotesIndex = ({ data }) => {
                   progressNoteText: e.target.value,
                 });
               }}
+              defaultValue={clientData.progressNoteText}
+
             ></textarea>
 
             <div className="progressnotes-box flex gap-x-5">
@@ -1460,6 +1469,7 @@ const ProgressNotesIndex = ({ data }) => {
                     setClientData({ ...clientData, HCWSignature: true });
                     setDataForSAP({ ...dataForSAP, HCWSignature: true });
                   }}
+                  checked={clientData.HCWSignature === true}
                 />
                 <span
                   className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1474,6 +1484,8 @@ const ProgressNotesIndex = ({ data }) => {
                     setClientData({ ...clientData, HCWSignature: false });
                     setDataForSAP({ ...dataForSAP, HCWSignature: false });
                   }}
+                  checked={clientData.HCWSignature === false}
+
                 />
                 <span
                   className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1485,7 +1497,6 @@ const ProgressNotesIndex = ({ data }) => {
           <h3 className="font-black my-5 text-dark-blue">
             Were any additional forms added to the client´s profile?
           </h3>
-              {/* FIN DEL FORM BOX */}
 
           <section
             className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals"
@@ -1506,7 +1517,7 @@ const ProgressNotesIndex = ({ data }) => {
                             type="checkbox"
                             name=""
                             id=""
-                            // checked={service.value ? "checked" : ""}
+                            checked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
                               clientData[service.state_label] === "" ||
@@ -1533,6 +1544,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </>
                   ))}
               </div>{" "}
+              {/* FIN DEL FORM BOX */}
               <div className="additional-form-box">
                 {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(15).map((service) => (
@@ -1547,7 +1559,7 @@ const ProgressNotesIndex = ({ data }) => {
                             type="checkbox"
                             name=""
                             id=""
-                            // checked={service.value ? "checked" : ""}
+                            checked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
                               clientData[service.state_label] === "" ||
@@ -1595,10 +1607,10 @@ const ProgressNotesIndex = ({ data }) => {
           </section>
         </main>
 
-          
+{/*           
               <div style={{display:'none'}}>
                 <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
-              </div>
+              </div> */}
       </Layout>
       {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal
@@ -1618,11 +1630,12 @@ export default ProgressNotesIndex;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    let { clientid } = ctx.params;
+    let { clientid, id } = ctx.params;
+    console.log(ctx.params)
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}/profile/${id}`
     );
     const data = await response.json();
-    return { props: { data } };
+    return { props: { data, id } };
   },
 });

@@ -115,6 +115,9 @@
   .radioBtnContainer input:checked ~ .radioBtnCheckmark {
     background-color: #2196F3;
   }
+  .radioBtnContainer input:checked ~ .radioBtnCheckmark {
+    background-color: #2196F3;
+  }
   
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .radioBtnCheckmark:after {
