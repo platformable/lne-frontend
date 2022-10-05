@@ -486,7 +486,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
             
           </section>
 
- {/*          <section id="progressnotes" className="my-10">
+    <section id="progressnotes" className="my-10">
 
           <div className="container mx-auto">
           <h1 className="font-black my-5">Client progress notes</h1>
@@ -499,19 +499,19 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
             <h3 className="text-white text-center text-xs mt-2 uppercase font-black">Edit</h3>
             </div>
           </div>
-          {progressNotes[0].progressnotes.map((pn,index)=>{ return (
+          {progressNotes?.progressnotes.map((pn,index)=>{ return (
             <div key={index}className="grid grid-cols-2 bg-white py-2 border p-5 text-center" >
             
               <p>{new Date(pn.date).toLocaleDateString('en-US')}</p>
               <div className="text-center">
-              <Link href={`/clients/${pn.clientid}/progress_notes/${pn.id}/edit`}>
+              <Link href={`/clients/${data[0]?.clientid}/progress_note/${pn.id}/edit`} passHref>
               <button href={"/clients/devs"} className="bg-black text-white rounded-md px-5 py-2 self-end" >Edit</button>
               </Link>
               </div>
             </div> )
           })}
           </div>
-          </section> */}
+          </section> 
 
       
         </div>
@@ -561,9 +561,10 @@ export const getServerSideProps = withPageAuthRequired({
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
       ).then((r) => r.json()),
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`).then((r)=>r.json())
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
+      .then((r)=>r.json())
     ]);
-    return { props: { data: data, impactBaseline: impactBaseline, impactTracker: impactTracker , progressNotes:progressNotes } };
+    return { props: { data: data, impactBaseline: impactBaseline, impactTracker: impactTracker , progressNotes:progressNotes[0] } };
 
     /*  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`);
     const data = await res.json();

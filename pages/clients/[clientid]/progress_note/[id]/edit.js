@@ -1,9 +1,9 @@
 import React, { useState, useEffect,useRef } from "react";
 import Layout from "../../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import Styles from "../../../../styles/ServiceAP.module.css";
-import ProgressNotesStyles from "../../../../styles/ProgressNotes.module.css";
-import MSAStyles from "../../../../styles/MSA.module.css";
+import Styles from "../../../../../styles/ServiceAP.module.css";
+import ProgressNotesStyles from "../../../../../styles/ProgressNotes.module.css";
+import MSAStyles from "../../../../../styles/MSA.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ImpactTrackerModal from "../../../../../components/ImpactTrackerModal";
@@ -14,7 +14,7 @@ import ReactToPrint from 'react-to-print'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ProgressNotesIndex = ({ data }) => {
+const ProgressNotesIndex = ({ data, id }) => {
   const router = useRouter();
   console.log("data", data);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
@@ -59,63 +59,64 @@ const ProgressNotesIndex = ({ data }) => {
     return finalDate;
   };
   const [clientData, setClientData] = useState({
+    progressNoteId: Number(id),
     clientId: data[0]?.clientid,
     clientFirstName: data[0]?.clientfirstname,
     clientLastName: data[0]?.clientlastname,
     clientHCWID: data[0]?.clienthcwid,
     userFirstName: data[0]?.userfirstname,
     userLastName: data[0]?.userlastname,
-    progressNoteDate: data[0].progressnotedate || "",
-    developmentActionPlan: data[0].developmentactionplan === "0" ? false : true,
-    CD4VLLabReport: data[0].cd4vllabreport  === "0" ? false : true,
-    transportationCoordination: data[0].transportationcoordination === "0" ? false : true,
-    translationInterpretation: data[0].translationinterpretation === "0" ? false : true,
-    comprehensiveBehavioralRiskAssessment: data[0].comprehensivebehavioralriskassessment === "0" ? false : true,
-    ticklerUpdate: data[0].ticklerupdate === "0" ? false : true,
-    treatmentEducation: data[0].treatmenteducation === "0" ? false : true,
-    preventionCounselling: data[0].preventioncounselling === "0" ? false : true,
-    supportiveCounselling: data[0].supportivecounselling === "0" ? false : true,
-    escort: data[0].escort === "0" ? false : true,
-    caseClosureDischarge: data[0].caseclosuredischarge === "0" ? false : true,
-    linkageToServices: data[0].linkagetoservices === "0" ? false : true,
-    OtherAssistance: data[0].otherassistance === "0" ? false : true,
-    goal1Progress: data[0].goal1progress === "0" ? false : true,
-    goal1ProgressDate: data[0].goal1progressdate || "",
-    goal2Progress: data[0].goal2progress === "0" ? false : true,
-    goal2ProgressDate: data[0].goal2progressdate || "",
-    goal3Progress: data[0].goal3progress === "0" ? false : true,
-    goal3ProgressDate: data[0].goal3progressdate || "",
-    goal1Completed: data[0].goal1completed === "0" ? false : true,
-    goal1CompletedDate: data[0].goal1completeddate || "",
-    goal2Completed: data[0].goal2completed === "0" ? false : true,
-    goal2CompletedDate: data[0].goal2completeddate || "",
-    goal3Completed: data[0].goal3completed === "0" ? false : true,
-    goal3CompletedDate: data[0].goal3completeddate || "",
-    StatusChangesForm: data[0].statuschangesform  === "0" ? false : true, // agregar db
-    StatusChangesFormDate: data[0].statuschangesformdate  || null, // agregar db
-    ComprehensiveRiskBehaviorAssessmentUpdates: data[0].comprehensiveriskbehaviorassessmentupdates  === "0" ? false : true,
-    ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0].comprehensiveriskbehaviorassessmentupdatesdate  || null,
+    progressNoteDate: data[0]?.progressnotedate || "",
+    developmentActionPlan: data[0]?.developmentactionplan === "0" ? false : true,
+    CD4VLLabReport: data[0]?.cd4vllabreport  === "0" ? false : true,
+    transportationCoordination: data[0]?.transportationcoordination === "0" ? false : true,
+    translationInterpretation: data[0]?.translationinterpretation === "0" ? false : true,
+    comprehensiveBehavioralRiskAssessment: data[0]?.comprehensivebehavioralriskassessment === "0" ? false : true,
+    ticklerUpdate: data[0]?.ticklerupdate === "0" ? false : true,
+    treatmentEducation: data[0]?.treatmenteducation === "0" ? false : true,
+    preventionCounselling: data[0]?.preventioncounselling === "0" ? false : true,
+    supportiveCounselling: data[0]?.supportivecounselling === "0" ? false : true,
+    escort: data[0]?.escort === "0" ? false : true,
+    caseClosureDischarge: data[0]?.caseclosuredischarge === "0" ? false : true,
+    linkageToServices: data[0]?.linkagetoservices === "0" ? false : true,
+    OtherAssistance: data[0]?.otherassistance === "0" ? false : true,
+    goal1Progress: data[0]?.goal1progress === "0" ? false : true,
+    goal1ProgressDate: data[0]?.goal1progressdate || "",
+    goal2Progress: data[0]?.goal2progress === "0" ? false : true,
+    goal2ProgressDate: data[0]?.goal2progressdate || "",
+    goal3Progress: data[0]?.goal3progress === "0" ? false : true,
+    goal3ProgressDate: data[0]?.goal3progressdate || "",
+    goal1Completed: data[0]?.goal1completed === "0" ? false : true,
+    goal1CompletedDate: data[0]?.goal1completeddate || "",
+    goal2Completed: data[0]?.goal2completed === "0" ? false : true,
+    goal2CompletedDate: data[0]?.goal2completeddate || "",
+    goal3Completed: data[0]?.goal3completed === "0" ? false : true,
+    goal3CompletedDate: data[0]?.goal3completeddate || "",
+    StatusChangesForm: data[0]?.statuschangesform  === "0" ? false : true, // agregar db
+    StatusChangesFormDate: data[0]?.statuschangesformdate  || null, // agregar db
+    ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates  === "0" ? false : true,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate  || null,
 
-    M11QForm: data[0].m11qform  || false, // agregar db
-    M11QFormDate: data[0].m11qformdate  || null, // agregar db
-    CD4VLReports: data[0].cd4vlreports  || false, // agregar db
-    CD4VLReportsDate: data[0].cd4vlreportsdate  || null, // agregar db
-    InitialTreatmentAdherenceIntake: data[0].initialtreatmentadherenceintake  || false, // agregar db
-    InitialTreatmentAdherenceIntakeDate: data[0].initialtreatmentadherenceintakedate  || null, // agregar db
-    TreatmentAdherenceUpdates: data[0].treatmentadherenceupdates  || false, // agregar db
-    TreatmentAdherenceUpdatesDate: data[0].treatmentadherenceupdatesdate  || null, // agregar db
+    M11QForm: data[0]?.m11qform  || false, // agregar db
+    M11QFormDate: data[0]?.m11qformdate  || null, // agregar db
+    CD4VLReports: data[0]?.cd4vlreports  || false, // agregar db
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate  || null, // agregar db
+    InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake  || false, // agregar db
+    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate  || null, // agregar db
+    TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates  || false, // agregar db
+    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate  || null, // agregar db
     AIRSCollateralInformation: data[0]?.airscollateralinformation === "0" ? false : true,
     AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate,
-    AIRSDrugRegimen: data[0].airsdrugregimen || false, // agregar db
-    AIRSDrugRegimenDate: data[0].airsdrugregimendate || null, // agregar db
+    AIRSDrugRegimen: data[0]?.airsdrugregimen || false, // agregar db
+    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, // agregar db
     AIRSFinancialInformation: data[0]?.airsfinancialinformation === "0" ? false : true,
     AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate,
     AIRSHIVAIDSRiskHistory: data[0]?.airshivaidsriskhistory === "0" ? false : true,
     AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
-    AIRSHIVStatusHistory: data[0].airshivstatushistory || false, // agregar db
-    AIRSHIVStatusHistoryDate: data[0].airshivstatushistorydate || null, // agregar db
-    AIRSHIVMedicalProvider: data[0].airshivmedicalprovider || false, // agregar db
-    AIRSHIVMedicalProviderDate: data[0].airshivmedicalproviderdate || null, // agregar db
+    AIRSHIVStatusHistory: data[0]?.airshivstatushistory || false, // agregar db
+    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, // agregar db
+    AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider || false, // agregar db
+    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, // agregar db
     AIRSHCVHistory: data[0]?.airshcvhistory === "0" ? false : true,
     AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
     AIRSHousingInformation:
@@ -163,24 +164,24 @@ const ProgressNotesIndex = ({ data }) => {
     LNEHNSEligibilityForm:
       data[0]?.lnehnseligibilityform === "0" ? false : true,
     LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || null,
-    SupportGroups: data[0].supportgroups || false, // agregar db
-    SupportGroupsDate: data[0].supportgroupsdate || null, // agregar db
-    IDG: data[0].idg || false, // agregar db
-    IDGDate: data[0].idgdate || null, // agregar db
-    progressNoteText: data[0].progressnotetext || "",
+    SupportGroups: data[0]?.supportgroups || false, // agregar db
+    SupportGroupsDate: data[0]?.supportgroupsdate || null, // agregar db
+    IDG: data[0]?.idg || false, // agregar db
+    IDGDate: data[0]?.idgdate || null, // agregar db
+    progressNoteText: data[0]?.progressnotetext || "",
     HCWSignature:
       data[0]?.hcwsignature === "0" ||
       data[0]?.hcwsignature === "" ||
       data[0]?.hcwsignature === null
         ? false
         : true,
-    clientUniqueId:data[0].id,
-    goal1ProgressComments:"",
-    goal2ProgressComments:"",
-    goal3ProgressComments:"",
-    goal1CompletionComments:"",
-    goal2CompletionComments:"",
-    goal3CompletionComments:""
+    clientUniqueId:data[0]?.id,
+    goal1ProgressComments: data[0]?.goal1progresscomments || "",
+    goal2ProgressComments: data[0]?.goal2progresscomments || "",
+    goal3ProgressComments: data[0]?.goal3progresscomments || "",
+    goal1CompletionComments: data[0]?.goal1completioncomments || "",
+    goal2CompletionComments: data[0]?.goal2completioncomments || "",
+    goal3CompletionComments: data[0]?.goal3completioncomments || ""
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
@@ -396,7 +397,7 @@ const ProgressNotesIndex = ({ data }) => {
       )
       .then(function (response) {
         if (response.status === 200 || response.statusText === "Ok") {
-          console.log(response);
+          console.log("msa form updated success",response);
         }
       })
       .catch(function (error) {
@@ -413,7 +414,7 @@ const ProgressNotesIndex = ({ data }) => {
         }
       )
       .then(function (response) {
-        console.log("msa form updated successfully");
+        console.log("Service action plan updated successfully");
       })
       .catch(function (error) {
         console.log("an error ocurred while trying to update msa form", error);
@@ -423,29 +424,29 @@ const ProgressNotesIndex = ({ data }) => {
   const [pnErrorMessage, setPNErrorMessage] = useState("");
 
   const handleProgressNote = () => {
-    if (clientData.progressNoteText === "") {
-      setPNErrorMessage(
-        "Please enter text to describe the progress made today"
-      );
-    } else {
+    // if (clientData.progressNoteText === "") {
+    //   setPNErrorMessage(
+    //     "Please enter text to describe the progress made today"
+    //   );
+    // } else {
       setPNErrorMessage("");
-      axios
-        .post(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/`, {
-          clientData,
-        })
+      axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/update`, {clientData})
         .then(function (response) {
-          if (response.status === 200 || response.statusText === "Ok") {
+          if (response.status === 200 || response.statusText === "OK") {
             setProgressNoteId(response.data.progress_note_id);
             handleMsaformUpdate();
             handleServiceActionPlanFormUpdate();
+            
+            console.log(response)
             notifyMessage();
-            setShowImpactTrackerModal(!showImpactTrackerModal);
+
+            // setShowImpactTrackerModal(!showImpactTrackerModal);
           }
         })
         .catch(function (error) {
           console.log(error);
         });
-    }
+    // }
   };
 
   return (
@@ -479,7 +480,7 @@ const ProgressNotesIndex = ({ data }) => {
                   <label className="block">
                     <p className="text-base">Progress note date </p>
                     <input type="date" name="" id="" className="border-black px-1 rounded-md" 
-                    defaultValue={new Date(clientData.progressNoteDate).toLocaleDateString('en-US')}
+                    defaultValue={clientData.progressNoteDate.split("T")[0]}
                     onChange={(e)=>setClientData({...clientData,progressNoteDate:e.target.value})}
                     />
                   </label>
@@ -849,20 +850,15 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue">
-                      {new Date(
-                        serviceActionData?.goal1targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {
+                        serviceActionData?.goal1targetdate?.split("T")[0]}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue ">
-                    {serviceActionData?.goal1summary}
+                    {serviceActionData?.goal1summary || "-"}
                   </p>
                 </div>
                 <div className="">
@@ -892,20 +888,16 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
-                        serviceActionData?.goal2targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {
+                        serviceActionData?.goal2targetdate?.split("T")[0] || "-"
+                     }
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal2summary}
+                    {serviceActionData?.goal2summary || "-"}
                     
                   </p>
                 </div>
@@ -936,20 +928,15 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
-                        serviceActionData?.goal3targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
+                      {
+                        serviceActionData?.goal3targetdate?.split("T")[0] || "-"}
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2  ">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal3summary}
+                    {serviceActionData?.goal3summary || "-"}
                   </p>
                 </div>
                 <div className="">
@@ -990,7 +977,7 @@ const ProgressNotesIndex = ({ data }) => {
                           goal1ProgressDate: crearFecha(),
                         });
                       }}
-                      defaultChecked={clientData.goal1Progress === true? "checked" : ""}
+                      defaultChecked={clientData.goal1Progress === true? "true" : ""}
 
                     />
                     <span
@@ -1030,7 +1017,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     defaultValue={
-                      clientData.goal1ProgressDate
+                      clientData.goal1ProgressDate?.split("T")[0]
                     }
                     onChange={(e) =>
                       setClientData({
@@ -1099,7 +1086,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal2ProgressDate
+                      clientData.goal2ProgressDate?.split("T")[0]
                     }
                     onChange={(e) =>
                       setClientData({
@@ -1168,7 +1155,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal3ProgressDate
+                      clientData.goal3ProgressDate?.split("T")[0]
                     }
                     onChange={(e) =>
                       setClientData({
@@ -1253,9 +1240,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal1CompletedDate
-                        ? clientData.goal1CompletedDate
-                        : ""
+                      clientData.goal1CompletedDate?.split("T")[0]
                     }
                     onChange={(e) => {
                       setClientData({
@@ -1337,9 +1322,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal2CompletedDate
-                        ? clientData.goal2CompletedDate
-                        : ""
+                      clientData.goal2CompletedDate?.split("T")[0]
                     }
                     onChange={(e) => {
                       setClientData({
@@ -1420,9 +1403,7 @@ const ProgressNotesIndex = ({ data }) => {
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
                     value={
-                      clientData.goal3CompletedDate
-                        ? clientData.goal3CompletedDate
-                        : ""
+                      clientData.goal3CompletedDate?.split("T")[0]
                     }
                     onChange={(e) => {
                       setClientData({
@@ -1626,10 +1607,10 @@ const ProgressNotesIndex = ({ data }) => {
           </section>
         </main>
 
-          
+{/*           
               <div style={{display:'none'}}>
                 <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
-              </div>
+              </div> */}
       </Layout>
       {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal
@@ -1650,10 +1631,11 @@ export default ProgressNotesIndex;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid, id } = ctx.params;
+    console.log(ctx.params)
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/profile/${id}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}/profile/${id}`
     );
     const data = await response.json();
-    return { props: { data } };
+    return { props: { data, id } };
   },
 });
