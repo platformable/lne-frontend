@@ -221,7 +221,7 @@ console.log("clientData",clientData)
               className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             >
               <option >{clientData.clientHCWName} {clientData.clientHCWLastname}</option>
-                {users && users?.filter(user=>user.userrole !=='DES').filter(user=>user.name !==clientData.clientHCWName).map((user,index)=>{
+                {users && users?.filter(user=>user.userrole !=='DES').map((user,index)=>{
               return <option value={user.user_id} key={index}>{user.name} {user.lastname}</option>
                 })}
 
