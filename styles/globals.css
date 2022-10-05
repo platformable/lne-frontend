@@ -387,3 +387,6 @@ gap:10px;
     grid-template-columns:1fr;
   }
 }
+@media print {
+	.page-break	{ display: block; page-break-before: always; }
+}
