@@ -469,9 +469,9 @@ const ProgressNotesIndex = ({ data }) => {
           if (response.status === 200 || response.statusText === "Ok") {
             setProgressNoteId(response.data.progress_note_id);
             handleMsaformUpdate();
-            // handleServiceActionPlanFormUpdate();
+            handleServiceActionPlanFormUpdate();
             notifyMessage();
-            // setShowImpactTrackerModal(!showImpactTrackerModal);
+            setShowImpactTrackerModal(!showImpactTrackerModal);
           }
         })
         .catch(function (error) {
