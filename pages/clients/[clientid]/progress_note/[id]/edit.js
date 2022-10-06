@@ -463,7 +463,7 @@ const ProgressNotesIndex = ({ data, id }) => {
         if (response.status === 200 || response.statusText === "OK") {
           setProgressNoteId(response.data.progress_note_id);
           handleMsaformUpdate();
-          // handleServiceActionPlanFormUpdate();
+          handleServiceActionPlanFormUpdate();
 
           console.log(response);
           notifyMessage();
