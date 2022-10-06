@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from "../../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Styles from "../../../../../styles/ServiceAP.module.css";
@@ -10,7 +10,7 @@ import ImpactTrackerModal from "../../../../../components/ImpactTrackerModal";
 import BackButton from "../../../../../components/BackButton";
 import BackToDashboardButton from "../../../../../components/BackToDashboardButton";
 import ProgressNoteToPrint from "../../../../../components/ProgressNoteToPrint";
-import ReactToPrint from 'react-to-print'
+import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -25,7 +25,6 @@ const ProgressNotesIndex = ({ data, id }) => {
       position: toast.POSITION.TOP_CENTER,
     });
   };
-
 
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();
@@ -67,127 +66,147 @@ const ProgressNotesIndex = ({ data, id }) => {
     userFirstName: data[0]?.userfirstname,
     userLastName: data[0]?.userlastname,
     progressNoteDate: data[0]?.progressnotedate || "",
-    developmentActionPlan: data[0]?.developmentactionplan === "0" ? false : true,
-    CD4VLLabReport: data[0]?.cd4vllabreport  === "0" ? false : true,
-    transportationCoordination: data[0]?.transportationcoordination === "0" ? false : true,
-    translationInterpretation: data[0]?.translationinterpretation === "0" ? false : true,
-    comprehensiveBehavioralRiskAssessment: data[0]?.comprehensivebehavioralriskassessment === "0" ? false : true,
-    ticklerUpdate: data[0]?.ticklerupdate === "0" ? false : true,
-    treatmentEducation: data[0]?.treatmenteducation === "0" ? false : true,
-    preventionCounselling: data[0]?.preventioncounselling === "0" ? false : true,
-    supportiveCounselling: data[0]?.supportivecounselling === "0" ? false : true,
-    escort: data[0]?.escort === "0" ? false : true,
-    caseClosureDischarge: data[0]?.caseclosuredischarge === "0" ? false : true,
-    linkageToServices: data[0]?.linkagetoservices === "0" ? false : true,
-    OtherAssistance: data[0]?.otherassistance === "0" ? false : true,
-    goal1Progress: data[0]?.goal1progress === "0" ? false : true,
+    developmentActionPlan:
+      data[0]?.developmentactionplan === "1" ? true : false,
+    CD4VLLabReport: data[0]?.cd4vllabreport === "1" ? true : false,
+    transportationCoordination:
+      data[0]?.transportationcoordination === "1" ? true : false,
+    translationInterpretation:
+      data[0]?.translationinterpretation === "1" ? true : false,
+    comprehensiveBehavioralRiskAssessment:
+      data[0]?.comprehensivebehavioralriskassessment === "1" ? true : false,
+    ticklerUpdate: data[0]?.ticklerupdate === "1" ? true : false,
+    treatmentEducation: data[0]?.treatmenteducation === "1" ? true : false,
+    preventionCounselling:
+      data[0]?.preventioncounselling === "1" ? true : false,
+    supportiveCounselling:
+      data[0]?.supportivecounselling === "1" ? true : false,
+    escort: data[0]?.escort === "1" ? true : false,
+    caseClosureDischarge: data[0]?.caseclosuredischarge === "1" ? true : false,
+    linkageToServices: data[0]?.linkagetoservices === "1" ? true : false,
+    OtherAssistance: data[0]?.otherassistance === "1" ? true : false,
+    goal1Progress: data[0]?.goal1progress === "1" ? true : false,
     goal1ProgressDate: data[0]?.goal1progressdate || "",
-    goal2Progress: data[0]?.goal2progress === "0" ? false : true,
+    goal2Progress: data[0]?.goal2progress === "1" ? true : false,
     goal2ProgressDate: data[0]?.goal2progressdate || "",
-    goal3Progress: data[0]?.goal3progress === "0" ? false : true,
+    goal3Progress: data[0]?.goal3progress === "1" ? true : false,
     goal3ProgressDate: data[0]?.goal3progressdate || "",
-    goal1Completed: data[0]?.goal1completed === "0" ? false : true,
+    goal1Completed: data[0]?.goal1completed === "1" ? true : false,
     goal1CompletedDate: data[0]?.goal1completeddate || "",
-    goal2Completed: data[0]?.goal2completed === "0" ? false : true,
+    goal2Completed: data[0]?.goal2completed === "1" ? true : false,
     goal2CompletedDate: data[0]?.goal2completeddate || "",
-    goal3Completed: data[0]?.goal3completed === "0" ? false : true,
+    goal3Completed: data[0]?.goal3completed === "1" ? true : false,
     goal3CompletedDate: data[0]?.goal3completeddate || "",
-    StatusChangesForm: data[0]?.statuschangesform  === "0" ? false : true, // agregar db
-    StatusChangesFormDate: data[0]?.statuschangesformdate  || null, // agregar db
-    ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates  === "0" ? false : true,
-    ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate  || null,
+    StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false, // agregar db
+    StatusChangesFormDate: data[0]?.statuschangesformdate || null, // agregar db
+    ComprehensiveRiskBehaviorAssessmentUpdates:
+      data[0]?.comprehensiveriskbehaviorassessmentupdates === "1"
+        ? true
+        : false,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate:
+      data[0]?.comprehensiveriskbehaviorassessmentupdatesdate || null,
 
-    M11QForm: data[0]?.m11qform  || false, // agregar db
-    M11QFormDate: data[0]?.m11qformdate  || null, // agregar db
-    CD4VLReports: data[0]?.cd4vlreports  || false, // agregar db
-    CD4VLReportsDate: data[0]?.cd4vlreportsdate  || null, // agregar db
-    InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake  || false, // agregar db
-    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate  || null, // agregar db
-    TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates  || false, // agregar db
-    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate  || null, // agregar db
-    AIRSCollateralInformation: data[0]?.airscollateralinformation === "0" ? false : true,
+    M11QForm: data[0]?.m11qform === "1" ? true : false, // agregar db
+    M11QFormDate: data[0]?.m11qformdate || null, // agregar db
+    CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false, // agregar db
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, // agregar db
+    InitialTreatmentAdherenceIntake:
+      data[0]?.initialtreatmentadherenceintake === "1" ? true : false, // agregar db
+    InitialTreatmentAdherenceIntakeDate:
+      data[0]?.initialtreatmentadherenceintakedate || null, // agregar db
+    TreatmentAdherenceUpdates:
+      data[0]?.treatmentadherenceupdates === "1" ? true : false, // agregar db
+    TreatmentAdherenceUpdatesDate:
+      data[0]?.treatmentadherenceupdatesdate || null, // agregar db
+    AIRSCollateralInformation:
+      data[0]?.airscollateralinformation === "1" ? true : false,
     AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate,
-    AIRSDrugRegimen: data[0]?.airsdrugregimen || false, // agregar db
+    AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false, // agregar db
     AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, // agregar db
-    AIRSFinancialInformation: data[0]?.airsfinancialinformation === "0" ? false : true,
+    AIRSFinancialInformation:
+      data[0]?.airsfinancialinformation === "1" ? true : false,
     AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate,
-    AIRSHIVAIDSRiskHistory: data[0]?.airshivaidsriskhistory === "0" ? false : true,
+    AIRSHIVAIDSRiskHistory:
+      data[0]?.airshivaidsriskhistory === "1" ? true : false,
     AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
-    AIRSHIVStatusHistory: data[0]?.airshivstatushistory || false, // agregar db
+    AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false, // agregar db
     AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, // agregar db
-    AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider || false, // agregar db
+    AIRSHIVMedicalProvider:
+      data[0]?.airshivmedicalprovider === "1" ? true : false, // agregar db
     AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, // agregar db
-    AIRSHCVHistory: data[0]?.airshcvhistory === "0" ? false : true,
+    AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
     AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
     AIRSHousingInformation:
-      data[0]?.airshousinginformation === "0" ? false : true,
-    AIRSHousingInformationDate: data[0]?.airshousinginformationdate,
+      data[0]?.airshousinginformation === "1" ? true : false,
+    AIRSHousingInformationDate: data[0]?.airshousinginformationdate || null,
     AIRSInsuranceInformation:
-      data[0]?.airsinsuranceinformation === "0" ? false : true,
+      data[0]?.airsinsuranceinformation === "1" ? true : false,
     AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate,
     AIRSSubstanceUseHistory:
-      data[0]?.airssubstanceusehistory === "0" ? false : true,
+      data[0]?.airssubstanceusehistory === "1" ? true : false,
     AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate,
-    LNEClientRights: data[0]?.lneclientrights === "0" ? false : true,
+    LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
     LNEClientRightsDate: data[0]?.lneclientrightsdate,
     LNEClientGrievancePolicyProcedure:
-      data[0]?.lneclientgrievancepolicyprocedure === "0" ? false : true,
+      data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
     LNEClientGrievancePolicyProcedureDate:
       data[0]?.lneclientgrievancepolicyproceduredate,
-    LNEProgramRules: data[0]?.lneprogramrules === "0" ? false : true,
+    LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
     LNEProgramRulesDate: data[0]?.lneprogramrulesdate,
     LNEEmergencyContactConsent:
-      data[0]?.lneemergencycontactconsent === "0" ? false : true,
+      data[0]?.lneemergencycontactconsent === "1" ? true : false,
     LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate,
     LNEConsentForReleaseOfConfidentialInformation:
-      data[0]?.lneconsentforreleaseofconfidentialinformation === "0"
-        ? false
-        : true,
+      data[0]?.lneconsentforreleaseofconfidentialinformation === "1"
+        ? true
+        : false,
     LNEConsentForReleaseOfConfidentialInformationDate:
       data[0]?.lneconsentforreleaseofconfidentialinformationdate,
-    HIPPAConsentForm: data[0]?.hippaconsentform === "0" ? false : true,
+    HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
     HIPPAConsentFormDate: data[0]?.hippaconsentformdate,
     NYCDOHMHNoticeOfPrivacyPractices:
-      data[0]?.nycdohmhnoticeofprivacypractices === "0" ? false : true,
+      data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
     NYCDOHMHNoticeOfPrivacyPracticesDate:
       data[0]?.nycdohmhnoticeofprivacypracticesdate,
-    LNEOutreachRetentionTrackingForm:
-      data[0]?.lneoutreachretentiontrackingform === "0" ? false : true,
-    LNEOutreachRetentionTrackingFormDate:
-      data[0]?.lneoutreachretentiontrackingformdate,
-    LNEReferralInformation:
-      data[0]?.lnereferralinformation === "0" ? false : true,
-    LNEReferralInformationDate: data[0]?.lnereferralinformationdate,
+    LinkageRetentionAdherenceForms:
+      data[0]?.linkageretentionadherenceforms === "1" ? true : false,
+    LinkageRetentionAdherenceFormsDate:
+      data[0]?.linkageretentionadherenceformsdate,
+    InternalReferralInformation:
+      data[0]?.internalreferralinformation === "1" ? true : false,
+    InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
     LNEClientReferralForm:
-      data[0]?.lneclientreferralform === "0" ? false : true,
-    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate ||null,
+      data[0]?.lneclientreferralform === "1" ? true : false,
+    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate || null,
     LNEHNSEligibilityForm:
-      data[0]?.lnehnseligibilityform === "0" ? false : true,
+      data[0]?.lnehnseligibilityform === "1" ? true : false,
     LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || null,
-    SupportGroups: data[0]?.supportgroups || false, // agregar db
+    HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false, 
+    HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
+    SupportGroups: data[0]?.supportgroups === "1" ? true : false, // agregar db
     SupportGroupsDate: data[0]?.supportgroupsdate || null, // agregar db
-    IDG: data[0]?.idg || false, // agregar db
-    IDGDate: data[0]?.idgdate || null, // agregar db
+    IDGForm: data[0]?.idgform === "1" ? true : false, // agregar db
+    IDGFormDate: data[0]?.idgformdate || null, // agregar db
     progressNoteText: data[0]?.progressnotetext || "",
     HCWSignature:
-      data[0]?.hcwsignature === "0" ||
+      data[0]?.hcwsignature === "1" ||
       data[0]?.hcwsignature === "" ||
       data[0]?.hcwsignature === null
         ? false
         : true,
-    clientUniqueId:data[0]?.id,
+    clientUniqueId: data[0]?.id,
     goal1ProgressComments: data[0]?.goal1progresscomments || "",
     goal2ProgressComments: data[0]?.goal2progresscomments || "",
     goal3ProgressComments: data[0]?.goal3progresscomments || "",
     goal1CompletionComments: data[0]?.goal1completioncomments || "",
     goal2CompletionComments: data[0]?.goal2completioncomments || "",
-    goal3CompletionComments: data[0]?.goal3completioncomments || ""
+    goal3CompletionComments: data[0]?.goal3completioncomments || "",
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
     {
       value: clientData.LNEHNSEligibilityForm,
-      state_label: "HNSEligibilityForm",
+      state_label: "LNEHNSEligibilityForm",
       row_color: "bg-light-blue",
       form_text: "HNS Eligibility Assessment",
     },
@@ -332,13 +351,13 @@ const ProgressNotesIndex = ({ data, id }) => {
         "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
     },
     {
-      value: clientData.LNEOutreachRetentionTrackingForm,
+      value: clientData.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
       row_color: "bg-light-pink",
       form_text: "Linkage, Retention, & Adherence Forms",
     },
     {
-      value: clientData.LNEReferralInformation,
+      value: clientData.InternalReferralInformation,
       state_label: "InternalReferralInformation",
       row_color: "bg-light-pink",
       form_text: "Internal Referral Information",
@@ -348,6 +367,12 @@ const ProgressNotesIndex = ({ data, id }) => {
       state_label: "LNEClientReferralForm",
       row_color: "bg-light-pink",
       form_text: "Identification",
+    },
+    {
+      value: clientData.HNSReadinessForm,
+      state_label: "HNSReadinessForm",
+      row_color: "bg-light-pink",
+      form_text: "HNS Readiness Form",
     },
     {
       value: clientData.SupportGroups,
@@ -397,7 +422,7 @@ const ProgressNotesIndex = ({ data, id }) => {
       )
       .then(function (response) {
         if (response.status === 200 || response.statusText === "Ok") {
-          console.log("msa form updated success",response);
+          console.log("msa form updated success", response);
         }
       })
       .catch(function (error) {
@@ -429,23 +454,26 @@ const ProgressNotesIndex = ({ data, id }) => {
     //     "Please enter text to describe the progress made today"
     //   );
     // } else {
-      setPNErrorMessage("");
-      axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/update`, {clientData})
-        .then(function (response) {
-          if (response.status === 200 || response.statusText === "OK") {
-            setProgressNoteId(response.data.progress_note_id);
-            handleMsaformUpdate();
-            handleServiceActionPlanFormUpdate();
-            
-            console.log(response)
-            notifyMessage();
+    setPNErrorMessage("");
+    axios
+      .put(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/update`, {
+        clientData,
+      })
+      .then(function (response) {
+        if (response.status === 200 || response.statusText === "OK") {
+          setProgressNoteId(response.data.progress_note_id);
+          handleMsaformUpdate();
+          // handleServiceActionPlanFormUpdate();
 
-            // setShowImpactTrackerModal(!showImpactTrackerModal);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+          console.log(response);
+          notifyMessage();
+
+          // setShowImpactTrackerModal(!showImpactTrackerModal);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     // }
   };
 
@@ -479,9 +507,18 @@ const ProgressNotesIndex = ({ data, id }) => {
 
                   <label className="block">
                     <p className="text-base">Progress note date </p>
-                    <input type="date" name="" id="" className="border-black px-1 rounded-md" 
-                    defaultValue={clientData.progressNoteDate.split("T")[0]}
-                    onChange={(e)=>setClientData({...clientData,progressNoteDate:e.target.value})}
+                    <input
+                      type="date"
+                      name=""
+                      id=""
+                      className="border-black px-1 rounded-md"
+                      defaultValue={clientData.progressNoteDate.split("T")[0]}
+                      onChange={(e) =>
+                        setClientData({
+                          ...clientData,
+                          progressNoteDate: e.target.value,
+                        })
+                      }
                     />
                   </label>
                 </div>
@@ -561,9 +598,7 @@ const ProgressNotesIndex = ({ data, id }) => {
             <div className="services-container grid md:grid-cols-3 grid-cols-1 gap-x-5">
               <div className="services-box grid gap-y-3 items-start justify-start">
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -582,9 +617,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -594,16 +627,13 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.CD4VLLabReport}
-
                     />
                     CD4/VL Lab Report Check
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -620,9 +650,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -633,7 +661,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.translationInterpretation}
-
                     />
                     Translation/Interpretation
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -641,9 +668,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                 </div>
 
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -663,9 +688,7 @@ const ProgressNotesIndex = ({ data, id }) => {
 
               <div className="services-box grid gap-y-3 items-start justify-start ">
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -675,7 +698,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.ticklerUpdate}
-
                     />
                     Tickler Update
                     {/* <span
@@ -684,9 +706,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -696,16 +716,13 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.treatmentEducation}
-
                     />
                     Treatment Education and Adherence Counselling
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -716,16 +733,13 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.preventionCounselling}
-
                     />
                     Prevention Counselling
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -736,16 +750,13 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.supportiveCounselling}
-
                     />
                     Supportive Counselling
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -755,7 +766,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.escort}
-
                     />
                     Escort
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -765,9 +775,7 @@ const ProgressNotesIndex = ({ data, id }) => {
 
               <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -778,16 +786,13 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.caseClosureDischarge}
-
                     />
                     Case Closure/Discharge
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -797,7 +802,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.linkageToServices}
-
                     />
                     Linkage to Services
                     {/* <span
@@ -806,9 +810,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                   </label>
                 </div>
                 <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
+                  <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
                       onChange={() =>
@@ -818,7 +820,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                         })
                       }
                       checked={clientData.OtherAssistance}
-
                     />
                     Other Form of Assistance
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
@@ -850,8 +851,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue">
-                      {
-                        serviceActionData?.goal1targetdate?.split("T")[0]}
+                      {serviceActionData?.goal1targetdate?.split("T")[0]}
                     </p>
                   </div>
                 </div>
@@ -863,21 +863,29 @@ const ProgressNotesIndex = ({ data, id }) => {
                 </div>
                 <div className="">
                   <span className="">Goal 1 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                 onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}
-                 defaultValue={clientData.goal1ProgressComments}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal1ProgressComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal1ProgressComments}
+                  ></textarea>
                 </div>
               </div>
 
               <div className="goal-box">
-                
-                  <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 2</h3>
-                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
-                    <img src={"/goal02.svg"} alt="" />
-                  </div>
-              
+                <div className="goal-top flex items-center my-2">
+                  <h3 className="font-black">Goal 2</h3>
+                  <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
+                  <img src={"/goal02.svg"} alt="" />
+                </div>
+
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
                     <span className="">Service Category</span>
@@ -888,9 +896,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {
-                        serviceActionData?.goal2targetdate?.split("T")[0] || "-"
-                     }
+                      {serviceActionData?.goal2targetdate?.split("T")[0] || "-"}
                     </p>
                   </div>
                 </div>
@@ -898,26 +904,33 @@ const ProgressNotesIndex = ({ data, id }) => {
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
                     {serviceActionData?.goal2summary || "-"}
-                    
                   </p>
                 </div>
                 <div className="">
                   <span className="">Goal 2 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                 onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}
-                 defaultValue={clientData.goal2ProgressComments}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal2ProgressComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal2ProgressComments}
+                  ></textarea>
                 </div>
               </div>
 
               <div className="goal-box">
-                
-                  <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 3</h3>
-                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
-                    <img src={"/goal03.svg"} alt="" />
-                  </div>
-               
+                <div className="goal-top flex items-center my-2">
+                  <h3 className="font-black">Goal 3</h3>
+                  <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
+                  <img src={"/goal03.svg"} alt="" />
+                </div>
+
                 <div className="goal-service grid grid-cols-2 my-2">
                   {/* <div>
                     <span className="">Service Category</span>
@@ -928,8 +941,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {
-                        serviceActionData?.goal3targetdate?.split("T")[0] || "-"}
+                      {serviceActionData?.goal3targetdate?.split("T")[0] || "-"}
                     </p>
                   </div>
                 </div>
@@ -941,10 +953,19 @@ const ProgressNotesIndex = ({ data, id }) => {
                 </div>
                 <div className="">
                   <span className="">Goal 3 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
-                 onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}
-                 defaultValue={clientData.goal3ProgressComments}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal3ProgressComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal3ProgressComments}
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -961,7 +982,7 @@ const ProgressNotesIndex = ({ data, id }) => {
           >
             <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
               <div>
-              <div className="workedGoals-box flex gap-5 ">
+                <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 1</p>
                   <label
                     className={`${ProgressNotesStyles.radioBtnContainer} `}
@@ -969,16 +990,17 @@ const ProgressNotesIndex = ({ data, id }) => {
                     Yes
                     <input
                       type="radio"
-                      name="workedGoals"
-                      onChange={(e) => {
+                      name="workedGoals1"
+                      onChange={(e) =>
                         setClientData({
                           ...clientData,
                           goal1Progress: true,
                           goal1ProgressDate: crearFecha(),
-                        });
-                      }}
-                      defaultChecked={clientData.goal1Progress === true? "true" : ""}
-
+                        })
+                      }
+                      defaultChecked={
+                        clientData.goal1Progress === true ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -991,16 +1013,17 @@ const ProgressNotesIndex = ({ data, id }) => {
                     No
                     <input
                       type="radio"
-                      name="workedGoals"
-                      onChange={(e) => {
+                      name="workedGoals1"
+                      onChange={(e) =>
                         setClientData({
                           ...clientData,
                           goal1Progress: false,
                           goal1ProgressDate: "",
-                        });
-                      }}
-                      defaultChecked={clientData.goal1Progress === false? "checked" : ""}
-
+                        })
+                      }
+                      defaultChecked={
+                        clientData.goal1Progress === false ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1016,9 +1039,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     type="date"
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
-                    defaultValue={
-                      clientData.goal1ProgressDate?.split("T")[0]
-                    }
+                    value={clientData.goal1ProgressDate?.split("T")[0]}
                     onChange={(e) =>
                       setClientData({
                         ...clientData,
@@ -1028,7 +1049,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                   />
                 </div>
               </div>
-
               <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 2</p>
@@ -1046,8 +1066,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                           goal2ProgressDate: crearFecha(),
                         })
                       }
-                      defaultChecked={clientData.goal2Progress === true? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal2Progress === true ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1068,8 +1089,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                           goal2ProgressDate: "",
                         })
                       }
-                      defaultChecked={clientData.goal2Progress === false? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal2Progress === false ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1085,9 +1107,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     type="date"
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal2ProgressDate?.split("T")[0]
-                    }
+                    value={clientData.goal2ProgressDate?.split("T")[0]}
                     onChange={(e) =>
                       setClientData({
                         ...clientData,
@@ -1115,8 +1135,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                           goal3ProgressDate: crearFecha(),
                         })
                       }
-                      defaultChecked={clientData.goal3Progress === true? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal3Progress === true ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1137,8 +1158,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                           goal3ProgressDate: "",
                         })
                       }
-                      defaultChecked={clientData.goal3Progress === false? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal3Progress === false ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1154,9 +1176,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     type="date"
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal3ProgressDate?.split("T")[0]
-                    }
+                    value={clientData.goal3ProgressDate?.split("T")[0]}
                     onChange={(e) =>
                       setClientData({
                         ...clientData,
@@ -1199,8 +1219,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal1Completed: true });
                       }}
-                      defaultChecked={clientData.goal1Completed === true? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal1Completed === true ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1222,8 +1243,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal1Completed: false });
                       }}
-                      defaultChecked={clientData.goal1Completed === false? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal1Completed === false ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1239,9 +1261,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     type="date"
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal1CompletedDate?.split("T")[0]
-                    }
+                    value={clientData.goal1CompletedDate?.split("T")[0]}
                     onChange={(e) => {
                       setClientData({
                         ...clientData,
@@ -1256,10 +1276,19 @@ const ProgressNotesIndex = ({ data, id }) => {
                 </div>
                 <div className="my-5">
                   <span className="">Goal 1 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                     onChange={(e)=>setClientData({...clientData,goal1CompletionComments:e.target.value})}
-                 defaultValue={clientData.goal1CompletionComments}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal1CompletionComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal1CompletionComments}
+                  ></textarea>
                 </div>
               </div>
 
@@ -1281,8 +1310,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal2Completed: true });
                       }}
-                      defaultChecked={clientData.goal2Completed === true? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal2Completed === true ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1304,8 +1334,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal2Completed: false });
                       }}
-                      defaultChecked={clientData.goal2Completed === false? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal2Completed === false ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1321,9 +1352,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     type="date"
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal2CompletedDate?.split("T")[0]
-                    }
+                    value={clientData.goal2CompletedDate?.split("T")[0]}
                     onChange={(e) => {
                       setClientData({
                         ...clientData,
@@ -1338,10 +1367,19 @@ const ProgressNotesIndex = ({ data, id }) => {
                 </div>
                 <div className="my-5">
                   <span className="">Goal 2 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                 onChange={(e)=>setClientData({...clientData,goal2CompletionComments:e.target.value})}
-                 defaultValue={clientData.goal2CompletionComments}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal2CompletionComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal2CompletionComments}
+                  ></textarea>
                 </div>
               </div>
 
@@ -1363,8 +1401,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal3Completed: true });
                       }}
-                      defaultChecked={clientData.goal3Completed === true? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal3Completed === true ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1385,8 +1424,9 @@ const ProgressNotesIndex = ({ data, id }) => {
                         });
                         setDataForSAP({ ...dataForSAP, goal3Completed: false });
                       }}
-                      defaultChecked={clientData.goal3Completed === false? "checked" : ""}
-
+                      defaultChecked={
+                        clientData.goal3Completed === false ? "checked" : ""
+                      }
                     />
                     <span
                       className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1402,9 +1442,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     type="date"
                     id=""
                     className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal3CompletedDate?.split("T")[0]
-                    }
+                    value={clientData.goal3CompletedDate?.split("T")[0]}
                     onChange={(e) => {
                       setClientData({
                         ...clientData,
@@ -1419,11 +1457,19 @@ const ProgressNotesIndex = ({ data, id }) => {
                 </div>
                 <div className="my-5">
                   <span className="">Goal 3 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                 onChange={(e)=>setClientData({...clientData,goal3CompletionComments:e.target.value})}
-                 defaultValue={clientData.goal3CompletionComments}
-                 
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal3CompletionComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal3CompletionComments}
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -1455,7 +1501,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                 });
               }}
               defaultValue={clientData.progressNoteText}
-
             ></textarea>
 
             <div className="progressnotes-box flex gap-x-5">
@@ -1485,7 +1530,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                     setDataForSAP({ ...dataForSAP, HCWSignature: false });
                   }}
                   checked={clientData.HCWSignature === false}
-
                 />
                 <span
                   className={`${ProgressNotesStyles.radioBtnCheckmark}`}
@@ -1493,6 +1537,7 @@ const ProgressNotesIndex = ({ data, id }) => {
               </label>
             </div>
           </section>
+          {/* FIN DEL FORM BOX */}
 
           <h3 className="font-black my-5 text-dark-blue">
             Were any additional forms added to the client´s profile?
@@ -1517,7 +1562,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                             type="checkbox"
                             name=""
                             id=""
-                            checked={service.value ? "checked" : ""}
+                            defaultChecked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
                               clientData[service.state_label] === "" ||
@@ -1544,7 +1589,6 @@ const ProgressNotesIndex = ({ data, id }) => {
                     </>
                   ))}
               </div>{" "}
-              {/* FIN DEL FORM BOX */}
               <div className="additional-form-box">
                 {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(15).map((service) => (
@@ -1559,11 +1603,11 @@ const ProgressNotesIndex = ({ data, id }) => {
                             type="checkbox"
                             name=""
                             id=""
-                            checked={service.value ? "checked" : ""}
+                            defaultChecked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
-                              clientData[service.state_label] === "" ||
-                              clientData[`${service.state_label}Date`] === null
+                              clientData[service.state_label] === false ||
+                              !clientData[`${service.state_label}Date`] 
                                 ? setClientData({
                                     ...clientData,
                                     [service.state_label]: !service.value,
@@ -1594,9 +1638,14 @@ const ProgressNotesIndex = ({ data, id }) => {
               <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
             )}
             <div className="container mx-auto flex justify-center gap-x-5 ">
-            <ReactToPrint
-                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">Save and print</button>}
-                  content={() => componentRef.current} />
+              <ReactToPrint
+                trigger={() => (
+                  <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">
+                    Save and print
+                  </button>
+                )}
+                content={() => componentRef.current}
+              />
               <button
                 className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block mr-5"
                 onClick={() => handleProgressNote()}
@@ -1607,7 +1656,7 @@ const ProgressNotesIndex = ({ data, id }) => {
           </section>
         </main>
 
-{/*           
+        {/*           
               <div style={{display:'none'}}>
                 <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
               </div> */}
@@ -1631,7 +1680,7 @@ export default ProgressNotesIndex;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid, id } = ctx.params;
-    console.log(ctx.params)
+    console.log(ctx.params);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}/profile/${id}`
     );
