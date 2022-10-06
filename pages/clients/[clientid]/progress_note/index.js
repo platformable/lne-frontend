@@ -99,97 +99,99 @@ const ProgressNotesIndex = ({ data }) => {
     goal3Completed: false,
     goal3CompletedDate: "",
 
-    StatusChangesForm: false, // agregar db
-    StatusChangesFormDate: null, // agregar db
+    StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false, // agregar db
+    StatusChangesFormDate: data[0]?.statuschangesformdate || null, // agregar db
 
-    ComprehensiveRiskBehaviorAssessmentUpdates: false,
-    ComprehensiveRiskBehaviorAssessmentUpdatesDate: null,
+    ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates === "1" ? true : false,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate || null,
 
-    M11QForm: false, // agregar db
-    M11QFormDate: null, // agregar db
+    M11QForm: data[0]?.m11qform === "1" ? true : false, // agregar db
+    M11QFormDate: data[0]?.m11qformdate || null, // agregar db
 
-    CD4VLReports: false, // agregar db
-    CD4VLReportsDate: null, // agregar db
+    CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false, // agregar db
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, // agregar db
 
-    InitialTreatmentAdherenceIntake: false, // agregar db
-    InitialTreatmentAdherenceIntakeDate: null, // agregar db
+    InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake === "1" ? true : false, // agregar db
+    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate || null, // agregar db
 
-    TreatmentAdherenceUpdates: false, // agregar db
-    TreatmentAdherenceUpdatesDate: null, // agregar db
+    TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates === "1" ? true : false, // agregar db
+    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate || null, // agregar db
 
     AIRSCollateralInformation:
-      data[0]?.airscollateralinformation === "0" ? false : true,
-    AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate,
+      data[0]?.airscollateralinformation === "1" ? true : false,
+    AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate || null,
 
-    AIRSDrugRegimen: false, // agregar db
-    AIRSDrugRegimenDate: null, // agregar db
+    AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false, // agregar db
+    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, // agregar db
 
     AIRSFinancialInformation:
-      data[0]?.airsfinancialinformation === "0" ? false : true,
-    AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate,
+      data[0]?.airsfinancialinformation === "1" ? true : false,
+    AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate || null,
     AIRSHIVAIDSRiskHistory:
-      data[0]?.airshivaidsriskhistory === "0" ? false : true,
-    AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate,
+      data[0]?.airshivaidsriskhistory === "1" ? true : false,
+    AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
 
-    AIRSHIVStatusHistory: false, // agregar db
-    AIRSHIVStatusHistoryDate: null, // agregar db
+    AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false, // agregar db
+    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, // agregar db
 
-    AIRSHIVMedicalProvider: false, // agregar db
-    AIRSHIVMedicalProviderDate: null, // agregar db
+    AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider === "1" ? true : false, // agregar db
+    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, // agregar db
 
-    AIRSHCVHistory: data[0]?.airshcvhistory === "0" ? false : true,
-    AIRSHCVHistoryDate: data[0]?.airshcvhistorydate,
+    AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
+    AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
     AIRSHousingInformation:
-      data[0]?.airshousinginformation === "0" ? false : true,
-    AIRSHousingInformationDate: data[0]?.airshousinginformationdate,
+      data[0]?.airshousinginformation === "1" ? true : false,
+    AIRSHousingInformationDate: data[0]?.airshousinginformationdate || null,
     AIRSInsuranceInformation:
-      data[0]?.airsinsuranceinformation === "0" ? false : true,
-    AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate,
+      data[0]?.airsinsuranceinformation === "1" ? true : false,
+    AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate || null,
     AIRSSubstanceUseHistory:
-      data[0]?.airssubstanceusehistory === "0" ? false : true,
-    AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate,
-    LNEClientRights: data[0]?.lneclientrights === "0" ? false : true,
-    LNEClientRightsDate: data[0]?.lneclientrightsdate,
+      data[0]?.airssubstanceusehistory === "1" ? true : false,
+    AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate || null,
+    LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
+    LNEClientRightsDate: data[0]?.lneclientrightsdate || null,
     LNEClientGrievancePolicyProcedure:
-      data[0]?.lneclientgrievancepolicyprocedure === "0" ? false : true,
+      data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
     LNEClientGrievancePolicyProcedureDate:
-      data[0]?.lneclientgrievancepolicyproceduredate,
-    LNEProgramRules: data[0]?.lneprogramrules === "0" ? false : true,
-    LNEProgramRulesDate: data[0]?.lneprogramrulesdate,
+      data[0]?.lneclientgrievancepolicyproceduredate || null,
+    LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
+    LNEProgramRulesDate: data[0]?.lneprogramrulesdate || null,
     LNEEmergencyContactConsent:
-      data[0]?.lneemergencycontactconsent === "0" ? false : true,
-    LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate,
+      data[0]?.lneemergencycontactconsent === "1" ? true : false,
+    LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate || null,
     LNEConsentForReleaseOfConfidentialInformation:
-      data[0]?.lneconsentforreleaseofconfidentialinformation === "0"
-        ? false
-        : true,
+      data[0]?.lneconsentforreleaseofconfidentialinformation === "1"
+        ? true
+        : false,
     LNEConsentForReleaseOfConfidentialInformationDate:
-      data[0]?.lneconsentforreleaseofconfidentialinformationdate,
-    HIPPAConsentForm: data[0]?.hippaconsentform === "0" ? false : true,
-    HIPPAConsentFormDate: data[0]?.hippaconsentformdate,
+      data[0]?.lneconsentforreleaseofconfidentialinformationdate || null,
+    HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
+    HIPPAConsentFormDate: data[0]?.hippaconsentformdate || null,
     NYCDOHMHNoticeOfPrivacyPractices:
-      data[0]?.nycdohmhnoticeofprivacypractices === "0" ? false : true,
+      data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
     NYCDOHMHNoticeOfPrivacyPracticesDate:
-      data[0]?.nycdohmhnoticeofprivacypracticesdate,
-    LNEOutreachRetentionTrackingForm:
-      data[0]?.lneoutreachretentiontrackingform === "0" ? false : true,
-    LNEOutreachRetentionTrackingFormDate:
-      data[0]?.lneoutreachretentiontrackingformdate,
-    LNEReferralInformation:
-      data[0]?.lnereferralinformation === "0" ? false : true,
-    LNEReferralInformationDate: data[0]?.lnereferralinformationdate,
+      data[0]?.nycdohmhnoticeofprivacypracticesdate || null,
+    LinkageRetentionAdherenceForms:
+      data[0]?.linkageretentionadherenceforms === "1" ? true : false,
+    LinkageRetentionAdherenceFormsDate:
+      data[0]?.linkageretentionadherenceformsdate || null,
+      InternalReferralInformation:
+      data[0]?.internalreferralinformation === "1" ? true : false,
+    InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
     LNEClientReferralForm:
-      data[0]?.lneclientreferralform === "0" ? false : true,
-    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate,
+      data[0]?.lneclientreferralform === "1" ? true : false,
+    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate || null,
     LNEHNSEligibilityForm:
-      data[0]?.lnehnseligibilityform === "0" ? false : true,
-    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate,
+      data[0]?.lnehnseligibilityform === "1" ? true : false,
+    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || null,
+    HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false, // agregar db
+    HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
 
-    SupportGroups: false, // agregar db
-    SupportGroupsDate: null, // agregar db
+    SupportGroups: data[0]?.supportgroups === "1" ? true : false, // agregar db
+    SupportGroupsDate: data[0]?.supportgroupsdate || null, // agregar db
 
-    IDG: false, // agregar db
-    IDGDate: null, // agregar db
+    IDGForm: data[0]?.idgform ==="1" ? true : false, // agregar db
+    IDGFormDate: data[0]?.idgformdate || null, // agregar db
 
     progressNoteText: "",
     HCWSignature:
@@ -210,7 +212,7 @@ const ProgressNotesIndex = ({ data }) => {
   const whichServiceBeenAded = [
     {
       value: clientData.LNEHNSEligibilityForm,
-      state_label: "HNSEligibilityForm",
+      state_label: "LNEHNSEligibilityForm",
       row_color: "bg-light-blue",
       form_text: "HNS Eligibility Assessment",
     },
@@ -355,13 +357,13 @@ const ProgressNotesIndex = ({ data }) => {
         "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
     },
     {
-      value: clientData.LNEOutreachRetentionTrackingForm,
+      value: clientData.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
       row_color: "bg-light-pink",
       form_text: "Linkage, Retention, & Adherence Forms",
     },
     {
-      value: clientData.LNEReferralInformation,
+      value: clientData.InternalReferralInformation,
       state_label: "InternalReferralInformation",
       row_color: "bg-light-pink",
       form_text: "Internal Referral Information",
@@ -371,6 +373,12 @@ const ProgressNotesIndex = ({ data }) => {
       state_label: "LNEClientReferralForm",
       row_color: "bg-light-pink",
       form_text: "Identification",
+    },
+    {
+      value: clientData.HNSReadinessForm,
+      state_label: "HNSReadinessForm",
+      row_color: "bg-light-pink",
+      form_text: "HNS Readiness Form",
     },
     {
       value: clientData.SupportGroups,
@@ -461,9 +469,9 @@ const ProgressNotesIndex = ({ data }) => {
           if (response.status === 200 || response.statusText === "Ok") {
             setProgressNoteId(response.data.progress_note_id);
             handleMsaformUpdate();
-            handleServiceActionPlanFormUpdate();
+            // handleServiceActionPlanFormUpdate();
             notifyMessage();
-            setShowImpactTrackerModal(!showImpactTrackerModal);
+            // setShowImpactTrackerModal(!showImpactTrackerModal);
           }
         })
         .catch(function (error) {
@@ -871,7 +879,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
                 <div className="">
                   <span className="">Goal 1 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
+                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}></textarea>
                 </div>
               </div>
@@ -912,7 +920,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
                 <div className="">
                   <span className="">Goal 2 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
+                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}></textarea>
                 </div>
               </div>
@@ -953,7 +961,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
                 <div className="">
                   <span className="">Goal 3 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-1"
+                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}></textarea>
                 </div>
               </div>
@@ -1509,17 +1517,25 @@ const ProgressNotesIndex = ({ data }) => {
                             // checked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
-                              clientData[service.state_label] === "" ||
-                              clientData[`${service.state_label}Date`] === null
-                                ? setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                    [`${service.state_label}Date`]: new Date(),
-                                  })
-                                : setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                  });
+                              // clientData[service.state_label] === "" ||
+                              // clientData[`${service.state_label}Date`] === null
+                              //   ? setClientData({
+                              //       ...clientData,
+                              //       [service.state_label]: !service.value,
+                              //       [`${service.state_label}Date`]: new Date(),
+                              //     })
+                              //   :
+                              clientData[service.state_label] === true && data[0][service.state_label.toLocaleLowerCase()] === "0" ? 
+                                setClientData({
+                                  ...clientData,
+                                  [service.state_label]: false,
+                                }) :
+                                 setClientData({
+                                  ...clientData,
+                                  [service.state_label]: true,
+                                  [`${service.state_label}Date`]: new Date(),
+
+                                }) 
                             }}
                           />
                           <span
@@ -1550,17 +1566,25 @@ const ProgressNotesIndex = ({ data }) => {
                             // checked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
-                              clientData[service.state_label] === "" ||
-                              clientData[`${service.state_label}Date`] === null
-                                ? setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                    [`${service.state_label}Date`]: new Date(),
-                                  })
-                                : setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                  });
+                              // (clientData[service.state_label] === false ||
+                              // clientData[`${service.state_label}Date`] === null)
+                              //   ? setClientData({
+                              //       ...clientData,
+                              //       [service.state_label]: true,
+                              //       [`${service.state_label}Date`]: new Date(),
+                              //     })
+                              //   : 
+                                clientData[service.state_label] === true && data[0][service.state_label.toLocaleLowerCase()] === "0" ? 
+                                setClientData({
+                                  ...clientData,
+                                  [service.state_label]: false,
+                                }) :
+                                 setClientData({
+                                  ...clientData,
+                                  [service.state_label]: true,
+                                  [`${service.state_label}Date`]: new Date(),
+
+                                })
                             }}
                           />
                           <span
