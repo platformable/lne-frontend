@@ -36,75 +36,75 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     userFirstName: data[0].userfirstname,
     userLastName: data[0].userlastname,
     AIRSIntakeForm: data[0].airsintakeform==="0" ? false: true,
-    AIRSIntakeFormDate: data[0].airsintakeformdate,
+    AIRSIntakeFormDate: data[0].airsintakeformdate|| "",
     ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment ==="0" ? false: true,
-    ComprehensiveRiskBehaviorAssessmentDate:data[0].comprehensiveriskbehaviorassessmentdate,
+    ComprehensiveRiskBehaviorAssessmentDate:data[0].comprehensiveriskbehaviorassessmentdate|| "",
     ServiceActionPlan: data[0].serviceactionplan ==="0" ? false: true,
-    ServiceActionPlanDate:  data[0].serviceactionplandate,
+    ServiceActionPlanDate:  data[0].serviceactionplandate || "",
     AIRSCollateralInformation: data[0].airscollateralinformation ==="0" ? false: true,
-    AIRSCollateralInformationDate:data[0].airscollateralinformationdate,
+    AIRSCollateralInformationDate:data[0].airscollateralinformationdate || "",
     AIRSFinancialInformation: data[0].airsfinancialinformation ==="0" ? false: true,
-    AIRSFinancialInformationDate: data[0].airsfinancialinformationdate,
+    AIRSFinancialInformationDate: data[0].airsfinancialinformationdate || "",
     AIRSHIVAIDSRiskHistory: data[0].airshivaidsriskhistory ==="0" ? false: true,
-    AIRSHIVAIDSRiskHistoryDate: data[0].airshivaidsriskhistorydate,
+    AIRSHIVAIDSRiskHistoryDate: data[0].airshivaidsriskhistorydate || "",
     AIRSHCVHistory: data[0].airshcvhistory ==="0" ? false: true,
-    AIRSHCVHistoryDate: data[0].airshcvhistorydate,
+    AIRSHCVHistoryDate: data[0].airshcvhistorydate || "",
     AIRSHousingInformation: data[0].airshousinginformation ==="0" ? false: true,
-    AIRSHousingInformationDate: data[0].airshousinginformationdate,
+    AIRSHousingInformationDate: data[0].airshousinginformationdate || "",
     AIRSInsuranceInformation: data[0].airsinsuranceinformation ==="0" ? false: true,
-    AIRSInsuranceInformationDate: data[0].airsinsuranceinformationdate,
+    AIRSInsuranceInformationDate: data[0].airsinsuranceinformationdate || "",
     AIRSSubstanceUseHistory: data[0].airssubstanceusehistory ==="0" ? false: true,
-    AIRSSubstanceUseHistoryDate: data[0].airssubstanceusehistorydate,
+    AIRSSubstanceUseHistoryDate: data[0].airssubstanceusehistorydate || "",
     LNEClientRights: data[0].lneclientrights ==="0" ? false: true,
-    LNEClientRightsDate: data[0].lneclientrightsdate,
+    LNEClientRightsDate: data[0].lneclientrightsdate || "",
     LNEClientGrievancePolicyProcedure: data[0].lneclientgrievancepolicyprocedure ==="0" ? false: true,
-    LNEClientGrievancePolicyProcedureDate: data[0].lneclientgrievancepolicyproceduredate,
+    LNEClientGrievancePolicyProcedureDate: data[0].lneclientgrievancepolicyproceduredate || "",
     LNEProgramRules: data[0].lneprogramrules ==="0" ? false: true,
-    LNEProgramRulesDate: data[0].lneprogramrulesdate,
+    LNEProgramRulesDate: data[0].lneprogramrulesdate || "",
     LNEEmergencyContactConsent: data[0].lneemergencycontactconsent ==="0" ? false: true,
-    LNEEmergencyContactConsentDate: data[0].lneemergencycontactconsentdate,
+    LNEEmergencyContactConsentDate: data[0].lneemergencycontactconsentdate || "",
     LNEConsentForReleaseOfConfidentialInformation: data[0].lneconsentforreleaseofconfidentialinformation ==="0" ? false: true,
-    LNEConsentForReleaseOfConfidentialInformationDate: data[0].lneconsentforreleaseofconfidentialinformationdate,
+    LNEConsentForReleaseOfConfidentialInformationDate: data[0].lneconsentforreleaseofconfidentialinformationdate || "",
     HIPPAConsentForm: data[0].hippaconsentform ==="0" ? false: true,
-    HIPPAConsentFormDate: data[0].hippaconsentformdate,
+    HIPPAConsentFormDate: data[0].hippaconsentformdate || "",
     NYCDOHMHNoticeOfPrivacyPractices: data[0].nycdohmhnoticeofprivacypractices ==="0" ? false: true,
-    NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate,
+    NYCDOHMHNoticeOfPrivacyPracticesDate: data[0].nycdohmhnoticeofprivacypracticesdate || "",
     LinkageRetentionAdherenceForms: data[0].linkageretentionadherenceforms ==="0" || data[0].linkageretentionadherenceforms ===null ? false: true,
-    LinkageRetentionAdherenceFormsDate: data[0].linkageretentionadherenceformsdate,
+    LinkageRetentionAdherenceFormsDate: data[0].linkageretentionadherenceformsdate || "",
     InternalReferralInformation: data[0].internalreferralinformation ==="0" || data[0].internalreferralinformation ===null ? false: true,
-    InternalReferralInformationDate: data[0].internalreferralinformationdate,
+    InternalReferralInformationDate: data[0].internalreferralinformationdate || "",
     LNEClientReferralForm: data[0].lneclientreferralform ==="0" || data[0].lneclientreferralform ===null ? false: true,
-    LNEClientReferralFormDate: data[0].lneclientreferralformdate,
+    LNEClientReferralFormDate: data[0].lneclientreferralformdate || "",
     HNSEligibilityForm: data[0].hnseligibilityform ==="0" || data[0].hnseligibilityform ===null? false : true,
-    HNSEligibilityFormDate: data[0].hnseligibilityformdate,
+    HNSEligibilityFormDate: data[0].hnseligibilityformdate || "",
     HNSReadinessForm: data[0].hnsreadinessform ==="0" || data[0].hnsreadinessform ===null? false : true,
-    HNSReadinessFormDate: data[0].hnsreadinessformdate,
+    HNSReadinessFormDate: data[0].hnsreadinessformdate || "",
     SupportGroups: data[0].supportgroups ==="0" || data[0].supportgroups ===null ? false : true,
-    SupportGroupsDate: data[0].supportgroupsdate,
+    SupportGroupsDate: data[0].supportgroupsdate || "",
     IDGForm: data[0].idgform ==="0"|| data[0].idgform ===null? false : true,
-    IDGFormDate: data[0].idgformdate,
+    IDGFormDate: data[0].idgformdate || "",
 
     progressNote:data[0].progressnoteid ===""|| data[0].progressnoteid ===null? false : true,
-    progressNoteDate:data[0].progressnotedate,
+    progressNoteDate:data[0].progressnotedate || "",
 
     StatusChangesForm:data[0].statuschangesform ==="0"|| data[0].statuschangesform ===null? false : true,
-    StatusChangesFormDate:data[0].statuschangesformdate,
+    StatusChangesFormDate:data[0].statuschangesformdate || "",
     ComprehensiveRiskBehaviorAssessmentUpdates:data[0].comprehensiveriskbehaviorassessmentupdates ==="0"|| data[0].idgform ===null? false : true,
-    ComprehensiveRiskBehaviorAssessmentUpdatesDate:data[0].comprehensiveriskbehaviorassessmentupdatesdate,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate:data[0].comprehensiveriskbehaviorassessmentupdatesdate || "", 
     M11QForm :data[0].m11qform ==="0"|| data[0].m11qform ===null? false : true,
-    M11QFormDate:data[0].m11qformdate,
+    M11QFormDate:data[0].m11qformdate || "",
     CD4VLReports:data[0].cd4vlreports ==="0"|| data[0].cd4vlreports ===null? false : true,
-    CD4VLReportsDate:data[0].cd4vlreportsdate,
+    CD4VLReportsDate:data[0].cd4vlreportsdate || "",
     InitialTreatmentAdherenceIntake:data[0].initialtreatmentadherenceintake ==="0"|| data[0].initialtreatmentadherenceintake ===null? false : true,
-    InitialTreatmentAdherenceIntakeDate :data[0].initialtreatmentadherenceintakedate,
+    InitialTreatmentAdherenceIntakeDate :data[0].initialtreatmentadherenceintakedate || "",
     TreatmentAdherenceUpdates:data[0].treatmentadherenceupdates ==="0"|| data[0].treatmentadherenceupdates ===null? false : true,
-    TreatmentAdherenceUpdatesDate:data[0].treatmentadherenceupdatesdate,
+    TreatmentAdherenceUpdatesDate:data[0].treatmentadherenceupdatesdate || "",
     AirsDrugRegimen:data[0].airsdrugregimen ==="0"|| data[0].airsdrugregimen ===null? false : true,
-    AirsDrugRegimenDate:data[0].airsdrugregimendate,
+    AirsDrugRegimenDate:data[0].airsdrugregimendate || "",
     AirsHIVMedicalProvider:data[0].airshivmedicalprovider ==="0"|| data[0].airshivmedicalprovider ===null? false : true,
-    AirsHIVMedicalProviderDate:data[0].airshivmedicalproviderdate,
+    AirsHIVMedicalProviderDate:data[0].airshivmedicalproviderdate || "",
     AIRSHIVStatusHistory:data[0].airshivstatushistory ==="0"|| data[0].airshivstatushistory ===null? false : true,
-    AIRSHIVStatusHistoryDate:data[0].airshivstatushistorydate,
+    AIRSHIVStatusHistoryDate:data[0].airshivstatushistorydate || "",
     clientUniqueId:data[0].id
   });
 
@@ -1229,6 +1229,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                       AIRSFinancialInformation:
                         !clientData.AIRSFinancialInformation,
                       AIRSFinancialInformationDate: '',
+                      
                     })
                   }}
                   checked={clientData.AIRSFinancialInformation? true : false}
@@ -1241,7 +1242,9 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 {data[0].airsfinancialinformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
-              {clientData.AIRSFinancialInformationDate.split('T')[0]}</p> :
+              {clientData.AIRSFinancialInformationDate.split('T')[0]}</p> : (
+                <>
+                
                 <input
                   type="date"
                   id="AIRSFinancialInformation"
@@ -1252,10 +1255,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
                   className="rounded-lg  p-1"
                   onChange={(e) => {
-                    if (clientData.AIRSFinancialInformation){
+   /*                  if (clientData.AIRSFinancialInformation){
                       setClientData({
                         ...clientData,
                         AIRSFinancialInformationDate: e.target.value,
+                        AIRSFinancialInformation:
+                          !clientData.AIRSFinancialInformation,
                       });
                     } else {
                       setClientData({
@@ -1264,9 +1269,9 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                         AIRSFinancialInformation:
                           !clientData.AIRSFinancialInformation,
                       });
-                    }
+                    } */
                   }}
-                />}
+                /></>)}
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
