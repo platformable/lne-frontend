@@ -182,8 +182,8 @@ const ProgressNotesIndex = ({ data }) => {
       data[0]?.lneclientreferralform === "1" ? true : false,
     LNEClientReferralFormDate: data[0]?.lneclientreferralformdate || null,
     LNEHNSEligibilityForm:
-      data[0]?.lnehnseligibilityform === "1" ? true : false,
-    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || null,
+      data[0]?.lnehnseligibilityform === "1" ? true : false || true,
+    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || new Date(),
     HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false, // agregar db
     HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
 

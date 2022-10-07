@@ -470,6 +470,7 @@ const ProgressNotesIndex = ({ data, id }) => {
 
           // setShowImpactTrackerModal(!showImpactTrackerModal);
         }
+        
       })
       .catch(function (error) {
         console.log(error);
