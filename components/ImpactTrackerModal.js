@@ -29,7 +29,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
         unsafeSexualBehavior: null,
         substanceAbuse: null,
         legalIssues: null,
-        unstableEmployment: null,
+        // unstableEmployment: null,
         unstableHousing: null,
         clientUniqueId
     })
@@ -171,30 +171,40 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                             </span>
                                             
                                         </div>   
-    </div> */}
-                                    <div className="flex bg-light-blue justify-start items-center py-1 pl-6 pr-3">
+    </div> */}<div className="flex bg-light-blue items-center py-1 pl-6 pr-3"> 
                                         <span>
                                             <input type='checkbox' name="viralLoadCount" onChange={enableFieldfromCheckbox} checked={impactTracker.viralLoadCount  !== null ? true : false}></input>
                                         </span>
-                                        <p className='font-bold text-xs  ml-3 w-1/4 md:w-2/6 lg:w-5/12 xl:w-3/6'>Viral Load Count</p>
-                                        <div className={`text-xs grid w-11/12 grid-cols-4 ${impactTracker.viralLoadCount === null ? "pointer-events-none grayscale": ""}`}>
-                                            <span className='flex items-center mr-2 md:mx-2 md:mr-3 lg:mx-4 xl:ml-0'>
-                                                <input className="mr-1 md:mr-2" type="radio" 
-                                                onChange={onValueChange} name="viralLoadCount" value={">50"} />
-                                                <label>{">50"}</label>
+                                        <p className='font-bold text-xs ml-3 w-3/6'>Viral Load Count</p>
+                                        <div className={`text-xs grid w-11/12 grid-cols-4 place-center ${impactTracker.viralLoadCount === null ? "pointer-events-none grayscale": ""}`}>
+                                            <span className='flex items-center mx-1'>
+                                                <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-pink-200 rounded-md hover:contrast-125" type="radio" 
+                                                style={impactTracker.viralLoadCount === '<100'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
+                                                onClick={onValueChange} name="viralLoadCount" value="<50" />
+                                                <label>{`<50`}</label>
                                             </span>
-                                            <span className='flex items-center mx-7 md:mx-3 lg:mr-4 xl:mx-6'>
-                                                <input className="mx-1 md:mr-2" type="radio" 
-                                                onChange={onValueChange} name="viralLoadCount" value={"50+"} />
-                                                <label>50+</label>
+                                            <span className='flex items-center mx-1'>
+                                            <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-yellow-200 rounded-md hover:contrast-125" type="radio" 
+                                                 style={impactTracker.viralLoadCount === '100-500'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
+                                                 onClick={onValueChange} name="viralLoadCount" value="51-200"/>
+                                                 <label>51-200</label>
                                             </span>
-                                            <span className='flex items-center mx-7 md:mx-3 lg:mr-4 xl:mx-6'>
-                                                <input className="mx-1 md:mr-2" type="radio" 
-                                                onChange={onValueChange} name="ViralLoadCount" value={"N/A"} />
-                                                <label>N/A</label>
+                                            <span className='flex items-center mx-1'>
+                                            <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-green-200 rounded-md hover:contrast-125" type="radio" 
+                                                 style={impactTracker.viralLoadCount === '+500'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
+                                                 onClick={onValueChange} name="viralLoadCount" value="200+"/>
+                                                 <label>200+</label>
                                             </span>
-                                        </div>     
-                                    </div>  
+                                            <span className='flex items-center mx-1'>
+                                            <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-green-200 rounded-md hover:contrast-125" type="radio" 
+                                                 style={impactTracker.viralLoadCount === 'N/A'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
+                                                 onClick={onValueChange} name="viralLoadCount" value="N/A"/>
+                                                 <label>N/A</label>
+                                            </span>
+                                            
+                                        </div>   
+                                    </div>
+                                     
                                     <div className="flex bg-light-blue items-center py-1 pl-6 pr-3"> 
                                         <span>
                                             <input type='checkbox' name="CD4Count" onChange={enableFieldfromCheckbox} checked={impactTracker.CD4Count !== null? true : false}></input>
@@ -388,7 +398,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                             
                                         </div>   
                                     </div>
-                                    <div className="flex bg-light-blue items-center py-1 pl-6 pr-3">
+                                    {/* <div className="flex bg-light-blue items-center py-1 pl-6 pr-3">
                                         <span>
                                             <input type='checkbox' name="unstableEmployment" onChange={enableFieldfromCheckbox} checked={impactTracker.unstableEmployment !== null? true : false}></input>
                                         </span>
@@ -416,7 +426,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                             </span>
                                             
                                         </div>   
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 
@@ -460,7 +470,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                 </div>
                             </div> */}
 
-                            <div id="housing-section" className='grid grid-cols-1 gap-2'>
+                             <div id="housing-section" className='grid grid-cols-1 gap-2'>
                                 <div className='flex pl-5 items-center'>
                                     <img src="/impact_tracker/Housing_icon.svg" alt="housing section" width={21}/>
                                     
@@ -498,7 +508,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                         </div>   
                                     </div> 
                                 </div>
-                            </div>
+                            </div> 
 
                              {/* <div id="food-section" className='grid grid-cols-1 gap-2'>
                                 <div className='flex pl-5 items-center'>

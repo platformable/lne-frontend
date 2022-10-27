@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import BackButton from "../../../../components/BackButton";
+import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 
 const EditMsaFormPage = ({ data }) => {
  
@@ -178,8 +179,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
         
 
         <main className="container mx-auto">
+        <div className="flex items-center">
+          <div className="flex gap-x-5">
          
-        <BackButton/>
+        <BackButton />
+        <BackToDashboardButton/>
+        </div>
+              </div>
 
           <section id="info" className="my-5">
             <div className="">

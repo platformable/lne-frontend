@@ -270,11 +270,11 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
               </div>
 
               <div className="dashboard-clients-cards-info">
-                <div className="dashboard-clients-cards-info-container">
-                  <div className="clients-cards-item flex gap-x-5 items-center px-5 bg-white rounded-xl py-5 justify-center">
+                <div id="dashboard-clients-cards-info-container" className="grid md:grid-cols-2 gap-10">
+                  <div className="clients-cards-item flex gap-x-5 px-5 bg-white rounded-xl py-5 ">
                     <div className="border-r-2 pr-8">
                       <div className="flex gap-5 pb-7">
-                        <Image src={userIcon} className="mr-5"></Image>
+                        <img src="/client/USERicon.svg" className="mr-5 self-start" alt="user-icon"/>
                         <div>
                           {" "}
                           <p className="text-dark-blue font-black text-lg">
@@ -304,7 +304,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
                         </div>
                       </div>
                     </div>
-                    <div className="">
+                    <div className="grid grid-rows-3">
                       <div>
                         <p className="font-semibold">Date Client Joined LNE</p>
                         <p className="justify-self-end font-semibold text-dark-blue">
@@ -339,9 +339,12 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
                       </div>
                     </div>
                   </div>
-                  {checkMessage1()}
-                  {checkMessage2()}
-                  {checkMessage3()}
+                  <div className="grid gap-5">
+                    {checkMessage1()}
+                    {checkMessage2()}
+                    {checkMessage3()}
+                  </div>
+                  
                 </div>
               </div>
             </section>

@@ -22,7 +22,7 @@ const ProfilePageBaselineData = ({
     substanceabuse: "",
     unstablehousing: "",
     legalissues: "",
-    unstableemployment: "",
+    // unstableemployment: "",
   };
   const [form, setForm] = useState({
     clientuniqueid: clientUniqueId,
@@ -59,7 +59,7 @@ const ProfilePageBaselineData = ({
       text_field: "Viral Load Count",
       ddbb_label: "viralloadcount",
       baseline_options: ["Low", "High", "N/A"],
-      options: [">50", "50+", "N/A"],
+      options: ["<50", "51-200","200+", "N/A"],
     },
     {
       text_field: "Engaging in unsafe sexual behavior",
@@ -85,12 +85,12 @@ const ProfilePageBaselineData = ({
       baseline_options: ["Yes", "No"],
       options: ["Improved", "Unchanged", "Worsened", "N/A"],
     },
-    {
-      text_field: "Unstable employment situation",
-      ddbb_label: "unstableemployment",
-      baseline_options: ["Yes", "No"],
-      options: ["Improved", "Unchanged", "Worsened", "N/A"],
-    },
+    // {
+    //   text_field: "Unstable employment situation",
+    //   ddbb_label: "unstableemployment",
+    //   baseline_options: ["Yes", "No"],
+    //   options: ["Improved", "Unchanged", "Worsened", "N/A"],
+    // },
   ];
   const showBaselineResult = (value) => {
     switch (value) {
@@ -292,18 +292,20 @@ const ProfilePageBaselineData = ({
                                   disabled={selectedTrackIndex !== i}
                                   className="text-center py-2 rounded w-4/5 "
                                 >
-                                  {header.options.map((option) => (
-                                    <>
-                                      <option
-                                        value={option}
-                                        selected={
-                                          e[header.ddbb_label] === option
-                                        }
-                                      >
-                                        {option}
-                                      </option>
-                                    </>
-                                  ))}
+                                  {header.options.map((option) => {
+                                    return (
+                                      <>
+                                        <option
+                                          value={option}
+                                          selected={
+                                            e[header.ddbb_label] == option
+                                          }
+                                        >
+                                          {option}
+                                        </option>
+                                      </>
+                                    )
+                                  })}
                                 </select>
                               </td>
                             </>
