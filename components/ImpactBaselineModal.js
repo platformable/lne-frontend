@@ -32,7 +32,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         substanceAbuse: false,
         // riskOfOverdose: null,
         legalIssues: false,
-        unstableEmployment: false,
+        // unstableEmployment: false,
         // mentalHealthIssues: null,
         unstableHousing: false,
         CD4Count:"",
@@ -77,7 +77,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
             impactBaseline.substanceAbuse === null ||
             // impactBaseline.riskOfOverdose === null ||
             impactBaseline.legalIssues === null ||
-            impactBaseline.unstableEmployment === null ||
+            // impactBaseline.unstableEmployment === null 
             // impactBaseline.mentalHealthIssues === null ||
             impactBaseline.unstableHousing === null 
             // impactBaseline.foodInsecurity === null 
@@ -368,7 +368,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                             </span>
                                         </div>      
                                     </div> 
-                                    <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
+                                    {/* <div className="flex bg-light-blue justify-between py-1 pl-12 pr-5 w-full">
                                         <p className='font-bold text-sm w-3/6'>Unstable employment or unemployed</p>
                                         <div className='text-sm flex justify-start w-3/6'>
                                             <span className='flex items-center mx-2 md:mx-3 lg:mx-4'>
@@ -382,7 +382,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                                 No</label>
                                             </span>
                                         </div>      
-                                    </div>    
+                                    </div>     */}
                                 </div>
                             </div>
 
@@ -444,7 +444,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                                         </div>      
                                     </div>    
                                 </div>
-                            </div>
+                            </div> 
 
                              {/* <div id="food-section" className='grid grid-cols-1 gap-2'>
                                 <div className='flex pl-5 items-center'>
