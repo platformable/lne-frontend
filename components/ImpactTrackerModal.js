@@ -179,7 +179,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                         <div className={`text-xs grid w-11/12 grid-cols-4 place-center ${impactTracker.viralLoadCount === null ? "pointer-events-none grayscale": ""}`}>
                                             <span className='flex items-center mx-1'>
                                                 <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-pink-200 rounded-md hover:contrast-125" type="radio" 
-                                                style={impactTracker.viralLoadCount === '<100'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
+                                                style={impactTracker.viralLoadCount === '<50'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                 onClick={onValueChange} name="viralLoadCount" value="<50" />
                                                 <label>{`<50`}</label>
                                             </span>
@@ -191,7 +191,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                             </span>
                                             <span className='flex items-center mx-1'>
                                             <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-green-200 rounded-md hover:contrast-125" type="radio" 
-                                                 style={impactTracker.viralLoadCount === '+500'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
+                                                 style={impactTracker.viralLoadCount === '200+'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                  onClick={onValueChange} name="viralLoadCount" value="200+"/>
                                                  <label>200+</label>
                                             </span>
@@ -225,7 +225,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                                             </span>
                                             <span className='flex items-center mx-1'>
                                             <input className="p-1 px-2 text-xxs flex items-center mr-1 md:mr-2 font-semibold bg-green-200 rounded-md hover:contrast-125" type="radio" 
-                                                 style={impactTracker.CD4Count === '+500'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
+                                                 style={impactTracker.CD4Count === '500+'? {border: '2px solid lightblue', filter: 'saturate(2.5)'}:null}
                                                  onClick={onValueChange} name="CD4Count" value="500+"/>
                                                  <label>500+</label>
                                             </span>

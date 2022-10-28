@@ -274,7 +274,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
                   <div className="clients-cards-item flex gap-x-5 px-5 bg-white rounded-xl py-5 ">
                     <div className="border-r-2 pr-8">
                       <div className="flex gap-5 pb-7">
-                        <img src="/client/USERicon.svg" className="mr-5 self-start" alt="user-icon"/>
+                        <img src="/client/USERicon.svg" className="self-start" alt="user-icon"/>
                         <div>
                           {" "}
                           <p className="text-dark-blue font-black text-lg">
