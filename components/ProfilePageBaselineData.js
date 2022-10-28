@@ -47,43 +47,43 @@ const ProfilePageBaselineData = ({
       text_field: "Barriers to accessing HIV primary care",
       ddbb_label: "barrierhivprimarycare",
       baseline_options: ["Yes", "No", "N/A"],
-      options: ["Improved", "Unchanged", "Worsened", "N/A"],
+      options: ["Improved", "Unchanged", "Worsened", "N/A", "-"],
     },
     {
       text_field: "CD4 Count",
       ddbb_label: "cd4count",
       baseline_options: ["Low", "High", "N/A"],
-      options: [">100", "100-500", "500+", "N/A"],
+      options: ["<100", "100-500", "500+", "N/A", "-"],
     },
     {
       text_field: "Viral Load Count",
       ddbb_label: "viralloadcount",
       baseline_options: ["Low", "High", "N/A"],
-      options: ["<50", "51-200","200+", "N/A"],
+      options: ["<50", "51-200","200+", "N/A", "-"],
     },
     {
       text_field: "Engaging in unsafe sexual behavior",
       ddbb_label: "unsafesexualbehavior",
       baseline_options: ["Yes", "No"],
-      options: ["Yes", "No", "N/A"],
+      options: ["Yes", "No", "N/A", "-"],
     },
     {
       text_field: "Problems with substance use",
       ddbb_label: "substanceabuse",
       baseline_options: ["Yes", "No"],
-      options: ["Improved", "Unchanged", "Worsened", "N/A"],
+      options: ["Improved", "Unchanged", "Worsened", "N/A", "-"],
     },
     {
       text_field: "An unstable housing situation",
       ddbb_label: "unstablehousing",
       baseline_options: ["Yes", "No"],
-      options: ["Improved", "Unchanged", "Worsened", "N/A"],
+      options: ["Improved", "Unchanged", "Worsened", "N/A", "-"],
     },
     {
       text_field: "Legal and identity documentation issues",
       ddbb_label: "legalissues",
       baseline_options: ["Yes", "No"],
-      options: ["Improved", "Unchanged", "Worsened", "N/A"],
+      options: ["Improved", "Unchanged", "Worsened", "N/A", "-"],
     },
     // {
     //   text_field: "Unstable employment situation",
@@ -100,8 +100,14 @@ const ProfilePageBaselineData = ({
       case true:
         return "Yes";
         break;
-      case null:
+      case "N/A":
         return "N/A";
+        break;
+      case null:
+        return "-";
+        break;
+      case "":
+        return "-";
         break;
       default:
         return value;
@@ -298,7 +304,7 @@ const ProfilePageBaselineData = ({
                                         <option
                                           value={option}
                                           selected={
-                                            e[header.ddbb_label] == option
+                                            showBaselineResult(e[header.ddbb_label]) === option
                                           }
                                         >
                                           {option}
@@ -312,7 +318,7 @@ const ProfilePageBaselineData = ({
                           ) : (
                             <>
                               <td className={`text-center text-base `}>
-                                {e[header.ddbb_label]}
+                                {showBaselineResult(e[header.ddbb_label])}
                               </td>
                             </>
                           )}
