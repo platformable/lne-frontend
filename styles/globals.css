@@ -359,7 +359,7 @@ table tr:nth-child(even){
   background-color: #fff;
 } 
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {background-color: var(--yellow);}
 
 table th {
   padding-top: 12px;
