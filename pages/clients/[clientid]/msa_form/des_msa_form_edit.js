@@ -761,7 +761,7 @@ const EditMsaFormPage = ({ data }) => {
             <RowMsaFormDES fieldName="AIRS Insurance Information" clientData={clientData} setClientData={setClientData} formString="AIRSInsuranceInformation" data={data}/>
 
 
-            <RowMsaFormDES fieldName="AIRS Insurance Information" clientData={clientData} setClientData={setClientData} formString="AIRSSubstanceUseHistory" data={data}/>
+            <RowMsaFormDES fieldName="AIRS Substance Use istory" clientData={clientData} setClientData={setClientData} formString="AIRSSubstanceUseHistory" data={data}/>
             
 
             <RowMsaFormDES fieldName="LNE Client Rights" clientData={clientData} setClientData={setClientData} formString="LNEClientRights" data={data}/>

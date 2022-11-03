@@ -210,7 +210,7 @@ console.log("clientdata",clientData)
                   <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
                     {/* <span className="mt-2 font-black">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
-                    <input type="date" name="" id="" className="border-black p-1 rounded-md" 
+                    <input type="date" name="" id="" className={`${!activeActionPlan? 'pointer-events-none' : ' '} border-black p-1 rounded-md`}
                     defaultValue={clientData.planStartDate==='1970-01-01' ? "":clientData.planStartDate}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
                     />

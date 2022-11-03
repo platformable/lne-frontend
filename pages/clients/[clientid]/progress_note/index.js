@@ -182,8 +182,8 @@ const ProgressNotesIndex = ({ data }) => {
       data[0]?.lneclientreferralform === "1" ? true : false,
     LNEClientReferralFormDate: data[0]?.lneclientreferralformdate || null,
     LNEHNSEligibilityForm:
-      data[0]?.lnehnseligibilityform === "1" ? true : false,
-    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || null,
+      data[0]?.lnehnseligibilityform === "1" ? true : false || true,
+    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || new Date(),
     HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false, // agregar db
     HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
 
@@ -200,13 +200,16 @@ const ProgressNotesIndex = ({ data }) => {
       data[0]?.hcwsignature === null
         ? false
         : true,
-        clientUniqueId:data[0].id,
-        goal1ProgressComments:"",
-        goal2ProgressComments:"",
-        goal3ProgressComments:"",
-        goal1CompletionComments:"",
-        goal2CompletionComments:"",
-        goal3CompletionComments:""
+    clientUniqueId:data[0].id,
+    goal1ProgressComments:"",
+    goal2ProgressComments:"",
+    goal3ProgressComments:"",
+    goal1CompletionComments:"",
+    goal2CompletionComments:"",
+    goal3CompletionComments:"",
+    goal1WorkedComments:"",
+    goal2WorkedComments:"",
+    goal3WorkedComments:"",
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
@@ -1041,7 +1044,13 @@ const ProgressNotesIndex = ({ data }) => {
                         goal1ProgressDate: e.target.value,
                       })
                     }
+                    
                   />
+                </div>
+                <div className="mt-5">
+                  <span className="">Goal 1 Worked Comments</span>
+                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
+                     onChange={(e)=>setClientData({...clientData,goal1WorkedComments:e.target.value})}></textarea>
                 </div>
               </div>
 
@@ -1109,6 +1118,12 @@ const ProgressNotesIndex = ({ data }) => {
                       })
                     }
                   />
+                  
+                </div>
+                <div className="mt-5">
+                  <span className="">Goal 2 Worked Comments</span>
+                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
+                     onChange={(e)=>setClientData({...clientData,goal2WorkedComments:e.target.value})}></textarea>
                 </div>
               </div>
 
@@ -1176,6 +1191,11 @@ const ProgressNotesIndex = ({ data }) => {
                       })
                     }
                   />
+                </div>
+                <div className="mt-5">
+                  <span className="">Goal 3 Worked Comments</span>
+                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
+                     onChange={(e)=>setClientData({...clientData,goal3WorkedComments:e.target.value})}></textarea>
                 </div>
               </div>
             </div>
@@ -1264,7 +1284,7 @@ const ProgressNotesIndex = ({ data }) => {
                     }}
                   />
                 </div>
-                <div className="my-5">
+                <div className="mt-5">
                   <span className="">Goal 1 Completion Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                      onChange={(e)=>setClientData({...clientData,goal1CompletionComments:e.target.value})}></textarea>
@@ -1342,7 +1362,7 @@ const ProgressNotesIndex = ({ data }) => {
                     }}
                   />
                 </div>
-                <div className="my-5">
+                <div className="mt-5">
                   <span className="">Goal 2 Completion Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal2CompletionComments:e.target.value})}
@@ -1420,7 +1440,7 @@ const ProgressNotesIndex = ({ data }) => {
                     }}
                   />
                 </div>
-                <div className="my-5">
+                <div className="mt-5">
                   <span className="">Goal 3 Completion Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal3CompletionComments:e.target.value})}

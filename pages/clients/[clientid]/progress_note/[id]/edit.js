@@ -201,6 +201,9 @@ const ProgressNotesIndex = ({ data, id }) => {
     goal1CompletionComments: data[0]?.goal1completioncomments || "",
     goal2CompletionComments: data[0]?.goal2completioncomments || "",
     goal3CompletionComments: data[0]?.goal3completioncomments || "",
+    goal1WorkedComments: data[0]?.goal1workedcomments || "",
+    goal2WorkedComments: data[0]?.goal2workedcomments || "",
+    goal3WorkedComments: data[0]?.goal3workedcomments || "",
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
@@ -464,12 +467,11 @@ const ProgressNotesIndex = ({ data, id }) => {
           setProgressNoteId(response.data.progress_note_id);
           handleMsaformUpdate();
           handleServiceActionPlanFormUpdate();
-
-          console.log(response);
+          setTimeout(() => router.back(), 2000)
+          // console.log(response);
           notifyMessage();
-
-          // setShowImpactTrackerModal(!showImpactTrackerModal);
         }
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -1048,6 +1050,22 @@ const ProgressNotesIndex = ({ data, id }) => {
                     }
                   />
                 </div>
+                <div className="mt-5">
+                  <span className="">Goal 1 Worked Comments</span>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal1WorkedComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal1WorkedComments}
+                  ></textarea>
+                </div>
               </div>
               <div>
                 <div className="workedGoals-box flex gap-5 ">
@@ -1115,6 +1133,22 @@ const ProgressNotesIndex = ({ data, id }) => {
                       })
                     }
                   />
+                </div>
+                <div className="mt-5">
+                  <span className="">Goal 2 Worked Comments</span>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal2WorkedComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal2WorkedComments}
+                  ></textarea>
                 </div>
               </div>
 
@@ -1184,6 +1218,22 @@ const ProgressNotesIndex = ({ data, id }) => {
                       })
                     }
                   />
+                </div>
+                <div className="mt-5">
+                  <span className="">Goal 3 Worked Comments</span>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal3WorkedComments: e.target.value,
+                      })
+                    }
+                    defaultValue={clientData.goal3WorkedComments}
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -1274,7 +1324,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     }}
                   />
                 </div>
-                <div className="my-5">
+                <div className="mt-5">
                   <span className="">Goal 1 Completion Comments</span>
                   <textarea
                     name=""
@@ -1365,7 +1415,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     }}
                   />
                 </div>
-                <div className="my-5">
+                <div className="mt-5">
                   <span className="">Goal 2 Completion Comments</span>
                   <textarea
                     name=""
@@ -1455,7 +1505,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     }}
                   />
                 </div>
-                <div className="my-5">
+                <div className="mt-5">
                   <span className="">Goal 3 Completion Comments</span>
                   <textarea
                     name=""
