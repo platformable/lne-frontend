@@ -5,18 +5,23 @@ import BackButton from "../components/BackButton";
 import BackToDashboardButton from "../components/BackToDashboardButton";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import "react-toastify/dist/ReactToastify.minimal.css";
 
-const SupportGroups = () => {
+const SupportGroups = ({hcworkers}) => {
     const [form, setForm] = useState({
       supportMeetingDate: new Date().toISOString().slice(0,10), 
       supportGroupName: "", 
       supportGroupAudience: "", 
       supportGroupTopic: "", 
-      supportGroupHighlights: "", 
-      supportGroupChallenges: "", 
+      supportGroupSummary: "", 
+      facilitator: "",
+      supportGroupStartTime: "10:00",
+      supportGroupEndTime: "12:00",
+      supportGroupSigned: false,
     });
     const router = useRouter();
-    
+    console.log(form);
     const handleForm = (e) => {
       setForm((prev) => ({...prev, [e.target.name]: e.target.value}))
     }
@@ -39,6 +44,19 @@ const SupportGroups = () => {
       .catch(function (error) {
         console.log(error);
       });
+    };
+    const displayUserList = () => {
+      return (
+        hcworkers &&
+        hcworkers.filter(user=>user.userrole !=='DES').
+        map((user, index) => {
+          return (
+            <option className="text-black" value={user.username} key={index}>
+              {user.name} {user.lastname}
+            </option>
+          );
+        })
+      );
     };
     return (
         <>
@@ -74,15 +92,37 @@ const SupportGroups = () => {
                 </label>
                 <label className="text-lg block">
                   Discussion topic
-                  <textarea cols="30" rows="6"  value={form.supportGroupTopic} name="supportGroupTopic" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  <input type="text" value={form.supportGroupTopic} name="supportGroupTopic" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
                 </label>
                 <label className="text-lg block">
-                  Highlights
-                  <textarea cols="30" rows="6"  value={form.supportGroupHighlights} name="supportGroupHighlights" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  Summary of meeting
+                  <textarea cols="30" rows="6"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                </label>
+                <div className="search-box flex items-center  gap-3">
+                  <p className="text-lg">Facilitator</p>
+                  <select
+                  name="facilitator"
+                  onChange={handleForm}
+                    className=" w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
+                  >
+                    <option selected={true} disabled="disabled">
+                      Select facilitator
+                    </option>
+                    {/* <option onClick={() => setSearchByUser("All")}>All</option> */}
+                    {displayUserList()}
+                  </select>
+               </div>
+               <label className="text-lg block">
+                  Start time
+                  <input type="time"  defaultValue={form.supportGroupStartTime} name="supportGroupStartTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block "/>
                 </label>
                 <label className="text-lg block">
-                  Challenges
-                  <textarea cols="30" rows="6"  value={form.supportGroupChallenges} name="supportGroupChallenges" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  End time
+                  <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
+                </label>
+                <label className="flex items-center gap-5">
+                  HCW signed?
+                  <input type="checkbox" name="supportGroupSigned" onChange={handleForm}/>
                 </label>
               </div>
     
@@ -97,6 +137,13 @@ const SupportGroups = () => {
                     <img src="/check-save-and-finish.svg" alt="check and save icon" />
                     Save
                   </button>
+                  <button
+                    className="flex gap-x-2 items-center bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
+                    
+                  >
+                    <img src="/check-save-and-finish.svg" alt="check and save icon" />
+                    Print and sign
+                  </button>
                 </div>
               </section>
             </section>
@@ -105,3 +152,13 @@ const SupportGroups = () => {
       );
 };
 export default SupportGroups;
+
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`) 
+    const hcworkers = await res.json()
+    
+    return { props: {hcworkers: hcworkers } };
+
+  },
+});
