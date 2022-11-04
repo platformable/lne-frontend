@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import Layout from "../components/Layout";
 import { ToastContainer, toast } from "react-toastify";
 import BackButton from "../components/BackButton";
@@ -7,8 +7,11 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import "react-toastify/dist/ReactToastify.minimal.css";
+import ReactToPrint from 'react-to-print'
+import SupportGroupToPrint from "../components/SupportGroupToPrint";
 
 const SupportGroups = ({hcworkers}) => {
+  let componentRef = useRef();
     const [form, setForm] = useState({
       supportMeetingDate: new Date().toISOString().slice(0,10), 
       supportGroupName: "", 
@@ -137,17 +140,24 @@ const SupportGroups = ({hcworkers}) => {
                     <img src="/check-save-and-finish.svg" alt="check and save icon" />
                     Save
                   </button>
-                  <button
-                    className="flex gap-x-2 items-center bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
-                    
-                  >
-                    <img src="/check-save-and-finish.svg" alt="check and save icon" />
-                    Print and sign
-                  </button>
+                  <ReactToPrint
+                    trigger={() => (
+                      <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">
+                        Print
+                      </button>
+                    )}
+                    content={() => componentRef.current}
+                  />
                 </div>
               </section>
             </section>
           </Layout>
+
+       
+
+      <div style={{ display: "none" }}>
+        <SupportGroupToPrint ref={componentRef}  form={form} />
+      </div>
         </>
       );
 };
