@@ -72,7 +72,7 @@ const ProgressNotesIndex = ({ data }) => {
     clientHCWID: data[0]?.clienthcwid,
     userFirstName: data[0]?.clienthcwname,
     userLastName: data[0]?.clienthcwlastname,
-    progressNoteDate: "",
+    progressNoteDate: crearFecha(),
     developmentActionPlan: false,
     CD4VLLabReport: false,
     transportationCoordination: false,
@@ -210,6 +210,7 @@ const ProgressNotesIndex = ({ data }) => {
     goal1WorkedComments:"",
     goal2WorkedComments:"",
     goal3WorkedComments:"",
+    supportGroup:false
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
@@ -514,7 +515,7 @@ const ProgressNotesIndex = ({ data }) => {
                   <label className="block">
                     <p className="text-base">Progress note date</p>
                     <input type="date" name="" id="" className="border-black px-1 rounded-md" 
-
+                    value={clientData.progressNoteDate}
                     onChange={(e)=>setClientData({...clientData,progressNoteDate:e.target.value})}
                     />
                   </label>
@@ -819,6 +820,23 @@ const ProgressNotesIndex = ({ data }) => {
                     {/* <span
                       className={`${ProgressNotesStyles.checkmark} `}
                     ></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          supportGroup: !clientData.supportGroup,
+                        })
+                      }
+                    />
+                    Support Group
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
                 <div className="flex items-center">
