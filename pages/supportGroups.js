@@ -99,7 +99,7 @@ const SupportGroups = ({hcworkers}) => {
                 </label>
                 <label className="text-lg block">
                   Summary of meeting
-                  <textarea cols="30" rows="6"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  <textarea cols="30" rows="12"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
                 </label>
                 <div className="search-box flex items-center  gap-3">
                   <p className="text-lg">Facilitator</p>
