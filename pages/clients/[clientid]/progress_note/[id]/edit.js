@@ -812,6 +812,24 @@ const ProgressNotesIndex = ({ data, id }) => {
                   </label>
                 </div>
                 <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      defaultChecked={clientData.SupportGroups ? "checked" : ""}
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          supportGroup: !clientData.SupportGroups,
+                        })
+                      }
+                    />
+                    Support Group
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
                   <label className="flex items-center gap-x-5">
                     <input
                       type="checkbox"
