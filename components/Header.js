@@ -14,10 +14,25 @@ export default function Header() {
         <title>LNE APP</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-        <div className="container mx-auto py-5  grid space-between grid-cols-2 px-5 md:px-0">
+        <div className="container mx-auto py-5  grid space-between md:grid-cols-2 px-5 md:px-0 grid-cols-1">
           <Link href="/dashboard"><img src="../../../../logo.png" alt="" width={125} className="cursor-pointer" /></Link>
-          <div id="head-user" className="grid place-items-end">
-            <h3 className="font-black">
+          <div id="head-user" className="flex gap-x-5 justify-end">
+            <div className="flex gap-x-5  self-end">
+            <a href="https://drive.google.com/drive/folders/1AMJ88PX0xYBTh8Xieiav_tx46ZTVmOpD?usp=sharing"
+                className={`bg-yellow hover:bg-blue-300 px-10 py-2 rounded text-black inline-block  flex items-center`}
+                target="_blank"
+              >
+                Guide
+              </a>
+              <a href="https://airtable.com/shrux8Xrf9Ln5kRL4"
+                className={`${styles.btnIndexPage} bg-yellow hover:bg-blue-300 px-10 py-2 rounded text-black inline-block  flex items-center`}
+                target="_blank"
+              >
+                Support
+              </a>
+            </div>
+            <div className="grid justify-end">
+              <h3 className="font-black">
               {user && user["https://lanuevatest.herokuapp.com/name"]}
             </h3>
             <h6 className="">
@@ -30,6 +45,7 @@ export default function Header() {
                 Logout
               </a>
             </Link>
+            </div>
           </div>
         </div>
       </header>
