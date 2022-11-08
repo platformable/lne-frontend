@@ -107,6 +107,7 @@ const SupportGroups = ({hcworkers}) => {
                   <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
                 </label>
                 <label className="text-lg block">
+
                   Name of group
                   <input type="text" value={form.supportGroupName} name="supportGroupName" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
                 </label>
@@ -120,7 +121,9 @@ const SupportGroups = ({hcworkers}) => {
                 </label>
                 <label className="text-lg block">
                   Summary of meeting
-                  <textarea cols="30" rows="16"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+
+                  <textarea cols="30" rows="12"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+
                 </label>
                 <div className="search-box flex items-center  gap-3">
                   <p className="text-lg">Facilitator</p>
@@ -136,7 +139,16 @@ const SupportGroups = ({hcworkers}) => {
                     {displayUserList()}
                   </select>
                </div>
-              
+
+               <label className="text-lg block">
+                  Start time
+                  <input type="time"  defaultValue={form.supportGroupStartTime} name="supportGroupStartTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block "/>
+                </label>
+                <label className="text-lg block">
+                  End time
+                  <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
+                </label>
+
                 <label className="flex items-center gap-5">
                   HCW signed?
                   <input type="checkbox" name="supportGroupSigned" onChange={handleForm}/>
