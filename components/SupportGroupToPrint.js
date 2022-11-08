@@ -52,6 +52,12 @@ export const SupportGroupToPrint = React.forwardRef((props, ref) => {
             />
           </label>
           <label className="text-lg block">
+            Start time {supportGroupStartTime}
+          </label>
+          <label className="text-lg block">
+            End time {supportGroupEndTime}
+          </label>
+          <label className="text-lg block">
             Name of group
             <input
               type="text"
@@ -89,12 +95,7 @@ export const SupportGroupToPrint = React.forwardRef((props, ref) => {
           <div className="search-box flex items-center  gap-3">
             <p className="text-lg">Facilitator: {facilitator}</p>
           </div>
-          <label className="text-lg block">
-            Start time {supportGroupStartTime}
-          </label>
-          <label className="text-lg block">
-            End time {supportGroupEndTime}
-          </label>
+        
           <label className="flex items-center gap-5">
             HCW signed?
             <input type="checkbox" name="supportGroupSigned" />
@@ -103,8 +104,8 @@ export const SupportGroupToPrint = React.forwardRef((props, ref) => {
 
 
         <div className="mt-20 flex ">
-          <div className=""><h6 className="inline-block">Signed</h6></div>
-          <div className="border-b-black inline-block pt-2" style={{minWidth:225}}></div>
+          <div className=""><h6 className="inline-block">Signed:</h6></div>
+          <div className="border-b-black inline-block pt-2" style={{minWidth:400}}></div>
         </div>
       </section>
   );
