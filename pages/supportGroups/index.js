@@ -1,14 +1,15 @@
 import { useState,useRef } from "react";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { ToastContainer, toast } from "react-toastify";
-import BackButton from "../components/BackButton";
-import BackToDashboardButton from "../components/BackToDashboardButton";
+import BackButton from "../../components/BackButton";
+import BackToDashboardButton from "../../components/BackToDashboardButton";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import "react-toastify/dist/ReactToastify.minimal.css";
 import ReactToPrint from 'react-to-print'
-import SupportGroupToPrint from "../components/SupportGroupToPrint";
+import SupportGroupToPrint from "../../components/SupportGroupToPrint";
+import Link from "next/link";
 
 const SupportGroups = ({hcworkers}) => {
   let componentRef = useRef();
@@ -66,13 +67,25 @@ const SupportGroups = ({hcworkers}) => {
           <ToastContainer autoClose={1500} />
           <Layout>
             <div className="container mx-auto my-10 ">
-              <div className="flex gap-x-5">
-              <BackButton />
-              <BackToDashboardButton />
+              <div className="flex justify-between">
+                <div className="flex gap-5">
+                  <BackButton />
+                  <BackToDashboardButton />
+                </div>
+                <Link href="/supportGroups/pastEvents">
+                  <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
+                          <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
+                          <p className="p-2 uppercase">
+                          Review past group events
+                          </p>
+                    </button>
+                </Link>
+              
               </div>
               <h1 className="font-black  my-5">
                 Support Group Record
               </h1>
+               
             </div>
     
             <section className="container mx-auto">
