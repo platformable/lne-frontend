@@ -21,12 +21,14 @@ export default function Header() {
             <a href="https://drive.google.com/drive/folders/1AMJ88PX0xYBTh8Xieiav_tx46ZTVmOpD?usp=sharing"
                 className={`bg-yellow hover:bg-blue-300 px-10 py-2 rounded text-black inline-block  flex items-center`}
                 target="_blank"
+                rel="noreferrer"
               >
                 Guide
               </a>
               <a href="https://airtable.com/shrux8Xrf9Ln5kRL4"
                 className={`${styles.btnIndexPage} bg-yellow hover:bg-blue-300 px-10 py-2 rounded text-black inline-block  flex items-center`}
                 target="_blank"
+                rel="noreferrer"
               >
                 Support
               </a>
