@@ -82,7 +82,7 @@ export const SupportGroupToPrint = React.forwardRef((props, ref) => {
             Summary of meeting
             <textarea
               cols="30"
-              rows="6"
+              rows="7"
               value={supportGroupSummary} className="border-black rounded p-2 mb-2 block w-full"
             />
           </label>
@@ -99,6 +99,12 @@ export const SupportGroupToPrint = React.forwardRef((props, ref) => {
             HCW signed?
             <input type="checkbox" name="supportGroupSigned" />
           </label>
+        </div>
+
+
+        <div className="mt-20 flex ">
+          <div className=""><h6 className="inline-block">Signed</h6></div>
+          <div className="border-b-black inline-block pt-2" style={{minWidth:225}}></div>
         </div>
       </section>
   );
