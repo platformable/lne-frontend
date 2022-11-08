@@ -384,6 +384,11 @@ gap:10px;
   width: 20px;
   height: 20px;
 }
+.supervisor-existing-events-head-table, .existing-events-head-table {
+  grid-template-columns: 1.3fr 2fr 4.5fr 1.3fr 1.3fr;
+  
+}
+
 
 @media only screen and (max-width: 600px) {
   .dashboard-clients-cards-info-container {
