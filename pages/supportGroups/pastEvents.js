@@ -3,11 +3,12 @@ import Link from "next/link";
 import Layout from "../../components/Layout";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-import { useEffect } from "react";
 import BackButton from "../../components/BackButton";
 import BackToDashboardButton from "../../components/BackToDashboardButton";
 import DeleteSupportGroupEvent from "../../components/DeleteSupportGroupEvent";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const PastEvents = ({ events }) => {
   console.log("events", events)
@@ -195,7 +196,7 @@ const PastEvents = ({ events }) => {
                         <div className="flex items-center lg:text-xl font-bold justify-center">
                           {event.supportgrouptopic}
                         </div>
-                        <Link href="" >
+                        <Link href={`/supportGroups/${event.id}/edit`} >
                            <a className="flex items-center justify-center">
                            <img src="/edit-icon.svg" alt="edit event icon" title="Edit event" />
                            </a>

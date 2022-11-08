@@ -1,24 +1,23 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios'
-import Image from 'next/image';
+import {  toast } from "react-toastify";
 
-import deleteUserIcon from '../public/delete-user-icon.svg'
 
 const DeleteSupportGroupEvent = ({ setShowDeleteEventModal, showDeleteEventModal,selectedEventToDelete, id}) => {
     console.log("id",selectedEventToDelete)
     const router = useRouter()
     const notifyDeleteMessage = () => {
-        toast.success("Client deleted", {
+        toast.success("Support group event deleted", {
           position: toast.POSITION.TOP_CENTER,
         });
       };
     const handleAuthUserDelete = ({})=>{
-        axios.delete(`http://localhost:4000/support_groups/delete`,{ data: { id } })
+        axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups/delete`,{ data: { id } })
         
         .then(response=>{
             console.log(response)
-            if(response.statusText==='OK'){
+            if(response.data.status==='OK'){
                 notifyDeleteMessage()
                 setTimeout(()=>{
                    router.reload()
@@ -30,7 +29,7 @@ const DeleteSupportGroupEvent = ({ setShowDeleteEventModal, showDeleteEventModal
 
     return (
         <div className='modal flex items-center '>
-            <div className='relative max-w-md mx-auto bg-yellow-400 py-7 px-10 rounded-md '>
+            <div className='relative mx-auto bg-yellow-400 py-7 px-10 rounded-md '>
             <button
             className="absolute  top-0 right-0"
             onClick={() => setShowDeleteEventModal((prev) => !prev)}
@@ -40,11 +39,11 @@ const DeleteSupportGroupEvent = ({ setShowDeleteEventModal, showDeleteEventModal
                 <div className='flex flex-col justify-between items-start h-full'>
                     <div className='flex items-center mb-5'>
                         {/* <Image src={deleteUserIcon}/> */}
-                        <p className='font-bold text-xl ml-2'>Delete Event</p>
+                        <p className='font-bold text-xl '>Delete Event</p>
                     </div>
-                    <label id="name" className="block font-semibold my-5">
+                    <label id="name" className="block font-semibold mb-20 mt-5 w-100">
                         Discussion topic
-                        <input readOnly id="name" value={selectedEventToDelete.supportgrouptopic} className="text-lg rounded-lg bg-yellow-100 block mt-2 p-2 px-3" />
+                        <input readOnly id="name" value={selectedEventToDelete.supportgrouptopic} className="text-lg rounded-lg bg-yellow-100 w-96 block mt-2 p-2 px-3" />
                     </label>
                      <p className='self-center text-center text-lg font-semibold '>Are you sure you want <br/>to delete this support group event?</p>
                     <div className='w-full flex justify-between self-center'>
