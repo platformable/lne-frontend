@@ -12,9 +12,7 @@ export default function Home() {
   const loggedUserStatus = user && user["https://lanuevatest.herokuapp.com/activestatus"];
   const router = useRouter()
   
-useEffect(()=>{
-console.log(user)
-},[user])
+
 
   return (
     <div >
