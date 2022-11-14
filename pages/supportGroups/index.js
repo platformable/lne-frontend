@@ -6,7 +6,7 @@ import BackToDashboardButton from "../../components/BackToDashboardButton";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import "react-toastify/dist/ReactToastify.minimal.css";
+import "react-toastify/dist/ReactToastify.css";
 import ReactToPrint from 'react-to-print'
 import SupportGroupToPrint from "../../components/SupportGroupToPrint";
 import Link from "next/link";
@@ -64,8 +64,9 @@ const SupportGroups = ({hcworkers}) => {
     };
     return (
         <>
-          <ToastContainer autoClose={1500} />
+   
           <Layout>
+          <ToastContainer autoClose={1500} />
             <div className="container mx-auto my-10 ">
               <div className="flex justify-between">
                 <div className="flex gap-5">
