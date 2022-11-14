@@ -105,6 +105,14 @@ const SupportGroups = ({hcworkers, data}) => {
                   <input type="date" defaultValue={form.supportMeetingDate} name="supportMeetingDate" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
                 </label>
                 <label className="text-lg block">
+                  Start time
+                  <input type="time"  defaultValue={form.supportGroupStartTime} name="supportGroupStartTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block "/>
+                </label>
+                <label className="text-lg block">
+                  End time
+                  <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
+                </label>
+                <label className="text-lg block">
                   Name of group
                   <input type="text" defaultValue={form.supportGroupName} name="supportGroupName" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
                 </label>
@@ -134,14 +142,7 @@ const SupportGroups = ({hcworkers, data}) => {
                     {displayUserList()}
                   </select>
                </div>
-               <label className="text-lg block">
-                  Start time
-                  <input type="time"  defaultValue={form.supportGroupStartTime} name="supportGroupStartTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block "/>
-                </label>
-                <label className="text-lg block">
-                  End time
-                  <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
-                </label>
+              
                 <label className="flex items-center gap-5">
                   HCW signed?
                   <input type="checkbox" value={form.supportGroupSigned} checked={form.supportGroupSigned === true ? "checked" : ""} name="supportGroupSigned" onChange={(e) => {
