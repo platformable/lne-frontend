@@ -65,6 +65,83 @@ const ProgressNotesIndex = ({ data }) => {
     }`;
     return finalDate;
   };
+  const [msaData, setMsaData] = useState({
+      clientId: data[0]?.clientid === "1" ? true : false,
+      AIRSCollateralInformation: data[0]?.airscollateralinformation === "1" ? true : false,
+      AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate === "1" ? true : false,
+      AIRSFinancialInformation: data[0]?.airsfinancialinformation === "1" ? true : false,
+      AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate === "1" ? true : false,
+      AIRSHIVAIDSRiskHistory: data[0]?.airshivaidsriskhistory === "1" ? true : false,
+      AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate === "1" ? true : false,
+      AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
+      AIRSHCVHistoryDate: data[0]?.airshcvhistorydate === "1" ? true : false,
+      AIRSHousingInformation: data[0]?.airshousinginformation === "1" ? true : false,
+      AIRSHousingInformationDate: data[0]?.airshousinginformationdate === "1" ? true : false,
+      AIRSInsuranceInformation: data[0]?.airsinsuranceinformation === "1" ? true : false,
+      AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate === "1" ? true : false,
+      AIRSSubstanceUseHistory: data[0]?.airssubstanceusehistory === "1" ? true : false,
+      AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate === "1" ? true : false,
+      LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
+      LNEClientRightsDate: data[0]?.lneclientrightsdate === "1" ? true : false,
+      LNEClientGrievancePolicyProcedure: data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
+      LNEClientGrievancePolicyProcedureDate: data[0]?.lneclientgrievancepolicyproceduredate === "1" ? true : false,
+      LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
+      LNEProgramRulesDate: data[0]?.lneprogramrulesdate === "1" ? true : false,
+      LNEEmergencyContactConsent: data[0]?.lneemergencycontactconsent === "1" ? true : false,
+      LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate === "1" ? true : false,
+      LNEConsentForReleaseOfConfidentialInformation: data[0]?.lneconsentforreleaseofconfidentialinformation === "1" ? true : false,
+      LNEConsentForReleaseOfConfidentialInformationDate: data[0]?.lneconsentforreleaseofconfidentialinformationdate === "1" ? true : false,
+      HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
+      HIPPAConsentFormDate: data[0]?.hippaconsentformdate === "1" ? true : false,
+      NYCDOHMHNoticeOfPrivacyPractices: data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
+      NYCDOHMHNoticeOfPrivacyPracticesDate: data[0]?.nycdohmhnoticeofprivacypracticesdate === "1" ? true : false,
+      LNEOutreachRetentionTrackingForm: data[0]?.lneoutreachretentiontrackingform === "1" ? true : false,
+      LNEOutreachRetentionTrackingFormDate: data[0]?.lneoutreachretentiontrackingformdate === "1" ? true : false,
+      LNEReferralInformation: data[0]?.lnereferralinformation === "1" ? true : false,
+      LNEReferralInformationDate: data[0]?.lnereferralinformationdate === "1" ? true : false,
+      LNEClientReferralForm: data[0]?.lneclientreferralform === "1" ? true : false,
+      LNEClientReferralFormDate: data[0]?.lneclientreferralformdate === "1" ? true : false,
+      LNEHNSEligibilityForm: data[0]?.lnehnseligibilityform === "1" ? true : false,
+      LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate === "1" ? true : false,
+      progressNoteDate: data[0]?.progressnotedate === "1" ? true : false,
+      StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false,
+      StatusChangesFormDate: data[0]?.statuschangesformdate === "1" ? true : false,
+      ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates === "1" ? true : false,
+      ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate === "1" ? true : false,
+      M11QForm: data[0]?.m11qform === "1" ? true : false,
+      M11QFormDate: data[0]?.m11qformdate === "1" ? true : false,
+      CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false,
+      CD4VLReportsDate: data[0]?.cd4vlreportsdate === "1" ? true : false,
+      InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake === "1" ? true : false,
+      InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate === "1" ? true : false,
+      TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates === "1" ? true : false,
+      TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate === "1" ? true : false,
+      AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false,
+      AIRSDrugRegimenDate: data[0]?.airsdrugregimendate === "1" ? true : false,
+      AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false,
+      AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate === "1" ? true : false,
+      AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider === "1" ? true : false,
+      AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate === "1" ? true : false,
+      SupportGroups: data[0]?.supportgroups === "1" ? true : false,
+      SupportGroupsDate: data[0]?.supportgroupsdate === "1" ? true : false,
+      IDGForm: data[0]?.idgform === "1" ? true : false,
+      IDGFormDate: data[0]?.idgformdate === "1" ? true : false,
+      HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false,
+      InternalReferralInformation: data[0]?.internalreferralinformation === "1" ? true : false,
+      LinkageRetentionAdherenceForms: data[0]?.linkageretentionadherenceforms === "1" ? true : false,
+      InternalReferralInformationDate: data[0]?.internalreferralinformationdate === "1" ? true : false,
+      LinkageRetentionAdherenceFormsDate: data[0]?.linkageretentionadherenceformsdate === "1" ? true : false,
+      HNSReadinessFormDate: data[0]?.hnsreadinessformdate === "1" ? true : false,
+      ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false
+  })
+
+
+
+
+
+
+
+
   const [clientData, setClientData] = useState({
     clientId: data[0]?.clientid,
     clientFirstName: data[0]?.clientfirstname,
@@ -73,6 +150,7 @@ const ProgressNotesIndex = ({ data }) => {
     userFirstName: data[0]?.clienthcwname,
     userLastName: data[0]?.clienthcwlastname,
     progressNoteDate: crearFecha(),
+    ProgressNoteReviewed: false,
     developmentActionPlan: false,
     CD4VLLabReport: false,
     transportationCoordination: false,
@@ -99,98 +177,94 @@ const ProgressNotesIndex = ({ data }) => {
     goal3Completed: false,
     goal3CompletedDate: "",
 
-    StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false, // agregar db
+    StatusChangesForm: false, // agregar db
     StatusChangesFormDate: data[0]?.statuschangesformdate || null, // agregar db
 
-    ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates === "1" ? true : false,
+    ComprehensiveRiskBehaviorAssessmentUpdates: false,
     ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate || null,
 
-    M11QForm: data[0]?.m11qform === "1" ? true : false, // agregar db
+    M11QForm: false, // agregar db
     M11QFormDate: data[0]?.m11qformdate || null, // agregar db
 
-    CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false, // agregar db
+    CD4VLReports: false, // agregar db
     CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, // agregar db
 
-    InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake === "1" ? true : false, // agregar db
+    InitialTreatmentAdherenceIntake: false, // agregar db
     InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate || null, // agregar db
 
-    TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates === "1" ? true : false, // agregar db
+    TreatmentAdherenceUpdates: false, // agregar db
     TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate || null, // agregar db
 
     AIRSCollateralInformation:
-      data[0]?.airscollateralinformation === "1" ? true : false,
+      false,
     AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate || null,
 
-    AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false, // agregar db
+    AIRSDrugRegimen: false, // agregar db
     AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, // agregar db
 
     AIRSFinancialInformation:
-      data[0]?.airsfinancialinformation === "1" ? true : false,
+      false,
     AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate || null,
     AIRSHIVAIDSRiskHistory:
-      data[0]?.airshivaidsriskhistory === "1" ? true : false,
+      false,
     AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
 
-    AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false, // agregar db
+    AIRSHIVStatusHistory: false, // agregar db
     AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, // agregar db
 
-    AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider === "1" ? true : false, // agregar db
+    AIRSHIVMedicalProvider: false, // agregar db
     AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, // agregar db
 
-    AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
+    AIRSHCVHistory: false,
     AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
     AIRSHousingInformation:
-      data[0]?.airshousinginformation === "1" ? true : false,
+      false,
     AIRSHousingInformationDate: data[0]?.airshousinginformationdate || null,
     AIRSInsuranceInformation:
-      data[0]?.airsinsuranceinformation === "1" ? true : false,
+      false,
     AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate || null,
     AIRSSubstanceUseHistory:
-      data[0]?.airssubstanceusehistory === "1" ? true : false,
+      false,
     AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate || null,
-    LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
+    LNEClientRights: false,
     LNEClientRightsDate: data[0]?.lneclientrightsdate || null,
     LNEClientGrievancePolicyProcedure:
-      data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
+      false,
     LNEClientGrievancePolicyProcedureDate:
       data[0]?.lneclientgrievancepolicyproceduredate || null,
-    LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
+    LNEProgramRules: false,
     LNEProgramRulesDate: data[0]?.lneprogramrulesdate || null,
     LNEEmergencyContactConsent:
-      data[0]?.lneemergencycontactconsent === "1" ? true : false,
+      false,
     LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate || null,
-    LNEConsentForReleaseOfConfidentialInformation:
-      data[0]?.lneconsentforreleaseofconfidentialinformation === "1"
-        ? true
-        : false,
+    LNEConsentForReleaseOfConfidentialInformation: false,
     LNEConsentForReleaseOfConfidentialInformationDate:
       data[0]?.lneconsentforreleaseofconfidentialinformationdate || null,
-    HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
+    HIPPAConsentForm: false,
     HIPPAConsentFormDate: data[0]?.hippaconsentformdate || null,
     NYCDOHMHNoticeOfPrivacyPractices:
-      data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
+      false,
     NYCDOHMHNoticeOfPrivacyPracticesDate:
       data[0]?.nycdohmhnoticeofprivacypracticesdate || null,
     LinkageRetentionAdherenceForms:
-      data[0]?.linkageretentionadherenceforms === "1" ? true : false,
+      false,
     LinkageRetentionAdherenceFormsDate:
       data[0]?.linkageretentionadherenceformsdate || null,
       InternalReferralInformation:
-      data[0]?.internalreferralinformation === "1" ? true : false,
+      false,
     InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
     LNEClientReferralForm:
-      data[0]?.lneclientreferralform === "1" ? true : false,
+      false,
     LNEClientReferralFormDate: data[0]?.lneclientreferralformdate || null,
-    LNEHNSEligibilityForm:
-      data[0]?.lnehnseligibilityform === "1" ? true : false || true,
+    LNEHNSEligibilityForm: true,
     LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || new Date(),
-    HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false, // agregar db
+    HNSReadinessForm: false, // agregar db
     HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
 
-    SupportGroups: data[0]?.supportgroups === "1" ? true : false, // agregar db
+    SupportGroups: false, // agregar db
     SupportGroupsDate: data[0]?.supportgroupsdate || null, // agregar db
 
-    IDGForm: data[0]?.idgform ==="1" ? true : false, // agregar db
+    IDGForm: false, // agregar db
     IDGFormDate: data[0]?.idgformdate || null, // agregar db
 
     progressNoteText: "",
@@ -427,7 +501,7 @@ const ProgressNotesIndex = ({ data }) => {
       .put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update_msa_form_from_progress_note`,
         {
-          clientData,
+          msaData,
         }
       )
       .then(function (response) {
@@ -483,6 +557,7 @@ const ProgressNotesIndex = ({ data }) => {
         });
     }
   };
+  console.log("msa data", msaData)
 
   return (
     <>
@@ -1555,26 +1630,42 @@ const ProgressNotesIndex = ({ data }) => {
                             // checked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
-                              // clientData[service.state_label] === "" ||
-                              // clientData[`${service.state_label}Date`] === null
-                              //   ? setClientData({
-                              //       ...clientData,
-                              //       [service.state_label]: !service.value,
-                              //       [`${service.state_label}Date`]: new Date(),
-                              //     })
-                              //   :
-                              clientData[service.state_label] === true && data[0][service.state_label.toLocaleLowerCase()] === "0" ? 
-                                setClientData({
+
+                              if (clientData[service.state_label] && msaData[service.state_label] )
+                              
+                                {
+                                  setClientData({
                                   ...clientData,
                                   [service.state_label]: false,
-                                }) :
-                                 setClientData({
-                                  ...clientData,
+                                }) 
+                                setMsaData({
+                                  ...msaData, 
+                                  [service.state_label]: false,
+                                })
+                              }
+                              if (!msaData[service.state_label]) {
+                                setMsaData({
+                                  ...msaData,
                                   [service.state_label]: true,
                                   [`${service.state_label}Date`]: new Date(),
 
                                 }) 
-                            }}
+                               }
+                              
+                                 if (!clientData[service.state_label]) {
+                                 
+                                  setClientData({
+                                    ...clientData,
+                                    [service.state_label]: true,
+                                    [`${service.state_label}Date`]: new Date(),
+  
+                                  })
+                              
+                                 }
+                                
+                                 
+                                   
+                                }}
                           />
                           <span
                             className={`${ProgressNotesStyles.checkmark}`}
@@ -1604,26 +1695,36 @@ const ProgressNotesIndex = ({ data }) => {
                             // checked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
-                              // (clientData[service.state_label] === false ||
-                              // clientData[`${service.state_label}Date`] === null)
-                              //   ? setClientData({
-                              //       ...clientData,
-                              //       [service.state_label]: true,
-                              //       [`${service.state_label}Date`]: new Date(),
-                              //     })
-                              //   : 
-                                clientData[service.state_label] === true && data[0][service.state_label.toLocaleLowerCase()] === "0" ? 
-                                setClientData({
+                              if (clientData[service.state_label] && msaData[service.state_label] )
+                              
+                                {
+                                  setClientData({
                                   ...clientData,
                                   [service.state_label]: false,
-                                }) :
-                                 setClientData({
-                                  ...clientData,
+                                }) 
+                                setMsaData({
+                                  ...msaData, 
+                                  [service.state_label]: false,
+                                })
+                              }
+                              if (!msaData[service.state_label]) {
+                                setMsaData({
+                                  ...msaData,
                                   [service.state_label]: true,
                                   [`${service.state_label}Date`]: new Date(),
 
-                                })
-                            }}
+                                }) 
+                               }
+                                 if (!clientData[service.state_label]) {
+                                 
+                                  setClientData({
+                                    ...clientData,
+                                    [service.state_label]: true,
+                                    [`${service.state_label}Date`]: new Date(),
+  
+                                  })
+                                 }
+                                }}
                           />
                           <span
                             className={`${ProgressNotesStyles.checkmark}`}
