@@ -81,7 +81,7 @@ const SupportGroups = ({hcworkers, data}) => {
                 <Link href="/supportGroups/pastEvents">
                   <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
                           <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
-                          <p className="p-2 uppercase">
+                          <p className="p-2">
                           Review past group events
                           </p>
                     </button>
@@ -89,7 +89,7 @@ const SupportGroups = ({hcworkers, data}) => {
               
               </div>
               <h1 className="font-black  my-5">
-                Support Group Record
+                Support group record
               </h1>
                
             </div>
