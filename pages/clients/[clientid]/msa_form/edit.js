@@ -41,7 +41,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment ==="0" ? false: true,
     ComprehensiveRiskBehaviorAssessmentDate:data[0].comprehensiveriskbehaviorassessmentdate|| "",
     ServiceActionPlan: data[0].serviceactionplan ==="0" ? false: true,
-    ServiceActionPlanDate:  data[0].serviceactionplandate || "",
+    ServiceActionPlanDate:  data[0].sapplanstartdate || "",
     AIRSCollateralInformation: data[0].airscollateralinformation ==="0" ? false: true,
     AIRSCollateralInformationDate:data[0].airscollateralinformationdate || "",
     AIRSFinancialInformation: data[0].airsfinancialinformation ==="0" ? false: true,
