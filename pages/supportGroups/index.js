@@ -75,7 +75,7 @@ const SupportGroups = ({hcworkers}) => {
                 <Link href="/supportGroups/pastEvents">
                   <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
                           <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
-                          <p className="p-2 uppercase">
+                          <p className="p-2">
                           Review past group events
                           </p>
                     </button>
@@ -83,7 +83,7 @@ const SupportGroups = ({hcworkers}) => {
               
               </div>
               <h1 className="font-black  my-5">
-                Support Group Record
+                Support group record
               </h1>
                
             </div>
@@ -140,14 +140,6 @@ const SupportGroups = ({hcworkers}) => {
                   </select>
                </div>
 
-               <label className="text-lg block">
-                  Start time
-                  <input type="time"  defaultValue={form.supportGroupStartTime} name="supportGroupStartTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block "/>
-                </label>
-                <label className="text-lg block">
-                  End time
-                  <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
-                </label>
 
                 <label className="flex items-center gap-5">
                   HCW signed?
