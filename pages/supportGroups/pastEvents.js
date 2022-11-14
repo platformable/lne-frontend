@@ -9,14 +9,13 @@ import DeleteSupportGroupEvent from "../../components/DeleteSupportGroupEvent";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const PastEvents = ({ events }) => {
-  console.log("events", events)
+  console.log("events", events);
 
   const { user, error, isLoading } = useUser();
   const [selectedEventToDelete, setSelectedEventToDelete] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState(""); 
+  const [endDate, setEndDate] = useState("");
 
   const [showDeleteEventModal, setShowDeleteEventModal] = useState(false);
   const [dateFilter, setDateFilter] = useState({
@@ -27,44 +26,39 @@ const PastEvents = ({ events }) => {
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
 
- 
-
-  
-  
-  const handleDeleteEvent=(id,topic)=>{
-    console.log(id)
-    setSelectedEventToDelete({id:id,supportgrouptopic:topic})
-    setShowDeleteEventModal(!showDeleteEventModal)
-  }
+  const handleDeleteEvent = (id, topic) => {
+    console.log(id);
+    setSelectedEventToDelete({ id: id, supportgrouptopic: topic });
+    setShowDeleteEventModal(!showDeleteEventModal);
+  };
   const searchFunction = (word) => {
     setSearchWord(word);
     // dispatch(searchEventByName({ word }));
   };
   const ref = useRef();
 
-  
   // console.log("events",events)
 
-//   const startDate = useSelector(
-//     (state) => state.eventCalendarDates.value.startDate
-//   );
-//   const endDate = useSelector(
-//     (state) => state.eventCalendarDates.value.endDate
-//   );
-//   console.log("startDate desde toolkit", startDate);
-//   console.log("endDate desde toolkit", endDate);
+  //   const startDate = useSelector(
+  //     (state) => state.eventCalendarDates.value.startDate
+  //   );
+  //   const endDate = useSelector(
+  //     (state) => state.eventCalendarDates.value.endDate
+  //   );
+  //   console.log("startDate desde toolkit", startDate);
+  //   console.log("endDate desde toolkit", endDate);
 
-//   const state = useSelector((state) => console.log(state));
+  //   const state = useSelector((state) => console.log(state));
 
-//   console.log("state", state);
+  //   console.log("state", state);
 
   const sortedEventsByDate = events.sort(
     (a, b) => new Date(b.supportmeetingdate) - new Date(a.supportmeetingdate)
   );
-  
+
   return (
     <Layout showStatusHeader={true}>
-      <ToastContainer  autoClose={3000}/>
+      <ToastContainer autoClose={3000} />
       <div className="container mx-auto my-10">
         <h1 className="font-black mb-5">Review past group events</h1>
         <div className="flex items-center gap-5">
@@ -74,7 +68,6 @@ const PastEvents = ({ events }) => {
       </div>
 
       <div className="container mx-auto grid  items-center grid-cols-1 container mx-auto md:px-0 px-5 md:mb-5 md:gap-5">
-
         <div className="block md:flex xl:justify-end md:px-0 lg:col-start-4 py-5 md:py-0  mr-0">
           <h3 className="">Filter by date</h3>
         </div>
@@ -115,45 +108,60 @@ const PastEvents = ({ events }) => {
       </div>
 
       <div className="events-cards-container  bg-light-blue py-7">
-      <div className={`hidden md:grid ${loggedUserRole === "Supervisor" ? "supervisor-existing-events-head-table" : `existing-events-head-table`} container mx-auto gap-5 rounded-t-lg py-3 px-7`}>
-        {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-        <p className="lg:text-xl font-bold flex items-center ">Event date</p>
-        <p className="lg:text-xl font-bold flex items-center ">Name of Group</p>
-        <p className="lg:text-xl font-bold flex items-center justify-center">Discussion topic</p>
-        <p className="lg:text-xl font-bold flex items-center justify-center">View/edit event</p>
-        <p className="lg:text-xl font-bold flex items-center justify-center">Delete event</p>
+        <div
+          className={`hidden md:grid ${
+            loggedUserRole === "Supervisor"
+              ? "supervisor-existing-events-head-table"
+              : `existing-events-head-table`
+          } container mx-auto gap-5 rounded-t-lg py-3 px-7`}
+        >
+          {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
+          <p className="lg:text-xl font-bold flex items-center ">Event date</p>
+          <p className="lg:text-xl font-bold flex items-center ">
+            Name of Group
+          </p>
+          <p className="lg:text-xl font-bold flex items-center justify-center">
+            Discussion topic
+          </p>
+          <p className="lg:text-xl font-bold flex items-center justify-center">
+            View/edit event
+          </p>
+          <p className="lg:text-xl font-bold flex items-center justify-center">
+            Delete event
+          </p>
+        </div>
 
-        
-      </div>
+        <div className="container  mx-auto md:px-0 px-7 mb-10 pb-10 rounded-lg ">
+          <div className="events-index-btn-container grid grid-cols-1 gap-3 p-0">
+            {sortedEventsByDate &&
+              sortedEventsByDate
 
-      <div className="container  mx-auto md:px-0 px-7 mb-10 pb-10 rounded-lg ">
-        <div className="events-index-btn-container grid grid-cols-1 gap-3 p-0">
-          {sortedEventsByDate &&
-            sortedEventsByDate
-          
-              .filter((event, index) => {
-                var startDate = new Date(new Date(dateFilter?.startDate).setHours(0))
-                var endDate = new Date(new Date(dateFilter?.endDate).setHours(23))
-                if (startDate !== null && endDate !== null) {
-                  let filterPass = true;
-                  const date = new Date(event.supportmeetingdate);
-                  console.log(startDate , date)
-                  if (dateFilter.startDate) {
-                    filterPass = filterPass && startDate <= date;
+                .filter((event, index) => {
+                  var startDate = new Date(
+                    new Date(dateFilter?.startDate).setHours(0)
+                  );
+                  var endDate = new Date(
+                    new Date(dateFilter?.endDate).setHours(23)
+                  );
+                  if (startDate !== null && endDate !== null) {
+                    let filterPass = true;
+                    const date = new Date(event.supportmeetingdate);
+                    console.log(startDate, date);
+                    if (dateFilter.startDate) {
+                      filterPass = filterPass && startDate <= date;
+                    }
+                    if (dateFilter.endDate) {
+                      filterPass = filterPass && endDate >= date;
+                    }
+                    console.log(filterPass);
+
+                    return filterPass;
                   }
-                  if (dateFilter.endDate) {
-                    filterPass =
-                      filterPass && endDate >= date;
-                  }
-                  console.log(filterPass)
-
-                  return filterPass;
-                }
-              })
-              .map((event, index) => {
-                return (
-                  <>
-                    {/* <div className="sm:hidden w-full">
+                })
+                .map((event, index) => {
+                  return (
+                    <>
+                      {/* <div className="sm:hidden w-full">
                       <EventsCardItems
                         key={index}
                         id={event.id}
@@ -175,65 +183,82 @@ const PastEvents = ({ events }) => {
                         event={event}
                       />
                     </div> */}
-                    <section className="hidden sm:block">
-                      <div
-                        key={index}
-                        className={`grid ${loggedUserRole === "Supervisor" ? "supervisor-existing-events-head-table" : "existing-events-head-table"} bg-white gap-5 px-7 py-4  rounded-md shadow-md`}
-                      >
-                        {/* <div className="flex items-center lg:text-xl font-bold ">{event.programname}</div> */}
-                        <div className="flex items-center lg:text-xl font-bold mr-2">
-                          {
-                            event.supportmeetingdate &&
-                              new Date(event?.supportmeetingdate).toLocaleDateString(
-                                "en-US", {month:"2-digit", day: "2-digit", year: "numeric"}
-                              )
-                            /* crearFecha2(event) */
-                          }
-                        </div>
-                        <div className="flex items-center lg:text-xl font-bold truncate">
-                          {event.supportgroupname}
-                        </div>
-                        <div className="flex items-center lg:text-xl font-bold justify-center">
-                          {event.supportgrouptopic}
-                        </div>
-                        <Link href={`/supportGroups/${event.id}/edit`} >
-                           <a className="flex items-center justify-center">
-                           <img src="/edit-icon.svg" alt="edit event icon" title="Edit event" />
-                           </a>
-                        </Link>
-                       
-                        {/* {loggedUserRole === "Supervisor" && ( */}
+                      <section className="hidden sm:block">
+                        <div
+                          key={index}
+                          className={`grid ${
+                            loggedUserRole === "Supervisor"
+                              ? "supervisor-existing-events-head-table"
+                              : "existing-events-head-table"
+                          } bg-white gap-5 px-7 py-4  rounded-md shadow-md`}
+                        >
+                          {/* <div className="flex items-center lg:text-xl font-bold ">{event.programname}</div> */}
+                          <div className="flex items-center lg:text-xl font-bold mr-2">
+                            {
+                              event.supportmeetingdate &&
+                                new Date(
+                                  event?.supportmeetingdate
+                                ).toLocaleDateString("en-US", {
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                  year: "numeric",
+                                })
+                              /* crearFecha2(event) */
+                            }
+                          </div>
+                          <div className="flex items-center lg:text-xl font-bold truncate">
+                            {event.supportgroupname}
+                          </div>
+                          <div className="flex items-center lg:text-xl font-bold justify-center">
+                            {event.supportgrouptopic}
+                          </div>
+                          <Link href={`/supportGroups/${event.id}/edit`}>
+                            <a className="flex items-center justify-center">
+                              <img
+                                src="/edit-icon.svg"
+                                alt="edit event icon"
+                                title="Edit event"
+                              />
+                            </a>
+                          </Link>
+
+                          {/* {loggedUserRole === "Supervisor" && ( */}
                           <div className="flex justify-center">
-                            
                             <button
                               className="py-2"
-                              onClick={() => handleDeleteEvent(event?.id, event?.supportgrouptopic)}
+                              onClick={() =>
+                                handleDeleteEvent(
+                                  event?.id,
+                                  event?.supportgrouptopic
+                                )
+                              }
                               title="Delete event"
                             >
-                              <img src="/delete-icon.svg"  alt="delete icon" width="25px"/>
+                              <img
+                                src="/delete-icon.svg"
+                                alt="delete icon"
+                                width="25px"
+                              />
                             </button>
                           </div>
-                        {/* )} */}
-                      </div>
-                    </section>
-                  </>
-                );
-              })}
-          
+                          {/* )} */}
+                        </div>
+                      </section>
+                    </>
+                  );
+                })}
+          </div>
+          {showDeleteEventModal && (
+            <DeleteSupportGroupEvent
+              setShowDeleteEventModal={setShowDeleteEventModal}
+              showDeleteEventModal={showDeleteEventModal}
+              selectedEventToDelete={selectedEventToDelete}
+              id={selectedEventToDelete.id}
+            />
+          )}
         </div>
-         {showDeleteEventModal && (
-          <DeleteSupportGroupEvent
-            setShowDeleteEventModal={setShowDeleteEventModal}
-            showDeleteEventModal={showDeleteEventModal}
-            selectedEventToDelete={selectedEventToDelete}
-            id={selectedEventToDelete.id}
-          />
-        )} 
-      </div>
-
       </div>
       {/*  HEAD TABLE  */}
-      
     </Layout>
   );
 };
@@ -243,7 +268,7 @@ export default PastEvents;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const response = await fetch(
-       `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
     );
     const events = await response.json();
 
