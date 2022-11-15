@@ -216,7 +216,7 @@ const RowMsaFormSupervisor = ({
           checked={
             formReviewed || formIssues ? "checked" : false
           }
-          disabled={!form}
+          disabled={!formDate}
         />
       </div> 
       <div
@@ -232,7 +232,7 @@ const RowMsaFormSupervisor = ({
           id={strings.formIssues}
           onChange={(e) => onChangeInputIssues(e)}
           checked={formIssues ? "checked" : false}
-          disabled={!form}
+          disabled={!formDate}
         />
       </div>
     </div>
