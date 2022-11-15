@@ -198,16 +198,16 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <div className="service-action-plan-page-info-box md:my-1 my-5">
                   <h3 className="font-black ">Todays date</h3>
 
-                  <div className="flex gap-x-2 items-center">
+                  <div className="flex gap-x-4 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    {/* <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
+                    <span className="mt-2">{new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric', year:'numeric'})}</span>
                    {/*  <input type="date" name="" id="" className="border p-1 rounded-md" 
                     defaultValue={clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]}
                     /> */}
-                    <input type="date" name="" id="" className="border-black p-1 rounded-md" 
+                    {/* <input type="date" name="" id="" className="border-black p-1 rounded-md" 
                     defaultValue={clientData.dateFormReviewed}
                     onChange={(e)=>setClientData({...clientData,dateFormReviewed:e.target.value})}
-                    />
+                    /> */}
                   </div>
 
                 </div>
