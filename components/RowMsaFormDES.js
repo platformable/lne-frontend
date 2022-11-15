@@ -67,7 +67,7 @@ const RowMsaFormDES = ({
         <div className="text-center">
           <input
             type="date"
-            id="SupportGroups"
+            id=""
             className={MSAStyles.inputDate}
             value={
               clientData[strings.formDate] &&

@@ -66,7 +66,7 @@ const EditMsaFormPage = ({ data }) => {
       data[0].serviceactionplan === "0" || data[0].serviceactionplan === null
         ? false
         : true,
-    ServiceActionPlanDate: data[0].serviceactionplandate,
+    ServiceActionPlanDate: data[0].sapplanstartdate,
     // ServiceActionPlanPDF: data[0].serviceactionplanpdf === "0" ? true : false,
     ServiceActionPlanScan:
       data[0].serviceactionplanscan === "0" ||
