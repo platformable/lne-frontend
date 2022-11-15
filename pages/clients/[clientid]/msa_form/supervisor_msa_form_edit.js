@@ -41,7 +41,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].airsintakeformscan === "0" || data[0].airsintakeformscan === null
         ? false
         : true,
-    AIRSIntakeFormReviewed:"",
+    AIRSIntakeFormReviewed:data[0]?.airsintakeformreviewed==="1" ? true : false,
     AIRSIntakeFormIssues:"",
     AIRSIntakeFormUploadDate:data[0].airsintakeformuploaddate==="" ||data[0].airsintakeformuploaddate===null
     ?data[0].airsintakeformdate:data[0].airsintakeformuploaddate,
@@ -64,14 +64,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentIssues:"",
-    ComprehensiveRiskBehaviorAssessmentReviewed:"",
+    ComprehensiveRiskBehaviorAssessmentReviewed:data[0]?.comprehensiveriskbehaviorassessmentreviewed==="1" ? true : false,
     ComprehensiveRiskBehaviorAssessmentUploadDate:data[0].comprehensiveriskbehaviorassessmentdate || null,
 
     ServiceActionPlan:
       data[0].serviceactionplan === "0" || data[0].serviceactionplan === null
         ? false
         : true,
-    ServiceActionPlanDate: data[0].serviceactionplandate,
+    ServiceActionPlanDate: data[0].sapplanstartdate,
     // ServiceActionPlanPDF: data[0].serviceactionplanpdf === "0" ? true : false,
     ServiceActionPlanScan:
       data[0].serviceactionplanscan === "0" ||
@@ -80,7 +80,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate === "" || data[0].serviceactionplanuploaddate === null ?data[0].serviceactionplandate:
     data[0].serviceactionplanuploaddate,
-    ServiceActionPlanReviewed:"",
+    ServiceActionPlanReviewed:data[0]?.serviceactionplanreviewed==="1" ? true : false,
     ServiceActionPlanIssues:"",
 
     ProgressNote:
@@ -98,7 +98,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].progressnotepdf || data[0].progressnotepdf === null
         ? false
         : true,
-    ProgressNoteReviewed:"",
+    ProgressNoteReviewed:data[0]?.progressnotereviewed==="1" ? true : false,
     ProgressNoteIssues:"",
 
     StatusChangesForm:
@@ -118,7 +118,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].statuschangesformpdf === null
         ? false
         : true,
-    StatusChangesFormReviewed:"",
+    StatusChangesFormReviewed:data[0]?.statuschangesformreviewed==="1" ? true : false,
     StatusChangesFormIssues:"",
      
     ComprehensiveRiskBehaviorAssessmentUpdates:
@@ -141,7 +141,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].comprehensiveriskbehaviorassessmentpdf === null
         ? false
         : true,
-    ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:"",
+    ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:data[0]?.comprehensiveriskbehaviorassessmentupdatesreviewed==="1" ? true : false,
     ComprehensiveRiskBehaviorAssessmentUpdatesIssues:"",
 
     M11QForm:
@@ -156,7 +156,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].m11qformpdf === "0" || data[0].m11qformpdf === null
         ? false
         : true,
-    M11QFormReviewed:"",
+    M11QFormReviewed:data[0]?.m11qformreviewed==="1" ? true : false,
     M11QFormIssues:"",
 
     CD4VLReports:
@@ -173,7 +173,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].cd4vlreportspdf === "0" || data[0].cd4vlreportspdf === null
         ? false
         : true,
-    CD4VLReportsReviewed:"",
+    CD4VLReportsReviewed:data[0]?.cd4vlreportsreviewed==="1" ? true : false,
     CD4VLReportsIssues:"",
 
     InitialTreatmentAdherenceIntake:
@@ -195,7 +195,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].initialtreatmentadherenceintakepdf === null
         ? false
         : true,
-    InitialTreatmentAdherenceIntakeReviewed:"",
+    InitialTreatmentAdherenceIntakeReviewed:data[0]?.initialtreatmentadherenceintakereviewed==="1" ? true : false,
     InitialTreatmentAdherenceIntakeIssues:"",
 
     TreatmentAdherenceUpdates:
@@ -216,7 +216,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].treatmentadherenceupdatespdf === null
         ? false
         : true,
-    TreatmentAdherenceUpdatesReviewed:"",
+    TreatmentAdherenceUpdatesReviewed:data[0]?.treatmentadherenceupdatesreviewed==="1" ? true : false,
     TreatmentAdherenceUpdatesIssues:"",
 
     AIRSCollateralInformation:
@@ -237,7 +237,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     AIRSCollateralInformationUploadDate:
       data[0].airscollateralinformationuploaddate==="" || data[0].airscollateralinformationuploaddate===null?data[0].airscollateralinformationdate:data[0].airscollateralinformationuploaddate,
-    AIRSCollateralInformationReviewed:"",
+    AIRSCollateralInformationReviewed:data[0]?.airscollateralinformationreviewed==="1" ? true : false,
     AIRSCollateralInformationIssues:"",
 
     AIRSDrugRegimen:
@@ -255,7 +255,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSDrugRegimenUploadDate: data[0].airsdrugregimenuploaddate==="" || data[0].airsdrugregimenuploaddate===null ? data[0].airsdrugregimendate:data[0].airsdrugregimenuploaddate,
-    AIRSDrugRegimenReviewed:"",
+    AIRSDrugRegimenReviewed:data[0]?.airsdrugregimenreviewed==="1" ? true : false,
     AIRSDrugRegimenIssues:"",
 
     AIRSFinancialInformation:
@@ -276,7 +276,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     AIRSFinancialInformationUploadDate:
       data[0].airsfinancialinformationuploaddate==="" || data[0].airsfinancialinformationuploaddate===null?data[0].airsfinancialinformationdate:data[0].airsfinancialinformationuploaddate,
-    AIRSFinancialInformationReviewed:"",
+    AIRSFinancialInformationReviewed:data[0]?.airsfinancialinformationreviewed==="1" ? true : false,
     AIRSFinancialInformationIssues:"",
 
     AIRSHIVAIDSRiskHistory:
@@ -297,7 +297,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     AIRSHIVAIDSRiskHistoryUploadDate:
       data[0].airshivaidsriskhistoryuploaddate===""|| data[0].airshivaidsriskhistoryuploaddate===null?data[0].airshivaidsriskhistorydate:data[0].airshivaidsriskhistoryuploaddate,
-    AIRSHIVAIDSRiskHistoryReviewed:"",
+    AIRSHIVAIDSRiskHistoryReviewed:data[0]?.airshivaidsriskhistoryreviewed==="1" ? true : false,
     AIRSHIVAIDSRiskHistoryIssues:"",
 
     AIRSHIVMedicalProvider:
@@ -318,7 +318,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     AIRSHIVMedicalProviderUploadDate:
       data[0].airshivmedicalprovideruploaddate ==="" || data[0].airshivmedicalprovideruploaddate ===null ?data[0].airshivmedicalproviderdate:data[0].airshivmedicalprovideruploaddate,
-    AIRSHIVMedicalProviderReviewed:"",
+    AIRSHIVMedicalProviderReviewed:data[0]?.airshivmedicalproviderreviewed==="1" ? true : false,
     AIRSHIVMedicalProviderIssues:"",
 
     AIRSHIVStatusHistory:
@@ -339,7 +339,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     AIRSHIVStatusHistoryUploadDate:
       data[0].airshivstatushistoryuploaddate ==="" || data[0].airshivstatushistoryuploaddate ===null ? data[0].airshivstatushistorydate:data[0].airshivstatushistoryuploaddate,
-    AIRSHIVStatusHistoryReviewed:"",
+    AIRSHIVStatusHistoryReviewed:data[0]?.airshivstatushistoryreviewed==="1" ? true : false,
     AIRSHIVStatusHistoryIssues:"",
 
     AIRSHCVHistory:
@@ -356,7 +356,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSHCVHistoryUploadDate: data[0].airshcvhistoryuploaddate ==="" || data[0].airshcvhistoryuploaddate ===null?data[0].airshcvhistorydate:data[0].airshcvhistoryuploaddate,
-    AIRSHCVHistoryReviewed:"",
+    AIRSHCVHistoryReviewed:data[0]?.airshcvhistoryreviewed==="1" ? true : false,
     AIRSHCVHistoryIssues:"",
 
     AIRSHousingInformation:
@@ -377,7 +377,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     AIRSHousingInformationUploadDate:
       data[0].airshousinginformationuploaddate ==="" || data[0].airshousinginformationuploaddate ===null?data[0].airshousinginformationdate:data[0].airshousinginformationuploaddate,
-    AIRSHousingInformationReviewed:"",
+    AIRSHousingInformationReviewed:data[0]?.airshousinginformationreviewed==="1" ? true : false,
     AIRSHousingInformationIssues:"",
 
     AIRSInsuranceInformation:
@@ -398,7 +398,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     AIRSInsuranceInformationUploadDate:
       data[0].airsinsuranceinformationuploaddate==="" ||data[0].airsinsuranceinformationuploaddate=== null?data[0].airsinsuranceinformationdate:data[0].airsinsuranceinformationuploaddate,
-    AIRSInsuranceInformationReviewed:"",
+    AIRSInsuranceInformationReviewed:data[0]?.airsinsuranceinformationreviewed==="1" ? true : false,
     AIRSInsuranceInformationIssues:"",
 
     AIRSSubstanceUseHistory:
@@ -420,7 +420,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     AIRSSubstanceUseHistoryUploadDate:
       data[0].airssubstanceusehistoryuploaddate==="" ||data[0].airssubstanceusehistoryuploaddate=== null
       ?data[0].airssubstanceusehistorydate:data[0].airssubstanceusehistoryuploaddate,
-    AIRSSubstanceUseHistoryReviewed:"",
+    AIRSSubstanceUseHistoryReviewed:data[0]?.airssubstanceusehistoryreviewed==="1" ? true : false,
     AIRSSubstanceUseHistoryIssues:"",
 
     LNEClientRights:
@@ -439,7 +439,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     LNEClientRightsUploadDate: data[0].lneclientrightsuploaddate==="" || data[0].lneclientrightsuploaddate ===null
     ?data[0].lneclientrightsdate:data[0].lneclientrightsuploaddate,
-    LNEClientRightsReviewed:"",
+    LNEClientRightsReviewed:data[0]?.lneclientrightsreviewed==="1" ? true : false,
     LNEClientRightsIssues:"",
 
     LNEClientGrievancePolicyProcedure:
@@ -462,7 +462,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     LNEClientGrievancePolicyProcedureUploadDate:
       data[0].lneclientgrievancepolicyprocedureuploaddate==="" || data[0].lneclientgrievancepolicyprocedureuploaddate=== null
       ?data[0].lneclientgrievancepolicyproceduredate:data[0].lneclientgrievancepolicyprocedureuploaddate,
-    LNEClientGrievancePolicyProcedureReviewed:"",
+    LNEClientGrievancePolicyProcedureReviewed:data[0]?.lneclientgrievancepolicyprocedurereviewed==="1" ? true : false,
     LNEClientGrievancePolicyProcedureIssues:"",
 
     LNEProgramRules:
@@ -481,7 +481,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     LNEProgramRulesUploadDate: data[0].lneprogramrulesuploaddate==="" || data[0].lneprogramrulesuploaddate===null
     ?data[0].lneprogramrulesdate:data[0].lneprogramrulesuploaddate,
-    LNEProgramRulesReviewed:"",
+    LNEProgramRulesReviewed:data[0]?.lneprogramrulesreviewed==="1" ? true : false,
     LNEProgramRulesIssues:"",
 
     LNEEmergencyContactConsent:
@@ -503,7 +503,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     LNEEmergencyContactConsentUploadDate:
       data[0].lneemergencycontactconsentuploaddate==="" ||data[0].lneemergencycontactconsentuploaddate===null
       ?data[0].lneemergencycontactconsentdate:data[0].lneemergencycontactconsentuploaddate,
-    LNEEmergencyContactConsentReviewed:"",
+    LNEEmergencyContactConsentReviewed:data[0]?.lneemergencycontactconsentreviewed==="1" ? true : false,
     LNEEmergencyContactConsentIssues:"",
 
     LNEConsentForReleaseOfConfidentialInformation:
@@ -527,7 +527,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].lneconsentforreleaseofconfidentialinformationuploaddate==="" 
       ||data[0].lneconsentforreleaseofconfidentialinformationuploaddate=== null
       ?data[0].lneconsentforreleaseofconfidentialinformationdate:data[0].lneconsentforreleaseofconfidentialinformationuploaddate,
-    LNEConsentForReleaseOfConfidentialInformationReviewed:"",
+    LNEConsentForReleaseOfConfidentialInformationReviewed:data[0]?.lneconsentforreleaseofconfidentialinformationreviewed==="1" ? true : false,
     LNEConsentForReleaseOfConfidentialInformationIssues:"",
 
     HIPPAConsentForm:
@@ -547,7 +547,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     HIPPAConsentFormUploadDate: data[0].hippaconsentformuploaddate ==="" || data[0].hippaconsentformuploaddate===null
     ?data[0].hippaconsentformdate:data[0].hippaconsentformuploaddate,
-    HIPPAConsentFormReviewed:"",
+    HIPPAConsentFormReviewed:data[0]?.hippaconsentformreviewed==="1" ? true : false,
     HIPPAConsentFormIssues:"",
 
     NYCDOHMHNoticeOfPrivacyPractices:
@@ -570,7 +570,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     NYCDOHMHNoticeOfPrivacyPracticesUploadDate:
       data[0].nycdohmhnoticeofprivacypracticesuploaddate==="" ||data[0].nycdohmhnoticeofprivacypracticesuploaddate=== null
       ?data[0].nycdohmhnoticeofprivacypracticesdate:data[0].nycdohmhnoticeofprivacypracticesuploaddate,
-    NYCDOHMHNoticeOfPrivacyPracticesReviewed:"",
+    NYCDOHMHNoticeOfPrivacyPracticesReviewed:data[0]?.nycdohmhnoticeofprivacypracticesreviewed==="1" ? true : false,
     NYCDOHMHNoticeOfPrivacyPracticesIssues:"",
 
     LinkageRetentionAdherenceForms:
@@ -593,7 +593,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     LinkageRetentionAdherenceFormsUploadDate:
       data[0].linkageretentionadherenceformsuploaddate==="" || data[0].linkageretentionadherenceformsuploaddate=== null
       ?data[0].linkageretentionadherenceformsdate:data[0].linkageretentionadherenceformsuploaddate,
-    LinkageRetentionAdherenceFormsReviewed:"",
+    LinkageRetentionAdherenceFormsReviewed:data[0]?.linkageretentionadherenceformsreviewed==="1" ? true : false,
     LinkageRetentionAdherenceFormsIssues:"",
 
     InternalReferralInformation:
@@ -615,7 +615,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     InternalReferralInformationUploadDate:
       data[0].internalreferralinformationuploaddate==="" ||data[0].internalreferralinformationuploaddate=== null
       ?data[0].internalreferralinformationdate:data[0].internalreferralinformationuploaddate,
-    InternalReferralInformationReviewed:"",
+    InternalReferralInformationReviewed:data[0]?.internalreferralinformationreviewed==="1" ? true : false,
     InternalReferralInformationIssues:"",
 //identification
     LNEClientReferralForm:
@@ -634,7 +634,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].lneclientreferralformscan === null
         ? false
         : true,
-    LNEClientReferralFormReviewed:"",
+    LNEClientReferralFormReviewed:data[0]?.lneclientreferralformreviewed==="1" ? true : false,
     LNEClientReferralFormIssues:"",
     LNEClientReferralFormUploadDate:
       data[0].lneclientreferralformuploaddate==="" || data[0].lneclientreferralformuploaddate===null
@@ -681,7 +681,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].hnseligibilityformscan === null
         ? false
         : true,
-    HNSEligibilityFormReviewed:"",
+    HNSEligibilityFormReviewed: data[0]?.hnseligibilityformreviewed === "0" ? false : true,
     HNSEligibilityFormIssues:"",
     HNSEligibilityFormUploadDate: data[0].hnseligibilityformuploaddate==="" || data[0].hnseligibilityformuploaddate===null
     ?data[0].hnseligibilityformdate:data[0].hnseligibilityformuploaddate,
@@ -698,7 +698,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].hnsreadinessformscan === null
         ? false
         : true,
-    HNSReadinessFormReviewed:"",
+    HNSReadinessFormReviewed: data[0]?.hnsreadinessformreviewed === "0" ? false : true,
     HNSReadinessFormIssues:"",
     HNSReadinessFormPDF:
       data[0].hnsreadinessformpdf === "0" ||
@@ -721,7 +721,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].supportgroupspdf === "0" || data[0].supportgroupspdf === null
         ? false
         : true,
-    SupportGroupsReviewed:"",
+    SupportGroupsReviewed: data[0]?.supportgroupsreviewed === "0" ? false : true,
     SupportGroupsIssues:"",
 
     IDGForm: data[0].idgform === "0" || data[0].idgform === null ? false : true,
@@ -734,13 +734,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     IDGFormPDF:
       data[0].idgformpdf === "0" || data[0].idgformpdf === null ? false : true,
-    IDGFormReviewed:"",
+    IDGFormReviewed: data[0]?.idgformreviewed === "0" ? false : true,
     IDGFormIssues:"",
-    clientUniqueid:data[0]?.id
+    clientUniqueId:data[0]?.id
   });
 
  
-
+console.log("date sap", data[0])
   const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
   const [issueFounded, setIssueFounded] = useState({
     clientId: clientData.clientId,
@@ -778,7 +778,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
   const todaysDate = new Date();
 
 
-
+console.log("client datea form",clientData)
 
 
 

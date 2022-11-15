@@ -67,7 +67,7 @@ const RowMsaFormDES = ({
         <div className="text-center">
           <input
             type="date"
-            id="SupportGroups"
+            id=""
             className={MSAStyles.inputDate}
             value={
               clientData[strings.formDate] &&
@@ -110,7 +110,7 @@ const RowMsaFormDES = ({
             type="checkbox"
             name={strings.formPdf}
             id=""
-            disabled={!clientData[formString]}
+            disabled={!clientData[strings.formDate]}
             onClick={() => {
               clientData[strings.formPdf]
                 ? setClientData((formState) => ({
@@ -141,7 +141,7 @@ const RowMsaFormDES = ({
             type="checkbox"
             name={strings.formScan}
             id=""
-            disabled={!clientData[formString]}
+            disabled={!clientData[strings.formDate]}
             onClick={() => {
               clientData[strings.formScan]
                 ? setClientData((formState) => ({

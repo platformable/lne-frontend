@@ -41,7 +41,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
     ComprehensiveRiskBehaviorAssessment: data[0].comprehensiveriskbehaviorassessment ==="0" ? false: true,
     ComprehensiveRiskBehaviorAssessmentDate:data[0].comprehensiveriskbehaviorassessmentdate|| "",
     ServiceActionPlan: data[0].serviceactionplan ==="0" ? false: true,
-    ServiceActionPlanDate:  data[0].serviceactionplandate || "",
+    ServiceActionPlanDate:  data[0].sapplanstartdate || "",
     AIRSCollateralInformation: data[0].airscollateralinformation ==="0" ? false: true,
     AIRSCollateralInformationDate:data[0].airscollateralinformationdate || "",
     AIRSFinancialInformation: data[0].airsfinancialinformation ==="0" ? false: true,
@@ -198,16 +198,16 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <div className="service-action-plan-page-info-box md:my-1 my-5">
                   <h3 className="font-black ">Todays date</h3>
 
-                  <div className="flex gap-x-2 items-center">
+                  <div className="flex gap-x-4 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    {/* <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
+                    <span className="mt-2">{new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric', year:'numeric'})}</span>
                    {/*  <input type="date" name="" id="" className="border p-1 rounded-md" 
                     defaultValue={clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]}
                     /> */}
-                    <input type="date" name="" id="" className="border-black p-1 rounded-md" 
+                    {/* <input type="date" name="" id="" className="border-black p-1 rounded-md" 
                     defaultValue={clientData.dateFormReviewed}
                     onChange={(e)=>setClientData({...clientData,dateFormReviewed:e.target.value})}
-                    />
+                    /> */}
                   </div>
 
                 </div>
@@ -322,20 +322,21 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS Intake Form <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
-                {data[0].airsintakeform === "1" ?
+               {/*  {data[0].airsintakeform === "1" ?
               
               <p className="inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSIntakeFormDate.split('T')[0]}</p> 
               :
-                 
-                <input
+              
+                } */}
+                  <input
                   type="date"
                   id="AIRSIntakeForm"
                   value={
                     clientData.AIRSIntakeFormDate &&
                     clientData.AIRSIntakeFormDate.split('T')[0]
                   }
-                  disabled={clientData.AIRSIntakeFormDate ? true: false}
+                  //disabled={clientData.AIRSIntakeFormDate ? true: false}
                   className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSIntakeForm){
@@ -353,7 +354,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                    
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
                 <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -393,19 +394,20 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
               </div>
               <div className="text-center">
-                {data[0].comprehensiveriskbehaviorassessment === "1" ?
+              {/*   {data[0].comprehensiveriskbehaviorassessment === "1" ?
               
               <p className=" inline-block px-8 py-1 rounded-lg"> 
               {clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]}</p> 
-              :
-                <input
+              :} */}
+
+                  <input
                   type="date"
                   id="AIRSIntakeForm"
                   value={
                     clientData.ComprehensiveRiskBehaviorAssessmentDate &&
                     clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
                   }
-                  disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false}
+                  //disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false}
                   className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
@@ -422,7 +424,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                       });
                     }
                   }}
-                />}
+                />
               </div>
               <div className="flex justify-center">
               <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
@@ -459,19 +461,20 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>HNS Eligibility Assessment <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
-                {data[0].hnseligibilityform === "1" ?
+                {/* {data[0].hnseligibilityform === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.HNSEligibilityFormDate.split('T')[0]}</p> 
-              :
-                <input
+              :} */}
+
+              <input
                   type="date"
                   id="HNSEligibilityForm"
                   value={
                     clientData.HNSEligibilityFormDate &&
                     clientData.HNSEligibilityFormDate.split('T')[0]
                   }
-                  disabled={clientData.HNSEligibilityFormDate ? true: false} 
+                  //disabled={clientData.HNSEligibilityFormDate ? true: false} 
                   className="rounded-lg  p-1"
                   onChange={(e) => {
 
@@ -489,7 +492,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                       });
                     }
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -526,16 +529,16 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>Service Action Plan  </p>
               </div>
               <div className="text-center">
-              {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
-                   {clientData.ServiceActionPlanDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">MM/DD/YYYY</p>}
-                {/* <input
+              {/* {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
+                   {clientData.ServiceActionPlanDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">MM/DD/YYYY</p>} */}
+                <input
                   type="date"
                   id="AIRSIntakeForm"
                   value={
                     clientData.ServiceActionPlanDate &&
-                    clientData.ServiceActionPlanDate
+                    clientData.ServiceActionPlanDate.split('T')[0]
                   }
-                  disabled={clientData.ServiceActionPlanDate ? true: false}
+                  //disabled={clientData.ServiceActionPlanDate ? true: false}
                   className="rounded-lg  p-1"
                   onChange={(e) => {
                     if(clientData){
@@ -552,7 +555,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                    
                   }}
-                /> */}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
@@ -656,11 +659,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>Status Changes/ClosureForms</p>
               </div>
               <div className="text-center">
-              {data[0].statuschangesform === "1" ?
+              {/* {data[0].statuschangesform === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.StatusChangesFormDate.split('T')[0]}</p> 
-              :
+              :} */}
+
                 <input
                   type="date"
                   id="StatusChangeForm"
@@ -686,7 +690,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                /> }
+                /> 
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -729,11 +733,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               
               <div className="text-center">
-              {data[0].comprehensiveriskbehaviorassessmentupdates === "1" ?
+             {/*  {data[0].comprehensiveriskbehaviorassessmentupdates === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate.split('T')[0]}</p> 
               :
+                } */}
                 <input
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessmentUpdates"
@@ -744,22 +749,22 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                   // disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "1"? true: false} 
                   className="rounded-lg  p-1"
                   onChange={(e) => {
-                    if(clientData.StatusChangesForm ){
+                    if(clientData.ComprehensiveRiskBehaviorAssessmentUpdates ){
                       setClientData({
                         ...clientData,
-                        StatusChangesFormDate: e.target.value,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesDate: e.target.value,
                       });
                     } else {
                       setClientData({
                         ...clientData,
-                        StatusChangesFormDate: e.target.value,
-                        StatusChangesForm :
+                        ComprehensiveRiskBehaviorAssessmentUpdatesDate: e.target.value,
+                        ComprehensiveRiskBehaviorAssessmentUpdates :
                           !clientData.StatusChangesForm ,
                       });
                     }
                     
                   }}
-                /> }
+                /> 
               </div> 
               
               <div className="text-center flex justify-center">
@@ -804,10 +809,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].m11qform === "1" ?
+               {/*  {data[0].m11qform === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.M11QFormDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="M11QFormDate"
@@ -833,7 +839,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -876,10 +882,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].cd4vlreports === "1" ?
+                {/* {data[0].cd4vlreports === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.CD4VLReportsDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="CD4VLReportsDate"
@@ -905,7 +912,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -951,10 +958,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].initialtreatmentadherenceintake === "1" ?
+                {/* {data[0].initialtreatmentadherenceintake === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.InitialTreatmentAdherenceIntakeDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="InitialTreatmentAdherenceIntakeDate"
@@ -980,7 +988,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1025,10 +1033,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].treatmentadherenceupdates === "1" ?
+               {/*  {data[0].treatmentadherenceupdates === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.TreatmentAdherenceUpdatesDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="TreatmentAdherenceUpdatesDate"
@@ -1054,7 +1063,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1102,10 +1111,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS Collateral Information </p>
               </div>
               <div className="text-center">
-                {data[0].airscollateralinformation === "1" ?
+               {/*  {data[0].airscollateralinformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSCollateralInformationDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="AIRSCollateralInformationDate"
@@ -1131,7 +1141,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1174,10 +1184,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].airsdrugregimen === "1" ?
+                {/* {data[0].airsdrugregimen === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AirsDrugRegimenDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="AirsDrugRegimen"
@@ -1203,7 +1214,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1245,13 +1256,15 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS Financial Information </p>
               </div>
               <div className="text-center">
-                {data[0].airsfinancialinformation === "1" ?
+               {/*  {data[0].airsfinancialinformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSFinancialInformationDate.split('T')[0]}</p> : (
-                <>
-                
-                <input
+      
+               
+                )} */}
+                 
+                 <input
                   type="date"
                   id="AIRSFinancialInformation"
                   value={
@@ -1261,7 +1274,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
                   className="rounded-lg  p-1"
                   onChange={(e) => {
-   /*                  if (clientData.AIRSFinancialInformation){
+                    if (clientData.AIRSFinancialInformation){
                       setClientData({
                         ...clientData,
                         AIRSFinancialInformationDate: e.target.value,
@@ -1275,9 +1288,9 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                         AIRSFinancialInformation:
                           !clientData.AIRSFinancialInformation,
                       });
-                    } */
+                    }
                   }}
-                /></>)}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1316,10 +1329,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS HIV AIDS Risk History </p>
               </div>
               <div className="text-center">
-                {data[0].airshivaidsriskhistory === "1" ?
+                {/* {data[0].airshivaidsriskhistory === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="AIRSHIVAIDSRiskHistory"
@@ -1346,7 +1360,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                    
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1390,10 +1404,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].airshivmedicalprovider === "1" ?
+                {/* {data[0].airshivmedicalprovider === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AirsHIVMedicalProviderDate.split('T')[0]}</p> :
+               } */}
                 <input
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessmentUpdates"
@@ -1419,7 +1434,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1462,11 +1477,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].airshivstatushistory === "1" ?
+               {/*  {data[0].airshivstatushistory === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSHIVStatusHistoryDate.split('T')[0]}</p> :
-                <input
+                } */}
+
+<input
                   type="date"
                   id="ComprehensiveRiskBehaviorAssessmentUpdates"
                   value={
@@ -1491,7 +1508,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1532,10 +1549,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS HCV History </p>
               </div>
               <div className="text-center">
-                {data[0].airshcvhistory === "1" ?
+               {/*  {data[0].airshcvhistory === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSHCVHistoryDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="AIRSHCVHistory"
@@ -1560,7 +1578,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                    
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1602,10 +1620,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS Housing Information </p>
               </div>
               <div className="text-center">
-                {data[0].airshousinginformation === "1" ?
+                {/* {data[0].airshousinginformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSHousingInformationDate.split('T')[0]}</p> :
+               } */}
                 <input
                   type="date"
                   id="AIRSHousingInformation"
@@ -1632,7 +1651,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1671,10 +1690,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS Insurance Information </p>
               </div>
               <div className="text-center">
-                {data[0].airsinsuranceinformation === "1" ?
+                {/* {data[0].airsinsuranceinformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSInsuranceInformationDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="AIRSInsuranceInformation"
@@ -1700,7 +1720,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                    
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1739,10 +1759,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>AIRS Substance Use History </p>
               </div>
               <div className="text-center">
-                {data[0].airssubstanceusehistory === "1" ?
+               {/*  {data[0].airssubstanceusehistory === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.AIRSSubstanceUseHistoryDate.split('T')[0]}</p> :
+               } */}
                 <input
                   type="date"
                   id="AIRSSubstanceUseHistory"
@@ -1767,7 +1788,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                       });
                     }
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1804,10 +1825,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>LNE Client Rights </p>
               </div>
               <div className="text-center">
-                {data[0].lneclientrights === "1" ?
+                {/* {data[0].lneclientrights === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.LNEClientRightsDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="LNEClientRights"
@@ -1832,7 +1854,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1871,10 +1893,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>LNE Client Grievance Policy & Procedure </p>
               </div>
               <div className="text-center">
-                {data[0].lneclientgrievancepolicyprocedure === "1" ?
+               {/*  {data[0].lneclientgrievancepolicyprocedure === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
@@ -1900,7 +1923,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -1938,10 +1961,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>LNE Program Rules </p>
               </div>
               <div className="text-center">
-                {data[0].lneprogramrules === "1" ?
+                {/* {data[0].lneprogramrules === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.LNEProgramRulesDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
@@ -1966,7 +1990,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2005,10 +2029,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>LNE Emergency Contact Consent </p>
               </div>
               <div className="text-center">
-                {data[0].lneemergencycontactconsent === "1" ?
+               {/*  {data[0].lneemergencycontactconsent === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.LNEEmergencyContactConsentDate.split('T')[0]}</p> :
+               } */}
                 <input
                   type="date"
                   id="LNEClientGrievancePolicyProcedure"
@@ -2034,7 +2059,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2075,10 +2100,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>LNE Consent for Release of Confidential Information </p>
               </div>
               <div className="text-center">
-                {data[0].lneconsentforreleaseofconfidentialinformation === "1" ?
+                {/* {data[0].lneconsentforreleaseofconfidentialinformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="LNEConsentForReleaseOfConfidentialInformation"
@@ -2106,7 +2132,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2144,10 +2170,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>HIPAA Consent Form (OCA Form 960)</p>
               </div>
               <div className="text-center">
-                {data[0].hippaconsentform === "1" ?
+               {/*  {data[0].hippaconsentform === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.HIPPAConsentFormDate.split('T')[0]}</p> :
+               } */}
                 <input
                   type="date"
                   id="HIPPAConsentForm"
@@ -2172,7 +2199,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2215,10 +2242,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 </p>
               </div>
               <div className="text-center">
-                {data[0].nycdohmhnoticeofprivacypractices === "1" ?
+               {/*  {data[0].nycdohmhnoticeofprivacypractices === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="NYCDOHMHNoticeOfPrivacyPractices"
@@ -2245,7 +2273,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2283,10 +2311,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>Linkage, Retention, & Adherence Forms</p>
               </div>
               <div className="text-center">
-                {data[0].linkageretentionadherenceforms === "1" ?
+               {/*  {data[0].linkageretentionadherenceforms === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.LinkageRetentionAdherenceFormsDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="LinkageRetentionAdherenceForms"
@@ -2313,7 +2342,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2354,10 +2383,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>Internal Referral Information</p>
               </div>
               <div className="text-center">
-                {data[0].internalreferralinformation === "1" ?
+                {/* {data[0].internalreferralinformation === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.InternalReferralInformationDate.split('T')[0]}</p> :
+                } */}
+
                 <input
                   type="date"
                   id="LNEOutreachRetentionTrackingForm"
@@ -2384,7 +2415,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     }
                     
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2421,10 +2452,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>Identification</p>
               </div>
               <div className="text-center">
-                {data[0].lneclientreferralform === "1" ?
+                {/* {data[0].lneclientreferralform === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.LNEClientReferralFormDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="LNEClientReferralForm"
@@ -2448,7 +2480,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     });
                   }
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2485,10 +2517,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>HNS Readiness Assessment</p>
               </div>
               <div className="text-center">
-                {data[0].hnsreadinessform === "1" ?
+               {/*  {data[0].hnsreadinessform === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.HNSReadinessFormDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="HNSReadinessForm"
@@ -2514,7 +2547,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                       });
                     }
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2550,10 +2583,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>Support Groups</p>
               </div>
               <div className="text-center">
-                {data[0].supportgroups === "1" ?
+                {/* {data[0].supportgroups === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.SupportGroupsDate.split('T')[0]}</p> :
+                } */}
                 <input
                   type="date"
                   id="SupportGroups"
@@ -2579,7 +2613,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                       });
                     }
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
@@ -2615,10 +2649,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 <p>IDG</p>
               </div>
               <div className="text-center">
-                {data[0].idgform  === "1" ?
+              {/*   {data[0].idgform  === "1" ?
               
               <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
               {clientData.IDGFormDate.split('T')[0]}</p> :
+               } */}
+
                 <input
                   type="date"
                   id="IDGForm"
@@ -2644,7 +2680,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                       });
                     }
                   }}
-                />}
+                />
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
