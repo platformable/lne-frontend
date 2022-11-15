@@ -504,7 +504,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
             <h3 className="text-white text-center text-xs mt-2 uppercase font-black">Edit</h3>
             </div>
           </div>
-          {progressNotes.length > 0 ? progressNotes?.progressnotes.map((pn,index)=>{ return (
+          {progressNotes.progressnotes.length > 0 ? progressNotes?.progressnotes.map((pn,index)=>{ return (
             <div key={index}className="grid grid-cols-2 bg-white py-2 border p-5 text-center" >
             
               <p>{new Date(pn.date).toLocaleDateString('en-US')}</p>
