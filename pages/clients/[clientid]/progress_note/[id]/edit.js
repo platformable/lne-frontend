@@ -1632,18 +1632,35 @@ const ProgressNotesIndex = ({ data, id }) => {
                             id=""
                             defaultChecked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
+                            // onChange={(e) => {
+                            //   clientData[service.state_label] === "" ||
+                            //   clientData[`${service.state_label}Date`] === null
+                            //     ? setClientData({
+                            //         ...clientData,
+                            //         [service.state_label]: !service.value,
+                            //         [`${service.state_label}Date`]: new Date(),
+                            //       })
+                            //     : setClientData({
+                            //         ...clientData,
+                            //         [service.state_label]: !service.value,
+                            //       });
+                            // }}
                             onChange={(e) => {
-                              clientData[service.state_label] === "" ||
-                              clientData[`${service.state_label}Date`] === null
-                                ? setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                    [`${service.state_label}Date`]: new Date(),
-                                  })
-                                : setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                  });
+                              // if (clientData[service.state_label] && data[0][service.state_label] )
+                              
+                              //   {
+                                  setClientData({
+                                  ...clientData,
+                                  [service.state_label]: !clientData[service.state_label],
+                                }) 
+                                
+                              // } else {
+                              //   setClientData({
+                              //     ...clientData,
+                              //     [service.state_label]: clientData[service.state_label],
+                              //   }) 
+                              // }
+                                
                             }}
                           />
                           <span
@@ -1672,19 +1689,13 @@ const ProgressNotesIndex = ({ data, id }) => {
                             name=""
                             id=""
                             defaultChecked={service.value ? "checked" : ""}
-                            // disabled={clientData[`${service.state_label}Date`] ? true : false} */
+                           
                             onChange={(e) => {
-                              clientData[service.state_label] === false ||
-                              !clientData[`${service.state_label}Date`] 
-                                ? setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                    [`${service.state_label}Date`]: new Date(),
-                                  })
-                                : setClientData({
-                                    ...clientData,
-                                    [service.state_label]: !service.value,
-                                  });
+                              setClientData({
+                                ...clientData,
+                                [service.state_label]: !clientData[service.state_label],
+                              }) 
+                              
                             }}
                           />
                           <span
