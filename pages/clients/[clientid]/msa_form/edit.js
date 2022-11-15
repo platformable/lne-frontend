@@ -536,7 +536,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                   id="AIRSIntakeForm"
                   value={
                     clientData.ServiceActionPlanDate &&
-                    clientData.ServiceActionPlanDate
+                    clientData.ServiceActionPlanDate.split('T')[0]
                   }
                   //disabled={clientData.ServiceActionPlanDate ? true: false}
                   className="rounded-lg  p-1"
