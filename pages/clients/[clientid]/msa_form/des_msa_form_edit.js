@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import Layout from "../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Styles from "../../../../styles/ServiceAP.module.css";
@@ -592,7 +593,25 @@ const EditMsaFormPage = ({ data }) => {
           </div>
         </div> */}
         <main className="container mx-auto">
+          <div className="flex gap-x-5">
           <BackToDashboardButton />
+
+          <Link href={`/clients/${clientData.clientId}/progress_note`}>
+                 <div className="">
+                   <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
+                     <button id="myBtn" className="flex  items-center justify-center">
+                       {/* <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/> */}
+                       <p className="p-2 uppercase">
+                         Progress Note
+                       </p>
+                     </button>
+                   </div>
+                 </div>
+               </Link>
+          </div>
+
+               
+
           <section id="info" className="my-5">
             <div className="">
               <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">

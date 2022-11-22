@@ -30,7 +30,7 @@ export default function Header() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Support
+                Help
               </a>
             </div>
             <div className="grid justify-end">
