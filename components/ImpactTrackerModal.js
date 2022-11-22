@@ -12,7 +12,7 @@ export function getDate () {
     return result
 }
 
-const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
+const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId,progressNoteDate}) => {
     const router = useRouter()  
     const date = getDate()
 
@@ -97,7 +97,7 @@ const ImpactTrackerModal = ({clientId,progress_note_id,clientUniqueId}) => {
                             <p className='text-xs'>Did the client mention any of the following:</p>
                             <div className='flex text-blue-500'>
                                 <h5 className='mr-3'>Date</h5>
-                                <p>{date}</p>
+                                <p>{progressNoteDate}</p>
                             </div>
                     </div>   
                     <section className="">
