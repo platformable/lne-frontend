@@ -402,6 +402,9 @@ const ProgressNotesIndex = ({ data, id }) => {
     goal3servicecategory: data[0]?.goal3servicecategory,
     goal3summary: data[0]?.goal3summary,
     goal3targetdate: data[0]?.goal3targetdate,
+    goal1Details:data[0]?.goal1details,
+    goal2Details:data[0]?.goal2details,
+    goal3Details:data[0]?.goal3details,
   });
 
   const [dataForSAP, setDataForSAP] = useState({
@@ -878,10 +881,10 @@ const ProgressNotesIndex = ({ data, id }) => {
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue ">
-                    {serviceActionData?.goal1summary || "-"}
+                    {serviceActionData?.goal1Details || "-"}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                   <textarea
                     name=""
@@ -896,7 +899,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     }
                     defaultValue={clientData.goal1ProgressComments}
                   ></textarea>
-                </div>
+                </div> */}
               </div>
 
               <div className="goal-box">
@@ -923,10 +926,10 @@ const ProgressNotesIndex = ({ data, id }) => {
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal2summary || "-"}
+                    {serviceActionData?.goal2Details || "-"}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 2 Progress Comments</span>
                   <textarea
                     name=""
@@ -941,7 +944,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     }
                     defaultValue={clientData.goal2ProgressComments}
                   ></textarea>
-                </div>
+                </div> */}
               </div>
 
               <div className="goal-box">
@@ -968,10 +971,10 @@ const ProgressNotesIndex = ({ data, id }) => {
                 <div className="goal-summary my-2  ">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal3summary || "-"}
+                    {serviceActionData?.goal3Details || "-"}
                   </p>
                 </div>
-                <div className="">
+               {/*  <div className="">
                   <span className="">Goal 3 Progress Comments</span>
                   <textarea
                     name=""
@@ -986,7 +989,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     }
                     defaultValue={clientData.goal3ProgressComments}
                   ></textarea>
-                </div>
+                </div> */}
               </div>
             </div>
           </section>
@@ -1015,7 +1018,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                         setClientData({
                           ...clientData,
                           goal1Progress: true,
-                          goal1ProgressDate: crearFecha(),
+                          goal1ProgressDate: clientData.progressNoteDate,
                         })
                       }
                       defaultChecked={
@@ -1099,7 +1102,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                         setClientData({
                           ...clientData,
                           goal2Progress: true,
-                          goal2ProgressDate: crearFecha(),
+                          goal2ProgressDate: clientData.progressNoteDate,
                         })
                       }
                       defaultChecked={
@@ -1184,7 +1187,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                         setClientData({
                           ...clientData,
                           goal3Progress: true,
-                          goal3ProgressDate: crearFecha(),
+                          goal3ProgressDate: clientData.progressNoteDate,
                         })
                       }
                       defaultChecked={

@@ -132,7 +132,7 @@ const ProgressNotesIndex = ({ data }) => {
       InternalReferralInformationDate: data[0]?.internalreferralinformationdate === "1" ? true : false,
       LinkageRetentionAdherenceFormsDate: data[0]?.linkageretentionadherenceformsdate === "1" ? true : false,
       HNSReadinessFormDate: data[0]?.hnsreadinessformdate === "1" ? true : false,
-      ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false
+      ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
   })
 
 
@@ -483,6 +483,9 @@ const ProgressNotesIndex = ({ data }) => {
     goal3servicecategory: data[0]?.goal3servicecategory,
     goal3summary: data[0]?.goal3summary,
     goal3targetdate: data[0]?.goal3targetdate,
+    goal1Details:data[0]?.goal1details,
+    goal2Details:data[0]?.goal2details,
+    goal3Details:data[0]?.goal3details,
   });
 
   const [dataForSAP, setDataForSAP] = useState({
@@ -970,14 +973,14 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue ">
-                    {serviceActionData?.goal1summary}
+                    {serviceActionData?.goal1Details}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}></textarea>
-                </div>
+                </div> */}
               </div>
 
               <div className="goal-box">
@@ -998,27 +1001,30 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
+                      {
+                      serviceActionData?.goal2targetdate ?
+                      new Date(
                         serviceActionData?.goal2targetdate
                       ).toLocaleDateString("en", {
                         year: "numeric",
                         month: "numeric",
                         day: "numeric",
-                      })}
+                      }):"-"
+                      }
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal2summary || "-"}
+                    {serviceActionData?.goal2Details || "-"}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 2 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}></textarea>
-                </div>
+                </div> */}
               </div>
 
               <div className="goal-box">
@@ -1039,27 +1045,30 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
+                    {
+                      serviceActionData?.goal3targetdate ?
+                      new Date(
                         serviceActionData?.goal3targetdate
                       ).toLocaleDateString("en", {
                         year: "numeric",
                         month: "numeric",
                         day: "numeric",
-                      })}
+                      }):"-"
+                      }
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2  ">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal3summary || "-"}
+                    {serviceActionData?.goal3Details || "-"}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 3 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}></textarea>
-                </div>
+                </div> */}
               </div>
             </div>
           </section>
@@ -1088,7 +1097,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal1Progress: true,
-                          goal1ProgressDate: crearFecha(),
+                          goal1ProgressDate: clientData.progressNoteDate,
                         });
                       }}
                     />
@@ -1161,7 +1170,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal2Progress: true,
-                          goal2ProgressDate: crearFecha(),
+                          goal2ProgressDate: clientData.progressNoteDate,
                         })
                       }
                     />
@@ -1234,7 +1243,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal3Progress: true,
-                          goal3ProgressDate: crearFecha(),
+                          goal3ProgressDate: clientData.progressNoteDate,
                         })
                       }
                     />
