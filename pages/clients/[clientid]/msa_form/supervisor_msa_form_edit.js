@@ -778,7 +778,7 @@ console.log("date sap", data[0])
   const todaysDate = new Date();
 
 
-console.log("client datea form",clientData)
+console.log(" data",data)
 
 
 
@@ -1523,7 +1523,7 @@ console.log("client datea form",clientData)
               formIssues={clientData.SupportGroupsIssues}
               formString={"SupportGroups"}
               folder_url={data[0].intake_folder_url}
-              dependency_folder_url={data[0].intake_folder_url}
+              dependency_folder_url={data[0].support_groups_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}

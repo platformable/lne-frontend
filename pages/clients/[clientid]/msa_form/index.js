@@ -2415,7 +2415,7 @@ useEffect(()=>{
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.support_groups_folder_url ? data[0]?.support_groups_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox-folder.png'} alt="" width="34"/>
                 </a>
               </div>
