@@ -81,7 +81,7 @@ const RowMsaFormDES = ({
           className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}
         >
            <a
-            href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""}
+            href={data[0]?.support_groups_folder_url ? data[0]?.support_groups_folder_url : ""}
             target="_blank"
             rel="noreferrer"
           >
