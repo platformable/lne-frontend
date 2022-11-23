@@ -222,6 +222,11 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
       position: toast.POSITION.TOP_CENTER,
     });
   };
+
+  const reversedDates = progressNotes?.progressnotes.sort(
+    (a, b) => new Date(a.date) - new Date(b.date))
+
+    console.log("reversedDates",reversedDates)
   return (
     <>
       <Layout>
@@ -504,7 +509,8 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
             <h3 className="text-white text-center text-xs mt-2 uppercase font-black">Edit</h3>
             </div>
           </div>
-          {progressNotes.progressnotes.length > 0 ? progressNotes?.progressnotes.map((pn,index)=>{ return (
+          {progressNotes.progressnotes.length > 0 ? progressNotes?.progressnotes.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)).map((pn,index)=>{ return (
             <div key={index}className="grid grid-cols-2 bg-white py-2 border p-5 text-center" >
             
               <p>{new Date(pn.date).toLocaleDateString('en-US')}</p>
@@ -518,7 +524,7 @@ export default function ClientProfilePage({ data, impactBaseline, impactTracker,
           </div>
           </section> 
 
-      
+  );
         </div>
       </Layout>
       {showEditClientModal && (
