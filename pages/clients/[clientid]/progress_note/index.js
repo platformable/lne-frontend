@@ -66,73 +66,73 @@ const ProgressNotesIndex = ({ data }) => {
     return finalDate;
   };
   const [msaData, setMsaData] = useState({
-      clientId: data[0]?.clientid === "1" ? true : false,
+      clientId: data[0]?.clientid,
       AIRSCollateralInformation: data[0]?.airscollateralinformation === "1" ? true : false,
-      AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate === "1" ? true : false,
+      AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate ,
       AIRSFinancialInformation: data[0]?.airsfinancialinformation === "1" ? true : false,
-      AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate === "1" ? true : false,
+      AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate ,
       AIRSHIVAIDSRiskHistory: data[0]?.airshivaidsriskhistory === "1" ? true : false,
-      AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate === "1" ? true : false,
+      AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate ,
       AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
-      AIRSHCVHistoryDate: data[0]?.airshcvhistorydate === "1" ? true : false,
+      AIRSHCVHistoryDate: data[0]?.airshcvhistorydate,
       AIRSHousingInformation: data[0]?.airshousinginformation === "1" ? true : false,
-      AIRSHousingInformationDate: data[0]?.airshousinginformationdate === "1" ? true : false,
+      AIRSHousingInformationDate: data[0]?.airshousinginformationdate ,
       AIRSInsuranceInformation: data[0]?.airsinsuranceinformation === "1" ? true : false,
-      AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate === "1" ? true : false,
+      AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate,
       AIRSSubstanceUseHistory: data[0]?.airssubstanceusehistory === "1" ? true : false,
-      AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate === "1" ? true : false,
+      AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate,
       LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
-      LNEClientRightsDate: data[0]?.lneclientrightsdate === "1" ? true : false,
+      LNEClientRightsDate: data[0]?.lneclientrightsdate,
       LNEClientGrievancePolicyProcedure: data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
-      LNEClientGrievancePolicyProcedureDate: data[0]?.lneclientgrievancepolicyproceduredate === "1" ? true : false,
+      LNEClientGrievancePolicyProcedureDate: data[0]?.lneclientgrievancepolicyproceduredate ,
       LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
-      LNEProgramRulesDate: data[0]?.lneprogramrulesdate === "1" ? true : false,
+      LNEProgramRulesDate: data[0]?.lneprogramrulesdate,
       LNEEmergencyContactConsent: data[0]?.lneemergencycontactconsent === "1" ? true : false,
-      LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate === "1" ? true : false,
+      LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate,
       LNEConsentForReleaseOfConfidentialInformation: data[0]?.lneconsentforreleaseofconfidentialinformation === "1" ? true : false,
-      LNEConsentForReleaseOfConfidentialInformationDate: data[0]?.lneconsentforreleaseofconfidentialinformationdate === "1" ? true : false,
+      LNEConsentForReleaseOfConfidentialInformationDate: data[0]?.lneconsentforreleaseofconfidentialinformationdate,
       HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
-      HIPPAConsentFormDate: data[0]?.hippaconsentformdate === "1" ? true : false,
+      HIPPAConsentFormDate: data[0]?.hippaconsentformdate ,
       NYCDOHMHNoticeOfPrivacyPractices: data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
-      NYCDOHMHNoticeOfPrivacyPracticesDate: data[0]?.nycdohmhnoticeofprivacypracticesdate === "1" ? true : false,
+      NYCDOHMHNoticeOfPrivacyPracticesDate: data[0]?.nycdohmhnoticeofprivacypracticesdate,
       LNEOutreachRetentionTrackingForm: data[0]?.lneoutreachretentiontrackingform === "1" ? true : false,
-      LNEOutreachRetentionTrackingFormDate: data[0]?.lneoutreachretentiontrackingformdate === "1" ? true : false,
+      LNEOutreachRetentionTrackingFormDate: data[0]?.lneoutreachretentiontrackingformdate,
       LNEReferralInformation: data[0]?.lnereferralinformation === "1" ? true : false,
-      LNEReferralInformationDate: data[0]?.lnereferralinformationdate === "1" ? true : false,
+      LNEReferralInformationDate: data[0]?.lnereferralinformationdate,
       LNEClientReferralForm: data[0]?.lneclientreferralform === "1" ? true : false,
-      LNEClientReferralFormDate: data[0]?.lneclientreferralformdate === "1" ? true : false,
+      LNEClientReferralFormDate: data[0]?.lneclientreferralformdate ,
       LNEHNSEligibilityForm: data[0]?.lnehnseligibilityform === "1" ? true : false,
-      LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate === "1" ? true : false,
-      progressNoteDate: data[0]?.progressnotedate === "1" ? true : false,
+      LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate,
+      progressNoteDate: data[0]?.progressnotedate ,
       StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false,
-      StatusChangesFormDate: data[0]?.statuschangesformdate === "1" ? true : false,
+      StatusChangesFormDate: data[0]?.statuschangesformdate,
       ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates === "1" ? true : false,
-      ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate === "1" ? true : false,
+      ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate ,
       M11QForm: data[0]?.m11qform === "1" ? true : false,
-      M11QFormDate: data[0]?.m11qformdate === "1" ? true : false,
+      M11QFormDate: data[0]?.m11qformdate ,
       CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false,
-      CD4VLReportsDate: data[0]?.cd4vlreportsdate === "1" ? true : false,
+      CD4VLReportsDate: data[0]?.cd4vlreportsdate ,
       InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake === "1" ? true : false,
-      InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate === "1" ? true : false,
+      InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate ,
       TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates === "1" ? true : false,
-      TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate === "1" ? true : false,
+      TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate ,
       AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false,
-      AIRSDrugRegimenDate: data[0]?.airsdrugregimendate === "1" ? true : false,
+      AIRSDrugRegimenDate: data[0]?.airsdrugregimendate,
       AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false,
-      AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate === "1" ? true : false,
+      AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate,
       AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider === "1" ? true : false,
-      AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate === "1" ? true : false,
+      AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate,
       SupportGroups: data[0]?.supportgroups === "1" ? true : false,
-      SupportGroupsDate: data[0]?.supportgroupsdate === "1" ? true : false,
+      SupportGroupsDate: data[0]?.supportgroupsdate,
       IDGForm: data[0]?.idgform === "1" ? true : false,
-      IDGFormDate: data[0]?.idgformdate === "1" ? true : false,
+      IDGFormDate: data[0]?.idgformdate,
       HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false,
       InternalReferralInformation: data[0]?.internalreferralinformation === "1" ? true : false,
       LinkageRetentionAdherenceForms: data[0]?.linkageretentionadherenceforms === "1" ? true : false,
-      InternalReferralInformationDate: data[0]?.internalreferralinformationdate === "1" ? true : false,
-      LinkageRetentionAdherenceFormsDate: data[0]?.linkageretentionadherenceformsdate === "1" ? true : false,
-      HNSReadinessFormDate: data[0]?.hnsreadinessformdate === "1" ? true : false,
-      ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false
+      InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
+      LinkageRetentionAdherenceFormsDate: data[0]?.linkageretentionadherenceformsdate ,
+      HNSReadinessFormDate: data[0]?.hnsreadinessformdate ,
+      ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
   })
 
 
@@ -483,6 +483,9 @@ const ProgressNotesIndex = ({ data }) => {
     goal3servicecategory: data[0]?.goal3servicecategory,
     goal3summary: data[0]?.goal3summary,
     goal3targetdate: data[0]?.goal3targetdate,
+    goal1Details:data[0]?.goal1details,
+    goal2Details:data[0]?.goal2details,
+    goal3Details:data[0]?.goal3details,
   });
 
   const [dataForSAP, setDataForSAP] = useState({
@@ -549,7 +552,9 @@ const ProgressNotesIndex = ({ data }) => {
             handleMsaformUpdate();
             handleServiceActionPlanFormUpdate();
             notifyMessage();
-            setShowImpactTrackerModal(!showImpactTrackerModal);
+           setTimeout(()=>{
+            setShowImpactTrackerModal(!showImpactTrackerModal)
+           },1500) 
           }
         })
         .catch(function (error) {
@@ -561,7 +566,7 @@ const ProgressNotesIndex = ({ data }) => {
 
   return (
     <>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={1500} />
       <Layout>
         <div className="container mx-auto">
           <h1 className="font-black text-center my-5">Progress Notes </h1>
@@ -970,14 +975,14 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue ">
-                    {serviceActionData?.goal1summary}
+                    {serviceActionData?.goal1Details}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}></textarea>
-                </div>
+                </div> */}
               </div>
 
               <div className="goal-box">
@@ -998,27 +1003,30 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
+                      {
+                      serviceActionData?.goal2targetdate ?
+                      new Date(
                         serviceActionData?.goal2targetdate
                       ).toLocaleDateString("en", {
                         year: "numeric",
                         month: "numeric",
                         day: "numeric",
-                      })}
+                      }):"-"
+                      }
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal2summary || "-"}
+                    {serviceActionData?.goal2Details || "-"}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 2 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}></textarea>
-                </div>
+                </div> */}
               </div>
 
               <div className="goal-box">
@@ -1039,27 +1047,30 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {new Date(
+                    {
+                      serviceActionData?.goal3targetdate ?
+                      new Date(
                         serviceActionData?.goal3targetdate
                       ).toLocaleDateString("en", {
                         year: "numeric",
                         month: "numeric",
                         day: "numeric",
-                      })}
+                      }):"-"
+                      }
                     </p>
                   </div>
                 </div>
                 <div className="goal-summary my-2  ">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal3summary || "-"}
+                    {serviceActionData?.goal3Details || "-"}
                   </p>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <span className="">Goal 3 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}></textarea>
-                </div>
+                </div> */}
               </div>
             </div>
           </section>
@@ -1088,7 +1099,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal1Progress: true,
-                          goal1ProgressDate: crearFecha(),
+                          goal1ProgressDate: clientData.progressNoteDate,
                         });
                       }}
                     />
@@ -1161,7 +1172,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal2Progress: true,
-                          goal2ProgressDate: crearFecha(),
+                          goal2ProgressDate: clientData.progressNoteDate,
                         })
                       }
                     />
@@ -1234,7 +1245,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal3Progress: true,
-                          goal3ProgressDate: crearFecha(),
+                          goal3ProgressDate: clientData.progressNoteDate,
                         })
                       }
                     />
@@ -1320,7 +1331,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal1Completed: true,
-                          goal1CompletedDate: crearFecha(),
+                          goal1CompletedDate: clientData.progressNoteDate
                         });
                         setDataForSAP({ ...dataForSAP, goal1Completed: true });
                       }}
@@ -1398,7 +1409,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal2Completed: true,
-                          goal2CompletedDate: crearFecha(),
+                          goal2CompletedDate: clientData.progressNoteDate
                         });
                         setDataForSAP({ ...dataForSAP, goal2Completed: true });
                       }}
@@ -1477,7 +1488,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal3Completed: true,
-                          goal3CompletedDate: crearFecha(),
+                          goal3CompletedDate: clientData.progressNoteDate
                         });
                         setDataForSAP({ ...dataForSAP, goal3Completed: true });
                       }}
@@ -1771,6 +1782,7 @@ const ProgressNotesIndex = ({ data }) => {
           clientId={clientData.clientId}
           clientUniqueId={clientData.clientUniqueId}
           progress_note_id={progressNoteId}
+          progressNoteDate={clientData.progressNoteDate}
         />
       )}
     </>
