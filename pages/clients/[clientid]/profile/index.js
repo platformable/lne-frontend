@@ -63,6 +63,7 @@ export default function ClientProfilePage({
   const [showDeleteClientModal, setShowDeleteClientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
+  const [progNotes,setProgNotes]=useState([])
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
@@ -232,7 +233,7 @@ export default function ClientProfilePage({
       progressNotes.progressnotes.length > 0 &&
       data[0].planstartdate !== null
     ) {
-      console.log("progress notes date");
+     // console.log("progress notes date");
       const planstartdate =
         progressNotes?.progressnotes.length > 1
           ? progressNotes?.progressnotes.splice(-1).pop().date
@@ -249,7 +250,7 @@ export default function ClientProfilePage({
       let fechaFin = new Date();
 
       let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      console.log("totalDays", totalDays);
+      //console.log("totalDays", totalDays);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       return (
@@ -281,18 +282,28 @@ export default function ClientProfilePage({
     (a, b) => new Date(a.date) - new Date(b.date)
   ); */
 
-  console.log("progressNotes",progressNotes)
+  //console.log("progressNotes",progressNotes)
 
 const [hasMounted,setHasMounted]=useState(false)
 
-/* useEffect(() => {
+useEffect(() => {
     setHasMounted(true);
+    
+    const getPnData = async ()=> {
+      const clientid=data[0].clientid
+      console.log("clientid",clientid)
+      const getPnData= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
+      const pnData= await getPnData.json()
+      const response = setProgNotes(pnData[0])
+    }
+    getPnData()
+
   }, []);
   if (!hasMounted) {
     return null;
-  } */
-
-  console.log("data del profile",progressNotes.progressnotes)
+  }
+  console.log("progNotes",progNotes)
+  
   return (
     <>
       <Layout>
@@ -588,8 +599,8 @@ const [hasMounted,setHasMounted]=useState(false)
               </div>
 
 
-              {progressNotes?.progressnotes.length > 0 ? 
-                progressNotes?.progressnotes
+            { progNotes?.progressnotes?.length > 0 ? 
+                progNotes?.progressnotes
                   .sort((a, b) => new Date(a.date) - new Date(b.date))
                   .map((pn, index) => {
                     return (
@@ -624,9 +635,8 @@ const [hasMounted,setHasMounted]=useState(false)
 
                     )
                   }
-              ) : <center className="mt-5 font-black">No progress notes yet</center>
-                }
-
+              ) : <center className="mt-5 font-black">No progress notes yet</center> 
+              }
             </div>
           </section>
         </div>
