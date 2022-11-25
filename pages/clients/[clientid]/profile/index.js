@@ -285,12 +285,12 @@ export default function ClientProfilePage({
 
 const [hasMounted,setHasMounted]=useState(false)
 
-useEffect(() => {
+/* useEffect(() => {
     setHasMounted(true);
   }, []);
   if (!hasMounted) {
     return null;
-  }
+  } */
 
   console.log("data del profile",progressNotes.progressnotes)
   return (
