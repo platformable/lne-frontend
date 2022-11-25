@@ -189,14 +189,14 @@ export default function ClientProfilePage({
 
   const checkMessage3 = () => {
     if (
-      (progressNotes.progressnotes.length === 0 &&
+      (progNotes[0]?.progressnotes.length === 0 &&
         data[0].planstartdate === "") ||
       data[0].planstartdate === null
     ) {
       return null;
     }
     if (
-      progressNotes.progressnotes.length === 0 &&
+      progNotes[0]?.progressnotes.length <= 0 &&
       data[0].planstartdate !== ""
     ) {
       const planstartdate = data[0].planstartdate;
@@ -230,14 +230,14 @@ export default function ClientProfilePage({
     }
 
     if (
-      progressNotes.progressnotes.length > 0 &&
+      progNotes[0]?.progressnotes.length > 0 &&
       data[0].planstartdate !== null
     ) {
      // console.log("progress notes date");
       const planstartdate =
-        progressNotes?.progressnotes.length > 1
-          ? progressNotes?.progressnotes.splice(-1).pop().date
-          : progressNotes?.progressnotes[0].date;
+      progNotes[0]?.progressnotes.length > 1
+          ? progNotes[0]?.progressnotes.splice(-1).pop().date
+          : progNotes[0]?.progressnotes[0].date;
 
       let date_1 =
         planstartdate === null
@@ -291,10 +291,9 @@ useEffect(() => {
     
     const getPnData = async ()=> {
       const clientid=data[0].clientid
-      console.log("clientid",clientid)
       const getPnData= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
       const pnData= await getPnData.json()
-      const response = setProgNotes(pnData[0])
+      const response = setProgNotes(pnData)
     }
     getPnData()
 
@@ -302,7 +301,7 @@ useEffect(() => {
   if (!hasMounted) {
     return null;
   }
-  console.log("progNotes",progNotes)
+  console.log("progNotes", progNotes)
   
   return (
     <>
@@ -598,9 +597,8 @@ useEffect(() => {
                 </div>
               </div>
 
-
-            { progNotes?.progressnotes?.length > 0 ? 
-                progNotes?.progressnotes
+            { progNotes[0]?.progressnotes?.length > 0 ? 
+                progNotes[0]?.progressnotes
                   .sort((a, b) => new Date(a.date) - new Date(b.date))
                   .map((pn, index) => {
                     return (
