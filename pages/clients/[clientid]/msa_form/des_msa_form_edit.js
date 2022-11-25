@@ -708,9 +708,9 @@ const EditMsaFormPage = ({ data }) => {
             >
               <div></div>
               <div></div>
-              <p className="text-center">Date added</p>
+              {/* <p className="text-center">Date added</p> */}
               <p className="text-center">Dropbox Folder</p>
-              <p className="text-center">Date last updated</p>
+              <p className="text-center">Date last updated by DES</p>
               <div className="flex items-center">
                 <p className="text-start">PDF version uploaded</p>
               </div>
