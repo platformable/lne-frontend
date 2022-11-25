@@ -234,9 +234,10 @@ export default function ClientProfilePage({
       data[0].planstartdate !== null
     ) {
      // console.log("progress notes date");
+     const pn=progNotes[0].progressnotes
       const planstartdate =
-      progNotes[0]?.progressnotes.length > 1
-          ? progNotes[0]?.progressnotes.splice(-1).pop().date
+      pn.length > 1
+          ? pn[pn.length-1]?.date
           : progNotes[0]?.progressnotes[0].date;
 
       let date_1 =
@@ -250,7 +251,7 @@ export default function ClientProfilePage({
       let fechaFin = new Date();
 
       let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      //console.log("totalDays", totalDays);
+      console.log("totalDays", totalDays);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       return (
