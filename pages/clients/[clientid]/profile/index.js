@@ -63,6 +63,7 @@ export default function ClientProfilePage({
   const [showDeleteClientModal, setShowDeleteClientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
+  const [progNotes,setProgNotes]=useState([])
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
@@ -188,14 +189,14 @@ export default function ClientProfilePage({
 
   const checkMessage3 = () => {
     if (
-      (progressNotes.progressnotes.length === 0 &&
+      (progNotes[0]?.progressnotes.length === 0 &&
         data[0].planstartdate === "") ||
       data[0].planstartdate === null
     ) {
       return null;
     }
     if (
-      progressNotes.progressnotes.length === 0 &&
+      progNotes[0]?.progressnotes.length <= 0 &&
       data[0].planstartdate !== ""
     ) {
       const planstartdate = data[0].planstartdate;
@@ -229,14 +230,15 @@ export default function ClientProfilePage({
     }
 
     if (
-      progressNotes.progressnotes.length > 0 &&
+      progNotes[0]?.progressnotes.length > 0 &&
       data[0].planstartdate !== null
     ) {
-      console.log("progress notes date");
+     // console.log("progress notes date");
+     const pn=progNotes[0].progressnotes
       const planstartdate =
-        progressNotes?.progressnotes.length > 1
-          ? progressNotes?.progressnotes.splice(-1).pop().date
-          : progressNotes?.progressnotes[0].date;
+      pn.length > 1
+          ? pn[pn.length-1]?.date
+          : progNotes[0]?.progressnotes[0].date;
 
       let date_1 =
         planstartdate === null
@@ -281,18 +283,27 @@ export default function ClientProfilePage({
     (a, b) => new Date(a.date) - new Date(b.date)
   ); */
 
-  console.log("progressNotes",progressNotes)
+  //console.log("progressNotes",progressNotes)
 
 const [hasMounted,setHasMounted]=useState(false)
 
 useEffect(() => {
     setHasMounted(true);
+    
+    const getPnData = async ()=> {
+      const clientid=data[0].clientid
+      const getPnData= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
+      const pnData= await getPnData.json()
+      const response = setProgNotes(pnData)
+    }
+    getPnData()
+
   }, []);
   if (!hasMounted) {
     return null;
   }
-
-  console.log("data del profile",progressNotes.progressnotes)
+  console.log("progNotes", progNotes)
+  
   return (
     <>
       <Layout>
@@ -587,9 +598,8 @@ useEffect(() => {
                 </div>
               </div>
 
-
-              {progressNotes?.progressnotes.length > 0 ? 
-                progressNotes?.progressnotes
+            { progNotes[0]?.progressnotes?.length > 0 ? 
+                progNotes[0]?.progressnotes
                   .sort((a, b) => new Date(a.date) - new Date(b.date))
                   .map((pn, index) => {
                     return (
@@ -624,9 +634,8 @@ useEffect(() => {
 
                     )
                   }
-              ) : <center className="mt-5 font-black">No progress notes yet</center>
-                }
-
+              ) : <center className="mt-5 font-black">No progress notes yet</center> 
+              }
             </div>
           </section>
         </div>
