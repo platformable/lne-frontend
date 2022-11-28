@@ -69,11 +69,11 @@ export default function CreateClientModal({
   };
 
   const changeSaving = (error) => {
-    if (error.response.status === 409) {
+    
       setSaving((prevSelected) => {
         return !prevSelected;
-      });
-    }
+      
+    })
   };
 
   const checkEmtpyFields = () => {
@@ -109,6 +109,8 @@ export default function CreateClientModal({
     ) {
       checkErrorsFields();
     } else {
+      notifyMessage();
+
       axios(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`, {
         method: "POST",
         headers: {
@@ -118,9 +120,8 @@ export default function CreateClientModal({
         data: clientData,
       })
         .then(function (response) {
-          if (response.status === 200 || response.statusText === "Ok") {
+          if (response.status === 200 || response.statusText === "OK") {
             setShowCreateClientModal(!showCreateClientModal);
-            notifyMessage();
             setTimeout(() => {
               router.reload();
             }, 50000);
