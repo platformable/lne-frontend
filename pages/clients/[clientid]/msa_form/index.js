@@ -390,7 +390,7 @@ useEffect(()=>{
               <div className="text-center">
                 <input
                   type="date"
-                  id="AIRSIntakeForm"
+                  id="ComprehensiveRiskBehaviorAssessment"
                   value={
                     clientData.ComprehensiveRiskBehaviorAssessmentDate &&
                     clientData.ComprehensiveRiskBehaviorAssessmentDate
@@ -398,7 +398,7 @@ useEffect(()=>{
                   /* disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false} */
                   className="rounded-lg  p-1"
                   onChange={(e) => {
-                    if(clientData){
+                    if(clientData.ComprehensiveRiskBehaviorAssessmentDate){
                       setClientData({
                         ...clientData,
                         ComprehensiveRiskBehaviorAssessmentDate: e.target.value,
@@ -634,7 +634,7 @@ useEffect(()=>{
                 />
               </div>
               <div>
-                <p>Status Changes/ClosureForms</p>
+                <p>Status Changes/Closure Forms</p>
               </div>
               <div className="text-center">
                 <input
@@ -713,17 +713,17 @@ useEffect(()=>{
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
                   className="rounded-lg  p-1"
                   onChange={(e) => {
-                    if(clientData.StatusChangesForm ){
+                    if(clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate ){
                       setClientData({
                         ...clientData,
-                        StatusChangesFormDate: e.target.value,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesDate: e.target.value,
                       });
                     } else {
                       setClientData({
                         ...clientData,
-                        StatusChangesFormDate: e.target.value,
-                        StatusChangesForm :
-                          !clientData.StatusChangesForm ,
+                        ComprehensiveRiskBehaviorAssessmentUpdatesDate: e.target.value,
+                        ComprehensiveRiskBehaviorAssessmentUpdates :
+                          !clientData.ComprehensiveRiskBehaviorAssessmentUpdates                                           ,
                       });
                     }
                     
