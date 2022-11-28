@@ -234,7 +234,7 @@ export default function ClientProfilePage({
       data[0].planstartdate !== null
     ) {
      // console.log("progress notes date");
-     const pn=progNotes[0].progressnotes
+     const pn=progNotes[0].progressnotes.sort((a, b) => new Date(a.date) - new Date(b.date))
       const planstartdate =
       pn.length > 1
           ? pn[pn.length-1]?.date
