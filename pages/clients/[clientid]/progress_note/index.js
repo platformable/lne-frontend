@@ -554,7 +554,7 @@ const ProgressNotesIndex = ({ data }) => {
             notifyMessage();
            setTimeout(()=>{
             setShowImpactTrackerModal(!showImpactTrackerModal)
-           },5000) 
+           },1500) 
           }
         })
         .catch(function (error) {
@@ -566,7 +566,7 @@ const ProgressNotesIndex = ({ data }) => {
 
   return (
     <>
-      <ToastContainer autoClose={5000} />
+      <ToastContainer autoClose={1500} />
       <Layout>
         <div className="container mx-auto">
           <h1 className="font-black text-center my-5">Progress Notes </h1>

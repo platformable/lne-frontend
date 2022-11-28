@@ -64,7 +64,7 @@ const RowMsaFormDES = ({
         <div>
           <p>{fieldName}</p>
         </div>
-        <div className="text-center">
+        {/* <div className="text-center">
           <input
             type="date"
             id=""
@@ -76,12 +76,12 @@ const RowMsaFormDES = ({
             disabled={true}
             
           />
-        </div>
+        </div> */}
         <div
           className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}
         >
            <a
-            href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""}
+            href={data[0]?.support_groups_folder_url ? data[0]?.support_groups_folder_url : ""}
             target="_blank"
             rel="noreferrer"
           >

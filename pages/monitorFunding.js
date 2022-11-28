@@ -660,7 +660,7 @@ console.log(monitorMetricsData)
     if(encounters < 15){
       return 'bg-red-500 text-white'
     }
-    if(encounters > 15 && encounters > 30){
+    if(encounters > 15 && encounters < 30){
       return 'bg-orange-100 text-white'
     }
     if(encounters > 30){
