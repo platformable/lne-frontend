@@ -298,7 +298,7 @@ useEffect(() => {
     }
     getPnData()
 
-  }, []);
+  }, [progNotes.progressnotes]);
   if (!hasMounted) {
     return null;
   }
