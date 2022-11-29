@@ -24,15 +24,13 @@ export default function EditClientModal({
 
 console.log("client",client)
 
-
-  const removeFirstLetterOfId = client.clientid.slice(1);
-const IdWithNoLetters = removeFirstLetterOfId.slice(0,-1);
+const IdWithNoLetters = client?.clientid?.slice(1,-1);
 
   const [clientData,setClientData]= useState({
     id:client?.id,
     clientFirstName:client?.clientfirstname,
     clientLastName:client?.clientlastname,
-    clientSSN:Number(IdWithNoLetters),
+    clientSSN: IdWithNoLetters,
     clientDateCreated:new Date(client.clientdatecreated),
     clientActive:client?.clientactive ==='1' ? "1": "0",
     clientHCWID: client?.clienthcwid,
@@ -48,7 +46,7 @@ const IdWithNoLetters = removeFirstLetterOfId.slice(0,-1);
   const createClientId=()=>{
     console.log("creating id")
     const firstNameLetter = clientData?.clientFirstName?.slice(0,1)
-    let shortSsn=String(clientData?.clientSSN)?.slice(-4)
+    let shortSsn=String(clientData?.clientSSN)
     let shortSsnNumber=shortSsn
     const lastnameFirstLetter=clientData?.clientLastName?.slice(0,1)
     const result =firstNameLetter.toUpperCase()+shortSsnNumber+lastnameFirstLetter.toUpperCase()
@@ -106,7 +104,8 @@ else if(
   console.log("response",response)
   notifyMessage();
   setTimeout(() => {
-    router.reload();
+    // router.reload();
+    router.push("/clients")
   }, 1000);
      setShowEditClientModal(!showEditClientModal);
  })
@@ -130,6 +129,12 @@ clientHCWLastname:filteredusers[0]?.lastname
 })
 }
 
+const isNumberKey = (e) => {
+  const invalidChars = ["-", "+", "e"];
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+}
 
 console.log("clientData",clientData)
 
@@ -198,6 +203,7 @@ console.log("clientData",clientData)
                 onChange={(e) =>
                   setClientData({ ...clientData, clientSSN: (e.target.value).toString() })
                 }
+                onKeyDown={isNumberKey}
               />
 
               </div>
