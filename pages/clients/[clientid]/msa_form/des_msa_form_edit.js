@@ -599,7 +599,7 @@ const EditMsaFormPage = ({ data }) => {
                  <div className="">
                    <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
                      <button id="myBtn" className="flex  items-center justify-center">
-                         <p className="p-2 text-base uppercase">
+                         <p className="p-2  uppercase">
                        View Action Plan
                        </p>
                      </button>

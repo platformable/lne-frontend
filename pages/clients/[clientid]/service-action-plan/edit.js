@@ -80,7 +80,6 @@ export default function EditServiceActionPlan({ data }) {
   });
 
 
-  console.log("data",data)
 
   const genericGoals = [
 // "Attend all health appointments",
@@ -126,18 +125,22 @@ export default function EditServiceActionPlan({ data }) {
     });
   };
 
-  const displayGenericGoals = (arr) => {
+  const displayGenericGoals = (arr,prevSelectedOption) => {
     return arr.map((goal, index) => {
+
+      if(prevSelectedOption===goal){
+        return null
+      } else {
       return (
         <option className="" value={goal} key={index}>
           {goal}
         </option>
-      );
+      )}
     });
+  
   };
 
   const updateClientActionPlan = ()=>{
-    console.log('id before put',clientData.clientId)
     axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientData.clientId}`, {
       clientData
     })
@@ -325,12 +328,12 @@ console.log("clientdata",clientData)
                       }
                       className={`${!activeActionPlan? 'appearance-none':'' }  w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
-                      <option value={clientData.goal1Summary} selected="true">
+                      <option >
                         {clientData.goal1Summary}
                       </option>
                       {/*   <option  disabled="disabled">Select</option> */}
 
-                      {displayGenericGoals(genericGoals)}
+                      {displayGenericGoals(genericGoals,clientData.goal1Summary)}
                     </select>
                   </label>
 
@@ -496,7 +499,7 @@ console.log("clientdata",clientData)
                       </option>
                       {/*   <option  disabled="disabled">Select</option> */}
 
-                      {displayGenericGoals(genericGoals)}
+                      {displayGenericGoals(genericGoals,clientData.goal2Summary)}
                     </select>
                   </label>
 
@@ -665,7 +668,7 @@ console.log("clientdata",clientData)
                       </option>
                       {/*   <option  disabled="disabled">Select</option> */}
 
-                      {displayGenericGoals(genericGoals)}
+                      {displayGenericGoals(genericGoals,clientData.goal3Summary)}
                     </select>
                   </label>
 
@@ -898,11 +901,14 @@ console.log("clientdata",clientData)
           <div className="container mx-auto flex justify-center">
            
               <div id="buttons-container" className="flex items-center justify-around">
+               {loggedUserRole==='DES' ? null :
+               <>
                 <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
                 onClick={() => setActiveActionPlan(!activeActionPlan)}>
                   <img src='/edit-action-plan-button.svg' alt='edit action plan button' ></img>
                   Edit Action Plan
-                </button>
+                </button> 
+               
                 
                 <button
                 className="flex items-center justify-around w-36 bg-blue-500 hover:bg-blue-300  py-1 mx-4 rounded text-white  "
@@ -923,7 +929,8 @@ console.log("clientdata",clientData)
               )}
               content={() => componentRef.current}
               /> 
-             
+              </>
+             }
               </div>
             
             
