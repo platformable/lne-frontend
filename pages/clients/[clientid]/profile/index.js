@@ -189,21 +189,21 @@ export default function ClientProfilePage({
 
   const checkMessage3 = () => {
     if (
-      (progNotes[0]?.progressnotes.length === 0 &&
-        data[0].planstartdate === "") ||
-      data[0].planstartdate === null
+      (progNotes[0]?.progressnotes?.length === 0 &&
+        data[0]?.planstartdate === "") ||
+      data[0]?.planstartdate === null
     ) {
       return null;
     }
     if (
-      progNotes[0]?.progressnotes.length <= 0 &&
-      data[0].planstartdate !== ""
+      progNotes[0]?.progressnotes?.length <= 0 &&
+      data[0]?.planstartdate !== ""
     ) {
-      const planstartdate = data[0].planstartdate;
+      const planstartdate = data[0]?.planstartdate;
 
       let date_1 =
         planstartdate === null
-          ? new Date(data[0].clientdatecreated)
+          ? new Date(data[0]?.clientdatecreated)
           : new Date(planstartdate);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
@@ -230,19 +230,19 @@ export default function ClientProfilePage({
     }
 
     if (
-      progNotes[0]?.progressnotes.length > 0 &&
-      data[0].planstartdate !== null
+      progNotes[0]?.progressnotes?.length > 0 &&
+      data[0]?.planstartdate !== null
     ) {
      // console.log("progress notes date");
      const pn=progNotes[0].progressnotes.sort((a, b) => new Date(a.date) - new Date(b.date))
       const planstartdate =
       pn.length > 1
           ? pn[pn.length-1]?.date
-          : progNotes[0]?.progressnotes[0].date;
+          : progNotes[0]?.progressnotes[0]?.date;
 
       let date_1 =
         planstartdate === null
-          ? new Date(data[0].clientdatecreated)
+          ? new Date(data[0]?.clientdatecreated)
           : new Date(planstartdate);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
@@ -291,7 +291,7 @@ useEffect(() => {
     setHasMounted(true);
     
     const getPnData = async ()=> {
-      const clientid=data[0].clientid
+      const clientid=data[0]?.clientid
       const getPnData= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
       const pnData= await getPnData.json()
       const response = setProgNotes(pnData)
@@ -413,9 +413,9 @@ useEffect(() => {
                       <div>
                         {/*   <p className="font-semibold">Date Of Last Action</p>
                         <p className="justify-self-end font-semibold text-dark-blue">
-                          {data[0].planstartdate === null
+                          {data[0]?.planstartdate === null
                             ? new Date(
-                                data[0].clientdatecreated
+                                data[0]?.clientdatecreated
                               ).toLocaleDateString("en-EN", {
                                 year: "numeric",
                                 month: "numeric",
@@ -529,7 +529,7 @@ useEffect(() => {
                 data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" ? (
                   <Link
                     href={
-                      data[0].servicesactionplanid
+                      data[0]?.servicesactionplanid
                         ? `/clients/${data[0]?.clientid}/service-action-plan/edit`
                         : `/clients/${data[0]?.clientid}/service-action-plan`
                     }
