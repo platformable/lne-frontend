@@ -641,26 +641,30 @@ console.log("monitorMetricsData",monitorMetricsData)
      } 
     }
 
-     const handleSortByDate=()=>{
-        
-         setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
-        if(monitorFundingTableDataSortingByDate){
-          const result = monitorMetricsData.sort(function(a,b){
-            return new Date(b.startdate) - new Date(a.startdate);
-             
-          });
-          setMonitorMetricsData(prevMovies => ([...result]));
-       
-        } else {
-          const result = monitorMetricsData.sort(function(a,b){
-            return new Date(a.startdate) - new Date(b.startdate);
-             
-          });
-          setMonitorMetricsData(prevMovies => ([...result]));
-        } 
+    const handleSortByDate=()=>{
+      const emptyValues = monitorMetricsData.filter(data => data.serviceActionPlanDate === "-")
+      const filledValues = monitorMetricsData.filter(data => data.serviceActionPlanDate !== "-")
 
-     
-       }
+      setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
+     if(monitorFundingTableDataSortingByDate){
+       const result = filledValues.sort(function(a,b){
+         
+         return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
+
+       });
+       setMonitorMetricsData(prevMovies => ([...result, ...emptyValues]));
+
+     } else {
+       const result = filledValues.sort(function(a,b){
+         
+         return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
+       });
+       setMonitorMetricsData(prevMovies => ([...result, ...emptyValues]));
+     } 
+
+  
+    }
+
 
 
        const handleTableSearch=(value)=>{
@@ -825,7 +829,7 @@ console.log("monitorMetricsData",monitorMetricsData)
 {/* <input type="text" onChange={(e)=>handleTableSearch(e.target.value)} placeholder="search..." /> */}
 
           <div className="monitor-funding-table bg-white  ">
-            <div className="monitor-funding-table-column-container grid grid-cols-7 overflow-x py-5 bg-yellow-50">
+            <div className="monitor-funding-table-column-container grid grid-cols-6 overflow-x py-5 bg-yellow-50">
               {/* <div className="monitor-funding-table-col flex  items-center  flex gap-x-2">
                 <p className="font-xxs  cursor-pointer">Client Start Date</p>
                 <svg
@@ -852,7 +856,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div> */}
-              <div className="monitor-funding-table-col flex  items-center px-5 ">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
                 <p className="">Client ID</p>
                 <svg
                 onClick={()=>handleSortByClientId()}
@@ -878,7 +882,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
                 <p className="">First name</p>
                 <svg
                 onClick={()=>handleSortByName()}
@@ -904,7 +908,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
                 <div><p className="">Last name</p>
                 <p>initial</p></div>
                 
@@ -961,7 +965,7 @@ console.log("monitorMetricsData",monitorMetricsData)
              {/*  <div className="monitor-funding-table-col flex  items-center  px-5">
                 <p className="">Time since <br /> joining LNE</p>
               </div> */}
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex justify-between items-center px-5">
                 <p className="">Service action <br /> plan date</p>
                 <svg
                 onClick={()=>handleSortByDate()}
@@ -987,7 +991,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5 ">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
                 <p className="">Last <br />  encounter</p>
                 <svg
                 onClick={()=>handleSortByLastEncounters()}
@@ -1013,7 +1017,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex   items-center  px-5">
+              <div className="monitor-funding-table-col flex justify-between items-center px-5">
                 <p className="">Goals <br /> completed</p>
                 <svg
                 onClick={()=>handleSortByGoals()}
@@ -1048,7 +1052,7 @@ console.log("monitorMetricsData",monitorMetricsData)
             {monitorMetricsData ? monitorMetricsData.map((client,index)=>{
               return (
            
-              <div className="monitor-funding-table-row-container grid grid-cols-7 border-t-2 " key={index}>
+              <div className="monitor-funding-table-row-container grid grid-cols-6 border-t-2 " key={index}>
              {/*  <div className={`monitor-funding-table-row px-5 text-left py-3`}>
                 <p className="font-xxs">{client.startdate}</p>
                 
@@ -1074,7 +1078,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                 
               </div> */}
               <div className={`monitor-funding-table-row px-5 text-left py-3`}>
-                <p className="">{client.serviceActionPlanDate}</p>
+                <p className="">{client.serviceActionPlanDate === "2058/01/01" ? "-" : client.serviceActionPlanDate}</p>
                 
               </div>
               <div className={`monitor-funding-table-row px-5 text-left py-3 ${ getColorOfLastEncounter(client.lastEncounter)}`}>

@@ -76,7 +76,7 @@ const SupportGroups = ({hcworkers}) => {
                 <Link href="/supportGroups/pastEvents">
                   <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
                           <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
-                          <p className="p-2">
+                          <p className="p-2 text-base">
                           Review past group events
                           </p>
                     </button>
@@ -161,7 +161,8 @@ const SupportGroups = ({hcworkers}) => {
                   </button>
                   <ReactToPrint
                     trigger={() => (
-                      <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">
+                      <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block flex gap-2">
+                       <img src="/print-report.svg" alt="print icon"/>
                         Print
                       </button>
                     )}
