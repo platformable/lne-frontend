@@ -37,7 +37,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const indexOfLastPost = currentPage * postsPerPage
   const indexofFirstPost = indexOfLastPost - postsPerPage
   const currentPosts = monitorMetricsData.slice(indexofFirstPost, indexOfLastPost)
-console.log(monitorMetricsData)
+console.log("monitorMetricsData",monitorMetricsData)
   let componentRef = useRef();
 
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
@@ -56,11 +56,14 @@ console.log(monitorMetricsData)
         month: "numeric",
         day: "numeric",
       }); */
+      newClient.serviceActionPlanDate=client?.planstartdate?  new Date(client.planstartdate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):'-';
       newClient.startdate=client.clientdatecreated
       newClient.firstname = client.clientfirstname;
       newClient.lastname = client.clientlastname;
       newClient.clienthcwname = client.clienthcwname;
-      newClient.progressnotes = client.progressnotes.length;
+      console.log("client name",client.clientfirstname,client.planstartdate)
+      /* newClient.progressnotes = client.progressnotes.length; */
+      newClient.progressNotesDates = client.progressnotes;
       newClient.lastEncounter = calculateLastEncounter(
         client.planstartdate,
         client.progressnotes,
@@ -89,185 +92,41 @@ console.log(monitorMetricsData)
     progressnotes,
     clientdatecreated
   ) => {
-
-   /*  let date_1 = new Date(clientdatecreated);
-    let date_2 = new Date();
-    let difference = date_2.getTime() - date_1.getTime();
-    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-    return TotalDays; */
-
-    if (planstartdate === null || planstartdate === "" || progressnotes.length===0) {
-
+    console.log("progressnotes", progressnotes)
+    if (planstartdate === null) {
+      
       let date_1 = new Date(clientdatecreated);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
       let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
+      return TotalDays-1;
     }
 
-    if (planstartdate   && progressnotes[0]===null) {
+    if ((planstartdate !==null || planstartdate !=='') && progressnotes.length===0) {
+
 
       let date_1 = new Date(planstartdate);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
       let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
+      return TotalDays-1;
     }
 
-    if (planstartdate   && progressnotes[0]!==null) {
+    if (progressnotes.length > 0) {
+        const pn=progressnotes.sort((a, b) => new Date(b.date) - new Date(a.date)) 
+        console.log("pnx",pn)
+        let date_1 = new Date(pn[0].date);
+        console.log("date1",date_1)
+        let date_2 = new Date();
+        let difference = date_2.getTime() - date_1.getTime();
+        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+        return TotalDays
+      }
+   
 
-      let date_1 = new Date(progressnotes[0]);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
-    }
-
-  /*     if (progressnotes === null && planstartdate === null) {
-      console.log("no progress")
-      let date_1 = new Date(clientdatecreated);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
-    } 
-    if(progressnotes.length>=1){
-      console.log("with progress")
-      let date_1 = new Date(progressnotes[0]);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
-    } */
-
+   
+  }
   
-
-   /*  if (planstartdate === null) {
-      let date_1 = new Date(clientdatecreated);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
-    } else {
-      let date_1 = new Date(progressnotes[0]);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
-    } */
-  };
-
-  const columns = [
-    {
-      name: `Client 
-            Start Date`,
-      selector: (row) => row.startdate,
-      sortable: true,
-      wrap: true,
-    },
-    {
-      name: "Client ID",
-      selector: (row) => row.clientid,
-      //sortable: true,
-      wrap: true,
-      width: "110px",
-    },
-    {
-      name: "Client first name",
-      selector: (row) => row.firstname,
-      //sortable: true,
-      wrap: true,
-      width: "50",
-    },
-    {
-      name: "Client last name",
-      selector: (row) => row.lastname,
-      sortable: true,
-      wrap: true,
-      //width:'50'
-    },
-    {
-      name: "Health Care Worker assigned",
-      selector: (row) => row.clienthcwname,
-      sortable: true,
-      wrap: true,
-      // width:'50'
-    },
-    {
-      name: "Time since joining LNE",
-      selector: (row) => row.joining,
-      //sortable: true,
-      wrap: true,
-      // width:'50'
-    },
-    {
-      name: "Number of encounters",
-      selector: (row) => row.progressnotes,
-      sortable: true,
-      wrap: true,
-      conditionalCellStyles: [
-        {
-          when: (row) => row.progressnotes < 15,
-          style: { backgroundColor: "red", color: "white" },
-        },
-        {
-          when: (row) => row.progressnotes > 15 && row.progressnotes < 30,
-          style: { backgroundColor: "orange", color: "white" },
-        },
-        {
-          when: (row) => row.progressnotes > 30,
-          style: { backgroundColor: "green", color: "white" },
-        },
-      ],
-    },
-    {
-      name: "Last encounter",
-      selector: (row) => row.lastEncounter,
-      sortable: true,
-      wrap: true,
-      conditionalCellStyles: [
-        {
-          when: (row) => row.lastEncounter >= 30,
-          style: { backgroundColor: "red", color: "white" },
-        },
-        {
-          when: (row) => row.lastEncounter >= 14 && row.lastEncounter < 30,
-          style: { backgroundColor: "orange", color: "white" },
-        },
-        {
-          when: (row) => row.lastEncounter < 14,
-          style: { backgroundColor: "green", color: "white" },
-        },
-      ],
-    },
-    {
-      name: "Goals completed",
-      selector: (row) => row.goals,
-      sortable: true,
-      wrap: true,
-      conditionalCellStyles: [
-        {
-          when: (row) => row.goals === 0,
-          style: { backgroundColor: "red", color: "white" },
-        },
-        {
-          when: (row) => row.goals >= 1 && row.goals <= 2,
-          style: { backgroundColor: "orange", color: "white" },
-        },
-        {
-          when: (row) => row.goals === 3,
-          style: { backgroundColor: "green", color: "white" },
-        },
-      ],
-    },
-    {
-      name: "Outdated MSA forms",
-      selector: (row) => row.outdatedMsa,
-      sortable: true,
-      wrap: true,
-      //width:'50'
-    },
-  ];
 
   const data = [
     {
@@ -368,7 +227,6 @@ console.log(monitorMetricsData)
   }) */
 
     const calculate = averageNumbers.forEach((client, index) => {
-      console.log("client", client)
       const { planstartdate, progressnotedate } = client;
       let date1;
       if (progressnotedate === "" || progressnotedate === null) {
@@ -378,7 +236,7 @@ console.log(monitorMetricsData)
       }
       let date2 = new Date();
       let difference = date2.getDate() - date1.getDate();
-      console.log("diference in days", difference)
+
 
       // var days = Math.ceil(difference / (1000 * 3600 * 24));
       total = total + difference;
@@ -650,10 +508,10 @@ console.log(monitorMetricsData)
     selectAllRowsItemText: "All",
   };
 
-  const tableData = {
+/*   const tableData = {
     columns,
     monitorMetricsData,
-  };
+  }; */
 
 
   const getColorOfNumberOfEncounters=(encounters)=>{
@@ -788,15 +646,24 @@ console.log(monitorMetricsData)
          setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
         if(monitorFundingTableDataSortingByDate){
           const result = monitorMetricsData.sort(function(a,b){
-            return new Date(b.startdate) - new Date(a.startdate);
-             
+            if (a.serviceActionPlanDate === "-" || a.serviceActionPlanDate === "-" ) {
+              a.serviceActionPlanDate = "2080/01/01"
+              b.serviceActionPlanDate = "2080/01/01"
+              return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
+            }
+            return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
+
           });
           setMonitorMetricsData(prevMovies => ([...result]));
-       
+
         } else {
           const result = monitorMetricsData.sort(function(a,b){
-            return new Date(a.startdate) - new Date(b.startdate);
-             
+            if (a.serviceActionPlanDate === "-" || a.serviceActionPlanDate === "-" ) {
+              a.serviceActionPlanDate = "2080/01/01"
+              b.serviceActionPlanDate = "2080/01/01"
+              return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
+            }
+            return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
           });
           setMonitorMetricsData(prevMovies => ([...result]));
         } 
@@ -994,7 +861,7 @@ console.log(monitorMetricsData)
                   />
                 </svg>
               </div> */}
-              <div className="monitor-funding-table-col flex  items-center px-5 ">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
                 <p className="">Client ID</p>
                 <svg
                 onClick={()=>handleSortByClientId()}
@@ -1020,7 +887,7 @@ console.log(monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
                 <p className="">First name</p>
                 <svg
                 onClick={()=>handleSortByName()}
@@ -1046,7 +913,7 @@ console.log(monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
                 <div><p className="">Last name</p>
                 <p>initial</p></div>
                 
@@ -1074,7 +941,7 @@ console.log(monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex   items-center  px-5">
+              {/* <div className="monitor-funding-table-col flex   items-center  px-5">
                 <p className="">HCW <br /> assigned</p>
                 <svg
                 onClick={()=>handleSortByHCW()}
@@ -1099,14 +966,14 @@ console.log(monitorMetricsData)
                     strokeLinejoin="round"
                   />
                 </svg>
-              </div>
+              </div> */}
              {/*  <div className="monitor-funding-table-col flex  items-center  px-5">
                 <p className="">Time since <br /> joining LNE</p>
               </div> */}
-              <div className="monitor-funding-table-col flex  items-center  px-5">
-                <p className="">Number of <br /> encounters</p>
+              <div className="monitor-funding-table-col flex justify-between items-center px-5">
+                <p className="">Service action <br /> plan date</p>
                 <svg
-                onClick={()=>handleSortByEncounters()}
+                onClick={()=>handleSortByDate()}
                   className="cursor-pointer"
                   width="20"
                   height="20"
@@ -1129,7 +996,7 @@ console.log(monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5 ">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
                 <p className="">Last <br />  encounter</p>
                 <svg
                 onClick={()=>handleSortByLastEncounters()}
@@ -1155,7 +1022,7 @@ console.log(monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex   items-center  px-5">
+              <div className="monitor-funding-table-col flex justify-between items-center px-5">
                 <p className="">Goals <br /> completed</p>
                 <svg
                 onClick={()=>handleSortByGoals()}
@@ -1207,16 +1074,16 @@ console.log(monitorMetricsData)
                 <p className="">{client.lastname.charAt(0)}</p>
                 
               </div>
-              <div className="monitor-funding-table-row px-5 text-left py-3">
+              {/* <div className="monitor-funding-table-row px-5 text-left py-3">
                 <p className="">{client.clienthcwname}</p>
                 
-              </div>
+              </div> */}
              {/*  <div className="monitor-funding-table-row px-5 text-left py-3">
                 <p className="">{client.joining}</p>
                 
               </div> */}
-              <div className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfNumberOfEncounters(client.progressnotes)}`}>
-                <p className="">{client.progressnotes}</p>
+              <div className={`monitor-funding-table-row px-5 text-left py-3`}>
+                <p className="">{client.serviceActionPlanDate === "2058/01/01" ? "-" : client.serviceActionPlanDate}</p>
                 
               </div>
               <div className={`monitor-funding-table-row px-5 text-left py-3 ${ getColorOfLastEncounter(client.lastEncounter)}`}>
