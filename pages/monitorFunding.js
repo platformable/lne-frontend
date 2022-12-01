@@ -641,35 +641,30 @@ console.log("monitorMetricsData",monitorMetricsData)
      } 
     }
 
-     const handleSortByDate=()=>{
-        
-         setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
-        if(monitorFundingTableDataSortingByDate){
-          const result = monitorMetricsData.sort(function(a,b){
-            if (a.serviceActionPlanDate === "-" || a.serviceActionPlanDate === "-" ) {
-              a.serviceActionPlanDate = "2080/01/01"
-              b.serviceActionPlanDate = "2080/01/01"
-              return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
-            }
-            return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
+    const handleSortByDate=()=>{
+      const emptyValues = monitorMetricsData.filter(data => data.serviceActionPlanDate === "-")
+      const filledValues = monitorMetricsData.filter(data => data.serviceActionPlanDate !== "-")
 
-          });
-          setMonitorMetricsData(prevMovies => ([...result]));
+      setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
+     if(monitorFundingTableDataSortingByDate){
+       const result = filledValues.sort(function(a,b){
+         
+         return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
 
-        } else {
-          const result = monitorMetricsData.sort(function(a,b){
-            if (a.serviceActionPlanDate === "-" || a.serviceActionPlanDate === "-" ) {
-              a.serviceActionPlanDate = "2080/01/01"
-              b.serviceActionPlanDate = "2080/01/01"
-              return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
-            }
-            return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
-          });
-          setMonitorMetricsData(prevMovies => ([...result]));
-        } 
+       });
+       setMonitorMetricsData(prevMovies => ([...result, ...emptyValues]));
 
-     
-       }
+     } else {
+       const result = filledValues.sort(function(a,b){
+         
+         return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
+       });
+       setMonitorMetricsData(prevMovies => ([...result, ...emptyValues]));
+     } 
+
+  
+    }
+
 
 
        const handleTableSearch=(value)=>{
@@ -834,7 +829,7 @@ console.log("monitorMetricsData",monitorMetricsData)
 {/* <input type="text" onChange={(e)=>handleTableSearch(e.target.value)} placeholder="search..." /> */}
 
           <div className="monitor-funding-table bg-white  ">
-            <div className="monitor-funding-table-column-container grid grid-cols-7 overflow-x py-5 bg-yellow-50">
+            <div className="monitor-funding-table-column-container grid grid-cols-6 overflow-x py-5 bg-yellow-50">
               {/* <div className="monitor-funding-table-col flex  items-center  flex gap-x-2">
                 <p className="font-xxs  cursor-pointer">Client Start Date</p>
                 <svg
@@ -1057,7 +1052,7 @@ console.log("monitorMetricsData",monitorMetricsData)
             {monitorMetricsData ? monitorMetricsData.map((client,index)=>{
               return (
            
-              <div className="monitor-funding-table-row-container grid grid-cols-7 border-t-2 " key={index}>
+              <div className="monitor-funding-table-row-container grid grid-cols-6 border-t-2 " key={index}>
              {/*  <div className={`monitor-funding-table-row px-5 text-left py-3`}>
                 <p className="font-xxs">{client.startdate}</p>
                 
