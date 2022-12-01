@@ -646,15 +646,24 @@ console.log("monitorMetricsData",monitorMetricsData)
          setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
         if(monitorFundingTableDataSortingByDate){
           const result = monitorMetricsData.sort(function(a,b){
-            return new Date(b.startdate) - new Date(a.startdate);
-             
+            if (a.serviceActionPlanDate === "-" || a.serviceActionPlanDate === "-" ) {
+              a.serviceActionPlanDate = "2080/01/01"
+              b.serviceActionPlanDate = "2080/01/01"
+              return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
+            }
+            return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
+
           });
           setMonitorMetricsData(prevMovies => ([...result]));
-       
+
         } else {
           const result = monitorMetricsData.sort(function(a,b){
-            return new Date(a.startdate) - new Date(b.startdate);
-             
+            if (a.serviceActionPlanDate === "-" || a.serviceActionPlanDate === "-" ) {
+              a.serviceActionPlanDate = "2080/01/01"
+              b.serviceActionPlanDate = "2080/01/01"
+              return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
+            }
+            return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
           });
           setMonitorMetricsData(prevMovies => ([...result]));
         } 
@@ -852,7 +861,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div> */}
-              <div className="monitor-funding-table-col flex  items-center px-5 ">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
                 <p className="">Client ID</p>
                 <svg
                 onClick={()=>handleSortByClientId()}
@@ -878,7 +887,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
                 <p className="">First name</p>
                 <svg
                 onClick={()=>handleSortByName()}
@@ -904,7 +913,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
                 <div><p className="">Last name</p>
                 <p>initial</p></div>
                 
@@ -961,7 +970,7 @@ console.log("monitorMetricsData",monitorMetricsData)
              {/*  <div className="monitor-funding-table-col flex  items-center  px-5">
                 <p className="">Time since <br /> joining LNE</p>
               </div> */}
-              <div className="monitor-funding-table-col flex  items-center  px-5">
+              <div className="monitor-funding-table-col flex justify-between items-center px-5">
                 <p className="">Service action <br /> plan date</p>
                 <svg
                 onClick={()=>handleSortByDate()}
@@ -987,7 +996,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  items-center  px-5 ">
+              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
                 <p className="">Last <br />  encounter</p>
                 <svg
                 onClick={()=>handleSortByLastEncounters()}
@@ -1013,7 +1022,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex   items-center  px-5">
+              <div className="monitor-funding-table-col flex justify-between items-center px-5">
                 <p className="">Goals <br /> completed</p>
                 <svg
                 onClick={()=>handleSortByGoals()}
@@ -1074,7 +1083,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                 
               </div> */}
               <div className={`monitor-funding-table-row px-5 text-left py-3`}>
-                <p className="">{client.serviceActionPlanDate}</p>
+                <p className="">{client.serviceActionPlanDate === "2058/01/01" ? "-" : client.serviceActionPlanDate}</p>
                 
               </div>
               <div className={`monitor-funding-table-row px-5 text-left py-3 ${ getColorOfLastEncounter(client.lastEncounter)}`}>
