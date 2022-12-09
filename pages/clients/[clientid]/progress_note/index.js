@@ -288,12 +288,12 @@ const ProgressNotesIndex = ({ data }) => {
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
-    {
+   /* {
       value: clientData.LNEHNSEligibilityForm,
       state_label: "LNEHNSEligibilityForm",
       row_color: "bg-light-blue",
       form_text: "HNS Eligibility Assessment",
-    },
+    },*/
     // {value:clientData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
     {
       value: clientData.StatusChangesForm,
@@ -331,7 +331,7 @@ const ProgressNotesIndex = ({ data }) => {
       row_color: "bg-light-blue",
       form_text: "Treatment Adherence Updates",
     },
-    {
+   /* {
       value: clientData.AIRSCollateralInformation,
       state_label: "AIRSCollateralInformation",
       row_color: "bg-light-blue",
@@ -390,7 +390,7 @@ const ProgressNotesIndex = ({ data }) => {
       state_label: "AIRSSubstanceUseHistory",
       row_color: "bg-light-blue",
       form_text: "AIRS Substance Use History",
-    },
+    }, 
     {
       value: clientData.LNEClientRights,
       state_label: "LNEClientRights",
@@ -433,7 +433,7 @@ const ProgressNotesIndex = ({ data }) => {
       row_color: "bg-light-green",
       form_text:
         "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
-    },
+    },*/
     {
       value: clientData.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
@@ -446,7 +446,7 @@ const ProgressNotesIndex = ({ data }) => {
       row_color: "bg-light-pink",
       form_text: "Internal Referral Information",
     },
-    {
+    /*{
       value: clientData.LNEClientReferralForm,
       state_label: "LNEClientReferralForm",
       row_color: "bg-light-pink",
@@ -457,7 +457,7 @@ const ProgressNotesIndex = ({ data }) => {
       state_label: "HNSReadinessForm",
       row_color: "bg-light-pink",
       form_text: "HNS Readiness Form",
-    },
+    },*/
     {
       value: clientData.SupportGroups,
       state_label: "SupportGroups",
@@ -1626,7 +1626,7 @@ const ProgressNotesIndex = ({ data }) => {
             <div className="additional-forms-container grid grid-cols-2 gap-1">
               <div className="additional-forms-box border-r-dark-blue ">
                 {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(0, 15).map((service) => (
+                  whichServiceBeenAded.slice(0, 5).map((service) => (
                     <>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
@@ -1691,7 +1691,7 @@ const ProgressNotesIndex = ({ data }) => {
               </div>{" "}
               <div className="additional-form-box">
                 {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(15).map((service) => (
+                  whichServiceBeenAded.slice(5).map((service) => (
                     <>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
