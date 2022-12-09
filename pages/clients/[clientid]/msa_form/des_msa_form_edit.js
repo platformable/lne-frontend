@@ -793,24 +793,24 @@ const EditMsaFormPage = ({ data }) => {
             <RowMsaFormDES fieldName="AIRS Substance Use istory" clientData={clientData} setClientData={setClientData} formString="AIRSSubstanceUseHistory" data={data} folderName={data[0].tickler_updates_folder_url}/>
             
 
-            <RowMsaFormDES fieldName="LNE Client Rights" clientData={clientData} setClientData={setClientData} formString="LNEClientRights" data={data} folderName={data[0].consents_folder_url}/>
+            <RowMsaFormDES fieldName="LNE Client Rights" clientData={clientData} setClientData={setClientData} formString="LNEClientRights" data={data} folderName={data[0].consent_folder_url}/>
 
 
-            <RowMsaFormDES fieldName="LNE Client Grievance Policy & Procedure" clientData={clientData} setClientData={setClientData} formString="LNEClientGrievancePolicyProcedure" data={data} folderName={data[0].consents_folder_url}/>
+            <RowMsaFormDES fieldName="LNE Client Grievance Policy & Procedure" clientData={clientData} setClientData={setClientData} formString="LNEClientGrievancePolicyProcedure" data={data} folderName={data[0].consent_folder_url}/>
 
 
-            <RowMsaFormDES fieldName="LNE Program Rules" clientData={clientData} setClientData={setClientData} formString="LNEProgramRules" data={data} folderName={data[0].consents_folder_url}/>
+            <RowMsaFormDES fieldName="LNE Program Rules" clientData={clientData} setClientData={setClientData} formString="LNEProgramRules" data={data} folderName={data[0].consent_folder_url}/>
 
 
-            <RowMsaFormDES fieldName="LNE Emergency Contact Consent" clientData={clientData} setClientData={setClientData} formString="LNEEmergencyContactConsent" data={data} folderName={data[0].consents_folder_url}/>
+            <RowMsaFormDES fieldName="LNE Emergency Contact Consent" clientData={clientData} setClientData={setClientData} formString="LNEEmergencyContactConsent" data={data} folderName={data[0].consent_folder_url}/>
 
-            <RowMsaFormDES fieldName="LNE Consent for Release of Confidential Information" clientData={clientData} setClientData={setClientData} formString="LNEConsentForReleaseOfConfidentialInformation" data={data} folderName={data[0].consents_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="HIPAA Consent Form (OCA Form 960)" clientData={clientData} setClientData={setClientData} formString="HIPPAConsentForm" data={data} folderName={data[0].consents_folder_url}/>
+            <RowMsaFormDES fieldName="LNE Consent for Release of Confidential Information" clientData={clientData} setClientData={setClientData} formString="LNEConsentForReleaseOfConfidentialInformation" data={data} folderName={data[0].consent_folder_url}/>
 
 
-            <RowMsaFormDES fieldName="NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt" clientData={clientData} setClientData={setClientData} formString="NYCDOHMHNoticeOfPrivacyPractices" data={data} folderName={data[0].consents_folder_url}/>
+            <RowMsaFormDES fieldName="HIPAA Consent Form (OCA Form 960)" clientData={clientData} setClientData={setClientData} formString="HIPPAConsentForm" data={data} folderName={data[0].consent_folder_url}/>
+
+
+            <RowMsaFormDES fieldName="NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt" clientData={clientData} setClientData={setClientData} formString="NYCDOHMHNoticeOfPrivacyPractices" data={data} folderName={data[0].consent_folder_url}/>
 
 
             <RowMsaFormDES fieldName="Linkage, Retention, & Adherence Forms" clientData={clientData} setClientData={setClientData} formString="LinkageRetentionAdherenceForms" data={data} folderName={data[0].linkage_navigation_folder_url}/>

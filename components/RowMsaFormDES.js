@@ -92,7 +92,7 @@ const RowMsaFormDES = ({
             target="_blank"
             rel="noreferrer"
           >
-            {folder}
+
             <img src={"/dropbox-folder.png"} alt="" width="34" />
           </a> 
           {/* <p className="text-dark-blue underline">Medical</p> */}
