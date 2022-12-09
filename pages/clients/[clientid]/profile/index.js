@@ -580,10 +580,15 @@ useEffect(() => {
             <div className="container mx-auto">
             
               <h1 className="font-black my-5">Client progress notes</h1>
-              <div className="grid grid-cols-3 bg-black py-2 rounded-tl-md rounded-tr-md">
+              <div className="grid grid-cols-4 bg-black py-2 rounded-tl-md rounded-tr-md">
                 <div>
                   <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
-                    Progress note
+                    Date
+                  </h3>
+                </div>
+                <div>
+                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                    Service
                   </h3>
                 </div>
                 <div>
@@ -605,9 +610,25 @@ useEffect(() => {
                     return (
                       <div
                         key={index}
-                        className="grid grid-cols-3 bg-white py-2 border p-5 text-center"
+                        className="grid grid-cols-4 bg-white py-2 border p-5 text-center"
                       >
                         <p>{new Date(pn.date).toLocaleDateString("en-US")}</p>
+                        <p>
+                        {pn.developmentactionplan === '1' ? 'Development of Action Plan with Client':''}
+            {pn.cd4vllabreport === '1' ? 'CD4/VL Lab Report Check':''}
+            {pn.transportationcoordination === '1' ? 'Transportation Coordination':''}
+            {pn.translationinterpretation === '1' ? 'Translation/Interpretation':''}
+            {pn.comprehensivebehavioralriskassessment === '1' ? 'Comprehensive Behavioral Risk Assessment':''}
+            {pn.ticklerupdate === '1' ? 'Tickler Update':''}
+            {pn.treatmenteducation === '1' ? 'Treatment Education and Adherence Counselling':''}
+            {pn.preventioncounselling === '1' ? 'Prevention Counselling':''}
+            {pn.supportivecounselling === '1' ? 'Supportive Counselling':''}
+            {pn.escort === '1' ? 'Escort':''}
+            {pn.caseclosuredischarge === '1' ? 'Case Closure/Discharge':''}
+            {pn.linkagetoservices === '1' ? 'Linkage to Services':''}
+            {pn.supportgroups === '1' ? 'Support Groups':''}
+            {pn.otherassistance === '1' ? 'Other Assistance':''}
+                        </p>
                         <div className="text-center">
                           <Link
                             href={`/clients/${data[0]?.clientid}/progress_note/${pn.id}/edit`}>

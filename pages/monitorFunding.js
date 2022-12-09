@@ -992,7 +992,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                 </svg>
               </div>
               <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
-                <p className="">Last <br />  encounter</p>
+                <p className="">Days since <br />last encounter</p>
                 <svg
                 onClick={()=>handleSortByLastEncounters()}
                   className="cursor-pointer"
