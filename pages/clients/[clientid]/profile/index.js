@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Link from "next/link";
@@ -57,13 +57,12 @@ export default function ClientProfilePage({
   data,
   impactBaseline,
   impactTracker,
-  progressNotes,
 }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal, setShowDeleteClientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
-  const [progNotes,setProgNotes]=useState([])
+  const [progNotes, setProgNotes] = useState([]);
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
@@ -139,49 +138,86 @@ export default function ClientProfilePage({
   };
 
   const checkMessage2 = () => {
-    const fields = {
-      goal1: data[0]?.goal1completed,
-      goal2: data[0]?.goal2completed,
-      goal3: data[0]?.goal3completed,
+    const completedGoals = {
+      goal1: {
+        summary: data[0]?.goal1summary,
+        completed: data[0]?.goal1completed,
+      },
+      goal2: {
+        summary: data[0]?.goal2summary,
+        completed: data[0]?.goal2completed,
+      },
+      goal3: {
+        summary: data[0]?.goal3summary,
+        completed: data[0]?.goal3completed,
+      },
     };
     let result;
     let color;
+    let totalGoals = 0;
+    let totalGoalsCompleted = 0;
 
-    if (
-      (fields["goal1"] !== "1" &&
-        fields["goal2"] !== "1" &&
-        fields["goal2"] === "1") ||
-      (fields["goal1"] !== "1" &&
-        fields["goal3"] !== "1" &&
-        fields["goal2"] === "1") ||
-      (fields["goal2"] !== "1" &&
-        fields["goal3"] !== "1" &&
-        fields["goal1"] === "1")
-    ) {
-      result = "There are two client goals outstanding";
-      color = "bg-orange-300";
-    } else {
-      result = "There is one client goal outstanding";
-      color = "bg-orange-300";
+    Object.values(completedGoals).forEach((goal) => {
+      if (goal.summary) totalGoals += 1;
+      if (goal.completed === "1") totalGoalsCompleted += 1;
+    });
+    if (totalGoals === 0) {
+      color = "bg-green-300";
+      result = "No goals yet";
+      return (
+        <div
+          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+        >
+          <img src="/client/alerticonserviceactionplan.svg" alt="" />
+          <p className="px-4 font-semibold">{result}</p>
+        </div>
+      );
     }
-    if (
-      Object.values(fields).every((value) => value === "0" || value === null)
-    ) {
-      result = "There are three client goals outstanding";
+
+    if (totalGoals > 0 && totalGoalsCompleted === 0) {
       color = "bg-red-400";
+      result = `There are ${
+        totalGoals - totalGoalsCompleted
+      } client goals outstanding`;
+      return (
+        <div
+          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+        >
+          <img src="/client/alerticonserviceactionplan.svg" alt="" />
+          <p className="px-4 font-semibold">{result}</p>
+        </div>
+      );
     }
-    if (
-      Object.values(fields).every((value) => value === "1" || value !== null)
-    ) {
+
+    if (totalGoals === totalGoalsCompleted) {
       result = "All client goals have been completed!";
       color = "bg-green-300";
+
+      return (
+        <div
+          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+        >
+          <img src="/client/alerticonserviceactionplan.svg" alt="" />
+          <p className="px-4 font-semibold">{result}</p>
+        </div>
+      );
     }
-    return (
-      <div className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}>
-        <img src="/client/alerticonserviceactionplan.svg" alt="" />
-        <p className="px-4 font-semibold">{result}</p>
-      </div>
-    );
+
+    if (totalGoalsCompleted >= 1 && totalGoalsCompleted <= totalGoals) {
+      color = "bg-orange-300";
+      result = `There are ${
+        totalGoals - totalGoalsCompleted
+      } client goals outstanding`;
+
+      return (
+        <div
+          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+        >
+          <img src="/client/alerticonserviceactionplan.svg" alt="" />
+          <p className="px-4 font-semibold">{result}</p>
+        </div>
+      );
+    }
   };
   let fechaInicio = new Date(
     `2022-03-${Math.floor(Math.random() * (30 - 1 + 1) + 1)}`
@@ -233,11 +269,13 @@ export default function ClientProfilePage({
       progNotes[0]?.progressnotes?.length > 0 &&
       data[0]?.planstartdate !== null
     ) {
-     // console.log("progress notes date");
-     const pn=progNotes[0].progressnotes.sort((a, b) => new Date(a.date) - new Date(b.date))
+      // console.log("progress notes date");
+      const pn = progNotes[0].progressnotes.sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      );
       const planstartdate =
-      pn.length > 1
-          ? pn[pn.length-1]?.date
+        pn.length > 1
+          ? pn[pn.length - 1]?.date
           : progNotes[0]?.progressnotes[0]?.date;
 
       let date_1 =
@@ -279,31 +317,26 @@ export default function ClientProfilePage({
     });
   };
 
-/*   const reversedDates = progressNotes?.progressnotes.sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
-  ); */
+  const [hasMounted, setHasMounted] = useState(false);
 
-  //console.log("progressNotes",progressNotes)
-
-const [hasMounted,setHasMounted]=useState(false)
-
-useEffect(() => {
+  useEffect(() => {
     setHasMounted(true);
-    
-    const getPnData = async ()=> {
-      const clientid=data[0]?.clientid
-      const getPnData= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
-      const pnData= await getPnData.json()
-      const response = setProgNotes(pnData)
-    }
-    getPnData()
 
+    const getPnData = async () => {
+      const clientid = data[0]?.clientid;
+      const getPnData = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`
+      );
+      const pnData = await getPnData.json();
+      const response = setProgNotes(pnData);
+    };
+    getPnData();
   }, [progNotes.progressnotes]);
   if (!hasMounted) {
     return null;
   }
-  console.log("progNotes", progNotes)
-  
+  // console.log("progNotes", progNotes)
+
   return (
     <>
       <Layout>
@@ -576,11 +609,10 @@ useEffect(() => {
               clientUniqueId={data[0]?.id}
             />
           </section>
-            <section id="progressnotes" className="my-10">
+          <section id="progressnotes" className="my-10">
             <div className="container mx-auto">
-            
               <h1 className="font-black my-5">Client progress notes</h1>
-              <div className="grid grid-cols-4 bg-black py-2 rounded-tl-md rounded-tr-md">
+              <div className="grid grid-cols-4 bg-black py-2 px-5 rounded-tl-md rounded-tr-md">
                 <div>
                   <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
                     Date
@@ -603,7 +635,7 @@ useEffect(() => {
                 </div>
               </div>
 
-            { progNotes[0]?.progressnotes?.length > 0 ? 
+              {progNotes[0]?.progressnotes?.length > 0 ? (
                 progNotes[0]?.progressnotes
                   .sort((a, b) => new Date(a.date) - new Date(b.date))
                   .map((pn, index) => {
@@ -614,49 +646,72 @@ useEffect(() => {
                       >
                         <p>{new Date(pn.date).toLocaleDateString("en-US")}</p>
                         <p>
-                        {pn.developmentactionplan === '1' ? 'Development of Action Plan with Client':''}
-            {pn.cd4vllabreport === '1' ? 'CD4/VL Lab Report Check':''}
-            {pn.transportationcoordination === '1' ? 'Transportation Coordination':''}
-            {pn.translationinterpretation === '1' ? 'Translation/Interpretation':''}
-            {pn.comprehensivebehavioralriskassessment === '1' ? 'Comprehensive Behavioral Risk Assessment':''}
-            {pn.ticklerupdate === '1' ? 'Tickler Update':''}
-            {pn.treatmenteducation === '1' ? 'Treatment Education and Adherence Counselling':''}
-            {pn.preventioncounselling === '1' ? 'Prevention Counselling':''}
-            {pn.supportivecounselling === '1' ? 'Supportive Counselling':''}
-            {pn.escort === '1' ? 'Escort':''}
-            {pn.caseclosuredischarge === '1' ? 'Case Closure/Discharge':''}
-            {pn.linkagetoservices === '1' ? 'Linkage to Services':''}
-            {pn.supportgroups === '1' ? 'Support Groups':''}
-            {pn.otherassistance === '1' ? 'Other Assistance':''}
+                          {pn.developmentactionplan === "1"
+                            ? "Development of Action Plan with Client"
+                            : ""}
+                          {pn.cd4vllabreport === "1"
+                            ? "CD4/VL Lab Report Check"
+                            : ""}
+                          {pn.transportationcoordination === "1"
+                            ? "Transportation Coordination"
+                            : ""}
+                          {pn.translationinterpretation === "1"
+                            ? "Translation/Interpretation"
+                            : ""}
+                          {pn.comprehensivebehavioralriskassessment === "1"
+                            ? "Comprehensive Behavioral Risk Assessment"
+                            : ""}
+                          {pn.ticklerupdate === "1" ? "Tickler Update" : ""}
+                          {pn.treatmenteducation === "1"
+                            ? "Treatment Education and Adherence Counselling"
+                            : ""}
+                          {pn.preventioncounselling === "1"
+                            ? "Prevention Counselling"
+                            : ""}
+                          {pn.supportivecounselling === "1"
+                            ? "Supportive Counselling"
+                            : ""}
+                          {pn.escort === "1" ? "Escort" : ""}
+                          {pn.caseclosuredischarge === "1"
+                            ? "Case Closure/Discharge"
+                            : ""}
+                          {pn.linkagetoservices === "1"
+                            ? "Linkage to Services"
+                            : ""}
+                          {pn.supportgroups === "1" ? "Support Groups" : ""}
+                          {pn.otherassistance === "1" ? "Other Assistance" : ""}
                         </p>
-                        <div className="text-center">
+                        <div className="flex justify-center ">
                           <Link
-                            href={`/clients/${data[0]?.clientid}/progress_note/${pn.id}/edit`}>
+                            href={`/clients/${data[0]?.clientid}/progress_note/${pn.id}/edit`}
+                          >
                             <a
                               href={"/clients/devs"}
-                              className="bg-black text-white rounded-md px-5 py-2 self-end"
+                              className="flex justify-center items-center"
                             >
-                              Edit
+                              <img src="/edit-icon.svg" alt="edit icon" />
                             </a>
                           </Link>
-                          
                         </div>
-                        <div className="flex justify-center">
+                        <div className="flex justify-center ">
                           <button
-                          onClick={()=>{
-                            setSelectedProgressNoteId(pn.id)
-                            setShowDeleteModal(!showDeleteModal)}}
-                              className="bg-black text-white rounded-md px-5 py-2 self-end"
-                            >
-                              Delete
-                            </button>
-                            </div>
+                            onClick={() => {
+                              setSelectedProgressNoteId(pn.id);
+                              setShowDeleteModal(!showDeleteModal);
+                            }}
+                            className="flex items-center justify-center"
+                          >
+                            <img src="/delete-icon.svg" alt="edit icon" />
+                          </button>
+                        </div>
                       </div>
-
-                    )
-                  }
-              ) : <center className="mt-5 font-black">No progress notes yet</center> 
-              }
+                    );
+                  })
+              ) : (
+                <center className="mt-5 font-black">
+                  No progress notes yet
+                </center>
+              )}
             </div>
           </section>
         </div>
@@ -680,7 +735,7 @@ useEffect(() => {
       )}
       {showDeleteModal && (
         <DeleteModal
-        //progressNotes={progressNotes}
+          //progressNotes={progressNotes}
           id={selectedProgressNoteId}
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
@@ -704,27 +759,22 @@ useEffect(() => {
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const [data, impactBaseline, impactTracker, progressNotes] =
-      await Promise.all([
-        fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
-        ).then((r) => r.json()),
-        fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
-        ).then((r) => r.json()),
-        fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
-        ).then((r) => r.json()),
-        fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`
-        ).then((r) => r.json()),
-      ]);
+    const [data, impactBaseline, impactTracker] = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
+      ).then((r) => r.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
+      ).then((r) => r.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
+      ).then((r) => r.json()),
+    ]);
     return {
       props: {
         data: data,
         impactBaseline: impactBaseline,
         impactTracker: impactTracker,
-        progressNotes: progressNotes[0],
       },
     };
 

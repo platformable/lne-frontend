@@ -1587,7 +1587,7 @@ const ProgressNotesIndex = ({ data }) => {
                 Yes
                 <input
                   type="radio"
-                  name="workedGoals"
+                  name="hcwSignature"
                   onChange={(e) => {
                     setClientData({ ...clientData, HCWSignature: true });
                     setDataForSAP({ ...dataForSAP, HCWSignature: true });
