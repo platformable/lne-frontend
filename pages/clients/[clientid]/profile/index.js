@@ -9,8 +9,7 @@ import DeleteClientModal from "../../../../components/DeleteClientModal";
 import DeleteModal from "../../../../components/DeleteModal";
 import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineData";
 
-import infoIcon from "../../../../public/client/info-icon.svg";
-import userIcon from "../../../../public/client/USERicon.svg";
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -248,7 +247,7 @@ export default function ClientProfilePage({
       let fechaFin = new Date();
 
       let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      console.log("sap totalDays", totalDays);
+      // console.log("client data", data);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       return (

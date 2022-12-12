@@ -1058,7 +1058,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                 
               </div> */}
               <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="">{client.clientid}</p>
+                <p className="hover:text-blue-500"><a href={`/clients/${client.clientid}/profile`}>{client.clientid}</a></p>
                 
               </div>
               <div className="monitor-funding-table-row px-5 text-left py-3">
