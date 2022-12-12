@@ -1643,7 +1643,7 @@ const ProgressNotesIndex = ({ data }) => {
                 No
                 <input
                   type="radio"
-                  name="workedGoals"
+                  name="hcwSignature"
                   onChange={(e) => {
                     setClientData({ ...clientData, HCWSignature: false });
                     setDataForSAP({ ...dataForSAP, HCWSignature: false });
