@@ -9,8 +9,7 @@ import DeleteClientModal from "../../../../components/DeleteClientModal";
 import DeleteModal from "../../../../components/DeleteModal";
 import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineData";
 
-import infoIcon from "../../../../public/client/info-icon.svg";
-import userIcon from "../../../../public/client/USERicon.svg";
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
