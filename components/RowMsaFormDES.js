@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState,useEffect } from "react";
 import MSAStyles from "../styles/MSA.module.css";
 
 function iterateFormStringNames(raizName) {
@@ -18,8 +18,13 @@ const RowMsaFormDES = ({
   clientData,
   setClientData,
   formString,
-  data
+  data,
+  folderName
 }) => {
+
+
+
+  
 
   const nameStrings = useMemo(() => iterateFormStringNames(formString), [])
 
@@ -49,6 +54,8 @@ const RowMsaFormDES = ({
     }
     return fixedDate;
   };
+
+ 
 
   return (
     <>
@@ -81,10 +88,11 @@ const RowMsaFormDES = ({
           className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}
         >
            <a
-            href={data[0]?.support_groups_folder_url ? data[0]?.support_groups_folder_url : ""}
+            href={folderName ? folderName : ""}
             target="_blank"
             rel="noreferrer"
           >
+
             <img src={"/dropbox-folder.png"} alt="" width="34" />
           </a> 
           {/* <p className="text-dark-blue underline">Medical</p> */}

@@ -170,12 +170,18 @@ const ProgressNotesIndex = ({ data }) => {
     goal2ProgressDate: "",
     goal3Progress: false,
     goal3ProgressDate: "",
-    goal1Completed: false,
+    goal1Completed: data[0].sapgoal1completed==='1'?true:false,
     goal1CompletedDate: "",
-    goal2Completed: false,
+    goal2Completed: data[0].sapgoal2completed==='1'?true:false,
     goal2CompletedDate: "",
-    goal3Completed: false,
+    goal3Completed: data[0].sapgoal3completed==='1'?true:false,
     goal3CompletedDate: "",
+    sapGoal1Completed:data[0].sapgoal1completed==='1'?true:false,
+    sapGoal2Completed:data[0].sapgoal2completed==='1'?true:false,
+    sapGoal3Completed:data[0].sapgoal3completed==='1'?true:false,
+    sapGoal1CompletionDate:data[0].sapgoal1completiondate,
+    sapGoal2CompletionDate:data[0].sapgoal2completiondate,
+    sapGoal3CompletionDate:data[0].sapgoal3completiondate,
 
     StatusChangesForm: false, // agregar db
     StatusChangesFormDate: data[0]?.statuschangesformdate || null, // agregar db
@@ -288,12 +294,12 @@ const ProgressNotesIndex = ({ data }) => {
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
-    {
+   /* {
       value: clientData.LNEHNSEligibilityForm,
       state_label: "LNEHNSEligibilityForm",
       row_color: "bg-light-blue",
       form_text: "HNS Eligibility Assessment",
-    },
+    },*/
     // {value:clientData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
     {
       value: clientData.StatusChangesForm,
@@ -331,7 +337,7 @@ const ProgressNotesIndex = ({ data }) => {
       row_color: "bg-light-blue",
       form_text: "Treatment Adherence Updates",
     },
-    {
+   /* {
       value: clientData.AIRSCollateralInformation,
       state_label: "AIRSCollateralInformation",
       row_color: "bg-light-blue",
@@ -390,7 +396,7 @@ const ProgressNotesIndex = ({ data }) => {
       state_label: "AIRSSubstanceUseHistory",
       row_color: "bg-light-blue",
       form_text: "AIRS Substance Use History",
-    },
+    }, 
     {
       value: clientData.LNEClientRights,
       state_label: "LNEClientRights",
@@ -433,7 +439,7 @@ const ProgressNotesIndex = ({ data }) => {
       row_color: "bg-light-green",
       form_text:
         "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
-    },
+    },*/
     {
       value: clientData.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
@@ -446,7 +452,7 @@ const ProgressNotesIndex = ({ data }) => {
       row_color: "bg-light-pink",
       form_text: "Internal Referral Information",
     },
-    {
+    /*{
       value: clientData.LNEClientReferralForm,
       state_label: "LNEClientReferralForm",
       row_color: "bg-light-pink",
@@ -457,7 +463,7 @@ const ProgressNotesIndex = ({ data }) => {
       state_label: "HNSReadinessForm",
       row_color: "bg-light-pink",
       form_text: "HNS Readiness Form",
-    },
+    },*/
     {
       value: clientData.SupportGroups,
       state_label: "SupportGroups",
@@ -978,6 +984,18 @@ const ProgressNotesIndex = ({ data }) => {
                     {serviceActionData?.goal1Details}
                   </p>
                 </div>
+                {clientData.sapGoal1Completed && (
+                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                        Completed:{" "}
+                        {new Date(
+                          clientData.sapGoal1CompletionDate
+                        ).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        })}
+                      </p>
+                    )}
                 {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
@@ -1022,6 +1040,18 @@ const ProgressNotesIndex = ({ data }) => {
                     {serviceActionData?.goal2Details || "-"}
                   </p>
                 </div>
+                {clientData.sapGoal2Completed && (
+                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                        Completed:{" "}
+                        {new Date(
+                          clientData.sapGoal2CompletionDate
+                        ).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        })}
+                      </p>
+                    )}
                 {/* <div className="">
                   <span className="">Goal 2 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
@@ -1066,6 +1096,18 @@ const ProgressNotesIndex = ({ data }) => {
                     {serviceActionData?.goal3Details || "-"}
                   </p>
                 </div>
+                {clientData.sapGoal3Completed && (
+                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                        Completed:{" "}
+                        {new Date(
+                          clientData.sapGoal3CompletionDate
+                        ).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        })}
+                      </p>
+                    )}
                 {/* <div className="">
                   <span className="">Goal 3 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
@@ -1587,7 +1629,7 @@ const ProgressNotesIndex = ({ data }) => {
                 Yes
                 <input
                   type="radio"
-                  name="workedGoals"
+                  name="hcwSignature"
                   onChange={(e) => {
                     setClientData({ ...clientData, HCWSignature: true });
                     setDataForSAP({ ...dataForSAP, HCWSignature: true });
@@ -1601,7 +1643,7 @@ const ProgressNotesIndex = ({ data }) => {
                 No
                 <input
                   type="radio"
-                  name="workedGoals"
+                  name="hcwSignature"
                   onChange={(e) => {
                     setClientData({ ...clientData, HCWSignature: false });
                     setDataForSAP({ ...dataForSAP, HCWSignature: false });
@@ -1626,7 +1668,7 @@ const ProgressNotesIndex = ({ data }) => {
             <div className="additional-forms-container grid grid-cols-2 gap-1">
               <div className="additional-forms-box border-r-dark-blue ">
                 {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(0, 15).map((service) => (
+                  whichServiceBeenAded.slice(0, 5).map((service) => (
                     <>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
@@ -1691,7 +1733,7 @@ const ProgressNotesIndex = ({ data }) => {
               </div>{" "}
               <div className="additional-form-box">
                 {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(15).map((service) => (
+                  whichServiceBeenAded.slice(5).map((service) => (
                     <>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
