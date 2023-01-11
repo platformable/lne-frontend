@@ -335,7 +335,7 @@ export default function ClientProfilePage({
     return null;
   }
   // console.log("progNotes", progNotes)
-
+console.log("progNotes",progNotes)
   return (
     <>
       <Layout>
