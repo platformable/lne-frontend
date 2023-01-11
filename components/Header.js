@@ -11,7 +11,7 @@ export default function Header() {
   return (
      <header className="border-b bg-white">
       <Head>
-        <title>LNE APP</title>
+        <title>LNE APP </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
         <div className="container mx-auto py-5  grid space-between md:grid-cols-2 px-5 md:px-0 grid-cols-1">
