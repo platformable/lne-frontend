@@ -62,6 +62,7 @@ const Services = ({ clients, averageNumbers }) => {
     const found = months.find((element) => element.month === currentMonth);
     const fiftyPercent = found.total / 2;
     const seventifyPercent = (found.total * 75) / 100;
+    console.log('count active clients', clients.length)
     if (totalActiveClients < fiftyPercent) {
       setNumberOfActiveClients({
         ...numberOfActiveClients,
@@ -107,11 +108,10 @@ const Services = ({ clients, averageNumbers }) => {
       }
       let date2 = new Date();
       let difference = date2.getDate() - date1.getDate();
-      console.log(date1, date2)
-      console.log("diference in days", difference)
+  
       // let days = Math.ceil(difference / (1000 * 3600 * 24));
       total = total + difference;
-      console.log(total)
+      // console.log(total)
 
       return total
   
@@ -515,7 +515,7 @@ const Services = ({ clients, averageNumbers }) => {
             </div>
           </div> */}
 
-          <h1 className="mb-4 my-10 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+          <h1 className="mb-4 my-10 container mx-auto text-center md:text-left lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
@@ -593,7 +593,7 @@ export default Services;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const [clients, averageNumbers] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/services_page`).then((r) =>
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
         r.json()
       ),
       fetch(
