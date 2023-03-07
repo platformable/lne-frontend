@@ -496,7 +496,7 @@ const ProgressNotesIndex = ({ data, id }) => {
     ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
 })
 
-
+console.log("msaData",msaData)
   const handleMsaformUpdate = () => {
     axios
       .put(
@@ -1819,9 +1819,10 @@ const ProgressNotesIndex = ({ data, id }) => {
                               // if (clientData[service.state_label] && data[0][service.state_label] )
                               
                               //   {
-                                  setClientData({
-                                  ...clientData,
-                                  [service.state_label]: !clientData[service.state_label],
+                                  setMsaData({
+                                  ...msaData,
+                                  [service.state_label]: !msaData[service.state_label],
+                                  [service.state_label+'Date']: new Date(),
                                 }) 
                                 
                               // } else {
@@ -1861,9 +1862,10 @@ const ProgressNotesIndex = ({ data, id }) => {
                             defaultChecked={service.value ? "checked" : ""}
                            
                             onChange={(e) => {
-                              setClientData({
-                                ...clientData,
-                                [service.state_label]: !clientData[service.state_label],
+                              setMsaData({
+                                ...msaData,
+                                [service.state_label]: !msaData[service.state_label],
+                                [service.state_label+'Date']: new Date(),
                               }) 
                               
                             }}
