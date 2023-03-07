@@ -151,6 +151,8 @@ const ProgressNotesIndex = ({ data }) => {
     userLastName: data[0]?.clienthcwlastname,
     progressNoteDate: crearFecha(),
     ProgressNoteReviewed: false,
+    
+    // Services provided
     developmentActionPlan: false,
     CD4VLLabReport: false,
     transportationCoordination: false,
@@ -163,7 +165,14 @@ const ProgressNotesIndex = ({ data }) => {
     escort: false,
     caseClosureDischarge: false,
     linkageToServices: false,
+    supportGroup:false,
+    implementationActionPlan: false,
+    housingAssistance: false,
+    benefitsAssistance: false,
+    employmentAssistance: false,
     OtherAssistance: false,
+    // ********************
+
     goal1Progress: false,
     goal1ProgressDate: "",
     goal2Progress: false,
@@ -183,30 +192,30 @@ const ProgressNotesIndex = ({ data }) => {
     sapGoal2CompletionDate:data[0].sapgoal2completiondate,
     sapGoal3CompletionDate:data[0].sapgoal3completiondate,
 
-    StatusChangesForm: false, // agregar db
-    StatusChangesFormDate: data[0]?.statuschangesformdate || null, // agregar db
+    StatusChangesForm: false, 
+    StatusChangesFormDate: data[0]?.statuschangesformdate || null, 
 
     ComprehensiveRiskBehaviorAssessmentUpdates: false,
     ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate || null,
 
-    M11QForm: false, // agregar db
-    M11QFormDate: data[0]?.m11qformdate || null, // agregar db
+    M11QForm: false, 
+    M11QFormDate: data[0]?.m11qformdate || null, 
 
-    CD4VLReports: false, // agregar db
-    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, // agregar db
+    CD4VLReports: false, 
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, 
 
-    InitialTreatmentAdherenceIntake: false, // agregar db
-    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate || null, // agregar db
+    InitialTreatmentAdherenceIntake: false, 
+    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate || null, 
 
-    TreatmentAdherenceUpdates: false, // agregar db
-    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate || null, // agregar db
+    TreatmentAdherenceUpdates: false, 
+    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate || null, 
 
     AIRSCollateralInformation:
       false,
     AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate || null,
 
-    AIRSDrugRegimen: false, // agregar db
-    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, // agregar db
+    AIRSDrugRegimen: false, 
+    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, 
 
     AIRSFinancialInformation:
       false,
@@ -215,11 +224,11 @@ const ProgressNotesIndex = ({ data }) => {
       false,
     AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
 
-    AIRSHIVStatusHistory: false, // agregar db
-    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, // agregar db
+    AIRSHIVStatusHistory: false, 
+    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, 
 
-    AIRSHIVMedicalProvider: false, // agregar db
-    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, // agregar db
+    AIRSHIVMedicalProvider: false, 
+    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, 
 
     AIRSHCVHistory: false,
     AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
@@ -264,14 +273,14 @@ const ProgressNotesIndex = ({ data }) => {
     LNEClientReferralFormDate: data[0]?.lneclientreferralformdate || null,
     LNEHNSEligibilityForm: true,
     LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || new Date(),
-    HNSReadinessForm: false, // agregar db
+    HNSReadinessForm: false, 
     HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
 
-    SupportGroups: false, // agregar db
-    SupportGroupsDate: data[0]?.supportgroupsdate || null, // agregar db
+    SupportGroups: false, 
+    SupportGroupsDate: data[0]?.supportgroupsdate || null, 
 
-    IDGForm: false, // agregar db
-    IDGFormDate: data[0]?.idgformdate || null, // agregar db
+    IDGForm: false, 
+    IDGFormDate: data[0]?.idgformdate || null, 
 
     progressNoteText: "",
     HCWSignature:
@@ -290,7 +299,6 @@ const ProgressNotesIndex = ({ data }) => {
     goal1WorkedComments:"",
     goal2WorkedComments:"",
     goal3WorkedComments:"",
-    supportGroup:false
   });
   console.log("form", clientData);
   const whichServiceBeenAded = [
@@ -683,6 +691,9 @@ const ProgressNotesIndex = ({ data }) => {
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             <div className="services-container grid md:grid-cols-3 grid-cols-1 gap-x-5">
+
+{/* SERVICE PROVIDED 1st COLUMN " */}
+
               <div className="services-box grid gap-y-3 items-start justify-start">
                 <div className="flex items-center">
                   <label
@@ -776,9 +787,7 @@ const ProgressNotesIndex = ({ data }) => {
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
-              </div>
 
-              <div className="services-box grid gap-y-3 items-start justify-start ">
                 <div className="flex items-center">
                   <label
                   className="flex items-center gap-x-5"
@@ -798,6 +807,13 @@ const ProgressNotesIndex = ({ data }) => {
                     ></span> */}
                   </label>
                 </div>
+                
+              </div>
+
+
+{/* SERVICE PROVIDED 2nd COLUMN " */}
+              <div className="services-box grid gap-y-3 items-start justify-start ">
+                
                 <div className="flex items-center">
                   <label
                   className="flex items-center gap-x-5"
@@ -868,9 +884,7 @@ const ProgressNotesIndex = ({ data }) => {
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
-              </div>
 
-              <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
                 <div className="flex items-center">
                   <label
                   className="flex items-center gap-x-5"
@@ -908,6 +922,13 @@ const ProgressNotesIndex = ({ data }) => {
                     ></span> */}
                   </label>
                 </div>
+                
+              </div>
+
+
+{/* SERVICE PROVIDED 3rd COLUMN " */}
+              <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
+                
                 <div className="flex items-center">
                   <label
                   className="flex items-center gap-x-5"
@@ -917,11 +938,79 @@ const ProgressNotesIndex = ({ data }) => {
                       onChange={() =>
                         setClientData({
                           ...clientData,
-                          supportGroup: !clientData.supportGroup,
+                          SupportGroup: !clientData.supportGroup,
                         })
                       }
                     />
                     Support Group
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          implementationActionPlan: !clientData.implementationActionPlan,
+                        })
+                      }
+                    />
+                    Implementation of Action Plan
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          housingAssistance: !clientData.housingAssistance,
+                        })
+                      }
+                    />
+                    Assistance with Housing Services
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          benefitsAssistance: !clientData.benefitsAssistance,
+                        })
+                      }
+                    />
+                    Assistance with Access to Benefits / Entitlements
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          employmentAssistance: !clientData.employmentAssistance,
+                        })
+                      }
+                    />
+                    Assistance with Employment / Education
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
