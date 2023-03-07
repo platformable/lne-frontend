@@ -618,6 +618,18 @@ const EditMsaFormPage = ({ data }) => {
                    </div>
                  </div>
                </Link>
+               <Link href={`/clients/${clientData.clientId}/profile/progress_note_list`}>
+                 <div className="">
+                   <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
+                     <button id="myBtn" className="flex  items-center justify-center">
+                       {/* <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/> */}
+                       <p className="p-2 uppercase">
+                         View client Progress Notes
+                       </p>
+                     </button>
+                   </div>
+                 </div>
+               </Link>
           </div>
 
                
