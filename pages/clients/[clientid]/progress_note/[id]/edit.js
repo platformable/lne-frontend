@@ -66,6 +66,8 @@ const ProgressNotesIndex = ({ data, id }) => {
     userFirstName: data[0]?.userfirstname,
     userLastName: data[0]?.userlastname,
     progressNoteDate: data[0]?.progressnotedate || "",
+    
+    // Services provided *****************
     developmentActionPlan:
       data[0]?.developmentactionplan === "1" ? true : false,
     CD4VLLabReport: data[0]?.cd4vllabreport === "1" ? true : false,
@@ -84,7 +86,13 @@ const ProgressNotesIndex = ({ data, id }) => {
     escort: data[0]?.escort === "1" ? true : false,
     caseClosureDischarge: data[0]?.caseclosuredischarge === "1" ? true : false,
     linkageToServices: data[0]?.linkagetoservices === "1" ? true : false,
+    implementationActionPlan: data[0]?.implementationactionplan === '1'? true: false,
+    housingAssistance: data[0]?.housingassistance === '1'? true: false,
+    benefitsAssistance: data[0]?.benefitsassistance === '1'? true: false,
+    employmentAssistance: data[0]?.employmentassistance === '1'? true: false,
     OtherAssistance: data[0]?.otherassistance === "1" ? true : false,
+    // ***********************************
+
     goal1Progress: data[0]?.goal1progress === "1" ? true : false,
     goal1ProgressDate: data[0]?.goal1progressdate || "",
     goal2Progress: data[0]?.goal2progress === "1" ? true : false,
@@ -97,8 +105,8 @@ const ProgressNotesIndex = ({ data, id }) => {
     goal2CompletedDate: data[0]?.goal2completeddate || "",
     goal3Completed: data[0]?.goal3completed === "1" ? true : false,
     goal3CompletedDate: data[0]?.goal3completeddate || "",
-    StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false, // agregar db
-    StatusChangesFormDate: data[0]?.statuschangesformdate || null, // agregar db
+    StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false, 
+    StatusChangesFormDate: data[0]?.statuschangesformdate || null, 
     ComprehensiveRiskBehaviorAssessmentUpdates:
       data[0]?.comprehensiveriskbehaviorassessmentupdates === "1"
         ? true
@@ -106,34 +114,34 @@ const ProgressNotesIndex = ({ data, id }) => {
     ComprehensiveRiskBehaviorAssessmentUpdatesDate:
       data[0]?.comprehensiveriskbehaviorassessmentupdatesdate || null,
 
-    M11QForm: data[0]?.m11qform === "1" ? true : false, // agregar db
-    M11QFormDate: data[0]?.m11qformdate || null, // agregar db
-    CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false, // agregar db
-    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, // agregar db
+    M11QForm: data[0]?.m11qform === "1" ? true : false, 
+    M11QFormDate: data[0]?.m11qformdate || null, 
+    CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false, 
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, 
     InitialTreatmentAdherenceIntake:
-      data[0]?.initialtreatmentadherenceintake === "1" ? true : false, // agregar db
+      data[0]?.initialtreatmentadherenceintake === "1" ? true : false, 
     InitialTreatmentAdherenceIntakeDate:
-      data[0]?.initialtreatmentadherenceintakedate || null, // agregar db
+      data[0]?.initialtreatmentadherenceintakedate || null, 
     TreatmentAdherenceUpdates:
-      data[0]?.treatmentadherenceupdates === "1" ? true : false, // agregar db
+      data[0]?.treatmentadherenceupdates === "1" ? true : false, 
     TreatmentAdherenceUpdatesDate:
-      data[0]?.treatmentadherenceupdatesdate || null, // agregar db
+      data[0]?.treatmentadherenceupdatesdate || null, 
     AIRSCollateralInformation:
       data[0]?.airscollateralinformation === "1" ? true : false,
     AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate,
-    AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false, // agregar db
-    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, // agregar db
+    AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false, 
+    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, 
     AIRSFinancialInformation:
       data[0]?.airsfinancialinformation === "1" ? true : false,
     AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate,
     AIRSHIVAIDSRiskHistory:
       data[0]?.airshivaidsriskhistory === "1" ? true : false,
     AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
-    AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false, // agregar db
-    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, // agregar db
+    AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false, 
+    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, 
     AIRSHIVMedicalProvider:
-      data[0]?.airshivmedicalprovider === "1" ? true : false, // agregar db
-    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, // agregar db
+      data[0]?.airshivmedicalprovider === "1" ? true : false, 
+    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, 
     AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
     AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
     AIRSHousingInformation:
@@ -183,10 +191,10 @@ const ProgressNotesIndex = ({ data, id }) => {
     LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || null,
     HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false, 
     HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
-    SupportGroups: data[0]?.supportgroups === "1" ? true : false, // agregar db
-    SupportGroupsDate: data[0]?.supportgroupsdate || null, // agregar db
-    IDGForm: data[0]?.idgform === "1" ? true : false, // agregar db
-    IDGFormDate: data[0]?.idgformdate || null, // agregar db
+    SupportGroups: data[0]?.supportgroups === "1" ? true : false, 
+    SupportGroupsDate: data[0]?.supportgroupsdate || null, 
+    IDGForm: data[0]?.idgform === "1" ? true : false, 
+    IDGFormDate: data[0]?.idgformdate || null, 
     progressNoteText: data[0]?.progressnotetext || "",
     HCWSignature:
       data[0]?.hcwsignature === "1" ||
@@ -672,6 +680,9 @@ const ProgressNotesIndex = ({ data, id }) => {
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
           >
             <div className="services-container grid md:grid-cols-3 grid-cols-1 gap-x-5">
+
+{/* SERVICE PROVIDED 1st COLUMN " */}
+
               <div className="services-box grid gap-y-3 items-start justify-start">
                 <div className="flex items-center">
                   <label className="flex items-center gap-x-5">
@@ -760,9 +771,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
-              </div>
 
-              <div className="services-box grid gap-y-3 items-start justify-start ">
                 <div className="flex items-center">
                   <label className="flex items-center gap-x-5">
                     <input
@@ -781,6 +790,13 @@ const ProgressNotesIndex = ({ data, id }) => {
                     ></span> */}
                   </label>
                 </div>
+              </div>
+
+
+{/* SERVICE PROVIDED 2nd COLUMN " */}
+
+              <div className="services-box grid gap-y-3 items-start justify-start ">
+                
                 <div className="flex items-center">
                   <label className="flex items-center gap-x-5">
                     <input
@@ -847,9 +863,7 @@ const ProgressNotesIndex = ({ data, id }) => {
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>
-              </div>
 
-              <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
                 <div className="flex items-center">
                   <label className="flex items-center gap-x-5">
                     <input
@@ -885,6 +899,12 @@ const ProgressNotesIndex = ({ data, id }) => {
                     ></span> */}
                   </label>
                 </div>
+              </div>
+
+{/* SERVICE PROVIDED 3rd COLUMN " */}
+
+              <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
+                
                 <div className="flex items-center">
                   <label
                   className="flex items-center gap-x-5"
@@ -900,6 +920,82 @@ const ProgressNotesIndex = ({ data, id }) => {
                       }
                     />
                     Support Groups
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          implementationActionPlan: !clientData.implementationActionPlan,
+                        })
+                      }
+                      defaultChecked={clientData.implementationActionPlan ? "checked" : ""}
+
+                    />
+                    Implementation of Action Plan
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          housingAssistance: !clientData.housingAssistance,
+                        })
+                      }
+                      defaultChecked={clientData.housingAssistance ? "checked" : ""}
+
+                    />
+                    Assistance with Housing Services
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          benefitsAssistance: !clientData.benefitsAssistance,
+                        })
+                      }
+                      defaultChecked={clientData.benefitsAssistance ? "checked" : ""}
+
+                    />
+                    Assistance with Access to Benefits / Entitlements
+                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <label
+                  className="flex items-center gap-x-5"
+                  >
+                    <input
+                      type="checkbox"
+                      onChange={() =>
+                        setClientData({
+                          ...clientData,
+                          employmentAssistance: !clientData.employmentAssistance,
+                        })
+                      }
+                      defaultChecked={clientData.employmentAssistance ? "checked" : ""}
+
+                    />
+                    Assistance with Employment / Education
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>

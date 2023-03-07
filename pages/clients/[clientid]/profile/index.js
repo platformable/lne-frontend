@@ -288,7 +288,7 @@ export default function ClientProfilePage({
       let fechaFin = new Date();
 
       let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      console.log("totalDays", totalDays);
+      // console.log("totalDays", totalDays);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       return (
@@ -704,6 +704,19 @@ console.log("progNotes",progNotes)
                           <p> 
                           {pn.supportgroups === "1" ? "Support Groups" : ""}
                           </p>
+                          <p> 
+                          {pn.implementationactionplan === "1" ? "Implementation of Action Plan" : ""}
+                          </p>
+                          <p> 
+                          {pn.housingassistance === "1" ? "Assistance with Housing Services" : ""}
+                          </p>
+                          <p> 
+                          {pn.benefitsassistance === "1" ? "Assistance with Access to Benefits/Entitlements" : ""}
+                          </p>
+                          <p> 
+                          {pn.employmentassistance === "1" ? "Assistance with Employment/Education" : ""}
+                          </p>
+
                           <p>
                           {pn.otherassistance === "1" ? "Other Assistance" : ""}
                         </p>
