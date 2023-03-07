@@ -895,11 +895,11 @@ const ProgressNotesIndex = ({ data, id }) => {
                       onChange={() =>
                         setClientData({
                           ...clientData,
-                          supportGroup: !clientData.SupportGroups,
+                          SupportGroups: !clientData.SupportGroups,
                         })
                       }
                     />
-                    Support Group
+                    Support Groups
                     {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                   </label>
                 </div>

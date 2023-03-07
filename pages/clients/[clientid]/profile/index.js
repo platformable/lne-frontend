@@ -644,42 +644,70 @@ console.log("progNotes",progNotes)
                         className="grid grid-cols-4 bg-white py-2 border p-5 text-center"
                       >
                         <p>{new Date(pn.date).toLocaleDateString("en-US")}</p>
+                        <div>
                         <p>
                           {pn.developmentactionplan === "1"
                             ? "Development of Action Plan with Client"
                             : ""}
+                        </p>    
+                          <p>
                           {pn.cd4vllabreport === "1"
                             ? "CD4/VL Lab Report Check"
                             : ""}
+                          </p>
+                        <p>
                           {pn.transportationcoordination === "1"
                             ? "Transportation Coordination"
                             : ""}
+                        </p>
+                        <p>
                           {pn.translationinterpretation === "1"
                             ? "Translation/Interpretation"
                             : ""}
+                        </p>
+                        <p>
                           {pn.comprehensivebehavioralriskassessment === "1"
                             ? "Comprehensive Behavioral Risk Assessment"
                             : ""}
+                        </p>
+                        <p>
                           {pn.ticklerupdate === "1" ? "Tickler Update" : ""}
+                          </p>
+                          <p>
                           {pn.treatmenteducation === "1"
                             ? "Treatment Education and Adherence Counselling"
                             : ""}
+                          </p>
+                          <p>
                           {pn.preventioncounselling === "1"
                             ? "Prevention Counselling"
                             : ""}
+                          </p>
+                          <p>
                           {pn.supportivecounselling === "1"
                             ? "Supportive Counselling"
                             : ""}
+                          </p>
+                          <p>   
                           {pn.escort === "1" ? "Escort" : ""}
+                          </p>
+                          <p>
                           {pn.caseclosuredischarge === "1"
                             ? "Case Closure/Discharge"
                             : ""}
+                          </p>
+                          <p> 
                           {pn.linkagetoservices === "1"
                             ? "Linkage to Services"
                             : ""}
+                          </p>
+                          <p> 
                           {pn.supportgroups === "1" ? "Support Groups" : ""}
+                          </p>
+                          <p>
                           {pn.otherassistance === "1" ? "Other Assistance" : ""}
                         </p>
+                        </div>
                         <div className="flex justify-center ">
                           <Link
                             href={`/clients/${data[0]?.clientid}/progress_note/${pn.id}/edit`}

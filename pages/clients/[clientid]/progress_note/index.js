@@ -917,7 +917,7 @@ const ProgressNotesIndex = ({ data }) => {
                       onChange={() =>
                         setClientData({
                           ...clientData,
-                          supportGroup: !clientData.supportGroup,
+                          SupportGroup: !clientData.supportGroup,
                         })
                       }
                     />
