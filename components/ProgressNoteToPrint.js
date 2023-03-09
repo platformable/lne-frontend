@@ -6,7 +6,6 @@ import MSAStyles from "../styles/MSA.module.css";
 const ProgressNotesToPrint = React.forwardRef((props, ref) => {
   let { data } = props;
 
-  console.log("data del pn print", data);
 
   const whichServiceBeenAded = [
     {
