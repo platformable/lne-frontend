@@ -196,8 +196,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
     IDGForm: data[0]?.idgform === "1" ? true : false, 
     IDGFormDate: data[0]?.idgformdate || null, 
     progressNoteText: data[0]?.progressnotetext || "",
-    HCWSignature:
-      data[0]?.hcwsignature === "1" ||
+    HCWSignature: data[0]?.hcwsignature === "0" ||
       data[0]?.hcwsignature === "" ||
       data[0]?.hcwsignature === null
         ? false
