@@ -14,9 +14,9 @@ import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ProgressNotesIndex = ({ data, id }) => {
+const ProgressNotesIndex = ({ data, id, msa }) => {
   const router = useRouter();
-  console.log("data", data);
+  console.log("msa", msa);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
   let componentRef = useRef();
@@ -196,8 +196,7 @@ const ProgressNotesIndex = ({ data, id }) => {
     IDGForm: data[0]?.idgform === "1" ? true : false, 
     IDGFormDate: data[0]?.idgformdate || null, 
     progressNoteText: data[0]?.progressnotetext || "",
-    HCWSignature:
-      data[0]?.hcwsignature === "1" ||
+    HCWSignature: data[0]?.hcwsignature === "0" ||
       data[0]?.hcwsignature === "" ||
       data[0]?.hcwsignature === null
         ? false
@@ -214,185 +213,255 @@ const ProgressNotesIndex = ({ data, id }) => {
     goal3WorkedComments: data[0]?.goal3workedcomments || "",
   });
   console.log("form", clientData);
+  
+  const [msaData, setMsaData] = useState({
+    clientId: msa[0]?.clientid,
+    AIRSCollateralInformation: msa[0]?.airscollateralinformation === "1" ? true : false,
+    AIRSCollateralInformationDate: msa[0]?.airscollateralinformationdate ,
+    AIRSFinancialInformation: msa[0]?.airsfinancialinformation === "1" ? true : false,
+    AIRSFinancialInformationDate: msa[0]?.airsfinancialinformationdate ,
+    AIRSHIVAIDSRiskHistory: msa[0]?.airshivaidsriskhistory === "1" ? true : false,
+    AIRSHIVAIDSRiskHistoryDate: msa[0]?.airshivaidsriskhistorydate ,
+    AIRSHCVHistory: msa[0]?.airshcvhistory === "1" ? true : false,
+    AIRSHCVHistoryDate: msa[0]?.airshcvhistorydate,
+    AIRSHousingInformation: msa[0]?.airshousinginformation === "1" ? true : false,
+    AIRSHousingInformationDate: msa[0]?.airshousinginformationdate ,
+    AIRSInsuranceInformation: msa[0]?.airsinsuranceinformation === "1" ? true : false,
+    AIRSInsuranceInformationDate: msa[0]?.airsinsuranceinformationdate,
+    AIRSSubstanceUseHistory: msa[0]?.airssubstanceusehistory === "1" ? true : false,
+    AIRSSubstanceUseHistoryDate: msa[0]?.airssubstanceusehistorydate,
+    LNEClientRights: msa[0]?.lneclientrights === "1" ? true : false,
+    LNEClientRightsDate: msa[0]?.lneclientrightsdate,
+    LNEClientGrievancePolicyProcedure: msa[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
+    LNEClientGrievancePolicyProcedureDate: msa[0]?.lneclientgrievancepolicyproceduredate ,
+    LNEProgramRules: msa[0]?.lneprogramrules === "1" ? true : false,
+    LNEProgramRulesDate: msa[0]?.lneprogramrulesdate,
+    LNEEmergencyContactConsent: msa[0]?.lneemergencycontactconsent === "1" ? true : false,
+    LNEEmergencyContactConsentDate: msa[0]?.lneemergencycontactconsentdate,
+    LNEConsentForReleaseOfConfidentialInformation: msa[0]?.lneconsentforreleaseofconfidentialinformation === "1" ? true : false,
+    LNEConsentForReleaseOfConfidentialInformationDate: msa[0]?.lneconsentforreleaseofconfidentialinformationdate,
+    HIPPAConsentForm: msa[0]?.hippaconsentform === "1" ? true : false,
+    HIPPAConsentFormDate: msa[0]?.hippaconsentformdate ,
+    NYCDOHMHNoticeOfPrivacyPractices: msa[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
+    NYCDOHMHNoticeOfPrivacyPracticesDate: msa[0]?.nycdohmhnoticeofprivacypracticesdate,
+    LNEOutreachRetentionTrackingForm: msa[0]?.lneoutreachretentiontrackingform === "1" ? true : false,
+    LNEOutreachRetentionTrackingFormDate: msa[0]?.lneoutreachretentiontrackingformdate,
+    LNEReferralInformation: msa[0]?.lnereferralinformation === "1" ? true : false,
+    LNEReferralInformationDate: msa[0]?.lnereferralinformationdate,
+    LNEClientReferralForm: msa[0]?.lneclientreferralform === "1" ? true : false,
+    LNEClientReferralFormDate: msa[0]?.lneclientreferralformdate ,
+    LNEHNSEligibilityForm: msa[0]?.lnehnseligibilityform === "1" ? true : false,
+    LNEHNSEligibilityFormDate: msa[0]?.lnehnseligibilityformdate,
+    progressNoteDate: msa[0]?.progressnotedate ,
+    StatusChangesForm: msa[0]?.statuschangesform === "1" ? true : false,
+    StatusChangesFormDate: msa[0]?.statuschangesformdate,
+    ComprehensiveRiskBehaviorAssessmentUpdates: msa[0]?.comprehensiveriskbehaviorassessmentupdates === "1" ? true : false,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate: msa[0]?.comprehensiveriskbehaviorassessmentupdatesdate ,
+    M11QForm: msa[0]?.m11qform === "1" ? true : false,
+    M11QFormDate: msa[0]?.m11qformdate ,
+    CD4VLReports: msa[0]?.cd4vlreports === "1" ? true : false,
+    CD4VLReportsDate: msa[0]?.cd4vlreportsdate ,
+    InitialTreatmentAdherenceIntake: msa[0]?.initialtreatmentadherenceintake === "1" ? true : false,
+    InitialTreatmentAdherenceIntakeDate: msa[0]?.initialtreatmentadherenceintakedate ,
+    TreatmentAdherenceUpdates: msa[0]?.treatmentadherenceupdates === "1" ? true : false,
+    TreatmentAdherenceUpdatesDate: msa[0]?.treatmentadherenceupdatesdate ,
+    AIRSDrugRegimen: msa[0]?.airsdrugregimen === "1" ? true : false,
+    AIRSDrugRegimenDate: msa[0]?.airsdrugregimendate,
+    AIRSHIVStatusHistory: msa[0]?.airshivstatushistory === "1" ? true : false,
+    AIRSHIVStatusHistoryDate: msa[0]?.airshivstatushistorydate,
+    AIRSHIVMedicalProvider: msa[0]?.airshivmedicalprovider === "1" ? true : false,
+    AIRSHIVMedicalProviderDate: msa[0]?.airshivmedicalproviderdate,
+    SupportGroups: msa[0]?.supportgroups === "1" ? true : false,
+    SupportGroupsDate: msa[0]?.supportgroupsdate,
+    IDGForm: msa[0]?.idgform === "1" ? true : false,
+    IDGFormDate: msa[0]?.idgformdate,
+    HNSReadinessForm: msa[0]?.hnsreadinessform === "1" ? true : false,
+    InternalReferralInformation: msa[0]?.internalreferralinformation === "1" ? true : false,
+    LinkageRetentionAdherenceForms: msa[0]?.linkageretentionadherenceforms === "1" ? true : false,
+    InternalReferralInformationDate: msa[0]?.internalreferralinformationdate,
+    LinkageRetentionAdherenceFormsDate: msa[0]?.linkageretentionadherenceformsdate ,
+    HNSReadinessFormDate: msa[0]?.hnsreadinessformdate ,
+    ProgressNoteReviewed: msa[0]?.progressnotereviewed === "1" ? true : false,
+})
   const whichServiceBeenAded = [
     {
-      value: clientData.LNEHNSEligibilityForm,
+      value: msaData.LNEHNSEligibilityForm,
       state_label: "LNEHNSEligibilityForm",
       row_color: "bg-light-blue",
       form_text: "HNS Eligibility Assessment",
     },
-    // {value:clientData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
+    // {value:msaData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
     {
-      value: clientData.StatusChangesForm,
+      value: msaData.StatusChangesForm,
       state_label: "StatusChangesForm",
       row_color: "bg-light-blue",
       form_text: "Status Changes/Closure Forms",
     },
     {
-      value: clientData.ComprehensiveRiskBehaviorAssessmentUpdates,
+      value: msaData.ComprehensiveRiskBehaviorAssessmentUpdates,
       state_label: "ComprehensiveRiskBehaviorAssessmentUpdates",
       row_color: "bg-light-blue",
       form_text: "Comprehensive Behavioral Risk Assessment Updates",
     },
     {
-      value: clientData.M11QForm,
+      value: msaData.M11QForm,
       state_label: "M11QForm",
       row_color: "bg-light-blue",
       form_text: "M11Q",
     },
     {
-      value: clientData.CD4VLReports,
+      value: msaData.CD4VLReports,
       state_label: "CD4VLReports",
       row_color: "bg-light-blue",
       form_text: "CD4/VL Check Reports",
     },
     {
-      value: clientData.InitialTreatmentAdherenceIntake,
+      value: msaData.InitialTreatmentAdherenceIntake,
       state_label: "InitialTreatmentAdherenceIntake",
       row_color: "bg-light-blue",
       form_text: "Initial Treatment Adherence Intake",
     },
     {
-      value: clientData.TreatmentAdherenceUpdates,
+      value: msaData.TreatmentAdherenceUpdates,
       state_label: "TreatmentAdherenceUpdates",
       row_color: "bg-light-blue",
       form_text: "Treatment Adherence Updates",
     },
     {
-      value: clientData.AIRSCollateralInformation,
+      value: msaData.AIRSCollateralInformation,
       state_label: "AIRSCollateralInformation",
       row_color: "bg-light-blue",
       form_text: "AIRS Collateral Information",
     },
     {
-      value: clientData.AIRSDrugRegimen,
+      value: msaData.AIRSDrugRegimen,
       state_label: "AIRSDrugRegimen",
       row_color: "bg-light-blue",
       form_text: "AIRS Drug Regimen History",
     },
     {
-      value: clientData.AIRSFinancialInformation,
+      value: msaData.AIRSFinancialInformation,
       state_label: "AIRSFinancialInformation",
       row_color: "bg-light-blue",
       form_text: "AIRS Financial Information",
     },
     {
-      value: clientData.AIRSHIVAIDSRiskHistory,
+      value: msaData.AIRSHIVAIDSRiskHistory,
       state_label: "AIRSHIVAIDSRiskHistory",
       row_color: "bg-light-blue",
       form_text: "AIRS HIV AIDS Risk History",
     },
     {
-      value: clientData.AIRSHIVMedicalProvider,
+      value: msaData.AIRSHIVMedicalProvider,
       state_label: "AIRSHIVMedicalProvider",
       row_color: "bg-light-blue",
       form_text: "AIRS HIV Medical Provider History",
     },
     {
-      value: clientData.AIRSHIVStatusHistory,
+      value: msaData.AIRSHIVStatusHistory,
       state_label: "AIRSHIVStatusHistory",
       row_color: "bg-light-blue",
       form_text: "AIRS HIV Status History",
     },
     {
-      value: clientData.AIRSHCVHistory,
+      value: msaData.AIRSHCVHistory,
       state_label: "AIRSHCVHistory",
       row_color: "bg-light-blue",
       form_text: "AIRS HCV History",
     },
     {
-      value: clientData.AIRSHousingInformation,
+      value: msaData.AIRSHousingInformation,
       state_label: "AIRSHousingInformation",
       row_color: "bg-light-blue",
       form_text: "AIRS Housing Information",
     },
     {
-      value: clientData.AIRSInsuranceInformation,
+      value: msaData.AIRSInsuranceInformation,
       state_label: "AIRSInsuranceInformation",
       row_color: "bg-light-blue",
       form_text: "AIRS Insurance Information",
     },
     {
-      value: clientData.AIRSSubstanceUseHistory,
+      value: msaData.AIRSSubstanceUseHistory,
       state_label: "AIRSSubstanceUseHistory",
       row_color: "bg-light-blue",
       form_text: "AIRS Substance Use History",
     },
     {
-      value: clientData.LNEClientRights,
+      value: msaData.LNEClientRights,
       state_label: "LNEClientRights",
       row_color: "bg-light-green",
       form_text: "LNE Client Rights",
     },
     {
-      value: clientData.LNEClientGrievancePolicyProcedure,
+      value: msaData.LNEClientGrievancePolicyProcedure,
       state_label: "LNEClientGrievancePolicyProcedure",
       row_color: "bg-light-green",
       form_text: "LNE Client Grievance Policy & Procedure",
     },
     {
-      value: clientData.LNEProgramRules,
+      value: msaData.LNEProgramRules,
       state_label: "LNEProgramRules",
       row_color: "bg-light-green",
       form_text: "LNE Program Rules",
     },
     {
-      value: clientData.LNEEmergencyContactConsent,
+      value: msaData.LNEEmergencyContactConsent,
       state_label: "LNEEmergencyContactConsent",
       row_color: "bg-light-green",
       form_text: "LNE Emergency Contact Consent",
     },
     {
-      value: clientData.LNEConsentForReleaseOfConfidentialInformation,
+      value: msaData.LNEConsentForReleaseOfConfidentialInformation,
       state_label: "LNEConsentForReleaseOfConfidentialInformation",
       row_color: "bg-light-green",
       form_text: "LNE Consent for Release of Confidential Information",
     },
     {
-      value: clientData.HIPPAConsentForm,
+      value: msaData.HIPPAConsentForm,
       state_label: "HIPPAConsentForm",
       row_color: "bg-light-green",
       form_text: "HIPAA Consent Form (OCA Form 960), ",
     },
     {
-      value: clientData.NYCDOHMHNoticeOfPrivacyPractices,
+      value: msaData.NYCDOHMHNoticeOfPrivacyPractices,
       state_label: "NYCDOHMHNoticeOfPrivacyPractices",
       row_color: "bg-light-green",
       form_text:
         "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
     },
     {
-      value: clientData.LinkageRetentionAdherenceForms,
+      value: msaData.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
       row_color: "bg-light-pink",
       form_text: "Linkage, Retention, & Adherence Forms",
     },
     {
-      value: clientData.InternalReferralInformation,
+      value: msaData.InternalReferralInformation,
       state_label: "InternalReferralInformation",
       row_color: "bg-light-pink",
       form_text: "Internal Referral Information",
     },
     {
-      value: clientData.LNEClientReferralForm,
+      value: msaData.LNEClientReferralForm,
       state_label: "LNEClientReferralForm",
       row_color: "bg-light-pink",
       form_text: "Identification",
     },
     {
-      value: clientData.HNSReadinessForm,
+      value: msaData.HNSReadinessForm,
       state_label: "HNSReadinessForm",
       row_color: "bg-light-pink",
       form_text: "HNS Readiness Form",
     },
     {
-      value: clientData.SupportGroups,
+      value: msaData.SupportGroups,
       state_label: "SupportGroups",
       row_color: "bg-light-pink",
       form_text: "Support Groups",
     },
     {
-      value: clientData.IDGForm,
+      value: msaData.IDGForm,
       state_label: "IDGForm",
       row_color: "bg-light-pink",
       form_text: "IDG",
@@ -426,77 +495,8 @@ const ProgressNotesIndex = ({ data, id }) => {
     HCWSignature: false,
   });
 
-  const [msaData, setMsaData] = useState({
-    clientId: data[0]?.clientid,
-    AIRSCollateralInformation: data[0]?.airscollateralinformation === "1" ? true : false,
-    AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate ,
-    AIRSFinancialInformation: data[0]?.airsfinancialinformation === "1" ? true : false,
-    AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate ,
-    AIRSHIVAIDSRiskHistory: data[0]?.airshivaidsriskhistory === "1" ? true : false,
-    AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate ,
-    AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
-    AIRSHCVHistoryDate: data[0]?.airshcvhistorydate,
-    AIRSHousingInformation: data[0]?.airshousinginformation === "1" ? true : false,
-    AIRSHousingInformationDate: data[0]?.airshousinginformationdate ,
-    AIRSInsuranceInformation: data[0]?.airsinsuranceinformation === "1" ? true : false,
-    AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate,
-    AIRSSubstanceUseHistory: data[0]?.airssubstanceusehistory === "1" ? true : false,
-    AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate,
-    LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
-    LNEClientRightsDate: data[0]?.lneclientrightsdate,
-    LNEClientGrievancePolicyProcedure: data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
-    LNEClientGrievancePolicyProcedureDate: data[0]?.lneclientgrievancepolicyproceduredate ,
-    LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
-    LNEProgramRulesDate: data[0]?.lneprogramrulesdate,
-    LNEEmergencyContactConsent: data[0]?.lneemergencycontactconsent === "1" ? true : false,
-    LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate,
-    LNEConsentForReleaseOfConfidentialInformation: data[0]?.lneconsentforreleaseofconfidentialinformation === "1" ? true : false,
-    LNEConsentForReleaseOfConfidentialInformationDate: data[0]?.lneconsentforreleaseofconfidentialinformationdate,
-    HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
-    HIPPAConsentFormDate: data[0]?.hippaconsentformdate ,
-    NYCDOHMHNoticeOfPrivacyPractices: data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
-    NYCDOHMHNoticeOfPrivacyPracticesDate: data[0]?.nycdohmhnoticeofprivacypracticesdate,
-    LNEOutreachRetentionTrackingForm: data[0]?.lneoutreachretentiontrackingform === "1" ? true : false,
-    LNEOutreachRetentionTrackingFormDate: data[0]?.lneoutreachretentiontrackingformdate,
-    LNEReferralInformation: data[0]?.lnereferralinformation === "1" ? true : false,
-    LNEReferralInformationDate: data[0]?.lnereferralinformationdate,
-    LNEClientReferralForm: data[0]?.lneclientreferralform === "1" ? true : false,
-    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate ,
-    LNEHNSEligibilityForm: data[0]?.lnehnseligibilityform === "1" ? true : false,
-    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate,
-    progressNoteDate: data[0]?.progressnotedate ,
-    StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false,
-    StatusChangesFormDate: data[0]?.statuschangesformdate,
-    ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates === "1" ? true : false,
-    ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate ,
-    M11QForm: data[0]?.m11qform === "1" ? true : false,
-    M11QFormDate: data[0]?.m11qformdate ,
-    CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false,
-    CD4VLReportsDate: data[0]?.cd4vlreportsdate ,
-    InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake === "1" ? true : false,
-    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate ,
-    TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates === "1" ? true : false,
-    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate ,
-    AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false,
-    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate,
-    AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false,
-    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate,
-    AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider === "1" ? true : false,
-    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate,
-    SupportGroups: data[0]?.supportgroups === "1" ? true : false,
-    SupportGroupsDate: data[0]?.supportgroupsdate,
-    IDGForm: data[0]?.idgform === "1" ? true : false,
-    IDGFormDate: data[0]?.idgformdate,
-    HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false,
-    InternalReferralInformation: data[0]?.internalreferralinformation === "1" ? true : false,
-    LinkageRetentionAdherenceForms: data[0]?.linkageretentionadherenceforms === "1" ? true : false,
-    InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
-    LinkageRetentionAdherenceFormsDate: data[0]?.linkageretentionadherenceformsdate ,
-    HNSReadinessFormDate: data[0]?.hnsreadinessformdate ,
-    ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
-})
 
-
+console.log("msaData",msaData)
   const handleMsaformUpdate = () => {
     axios
       .put(
@@ -1819,9 +1819,10 @@ const ProgressNotesIndex = ({ data, id }) => {
                               // if (clientData[service.state_label] && data[0][service.state_label] )
                               
                               //   {
-                                  setClientData({
-                                  ...clientData,
-                                  [service.state_label]: !clientData[service.state_label],
+                                  setMsaData({
+                                  ...msaData,
+                                  [service.state_label]: !msaData[service.state_label],
+                                  [service.state_label+'Date']: new Date(),
                                 }) 
                                 
                               // } else {
@@ -1861,9 +1862,10 @@ const ProgressNotesIndex = ({ data, id }) => {
                             defaultChecked={service.value ? "checked" : ""}
                            
                             onChange={(e) => {
-                              setClientData({
-                                ...clientData,
-                                [service.state_label]: !clientData[service.state_label],
+                              setMsaData({
+                                ...msaData,
+                                [service.state_label]: !msaData[service.state_label],
+                                [service.state_label+'Date']: new Date(),
                               }) 
                               
                             }}
@@ -1930,10 +1932,14 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid, id } = ctx.params;
     console.log(ctx.params);
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}/profile/${id}`
-    );
-    const data = await response.json();
-    return { props: { data, id } };
+    const [data, msa] = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}/profile/${id}`
+      ).then(data => data.json()),
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/msa/${clientid}`)
+      .then(data=> data.json())
+      ])
+
+    return { props: { data, id, msa } };
   },
 });
