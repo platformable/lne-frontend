@@ -595,12 +595,12 @@ const EditMsaFormPage = ({ data }) => {
         <main className="container mx-auto">
           <div className="flex gap-x-5">
           <BackToDashboardButton />
-          <Link href={`/clients/${clientData.clientId}/service-action-plan/edit`}>
+          <Link href={`/clients/${clientData.clientId}/profile/service_action_plans/`}>
                  <div className="">
                    <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
                      <button id="myBtn" className="flex  items-center justify-center">
                          <p className="p-2  uppercase">
-                       View Action Plan
+                       View Action Plans
                        </p>
                      </button>
                    </div>

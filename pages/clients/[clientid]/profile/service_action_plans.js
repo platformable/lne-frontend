@@ -45,6 +45,14 @@ export default function ClientServiceActionPlansListPage({
             <div className="flex gap-x-3">
               <BackButton />
               <BackToDashboardButton />
+
+              <button
+      onClick={() => router.push(`/clients/${data.client[0].clientid}/service-action-plan`)}
+      className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center"
+    >
+     
+      Create Service Action Plan
+    </button>
             </div>
           
           </section>
@@ -66,7 +74,7 @@ export default function ClientServiceActionPlansListPage({
                 </div>
                 <div>
                   <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
-                    Service
+                    Status
                   </h3>
                 </div>
                 <div>
@@ -74,11 +82,11 @@ export default function ClientServiceActionPlansListPage({
                     Edit
                   </h3>
                 </div>
-                <div>
+              {/*   <div>
                   <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
                     Delete
                   </h3>
-                </div>
+                </div> */}
               </div>
 
               {data?.clientData.length > 0 ? (
@@ -92,11 +100,11 @@ export default function ClientServiceActionPlansListPage({
                       >
                         <p>{new Date(sap.planstartdate).toLocaleDateString("en-US")}</p>
                         <div>
-                        AAA
+                        {`${sap.status}`}
                         </div>
                         <div className="flex justify-center ">
                           <Link
-                            href={`/clients/${data?.client[0].clientid}/service-action-plan/${sap.id}/edit`}
+                            href={`/clients/${data?.client[0].clientid}/service-action-plan/${sap.sapid}/edit`}
                           >
                             <a
                               href={"/clients/devs"}
@@ -107,7 +115,7 @@ export default function ClientServiceActionPlansListPage({
                           </Link>
                         </div>
                         <div className="flex justify-center ">
-                          <button
+                         {/*  <button
                             onClick={() => {
                               setSelectedProgressNoteId(pn.id);
                               setShowDeleteModal(!showDeleteModal);
@@ -115,7 +123,7 @@ export default function ClientServiceActionPlansListPage({
                             className="flex items-center justify-center"
                           >
                             <img src="/delete-icon.svg" alt="edit icon" />
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     );
