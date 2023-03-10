@@ -1751,7 +1751,7 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="additional-forms-box  " key={index}>
                 {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(...e).map((service,index) => (
-                    <>
+                    <div key={index}>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
                       key={index}>
@@ -1832,7 +1832,7 @@ const ProgressNotesIndex = ({ data }) => {
                           <p>{service.form_text}</p>
                         </div>
                       </div>
-                    </>
+                    </div>
                   ))}
               </div>
               ))}
