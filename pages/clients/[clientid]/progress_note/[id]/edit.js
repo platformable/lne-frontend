@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ProgressNotesIndex = ({ data, id, msa }) => {
   const router = useRouter();
-  console.log("msa", msa);
+  console.log("data", data);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
   let componentRef = useRef();
@@ -284,184 +284,184 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
     ProgressNoteReviewed: msa[0]?.progressnotereviewed === "1" ? true : false,
 })
   const whichServiceBeenAded = [
+    // {
+    //   value: clientData?.LNEHNSEligibilityForm,
+    //   state_label: "LNEHNSEligibilityForm",
+    //   row_color: "bg-light-blue",
+    //   form_text: "HNS Eligibility Assessment",
+    // },
+    // {value:clientData?.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
     {
-      value: msaData.LNEHNSEligibilityForm,
-      state_label: "LNEHNSEligibilityForm",
-      row_color: "bg-light-blue",
-      form_text: "HNS Eligibility Assessment",
-    },
-    // {value:msaData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
-    {
-      value: msaData.StatusChangesForm,
+      value: clientData?.StatusChangesForm,
       state_label: "StatusChangesForm",
       row_color: "bg-light-blue",
       form_text: "Status Changes/Closure Forms",
     },
     {
-      value: msaData.ComprehensiveRiskBehaviorAssessmentUpdates,
+      value: clientData?.ComprehensiveRiskBehaviorAssessmentUpdates,
       state_label: "ComprehensiveRiskBehaviorAssessmentUpdates",
       row_color: "bg-light-blue",
       form_text: "Comprehensive Behavioral Risk Assessment Updates",
     },
     {
-      value: msaData.M11QForm,
+      value: clientData?.M11QForm,
       state_label: "M11QForm",
       row_color: "bg-light-blue",
       form_text: "M11Q",
     },
     {
-      value: msaData.CD4VLReports,
+      value: clientData?.CD4VLReports,
       state_label: "CD4VLReports",
       row_color: "bg-light-blue",
       form_text: "CD4/VL Check Reports",
     },
     {
-      value: msaData.InitialTreatmentAdherenceIntake,
+      value: clientData?.InitialTreatmentAdherenceIntake,
       state_label: "InitialTreatmentAdherenceIntake",
       row_color: "bg-light-blue",
       form_text: "Initial Treatment Adherence Intake",
     },
     {
-      value: msaData.TreatmentAdherenceUpdates,
+      value: clientData?.TreatmentAdherenceUpdates,
       state_label: "TreatmentAdherenceUpdates",
       row_color: "bg-light-blue",
       form_text: "Treatment Adherence Updates",
     },
+    // {
+    //   value: clientData?.AIRSCollateralInformation,
+    //   state_label: "AIRSCollateralInformation",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS Collateral Information",
+    // },
+    // {
+    //   value: clientData?.AIRSDrugRegimen,
+    //   state_label: "AIRSDrugRegimen",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS Drug Regimen History",
+    // },
+    // {
+    //   value: clientData?.AIRSFinancialInformation,
+    //   state_label: "AIRSFinancialInformation",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS Financial Information",
+    // },
+    // {
+    //   value: clientData?.AIRSHIVAIDSRiskHistory,
+    //   state_label: "AIRSHIVAIDSRiskHistory",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS HIV AIDS Risk History",
+    // },
+    // {
+    //   value: clientData?.AIRSHIVMedicalProvider,
+    //   state_label: "AIRSHIVMedicalProvider",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS HIV Medical Provider History",
+    // },
+    // {
+    //   value: clientData?.AIRSHIVStatusHistory,
+    //   state_label: "AIRSHIVStatusHistory",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS HIV Status History",
+    // },
+    // {
+    //   value: clientData?.AIRSHCVHistory,
+    //   state_label: "AIRSHCVHistory",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS HCV History",
+    // },
+    // {
+    //   value: clientData?.AIRSHousingInformation,
+    //   state_label: "AIRSHousingInformation",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS Housing Information",
+    // },
+    // {
+    //   value: clientData?.AIRSInsuranceInformation,
+    //   state_label: "AIRSInsuranceInformation",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS Insurance Information",
+    // },
+    // {
+    //   value: clientData?.AIRSSubstanceUseHistory,
+    //   state_label: "AIRSSubstanceUseHistory",
+    //   row_color: "bg-light-blue",
+    //   form_text: "AIRS Substance Use History",
+    // },
+    // {
+    //   value: clientData?.LNEClientRights,
+    //   state_label: "LNEClientRights",
+    //   row_color: "bg-light-green",
+    //   form_text: "LNE Client Rights",
+    // },
+    // {
+    //   value: clientData?.LNEClientGrievancePolicyProcedure,
+    //   state_label: "LNEClientGrievancePolicyProcedure",
+    //   row_color: "bg-light-green",
+    //   form_text: "LNE Client Grievance Policy & Procedure",
+    // },
+    // {
+    //   value: clientData?.LNEProgramRules,
+    //   state_label: "LNEProgramRules",
+    //   row_color: "bg-light-green",
+    //   form_text: "LNE Program Rules",
+    // },
+    // {
+    //   value: clientData?.LNEEmergencyContactConsent,
+    //   state_label: "LNEEmergencyContactConsent",
+    //   row_color: "bg-light-green",
+    //   form_text: "LNE Emergency Contact Consent",
+    // },
+    // {
+    //   value: clientData?.LNEConsentForReleaseOfConfidentialInformation,
+    //   state_label: "LNEConsentForReleaseOfConfidentialInformation",
+    //   row_color: "bg-light-green",
+    //   form_text: "LNE Consent for Release of Confidential Information",
+    // },
+    // {
+    //   value: clientData?.HIPPAConsentForm,
+    //   state_label: "HIPPAConsentForm",
+    //   row_color: "bg-light-green",
+    //   form_text: "HIPAA Consent Form (OCA Form 960), ",
+    // },
+    // {
+    //   value: clientData?.NYCDOHMHNoticeOfPrivacyPractices,
+    //   state_label: "NYCDOHMHNoticeOfPrivacyPractices",
+    //   row_color: "bg-light-green",
+    //   form_text:
+    //     "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
+    // },
     {
-      value: msaData.AIRSCollateralInformation,
-      state_label: "AIRSCollateralInformation",
-      row_color: "bg-light-blue",
-      form_text: "AIRS Collateral Information",
-    },
-    {
-      value: msaData.AIRSDrugRegimen,
-      state_label: "AIRSDrugRegimen",
-      row_color: "bg-light-blue",
-      form_text: "AIRS Drug Regimen History",
-    },
-    {
-      value: msaData.AIRSFinancialInformation,
-      state_label: "AIRSFinancialInformation",
-      row_color: "bg-light-blue",
-      form_text: "AIRS Financial Information",
-    },
-    {
-      value: msaData.AIRSHIVAIDSRiskHistory,
-      state_label: "AIRSHIVAIDSRiskHistory",
-      row_color: "bg-light-blue",
-      form_text: "AIRS HIV AIDS Risk History",
-    },
-    {
-      value: msaData.AIRSHIVMedicalProvider,
-      state_label: "AIRSHIVMedicalProvider",
-      row_color: "bg-light-blue",
-      form_text: "AIRS HIV Medical Provider History",
-    },
-    {
-      value: msaData.AIRSHIVStatusHistory,
-      state_label: "AIRSHIVStatusHistory",
-      row_color: "bg-light-blue",
-      form_text: "AIRS HIV Status History",
-    },
-    {
-      value: msaData.AIRSHCVHistory,
-      state_label: "AIRSHCVHistory",
-      row_color: "bg-light-blue",
-      form_text: "AIRS HCV History",
-    },
-    {
-      value: msaData.AIRSHousingInformation,
-      state_label: "AIRSHousingInformation",
-      row_color: "bg-light-blue",
-      form_text: "AIRS Housing Information",
-    },
-    {
-      value: msaData.AIRSInsuranceInformation,
-      state_label: "AIRSInsuranceInformation",
-      row_color: "bg-light-blue",
-      form_text: "AIRS Insurance Information",
-    },
-    {
-      value: msaData.AIRSSubstanceUseHistory,
-      state_label: "AIRSSubstanceUseHistory",
-      row_color: "bg-light-blue",
-      form_text: "AIRS Substance Use History",
-    },
-    {
-      value: msaData.LNEClientRights,
-      state_label: "LNEClientRights",
-      row_color: "bg-light-green",
-      form_text: "LNE Client Rights",
-    },
-    {
-      value: msaData.LNEClientGrievancePolicyProcedure,
-      state_label: "LNEClientGrievancePolicyProcedure",
-      row_color: "bg-light-green",
-      form_text: "LNE Client Grievance Policy & Procedure",
-    },
-    {
-      value: msaData.LNEProgramRules,
-      state_label: "LNEProgramRules",
-      row_color: "bg-light-green",
-      form_text: "LNE Program Rules",
-    },
-    {
-      value: msaData.LNEEmergencyContactConsent,
-      state_label: "LNEEmergencyContactConsent",
-      row_color: "bg-light-green",
-      form_text: "LNE Emergency Contact Consent",
-    },
-    {
-      value: msaData.LNEConsentForReleaseOfConfidentialInformation,
-      state_label: "LNEConsentForReleaseOfConfidentialInformation",
-      row_color: "bg-light-green",
-      form_text: "LNE Consent for Release of Confidential Information",
-    },
-    {
-      value: msaData.HIPPAConsentForm,
-      state_label: "HIPPAConsentForm",
-      row_color: "bg-light-green",
-      form_text: "HIPAA Consent Form (OCA Form 960), ",
-    },
-    {
-      value: msaData.NYCDOHMHNoticeOfPrivacyPractices,
-      state_label: "NYCDOHMHNoticeOfPrivacyPractices",
-      row_color: "bg-light-green",
-      form_text:
-        "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
-    },
-    {
-      value: msaData.LinkageRetentionAdherenceForms,
+      value: clientData?.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
       row_color: "bg-light-pink",
       form_text: "Linkage, Retention, & Adherence Forms",
     },
     {
-      value: msaData.InternalReferralInformation,
+      value: clientData?.InternalReferralInformation,
       state_label: "InternalReferralInformation",
       row_color: "bg-light-pink",
       form_text: "Internal Referral Information",
     },
+    // {
+    //   value: clientData?.LNEClientReferralForm,
+    //   state_label: "LNEClientReferralForm",
+    //   row_color: "bg-light-pink",
+    //   form_text: "Identification",
+    // },
+    // {
+    //   value: clientData?.HNSReadinessForm,
+    //   state_label: "HNSReadinessForm",
+    //   row_color: "bg-light-pink",
+    //   form_text: "HNS Readiness Form",
+    // },
     {
-      value: msaData.LNEClientReferralForm,
-      state_label: "LNEClientReferralForm",
-      row_color: "bg-light-pink",
-      form_text: "Identification",
-    },
-    {
-      value: msaData.HNSReadinessForm,
-      state_label: "HNSReadinessForm",
-      row_color: "bg-light-pink",
-      form_text: "HNS Readiness Form",
-    },
-    {
-      value: msaData.SupportGroups,
+      value: clientData?.SupportGroups,
       state_label: "SupportGroups",
       row_color: "bg-light-pink",
       form_text: "Support Groups",
     },
     {
-      value: msaData.IDGForm,
+      value: clientData?.IDGForm,
       state_label: "IDGForm",
       row_color: "bg-light-pink",
       form_text: "IDG",
@@ -1786,9 +1786,11 @@ console.log("msaData",msaData)
             id="workedGoals"
           >
             <div className="additional-forms-container grid grid-cols-2 gap-1">
-              <div className="additional-forms-box border-r-dark-blue ">
-                {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(0, 15).map((service) => (
+              
+                {[[0,5],[5,10]].map((e, index) => (
+                  <div className="additional-forms-box divide-x  divide-blue-500  ">
+                  {whichServiceBeenAded &&
+                  whichServiceBeenAded.slice(...e).map((service) => (
                     <>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
@@ -1802,72 +1804,63 @@ console.log("msaData",msaData)
                             id=""
                             defaultChecked={service.value ? "checked" : ""}
                             // disabled={clientData[`${service.state_label}Date`] ? true : false} */
-                            // onChange={(e) => {
-                            //   clientData[service.state_label] === "" ||
-                            //   clientData[`${service.state_label}Date`] === null
-                            //     ? setClientData({
-                            //         ...clientData,
-                            //         [service.state_label]: !service.value,
-                            //         [`${service.state_label}Date`]: new Date(),
-                            //       })
-                            //     : setClientData({
-                            //         ...clientData,
-                            //         [service.state_label]: !service.value,
-                            //       });
-                            // }}
+                            
                             onChange={(e) => {
-                              // if (clientData[service.state_label] && data[0][service.state_label] )
-                              
-                              //   {
+                                 
+                                //This logic will update services added to MSA apart from set the same services to 
+                                // the progress note, progress note logic will have services setted to false in 
+                                // every register
+                                if ( msaData[service.state_label] ){
+
+                                  if (new Date(msaData[`${service.state_label}Date`]).toISOString().split('T')[0] === new Date().toISOString().split('T')[0]) {
+
+                                    let lastDateUpdatedFromDb = data[0][`${service.state_label}Date`.toLowerCase()]
+                                    let serviceStatusFromDb = data[0][service.state_label.toLowerCase()] === '1' ? true : false  
+                                    setMsaData({
+                                      ...msaData, 
+                                      [service.state_label]: serviceStatusFromDb,
+                                      [`${service.state_label}Date`]: lastDateUpdatedFromDb,
+                                    })
+                                    
+                                  } else {
+                                    setMsaData({
+                                      ...msaData, 
+                                      [service.state_label]: msaData[service.state_label],
+                                      [`${service.state_label}Date`]: new Date(),
+                                    })
+                                  }
+                                  
+                                }
+                                if (!msaData[service.state_label]) {
+  
                                   setMsaData({
-                                  ...msaData,
-                                  [service.state_label]: !msaData[service.state_label],
-                                  [service.state_label+'Date']: new Date(),
-                                }) 
-                                
-                              // } else {
-                              //   setClientData({
-                              //     ...clientData,
-                              //     [service.state_label]: clientData[service.state_label],
-                              //   }) 
-                              // }
-                                
-                            }}
-                          />
-                          <span
-                            className={`${ProgressNotesStyles.checkmark}`}
-                          ></span>
-                        </label>
-                        <div className="pl-2">
-                          <p>{service.form_text}</p>
-                        </div>
-                      </div>
-                    </>
-                  ))}
-              </div>{" "}
-              <div className="additional-form-box">
-                {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(15).map((service) => (
-                    <>
-                      <div
-                        className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
-                      >
-                        <label
-                          className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                        >
-                          <input
-                            type="checkbox"
-                            name=""
-                            id=""
-                            defaultChecked={service.value ? "checked" : ""}
-                           
-                            onChange={(e) => {
-                              setMsaData({
-                                ...msaData,
-                                [service.state_label]: !msaData[service.state_label],
-                                [service.state_label+'Date']: new Date(),
-                              }) 
+                                    ...msaData,
+                                    [service.state_label]: true,
+                                    [`${service.state_label}Date`]: new Date(),
+  
+                                  }) 
+                                 };
+
+
+                                 if (!clientData[service.state_label]) {
+                                 
+                                  setClientData({
+                                    ...clientData,
+                                    [service.state_label]: true,
+                                    [`${service.state_label}Date`]: new Date(),
+  
+                                  })
                               
+                                 } else {
+                                  
+                                  setClientData({
+                                    ...clientData,
+                                    [service.state_label]: false,
+                                    [`${service.state_label}Date`]: null,
+  
+                                  })
+                                 }
+                                
                             }}
                           />
                           <span
@@ -1880,8 +1873,12 @@ console.log("msaData",msaData)
                       </div>
                     </>
                   ))}
-              </div>
-            </div>
+                  </div>
+                ))}
+                
+              </div>{" "}
+             
+            {/* </div> */}
           </section>
 
           <section id="save" className="my-5">

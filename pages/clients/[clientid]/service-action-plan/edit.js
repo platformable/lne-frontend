@@ -19,7 +19,7 @@ export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
   let componentRef = useRef();
 
-  const [activeActionPlan, setActiveActionPlan] = useState(false)
+  // const [activeActionPlan, setActiveActionPlan] = useState(false)
 
 
 
@@ -213,7 +213,7 @@ console.log("clientdata",clientData)
                   <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
                     {/* <span className="mt-2 font-black">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
-                    <input type="date" name="" id="" className={`${!activeActionPlan? 'pointer-events-none' : ' '} border-black p-1 rounded-md`}
+                    <input type="date" name="" id="" className={` border-black p-1 rounded-md`}
                     defaultValue={clientData.planStartDate==='1970-01-01' ? "":clientData.planStartDate}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
                     />
@@ -288,8 +288,7 @@ console.log("clientdata",clientData)
             <h3 className="font-black my-5 text-dark-blue">Client Goals</h3>
           </div>
           <div
-            className={`border-dark-blue container mx-auto rounded-xl px-5 py-5 
-            ${!activeActionPlan? 'pointer-events-none' : ''}`}
+            className={`border-dark-blue container mx-auto rounded-xl px-5 py-5`}
           >
             <div className="service-action-plan-goals-container grid md:grid-cols-3 grid-cols-1 gap-5">
               <div className="service-action-plan-goal-box">
@@ -326,7 +325,7 @@ console.log("clientdata",clientData)
                           goal1Summary: e.target.value,
                         })
                       }
-                      className={`${!activeActionPlan? 'appearance-none':'' }  w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
+                      className={`w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option >
                         {clientData.goal1Summary}
@@ -492,7 +491,7 @@ console.log("clientdata",clientData)
                           goal2Summary: e.target.value,
                         })
                       }
-                      className={`${!activeActionPlan? 'appearance-none':'' }  w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
+                      className={`w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal2Summary} selected="true">
                         {clientData.goal2Summary}
@@ -661,7 +660,7 @@ console.log("clientdata",clientData)
                           goal3Summary: e.target.value,
                         })
                       }
-                      className={`${!activeActionPlan? 'appearance-none':'' }  w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
+                      className={`w-full mt-1 rounded-md py-2 pl-1 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50`}
                     >
                       <option value={clientData.goal3Summary} selected="true">
                         {clientData.goal3Summary}
@@ -816,7 +815,7 @@ console.log("clientdata",clientData)
           <div className="container mx-auto">
             <h3 className="font-black my-5 text-dark-blue">Signatures</h3>
 
-            <div className={`${!activeActionPlan? 'pointer-events-none' : ''} border-dark-blue  rounded-xl px-5 py-5`}>
+            <div className={`border-dark-blue  rounded-xl px-5 py-5`}>
               {/* <h6 className="font-black"></h6> */}
               <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
                 <div className="others-container-box flex gap-2 justify-center items-center">
@@ -866,7 +865,7 @@ console.log("clientdata",clientData)
           </div>
         </section>
 
-        <section id="other" className="my-5 md:px-0 px-5">
+        {/* <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
             <h3 className="font-black my-5 text-dark-blue">Progress Notes</h3>
 
@@ -895,20 +894,18 @@ console.log("clientdata",clientData)
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
            
               <div id="buttons-container" className="flex items-center justify-around">
-               {loggedUserRole==='DES' ? null :
-               <>
-                <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
+                {/* <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
                 onClick={() => setActiveActionPlan(!activeActionPlan)}>
                   <img src='/edit-action-plan-button.svg' alt='edit action plan button' ></img>
                   Edit Action Plan
                 </button> 
-               
+                */}
                 
                 <button
                 className="flex items-center justify-around w-36 bg-blue-500 hover:bg-blue-300  py-1 mx-4 rounded text-white  "
@@ -929,8 +926,6 @@ console.log("clientdata",clientData)
               )}
               content={() => componentRef.current}
               /> 
-              </>
-             }
               </div>
             
             
