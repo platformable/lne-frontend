@@ -1748,9 +1748,9 @@ const ProgressNotesIndex = ({ data }) => {
           >
             <div className="additional-forms-container divide-x  divide-blue-500  grid grid-cols-2 gap-1">
               {[[0,5], [5,10]].map((e,index) => (
-                <div className="additional-forms-box  ">
+                <div className="additional-forms-box  " key={index}>
                 {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(...e).map((service) => (
+                  whichServiceBeenAded.slice(...e).map((service,index) => (
                     <>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
