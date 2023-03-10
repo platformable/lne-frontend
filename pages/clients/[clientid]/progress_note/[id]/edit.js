@@ -1788,7 +1788,7 @@ console.log("msaData",msaData)
             <div className="additional-forms-container grid grid-cols-2 gap-1">
               
                 {[[0,5],[5,10]].map((e, index) => (
-                  <div className="additional-forms-box divide-x  divide-blue-500  ">
+                  <div className="additional-forms-box divide-x  divide-blue-500  " key={index}>
                   {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(...e).map((service) => (
                     <>

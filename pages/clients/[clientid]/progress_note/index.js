@@ -1748,7 +1748,7 @@ const ProgressNotesIndex = ({ data }) => {
           >
             <div className="additional-forms-container divide-x  divide-blue-500  grid grid-cols-2 gap-1">
               {[[0,5], [5,10]].map((e,index) => (
-                <div className="additional-forms-box  " key={index}>
+                <div className="additional-forms-box" key={index}>
                 {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(...e).map((service,index) => (
                     <div key={index}>
@@ -1762,13 +1762,9 @@ const ProgressNotesIndex = ({ data }) => {
                             type="checkbox"
                             name=""
                             id=""
-                            // checked={service.value ? "checked" : ""}
-                            // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
                                 
-                              //This logic will update services added to MSA apart from set the same services to 
-                              // the progress note, progress note logic will have services setted to false in 
-                              // every register
+                    
 
                               if ( msaData[service.state_label] ){
                                 if (new Date(msaData[`${service.state_label}Date`]).toISOString().split('T')[0] === new Date().toISOString().split('T')[0]) {
