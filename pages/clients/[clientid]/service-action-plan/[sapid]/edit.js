@@ -908,9 +908,9 @@ console.log("clientdata",clientData)
           <div className="container mx-auto flex justify-center">
            
               <div id="buttons-container" className="flex items-center justify-around">
-               {loggedUserRole==='DES' ? null :
+              {/*  {loggedUserRole==='DES' ? null : */}
                <>
-                <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
+                <button className={`${!activeActionPlan? 'block':'block'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
                 onClick={() => setActiveActionPlan(!activeActionPlan)}>
                   <img src='/edit-action-plan-button.svg' alt='edit action plan button' ></img>
                   Edit Action Plan
@@ -937,7 +937,7 @@ console.log("clientdata",clientData)
               content={() => componentRef.current}
               /> 
               </>
-             }
+          {/*    } */}
               </div>
             
             

@@ -1747,14 +1747,14 @@ const ProgressNotesIndex = ({ data }) => {
             id="workedGoals"
           >
             <div className="additional-forms-container divide-x  divide-blue-500  grid grid-cols-2 gap-1">
-              {[[0,5], [5,10]].map(e => (
+              {[[0,5], [5,10]].map((e,index) => (
                 <div className="additional-forms-box  ">
                 {whichServiceBeenAded &&
                   whichServiceBeenAded.slice(...e).map((service) => (
                     <>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
-                      >
+                      key={index}>
                         <label
                           className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                         >
