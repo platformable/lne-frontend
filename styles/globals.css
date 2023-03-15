@@ -398,6 +398,18 @@ gap:10px;
   
 }
 
+.border-r-white {
+  border-right: 2px solid white;
+}
+
+.bg-support-groups-table-heading {
+  background-color: #DBE9FA;
+}
+
+.bg-light-gray {
+  background-color:#FAFCFF;
+}
+
 
 @media only screen and (max-width: 600px) {
   .dashboard-clients-cards-info-container {

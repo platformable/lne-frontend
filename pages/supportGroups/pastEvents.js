@@ -37,21 +37,6 @@ const PastEvents = ({ events }) => {
   };
   const ref = useRef();
 
-  // console.log("events",events)
-
-  //   const startDate = useSelector(
-  //     (state) => state.eventCalendarDates.value.startDate
-  //   );
-  //   const endDate = useSelector(
-  //     (state) => state.eventCalendarDates.value.endDate
-  //   );
-  //   console.log("startDate desde toolkit", startDate);
-  //   console.log("endDate desde toolkit", endDate);
-
-  //   const state = useSelector((state) => console.log(state));
-
-  //   console.log("state", state);
-
   const sortedEventsByDate = events.sort(
     (a, b) => new Date(b.supportmeetingdate) - new Date(a.supportmeetingdate)
   );
@@ -59,7 +44,7 @@ const PastEvents = ({ events }) => {
   return (
     <Layout showStatusHeader={true}>
       <ToastContainer autoClose={3000} />
-      <div className="container mx-auto my-10">
+      <div className="container mx-auto my-5">
         <h1 className="font-black mb-5">Review past group events</h1>
         <div className="flex items-center gap-5">
           <BackButton />
@@ -67,7 +52,23 @@ const PastEvents = ({ events }) => {
         </div>
       </div>
 
-      <div className="container mx-auto grid  items-center grid-cols-1 container mx-auto md:px-0 px-5 md:mb-5 md:gap-5">
+      
+
+      <div className="bg-light-blue my-10 py-10 px-10">
+        
+        
+        <div className="container mx-auto bg-white rounded-tl-md rounded-tr-md px-10 shadow-md">
+          
+          
+          <div className="grid grid-cols-2 justify-between ">
+          
+          <div className="flex gap-x-3 py-10 px-5 pb-10 self-start ">
+            <img src="/support_groups/Past_group_events.png" alt=""  className="grid items-center self-start"/>
+            <h1 className="font-black">Past Group Events</h1>
+          </div>
+
+
+          <div className="container mx-auto grid  items-center grid-cols-1 container mx-auto md:px-0 px-5 md:mb-5 md:gap-5">
         <div className="block md:flex xl:justify-end md:px-0 lg:col-start-4 py-5 md:py-0  mr-0">
           <h3 className="">Filter by date</h3>
         </div>
@@ -106,33 +107,41 @@ const PastEvents = ({ events }) => {
           </label>
         </div>
       </div>
+      </div>
 
-      <div className="events-cards-container  bg-light-blue py-7">
-        <div
-          className={`hidden md:grid ${
-            loggedUserRole === "Supervisor"
-              ? "supervisor-existing-events-head-table"
-              : `existing-events-head-table`
-          } container mx-auto gap-5 rounded-t-lg py-3 px-7`}
-        >
-          {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-          <p className="lg:text-xl font-bold flex items-center ">Event date</p>
-          <p className="lg:text-xl font-bold flex items-center ">
-            Name of Group
-          </p>
-          <p className="lg:text-xl font-bold flex items-center justify-center">
-            Discussion topic
-          </p>
-          <p className="lg:text-xl font-bold flex items-center justify-center">
-            View/edit event
-          </p>
-          <p className="lg:text-xl font-bold flex items-center justify-center">
-            Delete event
-          </p>
+
+
         </div>
 
-        <div className="container  mx-auto md:px-0 px-7 mb-10 pb-10 rounded-lg ">
-          <div className="events-index-btn-container grid grid-cols-1 gap-3 p-0">
+        <div className="container  mx-auto md:px-0 px-7 mb-10 pb-10 ">
+          <div className="px-10 bg-white">
+          <div
+            className={`hidden md:grid ${
+              loggedUserRole === "Supervisor"
+                ? "supervisor-existing-events-head-table"
+                : `existing-events-head-table`
+            } container mx-auto gap-5  px-10 bg-support-groups-table-heading py-3`}
+          >
+
+            {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
+            <p className="lg:text-xl font-bold flex items-center border-r-white">
+              Event date
+            </p>
+            <p className="lg:text-xl font-bold flex items-center  border-r-white">
+              Name of Group
+            </p>
+            <p className="lg:text-xl font-bold flex items-center justify-center border-r-white">
+              Discussion topic
+            </p>
+            <p className="lg:text-xl font-bold flex items-center justify-center border-r-white">
+              View/edit event
+            </p>
+            <p className="lg:text-xl font-bold flex items-center justify-center ">
+              Delete event
+            </p>
+          </div>
+          </div>
+          <div className="events-index-btn-container grid grid-cols-1  p-0">
             {sortedEventsByDate &&
               sortedEventsByDate
 
@@ -146,54 +155,30 @@ const PastEvents = ({ events }) => {
                   if (startDate !== null && endDate !== null) {
                     let filterPass = true;
                     const date = new Date(event.supportmeetingdate);
-                    console.log(startDate, date);
+
                     if (dateFilter.startDate) {
                       filterPass = filterPass && startDate <= date;
                     }
                     if (dateFilter.endDate) {
                       filterPass = filterPass && endDate >= date;
                     }
-                    console.log(filterPass);
-
                     return filterPass;
                   }
                 })
                 .map((event, index) => {
                   return (
                     <>
-                      {/* <div className="sm:hidden w-full">
-                      <EventsCardItems
-                        key={index}
-                        id={event.id}
-                        programName={event.programname}
-                        eventdate={event.eventdate}
-                        eventName={event.eventname}
-                        urlEdit={`events/${event.id}/nys_cmp/edit`}
-                        urlParticipantSurvey={`/events/${event.id}/participant-survey`}
-                        urlUpload={`events/${event.id}/upload-event`}
-                        urlPostEventSurvey={`events/${event.id}/post-event-survey`}
-                        urlEditPostEventSurvey={`events/${event.id}/edit-post-event-survey`}
-                        userRole={loggedUserRole}
-                        setShowDeleteEventModal={setShowDeleteEventModal}
-                        showDeleteEventModal={showDeleteEventModal}
-                        setSelectedEventToDelete={setSelectedEventToDelete}
-                        selectedEventToDelete={selectedEventToDelete}
-                        postEventReportId={event.posteventreportid}
-                        makeIcsFile={makeIcsFile}
-                        event={event}
-                      />
-                    </div> */}
-                      <section className="hidden sm:block">
+                      <section className="hidden sm:block bg-white px-10">
                         <div
                           key={index}
                           className={`grid ${
                             loggedUserRole === "Supervisor"
                               ? "supervisor-existing-events-head-table"
                               : "existing-events-head-table"
-                          } bg-white gap-5 px-7 py-4  rounded-md shadow-md`}
+                          } bg-white px-7 py-4 ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
                         >
                           {/* <div className="flex items-center lg:text-xl font-bold ">{event.programname}</div> */}
-                          <div className="flex items-center lg:text-xl font-bold mr-2">
+                          <div className="flex items-center lg:text-xl  mr-2 px-10 ">
                             {
                               event.supportmeetingdate &&
                                 new Date(
@@ -206,10 +191,10 @@ const PastEvents = ({ events }) => {
                               /* crearFecha2(event) */
                             }
                           </div>
-                          <div className="flex items-center lg:text-xl font-bold truncate">
+                          <div className="flex items-center lg:text-xl  truncate">
                             {event.supportgroupname}
                           </div>
-                          <div className="flex items-center lg:text-xl font-bold justify-center">
+                          <div className="flex items-center lg:text-xl  justify-center">
                             {event.supportgrouptopic}
                           </div>
                           <Link href={`/supportGroups/${event.id}/edit`}>
@@ -257,6 +242,7 @@ const PastEvents = ({ events }) => {
             />
           )}
         </div>
+        {/* container */}
       </div>
       {/*  HEAD TABLE  */}
     </Layout>
