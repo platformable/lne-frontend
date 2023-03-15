@@ -97,9 +97,9 @@ const SupportGroups = ({hcworkers}) => {
                 className="grid grid-cols-1 gap-5   p-5 mb-5"
               >
 
-                <div className="flex gap-x-3">
+                <div className="flex gap-x-3 items-center">
                 <img src="/support_groups/Support_Group_information.png" alt="" />
-                <h1 className="font-black">Support Group Information</h1>
+                <h3 className="font-black">Support Group Information</h3>
                 </div>
     
                 <label className="text-lg block">

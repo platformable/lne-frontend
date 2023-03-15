@@ -62,9 +62,9 @@ const PastEvents = ({ events }) => {
           
           <div className="grid grid-cols-2 justify-between ">
           
-          <div className="flex gap-x-3 py-10 px-5 pb-10 self-start ">
+          <div className="flex items-center gap-x-3 py-10 px-5 pb-10 self-start ">
             <img src="/support_groups/Past_group_events.png" alt=""  className="grid items-center self-start"/>
-            <h1 className="font-black">Past Group Events</h1>
+            <h3 className="font-black">Past Group Events</h3>
           </div>
 
 
