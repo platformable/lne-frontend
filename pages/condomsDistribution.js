@@ -69,20 +69,20 @@ const CondomsDistributed = () => {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-        <div className="container mx-auto my-10">
+        <div className="container mx-auto mt-10 ">
           <div className="flex gap-x-10">
             <BackButton />
             <BackToDashboardButton />
           </div>
-          <h1 className="font-black mt-12 mb-10">
+          <h1 className="font-black mt-12 mb-5">
             Condoms Distribution and client recruitment
           </h1>
         </div>
 
-        <main className="container mx-auto">
+        <div className="bg-light-blue pt-5">
           <section
             id="form"
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
+            className="gap-x-5 shadow-lg bg-white  rounded p-5 mb-5 container mx-auto"
           >
             <div className="flex items-center justify-between mb-5">
               <div className="flex gap-3 items-center ">
@@ -260,18 +260,15 @@ const CondomsDistributed = () => {
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button
-                className="flex items-center gap-x-2 bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
+                className="flex items-center gap-x-2 btn-yellow hover:btn-darkYellow px-5 py-1 rounded text-lg inline-block px-20"
                 onClick={() => handleForm()}
               >
-                <img
-                  src="/check-save-and-finish.svg"
-                  alt="check and save icon"
-                />
+                
                 Save
               </button>
             </div>
           </section>
-        </main>
+        </div>
       </Layout>
     </>
   );
