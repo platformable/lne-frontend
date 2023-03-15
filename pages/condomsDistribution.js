@@ -75,7 +75,7 @@ const CondomsDistributed = () => {
             <BackToDashboardButton />
           </div>
           <h1 className="font-black mt-12 mb-5">
-            Condoms Distribution and client recruitment
+            Condoms Distribution
           </h1>
         </div>
 
