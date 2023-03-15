@@ -1,6 +1,6 @@
 import React, { useState,useRef } from "react";
-import Layout from "../../../../components/Layout";
-import Styles from "../../../../styles/ServiceAP.module.css";
+import Layout from "../../../../../components/Layout";
+import Styles from "../../../../../styles/ServiceAP.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -11,17 +11,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import ReactToPrint from 'react-to-print'
-import ComponentToPrint from "../../../../components/ComponentToPrint";
-import BackButton from "../../../../components/BackButton";
-import BackToDashboardButton from "../../../../components/BackToDashboardButton";
+import ComponentToPrint from "../../../../../components/ComponentToPrint";
+import BackButton from "../../../../../components/BackButton";
+import BackToDashboardButton from "../../../../../components/BackToDashboardButton";
 
 export default function EditServiceActionPlan({ data }) {
   const router = useRouter()
   let componentRef = useRef();
 
   const [activeActionPlan, setActiveActionPlan] = useState(false)
-
-
 
   const notifyMessage = () => {
     toast.success("Service Action Plan updated!", {
@@ -35,7 +33,7 @@ export default function EditServiceActionPlan({ data }) {
 
   const [clientData, setClientData] = useState({
     role:loggedUserRole,
-    clientId:data[0]?.clientId,
+    clientId:data[0]?.clientid,
     clientFirstName:data[0]?.clientfirstname,
     clientLastName :data[0]?.clientlastname,
     clientHCWEmail:data[0]?.clienthcwemail,
@@ -71,12 +69,13 @@ export default function EditServiceActionPlan({ data }) {
     goal2CompletionDate:data[0]?.goal2completiondate,
     goal3CompletionDate:data[0]?.goal3completiondate,
     HCWSignature:data[0]?.hcwsignature==="0" ? false : true,
-    HCWSignatureDate:data[0]?.HCWSignatureDate==="0" ? false: true,
+    HCWSignatureDate:data[0]?.hcwsignaturedate==="0" ? false: true,
     supervisorSignature:data[0]?.supervisorsignature==="0" ? false : true,
     clientSignature:data[0]?.clientsignature===0 ? false : true,
-    progressnotesid:data[0]?.progressnotesid.length===1 && data[0]?.progressnotesid[0]===null ? "": data[0]?.progressnotesid,
+    //progressnotesid:data[0]?.progressnotesid.length===1 && data[0]?.progressnotesid[0]===null ? "": data[0]?.progressnotesid,
     linkage_navigation_folder_url:data[0]?.linkage_navigation_folder_url,
     clientUniqueId:data[0]?.id,
+    sapid:data[0]?.id,
   });
 
 
@@ -196,6 +195,14 @@ console.log("clientdata",clientData)
         <div className="flex gap-x-5">
         <BackButton />
           <BackToDashboardButton/>
+
+          <button
+      onClick={() => router.push(`/clients/${data[0].clientid}/service-action-plan`)}
+      className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center"
+    >
+     
+      Create Service Action Plan
+    </button>
   
         </div>
         </section>
@@ -243,7 +250,7 @@ console.log("clientdata",clientData)
                         <input
                           type="text"
                           className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                          value={data[0].clientId}
+                          value={data[0].clientid}
                           disabled
                         />
                       </label>
@@ -866,7 +873,7 @@ console.log("clientdata",clientData)
           </div>
         </section>
 
-        <section id="other" className="my-5 md:px-0 px-5">
+       {/*  <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
             <h3 className="font-black my-5 text-dark-blue">Progress Notes</h3>
 
@@ -895,15 +902,15 @@ console.log("clientdata",clientData)
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="save" className="my-5">
           <div className="container mx-auto flex justify-center">
            
               <div id="buttons-container" className="flex items-center justify-around">
-               {loggedUserRole==='DES' ? null :
+              {/*  {loggedUserRole==='DES' ? null : */}
                <>
-                <button className={`${!activeActionPlan? 'block':'hidden'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
+                <button className={`${!activeActionPlan? 'block':'block'} flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
                 onClick={() => setActiveActionPlan(!activeActionPlan)}>
                   <img src='/edit-action-plan-button.svg' alt='edit action plan button' ></img>
                   Edit Action Plan
@@ -930,7 +937,7 @@ console.log("clientdata",clientData)
               content={() => componentRef.current}
               /> 
               </>
-             }
+          {/*    } */}
               </div>
             
             
@@ -952,9 +959,9 @@ console.log("clientdata",clientData)
 export const getServerSideProps = withPageAuthRequired({
   
   async getServerSideProps(ctx) {
-    let { clientid } = ctx.params;
+    let { clientid,sapid } = ctx.params;
     const  response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientid}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientid}/sap/${sapid}`
     );
 
     const data = await  response.json();

@@ -106,7 +106,12 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
         
      }
 
-
+const closeImpactModal=()=>{
+    setShowImpactBaselineModal()
+    setTimeout(()=>{
+        router.push(`/clients/${clientId}/profile`)
+      },500)
+}
      console.log("impactBaseline",impactBaseline)
      return (
         <>
@@ -481,6 +486,14 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                     </section>
                      
                 </div>
+
+                <div className="flex gap-x-5">
+                <button 
+                    onClick={closeImpactModal}
+                    className='bg-black text-white rounded-sm flex items-center px-7 py-1 text-sm'>
+                 
+        
+                    Close</button>
                 
                 <button 
                     onClick={createImpactBaselineForm}
@@ -491,6 +504,7 @@ const ImpactBaselineModal = ({setShowImpactBaselineModal, showImpactBaselineModa
                     </svg>
         
                     Save</button>
+                    </div>
                     {errorMessage && (<p className='mt-2 px-5 py-1 font-semibold border border-red-300 rounded-md text-red-600 text-lg'>{errorMessage}</p>)}
 
             </div>

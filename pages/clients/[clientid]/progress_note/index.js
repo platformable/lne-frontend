@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 const ProgressNotesIndex = ({ data }) => {
   const router = useRouter();
   console.log("data", data);
+
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
   let componentRef = useRef();
@@ -26,13 +27,7 @@ const ProgressNotesIndex = ({ data }) => {
     });
   };
 
-  /*   const crearFecha=(date)=>{
-    const initialDate= date
-    const newDate=initialDate.split('/')
-    const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
-    return fixedDate
   
-  } */
 
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();
@@ -134,10 +129,6 @@ const ProgressNotesIndex = ({ data }) => {
       HNSReadinessFormDate: data[0]?.hnsreadinessformdate ,
       ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
   })
-
-
-
-
 
 
 
@@ -300,7 +291,9 @@ const ProgressNotesIndex = ({ data }) => {
     goal2WorkedComments:"",
     goal3WorkedComments:"",
   });
-  console.log("form", clientData);
+  console.log("clientData", clientData);
+
+  console.log("msa", msaData);
   const whichServiceBeenAded = [
    /* {
       value: clientData.LNEHNSEligibilityForm,
@@ -576,7 +569,6 @@ const ProgressNotesIndex = ({ data }) => {
         });
     }
   };
-  console.log("msa data", msaData)
 
   return (
     <>
@@ -1754,14 +1746,15 @@ const ProgressNotesIndex = ({ data }) => {
             className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals"
             id="workedGoals"
           >
-            <div className="additional-forms-container grid grid-cols-2 gap-1">
-              <div className="additional-forms-box border-r-dark-blue ">
+            <div className="additional-forms-container divide-x  divide-blue-500  grid grid-cols-2 gap-1">
+              {[[0,5], [5,10]].map((e,index) => (
+                <div className="additional-forms-box" key={index}>
                 {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(0, 5).map((service) => (
-                    <>
+                  whichServiceBeenAded.slice(...e).map((service,index) => (
+                    <div key={index}>
                       <div
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
-                      >
+                      key={index}>
                         <label
                           className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
                         >
@@ -1769,23 +1762,30 @@ const ProgressNotesIndex = ({ data }) => {
                             type="checkbox"
                             name=""
                             id=""
-                            // checked={service.value ? "checked" : ""}
-                            // disabled={clientData[`${service.state_label}Date`] ? true : false} */
                             onChange={(e) => {
+                                
+                    
 
-                              if (clientData[service.state_label] && msaData[service.state_label] )
-                              
-                                {
-                                  setClientData({
-                                  ...clientData,
-                                  [service.state_label]: false,
-                                }) 
-                                setMsaData({
-                                  ...msaData, 
-                                  [service.state_label]: false,
-                                })
+                              if ( msaData[service.state_label] ){
+                                if (new Date(msaData[`${service.state_label}Date`]).toISOString().split('T')[0] === new Date().toISOString().split('T')[0]) {
+                                  let lastDateUpdated = data[0][`${service.state_label}Date`.toLowerCase()]
+                                  setMsaData({
+                                    ...msaData, 
+                                    [service.state_label]: false,
+                                    [`${service.state_label}Date`]: lastDateUpdated,
+                                  })
+                                  
+                                } else {
+                                  setMsaData({
+                                    ...msaData, 
+                                    [service.state_label]: msaData[service.state_label],
+                                    [`${service.state_label}Date`]: new Date(),
+                                  })
+                                }
+                                
                               }
                               if (!msaData[service.state_label]) {
+
                                 setMsaData({
                                   ...msaData,
                                   [service.state_label]: true,
@@ -1794,16 +1794,27 @@ const ProgressNotesIndex = ({ data }) => {
                                 }) 
                                }
                               
-                                 if (!clientData[service.state_label]) {
-                                 
-                                  setClientData({
-                                    ...clientData,
-                                    [service.state_label]: true,
-                                    [`${service.state_label}Date`]: new Date(),
-  
-                                  })
+                              if (!clientData[service.state_label]) {
+                              setClientData({
+                                ...clientData,
+                                [service.state_label]: true,
+                                [`${service.state_label}Date`]: new Date(),
+
+                              })
+                          
+                              }  
+
                               
-                                 }
+                              if (clientData[service.state_label]) {
+                              console.log("pasa clientdata true",service.state_label,clientData[service.state_label])
+                              
+                              setClientData({
+                                ...clientData,
+                                [service.state_label]: false,
+                                [`${service.state_label}Date`]: null,
+
+                              })
+                              }
                                 
                                  
                                    
@@ -1817,68 +1828,11 @@ const ProgressNotesIndex = ({ data }) => {
                           <p>{service.form_text}</p>
                         </div>
                       </div>
-                    </>
-                  ))}
-              </div>{" "}
-              <div className="additional-form-box">
-                {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(5).map((service) => (
-                    <>
-                      <div
-                        className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
-                      >
-                        <label
-                          className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                        >
-                          <input
-                            type="checkbox"
-                            name=""
-                            id=""
-                            // checked={service.value ? "checked" : ""}
-                            // disabled={clientData[`${service.state_label}Date`] ? true : false} */
-                            onChange={(e) => {
-                              if (clientData[service.state_label] && msaData[service.state_label] )
-                              
-                                {
-                                  setClientData({
-                                  ...clientData,
-                                  [service.state_label]: false,
-                                }) 
-                                setMsaData({
-                                  ...msaData, 
-                                  [service.state_label]: false,
-                                })
-                              }
-                              if (!msaData[service.state_label]) {
-                                setMsaData({
-                                  ...msaData,
-                                  [service.state_label]: true,
-                                  [`${service.state_label}Date`]: new Date(),
-
-                                }) 
-                               }
-                                 if (!clientData[service.state_label]) {
-                                 
-                                  setClientData({
-                                    ...clientData,
-                                    [service.state_label]: true,
-                                    [`${service.state_label}Date`]: new Date(),
-  
-                                  })
-                                 }
-                                }}
-                          />
-                          <span
-                            className={`${ProgressNotesStyles.checkmark}`}
-                          ></span>
-                        </label>
-                        <div className="pl-2">
-                          <p>{service.form_text}</p>
-                        </div>
-                      </div>
-                    </>
+                    </div>
                   ))}
               </div>
+              ))}
+              
             </div>
           </section>
 

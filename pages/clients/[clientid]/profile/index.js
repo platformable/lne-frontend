@@ -560,11 +560,11 @@ console.log("progNotes",progNotes)
                 {data[0]?.msaformairsintakeform === "1" &&
                 data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" ? (
                   <Link
-                    href={
+                    /* href={
                       data[0]?.servicesactionplanid
                         ? `/clients/${data[0]?.clientid}/service-action-plan/edit`
                         : `/clients/${data[0]?.clientid}/service-action-plan`
-                    }
+                    } */href={`/clients/${data[0]?.clientid}/profile/service_action_plans`}
                   >
                     <div className="client-profile-page-navigation-icon-container boder-dark-blue bg-dark-blue cursor-pointer rounded-xl py-2 px-5 inline-block">
                       <div className="flex justify-center">
@@ -572,7 +572,7 @@ console.log("progNotes",progNotes)
                       </div>
                       <h4 className="text-center text-white">
                         {data[0]?.servicesactionplanid
-                          ? "View Service Action Plan"
+                          ? "View Service Action Plans"
                           : `Create Service Action Plan`}
                       </h4>
                     </div>

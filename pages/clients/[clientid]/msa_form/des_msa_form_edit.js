@@ -12,7 +12,7 @@ import BackToDashboardButton from "../../../../components/BackToDashboardButton"
 import RowMsaFormDES from "../../../../components/RowMsaFormDES";
 
 const EditMsaFormPage = ({ data }) => {
-  console.log("data", data);
+  // console.log("data", data);
 
   const router = useRouter();
 
@@ -496,7 +496,7 @@ const EditMsaFormPage = ({ data }) => {
     7
   )} ${FormTitles[2][0].slice(7, 13)} ${FormTitles[2][0].slice(13, 17)}`;
 
-  console.log("clientData", clientData);
+  // console.log("clientData", clientData);
   const handleMsaform = () => {
     /*     notifyMessage()
           setTimeout(() => {
@@ -595,12 +595,12 @@ const EditMsaFormPage = ({ data }) => {
         <main className="container mx-auto">
           <div className="flex gap-x-5">
           <BackToDashboardButton />
-          <Link href={`/clients/${clientData.clientId}/service-action-plan/edit`}>
+          <Link href={`/clients/${clientData.clientId}/profile/service_action_plans/`}>
                  <div className="">
                    <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
                      <button id="myBtn" className="flex  items-center justify-center">
                          <p className="p-2  uppercase">
-                       View Action Plan
+                       View Action Plans
                        </p>
                      </button>
                    </div>
