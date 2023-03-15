@@ -182,7 +182,7 @@ export const getServerSideProps = withPageAuthRequired({
     let { clientid } = ctx.params;
     const [data] = await Promise.all([
       fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientid}/all`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientid}/all/`
       ).then((r) => r.json())
     ]);
     return {

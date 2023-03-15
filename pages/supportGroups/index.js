@@ -67,7 +67,7 @@ const SupportGroups = ({hcworkers}) => {
    
           <Layout>
           <ToastContainer autoClose={1500} />
-            <div className="container mx-auto my-10 ">
+          <div className="container mx-auto my-10">
               <div className="flex justify-between">
                 <div className="flex gap-5">
                   <BackButton />
@@ -84,16 +84,23 @@ const SupportGroups = ({hcworkers}) => {
               
               </div>
               <h1 className="font-black  my-5">
-                Support group record
+                Support Group Record
               </h1>
                
             </div>
+          <div className="bg-blue-50 py-10">
+            
     
-            <section className="container mx-auto">
+            <section className="container mx-auto bg-white rounded-xl py-7 shadow-md">
               <div
                 id="form"
-                className="grid grid-cols-1 gap-5 border-dark-blue rounded-xl p-5 mb-5"
+                className="grid grid-cols-1 gap-5   p-5 mb-5"
               >
+
+                <div className="flex gap-x-3">
+                <img src="/support_groups/Support_Group_information.png" alt="" />
+                <h1 className="font-black">Support Group Information</h1>
+                </div>
     
                 <label className="text-lg block">
                   Date group held
@@ -126,12 +133,13 @@ const SupportGroups = ({hcworkers}) => {
                   <textarea cols="30" rows="12"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
 
                 </label>
-                <div className="search-box flex items-center  gap-3">
+                <div className="search-box grid md:grid-cols-3 grid-cols-1  items-center  gap-3">
+                  <div>
                   <p className="text-lg">Facilitator</p>
                   <select
                   name="facilitator"
                   onChange={handleForm}
-                    className=" w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
+                    className="w-3/4 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
                   >
                     <option selected={true} disabled="disabled">
                       Select facilitator
@@ -139,13 +147,18 @@ const SupportGroups = ({hcworkers}) => {
                     {/* <option onClick={() => setSearchByUser("All")}>All</option> */}
                     {displayUserList()}
                   </select>
-               </div>
 
-
-                <label className="flex items-center gap-5">
+                  </div>
+                <div className="flex justify-center">
+                  <label className="flex items-center gap-5 pt-7">
                   HCW signed?
                   <input type="checkbox" name="supportGroupSigned" onChange={handleForm}/>
                 </label>
+                </div>
+               </div>
+
+
+               
               </div>
     
               
@@ -171,6 +184,7 @@ const SupportGroups = ({hcworkers}) => {
                 </div>
               </section>
             </section>
+            </div>
           </Layout>
 
        
