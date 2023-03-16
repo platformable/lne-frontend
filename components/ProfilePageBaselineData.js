@@ -157,10 +157,10 @@ const ProfilePageBaselineData = ({
         <table className="w-full text-base">
           <thead className="text-xs text-black uppercase ">
             <tr>
-              <th scope="col" className="text-center py-3 px-6 ">
+              <th scope="col" className="text-center py-3 px-6 bg-client-profile-pn-heading text-black">
                 Key outcomes
               </th>
-              <th scope="col" className="text-center py-3 px-6">
+              <th scope="col" className="text-center py-3 px-6 bg-client-profile-pn-heading text-black">
                 Baseline scores
               </th>
 
@@ -169,7 +169,7 @@ const ProfilePageBaselineData = ({
                 impactTracker &&
                   impactTracker.map((track, index) => (
                     <>
-                      <th scope="col" className="text-center py-3 px-6 ">
+                      <th scope="col" className="text-center py-3 px-6 bg-client-profile-pn-heading text-black">
                         Date:{" "}
                         {new Date(track.impactformstartdate).toLocaleDateString(
                           "en",
@@ -214,13 +214,13 @@ const ProfilePageBaselineData = ({
           </thead>
           <tbody>
             {tableLeftHeaders &&
-              Object.values(tableLeftHeaders).map((header) => (
+              Object.values(tableLeftHeaders).map((header,index) => (
                 //ROW LEFT HEADERS
                 <>
                   <tr className="">
                     <td
                       scope="row"
-                      className="py-4 px-6  text-black font-medium  whitespace-nowrap "
+                      className={`py-4 px-6  text-black font-medium  whitespace-nowrap ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
                     >
                       {header.text_field}
                     </td>
@@ -251,7 +251,7 @@ const ProfilePageBaselineData = ({
                                   disabled={!baselineEdit}
                                   className="text-center py-2 rounded w-4/5 "
                                 >
-                                  {header.baseline_options.map((option) => (
+                                  {header.baseline_options.map((option,index) => (
                                     <>
                                       <option
                                         value={option}
@@ -296,7 +296,7 @@ const ProfilePageBaselineData = ({
                                     }))
                                   }
                                   disabled={selectedTrackIndex !== i}
-                                  className="text-center py-2 rounded w-4/5 "
+                                  className={`text-center py-2 rounded w-4/5 ${(i%2)===0 ? 'bg-light-gray':'bg-blue-50'}` }
                                 >
                                   {header.options.map((option) => {
                                     return (

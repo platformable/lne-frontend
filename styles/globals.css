@@ -84,6 +84,8 @@ h6 {
   --middleGreen: #82fdad;
   --middleWhite: #f7f9fc;
   --middlePurple: #ccb9ff;
+
+  --bg-blue-cards-btn:#5AC0FF;
 }
 
 .lne-text-white {
@@ -243,6 +245,14 @@ input[type="number"] {
 }
 /* BACKGROUNDS */
 
+
+
+.bg-blue-cards-btns {
+  background-color: var(--bg-blue-cards-btn);
+}
+
+
+
 .bg-yellow {
   background-color: var(--yellow);
 }
@@ -398,11 +408,19 @@ gap:10px;
   
 }
 
-.border-r-white {
-  border-right: 2px solid white;
+.border-blue {
+border:2px solid #5AC0FF;
 }
 
 .bg-support-groups-table-heading {
+  background-color: #DBE9FA;
+}
+
+.blue-btn {
+  background-color: #5AC0FF;;
+}
+
+.bg-client-profile-pn-heading {
   background-color: #DBE9FA;
 }
 
@@ -419,4 +437,17 @@ gap:10px;
 }
 @media print {
 	.page-break	{ display: block; page-break-before: always; }
+}
+
+
+/* PROFILE */
+
+.client-progress-note-table {
+  grid-template-columns: 2fr 8fr 2fr 2fr;
+}
+
+@media only screen and (max-width: 600px) {
+  .client-progress-note-table {
+    grid-template-columns: 1fr;
+  }
 }

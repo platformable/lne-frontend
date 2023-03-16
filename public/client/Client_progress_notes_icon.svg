@@ -1,0 +1,19 @@
+<svg id="Client_progress_notes" data-name="Client progress notes" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+  <circle id="Ellipse_426" data-name="Ellipse 426" cx="22.5" cy="22.5" r="22.5" fill="#5ac0ff"/>
+  <g id="Group_2584" data-name="Group 2584" transform="translate(461.096 13349.268)">
+    <g id="Group_2707" data-name="Group 2707">
+      <g id="Rectangle_1782" data-name="Rectangle 1782" transform="translate(-450.096 -13340.268)" fill="#5ac0ff" stroke="#000" stroke-width="1">
+        <rect width="17" height="22" rx="2" stroke="none"/>
+        <rect x="0.5" y="0.5" width="16" height="21" rx="1.5" fill="none"/>
+      </g>
+      <g id="Rectangle_1787" data-name="Rectangle 1787" transform="translate(-447.096 -13337.268)" fill="#5ac0ff" stroke="#000" stroke-width="1">
+        <rect width="17" height="21" rx="2" stroke="none"/>
+        <rect x="0.5" y="0.5" width="16" height="20" rx="1.5" fill="none"/>
+      </g>
+      <g id="Rectangle_1914" data-name="Rectangle 1914" transform="translate(-444.096 -13334.268)" fill="#5ac0ff" stroke="#000" stroke-width="1">
+        <rect width="17" height="21" rx="2" stroke="none"/>
+        <rect x="0.5" y="0.5" width="16" height="20" rx="1.5" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

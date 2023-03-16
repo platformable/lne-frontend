@@ -119,25 +119,25 @@ const PastEvents = ({ events }) => {
           <div
             className={`hidden md:grid ${
               loggedUserRole === "Supervisor"
-                ? "supervisor-existing-events-head-table"
+                ? "supervisor-existing-events-head-table "
                 : `existing-events-head-table`
-            } container mx-auto gap-5  px-10 bg-support-groups-table-heading py-3`}
+            } container mx-auto gap-x-1 `}
           >
 
             {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-            <p className="lg:text-xl font-bold flex items-center border-r-white">
+            <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
               Event date
             </p>
-            <p className="lg:text-xl font-bold flex items-center  border-r-white">
+            <p className="font-bold  flex items-center justify-center   bg-support-groups-table-heading p-1">
               Name of Group
             </p>
-            <p className="lg:text-xl font-bold flex items-center justify-center border-r-white">
+            <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
               Discussion topic
             </p>
-            <p className="lg:text-xl font-bold flex items-center justify-center border-r-white">
+            <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
               View/edit event
             </p>
-            <p className="lg:text-xl font-bold flex items-center justify-center ">
+            <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
               Delete event
             </p>
           </div>
@@ -169,17 +169,17 @@ const PastEvents = ({ events }) => {
                 .map((event, index) => {
                   return (
                     <>
-                      <section className="hidden sm:block bg-white px-10">
+                      <section className="hidden sm:block bg-white ">
                         <div
                           key={index}
                           className={`grid ${
                             loggedUserRole === "Supervisor"
                               ? "supervisor-existing-events-head-table"
                               : "existing-events-head-table"
-                          } bg-white px-7 py-4 ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
+                          } bg-white  ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
                         >
                           {/* <div className="flex items-center lg:text-xl font-bold ">{event.programname}</div> */}
-                          <div className="flex items-center lg:text-xl  mr-2 px-10 ">
+                          <div className="flex items-center   mr-2 px-10 ml-5">
                             {
                               event.supportmeetingdate &&
                                 new Date(
@@ -192,10 +192,10 @@ const PastEvents = ({ events }) => {
                               /* crearFecha2(event) */
                             }
                           </div>
-                          <div className="flex items-center lg:text-xl  truncate">
+                          <div className="flex items-center   truncate pl-5">
                             {event.supportgroupname}
                           </div>
-                          <div className="flex items-center lg:text-xl  justify-center">
+                          <div className="flex items-center   justify-center">
                             {event.supportgrouptopic}
                           </div>
                           <Link href={`/supportGroups/${event.id}/edit`}>
