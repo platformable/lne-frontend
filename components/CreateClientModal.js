@@ -172,19 +172,19 @@ export default function CreateClientModal({
   return (
     <>
       <div className="modal">
-        <div className="mt-8 max-w-md mx-auto bg-dark-blue  rounded">
+        <div className="mt-8 max-w-md mx-auto bg-white rounded pb-3">
           <div className="flex justify-end">
             <button
               onClick={() => setShowCreateClientModal(!showCreateClientModal)}
-              className="text-white bg-black px-2 py-1"
+              className="p-2"
             >
-              X
+              <img src="/client/close_modal_client.svg" title="Close" alt="Close modal"/>
             </button>
           </div>
-          <div className="grid grid-cols-1 gap-6 p-5">
-            <div className="flex items-center gap-4">
-              <img src="/add_new_client_icon.svg" alt="" />
-              <h1 className="font-black text-white">Client Information</h1>
+          <div className="grid grid-cols-1 gap-9 px-9 pb-6">
+            <div className="flex items-center pt-1 gap-3">
+              <img src="/client/add_info_icon.svg" alt="add info icon"/>
+              <h1 className="font-medium text-3xl">Client Information</h1>
             </div>
 
             {emptyFields && (
@@ -199,10 +199,10 @@ export default function CreateClientModal({
             )}
 
             <label className="block">
-              <span className="text-white">First name</span>
+              <span className="font-bold text-xl">First name</span>
               <input
                 type="text"
-                className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-3 block w-full text-2xl rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="Juan"
                 onChange={(e) =>
                   setClientData({
@@ -214,10 +214,10 @@ export default function CreateClientModal({
               {/* {clientData.clientFirstName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>} */}
             </label>
             <label className="block">
-              <span className="text-white">Last name</span>
+              <span className="text-xl font-bold">Last name</span>
               <input
                 type="text"
-                className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-3 block text-2xl w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="Davila"
                 onChange={(e) =>
                   setClientData({
@@ -229,13 +229,13 @@ export default function CreateClientModal({
               {/* {clientData.clientLastName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>} */}
             </label>
             <label className="block">
-              <span className="text-white">
+              <span className="text-xl font-bold">
                 Last 4 digits of social security number{" "}
               </span>
               <div>
                 <input
                   type="number"
-                  className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="mt-3 block text-2xl rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   placeholder="1234"
                   min="4"
                   max="4"
@@ -249,29 +249,23 @@ export default function CreateClientModal({
               {clientData.clientSSN.length == 0 ||
               clientData.clientSSN.length == 4 ? null : clientData.clientSSN
                   .length > 4 ? (
-                <p className="text-red-500 text-xs mt-2">
+                <p className="text-red-500 text-md mt-3">
                   Only 4 numbers allowed
                 </p>
               ) : (
-                <p className="text-red-500 text-xs mt-2">Must be 4 numbers </p>
+                <p className="text-red-500 text-md mt-3">Must be 4 numbers </p>
               )}
             </label>
-            {/*  <label className="block">
-            <span className="text-gray-700">When is your event?</span>
-            <input
-              type="date"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
-          </label> */}
+            
             {loggeduserId === "Supervisor" ? (
               <label className="block">
-                <span className="text-white">Asign user</span>
+                <span className="text-xl font-bold">Asign user</span>
                 <select
                   onChange={(e) => {
                     assignUser(e.target.value);
                     //setClientData({ ...clientData, clientHCWID: e.target.value })
                   }}
-                  className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="block w-full text-2xl mt-5 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 >
                   <option>-</option>
                   {users &&
@@ -291,7 +285,7 @@ export default function CreateClientModal({
             )}
 
             <label className="block">
-              <span className="text-white">is Active / No active</span>
+              <span className="text-xl font-bold">Is Active / No Active</span>
               <select
                 onChange={() =>
                   setClientData({
@@ -299,7 +293,7 @@ export default function CreateClientModal({
                     isactive: !clientData.isactive,
                   })
                 }
-                className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="block w-full mt-3 text-2xl rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
                 <option>Active</option>
                 <option>No Active</option>
@@ -307,7 +301,7 @@ export default function CreateClientModal({
             </label>
 
             <label className="block">
-              <span className="text-white">Client category</span>
+              <span className="text-xl font-bold">Client category</span>
               <select
                 onChange={(e) =>
                   setClientData({
@@ -315,7 +309,7 @@ export default function CreateClientModal({
                     clientCategory: e.target.value,
                   })
                 }
-                className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="block w-full text-2xl mt-3 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
                 <option value="" disabled selected>
                   Select a category
@@ -325,87 +319,26 @@ export default function CreateClientModal({
               </select>
             </label>
 
-            {errorMessage && (
+            
+          </div>
+          {errorMessage && (
               <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">
                 {errorMessage}
               </span>
             )}
 
-            <div className="block">
-              <div className="mt-2">
                 <div className="flex justify-center">
                   <button
-                    className="px-5  py-1 mr-3 font-medium btn-darkGreen  text-sm flex shadow-xl items-center rounded-md"
+                    className="px-10  py-1  font-medium btn-new-blue text-xl flex shadow-xl items-center rounded-md"
                     onClick={() => addClient()}
                   >
                     {saving ? (
                       <Loader />
-                    ) : (
-                      <svg
-                        className="mr-1"
-                        width="18"
-                        height="18"
-                        strokeWidth="1.5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M8.6 9H15.4C15.7314 9 16 8.73137 16 8.4V3.6C16 3.26863 15.7314 3 15.4 3H8.6C8.26863 3 8 3.26863 8 3.6V8.4C8 8.73137 8.26863 9 8.6 9Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                      </svg>
-                    )}
+                    ) : null}
                     Save
                   </button>
-                  {/* <button
-                    className="px-5  font-medium bg-black  text-sm text-white flex shadow-xl items-center rounded-md"
-                    onClick={() => setShowCreateClientModal(!showCreateClientModal)}
-                  >
-                    <svg
-                      className="mr-1 relative "
-                      width="24"
-                      height="24"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3 17V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M10 14.2426L12.1213 12.1213M12.1213 12.1213L14.2426 10M12.1213 12.1213L10 10M12.1213 12.1213L14.2426 14.2426"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M6 8H7"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    Close
-                  </button> */}
-                </div>
+                 
               </div>
-            </div>
-          </div>
         </div>
       </div>
     </>

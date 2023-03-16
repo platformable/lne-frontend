@@ -213,7 +213,7 @@ export default function HcwDesDashboard({ msaforms, serviceactionplans,user }) {
                           Select HCW
                         </option>
                         <option onClick={() => searchByUserId("")}>All</option>
-                        {displayUserList()}
+                        {/* {displayUserList()} */}
                       </select>
                     </div>
                   ))}

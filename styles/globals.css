@@ -73,6 +73,7 @@ h6 {
   --orange: #ffa100;
   --green: #45ccc2;
   --blue2: #005aaf;
+  --newBlue : #5AC0FF;
   --lightPink: #F3EFFF;
   --extraLightPink: #FAF8FF;
   --lightStringPink: #ffe8f3;
@@ -84,6 +85,7 @@ h6 {
   --middleGreen: #82fdad;
   --middleWhite: #f7f9fc;
   --middlePurple: #ccb9ff;
+  --alertGreen: #A1F9B4;
 }
 
 .lne-text-white {
@@ -178,6 +180,10 @@ input[type="number"] {
 .btn-darkGreen {
   background-color: var(--green);
 }
+.btn-new-blue {
+  background-color: var(--newBlue);
+}
+
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 300px) {
@@ -279,6 +285,9 @@ input[type="number"] {
 }
 .bg-middle-green {
   background-color: var(--middleGreen);
+}
+.bg-alert-green {
+  background-color: var(--alertGreen);
 }
 
 .bg-light-pink {
