@@ -69,7 +69,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
         .filter((user) => user.userrole !== "DES")
         .map((user, index) => {
           return (
-            <option className="text-black" value={user.user_id} key={index}>
+            <option className=" text-xl" value={user.user_id} key={index}>
               {user.name} {user.lastname}
             </option>
           );
@@ -135,7 +135,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
                 <div className="flex border-1 border-black rounded-lg  rounded-lg">
                   <input
                     type="text"
-                    className="px-4  md:w-64 xl:w-80 rounded-lg py-2"
+                    className="px-4 text-xl md:w-64 xl:w-80 rounded-lg py-2"
                     placeholder="Search..."
                     onChange={(e) => searchFunction(e.target.value)}
                   />
@@ -172,12 +172,12 @@ const ClientsIndex = ({ data, hcworkers }) => {
               <p className="mr-5 text-2xl">Select HCW</p>
               <select
                 onChange={(e) => setSearchByUser(e.target.value)}
-                className="md:w-64 rounded-md p-2 p-r-5 border-black shadow-sm text-black "
+                className="md:w-64 rounded-md p-2 p-r-5 border-black shadow-sm text-black text-xl"
               >
-                <option selected="true" disabled="disabled">
+                <option selected="true"  disabled="disabled">
                   Select HCW
                 </option>
-                <option onClick={() => setSearchByUser("All")}>All</option>
+                <option className="text-xl" onClick={() => setSearchByUser("All")}>All</option>
                 {displayUserList()}
               </select>
             </div>
