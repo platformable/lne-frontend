@@ -74,12 +74,12 @@ const CondomsDistributed = () => {
             <BackButton />
             <BackToDashboardButton />
           </div>
-          <h1 className="font-black mt-12 mb-5">
+          <h1 className="font-black text-4xl mt-12 mb-5">
             Condoms Distribution
           </h1>
         </div>
 
-        <div className="bg-light-blue pt-5">
+        <div className="bg-light-blue pt-5 shadow-inner h-100 pb-10">
           <section
             id="form"
             className="gap-x-5 shadow-lg bg-white  rounded p-5 mb-5 container mx-auto"
@@ -91,19 +91,19 @@ const CondomsDistributed = () => {
                   alt="material distribution icon"
                   title="material distributed"
                 />
-                <h3 className="font-black">Material Distributed</h3>
+                <h3 className="font-black text-3xl">Material Distributed</h3>
               </div>
 
               <div className="justify-self-end flex gap-x-5 items-center">
                 <div>
-                  <h3 className="font-black">Date</h3>
+                  <h3 className="font-black text-2xl">Date</h3>
                 </div>
                 <input
                   type="date"
                   name=""
                   id=""
                   value={formData?.date}
-                  className="border-dark-blue rounded p-1"
+                  className="border-black rounded text-2xl p-1 w-44"
                   onChange={(e) => {
                     setFormData({ ...formData, date: e.target.value });
                   }}
@@ -159,7 +159,7 @@ const CondomsDistributed = () => {
                 alt="peolple seen icon"
                 title="people seen"
               />
-              <h3 className="font-black">People seen</h3>
+              <h3 className="font-black text-3xl">People collecting safe sex resources</h3>
             </div>
 
             <CondomsDistributionRowComponent
@@ -260,10 +260,10 @@ const CondomsDistributed = () => {
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button
-                className="flex items-center gap-x-2 btn-yellow hover:btn-darkYellow px-5 py-1 rounded text-lg inline-block px-20"
+                className="grid grid-cols-3 text-medium items-center text-2xl btn-yellow hover:btn-darkYellow px-2 py-2 rounded text-lg inline-block "
                 onClick={() => handleForm()}
               >
-                
+                <img src="/client/Save.svg" alt="Save form icon" /> 
                 Save
               </button>
             </div>

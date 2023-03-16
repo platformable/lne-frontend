@@ -228,7 +228,7 @@ const loggedUserStatus =
                           Select HCW
                         </option>
                         <option onClick={() => searchByUserId("")}>All</option>
-                        {displayUserList()}
+                        {/* {displayUserList()} 
                       </select>
                     </div>
                   ))} */}
