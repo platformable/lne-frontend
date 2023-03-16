@@ -116,15 +116,15 @@ const loggedUserStatus =
                 {(loggedUserRole === "HCW" || loggedUserRole === "DES") && (
                   <Link href="/clients">
                     <div className="text-center ">
-                      <div className="rounded btn-darkBlue p-5 text-center shadow-xl  rounded-xl">
+                      <div className="rounded blue-btn p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/manage-clients-icon.svg" alt="" />
+                            <img src="/Manage_Clients_icon.svg" alt="" width={95}/>
                           </div>
-                          <p className="mt-5 text-white">
-                            MANAGE <br />
-                            CLIENTS
-                          </p>
+                          <h3 className="mt-5 text-black">
+                            Manage <br />
+                            Clients
+                          </h3>
                         </button>
                       </div>{" "}
                     </div>
@@ -139,12 +139,12 @@ const loggedUserStatus =
                       <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={73}/>
+                            <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={95}/>
                           </div>
-                          <p className="mt-5 uppercase">
+                          <h3 className="mt-5 ">
                             Condoms <br />
                             Distributed
-                          </p>
+                          </h3>
                         </button>
                       </div>{" "}
                     </div>
@@ -157,12 +157,12 @@ const loggedUserStatus =
                       <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={52}/>
+                            <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={65}/>
                           </div>
-                          <p className="mt-5 uppercase">
+                          <h3 className="mt-5">
                             Support <br />
                             Groups
-                          </p>
+                          </h3>
                         </button>
                       </div>{" "}
                     </div>

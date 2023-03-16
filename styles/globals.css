@@ -85,7 +85,9 @@ h6 {
   --middleGreen: #82fdad;
   --middleWhite: #f7f9fc;
   --middlePurple: #ccb9ff;
+
   --alertGreen: #A1F9B4;
+
   --bg-blue-cards-btn:#5AC0FF;
 }
 
@@ -426,6 +428,11 @@ border:2px solid #5AC0FF;
 
 .blue-btn {
   background-color: #5AC0FF;;
+}
+
+
+.yellow-btn {
+  background-color: #FCDD4C;
 }
 
 .bg-client-profile-pn-heading {

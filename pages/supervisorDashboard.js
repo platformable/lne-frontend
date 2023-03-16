@@ -224,34 +224,19 @@ if(userid!=="All"){
                 today?
               </h1>
               <div className="grid md:grid-cols-6 grid-cols-1 gap-5 mb-2">
-                {loggedUserRole === "Supervisor" && (
-                  <Link href="/users">
-                    <div className="text-center  ">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
-                        <button id="myBtn">
-                          <div className="flex justify-center">
-                            <img src="/manage-users-icon.svg" alt="" />
-                          </div>
-                          <p className="mt-5">
-                            MANAGE <br /> USERS
-                          </p>
-                        </button>
-                      </div>{" "}
-                    </div>
-                  </Link>
-                )}
 
-                {loggedUserRole === "Supervisor" && (
+
+              {loggedUserRole === "Supervisor" && (
                   <Link href="/clients">
                     <div className="text-center ">
-                      <div className="rounded btn-darkBlue p-5 text-center shadow-xl  rounded-xl">
+                      <div className="rounded blue-btn p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/manage-clients-icon.svg" alt="" />
+                            <img src="/manage_clients_icon.svg" alt="" width={95}/>
                           </div>
-                          <p className="mt-5 text-white">
-                            MANAGE <br />
-                            CLIENTS
+                          <p className="mt-5 text-lg">
+                            Manage <br />
+                            Clients
                           </p>
                         </button>
                       </div>{" "}
@@ -259,57 +244,16 @@ if(userid!=="All"){
                   </Link>
                 )}
 
-                {loggedUserRole === "Supervisor" && (
-                  <Link href="/services">
-                    <div className="text-center ">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
-                        <button id="myBtn">
-                          <div className="flex justify-center">
-                            <img
-                              src="/manage_services_icon.svg"
-                              width={64}
-                              alt=""
-                            />
-                          </div>
-                          <p className="mt-5">
-                            MANAGE <br />
-                            SERVICES
-                          </p>
-                        </button>
-                      </div>{" "}
-                    </div>
-                  </Link>
-                )}
-
-                {loggedUserRole === "Supervisor" && (
-                  <Link href="/software">
-                    <div className="text-center ">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
-                        <button id="myBtn">
-                          <div className="flex justify-center">
-                            <img src="/manage_software_icon.svg" alt="" />
-                          </div>
-                          <p className="mt-5">
-                            MANAGE <br />
-                            SOFTWARE
-                          </p>
-                        </button>
-                      </div>{" "}
-                    </div>
-                  </Link>
-                )}
-
-                  
-                  {
+{
                   (loggedUserRole === "Supervisor" || loggedUserRole === "DES" ? (
                     <Link href="/condomsDistribution">
                     <div className="text-center ">
                       <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={73}/>
+                            <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={100}/>
                           </div>
-                          <p className="mt-5 uppercase">
+                          <p className="mt-5 text-lg">
                             Condoms <br />
                             Distributed
                           </p>
@@ -325,9 +269,9 @@ if(userid!=="All"){
                       <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={52}/>
+                            <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={70}/>
                           </div>
-                          <p className="mt-5 uppercase">
+                          <p className="mt-5 text-lg">
                             Support <br />
                             Groups
                           </p>
@@ -336,6 +280,69 @@ if(userid!=="All"){
                     </div>
                   </Link>
                   ):"")}
+
+
+                {loggedUserRole === "Supervisor" && (
+                  <Link href="/users">
+                    <div className="text-center  ">
+                      <div className="rounded yellow-btn p-5 text-center shadow-xl  rounded-xl">
+                        <button id="myBtn">
+                          <div className="flex justify-center">
+                            <img src="/Manage_Users_icon.svg" alt="" width={95}/>
+                          </div>
+                          <p className="mt-5 text-lg">
+                            Manage <br /> Users
+                          </p>
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </Link>
+                )}
+
+               
+
+                {loggedUserRole === "Supervisor" && (
+                  <Link href="/services">
+                    <div className="text-center ">
+                      <div className="rounded yellow-btn p-5 text-center shadow-xl  rounded-xl">
+                        <button id="myBtn">
+                          <div className="flex justify-center">
+                            <img
+                              src="/Manage-Services-icon.svg"
+                              width={95}
+                              alt=""
+                            />
+                          </div>
+                          <p className="mt-5 text-lg">
+                            Manage <br />
+                            Services
+                          </p>
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </Link>
+                )}
+
+                {loggedUserRole === "Supervisor" && (
+                  <Link href="/software">
+                    <div className="text-center ">
+                      <div className="rounded yellow-btn p-5 text-center shadow-xl  rounded-xl">
+                        <button id="myBtn">
+                          <div className="flex justify-center">
+                            <img src="/Manage-Software-icon.svg" alt="" width={125}/>
+                          </div>
+                          <p className="mt-5 text-lg">
+                            Manage <br />
+                            Software
+                          </p>
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </Link>
+                )}
+
+                  
+                 
                   
               </div>
 
