@@ -124,16 +124,19 @@ export default function ClientProfilePage({
     }
 
     return (
-      <div className={`flex ${color} px-5  items-center rounded-xl shadow-xl`}>
-        <img src="/client/alerticonMSAdoc.svg" alt="" />
-        <p className="px-4 font-semibold ">{result}</p>
+      <div>
+      <div className={`flex ${color} px-5 py-3  items-center rounded-sm shadow-sm justify-center`}>
+       {color==='bg-green-300' && <p className="text-center flex justify-center">On Track</p>} 
+       {color==='bg-orange-300' && <p className="text-center flex justify-center">Warning</p>} 
+       {color==='bg-red-400' && <p className="text-center flex justify-center">Alert</p>} 
+      </div>
+      <p className="text-center flex justify-center py-3 text-center">{result}</p>
+      <div className="flex justify-center">
+      <img src="/client/alerticonMSAdoc.svg" className="mt-3" alt=""width={30} />
+      </div>
       </div>
     );
 
-    /* return  (<div className={`flex ${color} h-14 px-5  items-center`}>
-    <img src="/client/alerticonMSAdoc.svg" alt="" />
-    <p className='px-4 font-semibold '>{result}</p>
-    </div>) */
   };
 
   const checkMessage2 = () => {
@@ -164,11 +167,17 @@ export default function ClientProfilePage({
       color = "bg-green-300";
       result = "No goals yet";
       return (
+        <div>
         <div
-          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
         >
-          <img src="/client/alerticonserviceactionplan.svg" alt="" />
-          <p className="px-4 font-semibold">{result}</p>
+         <p>On Track</p>
+        </div>
+       
+          <p className="px-4 my-3 text-center">{result}</p>
+          <div className="flex justify-center items-center">
+          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+          </div>
         </div>
       );
     }
@@ -179,11 +188,18 @@ export default function ClientProfilePage({
         totalGoals - totalGoalsCompleted
       } client goals outstanding`;
       return (
+
+        <div>
         <div
-          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
         >
-          <img src="/client/alerticonserviceactionplan.svg" alt="" />
-          <p className="px-4 font-semibold">{result}</p>
+         <p>Alert</p>
+        </div>
+       
+          <p className="px-4 my-3 text-center">{result}</p>
+          <div className="flex justify-center items-center">
+          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+          </div>
         </div>
       );
     }
@@ -193,11 +209,17 @@ export default function ClientProfilePage({
       color = "bg-green-300";
 
       return (
+        <div>
         <div
-          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
         >
-          <img src="/client/alerticonserviceactionplan.svg" alt="" />
-          <p className="px-4 font-semibold">{result}</p>
+         <p>On Track</p>
+        </div>
+       
+          <p className="px-4 my-3 text-center">{result}</p>
+          <div className="flex justify-center items-center">
+          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+          </div>
         </div>
       );
     }
@@ -209,11 +231,17 @@ export default function ClientProfilePage({
       } client goals outstanding`;
 
       return (
+        <div>
         <div
-          className={`flex ${color} rounded-xl px-5  items-center shadow-xl`}
+          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
         >
-          <img src="/client/alerticonserviceactionplan.svg" alt="" />
-          <p className="px-4 font-semibold">{result}</p>
+         <p>Warning</p>
+        </div>
+       
+          <p className="px-4 my-3 text-center">{result}</p>
+          <div className="flex justify-center items-center">
+          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+          </div>
         </div>
       );
     }
@@ -251,15 +279,26 @@ export default function ClientProfilePage({
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       return (
-        <div className={`flex ${color} rounded-xl px-5 items-center shadow-xl`}>
-          <img src="/client/alert-icon-progress-note.svg" alt="" />
-          <p className="px-4 font-semibold">
+        <div>
+            <div className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}>
+              {color==='bg-green-300' &&  <p>On Track</p>}
+              {color==='bg-orange-300' &&  <p>Warning</p>}
+              {color==='bg-red-400' &&  <p>Alert</p>}
+        </div>
+
+        
+          <p className="px-4 my-3 text-center">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : totalDays < 0
               ? `You will see this client soon`
               : `You saw this client today`}
           </p>
+
+          <div className="flex justify-center items-center">
+          <img src="/client/alert-icon-progress-note.svg" alt="" width={30} className="mt-3"/>
+          </div>
+
         </div>
       );
     }
@@ -291,14 +330,23 @@ export default function ClientProfilePage({
       // console.log("totalDays", totalDays);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
+      if (totalDays > 30) color = "bg-red-400";
       return (
-        <div className={`flex ${color} rounded-xl px-5 items-center shadow-xl`}>
-          <img src="/client/alert-icon-progress-note.svg" alt="" />
-          <p className="px-4 font-semibold">
+        <div>
+        <div className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}>
+       {color==='bg-green-300' &&  <p>On Track</p>}
+       {color==='bg-orange-300' &&  <p>Warning</p>}
+       {color==='bg-red-400' &&  <p>Alert</p>}
+        </div>
+
+        <p className="px-4 my-3 text-center">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : `You saw this client today`}{" "}
           </p>
+          <div className="flex justify-center">
+        <img src="/client/alert-icon-progress-note.svg" alt="" className="mt-3" width={30}/>
+        </div>
         </div>
       );
     }
@@ -334,8 +382,7 @@ export default function ClientProfilePage({
   if (!hasMounted) {
     return null;
   }
-  // console.log("progNotes", progNotes)
-console.log("progNotes",progNotes)
+
   return (
     <>
       <Layout>
@@ -383,56 +430,33 @@ console.log("progNotes",progNotes)
                 </div>
               </div>
 
-              <div className="dashboard-clients-cards-info">
-                <div
-                  id="dashboard-clients-cards-info-container"
-                  className="grid md:grid-cols-2 gap-10"
-                >
-                  <div className="clients-cards-item flex gap-x-5 px-5 bg-white rounded-xl py-5 ">
-                    <div className="border-r-2 pr-8">
-                      <div className="flex gap-5 pb-7">
-                        <img
-                          src="/client/USERicon.svg"
-                          className="self-start"
-                          alt="user-icon"
-                        />
-                        <div>
-                          {" "}
-                          <p className="text-dark-blue font-black text-lg">
-                            {data[0]?.clientfirstname}{" "}
-                            {data[0]?.clientlastname.charAt(0)}
-                          </p>
-                          <p className="text-dark-blue text-xs">
-                            {data[0]?.clientid}
-                          </p>
-                          <button
-                            className="bg-black rounded-md px-5 block py-1 shadow-md text-white mt-5 text-sm"
-                            onClick={() =>
-                              setShowEditClientModal(!showEditClientModal)
-                            }
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className=" rounded-md px-5 py-1 block shadow-md text-white mt-5 text-sm"
-                            onClick={() =>
-                              setShowDeleteClientModal(!showDeleteClientModal)
-                            }
-                            title="Delete this client"
-                          >
-                            <img
-                              src="/delete-user-icon.svg"
-                              alt="delete button"
-                              width={25}
-                            />
-                          </button>
-                        </div>
+              <div className="container mx-auto my-10" id="profile">
+                <div className="profile-client-information-top grid md:grid-cols-4 grid-cols-1 gap-x-5">
+                  <div className="profile-client-information-top-1 bg-white rounded-md  shadow-md p-5">
+                    <div className="flex gap-5 pb-7">
+                      <img
+                        src="/client/USERicon.svg"
+                        className="self-start"
+                        alt="user-icon"
+                      />
+                      <div>
+                        {" "}
+                        <p className="text-dark-blue font-black text-lg">
+                          {data[0]?.clientfirstname}{" "}
+                          {data[0]?.clientlastname.charAt(0)}
+                        </p>
+                        <p className="text-dark-blue text-xs">
+                          {data[0]?.clientid}
+                        </p>
                       </div>
                     </div>
-                    <div className="grid grid-rows-3">
-                      <div>
-                        <p className="font-semibold">Date Client Joined LNE</p>
-                        <p className="justify-self-end font-semibold text-dark-blue">
+
+                    <div className="flex justify-between">
+                      <div className="flex gap-x-1">
+                        <img src="/joining_date_icon.svg" alt="" width={'14px'}/>
+                        <p className="">Joining date</p>
+                      </div>
+                        <p className="justify-self-end">
                           {new Date(
                             data[0]?.clientdatecreated
                           ).toLocaleDateString("en-EN", {
@@ -442,35 +466,79 @@ console.log("progNotes",progNotes)
                           })}
                         </p>
                       </div>
-                      <div>
-                        {/*   <p className="font-semibold">Date Of Last Action</p>
-                        <p className="justify-self-end font-semibold text-dark-blue">
-                          {data[0]?.planstartdate === null
-                            ? new Date(
-                                data[0]?.clientdatecreated
-                              ).toLocaleDateString("en-EN", {
-                                year: "numeric",
-                                month: "numeric",
-                                day: "numeric",
-                              })
-                            : new Date(
-                                data[0]?.planstartdate
-                              ).toLocaleDateString("en-EN", {
-                                year: "numeric",
-                                month: "numeric",
-                                day: "numeric",
-                              })}
-                        </p> */}
+
+                     {/*  <div className="flex justify-between mt-3">
+                      <div className="flex gap-x-1">
+                        <img src="/last_updated.svg" alt="" width={'14px'}/>
+                        <p className="">Last update</p>
                       </div>
-                    </div>
+                        <p className="justify-self-end">
+                          {new Date(
+                            data[0]?.clientdatecreated
+                          ).toLocaleDateString("en-EN", {
+                            year: "numeric",
+                            month: "numeric",
+                            day: "numeric",
+                          })}
+                        </p>
+                      </div> */}
+
+
+                      <div className="flex justify-between gap-x-2">
+                      <button
+                            className="bg-blue-cards-btns w-full rounded-md px-5 block py-1 shadow-md  mt-5 text-sm  flex gap-x-2 items-center justify-center"
+                            onClick={() =>
+                              setShowEditClientModal(!showEditClientModal)
+                            }
+                          >
+                            <img src="/edit.svg" alt="" width={'14px'}/>
+                            Edit
+                          </button>
+
+                          <button
+                            className="w-full rounded-md px-5 py-1 block shadow-md bg-black text-white mt-5 text-sm flex gap-x-2 items-center justify-center"
+                            onClick={() =>
+                              setShowDeleteClientModal(!showDeleteClientModal)
+                            }
+                            title="Delete this client"
+                          >
+                            <img
+                              src="/delete_white.svg"
+                              alt="delete button"
+                              width={'11px'}
+                            />
+
+                            Delete
+                          </button>
+                      </div>
+
                   </div>
-                  <div className="grid gap-5">
-                    {checkMessage1()}
-                    {checkMessage2()}
-                    {checkMessage3()}
+                  {/* end first card */}
+
+                  <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
+
+                  {checkMessage1()}
+
                   </div>
+
+
+                  <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
+
+                  {checkMessage2()}
+
+                  </div>
+
+                  <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
+
+                  {checkMessage3()}
+
+                  </div>
+
+
                 </div>
               </div>
+
+             
             </section>
           </section>
           <section
@@ -490,25 +558,25 @@ console.log("progNotes",progNotes)
               >
                 {loggedUserRole === "Supervisor" && (
                   <Link
-                    href={
-                      data[0]?.msaformid
-                        ? `/clients/${data[0]?.clientid}/msa_form/supervisor_msa_form_edit`
-                        : `/clients/${data[0]?.clientid}/msa_form`
-                    }
-                  >
-                    <div className="client-profile-page-navigation-icon-container boder-dark-blue bg-dark-blue cursor-pointer rounded-xl py-2 px-5 inline-block">
-                      <div className="flex justify-center">
-                        <img src="/client/MSAicon.svg" alt="" />
-                      </div>
-                      <h4 className="text-center text-white">
-                        {data[0]?.msaformid === undefined ||
-                        data[0]?.msaformid === "" ||
-                        data[0]?.msaformid === null
-                          ? `Create MSA Form`
-                          : "Edit MSA Form"}
-                      </h4>
+                  href={
+                    data[0]?.msaformid
+                      ? `/clients/${data[0]?.clientid}/msa_form/supervisor_msa_form_edit`
+                      : `/clients/${data[0]?.clientid}/msa_form`
+                  }
+                >
+                  <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
+                    <div className="flex justify-center">
+                      <img src="/client/MSA_button.svg" alt="" width={45}/>
                     </div>
-                  </Link>
+                    <h4 className="text-center">
+                      {data[0]?.msaformid === undefined ||
+                      data[0]?.msaformid === "" ||
+                      data[0]?.msaformid === null
+                        ? `Create MSA Form`
+                        : "Edit MSA Form"}
+                    </h4>
+                  </div>
+                </Link>
                 )}
 
                 {loggedUserRole === "DES" && (
@@ -519,11 +587,11 @@ console.log("progNotes",progNotes)
                         : `/clients/${data[0]?.clientid}/msa_form`
                     }
                   >
-                    <div className="client-profile-page-navigation-icon-container boder-dark-blue bg-dark-blue cursor-pointer rounded-xl py-2 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
-                        <img src="/client/MSAicon.svg" alt="" />
+                        <img src="/client/MSA_button.svg" alt="" width={45}/>
                       </div>
-                      <h4 className="text-center text-white">
+                      <h4 className="text-center">
                         {data[0]?.msaformid === undefined ||
                         data[0]?.msaformid === "" ||
                         data[0]?.msaformid === null
@@ -542,11 +610,11 @@ console.log("progNotes",progNotes)
                         : `/clients/${data[0]?.clientid}/msa_form`
                     }
                   >
-                    <div className="client-profile-page-navigation-icon-container boder-dark-blue bg-dark-blue cursor-pointer rounded-xl py-2 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block items-center h">
                       <div className="flex justify-center">
-                        <img src="/client/MSAicon.svg" alt="" />
+                        <img src="/client/MSA_button.svg" alt="" width={45}/>
                       </div>
-                      <h4 className="text-center text-white">
+                      <h4 className="text-center ">
                         {data[0]?.msaformid === undefined ||
                         data[0]?.msaformid === "" ||
                         data[0]?.msaformid === null
@@ -564,13 +632,13 @@ console.log("progNotes",progNotes)
                       data[0]?.servicesactionplanid
                         ? `/clients/${data[0]?.clientid}/service-action-plan/edit`
                         : `/clients/${data[0]?.clientid}/service-action-plan`
-                    } */href={`/clients/${data[0]?.clientid}/profile/service_action_plans`}
+                    } */ href={`/clients/${data[0]?.clientid}/profile/service_action_plans`}
                   >
-                    <div className="client-profile-page-navigation-icon-container boder-dark-blue bg-dark-blue cursor-pointer rounded-xl py-2 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
-                        <img src="/client/SAPicon.svg" alt="" />
+                        <img src="/client/Service_Action_Plan_button.svg" alt="" width={45}/>
                       </div>
-                      <h4 className="text-center text-white">
+                      <h4 className="text-center ">
                         {data[0]?.servicesactionplanid
                           ? "View Service Action Plans"
                           : `Create Service Action Plan`}
@@ -583,11 +651,11 @@ console.log("progNotes",progNotes)
 
                 {data[0]?.servicesactionplanid ? (
                   <Link href={`/clients/${data[0]?.clientid}/progress_note`}>
-                    <div className="client-profile-page-navigation-icon-container boder-dark-blue bg-dark-blue cursor-pointer rounded-xl py-2 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
-                        <img src="/client/PROGRESSNOTEicon.svg" alt="" />
+                        <img src="/client/Progress_note_button.svg" alt="" width={45}/>
                       </div>
-                      <h4 className="text-center text-white">
+                      <h4 className="text-center ">
                         {`Create Progress Note`}
                       </h4>
                     </div>
@@ -598,7 +666,11 @@ console.log("progNotes",progNotes)
               </div>
             </div>
           </section>
-          <section id="baselineData" className="mt-16 container mx-auto">
+          <section id="baselineData" className="mt-16 container mx-auto bg-white pt-5 px-5 pb-10 rounded-md shadow-md">
+          <div className="flex gap-x-3">
+              <img src="/client/Client_progress_notes_icon.svg" alt=""/> 
+              <h3 className="font-black my-5">Impact Tracker</h3>
+              </div>
             <ProfilePageBaselineData
               impactBaseline={impactBaseline}
               impactTracker={impactTracker}
@@ -608,27 +680,31 @@ console.log("progNotes",progNotes)
               clientUniqueId={data[0]?.id}
             />
           </section>
-          <section id="progressnotes" className="my-10">
-            <div className="container mx-auto">
-              <h1 className="font-black my-5">Client progress notes</h1>
-              <div className="grid grid-cols-4 bg-black py-2 px-5 rounded-tl-md rounded-tr-md">
+          <section id="progressnotes" className="my-10 ">
+            <div className="container mx-auto bg-white px-5 pt-2 pb-10 rounded-md shadow-md">
+             <div className="flex gap-x-3">
+              <img src="/client/Client_progress_notes_icon.svg" alt=""/> 
+              <h3 className="font-black my-5">Client progress notes</h3>
+              </div>
+
+              <div className="grid client-progress-note-table gap-x-1 rounded-tl-md rounded-tr-md">
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading p-2 text-black py-2 px-5 text-xs mt-2 uppercase font-black">
                     Date
                   </h3>
                 </div>
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading py-2 px-5 text-black  text-xs mt-2 uppercase font-black">
                     Service
                   </h3>
                 </div>
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading p-2 text-black text-center text-xs mt-2 uppercase font-black">
                     Edit
                   </h3>
                 </div>
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading p-2 text-black text-center text-xs mt-2 uppercase font-black">
                     Delete
                   </h3>
                 </div>
@@ -641,85 +717,93 @@ console.log("progNotes",progNotes)
                     return (
                       <div
                         key={index}
-                        className="grid grid-cols-4 bg-white py-2 border p-5 text-center"
+                        className={`grid client-progress-note-table py-2  p-5   ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
                       >
                         <p>{new Date(pn.date).toLocaleDateString("en-US")}</p>
                         <div>
-                        <p>
-                          {pn.developmentactionplan === "1"
-                            ? "Development of Action Plan with Client"
-                            : ""}
-                        </p>    
                           <p>
-                          {pn.cd4vllabreport === "1"
-                            ? "CD4/VL Lab Report Check"
-                            : ""}
-                          </p>
-                        <p>
-                          {pn.transportationcoordination === "1"
-                            ? "Transportation Coordination"
-                            : ""}
-                        </p>
-                        <p>
-                          {pn.translationinterpretation === "1"
-                            ? "Translation/Interpretation"
-                            : ""}
-                        </p>
-                        <p>
-                          {pn.comprehensivebehavioralriskassessment === "1"
-                            ? "Comprehensive Behavioral Risk Assessment"
-                            : ""}
-                        </p>
-                        <p>
-                          {pn.ticklerupdate === "1" ? "Tickler Update" : ""}
+                            {pn.developmentactionplan === "1"
+                              ? "Development of Action Plan with Client"
+                              : ""}
                           </p>
                           <p>
-                          {pn.treatmenteducation === "1"
-                            ? "Treatment Education and Adherence Counselling"
-                            : ""}
+                            {pn.cd4vllabreport === "1"
+                              ? "CD4/VL Lab Report Check"
+                              : ""}
                           </p>
                           <p>
-                          {pn.preventioncounselling === "1"
-                            ? "Prevention Counselling"
-                            : ""}
+                            {pn.transportationcoordination === "1"
+                              ? "Transportation Coordination"
+                              : ""}
                           </p>
                           <p>
-                          {pn.supportivecounselling === "1"
-                            ? "Supportive Counselling"
-                            : ""}
-                          </p>
-                          <p>   
-                          {pn.escort === "1" ? "Escort" : ""}
+                            {pn.translationinterpretation === "1"
+                              ? "Translation/Interpretation"
+                              : ""}
                           </p>
                           <p>
-                          {pn.caseclosuredischarge === "1"
-                            ? "Case Closure/Discharge"
-                            : ""}
+                            {pn.comprehensivebehavioralriskassessment === "1"
+                              ? "Comprehensive Behavioral Risk Assessment"
+                              : ""}
                           </p>
-                          <p> 
-                          {pn.linkagetoservices === "1"
-                            ? "Linkage to Services"
-                            : ""}
+                          <p>
+                            {pn.ticklerupdate === "1" ? "Tickler Update" : ""}
                           </p>
-                          <p> 
-                          {pn.supportgroups === "1" ? "Support Groups" : ""}
+                          <p>
+                            {pn.treatmenteducation === "1"
+                              ? "Treatment Education and Adherence Counselling"
+                              : ""}
                           </p>
-                          <p> 
-                          {pn.implementationactionplan === "1" ? "Implementation of Action Plan" : ""}
+                          <p>
+                            {pn.preventioncounselling === "1"
+                              ? "Prevention Counselling"
+                              : ""}
                           </p>
-                          <p> 
-                          {pn.housingassistance === "1" ? "Assistance with Housing Services" : ""}
+                          <p>
+                            {pn.supportivecounselling === "1"
+                              ? "Supportive Counselling"
+                              : ""}
                           </p>
-                          <p> 
-                          {pn.benefitsassistance === "1" ? "Assistance with Access to Benefits/Entitlements" : ""}
+                          <p>{pn.escort === "1" ? "Escort" : ""}</p>
+                          <p>
+                            {pn.caseclosuredischarge === "1"
+                              ? "Case Closure/Discharge"
+                              : ""}
                           </p>
-                          <p> 
-                          {pn.employmentassistance === "1" ? "Assistance with Employment/Education" : ""}
+                          <p>
+                            {pn.linkagetoservices === "1"
+                              ? "Linkage to Services"
+                              : ""}
+                          </p>
+                          <p>
+                            {pn.supportgroups === "1" ? "Support Groups" : ""}
+                          </p>
+                          <p>
+                            {pn.implementationactionplan === "1"
+                              ? "Implementation of Action Plan"
+                              : ""}
+                          </p>
+                          <p>
+                            {pn.housingassistance === "1"
+                              ? "Assistance with Housing Services"
+                              : ""}
+                          </p>
+                          <p>
+                            {pn.benefitsassistance === "1"
+                              ? "Assistance with Access to Benefits/Entitlements"
+                              : ""}
+                          </p>
+                          <p>
+                            {pn.employmentassistance === "1"
+                              ? "Assistance with Employment/Education"
+                              : ""}
                           </p>
 
                           <p>
-                          {pn.otherassistance === "1" ? "Other Assistance" : ""}
-                        </p>
+                            {pn.otherassistance === "1"
+                              ? "Other Assistance"
+                              : ""}
+                          </p>
                         </div>
                         <div className="flex justify-center ">
                           <Link

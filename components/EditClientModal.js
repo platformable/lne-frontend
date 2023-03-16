@@ -180,23 +180,23 @@ export default function EditClientModal({
 
   return (
     <>
-      <div className="modal">
-        <div className="mt-8 max-w-md mx-auto bg-dark-blue  rounded">
+      <div className="modal ">
+        <div className="mt-8 max-w-md mx-auto bg-white rounded border-blue">
           <div className="flex justify-end">
             <button
               onClick={() => setShowEditClientModal(!showEditClientModal)}
-              className="text-white bg-black px-2 py-1"
+              className="text-black  m-3 rounded-lg "
             >
-              X
+             <img src="/client/close_modal_client.svg" alt="" />
             </button>
           </div>
           <div className="grid grid-cols-1 gap-6 p-5">
             <div className="flex items-center gap-4">
-              <img src="/add_new_client_icon.svg" alt="" />
-              <h1 className="font-black text-white">
+              <img src="/edit.svg" alt="" />
+              <h3 className="">
                 {" "}
                 Edit Client Information
-              </h1>
+              </h3>
             </div>
 
             {emptyFields && (
@@ -211,7 +211,7 @@ export default function EditClientModal({
             )}
 
             <label className="block">
-              <span className="text-white">First name</span>
+              <span className="font-bold">First name</span>
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -226,7 +226,7 @@ export default function EditClientModal({
               />
             </label>
             <label className="block">
-              <span className="text-white">Last name</span>
+              <span className="font-bold">Last name</span>
               <input
                 type="text"
                 className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -242,7 +242,7 @@ export default function EditClientModal({
               {/* {clientData.clientLastName.match(/[^a-zA-Z]/)  && <p className="text-red-500 text-xs mt-2">Only letters allowed</p>} */}
             </label>
             <label className="block">
-              <span className="text-white">
+              <span className="font-bold">
                 Last 4 digits of social security number{" "}
               </span>
               <div>
@@ -266,11 +266,11 @@ export default function EditClientModal({
               {clientData.clientSSN?.length === 0 ||
               clientData.clientSSN?.length === 4 ? null : clientData.clientSSN
                   ?.length < 4 ? (
-                <p className="text-black text-xs mt-2">
+                <p className="font-bold text-xs mt-2">
                   Only 4 numbers allowed
                 </p>
               ) : (
-                <p className="text-black text-xs mt-2">Must be 4 numbers </p>
+                <p className="font-bold text-xs mt-2">Must be 4 numbers </p>
               )}
             </label>
             {/*  <label className="block">
@@ -282,7 +282,7 @@ export default function EditClientModal({
           </label> */}
             {loggeduserId === "Supervisor" ? (
               <label className="block">
-                <span className="text-white">Asign user</span>
+                <span className="font-bold">Asign user</span>
                 <select
                   /*  defaultValue={clientData.clientHCWName} */
                   /* value={clientData.clientHCWName} */
@@ -311,7 +311,7 @@ export default function EditClientModal({
             )}
 
             <label className="block">
-              <span className="text-white">is Active / No active</span>
+              <span className="font-bold">is Active / No active</span>
               <select
                 value={clientData.clientActive}
                 onChange={(e) =>
@@ -325,7 +325,7 @@ export default function EditClientModal({
             </label>
 
             <label className="block">
-              <span className="text-white">Client category</span>
+              <span className="font-bold">Client category</span>
               <select
                 value={clientData.clientCategory}
                 onChange={(e) =>
@@ -354,7 +354,7 @@ export default function EditClientModal({
               <div className="mt-2">
                 <div className="flex justify-center">
                   <button
-                    className="px-5  py-1 mr-3 font-medium btn-darkGreen  text-sm flex shadow-xl items-center rounded-md"
+                    className="w-2/4 text-center justify-center px-5  py-2 mr-3 font-medium blue-btn  text-sm flex shadow-xl items-center rounded-md"
                     onClick={() => addClient()}
                   >
                     {saving ? (
