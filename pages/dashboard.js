@@ -19,9 +19,12 @@ export default function HcwDesDashboard({ msaforms, serviceactionplans,user }) {
     []
   );
   const [notCompletedGoals, setNotCompletedGoals] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showCreateClientModal, setShowCreateClientModal] = useState(false);
   const loggedUserRole =
-    user && user["https://lanuevatest.herokuapp.com/roles"];
+  user && user["https://lanuevatest.herokuapp.com/roles"];
+const loggedUserStatus =
+  user && user["https://lanuevatest.herokuapp.com/activestatus"];
   const userId = user?.sub;
   const [noDataMessage, setNoDataMessage] = useState(false);
   const router = useRouter();
@@ -70,6 +73,18 @@ export default function HcwDesDashboard({ msaforms, serviceactionplans,user }) {
     checkServiceActionPlanCompletedGoals(serviceactionplans);
   }, []); */
 
+
+
+  useEffect(() => {
+
+
+    loggedUserRole === "Supervisor"
+      ? router.push("/supervisorDashboard")
+      : setLoading(false);
+    loggedUserStatus === "No Active"
+      ? router.push("/api/auth/logout")
+      : setLoading(false);
+  }, [loggedUserRole]);
  
 
   return (
@@ -157,7 +172,7 @@ export default function HcwDesDashboard({ msaforms, serviceactionplans,user }) {
               </div>
 
               <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
-                {loggedUserRole === "Supervisor" ||
+                {/* {loggedUserRole === "Supervisor" ||
                   (loggedUserRole === "DES" && (
                     <div className="search-box flex  items-center">
                       <p className="">Search by name or Client ID</p>
@@ -198,9 +213,9 @@ export default function HcwDesDashboard({ msaforms, serviceactionplans,user }) {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  ))} */}
 
-                {loggedUserRole === "Supervisor" ||
+              {/*   {loggedUserRole === "Supervisor" ||
                   (loggedUserRole === "DES" && (
                     <div className="search-box flex items-center justify-end gap-3">
                       <p>Filter by HCW</p>
@@ -216,7 +231,7 @@ export default function HcwDesDashboard({ msaforms, serviceactionplans,user }) {
                         {displayUserList()}
                       </select>
                     </div>
-                  ))}
+                  ))} */}
               </div>
             </div>
           </section>
