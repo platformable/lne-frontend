@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="101.137" height="99.659" viewBox="0 0 101.137 99.659">
+  <defs>
+    <filter id="Ellipse_440" x="0" y="0" width="99.659" height="99.659" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-color="#b7a200" flood-opacity="0.749"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_439" data-name="Ellipse 439" cx="45.33" cy="45.33" r="45.33" fill="none" stroke="#707070" stroke-width="2"/>
+    </clipPath>
+  </defs>
+  <g id="Manage_Users" data-name="Manage Users" transform="translate(4.5 3.5)">
+    <g id="Group_2456" data-name="Group 2456">
+      <g id="Group_2455" data-name="Group 2455">
+        <g transform="matrix(1, 0, 0, 1, -4.5, -3.5)" filter="url(#Ellipse_440)">
+          <g id="Ellipse_440-2" data-name="Ellipse 440" transform="translate(4.5 3.5)" fill="#fcdd4c" stroke="#000" stroke-width="3">
+            <circle cx="45.33" cy="45.33" r="45.33" stroke="none"/>
+            <circle cx="45.33" cy="45.33" r="43.83" fill="none"/>
+          </g>
+        </g>
+        <g id="Mask_Group_1299" data-name="Mask Group 1299" transform="translate(0 0)" clip-path="url(#clip-path)">
+          <g id="Ellipse_437" data-name="Ellipse 437" transform="translate(29.481 22.321)" fill="none" stroke="#000" stroke-width="3">
+            <ellipse cx="15.983" cy="15.855" rx="15.983" ry="15.855" stroke="none"/>
+            <ellipse cx="15.983" cy="15.855" rx="14.483" ry="14.355" fill="none"/>
+          </g>
+          <g id="Ellipse_438" data-name="Ellipse 438" transform="translate(21.847 53.193)" fill="none" stroke="#000" stroke-width="3">
+            <ellipse cx="23.618" cy="26.352" rx="23.618" ry="26.352" stroke="none"/>
+            <ellipse cx="23.618" cy="26.352" rx="22.118" ry="24.852" fill="none"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <ellipse id="Ellipse_441" data-name="Ellipse 441" cx="19.701" cy="20.17" rx="19.701" ry="20.17" transform="translate(55.98 54.659)" fill="#fcdd4c"/>
+    <path id="Path_7785" data-name="Path 7785" d="M18.175,0a.856.856,0,0,1,.381.739c.086,1.156.228,2.308.33,3.463a.638.638,0,0,0,.364.551q1.049.6,2.076,1.241a.746.746,0,0,0,.776.031c1.02-.466,2.046-.919,3.071-1.374.674-.3.95-.22,1.317.406q1.431,2.446,2.846,4.9A.963.963,0,0,1,29,11.465c-.841.616-1.685,1.23-2.54,1.827a.653.653,0,0,0-.3.683,22.529,22.529,0,0,1-.007,2.475.532.532,0,0,0,.27.573c1,.63,1.989,1.273,2.976,1.92.672.44.744.684.36,1.357q-1.405,2.461-2.839,4.905a1.01,1.01,0,0,1-1.5.456c-.954-.42-1.908-.844-2.853-1.283a.845.845,0,0,0-.968.106,12.858,12.858,0,0,1-1.823,1.071.842.842,0,0,0-.55.8c-.058.981-.156,1.959-.256,2.937-.086.837-.322,1.053-1.174,1.057q-2.716.014-5.432,0c-.89,0-1.1-.2-1.195-1.085-.114-1.016-.237-2.031-.316-3.05a.752.752,0,0,0-.458-.676c-.656-.356-1.3-.73-1.936-1.129a.826.826,0,0,0-.88-.046c-1,.462-2.011.9-3.018,1.347-.671.3-.936.226-1.313-.415Q1.8,22.8.359,20.293a.894.894,0,0,1,.3-1.328c.86-.625,1.72-1.249,2.59-1.858a.728.728,0,0,0,.325-.789,18.2,18.2,0,0,1-.056-2.24.888.888,0,0,0-.42-.836c-.873-.606-1.734-1.229-2.591-1.858-.607-.445-.647-.678-.265-1.339q1.389-2.4,2.784-4.8c.427-.734.789-.86,1.559-.527.975.423,1.947.853,2.911,1.3a.731.731,0,0,0,.81-.079,22.136,22.136,0,0,1,1.977-1.165.722.722,0,0,0,.455-.666c.081-1.038.237-2.071.3-3.11a1.01,1.01,0,0,1,.75-1Zm2.961,15.223A6.266,6.266,0,1,0,8.6,15.142a6.177,6.177,0,0,0,6.263,6.32,6.138,6.138,0,0,0,6.269-6.239" transform="translate(67.359 55.159) rotate(21)" fill="none" stroke="#000" stroke-width="2"/>
+  </g>
+</svg>
