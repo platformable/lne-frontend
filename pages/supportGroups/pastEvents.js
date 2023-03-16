@@ -45,11 +45,12 @@ const PastEvents = ({ events }) => {
     <Layout showStatusHeader={true}>
       <ToastContainer autoClose={3000} />
       <div className="container mx-auto my-5">
-        <h1 className="font-black mb-5">Review past group events</h1>
-        <div className="flex items-center gap-5">
+      <div className="flex items-center gap-5">
           <BackButton />
           <BackToDashboardButton />
         </div>
+        <h1 className="font-black mb-5 mt-7">Review past group events</h1>
+       
       </div>
 
       
