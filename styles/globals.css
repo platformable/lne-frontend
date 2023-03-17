@@ -440,6 +440,10 @@ border:2px solid #5AC0FF;
   background-color: #DBE9FA;
 }
 
+.bg-client-profile-sap-heading {
+  background-color: #DBE9FA;
+}
+
 .bg-light-gray {
   background-color:#FAFCFF;
 }
@@ -466,4 +470,21 @@ border:2px solid #5AC0FF;
   .client-progress-note-table {
     grid-template-columns: 1fr;
   }
+}
+
+.border-blue-bottom {
+  border-bottom:2px solid #5AC0FF;
+}
+
+.sap-dashboard-client-table {
+display:grid;
+grid-template-columns: 2fr 8fr 2fr;
+}
+
+@media only screen and (max-width: 600px) {
+  .sap-dashboard-client-table {
+    display:grid;
+    grid-template-columns: 1r;
+    }
+    
 }

@@ -9,21 +9,14 @@ import DeleteClientModal from "../../../../components/DeleteClientModal";
 import DeleteModal from "../../../../components/DeleteModal";
 import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineData";
 
-
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from "next/router";
 import BackButton from "../../../../components/BackButton";
 
-
-
-export default function ClientServiceActionPlansListPage({
-  data
-}) {
-
-    console.log("datax",data)
+export default function ClientServiceActionPlansListPage({ data }) {
+  console.log("datax", data);
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal, setShowDeleteClientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -40,103 +33,151 @@ export default function ClientServiceActionPlansListPage({
     <>
       <Layout>
         <ToastContainer autoClose={700} />
-        <div className=" bg-light-blue h-full pb-20 ">
-          <section className="pb-5 pt-10 container mx-auto md:px-0 px-5">
+
+        <section className="pb-5 pt-10 md:px-0 px-5 bg-white ">
+          <div className="container mx-auto">
             <div className="flex gap-x-3">
               <BackButton />
               <BackToDashboardButton />
 
               <button
-      onClick={() => router.push(`/clients/${data.client[0].clientid}/service-action-plan`)}
-      className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center"
-    >
-     
-      Create Service Action Plan
-    </button>
+                onClick={() =>
+                  router.push(
+                    `/clients/${data.client[0].clientid}/service-action-plan`
+                  )
+                }
+                className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center"
+              >
+                Create Service Action Plan
+              </button>
             </div>
-          
-          </section>
-         
-    
-          <section id="progressnotes" className="my-10">
-            <div className="container mx-auto">
-            <div>
-                
-                          <h1 className="font-black my-5">{data?.client[0]?.clientfirstname}{" "}
-                            {data?.client[0]?.clientlastname.charAt(0)} ({data?.client[0]?.clientid}) Services Action Plans</h1>
-                        </div>
-            
-              <div className="grid grid-cols-4 bg-black py-2 px-5 rounded-tl-md rounded-tr-md">
-                <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
-                   Plan Start Date
-                  </h3>
+            <h1 className="font-bold mt-7  "> Services Action Plans</h1>
+          </div>
+        </section>
+
+        <section id="sap-dashboard">
+          <div className="container mx-auto">
+            <div className="sap-dashboard bg-white my-10 rounded-md shadow-md border-blue">
+              <div className="sap-dashboard-client-information border-blue-bottom">
+                <div className="flex items-center gap-x-3 py-10 px-5  self-start ">
+                  <img
+                    src="/support_groups/Past_group_events.png"
+                    alt=""
+                    className="grid items-center self-start"
+                  />
+                  <h1 className="font-black">Client information</h1>
                 </div>
-                <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
-                    Status
-                  </h3>
+                <div className="flex items-center gap-x-5  px-5 pb-10">
+                  <div>
+                    <p className="text-lg">Plan start date</p>
+                    <p className="bg-blue-50 rounded-md pl-2 pr-10 py-2 text-lg">
+                      {" "}
+                      {data?.clientData.length > 0
+                        ? data?.clientData
+                            .filter((client, index) => {
+                              return client.status === "Current";
+                            })
+                            .map((client, index) => {
+                              return new Date(
+                                client.planstartdate
+                              ).toLocaleDateString("en-US");
+                            })
+                        : "-"}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-lg">Client name</p>
+                    <p className="bg-blue-50 rounded-md pl-2 pr-10 py-2 text-lg">
+                      {" "}
+                      {data?.client[0]?.clientfirstname}{" "}
+                      {data?.client[0]?.clientlastname.charAt(0)}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-lg">Client ID</p>
+                    <p className="bg-blue-50 rounded-md pl-2 pr-10 py-2 text-lg">
+                      {" "}
+                      {data?.client[0]?.clientid}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
-                    Edit
-                  </h3>
-                </div>
-              {/*   <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
-                    Delete
-                  </h3>
-                </div> */}
               </div>
 
-              {data?.clientData.length > 0 ? (
-                data?.clientData
-                  .sort((a, b) => new Date(a.planstartdate) - new Date(b.planstartdate))
-                  .map((sap, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="grid grid-cols-4 bg-white py-2 border p-5 text-center"
-                      >
-                        <p>{new Date(sap.planstartdate).toLocaleDateString("en-US")}</p>
-                        <div>
-                        {`${sap.status}`}
-                        </div>
-                        <div className="flex justify-center ">
-                          <Link
-                            href={`/clients/${data?.client[0].clientid}/service-action-plan/${sap.sapid}/edit`}
-                          >
-                            <a
-                              href={"/clients/devs"}
-                              className="flex justify-center items-center"
+              <div className="sap-dashboard-client-services-action-plans pb-10">
+                <div className="flex items-center gap-x-3 py-10 px-5  self-start ">
+                  <img
+                    src="/sap/Service_Action_Plan_table.svg"
+                    alt=""
+                    width={45}
+                  />
+                  <h1 className="font-black">Service Action Plans</h1>
+                </div>
+
+                <div className="sap-dashboard-client-table px-5 gap-x-2">
+                  <p className="bg-client-profile-sap-heading py-1 px-2">
+                    Plan start date
+                  </p>
+                  <p className="bg-client-profile-sap-heading py-1 px-2 text-center">
+                    Status
+                  </p>
+                  <p className="bg-client-profile-sap-heading py-1 px-2 text-center">
+                    Edit
+                  </p>
+                </div>
+
+                {data?.clientData.length > 0 ? (
+                  data?.clientData
+                    .sort(
+                      (a, b) =>
+                        new Date(a.planstartdate) - new Date(b.planstartdate)
+                    )
+                    .map((sap, index) => {
+                      return (
+                        <div
+                          className={`sap-dashboard-client-table px-5 mx-5 ${index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"}`}
+                          key={index}
+                        >
+                          <p className={`py-2 px-2`}>
+                            {new Date(sap.planstartdate).toLocaleDateString(
+                              "en-US"
+                            )}
+                          </p>
+                          <p className=" py-2 px-2 text-center">
+                            {`${sap.status}`}
+                          </p>
+                          <p className=" py-2 px-2 text-center flex items-center justify-center ml-10">
+                            <Link
+                              href={`/clients/${data?.client[0].clientid}/service-action-plan/${sap.sapid}/edit`}
                             >
-                              <img src="/edit-icon.svg" alt="edit icon" />
-                            </a>
-                          </Link>
+                              <a
+                                href={"/clients/devs"}
+                                className="flex justify-center items-center"
+                              >
+                                <img src="/edit-icon.svg" alt="edit icon" />
+                              </a>
+                            </Link>
+                          </p>
                         </div>
-                        <div className="flex justify-center ">
-                         {/*  <button
-                            onClick={() => {
-                              setSelectedProgressNoteId(pn.id);
-                              setShowDeleteModal(!showDeleteModal);
-                            }}
-                            className="flex items-center justify-center"
-                          >
-                            <img src="/delete-icon.svg" alt="edit icon" />
-                          </button> */}
-                        </div>
-                      </div>
-                    );
-                  })
-              ) : (
-                <center className="mt-5 font-black">
-                <p>{`${data?.client[0]?.clientfirstname} ${data?.client[0]?.clientlastname.charAt(0)} has no Service Action Plan yet`}</p> 
-                </center>
-              )}
+                      );
+                    })
+                ) : (
+                  <center className="mt-5 font-black">
+                    <p>{`${
+                      data?.client[0]?.clientfirstname
+                    } ${data?.client[0]?.clientlastname.charAt(
+                      0
+                    )} has no Service Action Plan yet`}</p>
+                  </center>
+                )}
+              </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
+
+        
       </Layout>
+
       {showEditClientModal && (
         <EditClientModal
           user={user}
@@ -183,11 +224,11 @@ export const getServerSideProps = withPageAuthRequired({
     const [data] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientid}/all/`
-      ).then((r) => r.json())
+      ).then((r) => r.json()),
     ]);
     return {
       props: {
-        data: data
+        data: data,
       },
     };
 
