@@ -1,0 +1,23 @@
+<svg id="health_care_worker" data-name="health care worker" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 45 45">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_451" data-name="Ellipse 451" cx="21.604" cy="21.604" r="21.604" transform="translate(0 0)" fill="none" stroke="#000" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Group_2466" data-name="Group 2466">
+    <circle id="Ellipse_445" data-name="Ellipse 445" cx="22.5" cy="22.5" r="22.5" fill="#ffde0b"/>
+    <g id="Group_2459" data-name="Group 2459" transform="translate(0.17 0.614)">
+      <path id="Path_7788" data-name="Path 7788" d="M21.906,0A21.906,21.906,0,1,1,0,21.906,21.906,21.906,0,0,1,21.906,0Z" transform="translate(0)" fill="none"/>
+      <g id="Mask_Group_1301" data-name="Mask Group 1301" transform="translate(0.349 0.348)" clip-path="url(#clip-path)">
+        <g id="Ellipse_449" data-name="Ellipse 449" transform="translate(14.455 10.494)" fill="none" stroke="#000" stroke-width="1.5">
+          <ellipse cx="8.031" cy="7.741" rx="8.031" ry="7.741" stroke="none"/>
+          <ellipse cx="8.031" cy="7.741" rx="7.281" ry="6.991" fill="none"/>
+        </g>
+        <g id="Ellipse_450" data-name="Ellipse 450" transform="translate(10.619 25.567)" fill="none" stroke="#000" stroke-width="1.5">
+          <ellipse cx="11.867" cy="12.866" rx="11.867" ry="12.866" stroke="none"/>
+          <ellipse cx="11.867" cy="12.866" rx="11.117" ry="12.116" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
