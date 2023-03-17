@@ -161,68 +161,26 @@ if(userid!=="All"){
       <Layout>
         <main className="bg-light-blue h-screen">
           <section id="dashboard-client-list">
-            <div className="container mx-auto">
-              <section className=" py-5">
+          <section className="bg-white mb-7 shadow-inner">
+              <div className="container mx-auto ">
+              <section className="py-5">
                 <h1 className="font-black py-5 md:px-0 px-5">
                   Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
                 </h1>
-                
-               {/*  <div className="supervisor-dashboard-top-container  px-5 py-5 mb-1 bg-white">
-                  <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
-                    <div>
-                      <h1 className="font-black my-2">
-                        Here is a quick view of how things are doing
-                      </h1>
-                    </div>
-                    <div className="flex wrap justify-end">
-                      <div className="px-5 py-1 bg-green-100 w-40 mr-2 flex items-center justify-center">
-                        on-track
-                      </div>
-                      <div className="px-5 py-1 bg-orange-100 w-40 mr-2 flex items-center justify-center">
-                        warning
-                      </div>
-                      <div className="px-5 py-1 bg-red-100 w-40 flex items-center justify-center">
-                        alert
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      MSA Forms completed but not uploaded
-                    </h4>
-                    <h1 className="text-center font-black">
-                      {totalMsaFormsNotCompleted.length}
-                    </h1>
-                  </div>
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      Average number of client goals outstanding
-                    </h4>
-                    <h1 className="text-center font-black">
-                      {notCompletedGoals ? notCompletedGoals.length : "-"}
-                    </h1>
-                  </div>
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      Number of requiered client visits vs Actual number of
-                      visits
-                    </h4>
-                    <h1 className="text-center font-black">120 vs 150</h1>
-                  </div>
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      Security incidents or <br /> data breaches
-                    </h4>
-                    <h1 className="text-center font-black">0</h1>
-                  </div>
-                </div> */}
-              </section>
-              <h1 className="mb-10 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+
+        
+              <h1 className=" container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
+                    </section>
+              </div>
+            </section>
+            <div className="container mx-auto">
+            
+
+         
+            
               <div className="grid md:grid-cols-6 grid-cols-1 gap-5 mb-2">
 
 

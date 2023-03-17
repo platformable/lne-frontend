@@ -52,7 +52,7 @@ const PastEvents = ({ events }) => {
         <h1 className="font-black mb-5 mt-7">Review past group events</h1>
       </div>
 
-      <div className="bg-light-blue my-10 py-10 px-10">
+      <div className="bg-light-blue my-10 py-10  shadow-inner">
         <div className="bg-white rounded-md shadow-md container mx-auto"> 
         <div className="container mx-auto bg-white rounded-tl-md rounded-tr-md px-10 shadow-md">
           <div className="grid grid-cols-2 justify-between ">
@@ -62,7 +62,7 @@ const PastEvents = ({ events }) => {
                 alt=""
                 className="grid items-center self-start"
               />
-              <h3 className="font-black">Past Group Events</h3>
+              <h1 className="font-black">Past Group Events</h1>
             </div>
 
             <div className="container mx-auto grid  items-center grid-cols-1 container mx-auto md:px-0 px-5 md:mb-5 md:gap-5">

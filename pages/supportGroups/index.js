@@ -99,7 +99,7 @@ const SupportGroups = ({hcworkers}) => {
 
                 <div className="flex gap-x-3 items-center">
                 <img src="/support_groups/Support_Group_information.png" alt="" />
-                <h3 className="font-black">Support Group Information</h3>
+                <h1 className="font-black">Support Group Information</h1>
                 </div>
     
                 <label className="text-lg block">

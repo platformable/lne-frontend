@@ -63,7 +63,7 @@ export default function ClientServiceActionPlansListPage({
             <div>
                 
                           <h1 className="font-black my-5">{data?.client[0]?.clientfirstname}{" "}
-                            {data?.client[0]?.clientlastname.charAt(0)} ({data?.client[0]?.clientid}) Progress Notes</h1>
+                            {data?.client[0]?.clientlastname.charAt(0)} ({data?.client[0]?.clientid}) Services Action Plans</h1>
                         </div>
             
               <div className="grid grid-cols-4 bg-black py-2 px-5 rounded-tl-md rounded-tr-md">
