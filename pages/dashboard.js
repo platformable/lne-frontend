@@ -99,17 +99,24 @@ const loggedUserStatus =
       <Layout>
         <main className="bg-light-blue h-screen">
           <section id="dashboard-client-list">
-            <div className="container mx-auto">
-              <section className=" py-5">
+
+            <section className="bg-white mb-7 shadow-inner">
+              <div className="container mx-auto ">
+              <section className="py-5">
                 <h1 className="font-black py-5 md:px-0 px-5">
                   Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
                 </h1>
 
-              </section>
-              <h1 className="mb-10 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+        
+              <h1 className=" container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
+                    </section>
+              </div>
+            </section>
+            <div className="container mx-auto">
+             
               <div className="grid md:grid-cols-6 grid-cols-1 gap-5 mb-2">
   
 
