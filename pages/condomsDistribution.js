@@ -260,7 +260,7 @@ const CondomsDistributed = () => {
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button
-                className="grid grid-cols-3 text-medium items-center text-2xl btn-yellow hover:btn-darkYellow px-2 py-2 rounded text-lg inline-block "
+                className="grid grid-cols-3 w-60 text-medium items-center text-2xl btn-yellow hover:btn-darkYellow px-4 py-2 rounded shadow-lg"
                 onClick={() => handleForm()}
               >
                 <img src="/client/Save.svg" alt="Save form icon" /> 
