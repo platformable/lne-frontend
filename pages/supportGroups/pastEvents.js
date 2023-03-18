@@ -165,7 +165,7 @@ const PastEvents = ({ events }) => {
                 })
                 .map((event, index) => {
                   return (
-                    <section className="hidden sm:block container mx-auto">
+                    <section className="hidden sm:block container mx-auto" key={index}>
                       <div className="px-10 bg-white">
                         <div
                           className={`hidden md:grid ${
