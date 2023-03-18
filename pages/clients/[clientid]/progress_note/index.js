@@ -773,7 +773,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
 
                 {/* SERVICE PROVIDED 2nd COLUMN " */}
-                <div className="services-box grid gap-y-10 text-2xl items-start justify-start ">
+                <div className="services-box grid gap-y-10 text-2xl items-start justify-start">
                   <div className="flex items-center">
                     <label className="flex items-center gap-x-5">
                       <input
@@ -938,7 +938,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div> */}
                   <div className="goal-service grid my-2">
                     <div className="flex flex-col gap-5 items-start">
-                      <span className="text-2xl font-medium">Target Date</span>
+                      <p className="text-2xl font-medium">Target Date</p>
                       <p className="bg-primary-light-blue p-3 rounded text-xl">
                         {new Date(
                           serviceActionData?.goal1targetdate
@@ -951,7 +951,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </div>
                   </div>
                   <div className="goal-summary">
-                    <span className="text-2xl font-medium">Summary</span>
+                    <p className="text-2xl font-medium">Summary</p>
                     <p className="bg-primary-light-blue mt-5 p-3 rounded text-xl">
                       {serviceActionData?.goal1Details}
                     </p>
@@ -1082,7 +1082,7 @@ const ProgressNotesIndex = ({ data }) => {
                     <label className={`flex gap-5 text-2xl`}>
                       <input
                         type="radio"
-                        name="workedGoals"
+                        name="workedGoals1"
                         onChange={(e) => {
                           setClientData({
                             ...clientData,
@@ -1157,7 +1157,7 @@ const ProgressNotesIndex = ({ data }) => {
                     <label className={`flex gap-5 text-2xl`}>
                       <input
                         type="radio"
-                        name="workedGoals"
+                        name="workedGoals2"
                         onChange={(e) => {
                           setClientData({
                             ...clientData,
@@ -1367,7 +1367,7 @@ const ProgressNotesIndex = ({ data }) => {
                     <input
                       type="date"
                       id=""
-                      className="rounded-lg border-black text-xl p-1 "
+                      className="rounded-lg border-black text-xl p-1"
                       value={
                         clientData.goal1CompletedDate
                           ? clientData.goal1CompletedDate
@@ -1736,15 +1736,7 @@ const ProgressNotesIndex = ({ data }) => {
             <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
           )}
           <div className="container mx-auto flex justify-center gap-x-10 ">
-            <ReactToPrint
-              trigger={() => (
-                <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadow-lg text-2xl inline-block ">
-                  <img src="/progress_notes/print_mini.svg" alt="print icon" />
-                  Save and print
-                </button>
-              )}
-              content={() => componentRef.current}
-            />
+            
             <button
               className="btn-yellow flex items-center gap-3 px-5 py-2 rounded shadow-lg text-2xl inline-block "
               onClick={() => handleProgressNote()}
@@ -1755,6 +1747,16 @@ const ProgressNotesIndex = ({ data }) => {
               />
               Save and finish
             </button>
+
+            <ReactToPrint
+              trigger={() => (
+                <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadow-lg text-2xl inline-block ">
+                  <img src="/progress_notes/print_mini.svg" alt="print icon" />
+                  Save and print
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
           </div>
         </section>
         <div style={{ display: "none" }}>
