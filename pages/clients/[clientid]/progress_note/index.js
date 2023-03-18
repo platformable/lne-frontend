@@ -10,6 +10,7 @@ import ImpactTrackerModal from "../../../../components/ImpactTrackerModal";
 import BackButton from "../../../../components/BackButton";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 import ProgressNoteToPrint from "../../../../components/ProgressNoteToPrint";
+import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -317,104 +318,104 @@ const ProgressNotesIndex = ({ data }) => {
     /* {
       value: clientData.LNEHNSEligibilityForm,
       state_label: "LNEHNSEligibilityForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "HNS Eligibility Assessment",
     },*/
     // {value:clientData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
     {
       value: clientData.StatusChangesForm,
       state_label: "StatusChangesForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Status Changes/Closure Forms",
     },
     {
       value: clientData.ComprehensiveRiskBehaviorAssessmentUpdates,
       state_label: "ComprehensiveRiskBehaviorAssessmentUpdates",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Comprehensive Behavioral Risk Assessment Updates",
     },
     {
       value: clientData.M11QForm,
       state_label: "M11QForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "M11Q",
     },
     {
       value: clientData.CD4VLReports,
       state_label: "CD4VLReports",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "CD4/VL Check Reports",
     },
     {
       value: clientData.InitialTreatmentAdherenceIntake,
       state_label: "InitialTreatmentAdherenceIntake",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Initial Treatment Adherence Intake",
     },
     {
       value: clientData.TreatmentAdherenceUpdates,
       state_label: "TreatmentAdherenceUpdates",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Treatment Adherence Updates",
     },
     /* {
       value: clientData.AIRSCollateralInformation,
       state_label: "AIRSCollateralInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Collateral Information",
     },
     {
       value: clientData.AIRSDrugRegimen,
       state_label: "AIRSDrugRegimen",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Drug Regimen History",
     },
     {
       value: clientData.AIRSFinancialInformation,
       state_label: "AIRSFinancialInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Financial Information",
     },
     {
       value: clientData.AIRSHIVAIDSRiskHistory,
       state_label: "AIRSHIVAIDSRiskHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV AIDS Risk History",
     },
     {
       value: clientData.AIRSHIVMedicalProvider,
       state_label: "AIRSHIVMedicalProvider",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV Medical Provider History",
     },
     {
       value: clientData.AIRSHIVStatusHistory,
       state_label: "AIRSHIVStatusHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV Status History",
     },
     {
       value: clientData.AIRSHCVHistory,
       state_label: "AIRSHCVHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HCV History",
     },
     {
       value: clientData.AIRSHousingInformation,
       state_label: "AIRSHousingInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Housing Information",
     },
     {
       value: clientData.AIRSInsuranceInformation,
       state_label: "AIRSInsuranceInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Insurance Information",
     },
     {
       value: clientData.AIRSSubstanceUseHistory,
       state_label: "AIRSSubstanceUseHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Substance Use History",
     }, 
     {
@@ -463,37 +464,37 @@ const ProgressNotesIndex = ({ data }) => {
     {
       value: clientData.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Linkage, Retention, & Adherence Forms",
     },
     {
       value: clientData.InternalReferralInformation,
       state_label: "InternalReferralInformation",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Internal Referral Information",
     },
     /*{
       value: clientData.LNEClientReferralForm,
       state_label: "LNEClientReferralForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Identification",
     },
     {
       value: clientData.HNSReadinessForm,
       state_label: "HNSReadinessForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "HNS Readiness Form",
     },*/
     {
       value: clientData.SupportGroups,
       state_label: "SupportGroups",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Support Groups",
     },
     {
       value: clientData.IDGForm,
       state_label: "IDGForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "IDG",
     },
   ];
@@ -600,90 +601,15 @@ const ProgressNotesIndex = ({ data }) => {
 
               <BackToDashboardButton />
             </div>
-            <h1 className="font-black mt-10 ">Progress Notes </h1>
+            <h1 className="font-black mt-10 text-4xl">Progress Notes </h1>
           </div>
         </div>
 
         <div className="pt-10 shadow-inner">
-          <section className="container mx-auto bg-white shadow-lg border-blue rounded-md ">
-            <section id="info" className="my-5 p-7">
-              <div className={`grid grid-cols-2 gap-x-5   `}>
-                {/* <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  
-
-                  
-                </div> */}
-
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Client</h3>
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <label className="block ">
-                      <p className="text-2xl font-medium mb-5">Date</p>
-                      <input
-                        type="date"
-                        name=""
-                        id=""
-                        className="py-3 px-2 rounded-md text-xl  bg-primary-light-blue"
-                        value={clientData.progressNoteDate}
-                        onChange={(e) =>
-                          setClientData({
-                            ...clientData,
-                            progressNoteDate: e.target.value,
-                          })
-                        }
-                      />
-                    </label>
-
-                    <label className="block">
-                      <p className="text-2xl font-medium mb-5">Client name</p>
-                      <p className="py-3 px-2 rounded-md text-2xl bg-primary-light-blue">
-                        {data[0]?.clientfirstname}{" "}
-                        {data[0]?.clientlastname.charAt(0)}.
-                      </p>
-                    </label>
-
-                    <label className="block">
-                      <p className="text-2xl font-medium mb-5">Client ID</p>
-                      <p className="py-3 px-2 rounded-md text-2xl bg-primary-light-blue">
-                        {data[0]?.clientid}
-                      </p>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="service-action-plan-page-info-box">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <label className="block">
-                      <span className="">First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={clientData.userFirstName}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={clientData.userLastName}
-                        disabled
-                      />
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section id="servidedProvided" className="gap-x-5 p-7 ">
+          <section className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
+            
+            <ClientInfoTopHeader data={data} clientData={clientData} setClientData={setClientData} />
+            <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
               <div className="flex gap-x-3 items-center">
                 <img
                   src="/progress_notes/service_provided.svg"
@@ -994,7 +920,7 @@ const ProgressNotesIndex = ({ data }) => {
               </div>
             </section>
 
-            <section className="p-7 goals" id="goals">
+            <section className="p-10 pt-7 goals" id="goals">
               <div className="flex gap-3 items-center mb-10">
                 <img
                   src="/progress_notes/client_goals.svg"
@@ -1141,7 +1067,7 @@ const ProgressNotesIndex = ({ data }) => {
               </div>
             </section>
 
-            <section className="gap-x-5  p-7" id="workedGoals">
+            <section className="gap-x-5 pt-7 p-10" id="workedGoals">
               <div className="flex items-center mb-10 gap-x-3">
                 <img src={"/progress_notes/goals_worked_on.svg"} />
                 <h3 className="font-black text-3xl">
@@ -1383,7 +1309,7 @@ const ProgressNotesIndex = ({ data }) => {
               </div>
             </section>
 
-            <section className="gap-x-5 p-5" id="workedGoals">
+            <section className="gap-x-5 p-10 pt-7" id="workedGoals">
               <div className="flex items-center gap-3 mb-10">
                 <img
                   src={"/progress_notes/goals_completed.svg"}
@@ -1651,7 +1577,7 @@ const ProgressNotesIndex = ({ data }) => {
               </div>
             </section>
 
-            <section className="gap-x-5  p-7  workedGoals" id="workedGoals">
+            <section className="gap-x-5 p-10 pt-7 workedGoals" id="workedGoals">
               <div className="flex items-center gap-x-3 mb-10">
                 <img src={"/progress_notes/notes.svg"} />
                 <h3 className="font-black text-3xl">
@@ -1711,7 +1637,7 @@ const ProgressNotesIndex = ({ data }) => {
 
             {/* FIN DEL FORM BOX */}
 
-            <section className="p-7 workedGoals" id="workedGoals">
+            <section className="p-10 pt-7 workedGoals" id="workedGoals">
               <div className="flex items-center gap-x-3 mb-10">
                 <img src="/progress_notes/additional_forms.svg" alt="" />
                 <h3 className="font-black text-3xl font-medium">
@@ -1785,11 +1711,6 @@ const ProgressNotesIndex = ({ data }) => {
                                   }
 
                                   if (clientData[service.state_label]) {
-                                    console.log(
-                                      "pasa clientdata true",
-                                      service.state_label,
-                                      clientData[service.state_label]
-                                    );
 
                                     setClientData({
                                       ...clientData,
@@ -1808,7 +1729,7 @@ const ProgressNotesIndex = ({ data }) => {
                 ))}
               </div>
             </section>
-            </section>
+          </section>
         </div>
         <section id="save" className="my-10">
           {pnErrorMessage && (
