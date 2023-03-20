@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45.001" viewBox="0 0 45 45.001">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1056" data-name="Rectangle 1056" width="17.549" height="23.338" fill="rgba(0,0,0,0)" stroke="#707070" stroke-width="0.5"/>
+    </clipPath>
+  </defs>
+  <g id="additional_forms" data-name="additional forms" transform="translate(0 0.001)">
+    <g id="Group_3004" data-name="Group 3004" transform="translate(-117 -1902)">
+      <g id="Group_3003" data-name="Group 3003" transform="translate(578.096 15251.35)">
+        <circle id="Ellipse_426" data-name="Ellipse 426" cx="22.5" cy="22.5" r="22.5" transform="translate(-461.096 -13349.35)" fill="#5ac0ff"/>
+      </g>
+    </g>
+    <circle id="Ellipse_475" data-name="Ellipse 475" cx="7" cy="7" r="7" transform="translate(21 21.486)"/>
+    <g id="Group_3118" data-name="Group 3118" transform="translate(13.721 10.906)">
+      <path id="file-alt" d="M53.779,14.978Z" transform="translate(-53.779 -9.699)" fill="#edf6ff"/>
+      <path id="file-alt-2" data-name="file-alt" d="M53.779,14.978Z" transform="translate(-36.013 -9.699)" fill="#edf6ff"/>
+      <path id="file-alt-3" data-name="file-alt" d="M53.779,14.978Z" transform="translate(-36.013 -9.699)" fill="#edf6ff"/>
+      <g id="Path_7811" data-name="Path 7811" transform="translate(0.156 0)" fill="none">
+        <path d="M.806,0H16.162a.806.806,0,0,1,.806.806V22.475a.806.806,0,0,1-.806.806H.806A.806.806,0,0,1,0,22.475V.806A.806.806,0,0,1,.806,0Z" stroke="none"/>
+        <path d="M 1.000003814697266 0.9999961853027344 L 1.000003814697266 22.28097724914551 L 15.96836471557617 22.28097724914551 L 15.96836471557617 0.9999961853027344 L 1.000003814697266 0.9999961853027344 M 0.8058948516845703 -3.814697265625e-06 L 16.16247367858887 -3.814697265625e-06 C 16.60755348205566 -3.814697265625e-06 16.96836471557617 0.3608074188232422 16.96836471557617 0.8058967590332031 L 16.96836471557617 22.47507667541504 C 16.96836471557617 22.92015647888184 16.60755348205566 23.28097724914551 16.16247367858887 23.28097724914551 L 0.8058948516845703 23.28097724914551 C 0.3608150482177734 23.28097724914551 3.814697265625e-06 22.92015647888184 3.814697265625e-06 22.47507667541504 L 3.814697265625e-06 0.8058967590332031 C 3.814697265625e-06 0.3608074188232422 0.3608150482177734 -3.814697265625e-06 0.8058948516845703 -3.814697265625e-06 Z" stroke="none" fill="#000"/>
+      </g>
+    </g>
+    <path id="Path_7972" data-name="Path 7972" d="M-16.2-22.037H-19.67v3.658H-20.9v-3.658h-3.454v-1.148H-20.9v-3.633h1.234v3.633H-16.2Z" transform="translate(48.278 51.196)" fill="#5ac0ff" stroke="#5ac0ff" stroke-width="0.3"/>
+  </g>
+</svg>
