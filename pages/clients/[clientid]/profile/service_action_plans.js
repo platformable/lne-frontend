@@ -135,20 +135,20 @@ export default function ClientServiceActionPlansListPage({ data }) {
                     .map((sap, index) => {
                       return (
                         <div
-                          className={`sap-dashboard-client-table px-5 mx-5 ${
+                          className={`sap-dashboard-client-table px-5 ${
                             index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
                           }`}
                           key={index}
                         >
                           <p className={`py-2 px-2`}>
                             {new Date(sap.planstartdate).toLocaleDateString(
-                              "en-US"
+                              "en-US", {month: '2-digit', day: "2-digit", year: 'numeric'}
                             )}
                           </p>
                           <p className=" py-2 px-2 text-center">
                             {`${sap.status}`}
                           </p>
-                          <p className=" py-2 px-2 text-center flex items-center justify-center ml-10">
+                          <p className=" py-2 px-2 text-center flex items-center justify-center">
                             <Link
                               href={`/clients/${data?.client[0].clientid}/service-action-plan/${sap.sapid}/edit`}
                             >

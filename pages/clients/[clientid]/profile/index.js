@@ -699,12 +699,12 @@ export default function ClientProfilePage({
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading p-2 text-black text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center text-xs mt-2 uppercase font-black">
                     Edit
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading p-2 text-black text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center text-xs mt-2 uppercase font-black">
                     Delete
                   </h3>
                 </div>
@@ -717,10 +717,10 @@ export default function ClientProfilePage({
                     return (
                       <div
                         key={index}
-                        className={`grid client-progress-note-table py-2  p-5   ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
+                        className={`grid client-progress-note-table py-2  ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
                       >
-                        <p>{new Date(pn.date).toLocaleDateString("en-US")}</p>
-                        <div>
+                        <p className="px-5">{new Date(pn.date).toLocaleDateString("en-US")}</p>
+                        <div className="px-5">
                           <p>
                             {pn.developmentactionplan === "1"
                               ? "Development of Action Plan with Client"

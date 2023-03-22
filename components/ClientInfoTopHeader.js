@@ -47,7 +47,7 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                   <div className="flex gap-x-2 mb-5 items-center">
                     <img
                       src="/progress_notes/health_care_worker.svg"
-                      width="24"
+                      
                     />
                     <h3 className="font-black text-3xl ">Health Care Worker</h3>
                   </div>

@@ -596,7 +596,7 @@ const ProgressNotesIndex = ({ data }) => {
       <Layout>
         <div className="bg-white shadow-inner pt-10 pb-5">
           <div className="container mx-auto ">
-            <div className="flex gap-x-10">
+            <div className="flex gap-x-10 items-center">
               <BackButton />
 
               <BackToDashboardButton />

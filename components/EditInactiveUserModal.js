@@ -1,68 +1,79 @@
 import React, { useState } from "react";
-import axios from 'axios'
-import { useRouter } from 'next/router'
+import axios from "axios";
+import { useRouter } from "next/router";
 import Loader from "./Loader";
 
-export default function EditInactiveUserModal({ selectedUser, setShowEditInactiveUserModal, showEditInactiveUserModal }) {
-  const router = useRouter()
-  console.log('selecteduser',selectedUser)
+export default function EditInactiveUserModal({
+  selectedUser,
+  setShowEditInactiveUserModal,
+  showEditInactiveUserModal,
+}) {
+  const router = useRouter();
+  console.log("selecteduser", selectedUser);
   const [userData, setUserData] = useState({
     user_id: selectedUser.user_id,
     name: selectedUser.name,
     lastname: selectedUser.lastname,
     useremail: selectedUser.useremail,
     userrole: selectedUser.userrole,
-    useractivestatus: selectedUser.useractivestatus
-  })
-  console.log('userDataInactive',userData)
+    useractivestatus: selectedUser.useractivestatus,
+  });
+  console.log("userDataInactive", userData);
 
-  const [saving, setSaving] = useState(false)
+  const [saving, setSaving] = useState(false);
 
   const EditUser = (user) => {
-
-    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, userData)
-    .then(response => EditAuthUser(userData))
+    axios
+      .put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, userData)
+      .then((response) => EditAuthUser(userData))
       .then(function (response) {
-        setShowEditInactiveUserModal(!showEditInactiveUserModal)
-        router.reload()
+        setShowEditInactiveUserModal(!showEditInactiveUserModal);
+        router.reload();
       })
       .catch(function (error) {
         console.log("client error", error);
       });
-  }
+  };
 
-  const EditAuthUser =  (userData)=> {
-
-    axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/update_from_users_edit`,userData)
-     .then(function (response) {
-        console.log("success")
-     })
-     .catch(function (error) {
-       console.log("client error",error);
-     }); 
-   }
-
+  const EditAuthUser = (userData) => {
+    axios
+      .put(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/update_from_users_edit`,
+        userData
+      )
+      .then(function (response) {
+        console.log("success");
+      })
+      .catch(function (error) {
+        console.log("client error", error);
+      });
+  };
 
   return (
     <>
       <div className="modal">
-        <div className="mt-8 relative max-w-sm mx-auto bg-yellow-400 p-10 rounded-md">
-          <button
-            className="absolute  top-0 right-0"
+        <div className="mt-8 relative max-w-sm mx-auto bg-white p-10 rounded-md">
+          <div
+            className="absolute  top-1 right-0 ty-1 mx-1 bg-yellow"
             onClick={() => setShowEditInactiveUserModal(!showEditInactiveUserModal)}
           >
-            <img src="/close-window-icon.svg" alt="close-window" title="close-window_" className="rounded-tr"  width="20" /> 
-          </button>
+            <button className="p-1 py-0 ">x</button>
+          </div>
           <div className="grid grid-cols-1 gap-6">
             <div className="flex ml-2.5 items-end">
-              <img src="/edit-user-icon.svg" className="mr-3" alt="" width="50" />
+              <img
+                src="/edit-user-icon.svg"
+                className="mr-3"
+                alt=""
+                width="50"
+              />
               <h2 className="font-black">Edit User</h2>
             </div>
             <label className="block">
               <span className="ml-1 font-semibold">First name</span>
               <input
                 type="text"
-                className="mt-1 block w-full bg-[#f6e89e] rounded-md  p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full bg-primary-light-blue   p-2 pl-3 shadow "
                 placeholder="John Doe"
                 value={userData.name}
                 onChange={(e) =>
@@ -74,7 +85,7 @@ export default function EditInactiveUserModal({ selectedUser, setShowEditInactiv
               <span className="ml-1 font-semibold">Last name</span>
               <input
                 type="text"
-                className="mt-1 block w-full bg-[#f6e89e] rounded-md p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full bg-primary-light-blue   p-2 pl-3 shadow "
                 placeholder="John Doe"
                 value={userData.lastname}
                 onChange={(e) =>
@@ -86,7 +97,7 @@ export default function EditInactiveUserModal({ selectedUser, setShowEditInactiv
               <span className="ml-1 font-semibold">Email address</span>
               <input
                 type="email"
-                className="mt-1 block w-full bg-[#f6e89e] rounded-md p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full bg-primary-light-blue   p-2 pl-3 shadow "
                 placeholder="john@example.com"
                 value={userData.useremail}
                 onChange={(e) =>
@@ -121,7 +132,10 @@ export default function EditInactiveUserModal({ selectedUser, setShowEditInactiv
               <select
                 value={userData.useractivestatus || userData.isactive}
                 onChange={(e) =>
-                  setUserData({ ...userData, useractivestatus: e.target.selectedOptions[0].value })
+                  setUserData({
+                    ...userData,
+                    useractivestatus: e.target.selectedOptions[0].value,
+                  })
                 }
                 className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
@@ -133,22 +147,14 @@ export default function EditInactiveUserModal({ selectedUser, setShowEditInactiv
               <div className="mt-2">
                 <div className="flex justify-center ">
                   <button
-                    className="px-4  py-2 mr-3 font-medium bg-[#23D3AA] hover:bg-green-500 text-sm flex shadow-xl rounded-md"
+                    className="px-10 bg-yellow  py-2 mr-3 font-medium  text-sm flex shadow-xl rounded"
                     onClick={() => {
                       EditUser(selectedUser);
                       setSaving(!saving);
                     }}
                   >
-                    {saving ? (
-                      <Loader />
-                    ) : (
-                      <img src="/update-icon.svg" className="mr-2" alt="" width="18" />
-
-
-                    )}
-                    Update
+                    {saving ? <Loader /> : <center className="">Update</center>}
                   </button>
-
                 </div>
               </div>
             </div>

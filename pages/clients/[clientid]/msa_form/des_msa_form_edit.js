@@ -9,7 +9,9 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
+import BackButton from "../../../../components/BackButton";
 import RowMsaFormDES from "../../../../components/RowMsaFormDES";
+import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 
 const EditMsaFormPage = ({ data }) => {
   // console.log("data", data);
@@ -545,56 +547,21 @@ const EditMsaFormPage = ({ data }) => {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-        <div className="container mx-auto">
-          <h1 className="font-black text-center my-5">DES Edit MSA FORM</h1>
-        </div>
-        {/*  <div className="container bg-blue-50 rounded-xl p-5 mx-auto">
-          <div className="flex flex-col items-center max-w-fit">
-            <svg
-              width="24"
-              height="24"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="black"
-              xmlns="http://www.w3.org/2000/svg"
-              className="font-black"
-            >
-              <path
-                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-              <path
-                d="M4.271 18.3457C4.271 18.3457 6.50002 15.5 12 15.5C17.5 15.5 19.7291 18.3457 19.7291 18.3457"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-              <path
-                d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              />
-            </svg>
-            <p className="text-dark-blue">{clientData.clientId}</p>
-            <button className="flex items-center bg-blue-500 hover:bg-blue-300 px-3 py-1 rounded text-white inline-block "
-           onClick={() => router.push("/dashboard")}>
-              <svg className="mr-1" width="20" height="20" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 12H8M8 12L11.5 15.5M8 12L11.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>Dashboard
-            </button>
+      <div className="bg-white pb-5 pt-10 shadow-inner ">
+        <div className="container mx-auto rounded-lg">
+          <div className=" flex gap-x-3">
+            <BackButton />
+            <BackToDashboardButton />
           </div>
-        </div> */}
-        <main className="container mx-auto">
-          <div className="flex gap-x-5">
-          <BackToDashboardButton />
+
+          <div className="mt-12 ">
+            <h1 className="font-black text-4xl">Edit MSA form</h1>
+          </div>
+        </div>
+      </div>
+        
+        <section className="container mx-auto mt-10 border-blue grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-lg ">
+          {/* <div className="flex gap-x-5">
           <Link href={`/clients/${clientData.clientId}/profile/service_action_plans/`}>
                  <div className="">
                    <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
@@ -610,7 +577,7 @@ const EditMsaFormPage = ({ data }) => {
                  <div className="">
                    <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
                      <button id="myBtn" className="flex  items-center justify-center">
-                       {/* <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/> */}
+                       {/* <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/> 
                        <p className="p-2 uppercase">
                          Progress Note
                        </p>
@@ -622,7 +589,7 @@ const EditMsaFormPage = ({ data }) => {
                  <div className="">
                    <div className="rounded bg-middle-purple text-center shadow-xl rounded-lg flex items-center justify-center px-5">
                      <button id="myBtn" className="flex  items-center justify-center">
-                       {/* <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/> */}
+                       {/* <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={24}/> 
                        <p className="p-2 uppercase">
                          View client Progress Notes
                        </p>
@@ -630,117 +597,47 @@ const EditMsaFormPage = ({ data }) => {
                    </div>
                  </div>
                </Link>
-          </div>
+          </div> */}
 
                
-
-          <section id="info" className="my-5">
-            <div className="">
-              <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
-                Information
-              </h3>
-               <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
-              >
-                <div className="service-action-plan-page-info-box md:my-1 my-5">
-                  <h3 className="font-black ">Todays date</h3>
-
-                  
-                  <div className="flex gap-x-2 items-center">
-                    <img src="/calendar-icon.svg" width="24"/>
-                    <p className=" mt-2">{todaysDate.toLocaleDateString()}</p>
-                  </div>
-
-                </div>
-
-                  <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  
-                      <div className="grid grid-cols-3 gap-4">
-                      <div className="flex gap-x-2 mb-1 items-end">
-                        <img src="/client-icon.svg" width="24" />
-                        <h3 className="font-black ">Client</h3>
-                      </div>
-                      <label className="block">
-                        <span >Client Name</span>
-                        <input
-                          type="text"
-                          className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                          value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
-                          disabled
-                        />
-                      </label>
-                    
-                      <label className="block">
-                        <span >Client ID</span>
-                        <input
-                          type="text"
-                          className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                          value={data[0].clientid}
-                          disabled
-                        />
-                      </label>
-                      </div>
-                    
-                  </div>
-                  <div className="service-action-plan-page-info-box">
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                  <div className="flex gap-x-2 mb-1 items-end">
-                    <img src="/msa_form/LNEuser.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
-                  </div>
-                    <label className="block">
-                      <span >First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userFirstName}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span >Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userLastName}
-                        disabled
-                      />
-                    </label>
-                  </div>
-                </div>
-             </div>
-
-
-            </div>
+<section id="info" className="bg-white">
+          
+             <ClientInfoTopHeader
+              data={data}
+              clientData={clientData}
+              setClientData={setClientData}
+            />
           </section>
-          <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
-            Indicate which of the following forms you have uploaded to the
-            client&apos;s Dropbox
-          </h3>
-          <section
-            id="form"
-            className={`relative border-dark-blue rounded-xl mb-5`}
-          >
+          <section className="p-10 pt-7 bg-white divide- goals" id="goals">
+              <div className="flex gap-3 items-center mb-10">
+                <img
+                  src="/progress_notes/client_goals.svg"
+                  alt="Client goals icon"
+                />
+                <h3 className="font-black text-3xl">Indicate which of the following forms you have uploaded to the client’s Dropbox</h3>
+              </div>
             {/* {TABLE HEAD} */}
             {/* <div className={`${MSAStyles.line}`}></div> */}
             <div
               id="form-head"
-              className={`${MSAStyles.formRowsContainerDesFormEdit} grid gap-5 justify-center items-end rounded-tl-lg rounded-tr-lg py-1 mx-1`}
+              className={`${MSAStyles.formRowsContainerDesFormEdit} grid gap-1 justify-center rounded-tl-lg rounded-tr-lg py-1 `}
             >
-              <div></div>
-              <div></div>
-              {/* <p className="text-center">Date added</p> */}
-              <p className="text-center">Dropbox Folder</p>
-              <p className="text-center">Date last updated by DES</p>
-              <div className="flex items-center">
-                <p className="text-start">PDF version uploaded</p>
+              <div className="flex justify-start items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 font-bold">Form</p>
               </div>
-              <div className="flex items-center">
-                
-                <p className="text-center">Scanned version uploaded</p>
+              <div className="flex justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 font-bold text-center">Dropbox Folder</p>
+              </div>
+              <div className="flex justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-center font-bold">Date last updated by DES</p>
+              </div>
+              <div className="flex justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-center font-bold">PDF version uploaded</p>
+              </div>
+              <div className="flex justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-center font-bold">Scanned version uploaded</p>
+              </div>
                 {/* what about Original Version Scanned */}
-              </div>
             </div>
             {/* {TABLE HEAD} */}
             <RowMsaFormDES fieldName="AIRS Intake Form" clientData={clientData} setClientData={setClientData} formString="AIRSIntakeForm" data={data} folderName={data[0].intake_folder_url}/>
@@ -845,18 +742,21 @@ const EditMsaFormPage = ({ data }) => {
           
 
           </section>
+         
 
-          <section id="save" className="my-5">
+        </section>
+        
+        <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
+                className="btn-yellow px-5 py-3 flex gap-3 px-5 rounded shadow inline-block"
                 onClick={() => handleMsaform()}
               >
+                <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>
                 Save and Update
               </button>
             </div>
           </section>
-        </main>
       </Layout>
     </>
   );

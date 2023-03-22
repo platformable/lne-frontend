@@ -34,34 +34,19 @@ const day= date[2]
                 {/* <div className="head-row ">
                   <p className="text-center">{id}</p>
                 </div> */}
-                <div className="head-row flex justify-start items-center">
-                  <p className="text-center">{name}</p>
-                </div>
-                <div className="head-row flex justify-start items-center">
-                  <p className="text-center">{lastname}</p>
-                </div>
-                <div className="head-row flex justify-start items-center">
-                  <p className="text-center">{role || authorizeduser.userrole}</p>
-                </div>
-                <div className="head-row flex justify-start items-center">
-                  <p className="text-center">{email || authorizeduser.useremail ? (email || authorizeduser.useremail ) : "-"}</p>
-                </div>
-              
-                <div className="head-row flex justify-start items-center">
-                  <p className="text-center">{dateaccountactivated ? `${month}/${day}/${year}` : "-"}</p>
-                </div>
+                  <p className="bg-client-profile-sap-heading py-2 px-5">{name}</p>
+                  <p className="bg-client-profile-sap-heading py-2 px-5">{lastname}</p>
+                  <p className="bg-client-profile-sap-heading py-2 px-5">{role || authorizeduser.userrole}</p>
+                  <p className="bg-client-profile-sap-heading py-2 px-5">{email || authorizeduser.useremail ? (email || authorizeduser.useremail ) : "-"}</p>
+                  <p className="bg-client-profile-sap-heading py-2 px-5">{dateaccountactivated ? `${month}/${day}/${year}` : "-"}</p>
                 
-                <div className="head-row flex justify-center items-center">
-                  <p className="text-center flex cursor-pointer" 
+                  <p className="bg-client-profile-sap-heading py-2 px-5 flex justify-center items-center cursor-pointer" 
                    onClick={()=>handleSelectedUser(authorizeduser)}>
-                     <img src='/edit-icon.svg' alt=''/>
+                     <img src='/authorised_users_supervisor/edit_table.svg' alt='edit table icon'  width={20} height={20}/>
                   </p>
-                </div>
-                <div className="head-row flex justify-center items-center">
-                  <p className="text-center flex cursor-pointer" onClick={()=>handleAuthUserDelete(authorizeduser)}>
-                  <img src='/delete-icon.svg' alt=''/>
+                  <p className="bg-client-profile-sap-heading py-2 px-5 flex justify-center items-center cursor-pointer" onClick={()=>handleAuthUserDelete(authorizeduser)}>
+                  <img src='/authorised_users_supervisor/delete_table.svg' alt='delete user table icon'  width={20} height={20}/>
                   </p>
-                </div>
                 
               </div>
     </>
