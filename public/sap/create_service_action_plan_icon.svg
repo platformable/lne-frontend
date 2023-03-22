@@ -1,0 +1,51 @@
+<svg id="Create_Service_Action_Plan_icon" data-name="Create Service Action Plan icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34.74" height="44.143" viewBox="0 0 34.74 44.143">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1042" data-name="Rectangle 1042" width="30.776" height="40.758" fill="rgba(0,0,0,0)" stroke="#707070" stroke-width="0.5"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <circle id="Ellipse_451" data-name="Ellipse 451" cx="5.698" cy="5.698" r="5.698" transform="translate(0 0)" fill="#fff" stroke="#000" stroke-width="0.5"/>
+    </clipPath>
+  </defs>
+  <g id="Group_3420" data-name="Group 3420">
+    <g id="Path_7810" data-name="Path 7810" transform="translate(0.275 0)" fill="none">
+      <path d="M1.407,0H28.344a1.407,1.407,0,0,1,1.407,1.407V39.249a1.407,1.407,0,0,1-1.407,1.407H1.407A1.407,1.407,0,0,1,0,39.249V1.407A1.407,1.407,0,0,1,1.407,0Z" stroke="none"/>
+      <path d="M 1.406909942626953 1.199996948242188 C 1.292819976806641 1.199996948242188 1.200000762939453 1.293025970458984 1.200000762939453 1.407367706298828 L 1.200000762939453 39.24922561645508 C 1.200000762939453 39.36356735229492 1.292819976806641 39.45659637451172 1.406909942626953 39.45659637451172 L 28.34395027160645 39.45659637451172 C 28.45804023742676 39.45659637451172 28.55085945129395 39.36356735229492 28.55085945129395 39.24922561645508 L 28.55085945129395 1.407367706298828 C 28.55085945129395 1.293025970458984 28.45804023742676 1.199996948242188 28.34395027160645 1.199996948242188 L 1.406909942626953 1.199996948242188 M 1.406909942626953 -3.814697265625e-06 L 28.34395027160645 -3.814697265625e-06 C 29.1209602355957 -3.814697265625e-06 29.7508602142334 0.630096435546875 29.7508602142334 1.407367706298828 L 29.7508602142334 39.24922561645508 C 29.7508602142334 40.02649688720703 29.1209602355957 40.65659713745117 28.34395027160645 40.65659713745117 L 1.406909942626953 40.65659713745117 C 0.6298999786376953 40.65659713745117 0 40.02649688720703 0 39.24922561645508 L 0 1.407367706298828 C 0 0.630096435546875 0.6298999786376953 -3.814697265625e-06 1.406909942626953 -3.814697265625e-06 Z" stroke="none" fill="#000"/>
+    </g>
+    <g id="Group_1487" data-name="Group 1487" transform="translate(0 0.124)" clip-path="url(#clip-path)">
+      <g id="Rectangle_1045" data-name="Rectangle 1045" transform="translate(2.755 15.976)" fill="none" stroke="#000" stroke-width="0.5">
+        <rect width="24.796" height="20.315" rx="1" stroke="none"/>
+        <rect x="0.25" y="0.25" width="24.296" height="19.815" rx="0.75" fill="none"/>
+      </g>
+      <line id="Line_289" data-name="Line 289" y2="19.817" transform="translate(11.478 15.976)" fill="none" stroke="#000" stroke-width="0.5"/>
+      <path id="Path_7809" data-name="Path 7809" d="M0,0V19.817" transform="translate(19.298 15.976)" fill="none" stroke="#000" stroke-width="0.5"/>
+    </g>
+    <g id="Group_2551" data-name="Group 2551" transform="translate(9.589 2.221)">
+      <g id="Group_2466" data-name="Group 2466" transform="translate(0)">
+        <g id="Ellipse_445" data-name="Ellipse 445" fill="none" stroke="#000" stroke-width="0.5">
+          <ellipse cx="5.768" cy="5.933" rx="5.768" ry="5.933" stroke="none"/>
+          <ellipse cx="5.768" cy="5.933" rx="5.518" ry="5.683" fill="none"/>
+        </g>
+        <g id="Group_2459" data-name="Group 2459" transform="translate(0.045 0.161)">
+          <path id="Path_7788" data-name="Path 7788" d="M5.777,0A5.777,5.777,0,1,1,0,5.777,5.777,5.777,0,0,1,5.777,0Z" transform="translate(0)" fill="none"/>
+          <g id="Mask_Group_1301" data-name="Mask Group 1301" transform="translate(0.092 0.092)" clip-path="url(#clip-path-2)">
+            <g id="Ellipse_449" data-name="Ellipse 449" transform="translate(3.704 2.768)" fill="none" stroke="#000" stroke-width="0.5">
+              <ellipse cx="2.058" cy="2.041" rx="2.058" ry="2.041" stroke="none"/>
+              <ellipse cx="2.058" cy="2.041" rx="1.808" ry="1.791" fill="none"/>
+            </g>
+            <g id="Ellipse_450" data-name="Ellipse 450" transform="translate(2.721 6.743)" fill="none" stroke="#000" stroke-width="0.5">
+              <ellipse cx="3.041" cy="3.393" rx="3.041" ry="3.393" stroke="none"/>
+              <ellipse cx="3.041" cy="3.393" rx="2.791" ry="3.143" fill="none"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_3421" data-name="Group 3421" transform="translate(-4.869 4.694)">
+    <g id="Group_2735" data-name="Group 2735" transform="translate(0 0)">
+      <path id="Path_7874" data-name="Path 7874" d="M8.181,0a8.28,8.28,0,0,1,8.181,8.376,8.28,8.28,0,0,1-8.181,8.376A8.28,8.28,0,0,1,0,8.376,8.28,8.28,0,0,1,8.181,0Z" transform="translate(23.246 22.698)" fill="#5ac0ff"/>
+    </g>
+    <path id="Path_7805" data-name="Path 7805" d="M-13.936-20.711h-4.434v4.673h-1.576v-4.673h-4.412v-1.467h4.412v-4.64h1.576v4.64h4.434Z" transform="translate(50.573 52.501)" stroke="#5ac0ff" stroke-width="0.1"/>
+  </g>
+</svg>

@@ -17,6 +17,7 @@ import authUserICon from "../../public/authorized-users-icon.svg";
 import backIcon from "../../public/BACKicon.svg";
 import addUserICon from "../../public/add-new-user-icon.svg";
 import BackToDashboardButton from "../../components/BackToDashboardButton";
+import SubHeader from "../../components/SubHeader";
 
 export default function AuthorizedUsersIndex({ data, users }) {
   const router = useRouter();
@@ -78,34 +79,9 @@ export default function AuthorizedUsersIndex({ data, users }) {
         <main>
           <ToastContainer autoClose={2000} />
           <section>
-            <div className="bg-white">
-              <div className="container mx-auto pt-12 pb-2">
-                <div className="flex gap-x-10 items-center">
-                  <BackToDashboardButton />
-                </div>
-                <h1 className="block font-bold mt-10 ">Manage Users</h1>
+        
 
-                {/* <div className="button-container flex gap-x-2 items-center mt-3 mb-5">
-                  <button
-                    className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl "
-                    id="myBtn"
-                    onClick={() => setShowModal(!showModal)}
-                  >
-                    <Image src={addUserICon} width={20} height={20} />
-                    <p className="ml-2 text-sm">Add a new user</p>
-                  </button>
-                  <Link href="/users">
-                    <a
-                      className="rounded bg-yellow px-5 py-2 flex items-center  font-semibold shadow-xl"
-                      id="myBtn"
-                    >
-                      <Image src={authUserICon} width={20} height={20} />
-                      <p className="ml-2 text-sm">View active users</p>
-                    </a>
-                  </Link>
-                </div> */}
-              </div>
-            </div>
+            <SubHeader pageTitle={'Manage Users'}/>
             {/* TABLE */}
             <div
               id="dashboard-client-list"
@@ -229,7 +205,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
             setSelectedUser={setSelectedUser}
           />
         )}
-        {!showEditInactiveUserModal && (
+        {showEditInactiveUserModal && (
           <EditInactiveUserModal
             setShowEditInactiveUserModal={setShowEditInactiveUserModal}
             showEditInactiveUserModal={showEditInactiveUserModal}

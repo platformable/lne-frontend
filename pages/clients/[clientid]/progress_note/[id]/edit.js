@@ -14,6 +14,7 @@ import ClientInfoTopHeader from "../../../../../components/ClientInfoTopHeader";
 import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SubHeader from "../../../../../components/SubHeader";
 
 const ProgressNotesIndex = ({ data, id, msa }) => {
   const router = useRouter();
@@ -593,17 +594,9 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-        <div className="bg-white shadow-inner pt-10 pb-5">
-          <h1 className="font-black text-center my-5">Progress Notes </h1>
-          <div className="container mx-auto ">
-            <div className="flex gap-x-10">
-              <BackButton />
+      
 
-              <BackToDashboardButton />
-            </div>
-            <h1 className="font-black mt-10 text-4xl">Progress Notes </h1>
-          </div>
-        </div>
+        <SubHeader pageTitle={'Edit Progress Note'}/>
 
         <div className="pt-10 shadow-inner">
           <section className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">

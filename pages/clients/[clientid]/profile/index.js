@@ -9,13 +9,12 @@ import DeleteClientModal from "../../../../components/DeleteClientModal";
 import DeleteModal from "../../../../components/DeleteModal";
 import ProfilePageBaselineData from "../../../../components/ProfilePageBaselineData";
 
-
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from "next/router";
 import BackButton from "../../../../components/BackButton";
+import SubHeader from "../../../../components/SubHeader";
 
 export function getDatex(string) {
   const date = new Date(string);
@@ -125,18 +124,32 @@ export default function ClientProfilePage({
 
     return (
       <div>
-      <div className={`flex ${color} px-5 py-3  items-center rounded-sm shadow-sm justify-center`}>
-       {color==='bg-green-300' && <p className="text-center flex justify-center">On Track</p>} 
-       {color==='bg-orange-300' && <p className="text-center flex justify-center">Warning</p>} 
-       {color==='bg-red-400' && <p className="text-center flex justify-center">Alert</p>} 
-      </div>
-      <p className="text-center flex justify-center py-3 text-center">{result}</p>
-      <div className="flex justify-center">
-      <img src="/client/alerticonMSAdoc.svg" className="mt-3" alt=""width={30} />
-      </div>
+        <div
+          className={`flex ${color} px-5 py-3  items-center rounded-sm shadow-sm justify-center`}
+        >
+          {color === "bg-green-300" && (
+            <p className="text-center flex justify-center">On Track</p>
+          )}
+          {color === "bg-orange-300" && (
+            <p className="text-center flex justify-center">Warning</p>
+          )}
+          {color === "bg-red-400" && (
+            <p className="text-center flex justify-center">Alert</p>
+          )}
+        </div>
+        <p className="text-center flex justify-center py-3 text-center">
+          {result}
+        </p>
+        <div className="flex justify-center">
+          <img
+            src="/client/alerticonMSAdoc.svg"
+            className="mt-3"
+            alt=""
+            width={30}
+          />
+        </div>
       </div>
     );
-
   };
 
   const checkMessage2 = () => {
@@ -168,15 +181,20 @@ export default function ClientProfilePage({
       result = "No goals yet";
       return (
         <div>
-        <div
-          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
-        >
-         <p>On Track</p>
-        </div>
-       
+          <div
+            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+          >
+            <p>On Track</p>
+          </div>
+
           <p className="px-4 my-3 text-center">{result}</p>
           <div className="flex justify-center items-center">
-          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+            <img
+              src="/client/alerticonserviceactionplan.svg"
+              alt=""
+              width={30}
+              className="mt-3"
+            />
           </div>
         </div>
       );
@@ -188,17 +206,21 @@ export default function ClientProfilePage({
         totalGoals - totalGoalsCompleted
       } client goals outstanding`;
       return (
-
         <div>
-        <div
-          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
-        >
-         <p>Alert</p>
-        </div>
-       
+          <div
+            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+          >
+            <p>Alert</p>
+          </div>
+
           <p className="px-4 my-3 text-center">{result}</p>
           <div className="flex justify-center items-center">
-          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+            <img
+              src="/client/alerticonserviceactionplan.svg"
+              alt=""
+              width={30}
+              className="mt-3"
+            />
           </div>
         </div>
       );
@@ -210,15 +232,20 @@ export default function ClientProfilePage({
 
       return (
         <div>
-        <div
-          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
-        >
-         <p>On Track</p>
-        </div>
-       
+          <div
+            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+          >
+            <p>On Track</p>
+          </div>
+
           <p className="px-4 my-3 text-center">{result}</p>
           <div className="flex justify-center items-center">
-          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+            <img
+              src="/client/alerticonserviceactionplan.svg"
+              alt=""
+              width={30}
+              className="mt-3"
+            />
           </div>
         </div>
       );
@@ -232,15 +259,20 @@ export default function ClientProfilePage({
 
       return (
         <div>
-        <div
-          className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
-        >
-         <p>Warning</p>
-        </div>
-       
+          <div
+            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+          >
+            <p>Warning</p>
+          </div>
+
           <p className="px-4 my-3 text-center">{result}</p>
           <div className="flex justify-center items-center">
-          <img src="/client/alerticonserviceactionplan.svg" alt="" width={30} className="mt-3"/>
+            <img
+              src="/client/alerticonserviceactionplan.svg"
+              alt=""
+              width={30}
+              className="mt-3"
+            />
           </div>
         </div>
       );
@@ -280,13 +312,14 @@ export default function ClientProfilePage({
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       return (
         <div>
-            <div className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}>
-              {color==='bg-green-300' &&  <p>On Track</p>}
-              {color==='bg-orange-300' &&  <p>Warning</p>}
-              {color==='bg-red-400' &&  <p>Alert</p>}
-        </div>
+          <div
+            className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}
+          >
+            {color === "bg-green-300" && <p>On Track</p>}
+            {color === "bg-orange-300" && <p>Warning</p>}
+            {color === "bg-red-400" && <p>Alert</p>}
+          </div>
 
-        
           <p className="px-4 my-3 text-center">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
@@ -296,9 +329,13 @@ export default function ClientProfilePage({
           </p>
 
           <div className="flex justify-center items-center">
-          <img src="/client/alert-icon-progress-note.svg" alt="" width={30} className="mt-3"/>
+            <img
+              src="/client/alert-icon-progress-note.svg"
+              alt=""
+              width={30}
+              className="mt-3"
+            />
           </div>
-
         </div>
       );
     }
@@ -333,20 +370,27 @@ export default function ClientProfilePage({
       if (totalDays > 30) color = "bg-red-400";
       return (
         <div>
-        <div className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}>
-       {color==='bg-green-300' &&  <p>On Track</p>}
-       {color==='bg-orange-300' &&  <p>Warning</p>}
-       {color==='bg-red-400' &&  <p>Alert</p>}
-        </div>
+          <div
+            className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}
+          >
+            {color === "bg-green-300" && <p>On Track</p>}
+            {color === "bg-orange-300" && <p>Warning</p>}
+            {color === "bg-red-400" && <p>Alert</p>}
+          </div>
 
-        <p className="px-4 my-3 text-center">
+          <p className="px-4 my-3 text-center">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : `You saw this client today`}{" "}
           </p>
           <div className="flex justify-center">
-        <img src="/client/alert-icon-progress-note.svg" alt="" className="mt-3" width={30}/>
-        </div>
+            <img
+              src="/client/alert-icon-progress-note.svg"
+              alt=""
+              className="mt-3"
+              width={30}
+            />
+          </div>
         </div>
       );
     }
@@ -388,48 +432,9 @@ export default function ClientProfilePage({
       <Layout>
         <ToastContainer autoClose={700} />
         <div className=" bg-light-blue h-full pb-20 ">
-          <section className="pb-5 pt-10 container mx-auto md:px-0 px-5">
-            <div className="flex gap-x-3">
-              <BackButton />
-              <BackToDashboardButton />
-            </div>
+        <SubHeader pageTitle='Client Dashboard'/>
+          <section className="pb-5 pt-10 container mx-auto md:px-0 px-5 shadow-inner">
             <section className="dashboard-clients-cards md:px-0 px-5">
-              <div className="dashboard-clients-cards-top py-5 grid gap-y-5 md:flex gap-x-5">
-                <h1 className="font-black">Client dashboard</h1>
-                <div className="color-description flex gap-x-5">
-                  <div className="color-description-item flex items-center gap-x-2">
-                    <div
-                      className="bg-green-300 inline-block px-2 rounded-full text-green-300"
-                      width={25}
-                      height={25}
-                    >
-                      0
-                    </div>
-                    <p>On track</p>
-                  </div>
-                  <div className="color-description-item flex items-center gap-x-2">
-                    <div
-                      className="bg-orange-300 inline-block px-2 rounded-full text-orange-300"
-                      width={25}
-                      height={25}
-                    >
-                      0
-                    </div>
-                    <p>Warning</p>
-                  </div>
-                  <div className="color-description-item flex items-center gap-x-2">
-                    <div
-                      className="bg-red-400 inline-block px-2 rounded-full text-red-400"
-                      width={25}
-                      height={25}
-                    >
-                      0
-                    </div>
-                    <p>Alert</p>
-                  </div>
-                </div>
-              </div>
-
               <div className="container mx-auto my-10" id="profile">
                 <div className="profile-client-information-top grid md:grid-cols-4 grid-cols-1 gap-x-5">
                   <div className="profile-client-information-top-1 bg-white rounded-md  shadow-md p-5">
@@ -453,92 +458,66 @@ export default function ClientProfilePage({
 
                     <div className="flex justify-between">
                       <div className="flex gap-x-1">
-                        <img src="/joining_date_icon.svg" alt="" width={'14px'}/>
+                        <img
+                          src="/joining_date_icon.svg"
+                          alt=""
+                          width={"14px"}
+                        />
                         <p className="">Joining date</p>
                       </div>
-                        <p className="justify-self-end">
-                          {new Date(
-                            data[0]?.clientdatecreated
-                          ).toLocaleDateString("en-EN", {
-                            year: "numeric",
-                            month: "numeric",
-                            day: "numeric",
-                          })}
-                        </p>
-                      </div>
+                      <p className="justify-self-end">
+                        {new Date(
+                          data[0]?.clientdatecreated
+                        ).toLocaleDateString("en-EN", {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        })}
+                      </p>
+                    </div>
 
-                     {/*  <div className="flex justify-between mt-3">
-                      <div className="flex gap-x-1">
-                        <img src="/last_updated.svg" alt="" width={'14px'}/>
-                        <p className="">Last update</p>
-                      </div>
-                        <p className="justify-self-end">
-                          {new Date(
-                            data[0]?.clientdatecreated
-                          ).toLocaleDateString("en-EN", {
-                            year: "numeric",
-                            month: "numeric",
-                            day: "numeric",
-                          })}
-                        </p>
-                      </div> */}
-
-
-                      <div className="flex justify-between gap-x-2">
+                    <div className="flex justify-between gap-x-2">
                       <button
-                            className="bg-blue-cards-btns w-full rounded-md px-5 block py-1 shadow-md  mt-5 text-sm  flex gap-x-2 items-center justify-center"
-                            onClick={() =>
-                              setShowEditClientModal(!showEditClientModal)
-                            }
-                          >
-                            <img src="/edit.svg" alt="" width={'14px'}/>
-                            Edit
-                          </button>
+                        className="bg-blue-cards-btns w-full rounded-md px-5 block py-1 shadow-md  mt-5 text-sm  flex gap-x-2 items-center justify-center"
+                        onClick={() =>
+                          setShowEditClientModal(!showEditClientModal)
+                        }
+                      >
+                        <img src="/edit.svg" alt="" width={"14px"} />
+                        Edit
+                      </button>
 
-                          <button
-                            className="w-full rounded-md px-5 py-1 block shadow-md bg-black text-white mt-5 text-sm flex gap-x-2 items-center justify-center"
-                            onClick={() =>
-                              setShowDeleteClientModal(!showDeleteClientModal)
-                            }
-                            title="Delete this client"
-                          >
-                            <img
-                              src="/delete_white.svg"
-                              alt="delete button"
-                              width={'11px'}
-                            />
-
-                            Delete
-                          </button>
-                      </div>
-
+                      <button
+                        className="w-full rounded-md px-5 py-1 block shadow-md bg-black text-white mt-5 text-sm flex gap-x-2 items-center justify-center"
+                        onClick={() =>
+                          setShowDeleteClientModal(!showDeleteClientModal)
+                        }
+                        title="Delete this client"
+                      >
+                        <img
+                          src="/delete_white.svg"
+                          alt="delete button"
+                          width={"11px"}
+                        />
+                        Delete
+                      </button>
+                    </div>
                   </div>
                   {/* end first card */}
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-
-                  {checkMessage1()}
-
-                  </div>
-
-
-                  <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-
-                  {checkMessage2()}
-
+                    {checkMessage1()}
                   </div>
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-
-                  {checkMessage3()}
-
+                    {checkMessage2()}
                   </div>
 
-
+                  <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
+                    {checkMessage3()}
+                  </div>
                 </div>
               </div>
-
-             
             </section>
           </section>
           <section
@@ -558,25 +537,25 @@ export default function ClientProfilePage({
               >
                 {loggedUserRole === "Supervisor" && (
                   <Link
-                  href={
-                    data[0]?.msaformid
-                      ? `/clients/${data[0]?.clientid}/msa_form/supervisor_msa_form_edit`
-                      : `/clients/${data[0]?.clientid}/msa_form`
-                  }
-                >
-                  <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
-                    <div className="flex justify-center">
-                      <img src="/client/MSA_button.svg" alt="" width={45}/>
+                    href={
+                      data[0]?.msaformid
+                        ? `/clients/${data[0]?.clientid}/msa_form/supervisor_msa_form_edit`
+                        : `/clients/${data[0]?.clientid}/msa_form`
+                    }
+                  >
+                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
+                      <div className="flex justify-center">
+                        <img src="/client/MSA_button.svg" alt="" width={45} />
+                      </div>
+                      <h4 className="text-center">
+                        {data[0]?.msaformid === undefined ||
+                        data[0]?.msaformid === "" ||
+                        data[0]?.msaformid === null
+                          ? `Create MSA Form`
+                          : "Edit MSA Form"}
+                      </h4>
                     </div>
-                    <h4 className="text-center">
-                      {data[0]?.msaformid === undefined ||
-                      data[0]?.msaformid === "" ||
-                      data[0]?.msaformid === null
-                        ? `Create MSA Form`
-                        : "Edit MSA Form"}
-                    </h4>
-                  </div>
-                </Link>
+                  </Link>
                 )}
 
                 {loggedUserRole === "DES" && (
@@ -589,7 +568,7 @@ export default function ClientProfilePage({
                   >
                     <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
-                        <img src="/client/MSA_button.svg" alt="" width={45}/>
+                        <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
                       <h4 className="text-center">
                         {data[0]?.msaformid === undefined ||
@@ -612,7 +591,7 @@ export default function ClientProfilePage({
                   >
                     <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block items-center h">
                       <div className="flex justify-center">
-                        <img src="/client/MSA_button.svg" alt="" width={45}/>
+                        <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
                       <h4 className="text-center ">
                         {data[0]?.msaformid === undefined ||
@@ -636,7 +615,11 @@ export default function ClientProfilePage({
                   >
                     <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
-                        <img src="/client/Service_Action_Plan_button.svg" alt="" width={45}/>
+                        <img
+                          src="/client/Service_Action_Plan_button.svg"
+                          alt=""
+                          width={45}
+                        />
                       </div>
                       <h4 className="text-center ">
                         {data[0]?.servicesactionplanid
@@ -653,11 +636,13 @@ export default function ClientProfilePage({
                   <Link href={`/clients/${data[0]?.clientid}/progress_note`}>
                     <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
-                        <img src="/client/Progress_note_button.svg" alt="" width={45}/>
+                        <img
+                          src="/client/Progress_note_button.svg"
+                          alt=""
+                          width={45}
+                        />
                       </div>
-                      <h4 className="text-center ">
-                        {`Create Progress Note`}
-                      </h4>
+                      <h4 className="text-center ">{`Create Progress Note`}</h4>
                     </div>
                   </Link>
                 ) : (
@@ -666,11 +651,14 @@ export default function ClientProfilePage({
               </div>
             </div>
           </section>
-          <section id="baselineData" className="mt-16 container mx-auto bg-white pt-5 px-5 pb-10 rounded-md shadow-md">
-          <div className="flex gap-x-3">
-              <img src="/client/Client_progress_notes_icon.svg" alt=""/> 
+          <section
+            id="baselineData"
+            className="mt-16 container mx-auto bg-white pt-5 px-5 pb-10 rounded-md shadow-md"
+          >
+            <div className="flex gap-x-3">
+              <img src="/client/Client_progress_notes_icon.svg" alt="" />
               <h3 className="font-black my-5">Impact Tracker</h3>
-              </div>
+            </div>
             <ProfilePageBaselineData
               impactBaseline={impactBaseline}
               impactTracker={impactTracker}
@@ -682,9 +670,9 @@ export default function ClientProfilePage({
           </section>
           <section id="progressnotes" className="my-10 ">
             <div className="container mx-auto bg-white px-5 pt-2 pb-10 rounded-md shadow-md">
-             <div className="flex gap-x-3">
-              <img src="/client/Client_progress_notes_icon.svg" alt=""/> 
-              <h3 className="font-black my-5">Client progress notes</h3>
+              <div className="flex gap-x-3">
+                <img src="/client/Client_progress_notes_icon.svg" alt="" />
+                <h3 className="font-black my-5">Client progress notes</h3>
               </div>
 
               <div className="grid client-progress-note-table gap-x-1 rounded-tl-md rounded-tr-md">
@@ -717,9 +705,13 @@ export default function ClientProfilePage({
                     return (
                       <div
                         key={index}
-                        className={`grid client-progress-note-table py-2  ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}`}
+                        className={`grid client-progress-note-table py-2  ${
+                          index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
+                        }`}
                       >
-                        <p className="px-5">{new Date(pn.date).toLocaleDateString("en-US")}</p>
+                        <p className="px-5">
+                          {new Date(pn.date).toLocaleDateString("en-US")}
+                        </p>
                         <div className="px-5">
                           <p>
                             {pn.developmentactionplan === "1"

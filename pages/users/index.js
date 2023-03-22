@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import backIcon from "../../public/BACKicon.svg";
 import authUserICon from "../../public/authorized-users-icon.svg";
 import BackToDashboardButton from "../../components/BackToDashboardButton";
+import SubHeader from "../../components/SubHeader";
 
 export default function UsersIndex({ data }) {
   const router = useRouter();
@@ -42,31 +43,16 @@ export default function UsersIndex({ data }) {
     <>
       <Layout>
         <section>
-          <div className="bg-white">
-        <div className="container mx-auto flex flex-wrap py-7 mb-10 shadow-inner">
-        <div className="flex gap-x-2 items-center  container my-1 mx-auto">
-                <button
-                  onClick={() => router.push("/authorizedusers")}
-                  className="bg-yellow hover:bg-blue-300 px-14 py-1.5 rounded text-black inline-block  flex items-center  gap-x-3"
-                >
-                 Back
-                </button>
+        
 
-                <BackToDashboardButton />
-              </div>
-              <h1 className="block font-bold mt-5">Manage Users</h1>
-
-            
-            </div>
-
-            </div>
+            <SubHeader pageTitle={'Manage Users'}/>
           <div className="">
            
 
             {/* TABLE */}
             <div
               id="dashboard-client-list-container"
-              className=" pb-7 h-screen"
+              className=" pb-7 h-screen mt-10"
             >
               <div className="container mx-auto bg-white rounded-md shadow px-5 pt-5 pb-10">
                 <div className="dashboard-client-list container mx-auto">
