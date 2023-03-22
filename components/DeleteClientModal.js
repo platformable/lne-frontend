@@ -43,7 +43,7 @@ const DeleteClientModal = ({data, showDeleteClientModal, setShowDeleteClientModa
                 <div className=''>
                     <div className='flex items-center'>
                     <img src="/delete_client_black_icon.svg" alt="" width={14}/>
-                        <h3 className='ml-2'>Delete User</h3>
+                        <h3 className='ml-2'>Delete Client</h3>
                     </div>
         
                     <h4 className="mt-5 mb-3">Name</h4>
