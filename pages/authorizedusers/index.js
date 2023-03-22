@@ -214,7 +214,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
             </div>
           </section>
         </main>
-        {!showModal && (
+        { showModal && (
           <AddUserModal
             setShowModal={setShowModal}
             showModal={showModal}
@@ -229,7 +229,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
             setSelectedUser={setSelectedUser}
           />
         )}
-        {showEditInactiveUserModal && (
+        {!showEditInactiveUserModal && (
           <EditInactiveUserModal
             setShowEditInactiveUserModal={setShowEditInactiveUserModal}
             showEditInactiveUserModal={showEditInactiveUserModal}

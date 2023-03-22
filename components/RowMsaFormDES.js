@@ -59,16 +59,16 @@ const RowMsaFormDES = ({
 
   return (
     <>
+      <div className="bg-white ">
       <div
         className={`${
           MSAStyles.formRowsContainerDesFormEdit
-        } justify-center items-center bg-light-purple grid gap-5 py-2 rounded-lg my-2 ${
+          } justify-center   grid gap-1 divide border-white border-1 rounded-lg mt-1 ${
           clientData[formString] ? "" : "pointer-events-none"
         }`}
       >
-        <div className=""></div>
 
-        <div>
+        <div className="px-5 py-3 bg-light-purple ">
           <p>{fieldName}</p>
         </div>
         {/* <div className="text-center">
@@ -85,7 +85,7 @@ const RowMsaFormDES = ({
           />
         </div> */}
         <div
-          className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}
+          className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center px-5 py-3 bg-light-purple `}
         >
            <a
             href={folderName ? folderName : ""}
@@ -97,7 +97,7 @@ const RowMsaFormDES = ({
           </a> 
           {/* <p className="text-dark-blue underline">Medical</p> */}
         </div>
-        <div className="text-center">
+        <div className="text-center px-5 py-3 bg-light-purple ">
           <input
             type="date"
             id={formString}
@@ -110,7 +110,7 @@ const RowMsaFormDES = ({
           />
         </div>
         <div
-          className="ml-1 text-center flex justify-center items-center" 
+          className="text-center flex justify-center items-center px-5 py-3 bg-light-purple " 
         >
           
           <input
@@ -140,7 +140,7 @@ const RowMsaFormDES = ({
           />
         </div>
         <div
-          className="ml-1 text-center flex justify-center items-center"
+          className=" text-center flex justify-center items-center px-5 py-3 bg-light-purple "
           
         >
 
@@ -170,6 +170,9 @@ const RowMsaFormDES = ({
             }}
           />
         </div>
+      </div>
+
+
       </div>
     </>
   );

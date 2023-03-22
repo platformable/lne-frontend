@@ -115,8 +115,9 @@ const ClientsIndex = ({ data, hcworkers }) => {
   return (
     <Layout>
       <ToastContainer autoClose={50000} />
-      <section id="search" className="shadow-inner pb-5 pt-10">
-        <div className="container mx-auto">
+      <section id="search" className="">
+        <div className="bg-white pb-5 pt-10 shadow-inner ">
+        <div className="container mx-auto ">
           <div className=" flex gap-x-3">
             <BackButton />
             <BackToDashboardButton />
@@ -182,6 +183,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
               </select>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
