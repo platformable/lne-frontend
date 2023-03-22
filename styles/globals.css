@@ -499,6 +499,16 @@ display:grid;
 grid-template-columns: 2fr 8fr 2fr;
 }
 
+.authorized-users-dashboard-table {
+  display:grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  }
+
+.users-dashboard-table {
+    display:grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    }
+
 @media only screen and (max-width: 600px) {
   .sap-dashboard-client-table {
     display:grid;

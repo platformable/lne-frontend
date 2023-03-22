@@ -135,7 +135,9 @@ export default function ClientServiceActionPlansListPage({ data }) {
                     .map((sap, index) => {
                       return (
                         <div
-                          className={`sap-dashboard-client-table px-5 mx-5 ${index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"}`}
+                          className={`sap-dashboard-client-table px-5 mx-5 ${
+                            index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
+                          }`}
                           key={index}
                         >
                           <p className={`py-2 px-2`}>
@@ -174,8 +176,6 @@ export default function ClientServiceActionPlansListPage({ data }) {
             </div>
           </div>
         </section>
-
-        
       </Layout>
 
       {showEditClientModal && (
