@@ -19,7 +19,8 @@ const RowMsaFormDES = ({
   setClientData,
   formString,
   data,
-  folderName
+  folderName,
+  bgColor
 }) => {
 
 
@@ -63,12 +64,12 @@ const RowMsaFormDES = ({
       <div
         className={`${
           MSAStyles.formRowsContainerDesFormEdit
-          } justify-center   grid gap-1 divide border-white border-1 rounded-lg mt-1 ${
+          }  justify-center   grid gap-1 divide border-white border-1 rounded-lg mt-1 ${
           clientData[formString] ? "" : "pointer-events-none"
         }`}
       >
 
-        <div className="px-5 py-3 bg-light-purple ">
+        <div className={`px-5 py-3 ${bgColor} `}>
           <p>{fieldName}</p>
         </div>
         {/* <div className="text-center">
@@ -85,7 +86,7 @@ const RowMsaFormDES = ({
           />
         </div> */}
         <div
-          className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center px-5 py-3 bg-light-purple `}
+          className={`${MSAStyles.dropboxFolderNames} ${bgColor} text-center flex justify-center items-center px-5 py-3 ${bgColor} `}
         >
            <a
             href={folderName ? folderName : ""}
@@ -97,7 +98,7 @@ const RowMsaFormDES = ({
           </a> 
           {/* <p className="text-dark-blue underline">Medical</p> */}
         </div>
-        <div className="text-center px-5 py-3 bg-light-purple ">
+        <div className={`text-center px-5 py-3 ${bgColor}`}>
           <input
             type="date"
             id={formString}
@@ -110,7 +111,7 @@ const RowMsaFormDES = ({
           />
         </div>
         <div
-          className="text-center flex justify-center items-center px-5 py-3 bg-light-purple " 
+          className={`text-center flex justify-center items-center px-5 py-3 ${bgColor}`} 
         >
           
           <input
@@ -140,7 +141,7 @@ const RowMsaFormDES = ({
           />
         </div>
         <div
-          className=" text-center flex justify-center items-center px-5 py-3 bg-light-purple "
+          className={`text-center flex justify-center items-center px-5 py-3 ${bgColor}`}
           
         >
 

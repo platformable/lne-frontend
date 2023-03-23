@@ -1000,7 +1000,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1022,7 +1022,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1040,7 +1040,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1058,7 +1058,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1076,7 +1076,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1102,7 +1102,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1120,7 +1120,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1138,7 +1138,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1158,7 +1158,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1176,7 +1176,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1194,7 +1194,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1212,7 +1212,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1230,7 +1230,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1248,7 +1248,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1266,7 +1266,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1284,7 +1284,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1302,7 +1302,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1320,7 +1320,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1338,7 +1338,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1356,7 +1356,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-blue"}
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1374,7 +1374,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1396,7 +1396,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1414,7 +1414,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1432,7 +1432,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1460,7 +1460,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1478,7 +1478,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1500,7 +1500,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-green"}
+              bgColor={"msa-table-light-light-green-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1520,7 +1520,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-pink"}
+              bgColor={"msa-table-light-light-pink-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1538,7 +1538,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-pink"}
+              bgColor={"msa-table-light-light-pink-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1556,7 +1556,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-pink"}
+              bgColor={"msa-table-light-light-pink-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1574,7 +1574,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-purple"}
+              bgColor={"msa-table-light-pink-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1592,7 +1592,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-purple"}
+              bgColor={"msa-table-light-pink-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1610,7 +1610,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-purple"}
+              bgColor={"msa-table-light-pink-bg"}
             />
 
             <RowMsaFormSupervisor
@@ -1628,7 +1628,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"bg-light-purple"}
+              bgColor={"msa-table-light-pink-bg"}
             />
 
             </div>
