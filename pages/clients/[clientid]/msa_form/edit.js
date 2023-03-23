@@ -10,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import BackButton from "../../../../components/BackButton";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 
+import SubHeader from "../../../../components/SubHeader";
+import MsaTopClientInformation from "../../../../components/MsaTopClientInformation";
+
 const EditMsaFormPage = ({ data }) => {
  
    const router = useRouter()
@@ -172,129 +175,36 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
     <><ToastContainer autoClose={2000} />
       <Layout>
       
-        <div className="container mx-auto">
-          <h3 className="font-black text-center my-5">Edit MSA FORM</h3>
-        </div>
 
-        
 
-        <main className="container mx-auto">
-        <div className="flex items-center">
-          <div className="flex gap-x-5">
-         
-        <BackButton />
-        <BackToDashboardButton/>
-        </div>
-              </div>
+      <SubHeader pageTitle={'Edit MSA FORM'}/>
 
-          <section id="info" className="my-5">
-            <div className="">
-              <h6 className="font-black my-5 text-dark-blue">
-                 Client Information
-              </h6>
-              <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
-              >
-                <div className="service-action-plan-page-info-box md:my-1 my-5">
-                  <h3 className="font-black ">Todays date</h3>
+        <main className="container mx-auto bg-white my-10 rounded-md border-blue">
+     
+        <MsaTopClientInformation data={data} clientData={clientData} setClientData={setClientData}/>
 
-                  <div className="flex gap-x-4 items-center">
-                    <img src="/calendar-icon.svg" width="24"/>
-                    <span className="mt-2">{new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric', year:'numeric'})}</span>
-                   {/*  <input type="date" name="" id="" className="border p-1 rounded-md" 
-                    defaultValue={clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]}
-                    /> */}
-                    {/* <input type="date" name="" id="" className="border-black p-1 rounded-md" 
-                    defaultValue={clientData.dateFormReviewed}
-                    onChange={(e)=>setClientData({...clientData,dateFormReviewed:e.target.value})}
-                    /> */}
-                  </div>
-
-                </div>
-
-                  <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  
-                      <div className="grid grid-cols-3 gap-4">
-                      <div className="flex gap-x-2 mb-1 items-end">
-                        <img src="/client-icon.svg" width="24" />
-                        <h3 className="font-black ">Client</h3>
-                      </div>
-                      <label className="block">
-                        <span className=" font-bold">Client Name</span>
-                        <input
-                          type="text"
-                          className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                          value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
-                          disabled
-                        />
-                      </label>
-                    
-                      <label className="block">
-                        <span className=" font-bold">Client ID</span>
-                        <input
-                          type="text"
-                          className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                          value={data[0].clientid}
-                          disabled
-                        />
-                      </label>
-                      </div>
-                    
-                  </div>
-                  <div className="service-action-plan-page-info-box">
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                  <div className="flex gap-x-2 mb-1 items-end">
-                    <img src="/msa_form/LNEuser.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
-                  </div>
-                    <label className="block">
-                      <span className=" font-bold">First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userFirstName}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className=" font-bold">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userLastName}
-                        disabled
-                      />
-                    </label>
-                  </div>
-                </div>
-             </div>
-
-               
-            </div>
-          </section>
-          <h6 className="font-black my-5 text-dark-blue">
-          Forms - Please indicate which forms have been completed with the client
-          </h6>
           <section
             id="form"
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
+            className="gap-x-5  rounded-md p-5 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <p className="font-black"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
+            <div className="flex gap-x-3 items-center mt-5 mb-10">
+              <img src="/forms_uploaded.svg" alt="" />
+            <p className="text-lg font-bold">Indicate which of the following forms you have uploaded to the client’s Dropbox</p>
+            </div>
             <div
               id="form-head"
-              className={`${MSAStyles.formRowsContainer} bg-dark-blue  text-white grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}
+              className={`${MSAStyles.formRowsContainerHeading} gap-x-1    grid  rounded-tl-lg rounded-tr-lg my-1`}
             >
-              <div></div>
-              <p>Form name</p>
-              <p className="text-center">Date added</p>
-              <p className="text-center">Dropbox Folder</p>
+              
+              <p className="light-blue-bg pl-5 py-2 text-lg  ">Form name</p>
+              <p className="text-center light-blue-bg py-2 text-lg ">Date added</p>
+              <p className="text-center light-blue-bg py-2 text-lg ">Dropbox Folder</p>
             </div>
             {/* {TABLE HEAD} */}
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-1`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -358,13 +268,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
                 <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-                <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -428,13 +338,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="flex justify-center">
               <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -496,13 +406,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -559,13 +469,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             {/* <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5 pointer-events-none">
                 <input
@@ -623,13 +533,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div> */}
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1 my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -694,7 +604,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -702,7 +612,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -769,7 +679,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -777,7 +687,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -843,14 +753,14 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5 ">
                 <input
@@ -916,7 +826,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -926,7 +836,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -992,7 +902,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1001,7 +911,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1067,7 +977,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1081,7 +991,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1145,14 +1055,14 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1218,7 +1128,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1226,7 +1136,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1294,13 +1204,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1364,7 +1274,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1372,7 +1282,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1438,14 +1348,14 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1512,7 +1422,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1521,7 +1431,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1583,13 +1493,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
               
-                <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1655,13 +1565,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1724,13 +1634,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1792,13 +1702,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1858,13 +1768,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1927,13 +1837,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1994,13 +1904,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2063,13 +1973,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2136,13 +2046,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2203,13 +2113,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2277,12 +2187,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
-            <div className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}>
+            <div className={`${MSAStyles.formRowsContainer} msa-table-light-light-pink-bg grid gap-5 py-1   my-2`}>
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
@@ -2346,13 +2256,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-pink-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2419,13 +2329,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-pink-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2484,13 +2394,13 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2551,12 +2461,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2617,12 +2527,12 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.support_groups_folder_url ? data[0]?.support_groups_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1   my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2684,7 +2594,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>

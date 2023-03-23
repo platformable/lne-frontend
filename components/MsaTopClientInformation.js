@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SapClientInformation({
+export default function MsaTopClientInformation({
   data,
   clientData,
   setClientData,
@@ -32,17 +32,8 @@ export default function SapClientInformation({
           <div className="sap-client-information-container grid grid-cols-2 gap-x-5">
             <div className="sap-client-information grid grid-cols-3 gap-x-5">
               <div>
-                <p className=" text-lg">Plan start date</p>
-                <input
-                  type="date"
-                  className="block bg-primary-light-blue w-full rounded-md  p-1  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                  onChange={(e) =>
-                    setClientData({
-                      ...clientData,
-                      planStartDate: e.target.value,
-                    })
-                  }
-                />
+                <p className=" text-lg">{`Today's date`}</p>
+                <p className="bg-blue-50 rounded-md pl-2 pr-10 py-1 text-lg">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</p>
               </div>
 
               <div>

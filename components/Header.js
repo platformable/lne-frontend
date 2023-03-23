@@ -27,19 +27,28 @@ export default function Header() {
         <div id="head-user" className="grid grid-cols-2 ">
           <div className="flex gap-x-5  items-center  justify-end"></div>
           <div className="flex gap-x-10 items-center  justify-end ">
-            <div className="flex items-center items-end">
-              <img src="/guide_icon.svg" className="mr-3" alt="" width={32}/>
-              <p>Guide</p>
-            </div>
-
-            <div className="flex items-center items-end">
-              <img src="/help_icon.svg" className="mr-3" alt="" width={32}/>
+            <div className="flex items-center items-end mr-5">
+              
               <a
-                href="https://airtable.com/shrux8Xrf9Ln5kRL4"
-                className={``}
+                href="https://drive.google.com/drive/folders/1AMJ88PX0xYBTh8Xieiav_tx46ZTVmOpD?usp=sharing"
+                className={`flex gap-x-1 items-center`}
                 target="_blank"
                 rel="noreferrer"
               >
+                <img src="/guide_icon.svg" className="mr-3" alt="" width={33}/>
+                Guide
+              </a>
+            </div>
+
+            <div className="flex items-center items-end">
+             
+              <a
+                href="https://airtable.com/shrux8Xrf9Ln5kRL4"
+                className={`flex gap-x-1 items-center`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                 <img src="/help_icon.svg" className="mr-3" alt="" width={30}/>
                 Help
               </a>
             </div>
