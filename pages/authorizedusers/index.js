@@ -36,7 +36,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
 
   const [selectedUser, setSelectedUser] = useState({});
 
-  console.log("selectedEntity", selectedEntity);
+  console.log("data", data);
 
   useEffect(() => {
     getNotRegisteredUser(data, users);
@@ -79,39 +79,66 @@ export default function AuthorizedUsersIndex({ data, users }) {
         <main>
           <ToastContainer autoClose={2000} />
           <section>
-        
-
-            <SubHeader pageTitle={'Manage Users'}/>
+            <SubHeader pageTitle={"Manage Users"} />
             {/* TABLE */}
             <div
               id="dashboard-client-list"
               className="bg-light-blue pb-7 h-screen pt-10"
             >
               <div className="dashboard-client-list container mx-auto bg-white p-10">
-              <div className="flex gap-x-3">
-                <img src="/authorised_users_supervisor/authorised_user.svg" alt="manage users icon"/>
-                <h2 className="font-black ">
-                  Authorized Users
-                </h2>
-              </div>
-                <div
-                  className={`${styles.authUSerListHeadRow} mt-10 gap-x-1`}
-                >
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">First Name</p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">Last Name</p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">User Role</p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">Email</p>
+                <div className="flex justify-between">
+                  <div className="flex gap-x-3 items-center">
+                    <img
+                      src="/authorised_users_supervisor/authorised_user.svg"
+                      alt="manage users icon"
+                    />
+                    <h2 className="font-black ">Authorized Users</h2>
+                  </div>
+                  <button className="btn-yellow flex justify-between text-lg items-center py-2 rounded-md shadow-md gap-3 font-medium px-5">
+                    <img
+                      src="/authorised_users_supervisor/add_user.svg"
+                      alt=""
+                    />
+                    Add a new user
+                  </button>
+                </div>
+
+                <div className="dashboard-client-list mt-10 container mx-auto">
+                  {listOfNonRegistered.length > 0 && (
+                    <div
+                    className={`${styles.authUSerListHeadRow} mt-10 gap-x-1`}
+                  >
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                      First Name
+                    </p>
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                      Last Name
+                    </p>
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                      User Role
+                    </p>
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                      Email
+                    </p>
                     <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
                       Date added
                     </p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">Status</p>
-                    <p className="bg-client-profile-sap-heading py-2 px-2 text-center font-bold">Edit</p>
-                    <p className="bg-client-profile-sap-heading py-2 px-2 text-center font-bold"> Delete</p>
-                </div>
-                <div className="dashboard-client-list mt-1 container mx-auto">
-                  {data
-                    ? listOfNonRegistered?.map((authuser, index) => {
-                        return (
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                      Status
+                    </p>
+                    <p className="bg-client-profile-sap-heading py-2 px-2 text-center font-bold">
+                      Edit
+                    </p>
+                    <p className="bg-client-profile-sap-heading py-2 px-2 text-center font-bold">
+                      {" "}
+                      Delete
+                    </p>
+                  </div>
+                  )}
+                  {listOfNonRegistered.length > 0 ? (
+                    listOfNonRegistered?.map((authuser, index) => {
+                      return (
+                        <>
                           <AuthUserListRow
                             authorizeduser={authuser}
                             index={index}
@@ -124,65 +151,84 @@ export default function AuthorizedUsersIndex({ data, users }) {
                             selectedEntity={selectedEntity}
                             setSelectedEntity={setSelectedEntity}
                           />
-                        );
-                      })
-                    : "No data"}
+                        </>
+                      );
+                    })
+                  ) : (
+                    <center>All authorized users are active</center>
+                  )}
                 </div>
               </div>
               {/* INACTIVE USERS */}
 
               <div className="dashboard-client-list container mx-auto bg-white p-10 mt-10">
-              <div className="flex gap-x-3">
-                <img src="/authorised_users_supervisor/inactive_users.svg" alt="manage users icon"/>
-                <h2 className="font-black ">
-                  Inactive Users
-                </h2>
-              </div>
+                <div className="flex gap-x-3">
+                  <img
+                    src="/authorised_users_supervisor/inactive_users.svg"
+                    alt="manage users icon"
+                  />
+                  <h2 className="font-black ">Inactive Users</h2>
+                </div>
                 {listOfNoActive.length === 0 ? (
                   <center>
-                    <p>No Inactive Users</p>
+                    No Inactive users
                   </center>
                 ) : (
                   <>
                     <div
                       className={`${styles.dashboardClientListHeadRow}  mt-10 gap-x-1`}
                     >
-                        <p className="bg-client-profile-sap-heading py-2 px-5">Name</p>
-                        <p className="bg-client-profile-sap-heading py-2 px-5">Last Name</p>
-                        <p className="bg-client-profile-sap-heading py-2 px-5">User Role</p>
-                        <p className="bg-client-profile-sap-heading py-2 px-5">Email</p>
+                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                        Name
+                      </p>
+                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                        Last Name
+                      </p>
+                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                        User Role
+                      </p>
+                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                        Email
+                      </p>
 
-                        <p className="bg-client-profile-sap-heading py-2 px-5">
-                          Date User added by the supervisor
-                        </p>
-                        <p className="bg-client-profile-sap-heading py-2 px-2 text-center">Edit</p>
-                        <p className="bg-client-profile-sap-heading py-2 px-2 text-center"> Delete</p>
+                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                        Date User added by the supervisor
+                      </p>
+                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center">
+                        Edit
+                      </p>
+                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center">
+                        {" "}
+                        Delete
+                      </p>
                     </div>
                     <div className="dashboard-client-list  container mx-auto ">
-                      {users
-                        ? listOfNoActive?.map((authuser, index) => {
-                            return (
-                              <UsersListRow
-                                authorizeduser={authuser}
-                                index={index}
-                                key={index}
-                                //  setShowEditAuthUserModal={setShowEditAuthUserModal}
-                                //  showEditAuthUserModal={showEditAuthUserModal}
-                                showEditInactiveUserModal={
-                                  showEditInactiveUserModal
-                                }
-                                setShowEditInactiveUserModal={
-                                  setShowEditInactiveUserModal
-                                }
-                                setSelectedUser={setSelectedUser}
-                                showDeleteUserModal={showDeleteUserModal}
-                                setShowDeleteUserModal={setShowDeleteUserModal}
-                                selectedEntity={selectedEntity}
-                                setSelectedEntity={setSelectedEntity}
-                              />
-                            );
-                          })
-                        : <center className="mt-10">No inactive Users </center>}
+                      {users ? (
+                        listOfNoActive?.map((authuser, index) => {
+                          return (
+                            <UsersListRow
+                              authorizeduser={authuser}
+                              index={index}
+                              key={index}
+                              //  setShowEditAuthUserModal={setShowEditAuthUserModal}
+                              //  showEditAuthUserModal={showEditAuthUserModal}
+                              showEditInactiveUserModal={
+                                showEditInactiveUserModal
+                              }
+                              setShowEditInactiveUserModal={
+                                setShowEditInactiveUserModal
+                              }
+                              setSelectedUser={setSelectedUser}
+                              showDeleteUserModal={showDeleteUserModal}
+                              setShowDeleteUserModal={setShowDeleteUserModal}
+                              selectedEntity={selectedEntity}
+                              setSelectedEntity={setSelectedEntity}
+                            />
+                          );
+                        })
+                      ) : (
+                        <center className="mt-10">No inactive Users </center>
+                      )}
                     </div>
                   </>
                 )}
@@ -190,7 +236,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
             </div>
           </section>
         </main>
-        { showModal && (
+        {showModal && (
           <AddUserModal
             setShowModal={setShowModal}
             showModal={showModal}

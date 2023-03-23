@@ -15,8 +15,8 @@
     gap: 0.25rem
 } 
 .formHeadTitlesSupervisor{
-    grid-template-columns:  33% 10% 13% 12% 10% 10%;
-    gap: 2%;
+    grid-template-columns:  3.5fr 1fr 1fr 1fr 1.3fr 1.3fr;
+   
 } 
 .formRowsContainerDesFormLHCW{
     grid-template-columns: 25px 25% 13%;  

@@ -40,16 +40,17 @@ const  IssuesFoundModal = ({ issueFounded, setIssueFounded, setShowIssuesFoundMo
         <>
       <ToastContainer autoClose={2000} />
             <div className="modal">
-        <div className="bg-yellow relative mt-8 max-w-sm mx-auto p-10 rounded">
+        <div className="bg-white border-yellow relative mt-8 max-w-sm mx-auto p-10 rounded">
         <button
                     className="absolute  top-0 right-0 "
                     onClick={closeModal}
                    >
-                   <img src="/close-window-icon.svg" className="rounded-tr" alt="" width="20"/>
+                   <img src="/edit_user/close_modal.svg" className="rounded-tr" alt="" width="20"/>
                   </button>
           <div className="grid grid-cols-1 gap-6">
           <div className="flex ml-2.5 items-end">
-            <img src="/msa_form/Issues_found_popup_icon.svg" className="mr-3" alt="" width="50"/>
+          <img src="/edit_user/user_info.svg" className="mr-3" alt="user information icon" />
+
             <h2 className="font-black">Issues Found</h2>
             </div>
             <label className="block">

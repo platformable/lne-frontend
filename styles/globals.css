@@ -93,6 +93,9 @@ h6 {
   --alertGreen: #A1F9B4;
 
   --bg-blue-cards-btn:#5AC0FF;
+  
+  --table-row-lighter: #F8FBFF;
+  --table-row-darker: #F0F6FE;
 }
 
 .lne-text-white {
@@ -345,6 +348,13 @@ input[type="number"] {
   background-color: var(--form-light-violet);
 }
 
+/* TABLE */
+.bg-row-light {
+  background-color: var(--table-row-lighter);
+}
+.bg-row-dark {
+  background-color: var(--table-row-darker);
+}
 
 /* BORDERS */
 .border-black {
