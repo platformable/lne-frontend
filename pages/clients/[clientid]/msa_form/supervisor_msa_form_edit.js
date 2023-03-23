@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Layout from "../../../../components/Layout";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Styles from "../../../../styles/ServiceAP.module.css";
@@ -10,13 +10,16 @@ import RowMsaFormSupervisor from "../../../../components/RowMsaFormSupervisor";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 
-import checkUpdateicon from "../../../../public/check-save-and-finish.svg"
+import checkUpdateicon from "../../../../public/check-save-and-finish.svg";
 import IssuesFoundModal from "../../../../components/IssuesFoundModal";
-import BackButton from '../../../../components/BackButton'
-import BackToDashboardButton from '../../../../components/BackToDashboardButton'
+import BackButton from "../../../../components/BackButton";
+import BackToDashboardButton from "../../../../components/BackToDashboardButton";
+import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
+import SubHeader from "../../../../components/SubHeader";
 
 const EditSupervisorMSAFormPage = ({ data }) => {
   const { user, error, isLoading } = useUser();
+  console.log("server data",data)
   const router = useRouter();
   const [clientData, setClientData] = useState({
     dateFormReviewed: new Date(),
@@ -41,10 +44,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].airsintakeformscan === "0" || data[0].airsintakeformscan === null
         ? false
         : true,
-    AIRSIntakeFormReviewed:data[0]?.airsintakeformreviewed==="1" ? true : false,
-    AIRSIntakeFormIssues:"",
-    AIRSIntakeFormUploadDate:data[0].airsintakeformuploaddate==="" ||data[0].airsintakeformuploaddate===null
-    ?data[0].airsintakeformdate:data[0].airsintakeformuploaddate,
+    AIRSIntakeFormReviewed:
+      data[0]?.airsintakeformreviewed === "1" ? true : false,
+    AIRSIntakeFormIssues: "",
+    AIRSIntakeFormUploadDate:
+      data[0].airsintakeformuploaddate === "" ||
+      data[0].airsintakeformuploaddate === null
+        ? data[0].airsintakeformdate
+        : data[0].airsintakeformuploaddate,
 
     ComprehensiveRiskBehaviorAssessment:
       data[0].comprehensiveriskbehaviorassessment === "0" ||
@@ -63,9 +70,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].comprehensiveriskbehaviorassessmentscan === null
         ? false
         : true,
-    ComprehensiveRiskBehaviorAssessmentIssues:"",
-    ComprehensiveRiskBehaviorAssessmentReviewed:data[0]?.comprehensiveriskbehaviorassessmentreviewed==="1" ? true : false,
-    ComprehensiveRiskBehaviorAssessmentUploadDate:data[0].comprehensiveriskbehaviorassessmentdate || null,
+    ComprehensiveRiskBehaviorAssessmentIssues: "",
+    ComprehensiveRiskBehaviorAssessmentReviewed:
+      data[0]?.comprehensiveriskbehaviorassessmentreviewed === "1"
+        ? true
+        : false,
+    ComprehensiveRiskBehaviorAssessmentUploadDate:
+      data[0].comprehensiveriskbehaviorassessmentdate || null,
 
     ServiceActionPlan:
       data[0].serviceactionplan === "0" || data[0].serviceactionplan === null
@@ -78,18 +89,25 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].serviceactionplanscan === null
         ? false
         : true,
-    ServiceActionPlanUploadDate: data[0].serviceactionplanuploaddate === "" || data[0].serviceactionplanuploaddate === null ?data[0].serviceactionplandate:
-    data[0].serviceactionplanuploaddate,
-    ServiceActionPlanReviewed:data[0]?.serviceactionplanreviewed==="1" ? true : false,
-    ServiceActionPlanIssues:"",
+    ServiceActionPlanUploadDate:
+      data[0].serviceactionplanuploaddate === "" ||
+      data[0].serviceactionplanuploaddate === null
+        ? data[0].serviceactionplandate
+        : data[0].serviceactionplanuploaddate,
+    ServiceActionPlanReviewed:
+      data[0]?.serviceactionplanreviewed === "1" ? true : false,
+    ServiceActionPlanIssues: "",
 
     ProgressNote:
       data[0].progressnoteid === "" || data[0].progressnoteid === null
         ? false
         : true,
     ProgressNoteDate: data[0].progressnotedate,
-    ProgressNoteUploadDate: data[0].progressnoteuploaddate=== "" ||data[0].progressnoteuploaddate=== null ? data[0].progressnotedate:
-    data[0].progressnoteuploaddate,
+    ProgressNoteUploadDate:
+      data[0].progressnoteuploaddate === "" ||
+      data[0].progressnoteuploaddate === null
+        ? data[0].progressnotedate
+        : data[0].progressnoteuploaddate,
     ProgressNoteScan:
       data[0].progressnotescan || data[0].progressnotescan === null
         ? false
@@ -98,16 +116,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].progressnotepdf || data[0].progressnotepdf === null
         ? false
         : true,
-    ProgressNoteReviewed:data[0]?.progressnotereviewed==="1" ? true : false,
-    ProgressNoteIssues:"",
+    ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
+    ProgressNoteIssues: "",
 
     StatusChangesForm:
       data[0].statuschangesform === "0" || data[0].statuschangesform === null
         ? false
         : true,
     StatusChangesFormDate: data[0].statuschangesformdate,
-    StatusChangesFormUploadDate: data[0].statuschangesformuploaddate==="" || data[0].statuschangesformuploaddate===null ? data[0].statuschangesformdate:
-    data[0].statuschangesformdate,
+    StatusChangesFormUploadDate:
+      data[0].statuschangesformuploaddate === "" ||
+      data[0].statuschangesformuploaddate === null
+        ? data[0].statuschangesformdate
+        : data[0].statuschangesformdate,
     StatusChangesFormScan:
       data[0].statuschangesformscan === "0" ||
       data[0].statuschangesformscan === null
@@ -118,9 +139,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].statuschangesformpdf === null
         ? false
         : true,
-    StatusChangesFormReviewed:data[0]?.statuschangesformreviewed==="1" ? true : false,
-    StatusChangesFormIssues:"",
-     
+    StatusChangesFormReviewed:
+      data[0]?.statuschangesformreviewed === "1" ? true : false,
+    StatusChangesFormIssues: "",
+
     ComprehensiveRiskBehaviorAssessmentUpdates:
       data[0].comprehensiveriskbehaviorassessmentupdates === "0" ||
       data[0].comprehensiveriskbehaviorassessmentupdates === null
@@ -129,8 +151,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     ComprehensiveRiskBehaviorAssessmentUpdatesDate:
       data[0].comprehensiveriskbehaviorassessmentdate,
     ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate:
-      data[0].comprehensiveriskbehaviorassessmentuploaddate === "" || data[0].comprehensiveriskbehaviorassessmentuploaddate === null?data[0].comprehensiveriskbehaviorassessmentdate:
-      data[0].comprehensiveriskbehaviorassessmentuploaddate,
+      data[0].comprehensiveriskbehaviorassessmentuploaddate === "" ||
+      data[0].comprehensiveriskbehaviorassessmentuploaddate === null
+        ? data[0].comprehensiveriskbehaviorassessmentdate
+        : data[0].comprehensiveriskbehaviorassessmentuploaddate,
     ComprehensiveRiskBehaviorAssessmentUpdatesFormScan:
       data[0].comprehensiveriskbehaviorassessmentupdatesformscan === "0" ||
       data[0].comprehensiveriskbehaviorassessmentupdatesformscan === null
@@ -141,13 +165,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].comprehensiveriskbehaviorassessmentpdf === null
         ? false
         : true,
-    ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:data[0]?.comprehensiveriskbehaviorassessmentupdatesreviewed==="1" ? true : false,
-    ComprehensiveRiskBehaviorAssessmentUpdatesIssues:"",
+    ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:
+      data[0]?.comprehensiveriskbehaviorassessmentupdatesreviewed === "1"
+        ? true
+        : false,
+    ComprehensiveRiskBehaviorAssessmentUpdatesIssues: "",
 
     M11QForm:
       data[0].m11qform === "0" || data[0].m11qform === null ? false : true,
     M11QFormDate: data[0].m11qformdate,
-    M11QFormUploadDate: data[0].m11qformuploaddate==="" || data[0].m11qformuploaddate===null?data[0].m11qformdate:data[0].m11qformuploaddate,
+    M11QFormUploadDate:
+      data[0].m11qformuploaddate === "" || data[0].m11qformuploaddate === null
+        ? data[0].m11qformdate
+        : data[0].m11qformuploaddate,
     M11QFormScan:
       data[0].m11qformscan === "0" || data[0].m11qformscan === null
         ? false
@@ -156,15 +186,19 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].m11qformpdf === "0" || data[0].m11qformpdf === null
         ? false
         : true,
-    M11QFormReviewed:data[0]?.m11qformreviewed==="1" ? true : false,
-    M11QFormIssues:"",
+    M11QFormReviewed: data[0]?.m11qformreviewed === "1" ? true : false,
+    M11QFormIssues: "",
 
     CD4VLReports:
       data[0].cd4vlreports === "0" || data[0].cd4vlreports === null
         ? false
         : true,
     CD4VLReportsDate: data[0].cd4vlreportsdate,
-    CD4VLReportsUploadDate: data[0].cd4vlreportsuploaddate==="" || data[0].cd4vlreportsuploaddate===null ?data[0].cd4vlreportsdate:data[0].cd4vlreportsuploaddate,
+    CD4VLReportsUploadDate:
+      data[0].cd4vlreportsuploaddate === "" ||
+      data[0].cd4vlreportsuploaddate === null
+        ? data[0].cd4vlreportsdate
+        : data[0].cd4vlreportsuploaddate,
     CD4VLReportsScan:
       data[0].cd4vlreportsscan === "0" || data[0].cd4vlreportsscan === null
         ? false
@@ -173,8 +207,8 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].cd4vlreportspdf === "0" || data[0].cd4vlreportspdf === null
         ? false
         : true,
-    CD4VLReportsReviewed:data[0]?.cd4vlreportsreviewed==="1" ? true : false,
-    CD4VLReportsIssues:"",
+    CD4VLReportsReviewed: data[0]?.cd4vlreportsreviewed === "1" ? true : false,
+    CD4VLReportsIssues: "",
 
     InitialTreatmentAdherenceIntake:
       data[0].initialtreatmentadherenceintake === "0" ||
@@ -184,7 +218,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     InitialTreatmentAdherenceIntakeDate:
       data[0].initialtreatmentadherenceintakedate,
     InitialTreatmentAdherenceIntakeUploadDate:
-      data[0].initialtreatmentadherenceintakeuploaddate==="" || data[0].initialtreatmentadherenceintakeuploaddate===null?data[0].initialtreatmentadherenceintakedate:data[0].initialtreatmentadherenceintakeuploaddate,
+      data[0].initialtreatmentadherenceintakeuploaddate === "" ||
+      data[0].initialtreatmentadherenceintakeuploaddate === null
+        ? data[0].initialtreatmentadherenceintakedate
+        : data[0].initialtreatmentadherenceintakeuploaddate,
     InitialTreatmentAdherenceIntakeScan:
       data[0].initialtreatmentadherenceintakescan === "0" ||
       data[0].initialtreatmentadherenceintakescan === null
@@ -195,8 +232,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].initialtreatmentadherenceintakepdf === null
         ? false
         : true,
-    InitialTreatmentAdherenceIntakeReviewed:data[0]?.initialtreatmentadherenceintakereviewed==="1" ? true : false,
-    InitialTreatmentAdherenceIntakeIssues:"",
+    InitialTreatmentAdherenceIntakeReviewed:
+      data[0]?.initialtreatmentadherenceintakereviewed === "1" ? true : false,
+    InitialTreatmentAdherenceIntakeIssues: "",
 
     TreatmentAdherenceUpdates:
       data[0].treatmentadherenceupdates === "0" ||
@@ -205,7 +243,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         : true,
     TreatmentAdherenceUpdatesDate: data[0].treatmentadherenceupdatesdate,
     TreatmentAdherenceUpdatesUploadDate:
-      data[0].treatmentadherenceupdatesuploaddate==="" || data[0].treatmentadherenceupdatesuploaddate===null ? data[0].treatmentadherenceupdatesdate:data[0].treatmentadherenceupdatesuploaddate,
+      data[0].treatmentadherenceupdatesuploaddate === "" ||
+      data[0].treatmentadherenceupdatesuploaddate === null
+        ? data[0].treatmentadherenceupdatesdate
+        : data[0].treatmentadherenceupdatesuploaddate,
     TreatmentAdherenceUpdatesScan:
       data[0].treatmentadherenceupdatesscan === "0" ||
       data[0].treatmentadherenceupdatesscan === null
@@ -216,8 +257,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].treatmentadherenceupdatespdf === null
         ? false
         : true,
-    TreatmentAdherenceUpdatesReviewed:data[0]?.treatmentadherenceupdatesreviewed==="1" ? true : false,
-    TreatmentAdherenceUpdatesIssues:"",
+    TreatmentAdherenceUpdatesReviewed:
+      data[0]?.treatmentadherenceupdatesreviewed === "1" ? true : false,
+    TreatmentAdherenceUpdatesIssues: "",
 
     AIRSCollateralInformation:
       data[0].airscollateralinformation === "0" ||
@@ -236,9 +278,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSCollateralInformationUploadDate:
-      data[0].airscollateralinformationuploaddate==="" || data[0].airscollateralinformationuploaddate===null?data[0].airscollateralinformationdate:data[0].airscollateralinformationuploaddate,
-    AIRSCollateralInformationReviewed:data[0]?.airscollateralinformationreviewed==="1" ? true : false,
-    AIRSCollateralInformationIssues:"",
+      data[0].airscollateralinformationuploaddate === "" ||
+      data[0].airscollateralinformationuploaddate === null
+        ? data[0].airscollateralinformationdate
+        : data[0].airscollateralinformationuploaddate,
+    AIRSCollateralInformationReviewed:
+      data[0]?.airscollateralinformationreviewed === "1" ? true : false,
+    AIRSCollateralInformationIssues: "",
 
     AIRSDrugRegimen:
       data[0].airsdrugregimen === "0" || data[0].airsdrugregimen === null
@@ -254,9 +300,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].airsdrugregimenscan === null
         ? false
         : true,
-    AIRSDrugRegimenUploadDate: data[0].airsdrugregimenuploaddate==="" || data[0].airsdrugregimenuploaddate===null ? data[0].airsdrugregimendate:data[0].airsdrugregimenuploaddate,
-    AIRSDrugRegimenReviewed:data[0]?.airsdrugregimenreviewed==="1" ? true : false,
-    AIRSDrugRegimenIssues:"",
+    AIRSDrugRegimenUploadDate:
+      data[0].airsdrugregimenuploaddate === "" ||
+      data[0].airsdrugregimenuploaddate === null
+        ? data[0].airsdrugregimendate
+        : data[0].airsdrugregimenuploaddate,
+    AIRSDrugRegimenReviewed:
+      data[0]?.airsdrugregimenreviewed === "1" ? true : false,
+    AIRSDrugRegimenIssues: "",
 
     AIRSFinancialInformation:
       data[0].airsfinancialinformation === "0" ||
@@ -275,9 +326,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSFinancialInformationUploadDate:
-      data[0].airsfinancialinformationuploaddate==="" || data[0].airsfinancialinformationuploaddate===null?data[0].airsfinancialinformationdate:data[0].airsfinancialinformationuploaddate,
-    AIRSFinancialInformationReviewed:data[0]?.airsfinancialinformationreviewed==="1" ? true : false,
-    AIRSFinancialInformationIssues:"",
+      data[0].airsfinancialinformationuploaddate === "" ||
+      data[0].airsfinancialinformationuploaddate === null
+        ? data[0].airsfinancialinformationdate
+        : data[0].airsfinancialinformationuploaddate,
+    AIRSFinancialInformationReviewed:
+      data[0]?.airsfinancialinformationreviewed === "1" ? true : false,
+    AIRSFinancialInformationIssues: "",
 
     AIRSHIVAIDSRiskHistory:
       data[0].airshivaidsriskhistory === "0" ||
@@ -296,9 +351,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSHIVAIDSRiskHistoryUploadDate:
-      data[0].airshivaidsriskhistoryuploaddate===""|| data[0].airshivaidsriskhistoryuploaddate===null?data[0].airshivaidsriskhistorydate:data[0].airshivaidsriskhistoryuploaddate,
-    AIRSHIVAIDSRiskHistoryReviewed:data[0]?.airshivaidsriskhistoryreviewed==="1" ? true : false,
-    AIRSHIVAIDSRiskHistoryIssues:"",
+      data[0].airshivaidsriskhistoryuploaddate === "" ||
+      data[0].airshivaidsriskhistoryuploaddate === null
+        ? data[0].airshivaidsriskhistorydate
+        : data[0].airshivaidsriskhistoryuploaddate,
+    AIRSHIVAIDSRiskHistoryReviewed:
+      data[0]?.airshivaidsriskhistoryreviewed === "1" ? true : false,
+    AIRSHIVAIDSRiskHistoryIssues: "",
 
     AIRSHIVMedicalProvider:
       data[0].airshivmedicalprovider === "0" ||
@@ -317,9 +376,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSHIVMedicalProviderUploadDate:
-      data[0].airshivmedicalprovideruploaddate ==="" || data[0].airshivmedicalprovideruploaddate ===null ?data[0].airshivmedicalproviderdate:data[0].airshivmedicalprovideruploaddate,
-    AIRSHIVMedicalProviderReviewed:data[0]?.airshivmedicalproviderreviewed==="1" ? true : false,
-    AIRSHIVMedicalProviderIssues:"",
+      data[0].airshivmedicalprovideruploaddate === "" ||
+      data[0].airshivmedicalprovideruploaddate === null
+        ? data[0].airshivmedicalproviderdate
+        : data[0].airshivmedicalprovideruploaddate,
+    AIRSHIVMedicalProviderReviewed:
+      data[0]?.airshivmedicalproviderreviewed === "1" ? true : false,
+    AIRSHIVMedicalProviderIssues: "",
 
     AIRSHIVStatusHistory:
       data[0].airshivstatushistory === "0" ||
@@ -338,9 +401,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSHIVStatusHistoryUploadDate:
-      data[0].airshivstatushistoryuploaddate ==="" || data[0].airshivstatushistoryuploaddate ===null ? data[0].airshivstatushistorydate:data[0].airshivstatushistoryuploaddate,
-    AIRSHIVStatusHistoryReviewed:data[0]?.airshivstatushistoryreviewed==="1" ? true : false,
-    AIRSHIVStatusHistoryIssues:"",
+      data[0].airshivstatushistoryuploaddate === "" ||
+      data[0].airshivstatushistoryuploaddate === null
+        ? data[0].airshivstatushistorydate
+        : data[0].airshivstatushistoryuploaddate,
+    AIRSHIVStatusHistoryReviewed:
+      data[0]?.airshivstatushistoryreviewed === "1" ? true : false,
+    AIRSHIVStatusHistoryIssues: "",
 
     AIRSHCVHistory:
       data[0].airshcvhistory === "0" || data[0].airshcvhistory === null
@@ -355,9 +422,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].airshcvhistoryscan === "0" || data[0].airshcvhistoryscan === null
         ? false
         : true,
-    AIRSHCVHistoryUploadDate: data[0].airshcvhistoryuploaddate ==="" || data[0].airshcvhistoryuploaddate ===null?data[0].airshcvhistorydate:data[0].airshcvhistoryuploaddate,
-    AIRSHCVHistoryReviewed:data[0]?.airshcvhistoryreviewed==="1" ? true : false,
-    AIRSHCVHistoryIssues:"",
+    AIRSHCVHistoryUploadDate:
+      data[0].airshcvhistoryuploaddate === "" ||
+      data[0].airshcvhistoryuploaddate === null
+        ? data[0].airshcvhistorydate
+        : data[0].airshcvhistoryuploaddate,
+    AIRSHCVHistoryReviewed:
+      data[0]?.airshcvhistoryreviewed === "1" ? true : false,
+    AIRSHCVHistoryIssues: "",
 
     AIRSHousingInformation:
       data[0].airshousinginformation === "0" ||
@@ -376,9 +448,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSHousingInformationUploadDate:
-      data[0].airshousinginformationuploaddate ==="" || data[0].airshousinginformationuploaddate ===null?data[0].airshousinginformationdate:data[0].airshousinginformationuploaddate,
-    AIRSHousingInformationReviewed:data[0]?.airshousinginformationreviewed==="1" ? true : false,
-    AIRSHousingInformationIssues:"",
+      data[0].airshousinginformationuploaddate === "" ||
+      data[0].airshousinginformationuploaddate === null
+        ? data[0].airshousinginformationdate
+        : data[0].airshousinginformationuploaddate,
+    AIRSHousingInformationReviewed:
+      data[0]?.airshousinginformationreviewed === "1" ? true : false,
+    AIRSHousingInformationIssues: "",
 
     AIRSInsuranceInformation:
       data[0].airsinsuranceinformation === "0" ||
@@ -397,9 +473,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSInsuranceInformationUploadDate:
-      data[0].airsinsuranceinformationuploaddate==="" ||data[0].airsinsuranceinformationuploaddate=== null?data[0].airsinsuranceinformationdate:data[0].airsinsuranceinformationuploaddate,
-    AIRSInsuranceInformationReviewed:data[0]?.airsinsuranceinformationreviewed==="1" ? true : false,
-    AIRSInsuranceInformationIssues:"",
+      data[0].airsinsuranceinformationuploaddate === "" ||
+      data[0].airsinsuranceinformationuploaddate === null
+        ? data[0].airsinsuranceinformationdate
+        : data[0].airsinsuranceinformationuploaddate,
+    AIRSInsuranceInformationReviewed:
+      data[0]?.airsinsuranceinformationreviewed === "1" ? true : false,
+    AIRSInsuranceInformationIssues: "",
 
     AIRSSubstanceUseHistory:
       data[0].airssubstanceusehistory === "0" ||
@@ -418,10 +498,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     AIRSSubstanceUseHistoryUploadDate:
-      data[0].airssubstanceusehistoryuploaddate==="" ||data[0].airssubstanceusehistoryuploaddate=== null
-      ?data[0].airssubstanceusehistorydate:data[0].airssubstanceusehistoryuploaddate,
-    AIRSSubstanceUseHistoryReviewed:data[0]?.airssubstanceusehistoryreviewed==="1" ? true : false,
-    AIRSSubstanceUseHistoryIssues:"",
+      data[0].airssubstanceusehistoryuploaddate === "" ||
+      data[0].airssubstanceusehistoryuploaddate === null
+        ? data[0].airssubstanceusehistorydate
+        : data[0].airssubstanceusehistoryuploaddate,
+    AIRSSubstanceUseHistoryReviewed:
+      data[0]?.airssubstanceusehistoryreviewed === "1" ? true : false,
+    AIRSSubstanceUseHistoryIssues: "",
 
     LNEClientRights:
       data[0].lneclientrights === "0" || data[0].lneclientrights === null
@@ -437,10 +520,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].lneclientrightsscan === null
         ? false
         : true,
-    LNEClientRightsUploadDate: data[0].lneclientrightsuploaddate==="" || data[0].lneclientrightsuploaddate ===null
-    ?data[0].lneclientrightsdate:data[0].lneclientrightsuploaddate,
-    LNEClientRightsReviewed:data[0]?.lneclientrightsreviewed==="1" ? true : false,
-    LNEClientRightsIssues:"",
+    LNEClientRightsUploadDate:
+      data[0].lneclientrightsuploaddate === "" ||
+      data[0].lneclientrightsuploaddate === null
+        ? data[0].lneclientrightsdate
+        : data[0].lneclientrightsuploaddate,
+    LNEClientRightsReviewed:
+      data[0]?.lneclientrightsreviewed === "1" ? true : false,
+    LNEClientRightsIssues: "",
 
     LNEClientGrievancePolicyProcedure:
       data[0].lneclientgrievancepolicyprocedure === "0" ||
@@ -460,10 +547,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     LNEClientGrievancePolicyProcedureUploadDate:
-      data[0].lneclientgrievancepolicyprocedureuploaddate==="" || data[0].lneclientgrievancepolicyprocedureuploaddate=== null
-      ?data[0].lneclientgrievancepolicyproceduredate:data[0].lneclientgrievancepolicyprocedureuploaddate,
-    LNEClientGrievancePolicyProcedureReviewed:data[0]?.lneclientgrievancepolicyprocedurereviewed==="1" ? true : false,
-    LNEClientGrievancePolicyProcedureIssues:"",
+      data[0].lneclientgrievancepolicyprocedureuploaddate === "" ||
+      data[0].lneclientgrievancepolicyprocedureuploaddate === null
+        ? data[0].lneclientgrievancepolicyproceduredate
+        : data[0].lneclientgrievancepolicyprocedureuploaddate,
+    LNEClientGrievancePolicyProcedureReviewed:
+      data[0]?.lneclientgrievancepolicyprocedurereviewed === "1" ? true : false,
+    LNEClientGrievancePolicyProcedureIssues: "",
 
     LNEProgramRules:
       data[0].lneprogramrules === "0" || data[0].lneprogramrules === null
@@ -479,10 +569,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].lneprogramrulesscan === null
         ? false
         : true,
-    LNEProgramRulesUploadDate: data[0].lneprogramrulesuploaddate==="" || data[0].lneprogramrulesuploaddate===null
-    ?data[0].lneprogramrulesdate:data[0].lneprogramrulesuploaddate,
-    LNEProgramRulesReviewed:data[0]?.lneprogramrulesreviewed==="1" ? true : false,
-    LNEProgramRulesIssues:"",
+    LNEProgramRulesUploadDate:
+      data[0].lneprogramrulesuploaddate === "" ||
+      data[0].lneprogramrulesuploaddate === null
+        ? data[0].lneprogramrulesdate
+        : data[0].lneprogramrulesuploaddate,
+    LNEProgramRulesReviewed:
+      data[0]?.lneprogramrulesreviewed === "1" ? true : false,
+    LNEProgramRulesIssues: "",
 
     LNEEmergencyContactConsent:
       data[0].lneemergencycontactconsent === "0" ||
@@ -501,10 +595,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     LNEEmergencyContactConsentUploadDate:
-      data[0].lneemergencycontactconsentuploaddate==="" ||data[0].lneemergencycontactconsentuploaddate===null
-      ?data[0].lneemergencycontactconsentdate:data[0].lneemergencycontactconsentuploaddate,
-    LNEEmergencyContactConsentReviewed:data[0]?.lneemergencycontactconsentreviewed==="1" ? true : false,
-    LNEEmergencyContactConsentIssues:"",
+      data[0].lneemergencycontactconsentuploaddate === "" ||
+      data[0].lneemergencycontactconsentuploaddate === null
+        ? data[0].lneemergencycontactconsentdate
+        : data[0].lneemergencycontactconsentuploaddate,
+    LNEEmergencyContactConsentReviewed:
+      data[0]?.lneemergencycontactconsentreviewed === "1" ? true : false,
+    LNEEmergencyContactConsentIssues: "",
 
     LNEConsentForReleaseOfConfidentialInformation:
       data[0].lneconsentforreleaseofconfidentialinformation === "0" ||
@@ -524,11 +621,15 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     LNEConsentForReleaseOfConfidentialInformationUploadDate:
-      data[0].lneconsentforreleaseofconfidentialinformationuploaddate==="" 
-      ||data[0].lneconsentforreleaseofconfidentialinformationuploaddate=== null
-      ?data[0].lneconsentforreleaseofconfidentialinformationdate:data[0].lneconsentforreleaseofconfidentialinformationuploaddate,
-    LNEConsentForReleaseOfConfidentialInformationReviewed:data[0]?.lneconsentforreleaseofconfidentialinformationreviewed==="1" ? true : false,
-    LNEConsentForReleaseOfConfidentialInformationIssues:"",
+      data[0].lneconsentforreleaseofconfidentialinformationuploaddate === "" ||
+      data[0].lneconsentforreleaseofconfidentialinformationuploaddate === null
+        ? data[0].lneconsentforreleaseofconfidentialinformationdate
+        : data[0].lneconsentforreleaseofconfidentialinformationuploaddate,
+    LNEConsentForReleaseOfConfidentialInformationReviewed:
+      data[0]?.lneconsentforreleaseofconfidentialinformationreviewed === "1"
+        ? true
+        : false,
+    LNEConsentForReleaseOfConfidentialInformationIssues: "",
 
     HIPPAConsentForm:
       data[0].hippaconsentform === "0" || data[0].hippaconsentform === null
@@ -545,10 +646,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].hippaconsentformscan === null
         ? false
         : true,
-    HIPPAConsentFormUploadDate: data[0].hippaconsentformuploaddate ==="" || data[0].hippaconsentformuploaddate===null
-    ?data[0].hippaconsentformdate:data[0].hippaconsentformuploaddate,
-    HIPPAConsentFormReviewed:data[0]?.hippaconsentformreviewed==="1" ? true : false,
-    HIPPAConsentFormIssues:"",
+    HIPPAConsentFormUploadDate:
+      data[0].hippaconsentformuploaddate === "" ||
+      data[0].hippaconsentformuploaddate === null
+        ? data[0].hippaconsentformdate
+        : data[0].hippaconsentformuploaddate,
+    HIPPAConsentFormReviewed:
+      data[0]?.hippaconsentformreviewed === "1" ? true : false,
+    HIPPAConsentFormIssues: "",
 
     NYCDOHMHNoticeOfPrivacyPractices:
       data[0].nycdohmhnoticeofprivacypractices === "0" ||
@@ -568,10 +673,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     NYCDOHMHNoticeOfPrivacyPracticesUploadDate:
-      data[0].nycdohmhnoticeofprivacypracticesuploaddate==="" ||data[0].nycdohmhnoticeofprivacypracticesuploaddate=== null
-      ?data[0].nycdohmhnoticeofprivacypracticesdate:data[0].nycdohmhnoticeofprivacypracticesuploaddate,
-    NYCDOHMHNoticeOfPrivacyPracticesReviewed:data[0]?.nycdohmhnoticeofprivacypracticesreviewed==="1" ? true : false,
-    NYCDOHMHNoticeOfPrivacyPracticesIssues:"",
+      data[0].nycdohmhnoticeofprivacypracticesuploaddate === "" ||
+      data[0].nycdohmhnoticeofprivacypracticesuploaddate === null
+        ? data[0].nycdohmhnoticeofprivacypracticesdate
+        : data[0].nycdohmhnoticeofprivacypracticesuploaddate,
+    NYCDOHMHNoticeOfPrivacyPracticesReviewed:
+      data[0]?.nycdohmhnoticeofprivacypracticesreviewed === "1" ? true : false,
+    NYCDOHMHNoticeOfPrivacyPracticesIssues: "",
 
     LinkageRetentionAdherenceForms:
       data[0].linkageretentionadherenceforms === "0" ||
@@ -591,10 +699,13 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     LinkageRetentionAdherenceFormsUploadDate:
-      data[0].linkageretentionadherenceformsuploaddate==="" || data[0].linkageretentionadherenceformsuploaddate=== null
-      ?data[0].linkageretentionadherenceformsdate:data[0].linkageretentionadherenceformsuploaddate,
-    LinkageRetentionAdherenceFormsReviewed:data[0]?.linkageretentionadherenceformsreviewed==="1" ? true : false,
-    LinkageRetentionAdherenceFormsIssues:"",
+      data[0].linkageretentionadherenceformsuploaddate === "" ||
+      data[0].linkageretentionadherenceformsuploaddate === null
+        ? data[0].linkageretentionadherenceformsdate
+        : data[0].linkageretentionadherenceformsuploaddate,
+    LinkageRetentionAdherenceFormsReviewed:
+      data[0]?.linkageretentionadherenceformsreviewed === "1" ? true : false,
+    LinkageRetentionAdherenceFormsIssues: "",
 
     InternalReferralInformation:
       data[0].internalreferralinformation === "0" ||
@@ -613,11 +724,14 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     InternalReferralInformationUploadDate:
-      data[0].internalreferralinformationuploaddate==="" ||data[0].internalreferralinformationuploaddate=== null
-      ?data[0].internalreferralinformationdate:data[0].internalreferralinformationuploaddate,
-    InternalReferralInformationReviewed:data[0]?.internalreferralinformationreviewed==="1" ? true : false,
-    InternalReferralInformationIssues:"",
-//identification
+      data[0].internalreferralinformationuploaddate === "" ||
+      data[0].internalreferralinformationuploaddate === null
+        ? data[0].internalreferralinformationdate
+        : data[0].internalreferralinformationuploaddate,
+    InternalReferralInformationReviewed:
+      data[0]?.internalreferralinformationreviewed === "1" ? true : false,
+    InternalReferralInformationIssues: "",
+    //identification
     LNEClientReferralForm:
       data[0].lneclientreferralform === "0" ||
       data[0].lneclientreferralform === null
@@ -634,14 +748,16 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].lneclientreferralformscan === null
         ? false
         : true,
-    LNEClientReferralFormReviewed:data[0]?.lneclientreferralformreviewed==="1" ? true : false,
-    LNEClientReferralFormIssues:"",
+    LNEClientReferralFormReviewed:
+      data[0]?.lneclientreferralformreviewed === "1" ? true : false,
+    LNEClientReferralFormIssues: "",
     LNEClientReferralFormUploadDate:
-      data[0].lneclientreferralformuploaddate==="" || data[0].lneclientreferralformuploaddate===null
-      ?data[0].lneclientreferralformdate: data[0].lneclientreferralformuploaddate || "",
+      data[0].lneclientreferralformuploaddate === "" ||
+      data[0].lneclientreferralformuploaddate === null
+        ? data[0].lneclientreferralformdate
+        : data[0].lneclientreferralformuploaddate || "",
 
-
-   /*  LNEHNSEligibilityForm:
+    /*  LNEHNSEligibilityForm:
       data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null
         ? false
         : true,
@@ -664,8 +780,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true, */
 
-    
-
     HNSEligibilityForm:
       data[0].hnseligibilityform === "0" || data[0].hnseligibilityform === null
         ? false
@@ -681,25 +795,33 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].hnseligibilityformscan === null
         ? false
         : true,
-    HNSEligibilityFormReviewed: data[0]?.hnseligibilityformreviewed === "0" ? false : true,
-    HNSEligibilityFormIssues:"",
-    HNSEligibilityFormUploadDate: data[0].hnseligibilityformuploaddate==="" || data[0].hnseligibilityformuploaddate===null
-    ?data[0].hnseligibilityformdate:data[0].hnseligibilityformuploaddate,
+    HNSEligibilityFormReviewed:
+      data[0]?.hnseligibilityformreviewed === "0" ? false : true,
+    HNSEligibilityFormIssues: "",
+    HNSEligibilityFormUploadDate:
+      data[0].hnseligibilityformuploaddate === "" ||
+      data[0].hnseligibilityformuploaddate === null
+        ? data[0].hnseligibilityformdate
+        : data[0].hnseligibilityformuploaddate,
 
     HNSReadinessForm:
       data[0].hnsreadinessform === "0" || data[0].hnsreadinessform === null
         ? false
         : true,
     HNSReadinessFormDate: data[0].hnsreadinessformdate,
-    HNSReadinessFormUploadDate: data[0].hnsreadinessformuploaddate==="" || data[0].hnsreadinessformuploaddate===null
-    ?data[0].hnsreadinessformdate:data[0].hnsreadinessformuploaddate,
+    HNSReadinessFormUploadDate:
+      data[0].hnsreadinessformuploaddate === "" ||
+      data[0].hnsreadinessformuploaddate === null
+        ? data[0].hnsreadinessformdate
+        : data[0].hnsreadinessformuploaddate,
     HNSReadinessFormScan:
       data[0].hnsreadinessformscan === "0" ||
       data[0].hnsreadinessformscan === null
         ? false
         : true,
-    HNSReadinessFormReviewed: data[0]?.hnsreadinessformreviewed === "0" ? false : true,
-    HNSReadinessFormIssues:"",
+    HNSReadinessFormReviewed:
+      data[0]?.hnsreadinessformreviewed === "0" ? false : true,
+    HNSReadinessFormIssues: "",
     HNSReadinessFormPDF:
       data[0].hnsreadinessformpdf === "0" ||
       data[0].hnsreadinessformpdf === null
@@ -711,8 +833,11 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     SupportGroupsDate: data[0].supportgroupsdate,
-    SupportGroupsUploadDate: data[0].supportgroupsuploaddate==="" || data[0].supportgroupsuploaddate===null
-    ?data[0].supportgroupsdate:data[0].supportgroupsuploaddate,
+    SupportGroupsUploadDate:
+      data[0].supportgroupsuploaddate === "" ||
+      data[0].supportgroupsuploaddate === null
+        ? data[0].supportgroupsdate
+        : data[0].supportgroupsuploaddate,
     SupportGroupsScan:
       data[0].supportgroupsscan === "0" || data[0].supportgroupsscan === null
         ? false
@@ -721,13 +846,16 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].supportgroupspdf === "0" || data[0].supportgroupspdf === null
         ? false
         : true,
-    SupportGroupsReviewed: data[0]?.supportgroupsreviewed === "0" ? false : true,
-    SupportGroupsIssues:"",
+    SupportGroupsReviewed:
+      data[0]?.supportgroupsreviewed === "0" ? false : true,
+    SupportGroupsIssues: "",
 
     IDGForm: data[0].idgform === "0" || data[0].idgform === null ? false : true,
     IDGFormDate: data[0].idgformdate,
-    IDGFormUploadDate: data[0].idgformuploaddate==="" || data[0].idgformuploaddate===null
-    ?data[0].idgformdate:data[0].idgformuploaddate,
+    IDGFormUploadDate:
+      data[0].idgformuploaddate === "" || data[0].idgformuploaddate === null
+        ? data[0].idgformdate
+        : data[0].idgformuploaddate,
     IDGFormScan:
       data[0].idgformscan === "0" || data[0].idgformscan === null
         ? false
@@ -735,12 +863,11 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     IDGFormPDF:
       data[0].idgformpdf === "0" || data[0].idgformpdf === null ? false : true,
     IDGFormReviewed: data[0]?.idgformreviewed === "0" ? false : true,
-    IDGFormIssues:"",
-    clientUniqueId:data[0]?.id
+    IDGFormIssues: "",
+    clientUniqueId: data[0]?.id,
   });
 
- 
-console.log("date sap", data[0])
+  console.log("date sap", data[0]);
   const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
   const [issueFounded, setIssueFounded] = useState({
     clientId: clientData.clientId,
@@ -752,9 +879,8 @@ console.log("date sap", data[0])
     form_uploadDate: "", //string to update clientData
     hcw: `${clientData.userFirstName} ${clientData.userLastName}`,
     hcwemail: data[0].clienthcwemail,
-    formDate:null
-  })
-
+    formDate: null,
+  });
 
   const notifyMessage = () => {
     toast.success("MSA Form updated!", {
@@ -762,12 +888,13 @@ console.log("date sap", data[0])
     });
   };
   const resetIssuesAndReviewCheckbox = (issueFounded) => {
-   setClientData({...clientData,[issueFounded.form_reviewed]: false, 
-    [issueFounded.form_issues]: false, 
-    [issueFounded.form_uploadDate]: issueFounded.formDate
-  })
-
-  }
+    setClientData({
+      ...clientData,
+      [issueFounded.form_reviewed]: false,
+      [issueFounded.form_issues]: false,
+      [issueFounded.form_uploadDate]: issueFounded.formDate,
+    });
+  };
 
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
@@ -777,10 +904,7 @@ console.log("date sap", data[0])
 
   const todaysDate = new Date();
 
-
-console.log(" data",data)
-
-
+  console.log(" data", data);
 
   const handleMsaform = () => {
     axios
@@ -794,7 +918,7 @@ console.log(" data",data)
         console.log(response);
         if (response.status === 200 || response.statusText === "Ok") {
           notifyMessage();
-           setTimeout(() => {
+          setTimeout(() => {
             router.push(`/supervisorDashboard`);
           }, 2300);
         }
@@ -804,136 +928,63 @@ console.log(" data",data)
       });
   };
 
-
   return (
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-        <div className="container mx-auto">
-          <h3 className="font-black text-center my-5">
-            Supervisor Edit MSA FORM
-          </h3>
-        </div>
+        <SubHeader pageTitle={"Edit MSA form"} />
 
-        <main className="container mx-auto">
-         
-          <div className="flex items-center">
-          <div className="flex gap-x-5">
-         
-        <BackButton />
-        <BackToDashboardButton/>
-        </div>
-              </div>
-          <section id="info" className="my-5">
-            <div className="">
-              <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
-                Info
-              </h3>
-              <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
-              >
-                <div className="service-action-plan-page-info-box flex items-end md:mb-1 my-5">
-                  <div className="flex items-center mr-5"> 
-                    <img src="/msa_form/calendar_black_icon.svg" width="24" />
-                    <h3 className="font-black ml-1">Date</h3>
-                  </div>  
-                  <p>{todaysDate.toLocaleDateString()}</p>
-                </div>
-
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="flex gap-x-2 mb-1 items-end">
-                      <img src="/client-icon.svg" width="24" />
-                      <h3 className="font-black ">Client</h3>
-                    </div>
-                    <label className="block">
-                      <span className="">Client Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
-                        disabled
-                      />
-                    </label>
-                   
-                    <label className="block">
-                      <span className="">Client ID</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={data[0].clientid}
-                        disabled
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="service-action-plan-page-info-box">
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                  <div className="flex gap-x-2 mb-1 items-end">
-                    <img src="/msa_form/LNEuser.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
-                  </div>
-                    <label className="block">
-                      <span className="">First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userFirstName}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userLastName}
-                        disabled
-                      />
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <h3 className="font-black mt-5 mb-2 px-2 text-dark-blue">
-            Indicate which of the following forms you have uploaded to the
-            client&apos;s Dropbox
-          </h3>
+        <section className="shadow-inner pt-10">
           
-          <section
-            id="form"
-            className={`relative border-dark-blue rounded-xl mb-5`}
-          >
+
+        
+        <div className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
+        <ClientInfoTopHeader
+              data={data}
+              clientData={clientData}
+              setClientData={setClientData}
+            />
+          
+          <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
+              <div className="flex gap-x-3 items-center">
+                <img
+                  src="/msa/forms_uploaded.svg"
+                  alt="Services provided icon"
+                />
+                <h3 className="font-black text-3xl">Indicate which of the following forms you have uploaded to the
+            client&apos;s Dropbox</h3>
+              </div>
             {/* {TABLE HEAD} */}
             {/* <div className={`${MSAStyles.line}`}></div> */}
             <div
               id="form-head"
-              className={`${MSAStyles.formHeadTitlesSupervisor} grid gap-5 justify-center items-end rounded-tl-lg rounded-tr-lg py-1 mx-1`}
+              className={`${MSAStyles.formHeadTitlesSupervisor} grid gap-1 items-end mt-10 rounded-tl-lg rounded-tr-lg py-1`}
             >
-              <div></div>
-              <p className="text-center">Date added</p>
-              <p className="text-center">Dropbox Folder</p>
-              <p className="text-center flex items-center justify-center">
-                <img src="/msa_form/calendar_blue_icon.svg" className="mr-1"/>
-                Date last updated</p>
 
-                <p className="text-center flex items-center justify-center px-3">
-                <img src="/msa_form/supervisor_reviewed_icon.svg" className="self-end"/>  
-                  Supervisor has reviewed
-                  </p>
+              <div className="py-3 flex justify-start items-center bg-client-profile-sap-heading">
+              <p className="  px-3 font-bold">Form</p>
+              </div>
+              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="   font-bold">Date added</p>
+              </div>
+              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="  font-bold text-center">Dropbox Folder</p>
+              </div>
+              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="  text-center font-bold">Date last updated</p>
+              </div>
+              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="  text-center font-bold">Supervisor has reviewed</p>
+              </div>
+              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="  text-center font-bold">Issues found</p>
+              </div>
 
-                  <p className="text-center flex items-center justify-center">
-                    <img src="/msa_form/issues_found_icon.svg" className="mr-1 self-end"/>  
-                     Issues found
-                  </p>
-              
+
             </div>
             {/* {TABLE HEAD} */}
-
-
+            <div className="table-body grid gap-y-1 ">
+              
             <RowMsaFormSupervisor
               fieldName={"AIRS Intake Form"}
               form={clientData.AIRSIntakeForm}
@@ -949,17 +1000,20 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
+              bgColor={"msa-table-light-light-blue-bg"}
             />
 
-          
             <RowMsaFormSupervisor
               fieldName={"Comprehensive Behavioral Risk Assessment"}
               form={clientData.ComprehensiveRiskBehaviorAssessment}
               formDate={clientData.ComprehensiveRiskBehaviorAssessmentDate}
-              formUploadDate={clientData.ComprehensiveRiskBehaviorAssessmentUploadDate}
+              formUploadDate={
+                clientData.ComprehensiveRiskBehaviorAssessmentUploadDate
+              }
               formPDF={clientData.ComprehensiveRiskBehaviorAssessmentPDF}
-              formReviewed={clientData.ComprehensiveRiskBehaviorAssessmentReviewed}
+              formReviewed={
+                clientData.ComprehensiveRiskBehaviorAssessmentReviewed
+              }
               formIssues={clientData.ComprehensiveRiskBehaviorAssessmentIssues}
               formString={"ComprehensiveRiskBehaviorAssessment"}
               folder_url={data[0].cbra_folder_url}
@@ -968,9 +1022,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-            
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"Service Action Plan"}
               form={clientData.ServiceActionPlan}
@@ -986,9 +1040,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"Progress Note"}
               form={clientData.ProgressNote}
@@ -1004,10 +1058,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
 
-          
             <RowMsaFormSupervisor
               fieldName={"Status Changes/Closure Forms"}
               form={clientData.StatusChangesForm}
@@ -1023,17 +1076,25 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
 
             <RowMsaFormSupervisor
               fieldName={"Comprehensive Behavioral Risk Assessment Updates"}
               form={clientData.ComprehensiveRiskBehaviorAssessmentUpdates}
-              formDate={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate}
-              formUploadDate={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate}
+              formDate={
+                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate
+              }
+              formUploadDate={
+                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate
+              }
               formPDF={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF}
-              formReviewed={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed}
-              formIssues={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesIssues}
+              formReviewed={
+                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed
+              }
+              formIssues={
+                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesIssues
+              }
               formString={"ComprehensiveRiskBehaviorAssessmentUpdates"}
               folder_url={data[0].cbra_folder_url}
               dependency_folder_url={data[0].action_plans_folder_url}
@@ -1041,9 +1102,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"M11Q"}
               form={clientData.M11QForm}
@@ -1059,8 +1120,8 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
 
             <RowMsaFormSupervisor
               fieldName={"CD4/VL Check Reports"}
@@ -1077,14 +1138,16 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"Initial Treatment Adherence Intake"}
               form={clientData.InitialTreatmentAdherenceIntake}
               formDate={clientData.InitialTreatmentAdherenceIntakeDate}
-              formUploadDate={clientData.InitialTreatmentAdherenceIntakeUploadDate}
+              formUploadDate={
+                clientData.InitialTreatmentAdherenceIntakeUploadDate
+              }
               formPDF={clientData.InitialTreatmentAdherenceIntakePDF}
               formReviewed={clientData.InitialTreatmentAdherenceIntakeReviewed}
               formIssues={clientData.InitialTreatmentAdherenceIntakeIssues}
@@ -1095,9 +1158,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"Treatment Adherence Updates"}
               form={clientData.TreatmentAdherenceUpdates}
@@ -1113,9 +1176,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS Collateral Information"}
               form={clientData.AIRSCollateralInformation}
@@ -1131,9 +1194,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS Drug Regimen History"}
               form={clientData.AIRSDrugRegimen}
@@ -1149,8 +1212,8 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
 
             <RowMsaFormSupervisor
               fieldName={"AIRS Financial Information"}
@@ -1167,9 +1230,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'}
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS HIV AIDS Risk History"}
               form={clientData.AIRSHIVAIDSRiskHistory}
@@ -1185,9 +1248,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS HIV Medical Provider History"}
               form={clientData.AIRSHIVMedicalProvider}
@@ -1203,9 +1266,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS HIV Status History"}
               form={clientData.AIRSHIVStatusHistory}
@@ -1221,9 +1284,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-           
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS HCV History"}
               form={clientData.AIRSHCVHistory}
@@ -1239,10 +1302,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
 
-            
             <RowMsaFormSupervisor
               fieldName={"AIRS Housing Information"}
               form={clientData.AIRSHousingInformation}
@@ -1258,9 +1320,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS Insurance Information"}
               form={clientData.AIRSInsuranceInformation}
@@ -1276,9 +1338,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-           
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"AIRS Substance Use History"}
               form={clientData.AIRSSubstanceUseHistory}
@@ -1294,9 +1356,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-blue'} 
-              />
-            
+              bgColor={"msa-table-light-light-blue-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"LNE Client Rights"}
               form={clientData.LNEClientRights}
@@ -1312,16 +1374,20 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-            
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"LNE Client Grievance Policy & Procedure"}
               form={clientData.LNEClientGrievancePolicyProcedure}
               formDate={clientData.LNEClientGrievancePolicyProcedureDate}
-              formUploadDate={clientData.LNEClientGrievancePolicyProcedureUploadDate}
+              formUploadDate={
+                clientData.LNEClientGrievancePolicyProcedureUploadDate
+              }
               formPDF={clientData.LNEClientGrievancePolicyProcedurePDF}
-              formReviewed={clientData.LNEClientGrievancePolicyProcedureReviewed}
+              formReviewed={
+                clientData.LNEClientGrievancePolicyProcedureReviewed
+              }
               formIssues={clientData.LNEClientGrievancePolicyProcedureIssues}
               formString={"LNEClientGrievancePolicyProcedure"}
               folder_url={data[0].consent_folder_url}
@@ -1330,9 +1396,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-            
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"LNE Program Rules"}
               form={clientData.LNEProgramRules}
@@ -1348,9 +1414,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-           
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"LNE Emergency Contact Consent"}
               form={clientData.LNEEmergencyContactConsent}
@@ -1366,17 +1432,27 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-           
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"LNE Consent for Release of Confidential Information"}
               form={clientData.LNEConsentForReleaseOfConfidentialInformation}
-              formDate={clientData.LNEConsentForReleaseOfConfidentialInformationDate}
-              formUploadDate={clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate}
-              formPDF={clientData.LNEConsentForReleaseOfConfidentialInformationPDF}
-              formReviewed={clientData.LNEConsentForReleaseOfConfidentialInformationReviewed}
-              formIssues={clientData.LNEConsentForReleaseOfConfidentialInformationIssues}
+              formDate={
+                clientData.LNEConsentForReleaseOfConfidentialInformationDate
+              }
+              formUploadDate={
+                clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate
+              }
+              formPDF={
+                clientData.LNEConsentForReleaseOfConfidentialInformationPDF
+              }
+              formReviewed={
+                clientData.LNEConsentForReleaseOfConfidentialInformationReviewed
+              }
+              formIssues={
+                clientData.LNEConsentForReleaseOfConfidentialInformationIssues
+              }
               formString={"LNEConsentForReleaseOfConfidentialInformation"}
               folder_url={data[0].consent_folder_url}
               dependency_folder_url={data[0].consent_folder_url}
@@ -1384,9 +1460,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-            
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"HIPAA Consent Form (OCA Form 960)"}
               form={clientData.HIPPAConsentForm}
@@ -1402,14 +1478,18 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-           
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
-              fieldName={"NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt"}
+              fieldName={
+                "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt"
+              }
               form={clientData.NYCDOHMHNoticeOfPrivacyPractices}
               formDate={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate}
-              formUploadDate={clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate}
+              formUploadDate={
+                clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate
+              }
               formPDF={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF}
               formReviewed={clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed}
               formIssues={clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues}
@@ -1420,14 +1500,16 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-green'} 
-              />
-            
+              bgColor={"msa-table-light-light-green-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"Linkage, Retention, & Adherence Forms"}
               form={clientData.LinkageRetentionAdherenceForms}
               formDate={clientData.LinkageRetentionAdherenceFormsDate}
-              formUploadDate={clientData.LinkageRetentionAdherenceFormsUploadDate}
+              formUploadDate={
+                clientData.LinkageRetentionAdherenceFormsUploadDate
+              }
               formPDF={clientData.LinkageRetentionAdherenceFormsPDF}
               formReviewed={clientData.LinkageRetentionAdherenceFormsReviewed}
               formIssues={clientData.LinkageRetentionAdherenceFormsIssues}
@@ -1438,9 +1520,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-pink'} 
-              />
-            
+              bgColor={"msa-table-light-light-pink-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"LNE Referral Information"}
               form={clientData.InternalReferralInformation}
@@ -1456,9 +1538,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-pink'} 
-              />
-           
+              bgColor={"msa-table-light-light-pink-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"Identification"}
               form={clientData.LNEClientReferralForm}
@@ -1474,9 +1556,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-pink'} 
-              />
-            
+              bgColor={"msa-table-light-light-pink-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"LNE HNS Eligibility Form"}
               form={clientData.HNSEligibilityForm}
@@ -1492,9 +1574,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-purple'} 
-              />
-            
+              bgColor={"msa-table-light-pink-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"HNS Readiness Assessment"}
               form={clientData.HNSReadinessForm}
@@ -1510,9 +1592,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-purple'} 
-              />
-           
+              bgColor={"msa-table-light-pink-bg"}
+            />
+
             <RowMsaFormSupervisor
               fieldName={"Support Groups"}
               form={clientData.SupportGroups}
@@ -1528,10 +1610,9 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-purple'} 
-              />
+              bgColor={"msa-table-light-pink-bg"}
+            />
 
-           
             <RowMsaFormSupervisor
               fieldName={"IDG"}
               form={clientData.IDGForm}
@@ -1547,32 +1628,38 @@ console.log(" data",data)
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
               setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={'bg-light-purple'} 
-              />
-          </section>
+              bgColor={"msa-table-light-pink-bg"}
+            />
 
-          <section id="save" className="my-5">
+            </div>
+          </section>
+        </div>
+          
+
+        <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
               <button
-                className="btn-darkBlue hover:btn-blue px-5 py-1 rounded text-white flex items-center justify-between mr-5"
+                className="btn-yellow px-5 py-3 flex items-center font-medium gap-3 px-5 rounded shadow inline-block"
                 onClick={() => handleMsaform()}
               >
-                <Image src={checkUpdateicon} />
-                <p className="ml-2">Save and Update</p>
+                <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>
+                Save and Update
               </button>
             </div>
           </section>
-        </main>
+        </section>
       </Layout>
-      {showIssuesFoundModal && <IssuesFoundModal 
-      clientId={clientData.clientId} 
-      HCW={clientData.userFirstName +" "+ clientData.userLastName}
-      issueFounded={issueFounded}
-      setIssueFounded={setIssueFounded}
-      showIssuesFoundModal={showIssuesFoundModal}
-      setShowIssuesFoundModal={setShowIssuesFoundModal}
-      resetIssuesAndReviewCheckbox={resetIssuesAndReviewCheckbox}
-      />}
+      {!showIssuesFoundModal && (
+        <IssuesFoundModal
+          clientId={clientData.clientId}
+          HCW={clientData.userFirstName + " " + clientData.userLastName}
+          issueFounded={issueFounded}
+          setIssueFounded={setIssueFounded}
+          showIssuesFoundModal={showIssuesFoundModal}
+          setShowIssuesFoundModal={setShowIssuesFoundModal}
+          resetIssuesAndReviewCheckbox={resetIssuesAndReviewCheckbox}
+        />
+      )}
     </>
   );
 };

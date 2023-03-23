@@ -53,24 +53,20 @@ export default function EditInactiveUserModal({
     <>
       <div className="modal">
         <div className="mt-8 relative max-w-sm mx-auto bg-white p-10 rounded-md">
-          <div
-            className="absolute  top-1 right-0 ty-1 mx-1 bg-yellow"
-            onClick={() => setShowEditInactiveUserModal(!showEditInactiveUserModal)}
-          >
-            <button className="p-1 py-0 ">x</button>
-          </div>
+        <button
+                    className="absolute  top-0 right-0 "
+                    onClick={() => setShowEditInactiveUserModal(prev => !prev)}
+
+                   >
+                   <img src="/edit_user/close_modal.svg" className="rounded-tr" alt="" width="20"/>
+                  </button>
           <div className="grid grid-cols-1 gap-6">
-            <div className="flex ml-2.5 items-end">
-              <img
-                src="/edit-user-icon.svg"
-                className="mr-3"
-                alt=""
-                width="50"
-              />
+            <div className="flex items-center">
+            <img src="/edit_user/user_info.svg" className="mr-3" alt="user information icon" />
               <h2 className="font-black">Edit User</h2>
             </div>
             <label className="block">
-              <span className="ml-1 font-semibold">First name</span>
+              <span className=" font-semibold">First name</span>
               <input
                 type="text"
                 className="mt-1 block w-full bg-primary-light-blue   p-2 pl-3 shadow "
@@ -82,7 +78,7 @@ export default function EditInactiveUserModal({
               />
             </label>
             <label className="block">
-              <span className="ml-1 font-semibold">Last name</span>
+              <span className=" font-semibold">Last name</span>
               <input
                 type="text"
                 className="mt-1 block w-full bg-primary-light-blue   p-2 pl-3 shadow "
@@ -94,10 +90,10 @@ export default function EditInactiveUserModal({
               />
             </label>
             <label className="block">
-              <span className="ml-1 font-semibold">Email address</span>
+              <span className=" font-semibold">Email address</span>
               <input
                 type="email"
-                className="mt-1 block w-full bg-primary-light-blue   p-2 pl-3 shadow "
+                className="mt-1 block w-full bg-primary-light-blue mt-1  p-2 pl-3 shadow "
                 placeholder="john@example.com"
                 value={userData.useremail}
                 onChange={(e) =>
@@ -105,21 +101,15 @@ export default function EditInactiveUserModal({
                 }
               />
             </label>
-            {/*  <label className="block">
-            <span className="text-gray-700">When is your event?</span>
-            <input
-              type="date"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
-          </label> */}
+            
             <label className="block">
-              <span className="ml-1 font-semibold">User role</span>
+              <span className=" font-semibold">User role</span>
               <select
                 value={userData.userrole}
                 onChange={(e) =>
                   setUserData({ ...userData, userrole: e.target.value })
                 }
-                className="select-add-edit-supervisor block w-full mt-1 text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="select-add-edit-supervisor block w-full mt-1 rounded-md p-2 border-grey shadow-sm "
               >
                 <option>HCW</option>
                 <option>Supervisor</option>
@@ -128,7 +118,7 @@ export default function EditInactiveUserModal({
             </label>
 
             <label className="block">
-              <span className="ml-1 font-semibold">Active / Not active</span>
+              <span className=" font-semibold">Active / Not active</span>
               <select
                 value={userData.useractivestatus || userData.isactive}
                 onChange={(e) =>
@@ -137,7 +127,7 @@ export default function EditInactiveUserModal({
                     useractivestatus: e.target.selectedOptions[0].value,
                   })
                 }
-                className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="select-add-edit-supervisor block w-full mt-5 rounded-md p-2 border-grey shadow-sm "
               >
                 <option value="Active">Active</option>
                 <option value="No Active">Not Active</option>
@@ -153,7 +143,7 @@ export default function EditInactiveUserModal({
                       setSaving(!saving);
                     }}
                   >
-                    {saving ? <Loader /> : <center className="">Update</center>}
+                    {saving ? <Loader /> : <center className="text-lg">Save</center>}
                   </button>
                 </div>
               </div>

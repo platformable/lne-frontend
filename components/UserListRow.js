@@ -25,33 +25,33 @@ export default function UserListRow({setSelectedEntity,authorizeduser,setSelecte
     <> 
 
     <div
-                className={`${styles.dashboardActiveUsersListHeadRow} ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}  py-3 px-5 bg-white`}
+                className={`${styles.dashboardActiveUsersListHeadRow} ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}  py-3 bg-white`}
               >
-                <div className="head-row flex justify-start items-center ">
+                <div className="head-row flex px-2 justify-start items-center ">
                   <p className="text-left">{name}</p>
                 </div>
-                <div className="head-row flex justify-start items-center ">
+                <div className="head-row flex px-2 justify-start items-center ">
                   <p className="text-left">{lastname}</p>
                 </div>
-                 <div className="head-row flex justify-start items-center">
+                 <div className="head-row flex px-2 justify-start items-center">
                   <p className="text-left">{userrole}</p>
                 </div>  
-                <div className="head-row flex justify-start items-center ">
+                <div className="head-row flex px-2 justify-start items-center ">
                   <p className="text-left">{useremail ? useremail : "-"}</p>
                 </div>
-                <div className="head-row flex justify-center items-center">
+                <div className="head-row flex px-2 justify-center items-center">
                   <p className="text-left">{dateaccountactivated?dateaccountactivated.split('T')[0]:"-"}</p>
                 </div>
-                <div className="head-row flex justify-center items-center">
+                <div className="head-row flex px-2 justify-center items-center">
                   <p className="text-left">{datelastlogin?datelastlogin.split('T')[0]:"-"}</p>
                 </div>
-                <div className="head-row flex justify-center items-center">
+                <div className="head-row flex px-2 justify-center items-center">
                   <p className="text-left flex cursor-pointer" 
                    onClick={()=>handleSelectedUser(authorizeduser, 'EDIT')}>
                     <Image src={editIcon} alt="edit-icon"></Image>
                   </p>
                 </div>
-                <div className="head-row flex justify-center items-center">
+                <div className="head-row flex px-2 justify-center items-center">
                   <p className="text-left flex cursor-pointer" onClick={()=>handleSelectedUser(authorizeduser, 'DELETE')}>
                   <Image src={deleteIcon} alt="delete-icon"></Image>
                   </p>

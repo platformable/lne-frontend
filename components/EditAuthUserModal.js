@@ -38,15 +38,15 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
       <div className="modal">
         <div className="mt-8 relative max-w-sm mx-auto bg-white p-10 rounded-md">
         <button
-                    className="absolute  top-0 right-0 py-2 px-3 "
-                    onClick={() => setShowModal(!showModal)}
+                    className="absolute  top-0 right-0 "
+                    onClick={() => setShowEditAuthUserModal(prev => !prev)}
+
                    >
-                   {/* <img src="/close-window-icon.svg" className="rounded-tr" alt="" width="20"/> */}
-                  x
+                   <img src="/edit_user/close_modal.svg" className="rounded-tr" alt="" width="20"/>
                   </button>
           <div className="grid grid-cols-1 gap-6">
-            <div className="flex ml-2.5 items-end">
-              <img src="/authorised_users_supervisor/user_information.svg" className="mr-3" alt="" width="50" />
+            <div className="flex items-center">
+              <img src="/edit_user/user_info.svg" className="mr-3" alt="user information icon"  />
               <h2 className="font-bold">Edit User Information</h2>
             </div>
             <label className="block">

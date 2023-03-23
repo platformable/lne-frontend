@@ -560,7 +560,7 @@ const EditMsaFormPage = ({ data }) => {
         </div>
       </div>
         
-        <section className="container mx-auto mt-10 border-blue grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-lg ">
+        <section className="container mx-auto mt-10 shadow-inner border-blue grid divide-y-2 divide-[#5AC0FF] shadow-md  border-blue rounded-lg ">
           {/* <div className="flex gap-x-5">
           <Link href={`/clients/${clientData.clientId}/profile/service_action_plans/`}>
                  <div className="">
@@ -600,18 +600,16 @@ const EditMsaFormPage = ({ data }) => {
           </div> */}
 
                
-<section id="info" className="bg-white">
           
              <ClientInfoTopHeader
               data={data}
               clientData={clientData}
               setClientData={setClientData}
             />
-          </section>
-          <section className="p-10 pt-7 bg-white divide- goals" id="goals">
+          <section className="p-10 pt-7 bg-white rounded-b-md goals" id="goals">
               <div className="flex gap-3 items-center mb-10">
                 <img
-                  src="/progress_notes/client_goals.svg"
+                  src="/msa/forms_uploaded.svg"
                   alt="Client goals icon"
                 />
                 <h3 className="font-black text-3xl">Indicate which of the following forms you have uploaded to the client’s Dropbox</h3>
@@ -640,104 +638,104 @@ const EditMsaFormPage = ({ data }) => {
                 {/* what about Original Version Scanned */}
             </div>
             {/* {TABLE HEAD} */}
-            <RowMsaFormDES fieldName="AIRS Intake Form" clientData={clientData} setClientData={setClientData} formString="AIRSIntakeForm" data={data} folderName={data[0].intake_folder_url}/>
+            <RowMsaFormDES fieldName="AIRS Intake Form" clientData={clientData} setClientData={setClientData} formString="AIRSIntakeForm" data={data} folderName={data[0].intake_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
             
-            <RowMsaFormDES fieldName="Comprehensive Risk Behavior Assessment" clientData={clientData} setClientData={setClientData} formString="ComprehensiveRiskBehaviorAssessment" data={data} folderName={data[0].cbra_folder_url}/>
+            <RowMsaFormDES fieldName="Comprehensive Risk Behavior Assessment" clientData={clientData} setClientData={setClientData} formString="ComprehensiveRiskBehaviorAssessment" data={data} folderName={data[0].cbra_folder_url} bgColor="msa-table-light-light-green-bg"/>
 
 
-            <RowMsaFormDES fieldName="LNE HNS Eligibility Form" clientData={clientData} setClientData={setClientData} formString="HNSEligibilityForm" data={data} folderName={data[0].intake_folder_url} />
+            <RowMsaFormDES fieldName="LNE HNS Eligibility Form" clientData={clientData} setClientData={setClientData} formString="HNSEligibilityForm" data={data} folderName={data[0].intake_folder_url} bgColor="msa-table-light-light-blue-bg" />
 
 
-            <RowMsaFormDES fieldName="Service Action Plan" clientData={clientData} setClientData={setClientData} formString="ServiceActionPlan" data={data} folderName={data[0].action_plans_folder_url}/>
+            <RowMsaFormDES fieldName="Service Action Plan" clientData={clientData} setClientData={setClientData} formString="ServiceActionPlan" data={data} folderName={data[0].action_plans_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
 
-            <RowMsaFormDES fieldName="Progress Note" clientData={clientData} setClientData={setClientData} formString="ProgressNote" data={data} folderName={data[0].linkage_navigation_folder_url}/>
+            <RowMsaFormDES fieldName="Progress Note" clientData={clientData} setClientData={setClientData} formString="ProgressNote" data={data} folderName={data[0].linkage_navigation_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
 
-            <RowMsaFormDES fieldName="Status Changes/Closure Forms" clientData={clientData} setClientData={setClientData} formString="StatusChangesForm" data={data} folderName={data[0].intake_folder_url}/>
+            <RowMsaFormDES fieldName="Status Changes/Closure Forms" clientData={clientData} setClientData={setClientData} formString="StatusChangesForm" data={data} folderName={data[0].intake_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
 
-            <RowMsaFormDES fieldName="Comprehensive Behavioral Risk Assessment Updates" clientData={clientData} setClientData={setClientData} formString="ComprehensiveRiskBehaviorAssessmentUpdates" data={data} folderName={data[0].cbra_folder_url}/>
+            <RowMsaFormDES fieldName="Comprehensive Behavioral Risk Assessment Updates" clientData={clientData} setClientData={setClientData} formString="ComprehensiveRiskBehaviorAssessmentUpdates" data={data} folderName={data[0].cbra_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
 
-            <RowMsaFormDES fieldName="M11Q" clientData={clientData} setClientData={setClientData} formString="M11QForm" data={data} folderName={data[0].medical_folder_url}/>
+            <RowMsaFormDES fieldName="M11Q" clientData={clientData} setClientData={setClientData} formString="M11QForm" data={data} folderName={data[0].medical_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
 
-            <RowMsaFormDES fieldName="CD4/VL Check Reports" clientData={clientData} setClientData={setClientData} formString="CD4VLReports" data={data} folderName={data[0].medical_folder_url}/>
+            <RowMsaFormDES fieldName="CD4/VL Check Reports" clientData={clientData} setClientData={setClientData} formString="CD4VLReports" data={data} folderName={data[0].medical_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
-            <RowMsaFormDES fieldName="Initial Treatment Adherence Intake" clientData={clientData} setClientData={setClientData} formString="InitialTreatmentAdherenceIntake" data={data} folderName={data[0].medical_folder_url}/>
-
-            
-            <RowMsaFormDES fieldName="Treatment Adherence Updates" clientData={clientData} setClientData={setClientData} formString="TreatmentAdherenceUpdates" data={data} folderName={data[0].medical_folder_url}/>
-            
-            
-            <RowMsaFormDES fieldName="AIRS Collateral Information" clientData={clientData} setClientData={setClientData} formString="AIRSCollateralInformation" data={data} folderName={data[0].tickler_updates_folder_url}/>
+            <RowMsaFormDES fieldName="Initial Treatment Adherence Intake" clientData={clientData} setClientData={setClientData} formString="InitialTreatmentAdherenceIntake" data={data} folderName={data[0].medical_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
             
-            <RowMsaFormDES fieldName="AIRS Drug Regimen History" clientData={clientData} setClientData={setClientData} formString="AIRSDrugRegimen" data={data} folderName={data[0].tickler_updates_folder_url}/>
+            <RowMsaFormDES fieldName="Treatment Adherence Updates" clientData={clientData} setClientData={setClientData} formString="TreatmentAdherenceUpdates" data={data} folderName={data[0].medical_folder_url} bgColor="msa-table-light-light-blue-bg"/>
+            
+            
+            <RowMsaFormDES fieldName="AIRS Collateral Information" clientData={clientData} setClientData={setClientData} formString="AIRSCollateralInformation" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
             
-            <RowMsaFormDES fieldName="AIRS Financial Information" clientData={clientData} setClientData={setClientData} formString="AIRSFinancialInformation" data={data} folderName={data[0].tickler_updates_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="AIRS HIV AIDS Risk History" clientData={clientData} setClientData={setClientData} formString="AIRSHIVAIDSRiskHistory" data={data} folderName={data[0].tickler_updates_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="AIRS HIV Medical Provider History" clientData={clientData} setClientData={setClientData} formString="AIRSHIVMedicalProvider" data={data} folderName={data[0].tickler_updates_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="AIRS HIV Status History" clientData={clientData} setClientData={setClientData} formString="AIRSHIVStatusHistory" data={data} folderName={data[0].tickler_updates_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="AIRS HCV History" clientData={clientData} setClientData={setClientData} formString="AIRSHCVHistory" data={data} folderName={data[0].tickler_updates_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="AIRS Housing Information" clientData={clientData} setClientData={setClientData} formString="AIRSHousingInformation" data={data} folderName={data[0].tickler_updates_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="AIRS Insurance Information" clientData={clientData} setClientData={setClientData} formString="AIRSInsuranceInformation" data={data} folderName={data[0].tickler_updates_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="AIRS Substance Use istory" clientData={clientData} setClientData={setClientData} formString="AIRSSubstanceUseHistory" data={data} folderName={data[0].tickler_updates_folder_url}/>
-            
-
-            <RowMsaFormDES fieldName="LNE Client Rights" clientData={clientData} setClientData={setClientData} formString="LNEClientRights" data={data} folderName={data[0].consent_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="LNE Client Grievance Policy & Procedure" clientData={clientData} setClientData={setClientData} formString="LNEClientGrievancePolicyProcedure" data={data} folderName={data[0].consent_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="LNE Program Rules" clientData={clientData} setClientData={setClientData} formString="LNEProgramRules" data={data} folderName={data[0].consent_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="LNE Emergency Contact Consent" clientData={clientData} setClientData={setClientData} formString="LNEEmergencyContactConsent" data={data} folderName={data[0].consent_folder_url}/>
-
-            <RowMsaFormDES fieldName="LNE Consent for Release of Confidential Information" clientData={clientData} setClientData={setClientData} formString="LNEConsentForReleaseOfConfidentialInformation" data={data} folderName={data[0].consent_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="HIPAA Consent Form (OCA Form 960)" clientData={clientData} setClientData={setClientData} formString="HIPPAConsentForm" data={data} folderName={data[0].consent_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt" clientData={clientData} setClientData={setClientData} formString="NYCDOHMHNoticeOfPrivacyPractices" data={data} folderName={data[0].consent_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="Linkage, Retention, & Adherence Forms" clientData={clientData} setClientData={setClientData} formString="LinkageRetentionAdherenceForms" data={data} folderName={data[0].linkage_navigation_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="LNE Referral Information" clientData={clientData} setClientData={setClientData} formString="InternalReferralInformation" data={data} folderName={data[0].miscellaneous_folder_url}/>
-
-
-            <RowMsaFormDES fieldName="Identification" clientData={clientData} setClientData={setClientData} formString="LNEClientReferralForm" data={data} folderName={data[0].miscellaneous_folder_url}/>
+            <RowMsaFormDES fieldName="AIRS Drug Regimen History" clientData={clientData} setClientData={setClientData} formString="AIRSDrugRegimen" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
             
-            <RowMsaFormDES fieldName="HNS Readiness Assessment" clientData={clientData} setClientData={setClientData} formString="HNSReadinessForm" data={data} folderName={data[0].miscellaneous_folder_url}/>
+            <RowMsaFormDES fieldName="AIRS Financial Information" clientData={clientData} setClientData={setClientData} formString="AIRSFinancialInformation" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
 
-            <RowMsaFormDES fieldName="Support Groups" clientData={clientData} setClientData={setClientData} formString="SupportGroups" data={data} folderName={data[0].support_groups_folder_url}/>
+            <RowMsaFormDES fieldName="AIRS HIV AIDS Risk History" clientData={clientData} setClientData={setClientData} formString="AIRSHIVAIDSRiskHistory" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
 
 
-            <RowMsaFormDES fieldName="IDG" clientData={clientData} setClientData={setClientData} formString="IDGForm" data={data} folderName={data[0].idg_folder_url}/>
+            <RowMsaFormDES fieldName="AIRS HIV Medical Provider History" clientData={clientData} setClientData={setClientData} formString="AIRSHIVMedicalProvider" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
+
+
+            <RowMsaFormDES fieldName="AIRS HIV Status History" clientData={clientData} setClientData={setClientData} formString="AIRSHIVStatusHistory" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
+
+
+            <RowMsaFormDES fieldName="AIRS HCV History" clientData={clientData} setClientData={setClientData} formString="AIRSHCVHistory" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
+
+
+            <RowMsaFormDES fieldName="AIRS Housing Information" clientData={clientData} setClientData={setClientData} formString="AIRSHousingInformation" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
+
+
+            <RowMsaFormDES fieldName="AIRS Insurance Information" clientData={clientData} setClientData={setClientData} formString="AIRSInsuranceInformation" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
+
+
+            <RowMsaFormDES fieldName="AIRS Substance Use istory" clientData={clientData} setClientData={setClientData} formString="AIRSSubstanceUseHistory" data={data} folderName={data[0].tickler_updates_folder_url} bgColor="msa-table-light-light-blue-bg"/>
+            
+
+            <RowMsaFormDES fieldName="LNE Client Rights" clientData={clientData} setClientData={setClientData} formString="LNEClientRights" data={data} folderName={data[0].consent_folder_url} bgColor="msa-table-light-light-green-bg "/>
+
+
+            <RowMsaFormDES fieldName="LNE Client Grievance Policy & Procedure" clientData={clientData} setClientData={setClientData} formString="LNEClientGrievancePolicyProcedure" data={data} folderName={data[0].consent_folder_url} bgColor="msa-table-light-light-green-bg "/>
+
+
+            <RowMsaFormDES fieldName="LNE Program Rules" clientData={clientData} setClientData={setClientData} formString="LNEProgramRules" data={data} folderName={data[0].consent_folder_url} bgColor="msa-table-light-light-green-bg "/>
+
+
+            <RowMsaFormDES fieldName="LNE Emergency Contact Consent" clientData={clientData} setClientData={setClientData} formString="LNEEmergencyContactConsent" data={data} folderName={data[0].consent_folder_url} bgColor="msa-table-light-light-green-bg "/>
+
+            <RowMsaFormDES fieldName="LNE Consent for Release of Confidential Information" clientData={clientData} setClientData={setClientData} formString="LNEConsentForReleaseOfConfidentialInformation" data={data} folderName={data[0].consent_folder_url} bgColor="msa-table-light-light-green-bg "/>
+
+
+            <RowMsaFormDES fieldName="HIPAA Consent Form (OCA Form 960)" clientData={clientData} setClientData={setClientData} formString="HIPPAConsentForm" data={data} folderName={data[0].consent_folder_url} bgColor="msa-table-light-light-green-bg "/>
+
+
+            <RowMsaFormDES fieldName="NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt" clientData={clientData} setClientData={setClientData} formString="NYCDOHMHNoticeOfPrivacyPractices" data={data} folderName={data[0].consent_folder_url} bgColor="msa-table-light-light-green-bg "/>
+
+
+            <RowMsaFormDES fieldName="Linkage, Retention, & Adherence Forms" clientData={clientData} setClientData={setClientData} formString="LinkageRetentionAdherenceForms" data={data} folderName={data[0].linkage_navigation_folder_url} bgColor="msa-table-light-light-pink-bg"/>
+
+
+            <RowMsaFormDES fieldName="LNE Referral Information" clientData={clientData} setClientData={setClientData} formString="InternalReferralInformation" data={data} folderName={data[0].miscellaneous_folder_url} bgColor="msa-table-light-light-pink-bg"/>
+
+
+            <RowMsaFormDES fieldName="Identification" clientData={clientData} setClientData={setClientData} formString="LNEClientReferralForm" data={data} folderName={data[0].miscellaneous_folder_url} bgColor="msa-table-light-light-pink-bg"/>
+
+            
+            <RowMsaFormDES fieldName="HNS Readiness Assessment" clientData={clientData} setClientData={setClientData} formString="HNSReadinessForm" data={data} folderName={data[0].miscellaneous_folder_url} bgColor="msa-table-light-pink-bg"/>
+
+
+            <RowMsaFormDES fieldName="Support Groups" clientData={clientData} setClientData={setClientData} formString="SupportGroups" data={data} folderName={data[0].support_groups_folder_url} bgColor="msa-table-light-pink-bg"/>
+
+
+            <RowMsaFormDES fieldName="IDG" clientData={clientData} setClientData={setClientData} formString="IDGForm" data={data} folderName={data[0].idg_folder_url} bgColor="msa-table-light-pink-bg"/>
 
           
 
@@ -749,7 +747,7 @@ const EditMsaFormPage = ({ data }) => {
         <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
               <button
-                className="btn-yellow px-5 py-3 flex gap-3 px-5 rounded shadow inline-block"
+                className="btn-yellow px-5 py-3 flex items-center font-medium gap-3 px-5 rounded shadow inline-block"
                 onClick={() => handleMsaform()}
               >
                 <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>

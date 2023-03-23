@@ -52,12 +52,12 @@ export default function UsersIndex({ data }) {
             {/* TABLE */}
             <div
               id="dashboard-client-list-container"
-              className=" pb-7 h-screen mt-10"
+              className=" py-10 h-screen shadow-inner"
             >
-              <div className="container mx-auto bg-white rounded-md shadow px-5 pt-5 pb-10">
-                <div className="dashboard-client-list container mx-auto">
+              <div className="container mx-auto bg-white rounded-md shadow p-10">
+                <div className="dashboard-client-list">
                   <div className="flex justify-between   items-center ">
-                    <div className="flex items-center gap-x-3 py-10   self-start ">
+                    <div className="flex items-center gap-x-3   self-start ">
                       <img src="/LNE_users.svg" alt="" width={45} />
                       <h1 className="font-black">LNE Users</h1>
                     </div>
@@ -65,7 +65,7 @@ export default function UsersIndex({ data }) {
                     <div>
                       <button
                         onClick={() => router.push("/authorizedusers")}
-                        className="bg-yellow hover:bg-blue-300 px-5 py-1.5 rounded text-black inline-block  flex items-center  gap-x-3"
+                        className="btn-yellow flex justify-between text-lg items-center py-2 rounded-md shadow-md gap-3 font-medium px-5"
                       >
                         <img
                           src="/view_authorised_users.svg"
@@ -78,7 +78,7 @@ export default function UsersIndex({ data }) {
                   </div>
 
                   <div
-                    className={`${styles.dashboardActiveUsersListHeadRow} gap-x-1 pt-3`}
+                    className={`${styles.dashboardActiveUsersListHeadRow} mt-10 gap-x-1 `}
                   >
                     <div className="head-row font-black bg-blue-50 p-2">
                       <p className="text-base text-left">Name</p>

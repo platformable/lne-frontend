@@ -48,41 +48,50 @@ export default function AuthUserListRow({
   const year = date[0];
   const month = date[1];
   const day = date[2];
-
+  console.log(index);
   return (
     <>
       <div
         key={index}
         className={`${styles.authUSerListHeadRow} ${
-          index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
+          index % 2 === 0 ? "bg-row-light" : "bg-row-dark"
         }
                            bg-white mt-1 `}
       >
-        
-          <p className="bg-client-profile-sap-heading py-2 px-5 ">{name}</p>
-          <p className="bg-client-profile-sap-heading py-2 px-5 ">{lastname}</p>
-          <p className="bg-client-profile-sap-heading py-2 px-5 ">{role || authorizeduser.userrole}</p>
-          <p className="bg-client-profile-sap-heading py-2 px-5 ">
-            {email || authorizeduser.useremail
-              ? email || authorizeduser.useremail
-              : "-"}
-          </p>
-          <p className="bg-client-profile-sap-heading py-2 px-5 ">
-            {dateaccountactivated ? `${month}/${day}/${year}` : "-"}
-          </p>
-          <p className="bg-client-profile-sap-heading py-2 px-5 ">{isactive}</p>
-          <p
-            className="bg-client-profile-sap-heading py-2 px-5  flex items-center justify-center cursor-pointer"
-            onClick={() => handleSelectedUser(authorizeduser)}
-          >
-            <img src="/authorised_users_supervisor/edit_table.svg" alt="edit user icon" width={20} height={20}/>
-          </p>
-          <p
-            className="bg-client-profile-sap-heading py-2 px-5  flex items-center justify-center cursor-pointer"
-            onClick={() => handleAuthUserDelete(authorizeduser)}
-          >
-            <img src="/authorised_users_supervisor/delete_table.svg" alt="delete user icon"   width={20} height={20}/>
-          </p>
+        <p className=" py-2 px-5 flex items-center">{name}</p>
+        <p className=" py-2 px-5 flex items-center">{lastname}</p>
+        <p className=" py-2 px-5 flex items-center">{role || authorizeduser.userrole}</p>
+        <p className=" py-2 px-5 flex items-center">
+          {email || authorizeduser.useremail
+            ? email || authorizeduser.useremail
+            : "-"}
+        </p>
+        <p className=" py-2 px-5 flex items-center">
+          {dateaccountactivated ? `${month}/${day}/${year}` : "-"}
+        </p>
+        <p className=" py-2 px-5 flex items-center">{isactive}</p>
+        <p
+          className=" py-2 px-5 flex items-cente flex items-center justify-center cursor-pointer"
+          onClick={() => handleSelectedUser(authorizeduser)}
+        >
+          <img
+            src="/authorised_users_supervisor/edit_table.svg"
+            alt="edit user icon"
+            width={20}
+            height={20}
+          />
+        </p>
+        <p
+          className=" py-2 px-5  flex items-center justify-center cursor-pointer"
+          onClick={() => handleAuthUserDelete(authorizeduser)}
+        >
+          <img
+            src="/authorised_users_supervisor/delete_table.svg"
+            alt="delete user icon"
+            width={20}
+            height={20}
+          />
+        </p>
       </div>
     </>
   );

@@ -37,15 +37,14 @@ console.log("userData",userData)
       <div className="modal">
         <div className="bg-white relative border-2 border-yellow-100 mt-8 max-w-sm mx-auto p-10 rounded">
         <button
-                    className="absolute  top-0 right-0 py-2 px-3 "
-                    onClick={() => setShowModal(!showModal)}
+                    className="absolute  top-0 right-0 "
+                    onClick={() => setShowModal(prev => !prev)}
                    >
-                   {/* <img src="/close-window-icon.svg" className="rounded-tr" alt="" width="20"/> */}
-                  x
+                   <img src="/edit_user/close_modal.svg" className="rounded-tr" alt="" width="20"/>
                   </button>
           <div className="grid grid-cols-1 gap-6">
-          <div className="flex ml-2.5 items-end">
-            <img src="/authorised_users_supervisor/user_information.svg" className="mr-3" alt="" width="50"/>
+          <div className="flex items-center">
+            <img src="/edit_user/user_info.svg" className="mr-3" alt="user information icon" />
             <h2 className="font-black">User Information</h2>
             </div>
             <label className="block">
