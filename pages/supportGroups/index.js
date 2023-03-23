@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactToPrint from 'react-to-print'
 import SupportGroupToPrint from "../../components/SupportGroupToPrint";
 import Link from "next/link";
+import SubHeader from "../../components/SubHeader";
 
 const SupportGroups = ({hcworkers}) => {
   let componentRef = useRef();
@@ -67,27 +68,10 @@ const SupportGroups = ({hcworkers}) => {
    
           <Layout>
           <ToastContainer autoClose={1500} />
-          <div className="container mx-auto my-10">
-              <div className="flex justify-between">
-                <div className="flex gap-5">
-                  <BackButton />
-                  <BackToDashboardButton />
-                </div>
-                <Link href="/supportGroups/pastEvents">
-                  <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
-                          <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
-                          <p className="p-2 text-base">
-                          Review past group events
-                          </p>
-                    </button>
-                </Link>
-              
-              </div>
-              <h1 className="font-black  my-5">
-                Support Group Record
-              </h1>
-               
-            </div>
+          
+
+
+            <SubHeader pageTitle={'Support Group Record'} supportGroup={true}/>
           <div className="bg-blue-50 py-10">
             
     

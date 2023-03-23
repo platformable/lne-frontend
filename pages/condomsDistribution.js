@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BackButton from "../components/BackButton";
 import BackToDashboardButton from "../components/BackToDashboardButton";
+import SubHeader from "../components/SubHeader";
 
 const CondomsDistributed = () => {
   const router = useRouter();
@@ -69,15 +70,8 @@ const CondomsDistributed = () => {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-        <div className="container mx-auto mt-10 ">
-          <div className="flex gap-x-10">
-            <BackButton />
-            <BackToDashboardButton />
-          </div>
-          <h1 className="font-black text-4xl mt-12 mb-5">
-            Condoms Distribution
-          </h1>
-        </div>
+      
+        <SubHeader pageTitle={'Condoms Distribution'}/>
 
         <div className="bg-light-blue pt-5 shadow-inner h-100 pb-10">
           <section

@@ -4,12 +4,12 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 
 import deleteIcon from '../public/delete-icon.svg'
-import editIcon from '../public/edit-icon.svg'
+import editIcon from '../public/edit.svg'
 import Image from 'next/image';
 
 
 export default function UserListRow({setSelectedEntity,authorizeduser,setSelectedUser,setShowEditUserModal,showEditUserModal,index,showDeleteUsermodal, setShowDeleteUserModal}) {
-  const {useremail,name,lastname,userrole,isactive,dateaccountactivated,datelastlogin,user_id} = authorizeduser
+  const {useremail,name,lastname,userrole,isactive,dateaccountactivated,datelastlogin,user_id,key} = authorizeduser
 
   const router = useRouter()
 
@@ -25,7 +25,7 @@ export default function UserListRow({setSelectedEntity,authorizeduser,setSelecte
     <> 
 
     <div
-                className={`${styles.dashboardActiveUsersListHeadRow} border  rounded-md py-3 px-5 my-1 bg-white`}
+                className={`${styles.dashboardActiveUsersListHeadRow} ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}  py-3 px-5 bg-white`}
               >
                 <div className="head-row flex justify-start items-center ">
                   <p className="text-left">{name}</p>

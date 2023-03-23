@@ -440,6 +440,10 @@ gap:10px;
 border:2px solid #5AC0FF;
 }
 
+.border-yellow {
+  border:2px solid #FCDD4C;
+  }
+
 .bg-support-groups-table-heading {
   background-color: #DBE9FA;
 }

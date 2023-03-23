@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from "next/router";
 import BackButton from "../../../../components/BackButton";
+import SubHeader from "../../../../components/SubHeader";
 
 export default function ClientServiceActionPlansListPage({ data }) {
   console.log("datax", data);
@@ -34,7 +35,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
       <Layout>
         <ToastContainer autoClose={700} />
 
-        <section className="pb-5 pt-10 md:px-0 px-5 bg-white ">
+       {/*  <section className="pb-5 pt-10 md:px-0 px-5 bg-white ">
           <div className="container mx-auto">
             <div className="flex gap-x-3">
               <BackButton />
@@ -53,7 +54,9 @@ export default function ClientServiceActionPlansListPage({ data }) {
             </div>
             <h1 className="font-bold mt-7  "> Services Action Plans</h1>
           </div>
-        </section>
+        </section> */}
+
+        <SubHeader pageTitle="Service Action Plans" sap={true}/>
 
         <section id="sap-dashboard">
           <div className="container mx-auto">
