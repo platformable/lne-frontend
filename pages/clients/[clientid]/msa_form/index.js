@@ -12,6 +12,8 @@ import { Dropbox } from "dropbox";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import BackButton from "../../../../components/BackButton";
+import SubHeader from "../../../../components/SubHeader";
+import MsaTopClientInformation from "../../../../components/MsaTopClientInformation";
 
 const Index = ({ data }) => {
    const router = useRouter()
@@ -150,152 +152,44 @@ const handleMsaform = ()=> {
       });
 }
 
-useEffect(()=>{
-  /* var dbx = new Dropbox({ accessToken: process.env.NEXT_PUBLIC_DB_ACCESS_TK });
-  dbx.filesListFolder({path: `/apps`})
-    .then(function(response) {
-      console.log('response', response)
-      console.log(response.result.entries);
-    })
-    .catch(function(error) {
-      console.error(error);
-    }); */
-
-
-  /*   axios({
-      method:'post',
-      url:'https://api.dropboxapi.com/2/files/get_metadata',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DB_ACCESS_TK}`
-      },
-      data:
-        {
-          "include_deleted": false,
-          "include_has_explicit_shared_members": false,
-          "include_media_info": false,
-          "path": `/clients/${clientData.clientId}`
-      }
-      
-    })
-    .then(response=>console.log("response:",response))
-    .catch((e)=>console.log(e)) */
-},[])
 
   return (
     <>
     <ToastContainer autoClose={2000} />
       <Layout>
-        <div className="container mx-auto">
-          <h1 className="font-black text-center my-5">MSA FORM</h1>
-        </div>
+
+
+        <SubHeader pageTitle={'MSA FORM'}/>
 
         
 
-        <main className="container mx-auto">
-         
-        <BackButton />
-          <section id="info" className="my-5">
-            <div className="">
-              <h6 className="font-black my-5 text-dark-blue">
-                Client Information
-              </h6>
-           
-              <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
-              >
-                <div className="service-action-plan-page-info-box md:my-1 my-5">
-                  <h3 className="font-black ">Todays date</h3>
+        <main className="container mx-auto bg-white my-10 rounded-md border-blue">
 
-                  
-                  <div className="flex gap-x-2 items-center">
-                    <img src="/calendar-icon.svg" width="24"/>
-                    <span className="mt-2 font-black">{new Date().toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span>
-                  </div>
-
-                </div>
-
-                  <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  
-                      <div className="grid grid-cols-3 gap-4">
-                      <div className="flex gap-x-2 mb-1 items-end">
-                        <img src="/client-icon.svg" width="24" />
-                        <h3 className="font-black ">Client</h3>
-                      </div>
-                      <label className="block">
-                        <span className=" font-bold">Client Name</span>
-                        <input
-                          type="text"
-                          className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                          value={`${data[0].clientfirstname} ${data[0].clientlastname.charAt(0)}.`}
-                          disabled
-                        />
-                      </label>
-                    
-                      <label className="block">
-                        <span className=" font-bold">Client ID</span>
-                        <input
-                          type="text"
-                          className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                          value={data[0].clientid}
-                          disabled
-                        />
-                      </label>
-                      </div>
-                    
-                  </div>
-                  <div className="service-action-plan-page-info-box">
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                  <div className="flex gap-x-2 mb-1 items-end">
-                    <img src="/msa_form/LNEuser.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
-                  </div>
-                    <label className="block">
-                      <span className=" font-bold">First Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userFirstName}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="font-bold">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
-                        value={clientData.userLastName}
-                        disabled
-                      />
-                    </label>
-                  </div>
-                </div>
-             </div>
-            </div>
-          </section>
-          <h6 className="font-black my-5 text-dark-blue">
-          Forms - Please indicate which forms have been completed with the client
-          </h6>
+        
+          <MsaTopClientInformation data={data} clientData={clientData} setClientData={setClientData}/>
+     
           <section
             id="form"
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
+            className="rounded-md p-5 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <p className="font-black"><span className="text-red-500">*</span> Mandatory fields (Please, fill out these forms to complete the process)</p>
+            <div className="flex gap-x-3 items-center mt-5 mb-10">
+              <img src="/forms_uploaded.svg" alt="" />
+            <p className="text-lg font-bold">Indicate which of the following forms you have uploaded to the client’s Dropbox</p>
+            </div>
             <div
               id="form-head"
-              className={`${MSAStyles.formRowsContainer} bg-dark-blue  text-white grid gap-5 py-2 rounded-tl-lg rounded-tr-lg my-2`}
+              className={`${MSAStyles.formRowsContainerHeading} gap-x-1    grid  rounded-tl-lg rounded-tr-lg my-1`}
             >
-              <div></div>
-              <p>Form name</p>
-              <p className="text-center">Date added</p>
-              <p className="text-center">Dropbox Folder</p>
+              
+              <p className="light-blue-bg pl-5 py-2 text-lg  ">Form name</p>
+              <p className="text-center light-blue-bg py-2 text-lg ">Date added</p>
+              <p className="text-center light-blue-bg py-2 text-lg ">Dropbox Folder</p>
             </div>
             {/* {TABLE HEAD} */}
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-1`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -332,7 +226,7 @@ useEffect(()=>{
                     clientData.AIRSIntakeFormDate
                   }
                   /* disabled={clientData.AIRSIntakeFormDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSIntakeForm){
                       setClientData({
@@ -353,13 +247,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
                 <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-                <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -396,7 +290,7 @@ useEffect(()=>{
                     clientData.ComprehensiveRiskBehaviorAssessmentDate
                   }
                   /* disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.ComprehensiveRiskBehaviorAssessmentDate){
                       setClientData({
@@ -416,14 +310,14 @@ useEffect(()=>{
               </div>
               <div className="flex justify-center">
               <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -457,7 +351,7 @@ useEffect(()=>{
                     clientData.HNSEligibilityFormDate
                   }
                   // disabled={clientData.HNSEligibilityFormDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
 
                     if(clientData.HNSEligibilityForm){
@@ -478,13 +372,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 {/* <input
@@ -507,11 +401,11 @@ useEffect(()=>{
                 /> */}
               </div>
               <div>
-                <p>Service Action Plan  </p>
+                <p className="ml-4">Service Action Plan  </p>
               </div>
               <div className="text-center">
-              {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-5 py-1 rounded-lg"> 
-                   {clientData.ServiceActionPlanDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">MM/DD/YYYY</p>}
+              {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-5 py-1 "> 
+                   {clientData.ServiceActionPlanDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 ">MM/DD/YYYY</p>}
                 {/* <input
                   type="date"
                   id="AIRSIntakeForm"
@@ -520,7 +414,7 @@ useEffect(()=>{
                     clientData.ServiceActionPlanDate
                   }
                   disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -540,13 +434,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             {/* <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 {/* <input
@@ -572,8 +466,8 @@ useEffect(()=>{
                 <p>Progress Note </p>
               </div>
               <div className="text-center">
-              {clientData.progressNote ?  <p className="bg-white inline-block px-5 py-1 rounded-lg"> 
-                   {clientData.progressNoteDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">MM/DD/YYYY</p>}
+              {clientData.progressNote ?  <p className="bg-white inline-block px-5 py-1 "> 
+                   {clientData.progressNoteDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 ">MM/DD/YYYY</p>}
                 {/* <input
                   type="date"
                   id="AIRSIntakeForm"
@@ -582,7 +476,7 @@ useEffect(()=>{
                     clientData.ServiceActionPlanDate
                   }
                   disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -602,13 +496,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div> */}
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -645,7 +539,7 @@ useEffect(()=>{
                     clientData.StatusChangesFormDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
                       setClientData({
@@ -666,7 +560,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -674,7 +568,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -711,7 +605,7 @@ useEffect(()=>{
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate ){
                       setClientData({
@@ -732,7 +626,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -740,7 +634,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -779,7 +673,7 @@ useEffect(()=>{
                     clientData.M11QFormDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.M11QForm ){
                       setClientData({
@@ -800,14 +694,14 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -846,7 +740,7 @@ useEffect(()=>{
                     clientData.CD4VLReportsDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.CD4VLReports ){
                       setClientData({
@@ -867,7 +761,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -877,7 +771,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -916,7 +810,7 @@ useEffect(()=>{
                     clientData.InitialTreatmentAdherenceIntakeDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.InitialTreatmentAdherenceIntake ){
                       setClientData({
@@ -937,7 +831,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -946,7 +840,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -985,7 +879,7 @@ useEffect(()=>{
                     clientData.TreatmentAdherenceUpdatesDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.TreatmentAdherenceUpdates ){
                       setClientData({
@@ -1006,7 +900,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1020,7 +914,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1057,7 +951,7 @@ useEffect(()=>{
                     clientData.AIRSCollateralInformationDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSCollateralInformation){
                       setClientData({
@@ -1078,14 +972,14 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1124,7 +1018,7 @@ useEffect(()=>{
                     clientData.AirsDrugRegimenDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AirsDrugRegimen ){
                       setClientData({
@@ -1145,7 +1039,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1153,7 +1047,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1189,7 +1083,7 @@ useEffect(()=>{
                     clientData.AIRSFinancialInformationDate
                   }
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if (clientData.AIRSFinancialInformation){
                       setClientData({
@@ -1209,13 +1103,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1251,7 +1145,7 @@ useEffect(()=>{
                     clientData.AIRSHIVAIDSRiskHistoryDate
                   }
                   /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHIVAIDSRiskHistory){
                       setClientData({
@@ -1273,7 +1167,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1281,7 +1175,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1320,7 +1214,7 @@ useEffect(()=>{
                     clientData.AirsHIVMedicalProviderDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AirsHIVMedicalProvider ){
                       setClientData({
@@ -1341,14 +1235,14 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1387,7 +1281,7 @@ useEffect(()=>{
                     clientData.AIRSHIVStatusHistoryDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHIVStatusHistory ){
                       setClientData({
@@ -1408,7 +1302,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
@@ -1417,7 +1311,7 @@ useEffect(()=>{
 
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1452,7 +1346,7 @@ useEffect(()=>{
                     clientData.AIRSHCVHistoryDate
                   }
                   /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHCVHistory){
                       setClientData({
@@ -1473,13 +1367,13 @@ useEffect(()=>{
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
               
-                <img src={'/dropbox-folder.png'} alt="" width="34"/>
+                <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1517,7 +1411,7 @@ useEffect(()=>{
                     clientData.AIRSHousingInformationDate
                   }
                   /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSHousingInformation){
                       setClientData({
@@ -1539,13 +1433,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1581,7 +1475,7 @@ useEffect(()=>{
                     clientData.AIRSInsuranceInformationDate
                   }
                   /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if (clientData.AIRSInsuranceInformation){
                       setClientData({
@@ -1602,13 +1496,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-blue grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1644,7 +1538,7 @@ useEffect(()=>{
                     clientData.AIRSSubstanceUseHistoryDate
                   }
                   /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.AIRSSubstanceUseHistory){
                       setClientData({
@@ -1664,13 +1558,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1704,7 +1598,7 @@ useEffect(()=>{
                     clientData.LNEClientRightsDate
                   }
                   /* disabled={clientData.LNEClientRightsDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientRights){
                       setClientData({
@@ -1724,13 +1618,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1766,7 +1660,7 @@ useEffect(()=>{
                     clientData.LNEClientGrievancePolicyProcedureDate
                   }
                   /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientGrievancePolicyProcedure){
                       setClientData({
@@ -1787,13 +1681,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1828,7 +1722,7 @@ useEffect(()=>{
                     clientData.LNEProgramRulesDate
                   }
                   /* disabled={clientData.LNEProgramRulesDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.LNEProgramRules){
                       setClientData({
@@ -1848,13 +1742,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1890,7 +1784,7 @@ useEffect(()=>{
                     clientData.LNEEmergencyContactConsentDate
                   }
                   /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.LNEEmergencyContactConsent){
                       setClientData({
@@ -1911,13 +1805,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -1955,7 +1849,7 @@ useEffect(()=>{
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate
                   }
                   /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.LNEConsentForReleaseOfConfidentialInformation){
                       setClientData({
@@ -1978,13 +1872,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2019,7 +1913,7 @@ useEffect(()=>{
                     clientData.HIPPAConsentFormDate
                   }
                   // disabled={clientData.HIPPAConsentFormDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.HIPPAConsentForm){
                       setClientData({
@@ -2039,13 +1933,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-green grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2085,7 +1979,7 @@ useEffect(()=>{
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate
                   }
                   // disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.NYCDOHMHNoticeOfPrivacyPractices){
                       setClientData({
@@ -2107,12 +2001,12 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
-            <div className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}>
+            <div className={`${MSAStyles.formRowsContainer} msa-table-light-light-pink-bg grid gap-5 py-1  my-2`}>
               <div className="form-row-item px-5">
                 <input
                   type="checkbox"
@@ -2148,7 +2042,7 @@ useEffect(()=>{
                     clientData.LinkageRetentionAdherenceFormsDate
                   }
                   // disabled={clientData.LinkageRetentionAdherenceFormsDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.LinkageRetentionAdherenceForms){
                       setClientData({
@@ -2170,13 +2064,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.linkage_navigation_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-pink-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2214,7 +2108,7 @@ useEffect(()=>{
                     clientData.InternalReferralInformationDate
                   }
                   // disabled={clientData.InternalReferralInformationDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.InternalReferralInformation){
                       setClientData({
@@ -2236,13 +2130,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-pink grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-pink-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2276,7 +2170,7 @@ useEffect(()=>{
                     clientData.LNEClientReferralFormDate
                   }
                   // disabled={clientData.LNEClientReferralFormDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
                     if(clientData.LNEClientReferralForm){
                       setClientData({
@@ -2295,13 +2189,13 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
 
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2335,7 +2229,7 @@ useEffect(()=>{
                     clientData.HNSReadinessFormDate
                   }
                   // disabled={clientData.HNSReadinessFormDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
 
                     if(clientData.HNSReadinessForm){
@@ -2356,12 +2250,12 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2395,7 +2289,7 @@ useEffect(()=>{
                     clientData.SupportGroupsDate
                   }
                   // disabled={clientData.SupportGroupsDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
 
                     if(clientData.SupportGroups){
@@ -2416,12 +2310,12 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.support_groups_folder_url ? data[0]?.support_groups_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>
             <div
-              className={`${MSAStyles.formRowsContainer} bg-light-purple grid gap-5 py-2 rounded-lg my-2`}
+              className={`${MSAStyles.formRowsContainer} msa-table-light-pink-bg grid gap-5 py-1  my-2`}
             >
               <div className="form-row-item px-5">
                 <input
@@ -2455,7 +2349,7 @@ useEffect(()=>{
                     clientData.IDGFormDate
                   }
                   // disabled={clientData.IDGFormDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="  p-1"
                   onChange={(e) => {
 
                     if(clientData.IDGForm){
@@ -2476,7 +2370,7 @@ useEffect(()=>{
               </div>
               <div className="text-center flex justify-center">
               <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
-              <img src={'/dropbox-folder.png'} alt="" width="34"/>
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
             </div>

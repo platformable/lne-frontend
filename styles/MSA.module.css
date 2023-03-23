@@ -1,5 +1,11 @@
+.formRowsContainerHeading {
+    grid-template-columns: 5fr 1fr 1fr;
+    align-items: center;
+
+}
+
 .formRowsContainer {
-    grid-template-columns: 55px 4fr 1fr 1fr;
+    grid-template-columns: 0.3fr 5fr 1fr 1fr;
     align-items: center;
 
 }

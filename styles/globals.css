@@ -462,6 +462,9 @@ border:2px solid #5AC0FF;
   background-color: #5AC0FF;;
 }
 
+.light-blue-bg {
+  background-color: #DBE9FA;
+}
 
 .yellow-btn {
   background-color: #FCDD4C;
@@ -529,4 +532,20 @@ grid-template-columns: 2fr 8fr 2fr;
     grid-template-columns: 1r;
     }
     
+}
+
+.msa-table-light-light-blue-bg {
+  background-color: #D9FFFE;
+}
+
+.msa-table-light-light-green-bg {
+  background-color: #DEFFE9;
+}
+
+.msa-table-light-light-pink-bg {
+  background-color: #FFF4F9;
+}
+
+.msa-table-light-pink-bg {
+  background-color: #F6E6FF;
 }
