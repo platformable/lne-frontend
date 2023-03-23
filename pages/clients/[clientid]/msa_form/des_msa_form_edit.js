@@ -560,7 +560,7 @@ const EditMsaFormPage = ({ data }) => {
         </div>
       </div>
         
-        <section className="container mx-auto mt-10 border-blue grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-lg ">
+        <section className="container mx-auto mt-10 shadow-inner border-blue grid divide-y-2 divide-[#5AC0FF] shadow-md  border-blue rounded-lg ">
           {/* <div className="flex gap-x-5">
           <Link href={`/clients/${clientData.clientId}/profile/service_action_plans/`}>
                  <div className="">
@@ -600,18 +600,16 @@ const EditMsaFormPage = ({ data }) => {
           </div> */}
 
                
-<section id="info" className="bg-white">
           
              <ClientInfoTopHeader
               data={data}
               clientData={clientData}
               setClientData={setClientData}
             />
-          </section>
-          <section className="p-10 pt-7 bg-white divide- goals" id="goals">
+          <section className="p-10 pt-7 bg-white rounded-b-md goals" id="goals">
               <div className="flex gap-3 items-center mb-10">
                 <img
-                  src="/progress_notes/client_goals.svg"
+                  src="/msa/forms_uploaded.svg"
                   alt="Client goals icon"
                 />
                 <h3 className="font-black text-3xl">Indicate which of the following forms you have uploaded to the client’s Dropbox</h3>
@@ -749,7 +747,7 @@ const EditMsaFormPage = ({ data }) => {
         <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
               <button
-                className="btn-yellow px-5 py-3 flex gap-3 px-5 rounded shadow inline-block"
+                className="btn-yellow px-5 py-3 flex items-center font-medium gap-3 px-5 rounded shadow inline-block"
                 onClick={() => handleMsaform()}
               >
                 <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>
