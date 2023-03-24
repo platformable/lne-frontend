@@ -31,16 +31,16 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
               <img src="/client/client_information.svg" width="44" />
 
               <div>
-                <h5 className="text-gray-900 text-3xl leading-tight font-black">
+                <h5 className="text-gray-900 text-2xl leading-tight font-black">
                   {client.clientfirstname} {client.clientlastname.charAt(0)}
                 </h5>
-                <p className="text-dark-blue underline font-medium text-xl">
+                <p className="text-dark-blue underline font-medium text-lg">
                   {client.clientid}
                 </p>
               </div>
             </div>
 
-            <div className="grid text-2xl my-3 items-center bg-alert-green font-medium text-center py-1 rounded">
+            <div className="grid text-lg my-3 items-center bg-alert-green font-medium text-center py-1 rounded">
               Active
             </div>
 
@@ -52,10 +52,10 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
                   width={19}
                   height={21}
                 />
-                <h6 className="text-lg">Last Updated</h6>
+                <h6 className="text-md">Last Updated</h6>
               </div>
 
-              <p className="text-lg">{getDate(client.clientdatecreated)}</p>
+              <p className="text-md">{getDate(client.clientdatecreated)}</p>
             </div>
 
             <div className="">
@@ -66,8 +66,8 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
                   !client?.msaformid && loggedUserRole === "DES"
                     ? "cursor-not-allowed"
                     : ""
-                }  cursor-pointer mt-1 w-full flex items-center gap-x-2 justify-center px-6 py-3 btn-new-blue
-                  font-medium text-xl leading-tight  rounded shadow-md hover-bg-dark-blue hover:shadow-lg  
+                }  cursor-pointertext-xl mt-1 w-full flex items-center gap-x-2 justify-center px-6 py-3 btn-new-blue
+                  font-medium text-lg leading-tight  rounded shadow-md hover-bg-dark-blue hover:shadow-lg  
                   focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-500 active:shadow-lg transition 
                   duration-150 ease-in-out`}
               >

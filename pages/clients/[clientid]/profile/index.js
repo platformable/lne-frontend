@@ -446,7 +446,7 @@ export default function ClientProfilePage({
                       />
                       <div>
                         {" "}
-                        <p className="text-dark-blue font-bold text-xl">
+                        <p className="text-dark-blue font-bold text-3xl">
                           {data[0]?.clientfirstname}{" "}
                           {data[0]?.clientlastname.charAt(0)}
                         </p>
