@@ -58,20 +58,20 @@ export default function AuthUserListRow({
         }
                            bg-white mt-1 `}
       >
-        <p className=" py-2 px-5 flex items-center">{name}</p>
-        <p className=" py-2 px-5 flex items-center">{lastname}</p>
-        <p className=" py-2 px-5 flex items-center">{role || authorizeduser.userrole}</p>
-        <p className=" py-2 px-5 flex items-center">
+        <p className=" py-2 px-5 flex items-center text-lg">{name}</p>
+        <p className=" py-2 px-5 flex items-center text-lg">{lastname}</p>
+        <p className=" py-2 px-5 flex items-center text-lg">{role || authorizeduser.userrole}</p>
+        <p className=" py-2 px-5 flex items-center text-lg">
           {email || authorizeduser.useremail
             ? email || authorizeduser.useremail
             : "-"}
         </p>
-        <p className=" py-2 px-5 flex items-center">
+        <p className=" py-2 px-5 flex items-center text-lg">
           {dateaccountactivated ? `${month}/${day}/${year}` : "-"}
         </p>
-        <p className=" py-2 px-5 flex items-center">{isactive}</p>
+        <p className=" py-2 px-5 flex items-center text-lg">{isactive}</p>
         <p
-          className=" py-2 px-5 flex items-cente flex items-center justify-center cursor-pointer"
+          className=" py-2 px-5 flex items-cente flex items-center text-lg justify-center cursor-pointer"
           onClick={() => handleSelectedUser(authorizeduser)}
         >
           <img
@@ -82,7 +82,7 @@ export default function AuthUserListRow({
           />
         </p>
         <p
-          className=" py-2 px-5  flex items-center justify-center cursor-pointer"
+          className=" py-2 px-5  flex items-center text-lg justify-center cursor-pointer"
           onClick={() => handleAuthUserDelete(authorizeduser)}
         >
           <img

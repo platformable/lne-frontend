@@ -108,22 +108,22 @@ export default function AuthorizedUsersIndex({ data, users }) {
                     <div
                     className={`${styles.authUSerListHeadRow} mt-10 gap-x-1`}
                   >
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-lg">
                       First Name
                     </p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-lg">
                       Last Name
                     </p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-lg">
                       User Role
                     </p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-lg">
                       Email
                     </p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-lg">
                       Date added
                     </p>
-                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold">
+                    <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-lg">
                       Status
                     </p>
                     <p className="bg-client-profile-sap-heading py-2 px-2 text-center font-bold">
@@ -178,26 +178,26 @@ export default function AuthorizedUsersIndex({ data, users }) {
                     <div
                       className={`${styles.dashboardClientListHeadRow}  mt-10 gap-x-1`}
                     >
-                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 text-lg">
                         Name
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 text-lg">
                         Last Name
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 text-lg">
                         User Role
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 text-lg">
                         Email
                       </p>
 
-                      <p className="bg-client-profile-sap-heading py-2 px-5">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 text-lg">
                         Date User added by the supervisor
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center">
+                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center text-lg">
                         Edit
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center">
+                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center text-lg">
                         {" "}
                         Delete
                       </p>
