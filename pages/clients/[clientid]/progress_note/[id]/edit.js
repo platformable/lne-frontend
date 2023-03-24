@@ -617,7 +617,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
               <div className="services-container grid lg:grid-cols-2 grid-cols-1 gap-x-5 mt-10">
                 {/* SERVICE PROVIDED 1st COLUMN " */}
 
-                <div className="services-box grid gap-y-10 text-2xl items-start justify-start">
+                <div className="services-box grid gap-y-10 text-lg items-start justify-start">
                   <div className="flex items-center">
                     <label className="flex items-center gap-x-5">
                       <input
@@ -730,7 +730,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
 
                 {/* SERVICE PROVIDED 2nd COLUMN " */}
 
-                <div className="services-box grid gap-y-10 text-2xl items-start justify-start">
+                <div className="services-box grid gap-y-10 text-lg items-start justify-start">
                   <div className="flex items-center">
                     <label className="flex items-center gap-x-5">
                       <input
@@ -960,16 +960,16 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     <img src={"/goal01.svg"} alt="" />
                   </div> */}
                   <div className="goal-service grid my-2">
-                    <div className="flex flex-col gap-5 items-start">
-                      <p className="text-2xl font-medium">Target Date</p>
-                      <p className="bg-primary-light-blue p-3 rounded text-xl">
+                    <div className="flex flex-col gap-3 items-start">
+                      <p className="text-lg font-medium">Target Date</p>
+                      <p className="bg-primary-light-blue p-3 rounded text-lg">
                         {serviceActionData?.goal1targetdate?.split("T")[0]}
                       </p>
                     </div>
                   </div>
                   <div className="goal-summary">
-                    <p className="text-2xl font-medium">Summary</p>
-                    <p className="bg-primary-light-blue mt-5 p-3 rounded text-xl ">
+                    <p className="text-lg font-medium">Summary</p>
+                    <p className="bg-primary-light-blue mt-3 p-3 rounded text-lg ">
                       {serviceActionData?.goal1Details || "-"}
                     </p>
                   </div>
@@ -999,17 +999,17 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   </div> */}
 
                   <div className="goal-service grid my-2">
-                    <div className="flex flex-col gap-5 items-start">
-                      <span className="text-2xl font-medium">Target Date</span>
-                      <p className="bg-primary-light-blue p-3 rounded text-xl">
+                    <div className="flex flex-col gap-3 items-start">
+                      <span className="text-lg font-medium">Target Date</span>
+                      <p className="bg-primary-light-blue p-3 rounded text-lg">
                         {serviceActionData?.goal2targetdate?.split("T")[0] ||
                           "-"}
                       </p>
                     </div>
                   </div>
                   <div className="goal-summary">
-                    <span className="text-2xl font-medium">Summary</span>
-                    <p className="bg-primary-light-blue mt-5 p-3 rounded text-xl">
+                    <span className="text-lg font-medium">Summary</span>
+                    <p className="bg-primary-light-blue mt-3 p-3 rounded text-lg">
                       {serviceActionData?.goal2Details || "-"}
                     </p>
                   </div>
@@ -1087,9 +1087,9 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
               </div>
               <div className="goals-container grid md:grid-cols-2  gap-5">
                 <div>
-                  <p className="text-2xl mb-5 font-medium">Goal 1</p>
+                  <p className="text-lg mb-3 font-medium">Goal 1</p>
                   <div className="workedGoals-box flex gap-20 gap-5 mb-7">
-                    <label className="flex gap-5 text-2xl">
+                    <label className="flex gap-5 text-lg">
                       <input
                         type="radio"
                         name="workedGoals1"
@@ -1107,7 +1107,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                       Yes
                     </label>
 
-                    <label className="flex gap-5 text-2xl">
+                    <label className="flex gap-5 text-lg">
                       <input
                         type="radio"
                         name="workedGoals1"
@@ -1130,11 +1130,11 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     {/* <div className={`calendarIcon`}>
                       <img src="/date-calendar.svg" width={24} alt="" />
                     </div> */}
-                    <h3 className="text-2xl mb-5 font-medium">Target date</h3>
+                    <h3 className="text-lg mb-3 font-medium">Target date</h3>
                     <input
                       type="date"
                       id=""
-                      className="rounded-lg border-black p-2 text-xl"
+                      className="rounded-lg border-black p-2 text-lg"
                       value={clientData.goal1ProgressDate?.split("T")[0]}
                       onChange={(e) =>
                         setClientData({
@@ -1145,14 +1145,14 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     />
                   </div>
                   <div className="">
-                    <p className="mb-5 font-medium text-2xl">
+                    <p className="mb-3 font-medium text-lg">
                       Goal 1 worked comments
                     </p>
                     <textarea
                       name=""
                       id=""
                       rows="10"
-                      className="border-black rounded-md w-full  text-xl p-2"
+                      className="border-black rounded-md w-full  text-lg p-2"
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
@@ -1164,9 +1164,9 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   </div>
                 </div>
                 <div>
-                <p className="text-2xl mb-5 font-medium">Goal 2</p>
+                <p className="text-lg mb-3 font-medium">Goal 2</p>
                 <div className="workedGoals-box flex gap-20 mb-7">
-                  <label className="flex gap-5 text-2xl">
+                  <label className="flex gap-5 text-lg">
                     <input
                       type="radio"
                       name="workedGoals2"
@@ -1183,7 +1183,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     />
                     Yes
                   </label>
-                  <label className="flex gap-5 text-2xl">
+                  <label className="flex gap-5 text-lg">
                     <input
                       type="radio"
                       name="workedGoals2"
@@ -1206,11 +1206,11 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   {/* <div className={`calendarIcon`}>
                       <img src="/date-calendar.svg" width={24} alt="" />
                     </div> */}
-                  <h3 className="text-2xl mb-5 font-medium">Target date</h3>
+                  <h3 className="text-lg mb-3 font-medium">Target date</h3>
                   <input
                     type="date"
                     id=""
-                    className="rounded-lg border-black p-2 text-xl"
+                    className="rounded-lg border-black p-2 text-lg"
                     value={clientData.goal2ProgressDate?.split("T")[0]}
                     onChange={(e) =>
                       setClientData({
@@ -1221,14 +1221,14 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   />
                 </div>
                 <div className="">
-                  <p className="mb-5 font-medium text-2xl">
+                  <p className="mb-3 font-medium text-lg">
                     Goal 2 Worked Comments
                   </p>
                   <textarea
                     name=""
                     id=""
                     rows="10"
-                    className="border-black rounded-md w-full text-xl p-2"
+                    className="border-black rounded-md w-full text-lg p-2"
                     onChange={(e) =>
                       setClientData({
                         ...clientData,
@@ -1340,10 +1340,10 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
               </div>
               <div className="goals-container grid md:grid-cols-2 gap-5">
                 <div className="">
-                  <p className="text-2xl mb-5 font-medium">Goal 1</p>
+                  <p className="text-lg mb-3 font-medium">Goal 1</p>
 
                   <div className="workedGoals-box flex gap-20 mb-7">
-                    <label className={`flex items-center gap-5 text-2xl`}>
+                    <label className={`flex items-center gap-5 text-lg`}>
                       <input
                         type="radio"
                         name="completedGoals1"
@@ -1365,7 +1365,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                       Yes
                     </label>
 
-                    <label className={`flex items-center gap-5 text-2xl`}>
+                    <label className={`flex items-center gap-5 text-lg`}>
                       <input
                         type="radio"
                         name="completedGoals1"
@@ -1388,11 +1388,11 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-2xl mb-5">Target date</h3>
+                    <h3 className="font-medium text-lg mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
-                      className="rounded-lg border-black text-xl p-1"
+                      className="rounded-lg border-black text-lg p-1"
                       value={clientData.goal1CompletedDate?.split("T")[0]}
                       onChange={(e) => {
                         setClientData({
@@ -1407,14 +1407,14 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     />
                   </div>
                   <div className="mt-5">
-                    <p className="text-2xl font-medium mb-5">
+                    <p className="text-lg font-medium mb-3">
                       Goal 1 Completion Comments
                     </p>
                     <textarea
                       name=""
                       id=""
                       rows="10"
-                      className="border-black rounded-md w-full mt p-2 text-xl"
+                      className="border-black rounded-md w-full mt p-2 text-lg"
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
@@ -1427,10 +1427,10 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                 </div>
 
                 <div>
-                  <p className="text-2xl mb-5 font-medium">Goal 2</p>
+                  <p className="text-lg mb-3 font-medium">Goal 2</p>
 
                   <div className="workedGoals-box flex gap-20 mb-7">
-                    <label className={`flex items-center gap-5 text-2xl`}>
+                    <label className={`flex items-center gap-5 text-lg`}>
                       <input
                         type="radio"
                         name="completedGoals2"
@@ -1452,7 +1452,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                       Yes
                     </label>
 
-                    <label className={`flex items-center gap-5 text-2xl`}>
+                    <label className={`flex items-center gap-5 text-lg`}>
                       <input
                         type="radio"
                         name="completedGoals2"
@@ -1475,11 +1475,11 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-2xl mb-5">Target date</h3>
+                    <h3 className="font-medium text-lg mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
-                      className="rounded-lg border-black text-xl p-1 "
+                      className="rounded-lg border-black text-lg p-1 "
                       value={clientData.goal2CompletedDate?.split("T")[0]}
                       onChange={(e) => {
                         setClientData({
@@ -1494,14 +1494,14 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     />
                   </div>
                   <div className="mt-5">
-                    <p className="text-2xl font-medium mb-5">
+                    <p className="text-lg font-medium mb-3">
                       Goal 2 completion comments
                     </p>
                     <textarea
                       name=""
                       id=""
                       rows="10"
-                      className="border-black rounded-md w-full  p-2 text-xl"
+                      className="border-black rounded-md w-full  p-2 text-lg"
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
@@ -1618,13 +1618,13 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   Notes on the client progress
                 </h3>
               </div>
-              <p className="text-2xl mb-7 font-medium">Progress Notes</p>
+              <p className="text-lg mb-7 font-medium">Progress Notes</p>
               <textarea
                 name="progressNotes"
                 id=""
                 cols="30"
                 rows="12"
-                className="border-black w-full rounded-lg p-2 mb-5 text-xl"
+                className="border-black w-full rounded-lg p-2 mb-3 text-lg"
                 placeholder="Enter notes on the client progress/interaction followup here"
                 onChange={(e) => {
                   setClientData({
@@ -1636,12 +1636,12 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
               ></textarea>
 
               <div className="progressnotes-box">
-                <p className="text-2xl font-medium mb-5">
+                <p className="text-lg font-medium mb-3">
                   Has the health care worker signed
                 </p>
                 <div className="flex gap-x-20">
                   <label
-                    className={`flex items-center gap-x-5 text-2xl font-medium`}
+                    className={`flex items-center gap-x-5 text-lg font-medium`}
                   >
                     <input
                       type="radio"
@@ -1655,7 +1655,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     Yes
                   </label>
                   <label
-                    className={`flex items-center gap-x-5 text-2xl font-medium`}
+                    className={`flex items-center gap-x-5 text-lg font-medium`}
                   >
                     <input
                       type="radio"
@@ -1690,7 +1690,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                       whichServiceBeenAded.slice(...e).map((service) => (
                         <>
                           <div
-                            className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
+                            className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2 mt-1`}
                           >
                             <label className="flex items-center gap-5">
                               <input
@@ -1765,7 +1765,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                                   }
                                 }}
                               />
-                              <p className="text-xl">{service.form_text}</p>
+                              <p className="text-lg">{service.form_text}</p>
                             </label>
                           </div>
                         </>
@@ -1783,7 +1783,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
             )}
             <div className="container mx-auto flex justify-center gap-x-10">
               <button
-                className="btn-yellow flex items-center gap-3 px-5 py-2 rounded shadow-lg text-2xl inline-block "
+                className="btn-yellow hover:bg-yellow-100 flex items-center gap-3 px-5 py-2 rounded shadow-lg text-lg inline-block "
                 onClick={() => handleProgressNote()}
               >
                 <img
@@ -1795,7 +1795,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
 
               <ReactToPrint
                 trigger={() => (
-                  <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadow-lg text-2xl inline-block ">
+                  <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-gray-700  px-5 py-2 rounded shadow-lg text-lg inline-block ">
                     <img
                       src="/progress_notes/print_mini.svg"
                       alt="print icon"

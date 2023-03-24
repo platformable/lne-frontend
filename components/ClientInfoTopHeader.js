@@ -11,12 +11,12 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                   </div>
                   <div className="grid md:grid-cols-3 items-end gap-7">
                     <label className="block ">
-                      <p className="text-2xl font-medium mb-5">Date</p>
+                      <p className="text-xl font-medium mb-2">Date</p>
                       <input
                         type="date"
                         name=""
                         id=""
-                        className="py-3 px-2 rounded-md text-2xl  bg-primary-light-blue"
+                        className="py-3 px-2 rounded-md text-lg  bg-primary-light-blue"
                         value={clientData.progressNoteDate}
                         onChange={(e) =>
                           setClientData({
@@ -28,16 +28,16 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                     </label>
 
                     <label className="block">
-                      <p className="text-2xl font-medium mb-5">Client name</p>
-                      <p className="p-3 rounded-md text-2xl bg-primary-light-blue">
+                      <p className="text-xl font-medium mb-2">Client name</p>
+                      <p className="p-3 rounded-md text-lg bg-primary-light-blue">
                         {data[0]?.clientfirstname}{" "}
                         {data[0]?.clientlastname.charAt(0)}.
                       </p>
                     </label>
 
                     <label className="block">
-                      <p className="text-2xl font-medium mb-5">Client ID</p>
-                      <p className="py-3 px-2 rounded-md text-2xl w-28 text-center bg-primary-light-blue">
+                      <p className="text-xl font-medium mb-2">Client ID</p>
+                      <p className="py-3 px-2 rounded-md text-lg w-28 text-center bg-primary-light-blue">
                         {data[0]?.clientid}
                       </p>
                     </label>
@@ -54,14 +54,14 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                   </div>
                   <div className="grid md:flex items-end  gap-7">
                     <label className="block">
-                      <p className="text-2xl font-medium mb-5">First Name</p>
-                      <p className="md:w-72 p-3 rounded-md text-2xl bg-primary-light-blue">
+                      <p className="text-xl font-medium mb-2">First Name</p>
+                      <p className="md:w-72 p-3 rounded-md text-lg bg-primary-light-blue">
                         {clientData.userFirstName}
                       </p>
                     </label>
                     <label className="block">
-                      <p className="text-2xl font-medium mb-5">Last Name</p>
-                      <p className="md:w-72 p-3 rounded-md text-2xl bg-primary-light-blue">
+                      <p className="text-xl font-medium mb-2">Last Name</p>
+                      <p className="md:w-72 p-3 rounded-md text-lg bg-primary-light-blue">
                         {clientData.userLastName}
                       </p>
                     </label>

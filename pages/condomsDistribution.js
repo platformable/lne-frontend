@@ -78,7 +78,7 @@ const CondomsDistributed = () => {
             id="form"
             className="gap-x-5 shadow-lg bg-white  rounded p-5 mb-5 container mx-auto"
           >
-            <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center justify-between mb-10">
               <div className="flex gap-3 items-center ">
                 <img
                   src="/condoms_distribution/Material_distributed.svg"
@@ -88,16 +88,16 @@ const CondomsDistributed = () => {
                 <h3 className="font-black text-3xl">Material Distributed</h3>
               </div>
 
-              <div className="justify-self-end flex gap-x-5 items-center">
+              <div className="justify-self-end flex gap-x-5 items-end">
                 <div>
-                  <h3 className="font-black text-2xl">Date</h3>
+                  <h3 className="font-black text-lg">Date</h3>
                 </div>
                 <input
                   type="date"
                   name=""
                   id=""
                   value={formData?.date}
-                  className="border-black rounded text-2xl p-1 w-44"
+                  className="border-black rounded text-lg p-1 w-44"
                   onChange={(e) => {
                     setFormData({ ...formData, date: e.target.value });
                   }}
@@ -254,7 +254,7 @@ const CondomsDistributed = () => {
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
               <button
-                className="grid grid-cols-3 w-60 text-medium items-center text-2xl btn-yellow hover:btn-darkYellow px-4 py-2 rounded shadow-lg"
+                className="grid grid-cols-3 w-60 text-medium items-center text-lg btn-yellow hover:btn-darkYellow px-4 py-2 rounded shadow-lg"
                 onClick={() => handleForm()}
               >
                 <img src="/client/Save.svg" alt="Save form icon" /> 

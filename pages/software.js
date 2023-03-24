@@ -85,7 +85,7 @@ These sections are in current development and are on the August - December 2022 
                   </div>
                 </div>
               </section>
-              <h1 className="my-5 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+              <h1 className="my-5 container mx-auto text-center md:text-left  lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
