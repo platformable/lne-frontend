@@ -193,10 +193,10 @@ export default function EditClientModal({
           <div className="grid grid-cols-1 gap-6 p-5">
             <div className="flex items-center gap-4">
               <img src="/edit.svg" alt="" />
-              <h3 className="">
+              <h1 className="">
                 {" "}
                 Edit Client Information
-              </h3>
+              </h1>
             </div>
 
             {emptyFields && (

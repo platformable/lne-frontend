@@ -56,7 +56,20 @@ export default function ClientServiceActionPlansListPage({ data }) {
           </div>
         </section> */}
 
-        <SubHeader pageTitle="Service Action Plans" sap={true}/>
+        <SubHeader pageTitle="Service Action Plans">
+          {<button
+                onClick={() =>
+                  router.push(
+                    `/clients/${data.client[0].clientid}/service-action-plan`
+                  )
+                }
+                className="blue-btn hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center gap-x-3"
+              >
+                <img src="/sap/create_service_action_plan_icon.svg" alt="" width={24}/>
+                Create Service Action Plan
+              </button>}
+
+          </SubHeader>
 
         <section id="sap-dashboard">
           <div className="container mx-auto">
@@ -118,13 +131,13 @@ export default function ClientServiceActionPlansListPage({ data }) {
                 </div>
 
                 <div className="sap-dashboard-client-table px-5 gap-x-2">
-                  <p className="bg-client-profile-sap-heading py-1 px-2">
+                  <p className="bg-client-profile-sap-heading py-2 px-2 text-lg">
                     Plan start date
                   </p>
-                  <p className="bg-client-profile-sap-heading py-1 px-2 text-center">
+                  <p className="bg-client-profile-sap-heading py-2 px-2 text-lg">
                     Status
                   </p>
-                  <p className="bg-client-profile-sap-heading py-1 px-2 text-center">
+                  <p className="bg-client-profile-sap-heading py-2 px-2 text-center text-lg">
                     Edit
                   </p>
                 </div>
@@ -143,12 +156,12 @@ export default function ClientServiceActionPlansListPage({ data }) {
                           }`}
                           key={index}
                         >
-                          <p className={`py-2 px-2`}>
+                          <p className={`py-2 px-2 text-lg`}>
                             {new Date(sap.planstartdate).toLocaleDateString(
                               "en-US", {month: '2-digit', day: "2-digit", year: 'numeric'}
                             )}
                           </p>
-                          <p className=" py-2 px-2 text-center">
+                          <p className=" py-2 px-2 text-lg">
                             {`${sap.status}`}
                           </p>
                           <p className=" py-2 px-2 text-center flex items-center justify-center">
@@ -159,7 +172,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                                 href={"/clients/devs"}
                                 className="flex justify-center items-center"
                               >
-                                <img src="/edit-icon.svg" alt="edit icon" />
+                                <img src="/edit.svg" alt="edit icon" />
                               </a>
                             </Link>
                           </p>

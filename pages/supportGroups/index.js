@@ -71,7 +71,16 @@ const SupportGroups = ({hcworkers}) => {
           
 
 
-            <SubHeader pageTitle={'Support Group Record'} supportGroup={true}/>
+            <SubHeader pageTitle={'Support Group Record'}>
+{ <Link href="/supportGroups/pastEvents">
+            <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
+                    <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
+                    <p className="p-2 text-base">
+                    Review past group events
+                    </p>
+              </button>
+          </Link>}
+             </SubHeader> 
           <div className="bg-blue-50 py-10">
             
     

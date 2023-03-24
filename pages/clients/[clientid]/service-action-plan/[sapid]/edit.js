@@ -15,6 +15,7 @@ import BackButton from "../../../../../components/BackButton";
 import BackToDashboardButton from "../../../../../components/BackToDashboardButton";
 
 import SapClientInformation from "../../../../../components/SapClientInformation";
+import SubHeader from "../../../../../components/SubHeader";
 
 export default function EditServiceActionPlan({ data }) {
   const router = useRouter();
@@ -199,7 +200,7 @@ export default function EditServiceActionPlan({ data }) {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-        <section className="bg-white pt-10 pb-5">
+      {/*   <section className="bg-white pt-10 pb-5">
           <div className="container mx-auto flex gap-x-5">
             <BackButton />
             <BackToDashboardButton />
@@ -219,7 +220,9 @@ export default function EditServiceActionPlan({ data }) {
               <h1>Service Action Plan</h1>
             </div>
           </div>
-        </section>
+        </section> */}
+
+        <SubHeader pageTitle={'Create Service Action Plan'} createSapBtn={true}/>
 
         <div
           id="mainContent"

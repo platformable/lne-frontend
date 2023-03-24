@@ -2,8 +2,12 @@ import React from 'react'
 import BackButton from './BackButton'
 import BackToDashboardButton from './BackToDashboardButton'
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-function SubHeader({pageTitle,sap,supportGroup}) {
+
+function SubHeader({pageTitle,sap,supportGroup,children}) {
+
+  const router = useRouter();
   return (
     <section className="bg-white  pt-10 pb-3" id="subheader">
     <div className="container mx-auto">
@@ -12,11 +16,17 @@ function SubHeader({pageTitle,sap,supportGroup}) {
         <BackToDashboardButton />
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-10">
 
-      <h1 className="pt-10 font-bold">{pageTitle}</h1>
 
-      {
+      <h1 className="font-bold">{pageTitle}</h1>
+      
+      <div className="flex gap-x-5">
+      {children}
+
+      </div>
+     
+      {/* {
           sap ? (
             <button
                 onClick={() =>
@@ -44,7 +54,9 @@ function SubHeader({pageTitle,sap,supportGroup}) {
               </button>
           </Link>
           ): null
-        }
+        } */}
+
+  
 
       </div>
 {/*  */}

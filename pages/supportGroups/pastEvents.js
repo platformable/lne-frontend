@@ -120,19 +120,19 @@ const PastEvents = ({ events }) => {
               } container mx-auto gap-x-1 `}
             >
               {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
+              <p className="font-bold  flex items-center  bg-support-groups-table-heading py-2  px-3">
                 Event date
               </p>
-              <p className="font-bold  flex items-center justify-center   bg-support-groups-table-heading p-1">
+              <p className="font-bold  flex items-center   bg-support-groups-table-heading py-2 px-3">
                 Name of Group
               </p>
-              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
+              <p className="font-bold  flex items-center  bg-support-groups-table-heading py-2 px-3">
                 Discussion topic
               </p>
-              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
+              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading py-2 px-3">
                 View/edit event
               </p>
-              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading p-1">
+              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading py-2 px-3">
                 Delete event
               </p>
             </div>
@@ -175,7 +175,7 @@ const PastEvents = ({ events }) => {
                           }`}
                         >
                           {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-                          <p className="flex items-center justify-center p-1">
+                          <p className="flex items-center p-3">
                             {event.supportmeetingdate &&
                               new Date(
                                 event?.supportmeetingdate
@@ -185,17 +185,17 @@ const PastEvents = ({ events }) => {
                                 year: "numeric",
                               })}
                           </p>
-                          <p className="flex items-center justify-center   p-1">
+                          <p className="flex items-center p-3">
                             {event.supportgroupname}
                           </p>
-                          <p className="flex items-center justify-center p-1">
+                          <p className="flex items-center p-3">
                             {event.supportgrouptopic}
                           </p>
                           <p className="flex items-center justify-center p-1">
                             <Link href={`/supportGroups/${event.id}/edit`}>
                               <a className="flex items-center justify-center">
                                 <img
-                                  src="/edit-icon.svg"
+                                  src="/edit.svg"
                                   alt="edit event icon"
                                   title="Edit event"
                                 />
@@ -214,7 +214,7 @@ const PastEvents = ({ events }) => {
                               title="Delete event"
                             >
                               <img
-                                src="/delete-icon.svg"
+                                src="/delete_client_black_icon.svg"
                                 alt="delete icon"
                                 width="25px"
                               />

@@ -128,16 +128,16 @@ export default function ClientProfilePage({
           className={`flex ${color} px-5 py-3  items-center rounded-sm shadow-sm justify-center`}
         >
           {color === "bg-green-300" && (
-            <p className="text-center flex justify-center">On Track</p>
+            <p className="text-center flex justify-center text-lg">On Track</p>
           )}
           {color === "bg-orange-300" && (
-            <p className="text-center flex justify-center">Warning</p>
+            <p className="text-center flex justify-center text-lg">Warning</p>
           )}
           {color === "bg-red-400" && (
-            <p className="text-center flex justify-center">Alert</p>
+            <p className="text-center flex justify-center text-lg">Alert</p>
           )}
         </div>
-        <p className="text-center flex justify-center py-3 text-center">
+        <p className="text-center flex justify-center py-3 text-center text-lg">
           {result}
         </p>
         <div className="flex justify-center">
@@ -184,10 +184,10 @@ export default function ClientProfilePage({
           <div
             className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
           >
-            <p>On Track</p>
+            <p className="text-lg">On Track</p>
           </div>
 
-          <p className="px-4 my-3 text-center">{result}</p>
+          <p className="px-4 my-3 text-center text-lg">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -210,10 +210,10 @@ export default function ClientProfilePage({
           <div
             className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
           >
-            <p>Alert</p>
+            <p className="text-lg">Alert</p>
           </div>
 
-          <p className="px-4 my-3 text-center">{result}</p>
+          <p className="px-4 my-3 text-center text-lg">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -235,10 +235,10 @@ export default function ClientProfilePage({
           <div
             className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
           >
-            <p>On Track</p>
+            <p className="text-lg">On Track</p>
           </div>
 
-          <p className="px-4 my-3 text-center">{result}</p>
+          <p className="px-4 my-3 text-center text-lg">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -262,10 +262,10 @@ export default function ClientProfilePage({
           <div
             className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
           >
-            <p>Warning</p>
+            <p className="text-lg">Warning</p>
           </div>
 
-          <p className="px-4 my-3 text-center">{result}</p>
+          <p className="px-4 my-3 text-center text-lg">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -320,7 +320,7 @@ export default function ClientProfilePage({
             {color === "bg-red-400" && <p>Alert</p>}
           </div>
 
-          <p className="px-4 my-3 text-center">
+          <p className="px-4 my-3 text-center text-lg">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : totalDays < 0
@@ -373,12 +373,12 @@ export default function ClientProfilePage({
           <div
             className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}
           >
-            {color === "bg-green-300" && <p>On Track</p>}
-            {color === "bg-orange-300" && <p>Warning</p>}
-            {color === "bg-red-400" && <p>Alert</p>}
+            {color === "bg-green-300" && <p className="text-lg">On Track</p>}
+            {color === "bg-orange-300" && <p className="text-lg">Warning</p>}
+            {color === "bg-red-400" && <p className="text-lg">Alert</p>}
           </div>
 
-          <p className="px-4 my-3 text-center">
+          <p className="px-4 my-3 text-center text-lg">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : `You saw this client today`}{" "}
@@ -446,26 +446,26 @@ export default function ClientProfilePage({
                       />
                       <div>
                         {" "}
-                        <p className="text-dark-blue font-black text-lg">
+                        <p className="text-dark-blue font-bold text-xl">
                           {data[0]?.clientfirstname}{" "}
                           {data[0]?.clientlastname.charAt(0)}
                         </p>
-                        <p className="text-dark-blue text-xs">
+                        <p className="text-dark-blue text-lg ">
                           {data[0]?.clientid}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center">
                       <div className="flex gap-x-1">
                         <img
                           src="/joining_date_icon.svg"
                           alt=""
                           width={"14px"}
                         />
-                        <p className="">Joining date</p>
+                        <p className="text-lg">Joining date</p>
                       </div>
-                      <p className="justify-self-end">
+                      <p className="justify-self-end text-lg">
                         {new Date(
                           data[0]?.clientdatecreated
                         ).toLocaleDateString("en-EN", {
@@ -478,7 +478,7 @@ export default function ClientProfilePage({
 
                     <div className="flex justify-between gap-x-2">
                       <button
-                        className="bg-blue-cards-btns w-full rounded-md px-5 block py-1 shadow-md  mt-5 text-sm  flex gap-x-2 items-center justify-center"
+                        className="bg-blue-cards-btns w-full rounded-md px-5 block py-3 shadow-md  mt-5 text-sm  flex gap-x-2 items-center justify-center text-lg"
                         onClick={() =>
                           setShowEditClientModal(!showEditClientModal)
                         }
@@ -488,7 +488,7 @@ export default function ClientProfilePage({
                       </button>
 
                       <button
-                        className="w-full rounded-md px-5 py-1 block shadow-md bg-black text-white mt-5 text-sm flex gap-x-2 items-center justify-center"
+                        className="w-full rounded-md px-5 py-3 block shadow-md bg-black text-white mt-5 text-sm flex gap-x-2 items-center justify-center text-lg"
                         onClick={() =>
                           setShowDeleteClientModal(!showDeleteClientModal)
                         }
@@ -709,89 +709,89 @@ export default function ClientProfilePage({
                           index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
                         }`}
                       >
-                        <p className="px-5">
+                        <p className="px-5 text-lg">
                           {new Date(pn.date).toLocaleDateString("en-US")}
                         </p>
-                        <div className="px-5">
-                          <p>
+                        <div className="px-5 ">
+                          <p className="">
                             {pn.developmentactionplan === "1"
                               ? "Development of Action Plan with Client"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.cd4vllabreport === "1"
                               ? "CD4/VL Lab Report Check"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.transportationcoordination === "1"
                               ? "Transportation Coordination"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.translationinterpretation === "1"
                               ? "Translation/Interpretation"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.comprehensivebehavioralriskassessment === "1"
                               ? "Comprehensive Behavioral Risk Assessment"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.ticklerupdate === "1" ? "Tickler Update" : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.treatmenteducation === "1"
                               ? "Treatment Education and Adherence Counselling"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.preventioncounselling === "1"
                               ? "Prevention Counselling"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.supportivecounselling === "1"
                               ? "Supportive Counselling"
                               : ""}
                           </p>
-                          <p>{pn.escort === "1" ? "Escort" : ""}</p>
-                          <p>
+                          <p className="">{pn.escort === "1" ? "Escort" : ""}</p>
+                          <p className="">
                             {pn.caseclosuredischarge === "1"
                               ? "Case Closure/Discharge"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.linkagetoservices === "1"
                               ? "Linkage to Services"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.supportgroups === "1" ? "Support Groups" : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.implementationactionplan === "1"
                               ? "Implementation of Action Plan"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.housingassistance === "1"
                               ? "Assistance with Housing Services"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.benefitsassistance === "1"
                               ? "Assistance with Access to Benefits/Entitlements"
                               : ""}
                           </p>
-                          <p>
+                          <p className="">
                             {pn.employmentassistance === "1"
                               ? "Assistance with Employment/Education"
                               : ""}
                           </p>
 
-                          <p>
+                          <p className="">
                             {pn.otherassistance === "1"
                               ? "Other Assistance"
                               : ""}
@@ -805,7 +805,7 @@ export default function ClientProfilePage({
                               href={"/clients/devs"}
                               className="flex justify-center items-center"
                             >
-                              <img src="/edit-icon.svg" alt="edit icon" />
+                              <img src="/edit.svg" alt="edit icon" />
                             </a>
                           </Link>
                         </div>
@@ -817,7 +817,7 @@ export default function ClientProfilePage({
                             }}
                             className="flex items-center justify-center"
                           >
-                            <img src="/delete-icon.svg" alt="edit icon" />
+                            <img src="/delete_client_black_icon.svg" alt="edit icon" />
                           </button>
                         </div>
                       </div>
