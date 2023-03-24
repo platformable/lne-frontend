@@ -200,29 +200,9 @@ export default function EditServiceActionPlan({ data }) {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-      {/*   <section className="bg-white pt-10 pb-5">
-          <div className="container mx-auto flex gap-x-5">
-            <BackButton />
-            <BackToDashboardButton />
+  
 
-            <button
-              onClick={() =>
-                router.push(`/clients/${data[0].clientid}/service-action-plan`)
-              }
-              className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center"
-            >
-              Create Service Action Plan
-            </button>
-          </div>
-
-          <div className="container mx-auto pt-7">
-            <div className="font-bold md:p-0 px-5">
-              <h1>Service Action Plan</h1>
-            </div>
-          </div>
-        </section> */}
-
-        <SubHeader pageTitle={'Create Service Action Plan'} createSapBtn={true}/>
+        <SubHeader pageTitle={'Edit Service Action Plan'} createSapBtn={true}/>
 
         <div
           id="mainContent"
@@ -233,8 +213,11 @@ export default function EditServiceActionPlan({ data }) {
           {/*client information end */}
 
           <section id="goals" className="my-5 md:px-0 px-5 border-blue-bottom">
-            <div className="container mx-auto">
-              <h1 className="font-black my-5 px-5">Client Goals</h1>
+            <div className="container mx-auto px-5">
+            <div className="flex gap-x-3 items-center">
+                <img src="/client_goals.svg" alt="" />
+              <h2 className="font-bold">Client Goals</h2>
+              </div>
             </div>
             <div
               className={`container mx-auto rounded-xl px-5 py-5 
@@ -260,7 +243,7 @@ export default function EditServiceActionPlan({ data }) {
                       )}
                     </div>
                     <label className="block">
-                      <h4 className="font-black text-xl"> Goal 1 Summary</h4>
+                      <h4 className=" text-xl mb-1"> Goal 1 Summary</h4>
 
                       <select
                         onChange={(e) =>
@@ -284,7 +267,7 @@ export default function EditServiceActionPlan({ data }) {
                     </label>
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Details</h4>
+                      <h4 className=" text-xl mb-1">Details</h4>
                       <textarea
                         name=""
                         id=""
@@ -302,7 +285,7 @@ export default function EditServiceActionPlan({ data }) {
                     </label>
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Target Date</h4>
+                      <h4 className=" text-xl mb-1">Target Date</h4>
                       <input
                         type="date"
                         className="border-black w-full rounded p-2 "
@@ -322,7 +305,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 1</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 1</h4>
                         <img
                           src={"/action01.svg"}
                           alt=""
@@ -348,7 +331,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 2</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 2</h4>
                         <img
                           src={"/action02.svg"}
                           alt=""
@@ -374,7 +357,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 3</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 3</h4>
                         <img
                           src={"/action03.svg"}
                           alt=""
@@ -418,7 +401,7 @@ export default function EditServiceActionPlan({ data }) {
                       )}
                     </div>
                     <label className="block">
-                      <h4 className="font-black text-xl">Goal 2 Summary</h4>
+                      <h4 className=" text-xl mb-1">Goal 2 Summary</h4>
 
                       <select
                         onChange={(e) =>
@@ -445,7 +428,7 @@ export default function EditServiceActionPlan({ data }) {
 
          
                     <label className="block">
-                      <h4 className="font-black text-xl">Details</h4>
+                      <h4 className=" text-xl mb-1">Details</h4>
                       <textarea
                         name=""
                         id=""
@@ -463,7 +446,7 @@ export default function EditServiceActionPlan({ data }) {
                     </label>
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Target Date</h4>
+                      <h4 className=" text-xl mb-1">Target Date</h4>
                       <input
                         type="date"
                         className="border-black w-full rounded p-2 "
@@ -483,7 +466,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 1</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 1</h4>
                         <img
                           src={"/action01.svg"}
                           alt=""
@@ -509,7 +492,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 2</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 2</h4>
                         <img
                           src={"/action02.svg"}
                           alt=""
@@ -535,7 +518,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 3</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 3</h4>
                         <img
                           src={"/action03.svg"}
                           alt=""
@@ -564,14 +547,14 @@ export default function EditServiceActionPlan({ data }) {
                {/*  <div className="service-action-plan-goal-box">
                   <div className="service-action-plan-page-goals-top grid gap-5">
                     <div className="flex justify-between items-center ">
-                      <h3 className="font-black ">Goal 3</h3>
+                      <h3 className=" ">Goal 3</h3>
                       <div className="bg-dark-blue w-56 h-px"></div>
                       <img src={"/goal03.svg"} alt="" />
                     </div>
 
                     <div className="h-2 mb-2">
                       {clientData.goal3Completed && (
-                        <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                        <p className="px-3 py-1 rounded-lg shadow   bg-green-300">
                           Completed:{" "}
                           {new Date(
                             clientData.goal3CompletionDate
@@ -585,7 +568,7 @@ export default function EditServiceActionPlan({ data }) {
                     </div>
 
                     <label className="block">
-                      <h4 className="font-black">Summary</h4>
+                      <h4 className="">Summary</h4>
 
                       <select
                         onChange={(e) =>
@@ -612,7 +595,7 @@ export default function EditServiceActionPlan({ data }) {
 
               
                     <label className="block">
-                      <h4 className="font-black">Details</h4>
+                      <h4 className="">Details</h4>
                       <textarea
                         name=""
                         id=""
@@ -630,7 +613,7 @@ export default function EditServiceActionPlan({ data }) {
                     </label>
 
                     <label className="block">
-                      <h4 className="font-black">Target Date</h4>
+                      <h4 className="">Target Date</h4>
                       <input
                         type="date"
                         className="border-black w-full rounded p-2 "
@@ -650,7 +633,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center">
-                        <h4 className="font-black mr-2">Action 1</h4>
+                        <h4 className=" mr-2">Action 1</h4>
                         <img
                           src={"/action01.svg"}
                           alt=""
@@ -676,7 +659,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center">
-                        <h4 className="font-black mr-2">Action 2</h4>
+                        <h4 className=" mr-2">Action 2</h4>
                         <img
                           src={"/action02.svg"}
                           alt=""
@@ -702,7 +685,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center">
-                        <h4 className="font-black mr-2">Action 3</h4>
+                        <h4 className=" mr-2">Action 3</h4>
                         <img
                           src={"/action03.svg"}
                           alt=""
@@ -729,7 +712,7 @@ export default function EditServiceActionPlan({ data }) {
                 </div> */}
               </div>
               <label className="block">
-                <h4 className="font-black text-xl">Additional Comments</h4>
+                <h4 className=" text-xl mb-1 mt-3">Additional Comments</h4>
                 <textarea
                   name=""
                   id=""
@@ -746,7 +729,10 @@ export default function EditServiceActionPlan({ data }) {
           </section>
           <section id="other" className="my-5 md:px-0 px-5">
             <div className="container mx-auto">
-              <h3 className="font-black my-5 text-dark-blue px-5 text-xl">Signatures</h3>
+            <div className="flex gap-x-3 px-5 items-center">
+                <img src="/Signatures.svg" alt="" />
+                <h3 className="font-black   text-xl mb-1">Signatures</h3>
+              </div>
 
               <div
                 className={`${
@@ -756,7 +742,7 @@ export default function EditServiceActionPlan({ data }) {
                 {/* <h6 className="font-black"></h6> */}
                 <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
                   <div className="others-container-box flex gap-2 items-center">
-                    <p className="text-xl">Has the client signed?</p>
+                    <p className="text-xl mb-1">Has the client signed?</p>
                     <input
                       type="checkbox"
                       className="border-dark-blue"
@@ -770,7 +756,7 @@ export default function EditServiceActionPlan({ data }) {
                     />
                   </div>
                   <div className="others-container-box flex gap-2 justify-center items-center">
-                    <p className="text-xl">
+                    <p className="text-xl mb-1">
                       Has the health care worker signed?
                     </p>
                     <input

@@ -16,6 +16,7 @@ import BackButton from "../../../../components/BackButton";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 
 import SapClientInformation from "../../../../components/SapClientInformation";
+import SubHeader from "../../../../components/SubHeader";
 
 export default function IndexServoceActionPlan({ data }) {
   let componentRef = useRef();
@@ -181,18 +182,8 @@ export default function IndexServoceActionPlan({ data }) {
       <Layout>
         <ToastContainer autoClose={2000} />
 
-        <section className="bg-white pt-10 pb-5">
-          <div className="container mx-auto flex gap-x-5">
-            <BackButton />
-            <BackToDashboardButton />
-          </div>
 
-          <div className="container mx-auto pt-7">
-            <div className="font-bold md:p-0 px-5">
-              <h1>Service Action Plan</h1>
-            </div>
-          </div>
-        </section>
+        <SubHeader pageTitle={'Service Action Plan'}/>
 
         <div
           id="mainContent"
@@ -203,8 +194,11 @@ export default function IndexServoceActionPlan({ data }) {
           {/*client information end */}
 
           <section id="goals" className="border-blue-bottom">
-            <div className="container mx-auto">
-              <h2 className="font-black mt-10 px-5 text-dark-blue">Client Goals</h2>
+          <div className="container mx-auto px-5">
+            <div className="flex gap-x-3 items-center mt-10 mb-5">
+                <img src="/client_goals.svg" alt="" />
+              <h2 className="font-bold">Client Goals</h2>
+              </div>
             </div>
             <div
               className={`container mx-auto rounded-xl px-5 py-5`}
@@ -215,7 +209,7 @@ export default function IndexServoceActionPlan({ data }) {
                    
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Goal 1 Summary</h4>
+                      <h4 className="text-xl mb-1">Goal 1 Summary</h4>
 
                       <select
                         onChange={(e) =>
@@ -224,7 +218,7 @@ export default function IndexServoceActionPlan({ data }) {
                             goal1Summary: e.target.value,
                           })
                         }
-                        className=" w-full mt-1 tezr-xs rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
+                        className=" w-full mt-1  rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                       >
                         <option selected="true" disabled="disabled">
                           Select
@@ -235,7 +229,7 @@ export default function IndexServoceActionPlan({ data }) {
                     </label>
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Details</h4>
+                      <h4 className="text-xl mb-1">Details</h4>
                       <textarea
                         name=""
                         id=""
@@ -252,7 +246,7 @@ export default function IndexServoceActionPlan({ data }) {
                     </label>
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Target Date</h4>
+                      <h4 className="text-xl mb-1">Target Date</h4>
                       <input
                         type="date"
                         className="border-black w-full rounded p-2 "
@@ -267,7 +261,7 @@ export default function IndexServoceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 1</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 1</h4>
                         <img
                           src={"/action01.svg"}
                           alt=""
@@ -292,7 +286,7 @@ export default function IndexServoceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 2</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 2</h4>
                         <img
                           src={"/action02.svg"}
                           alt=""
@@ -317,7 +311,7 @@ export default function IndexServoceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 3</h4>
+                        <h4 className=" mr-2 text-xl mb-1">Action 3</h4>
                         <img
                           src={"/action03.svg"}
                           alt=""
@@ -347,7 +341,7 @@ export default function IndexServoceActionPlan({ data }) {
                 
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Goal 2 Summary</h4>
+                      <h4 className="text-xl mb-1">Goal 2 Summary</h4>
 
                       <select
                         onChange={(e) =>
@@ -368,7 +362,7 @@ export default function IndexServoceActionPlan({ data }) {
 
             
                     <label className="block">
-                      <h4 className="font-black text-xl">Details</h4>
+                      <h4 className="text-xl mb-1">Details</h4>
                       <textarea
                         name=""
                         id=""
@@ -385,7 +379,7 @@ export default function IndexServoceActionPlan({ data }) {
                     </label>
 
                     <label className="block">
-                      <h4 className="font-black text-xl">Target Date</h4>
+                      <h4 className="text-xl mb-1">Target Date</h4>
                       <input
                         type="date"
                         className="border-black w-full rounded p-2 "
@@ -400,7 +394,7 @@ export default function IndexServoceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 1</h4>
+                        <h4 className="mr-2 text-xl mb-1">Action 1</h4>
                         <img
                           src={"/action01.svg"}
                           alt=""
@@ -425,7 +419,7 @@ export default function IndexServoceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 2</h4>
+                        <h4 className="mr-2 text-xl mb-1">Action 2</h4>
                         <img
                           src={"/action02.svg"}
                           alt=""
@@ -450,7 +444,7 @@ export default function IndexServoceActionPlan({ data }) {
 
                     <label className="block">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-black mr-2 text-xl">Action 3</h4>
+                        <h4 className="mr-2 text-xl mb-1">Action 3</h4>
                         <img
                           src={"/action03.svg"}
                           alt=""
@@ -613,7 +607,7 @@ export default function IndexServoceActionPlan({ data }) {
                 </div> */}
               </div>
               <label className="block">
-                <h4 className="font-black text-xl">Additional Comments</h4>
+                <h4 className="text-xl mb-1">Additional Comments</h4>
                 <textarea
                   name=""
                   id=""
@@ -629,7 +623,11 @@ export default function IndexServoceActionPlan({ data }) {
           </section>
           <section id="other" className="my-5 md:px-0 px-5">
             <div className="container mx-auto">
-              <h3 className="font-black my-5 px-5 text-xl">Signatures</h3>
+            <div className="flex gap-x-3 px-5 items-center">
+                <img src="/Signatures.svg" alt="" />
+                <h3 className="font-black   text-xl mb-1">Signatures</h3>
+              </div>
+            
 
               <div className={`rounded-xl px-5 py-5`}>
                 <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">

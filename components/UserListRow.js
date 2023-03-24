@@ -28,25 +28,25 @@ export default function UserListRow({setSelectedEntity,authorizeduser,setSelecte
                 className={`${styles.dashboardActiveUsersListHeadRow} ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}  py-3 bg-white`}
               >
                 <div className="head-row flex px-2 justify-start items-center ">
-                  <p className="text-left">{name}</p>
+                  <p className="text-left text-lg">{name}</p>
                 </div>
                 <div className="head-row flex px-2 justify-start items-center ">
-                  <p className="text-left">{lastname}</p>
+                  <p className="text-left text-lg">{lastname}</p>
                 </div>
                  <div className="head-row flex px-2 justify-start items-center">
-                  <p className="text-left">{userrole}</p>
+                  <p className="text-left text-lg">{userrole}</p>
                 </div>  
                 <div className="head-row flex px-2 justify-start items-center ">
-                  <p className="text-left">{useremail ? useremail : "-"}</p>
+                  <p className="text-left text-lg">{useremail ? useremail : "-"}</p>
                 </div>
                 <div className="head-row flex px-2 justify-center items-center">
-                  <p className="text-left">{dateaccountactivated?dateaccountactivated.split('T')[0]:"-"}</p>
+                  <p className="text-left text-lg">{dateaccountactivated?dateaccountactivated.split('T')[0]:"-"}</p>
                 </div>
                 <div className="head-row flex px-2 justify-center items-center">
-                  <p className="text-left">{datelastlogin?datelastlogin.split('T')[0]:"-"}</p>
+                  <p className="text-left text-lg">{datelastlogin?datelastlogin.split('T')[0]:"-"}</p>
                 </div>
                 <div className="head-row flex px-2 justify-center items-center">
-                  <p className="text-left flex cursor-pointer" 
+                  <p className="text-left text-lg flex cursor-pointer" 
                    onClick={()=>handleSelectedUser(authorizeduser, 'EDIT')}>
                     <Image src={editIcon} alt="edit-icon"></Image>
                   </p>
