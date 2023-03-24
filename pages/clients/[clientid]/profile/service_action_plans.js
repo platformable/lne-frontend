@@ -71,11 +71,13 @@ export default function ClientServiceActionPlansListPage({ data }) {
 
           </SubHeader>
 
+          
+
         <section id="sap-dashboard">
           <div className="container mx-auto">
             <div className="sap-dashboard bg-white my-10 rounded-md shadow-md border-blue">
               <div className="sap-dashboard-client-information border-blue-bottom">
-                <div className="flex items-center gap-x-3 py-10 px-5  self-start ">
+                <div className="flex items-center gap-x-3 py-5 px-5  self-start ">
                   <img
                     src="/support_groups/Past_group_events.png"
                     alt=""

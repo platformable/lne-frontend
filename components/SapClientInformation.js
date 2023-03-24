@@ -8,7 +8,7 @@ export default function SapClientInformation({
   return (
     <section id="info" className="border-blue-bottom bg-white rounded-md ">
       <div className="container mx-auto">
-        <div className="service-action-plan-page-info-box px-5 py-10 ">
+        <div className="service-action-plan-page-info-box px-5 pt-5 pb-7">
           <div className="grid grid-cols-2 gap-x-5 mb-5">
             <div className="flex items-center gap-x-3  self-start ">
               <img

@@ -446,11 +446,11 @@ export default function ClientProfilePage({
                       />
                       <div>
                         {" "}
-                        <p className="text-dark-blue font-bold text-3xl">
+                        <p className="text-dark-blue font-bold text-2xl">
                           {data[0]?.clientfirstname}{" "}
                           {data[0]?.clientlastname.charAt(0)}
                         </p>
-                        <p className="text-dark-blue text-lg ">
+                        <p className="text-dark-blue text-lg">
                           {data[0]?.clientid}
                         </p>
                       </div>
@@ -669,7 +669,7 @@ export default function ClientProfilePage({
             />
           </section>
           <section id="progressnotes" className="my-10 ">
-            <div className="container mx-auto bg-white px-5 pt-2 pb-10 rounded-md shadow-md">
+            <div className="container mx-auto bg-white px-5 pt-5 pb-10  mt-5 rounded-md shadow-md">
               <div className="flex gap-x-3">
                 <img src="/client/Client_progress_notes_icon.svg" alt="" />
                 <h3 className="font-black my-5">Client progress notes</h3>
@@ -677,22 +677,22 @@ export default function ClientProfilePage({
 
               <div className="grid client-progress-note-table gap-x-1 rounded-tl-md rounded-tr-md">
                 <div>
-                  <h3 className="bg-client-profile-pn-heading p-2 text-black py-2 px-5 text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading p-2 text-black py-2 px-5  mt-2 uppercase font-black text-lg">
                     Date
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading py-2 px-5 text-black  text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading py-2 px-5 text-black   mt-2 uppercase font-black text-lg">
                     Service
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center mt-2 uppercase font-black text-lg">
                     Edit
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center  mt-2 uppercase font-black text-lg">
                     Delete
                   </h3>
                 </div>
@@ -713,85 +713,85 @@ export default function ClientProfilePage({
                           {new Date(pn.date).toLocaleDateString("en-US")}
                         </p>
                         <div className="px-5 ">
-                          <p className="">
+                          <p className="text-lg">
                             {pn.developmentactionplan === "1"
                               ? "Development of Action Plan with Client"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.cd4vllabreport === "1"
                               ? "CD4/VL Lab Report Check"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.transportationcoordination === "1"
                               ? "Transportation Coordination"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.translationinterpretation === "1"
                               ? "Translation/Interpretation"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.comprehensivebehavioralriskassessment === "1"
                               ? "Comprehensive Behavioral Risk Assessment"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.ticklerupdate === "1" ? "Tickler Update" : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.treatmenteducation === "1"
                               ? "Treatment Education and Adherence Counselling"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.preventioncounselling === "1"
                               ? "Prevention Counselling"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.supportivecounselling === "1"
                               ? "Supportive Counselling"
                               : ""}
                           </p>
-                          <p className="">{pn.escort === "1" ? "Escort" : ""}</p>
-                          <p className="">
+                          <p className=""text-lg>{pn.escort === "1" ? "Escort" : ""}</p>
+                          <p className="text-lg">
                             {pn.caseclosuredischarge === "1"
                               ? "Case Closure/Discharge"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.linkagetoservices === "1"
                               ? "Linkage to Services"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.supportgroups === "1" ? "Support Groups" : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.implementationactionplan === "1"
                               ? "Implementation of Action Plan"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.housingassistance === "1"
                               ? "Assistance with Housing Services"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.benefitsassistance === "1"
                               ? "Assistance with Access to Benefits/Entitlements"
                               : ""}
                           </p>
-                          <p className="">
+                          <p className="text-lg">
                             {pn.employmentassistance === "1"
                               ? "Assistance with Employment/Education"
                               : ""}
                           </p>
 
-                          <p className="">
+                          <p className="text-lg">
                             {pn.otherassistance === "1"
                               ? "Other Assistance"
                               : ""}

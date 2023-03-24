@@ -46,9 +46,9 @@ const DeleteClientModal = ({data, showDeleteClientModal, setShowDeleteClientModa
                         <h3 className='ml-2'>Delete Client</h3>
                     </div>
         
-                    <h4 className="mt-5 mb-3">Name</h4>
-                    <p className="bg-blue-50 rounded-md py-3 px-3 mb-5">{clientfirstname +' '+ clientlastname} </p>
-                     <p className='self-center text-center '>Are you sure you want to delete this client?</p>
+                    <h4 className="mt-5 mb-3 text-lg">Name</h4>
+                    <p className="bg-blue-50 rounded-md py-3 px-3 mb-5 text-lg">{clientfirstname +' '+ clientlastname} </p>
+                     <p className='self-center text-center text-lg'>Are you sure you want to delete this client?</p>
                     <div className='grid grid-cols-2 gap-x-5 justify-between mt-5'>
                     
                         <button
