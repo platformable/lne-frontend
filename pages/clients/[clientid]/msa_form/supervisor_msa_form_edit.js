@@ -1649,7 +1649,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
           </section>
         </section>
       </Layout>
-      {!showIssuesFoundModal && (
+      {showIssuesFoundModal && (
         <IssuesFoundModal
           clientId={clientData.clientId}
           HCW={clientData.userFirstName + " " + clientData.userLastName}

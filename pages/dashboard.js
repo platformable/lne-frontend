@@ -108,7 +108,7 @@ const loggedUserStatus =
                 </h1>
 
         
-              <h1 className=" container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
+              <h1 className=" container mx-auto text-center md:text-left  lg:pl-0 font-black">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
@@ -117,7 +117,7 @@ const loggedUserStatus =
             </section>
             <div className="container mx-auto">
              
-              <div className="grid md:grid-cols-6 grid-cols-1 gap-5 mb-2">
+              <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1 gap-5 mb-2">
   
 
                 {(loggedUserRole === "HCW" || loggedUserRole === "DES") && (
