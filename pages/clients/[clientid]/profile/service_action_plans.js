@@ -35,26 +35,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
       <Layout>
         <ToastContainer autoClose={700} />
 
-       {/*  <section className="pb-5 pt-10 md:px-0 px-5 bg-white ">
-          <div className="container mx-auto">
-            <div className="flex gap-x-3">
-              <BackButton />
-              <BackToDashboardButton />
-
-              <button
-                onClick={() =>
-                  router.push(
-                    `/clients/${data.client[0].clientid}/service-action-plan`
-                  )
-                }
-                className="bg-yellow hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center"
-              >
-                Create Service Action Plan
-              </button>
-            </div>
-            <h1 className="font-bold mt-7  "> Services Action Plans</h1>
-          </div>
-        </section> */}
+  
 
         <SubHeader pageTitle="Service Action Plans">
           {<button
@@ -66,7 +47,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                 className="blue-btn hover:bg-blue-300 px-3 py-2 rounded text-black inline-block  flex items-center gap-x-3"
               >
                 <img src="/sap/create_service_action_plan_icon.svg" alt="" width={18}/>
-                Create Service Action Plan
+                <p className="text-lg">Create Service Action Plan</p>
               </button>}
 
           </SubHeader>
@@ -88,7 +69,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                 alt=""
                 className="grid items-center self-start"
               />
-              <h1 className="font-bold">Client Information</h1>
+              <h1 className="font-bold text-2xl">Client Information</h1>
             </div>
 
             <div className="flex items-center gap-x-3  self-start ">
@@ -99,7 +80,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
           <div className="sap-client-information-container grid grid-cols-2 gap-x-5">
             <div className="sap-client-information grid grid-cols-3 gap-x-5">
               <div>
-                <p className=" text-lg">Plan start date</p>
+                <p className=" text-xl font-bold">Plan start date</p>
                 <input
                   type="date"
                   className="block bg-primary-light-blue w-full rounded-md  p-1  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
@@ -113,14 +94,14 @@ export default function ClientServiceActionPlansListPage({ data }) {
               </div>
 
               <div>
-                <p className="text-lg">Client name</p>
+                <p className="text-xl font-bold">Client name</p>
                 <p className="bg-blue-50 rounded-md pl-2 pr-10 py-1 text-lg">
                 {data?.client[0]?.clientfirstname}{" "} {data.client[0].clientlastname.charAt(0)}.
                 </p>
               </div>
 
               <div>
-                <p className="text-lg">Client ID</p>
+                <p className="text-xl font-bold">Client ID</p>
                 <p className="bg-blue-50 rounded-md pl-2  py-1 text-lg block w-2/4">
                   {" "}
                   {data?.client[0]?.clientid}
@@ -141,51 +122,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
         </div>
       </div>
     </section>
-              {/* <div className="sap-dashboard-client-information border-blue-bottom">
-                <div className="flex items-center gap-x-3 py-5 px-5  self-start ">
-                  <img
-                    src="/support_groups/Past_group_events.png"
-                    alt=""
-                    className="grid items-center self-start"
-                  />
-                  <h1 className="font-bold">Client information</h1>
-                </div>
-                <div className="flex items-center gap-x-5  px-5 pb-10">
-                  <div>
-                    <p className="text-lg">Plan start date</p>
-                    <p className="bg-blue-50 rounded-md pl-2 pr-10 py-2 text-lg">
-                      {" "}
-                      {data?.clientData.length > 0
-                        ? data?.clientData
-                            .filter((client, index) => {
-                              return client.status === "Current";
-                            })
-                            .map((client, index) => {
-                              return new Date(
-                                client.planstartdate
-                              ).toLocaleDateString("en-US");
-                            })
-                        : "-"}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-lg">Client name</p>
-                    <p className="bg-blue-50 rounded-md pl-2 pr-10 py-2 text-lg">
-                      {" "}
-                      {data?.client[0]?.clientfirstname}{" "}
-                      {data?.client[0]?.clientlastname.charAt(0)}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-lg">Client ID</p>
-                    <p className="bg-blue-50 rounded-md pl-2 pr-10 py-2 text-lg">
-                      {" "}
-                      {data?.client[0]?.clientid}
-                    </p>
-                  </div>
-                </div>
-              </div> */}
+            
 
               <div className="sap-dashboard-client-services-action-plans pb-10">
                 <div className="flex items-center gap-x-3 py-10 px-5  self-start ">
@@ -194,11 +131,11 @@ export default function ClientServiceActionPlansListPage({ data }) {
                     alt=""
                     width={45}
                   />
-                  <h1 className="font-bold">Service Action Plans</h1>
+                  <h1 className="font-bold text-2xl">Service Action Plans</h1>
                 </div>
 
                 <div className="sap-dashboard-client-table px-5 gap-x-2">
-                  <p className="bg-client-profile-sap-heading py-2 px-2 text-lg">
+                  <p className="bg-client-profile-sap-heading py-2 px-2 text-lg ">
                     Plan start date
                   </p>
                   <p className="bg-client-profile-sap-heading py-2 px-2 text-lg">

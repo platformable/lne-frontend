@@ -68,7 +68,7 @@ h6 {
 /*   --lightBlue: #d0e7fd; */
   --primaryLightBlue: #EDF3FB;
   --blue: #62a6e5;
-  --darkBlue: #007fff;
+  --darkBlue: #249AE3;
   --pink: #ff9eb6;
   --strongPink: #ff56a5;
   --purple: #ad4bbf;
@@ -552,4 +552,8 @@ grid-template-columns: 2fr 8fr 2fr;
 
 .table-headings {
   font-size:24px;
+}
+
+.bg-dark-yellow {
+  background-color: var(--darkYellow);
 }

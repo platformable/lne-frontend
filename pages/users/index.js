@@ -59,7 +59,7 @@ export default function UsersIndex({ data }) {
                   <div className="flex justify-between   items-center ">
                     <div className="flex items-center gap-x-3   self-start ">
                       <img src="/LNE_users.svg" alt="" width={45} />
-                      <h1 className="font-bold">LNE Users</h1>
+                      <h1 className="font-bold text-2xl">LNE Users</h1>
                     </div>
 
                     <div>
@@ -72,7 +72,7 @@ export default function UsersIndex({ data }) {
                           alt=""
                           width={24}
                         />
-                        View authorized users
+                        <p className="text-lg">View authorized users</p>
                       </button>
                     </div>
                   </div>

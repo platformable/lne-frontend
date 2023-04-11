@@ -216,7 +216,7 @@ export default function EditServiceActionPlan({ data }) {
             <div className="container mx-auto px-5">
             <div className="flex gap-x-3 items-center">
                 <img src="/client_goals.svg" alt="" />
-              <h2 className="font-bold">Client Goals</h2>
+              <h2 className="font-bold text-2xl">Client Goals</h2>
               </div>
             </div>
             <div
@@ -307,7 +307,7 @@ export default function EditServiceActionPlan({ data }) {
                       <div className="flex items-center justify-between">
                         <h4 className=" mr-2 text-xl mb-1">Action 1</h4>
                         <img
-                          src={"/action01.svg"}
+                          src={"/sap/action_1.svg"}
                           alt=""
                           width="50"
                           height="10"
@@ -333,7 +333,7 @@ export default function EditServiceActionPlan({ data }) {
                       <div className="flex items-center justify-between">
                         <h4 className=" mr-2 text-xl mb-1">Action 2</h4>
                         <img
-                          src={"/action02.svg"}
+                          src={"/sap/action_2.svg"}
                           alt=""
                           width="50"
                           height="10"
@@ -359,7 +359,7 @@ export default function EditServiceActionPlan({ data }) {
                       <div className="flex items-center justify-between">
                         <h4 className=" mr-2 text-xl mb-1">Action 3</h4>
                         <img
-                          src={"/action03.svg"}
+                          src={"/sap/action_3.svg"}
                           alt=""
                           width="50"
                           height="10"
@@ -468,7 +468,7 @@ export default function EditServiceActionPlan({ data }) {
                       <div className="flex items-center justify-between">
                         <h4 className=" mr-2 text-xl mb-1">Action 1</h4>
                         <img
-                          src={"/action01.svg"}
+                          src={"/sap/action_1.svg"}
                           alt=""
                           width="50"
                           height="10"
@@ -494,7 +494,7 @@ export default function EditServiceActionPlan({ data }) {
                       <div className="flex items-center justify-between">
                         <h4 className=" mr-2 text-xl mb-1">Action 2</h4>
                         <img
-                          src={"/action02.svg"}
+                          src={"/sap/action_2.svg"}
                           alt=""
                           width="50"
                           height="10"
@@ -520,7 +520,7 @@ export default function EditServiceActionPlan({ data }) {
                       <div className="flex items-center justify-between">
                         <h4 className=" mr-2 text-xl mb-1">Action 3</h4>
                         <img
-                          src={"/action03.svg"}
+                          src={"/sap/action_3.svg"}
                           alt=""
                           width="50"
                           height="10"
@@ -832,36 +832,27 @@ export default function EditServiceActionPlan({ data }) {
                 <button
                   className={`${
                     !activeActionPlan ? "block" : "block"
-                  } flex items-center justify-around w-36 bg-light-blue hover:bg-blue-300 hover:text-white  py-1 rounded text-blue-500 `}
+                  } w-60 btn-blue px-5 py-1 rounded text-white inline-block  mr-5 text-black flex gap-x-5 items-center`}
                   onClick={() => setActiveActionPlan(!activeActionPlan)}
                 >
-                  <img
-                    src="/edit-action-plan-button.svg"
-                    alt="edit action plan button"
-                  ></img>
-                  Edit Action Plan
+             <img src="/sap/edit_action_plan.svg" alt="" width={24}/>
+             <p className="text-lg ml-2">Edit Action Plan</p>
                 </button>
 
                 <button
-                  className="flex items-center justify-around w-36 bg-blue-500 hover:bg-blue-300  py-1 mx-4 rounded text-white  "
+                  className="w-60 bg-dark-yellow px-5 py-1 rounded text-white inline-block  mr-5 text-black flex gap-x-5 items-center"
                   onClick={(e) => {
                     updateClientActionPlan();
                   }}
                 >
-                  <img
-                    src="/check-save-and-finish.svg"
-                    alt="save and finish button"
-                  ></img>
-                  Save and finish
+                 <img src="/sap/save_icon.svg" alt="" width={24}/>
+             <p className="text-lg ml-2">Save and finish</p>
                 </button>
                 <ReactToPrint
                   trigger={() => (
-                    <button className="flex items-center justify-around w-36 bg-black hover:bg-gray-700  py-1 rounded text-white   ">
-                      <img
-                        src="/print-and-sign.svg"
-                        alt="Print and sign button"
-                      ></img>
-                      Print and sign
+                    <button className="w-60 bg-black px-5 py-1 rounded text-white inline-block flex gap-x-5 items-center ">
+                      <img src="/sap/print_and_sign.svg" alt="" width={22}/>
+             <p className="text-lg ml-4">Print and sign</p>
                     </button>
                   )}
                   content={() => componentRef.current}
