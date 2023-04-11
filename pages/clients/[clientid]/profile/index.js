@@ -441,13 +441,13 @@ export default function ClientProfilePage({
                   <div className="profile-client-information-top-1 bg-white rounded-md  shadow-md p-5">
                     <div className="flex gap-5 pb-7">
                       <img
-                        src="/client/USERicon.svg"
+                        src="/client/client_dashboard.svg"
                         className="self-start"
                         alt="user-icon"
                       />
                       <div>
                         {" "}
-                        <p className="text-dark-blue font-bold text-2xl">
+                        <p className="text-black font-bold text-2xl">
                           {data[0]?.clientfirstname}{" "}
                           {data[0]?.clientlastname.charAt(0)}
                         </p>

@@ -7,7 +7,7 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
                   <div className="flex gap-x-2 mb-5 items-center">
                     <img src="/client/client_information.svg"  />
-                    <h3 className="font-bold text-3xl">Client Information</h3>
+                    <h3 className="font-bold text-2xl">Client Information</h3>
                   </div>
                   <div className="grid md:grid-cols-3 items-end gap-7">
                     <label className="block ">
@@ -50,7 +50,7 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                       src="/progress_notes/health_care_worker.svg"
                       
                     />
-                    <h3 className="font-bold text-3xl ">Health Care Worker</h3>
+                    <h3 className="font-bold text-2xl ">Health Care Worker</h3>
                   </div>
                   <div className="grid md:flex items-end  gap-7">
                     <label className="block">

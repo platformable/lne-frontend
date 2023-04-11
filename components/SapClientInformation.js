@@ -16,7 +16,7 @@ export default function SapClientInformation({
                 alt=""
                 className="grid items-center self-start"
               />
-              <h1 className="font-bold">Client Information</h1>
+              <h1 className="font-bold text-2xl">Client Information</h1>
             </div>
 
             <div className="flex items-center gap-x-3  self-start ">
@@ -25,14 +25,14 @@ export default function SapClientInformation({
                 alt=""
                 className="grid items-center self-start"
               />
-              <h1 className="font-bold">Health Care Worker</h1>
+              <h1 className="font-bold Client Information">Health Care Worker</h1>
             </div>
           </div>
 
           <div className="sap-client-information-container grid grid-cols-2 gap-x-5">
             <div className="sap-client-information grid grid-cols-3 gap-x-5">
               <div>
-                <p className=" text-lg">Plan start date</p>
+                <p className="text-xl">Plan start date</p>
                 <input
                   type="date"
                   className="block bg-primary-light-blue w-full rounded-md  p-1  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
@@ -46,14 +46,14 @@ export default function SapClientInformation({
               </div>
 
               <div>
-                <p className="text-lg">Client name</p>
+                <p className="text-xl">Client name</p>
                 <p className="bg-blue-50 rounded-md pl-2 pr-10 py-1 text-lg">
                   {data[0].clientfirstname} {data[0].clientlastname.charAt(0)}.
                 </p>
               </div>
 
               <div>
-                <p className="text-lg">Client ID</p>
+                <p className="text-xl">Client ID</p>
                 <p className="bg-blue-50 rounded-md pl-2  py-1 text-lg block w-2/4">
                   {" "}
                   {data?.[0]?.clientid}
@@ -63,14 +63,14 @@ export default function SapClientInformation({
 
             <div className="sap-client-information grid grid-cols-3 gap-x-5">
               <div>
-                <p className="text-lg">First name</p>
+                <p className="text-xl">First name</p>
                 <p className="bg-blue-50 rounded-md pl-2 pr-10 py-1 text-lg">
                   {clientData.userFirstName}
                 </p>
               </div>
 
               <div>
-                <p className="text-lg">Last name</p>
+                <p className="text-xl">Last name</p>
                 <p className="bg-blue-50 rounded-md pl-2 pr-10 py-1 text-lg">
                   {" "}
                   {clientData.userLastName}

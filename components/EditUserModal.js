@@ -56,10 +56,10 @@ console.log('selected', selectedUser)
           <div className="grid grid-cols-1 gap-6">
             <div className="flex items-center items-end">
               <img src="/user_info.svg" className="mr-3" alt=""  />
-              <h2 className="font-bold">Edit User Information</h2>
+              <h2 className="font-bold text-2xl">Edit User Information</h2>
             </div>
             <label className="block">
-              <span className="ml-1 font-semibold">First name</span>
+              <span className="ml-1 font-semibold text-xl">First name</span>
               <input
                 type="text"
                 className="mt-1 block w-full border-black rounded-md  p-2 pl-3 shadow-sm "
@@ -71,7 +71,7 @@ console.log('selected', selectedUser)
               />
             </label>
             <label className="block">
-              <span className="ml-1 font-semibold">Last name</span>
+              <span className="ml-1 font-semibold text-xl">Last name</span>
               <input
                 type="text"
                 className="mt-1 block w-full  border-black rounded-md p-2 pl-3 shadow-sm "
@@ -83,7 +83,7 @@ console.log('selected', selectedUser)
               />
             </label>
             <label className="block">
-              <span className="ml-1 font-semibold">Email address</span>
+              <span className="ml-1 font-semibold text-xl">Email address</span>
               <input
                 type="email"
                 className="mt-1 block w-full  border-black rounded-md p-2 pl-3 shadow-sm "
@@ -102,7 +102,7 @@ console.log('selected', selectedUser)
             />
           </label> */}
             <label className="block">
-              <span className="font-semibold ml-1">User role</span>
+              <span className="font-semibold ml-1 text-xl">User role</span>
               <select
                 value={userData.userrole}
                 onChange={(e) =>
@@ -117,7 +117,7 @@ console.log('selected', selectedUser)
             </label>
 
             <label className="block">
-              <span className="font-semibold ml-1">Active / Not active</span>
+              <span className="font-semibold ml-1 text-xl">Active / Not active</span>
               <select
                 value={userData.useractivestatus}
                 onChange={(e) =>
