@@ -152,7 +152,7 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
           <span className="close" onClick={() => setShowModal(!showModal)}>
             &times;
           </span>
-          <p className="font-black">Some text in the Modal..</p>
+          <p className="font-bold">Some text in the Modal..</p>
         </div>
       </div> */}
     </>

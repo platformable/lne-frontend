@@ -100,19 +100,21 @@ const loggedUserStatus =
         <main className="bg-light-blue h-screen">
           <section id="dashboard-client-list">
 
-            <section className="bg-white mb-7 shadow-inner">
+          <section className="bg-white mb-7 shadow-inner">
               <div className="container mx-auto ">
-              <section className="py-5">
-                <h1 className="font-black py-5 md:px-0 px-5">
-                  Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
-                </h1>
+                <section className="py-5">
+                  <h1 className="text-5xl py-5 md:px-0 px-5">
+                    Hello{" "}
+                    <strong>
+                      {user && user["https://lanuevatest.herokuapp.com/name"]}
+                    </strong>
+                  </h1>
 
-        
-              <h1 className=" container mx-auto text-center md:text-left  lg:pl-0 font-black">
-                What do you want <span className="bg-yellow px-1"> to do</span>{" "}
-                today?
-              </h1>
-                    </section>
+                  <h1 className=" text-4xl container mx-auto text-center md:text-left  lg:pl-0 font-bold">
+                    What do you want{" "}
+                    <span className="bg-yellow px-1"> to do</span> today?
+                  </h1>
+                </section>
               </div>
             </section>
             <div className="container mx-auto">
@@ -121,17 +123,21 @@ const loggedUserStatus =
   
 
                 {(loggedUserRole === "HCW" || loggedUserRole === "DES") && (
-                  <Link href="/clients">
+                    <Link href="/clients">
                     <div className="text-center ">
                       <div className="rounded blue-btn p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/Manage_Clients_icon.svg" alt="" width={95}/>
+                            <img
+                              src="/manage_clients_icon.svg"
+                              alt=""
+                              width={95}
+                            />
                           </div>
-                          <h3 className="mt-5 text-black">
+                          <p className="mt-5 text-2xl">
                             Manage <br />
                             Clients
-                          </h3>
+                          </p>
                         </button>
                       </div>{" "}
                     </div>
@@ -146,12 +152,16 @@ const loggedUserStatus =
                       <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={95}/>
+                            <img
+                              src="/supervisor/Condoms_Distributed.svg"
+                              alt="condoms distribution icon"
+                              width={87}
+                            />
                           </div>
-                          <h3 className="mt-5 ">
+                          <p className="mt-5 text-2xl">
                             Condoms <br />
                             Distributed
-                          </h3>
+                          </p>
                         </button>
                       </div>{" "}
                     </div>
@@ -164,12 +174,16 @@ const loggedUserStatus =
                       <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={65}/>
+                            <img
+                              src="/supervisor/Support_Group.svg"
+                              alt="support groups icon"
+                              width={70}
+                            />
                           </div>
-                          <h3 className="mt-5">
+                          <p className="mt-5 text-2xl">
                             Support <br />
                             Groups
-                          </h3>
+                          </p>
                         </button>
                       </div>{" "}
                     </div>

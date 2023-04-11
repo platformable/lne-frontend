@@ -230,7 +230,7 @@ export default function EditServiceActionPlan({ data }) {
 
                     <div className="h-2 mb-2">
                       {clientData.goal1Completed && (
-                        <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                        <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
                           Completed:{" "}
                           {new Date(
                             clientData.goal1CompletionDate
@@ -388,7 +388,7 @@ export default function EditServiceActionPlan({ data }) {
                   
                     <div className="h-2 mb-2">
                       {clientData.goal2Completed && (
-                        <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                        <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
                           Completed:{" "}
                           {new Date(
                             clientData.goal2CompletionDate
@@ -731,7 +731,7 @@ export default function EditServiceActionPlan({ data }) {
             <div className="container mx-auto">
             <div className="flex gap-x-3 px-5 items-center">
                 <img src="/Signatures.svg" alt="" />
-                <h3 className="font-black   text-xl mb-1">Signatures</h3>
+                <h3 className="font-bold   text-xl mb-1">Signatures</h3>
               </div>
 
               <div
@@ -739,7 +739,7 @@ export default function EditServiceActionPlan({ data }) {
                   !activeActionPlan ? "pointer-events-none" : ""
                 } rounded-xl px-5 py-5`}
               >
-                {/* <h6 className="font-black"></h6> */}
+                {/* <h6 className="font-bold"></h6> */}
                 <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
                   <div className="others-container-box flex gap-2 items-center">
                     <p className="text-xl mb-1">Has the client signed?</p>
@@ -792,14 +792,14 @@ export default function EditServiceActionPlan({ data }) {
         </div>
         {/*  <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h3 className="font-black my-5 text-dark-blue">Progress Notes</h3>
+            <h3 className="font-bold my-5 text-dark-blue">Progress Notes</h3>
 
             <div className="border-dark-blue  rounded-xl px-5 py-5">
               <div className="others-container grid md:grid-cols-3 grid-cols-1">
                 <div className="others-container-box flex gap-2 ">
                   <p className="text-lg" >
                     Number of client progress notes:{" "}
-                    <span className="text-dark-blue font-black text-lg">
+                    <span className="text-dark-blue font-bold text-lg">
                       {clientData.progressnotesid?.length}
                     </span>
                   </p>

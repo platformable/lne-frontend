@@ -45,7 +45,7 @@ console.log("userData",userData)
           <div className="grid grid-cols-1 gap-6">
           <div className="flex items-center">
             <img src="/edit_user/user_info.svg" className="mr-3" alt="user information icon" />
-            <h2 className="font-black">User Information</h2>
+            <h2 className="font-bold">User Information</h2>
             </div>
             <label className="block">
               <span className="ml-1 font-semibold">First name</span>
@@ -138,7 +138,7 @@ console.log("userData",userData)
           <span className="close" onClick={() => setShowModal(!showModal)}>
             &times;
           </span>
-          <p className="font-black">Some text in the Modal..</p>
+          <p className="font-bold">Some text in the Modal..</p>
         </div>
       </div> */}
     </>

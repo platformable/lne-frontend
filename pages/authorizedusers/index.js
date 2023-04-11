@@ -92,7 +92,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
                       src="/authorised_users_supervisor/authorised_user.svg"
                       alt="manage users icon"
                     />
-                    <h2 className="font-black ">Authorized Users</h2>
+                    <h2 className="font-bold ">Authorized Users</h2>
                   </div>
                   <button className="btn-yellow flex justify-between text-lg items-center py-2 rounded-md shadow-md gap-3 font-medium px-5">
                     <img
@@ -167,7 +167,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
                     src="/authorised_users_supervisor/inactive_users.svg"
                     alt="manage users icon"
                   />
-                  <h2 className="font-black ">Inactive Users</h2>
+                  <h2 className="font-bold ">Inactive Users</h2>
                 </div>
                 {listOfNoActive.length === 0 ? (
                   <center>

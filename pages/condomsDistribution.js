@@ -85,12 +85,12 @@ const CondomsDistributed = () => {
                   alt="material distribution icon"
                   title="material distributed"
                 />
-                <h3 className="font-black text-3xl">Material Distributed</h3>
+                <h3 className="font-bold text-3xl">Material Distributed</h3>
               </div>
 
               <div className="justify-self-end flex gap-x-5 items-end">
                 <div>
-                  <h3 className="font-black text-lg">Date</h3>
+                  <h3 className="font-bold text-lg">Date</h3>
                 </div>
                 <input
                   type="date"
@@ -153,7 +153,7 @@ const CondomsDistributed = () => {
                 alt="peolple seen icon"
                 title="people seen"
               />
-              <h3 className="font-black text-3xl">People collecting safe sex resources</h3>
+              <h3 className="font-bold text-3xl">People collecting safe sex resources</h3>
             </div>
 
             <CondomsDistributionRowComponent

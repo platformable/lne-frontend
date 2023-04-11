@@ -19,7 +19,7 @@ function SubHeader({pageTitle,sap,supportGroup,children}) {
       <div className="flex items-center justify-between pt-10">
 
 
-      <h1 className="font-bold">{pageTitle}</h1>
+      <h1 className="font-bold text-4xl">{pageTitle}</h1>
       
       <div className="flex gap-x-5">
       {children}

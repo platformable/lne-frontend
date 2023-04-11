@@ -17,7 +17,7 @@ export default function Software() {
       <Layout>
       {/* <section className="bg-yellow grid text-center justify-center items-center py-10">
 
-      <h3 className="font-black uppercase">UNDER DEVELOPMENT</h3>
+      <h3 className="font-bold uppercase">UNDER DEVELOPMENT</h3>
         <p>
 These sections are in current development and are on the August - December 2022 Roadmap for feature enhancement.
 </p>
@@ -43,7 +43,7 @@ These sections are in current development and are on the August - December 2022 
                 <div className="supervisor-dashboard-top-container  px-5 py-1 mb-1 bg-white">
                   <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
                     <div>
-                      <h1 className="font-black my-2">
+                      <h1 className="font-bold my-2">
                       Key metrics
                       </h1>
                     </div>
@@ -68,7 +68,7 @@ These sections are in current development and are on the August - December 2022 
                         Days since last backup
                       </p>
                     </div>
-                    <h1 className="w-full text-center font-black py-5 bg-middle-green">
+                    <h1 className="w-full text-center font-bold py-5 bg-middle-green">
                       1
                     </h1>
                   </div>
@@ -79,13 +79,13 @@ These sections are in current development and are on the August - December 2022 
                         Security incidents or data breaches
                       </p>
                     </div>
-                    <h1 className="text-center font-black py-5 bg-middle-green">
+                    <h1 className="text-center font-bold py-5 bg-middle-green">
                       0
                     </h1>
                   </div>
                 </div>
               </section>
-              <h1 className="my-5 container mx-auto text-center md:text-left  lg:pl-0 font-black">
+              <h1 className="my-5 container mx-auto text-center md:text-left  lg:pl-0 font-bold">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>

@@ -555,7 +555,7 @@ const EditMsaFormPage = ({ data }) => {
           </div>
 
           <div className="mt-12 ">
-            <h1 className="font-black text-4xl">Edit MSA form</h1>
+            <h1 className="font-bold text-4xl">Edit MSA form</h1>
           </div>
         </div>
       </div>
@@ -612,7 +612,7 @@ const EditMsaFormPage = ({ data }) => {
                   src="/msa/forms_uploaded.svg"
                   alt="Client goals icon"
                 />
-                <h3 className="font-black text-3xl">Indicate which of the following forms you have uploaded to the client’s Dropbox</h3>
+                <h3 className="font-bold text-3xl">Indicate which of the following forms you have uploaded to the client’s Dropbox</h3>
               </div>
             {/* {TABLE HEAD} */}
             {/* <div className={`${MSAStyles.line}`}></div> */}

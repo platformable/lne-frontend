@@ -549,3 +549,7 @@ grid-template-columns: 2fr 8fr 2fr;
 .msa-table-light-pink-bg {
   background-color: #F6E6FF;
 }
+
+.table-headings {
+  font-size:24px;
+}

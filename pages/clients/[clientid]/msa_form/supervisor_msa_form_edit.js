@@ -951,7 +951,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   src="/msa/forms_uploaded.svg"
                   alt="Services provided icon"
                 />
-                <h3 className="font-black text-3xl">Indicate which of the following forms you have uploaded to the
+                <h3 className="font-bold text-3xl">Indicate which of the following forms you have uploaded to the
             client&apos;s Dropbox</h3>
               </div>
             {/* {TABLE HEAD} */}

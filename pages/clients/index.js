@@ -122,15 +122,15 @@ const ClientsIndex = ({ data, hcworkers }) => {
             <BackButton />
             <BackToDashboardButton />
           </div>
-
+          
           <div className="mt-12 ">
-            <h1 className="font-black text-4xl">Manage Clients</h1>
+            <h1 className="font-bold text-4xl">Manage Clients</h1>
           </div>
           <div className=" mt-10 search-container grid  grid-cols-1 md:flex  gap-5 justify-between">
             <div className="search-box flex items-center">
                <img src="/client/client_information.svg" alt="search by client icon"  className="mr-4"/>
 
-              <p className="mr-5 text-2xl">Search by Name or Client ID</p>
+              <p className="mr-5 text-xl">Search by Name or Client ID</p>
 
               <div className="flex ">
                 <div className="flex border-1 border-black rounded-lg  rounded-lg">
@@ -170,7 +170,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
             <div className="search-box flex items-center ">
               <img src="/client/health_care_worker.svg" alt="Select Health care worker icon" className="mr-4" />
               
-              <p className="mr-5 text-2xl">Select HCW</p>
+              <p className="mr-5 text-xl">Select HCW</p>
               <select
                 onChange={(e) => setSearchByUser(e.target.value)}
                 className="md:w-64 rounded-md p-2 p-r-5 border-black shadow-sm text-black text-xl"
@@ -207,7 +207,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
               <div className="  ">
                 <button id="myBtn">
                   <div className="flex justify-center">
-                    <img src="/client/add_new_client.svg" width={104} alt="" />
+                    <img src="/client/add_new_client.svg" width={85} alt="" />
                   </div>
                 </button>
               </div>{" "}

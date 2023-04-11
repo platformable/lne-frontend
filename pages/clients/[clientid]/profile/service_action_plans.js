@@ -88,7 +88,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                 alt=""
                 className="grid items-center self-start"
               />
-              <h1 className="font-black">Client Information</h1>
+              <h1 className="font-bold">Client Information</h1>
             </div>
 
             <div className="flex items-center gap-x-3  self-start ">
@@ -148,7 +148,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                     alt=""
                     className="grid items-center self-start"
                   />
-                  <h1 className="font-black">Client information</h1>
+                  <h1 className="font-bold">Client information</h1>
                 </div>
                 <div className="flex items-center gap-x-5  px-5 pb-10">
                   <div>
@@ -194,7 +194,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                     alt=""
                     width={45}
                   />
-                  <h1 className="font-black">Service Action Plans</h1>
+                  <h1 className="font-bold">Service Action Plans</h1>
                 </div>
 
                 <div className="sap-dashboard-client-table px-5 gap-x-2">
@@ -247,7 +247,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                       );
                     })
                 ) : (
-                  <center className="mt-5 font-black">
+                  <center className="mt-5 font-bold">
                     <p>{`${
                       data?.client[0]?.clientfirstname
                     } ${data?.client[0]?.clientlastname.charAt(

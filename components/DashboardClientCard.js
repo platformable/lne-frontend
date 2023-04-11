@@ -31,7 +31,7 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
               <img src="/client/client_information.svg" width="44" />
 
               <div>
-                <h5 className="text-gray-900 text-2xl leading-tight font-black">
+                <h5 className="text-gray-900 text-2xl leading-tight font-bold">
                   {client.clientfirstname} {client.clientlastname.charAt(0)}
                 </h5>
                 <p className="text-dark-blue underline font-medium text-lg">

@@ -88,7 +88,7 @@ const SupportGroups = ({hcworkers, data}) => {
                 </Link>
               
               </div>
-              <h1 className="font-black  my-5">
+              <h1 className="font-bold  my-5">
                 Support Group Record
               </h1>
                
@@ -105,7 +105,7 @@ const SupportGroups = ({hcworkers, data}) => {
                  
                  <div className="flex items-center gap-x-3">
                 <img src="/support_groups/Support_Group_information.png" alt="" />
-                <h3 className="font-black">Support Group Information</h3>
+                <h3 className="font-bold">Support Group Information</h3>
                 </div>
 
                 <label className="text-lg block">

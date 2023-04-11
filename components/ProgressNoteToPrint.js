@@ -190,13 +190,13 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
     <>
       <div ref={ref}>
         <div className="container mx-auto">
-          <h3 className="font-black text-center my-5">Progress Notes </h3>
+          <h3 className="font-bold text-center my-5">Progress Notes </h3>
         </div>
 
         <main className="container mx-auto px-5">
           <section id="info" className="my-5">
             <div className="">
-              <h3 className="font-black my-1 text-dark-blue">
+              <h3 className="font-bold my-1 text-dark-blue">
                 Client Information
               </h3>
               <div
@@ -205,7 +205,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
                   <div className="flex gap-x-2 mb-5 items-center">
                     <img src="/calendar-icon.svg" width="24" />
-                    <h3 className="font-black ">Date</h3>
+                    <h3 className="font-bold ">Date</h3>
                   </div>
 
                   <label className="block">
@@ -222,7 +222,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="service-action-plan-page-info-box md:my-0 my-5">
                   <div className="flex gap-x-2 mb-5 items-center">
                     <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Client</h3>
+                    <h3 className="font-bold ">Client</h3>
                   </div>
                   <div className="grid grid-cols-3 gap-4">
                     <label className="block">
@@ -258,7 +258,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="service-action-plan-page-info-box">
                   <div className="flex gap-x-2 mb-5 items-center">
                     <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
+                    <h3 className="font-bold ">Health Care Worker</h3>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <label className="block">
@@ -285,7 +285,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             </div>
           </section>
 
-          <h3 className="font-black my-5 text-dark-blue">Service Provided</h3>
+          <h3 className="font-bold my-5 text-dark-blue">Service Provided</h3>
 
           <section
             id="servidedProvided"
@@ -447,7 +447,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
           </section>
           <div className="page-break"></div>
 
-          <h3 className="font-black pt-10 pb-5 text-dark-blue">Goals</h3>
+          <h3 className="font-bold pt-10 pb-5 text-dark-blue">Goals</h3>
 
           <section
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 goals"
@@ -456,7 +456,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
               <div className="goal-box">
                 <div className="goal-top flex items-center my-2">
-                  <h3 className="font-black">Goal 1</h3>
+                  <h3 className="font-bold">Goal 1</h3>
                   <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                   <img src={"/goal01.svg"} alt="" />
                 </div>
@@ -499,7 +499,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
               <div className="goal-box">
                 <div className="goal-top flex items-center my-2">
-                  <h3 className="font-black">Goal 2</h3>
+                  <h3 className="font-bold">Goal 2</h3>
                   <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                   <img src={"/goal02.svg"} alt="" />
                 </div>
@@ -536,7 +536,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
               <div className="goal-box">
                 <div className="goal-top flex items-center my-2">
-                  <h3 className="font-black">Goal 3</h3>
+                  <h3 className="font-bold">Goal 3</h3>
                   <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                   <img src={"/goal03.svg"} alt="" />
                 </div>
@@ -574,7 +574,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
           </section>
           <div className="flex items-center ml-3 my-4">
             <img src={"/goals-were-worked-on.svg"} />
-            <h3 className="font-black self-end text-dark-blue">
+            <h3 className="font-bold self-end text-dark-blue">
               Which of the goals were worked on?
             </h3>
           </div>
@@ -695,7 +695,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
           <div className="flex items-center  pt-10 pb-5">
             <img src={"/goals-completed-icon.svg"} />
-            <h3 className="font-black self-end ml-3 text-dark-blue">
+            <h3 className="font-bold self-end ml-3 text-dark-blue">
               Were any of the clients goals completed?
             </h3>
           </div>
@@ -845,7 +845,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
           <div className="flex items-center ml-3 my-4 gap-x-2">
             <img src={"/notes_icon.svg"} />
-            <h3 className="font-black self-end text-dark-blue">
+            <h3 className="font-bold self-end text-dark-blue">
               Notes on the client progress
             </h3>
           </div>
@@ -885,7 +885,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
           </section>
           <div className="page-break"></div>
 
-          <h3 className="font-black pt-10 pb-5 text-dark-blue">
+          <h3 className="font-bold pt-10 pb-5 text-dark-blue">
             Were any additional forms added to the client´s profile?
           </h3>
 

@@ -108,29 +108,29 @@ console.log("users",users)
           <div id="dashboard-client-list" className="bg-light-blue pb-7 h-screen">
 
             <div className="dashboard-client-list container mx-auto">
-              <h2 className="font-black text-center pt-6 pb-3">Authorized Users</h2>
+              <h2 className="font-bold text-center pt-6 pb-3">Authorized Users</h2>
               <div className={`${styles.dashboardClientListHeadRow} items-end py-3 px-5 pt-5 pb-1`}>
 
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Name</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Last Name</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">User Role</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Email</p>
                   </div>
 
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Date User added by the supervisor</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-center">Edit</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-center"> Delete</p>
                   </div>
               </div>
@@ -157,31 +157,31 @@ console.log("users",users)
                 {/* INACTIVE USERS */}
 
             <div className="dashboard-client-list container mx-auto mt-10">
-            <h2 className="font-black text-center py-3 ">Inactive Users</h2>
+            <h2 className="font-bold text-center py-3 ">Inactive Users</h2>
              {listOfNoActive.length === 0 ? <center><p>No Inactive Users</p></center> :(
               <>
                   <div className={`${styles.dashboardClientListHeadRow} items-end py-3 px-5 pt-5 pb-1`}>
 
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Name</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Last Name</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">User Role</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Email</p>
                   </div>
 
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-left">Date User added by the supervisor</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-center">Edit</p>
                   </div>
-                  <div className="head-row font-black">
+                  <div className="head-row font-bold">
                     <p className="text-base text-center"> Delete</p>
                   </div>
               </div>

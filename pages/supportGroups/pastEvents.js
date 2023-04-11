@@ -57,7 +57,7 @@ const PastEvents = ({ events }) => {
                 alt=""
                 className="grid items-center self-start"
               />
-              <h1 className="font-black">Past Group Events</h1>
+              <h1 className="font-bold">Past Group Events</h1>
             </div>
 
 

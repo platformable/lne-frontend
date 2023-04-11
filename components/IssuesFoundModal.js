@@ -67,7 +67,7 @@ const IssuesFoundModal = ({
                 alt="user information icon"
               />
 
-              <h2 className="font-black">Issues found</h2>
+              <h2 className="font-bold">Issues found</h2>
             </div>
             <label className="block">
               <span className=" font-semibold">Client ID</span>

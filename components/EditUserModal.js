@@ -56,7 +56,7 @@ console.log('selected', selectedUser)
           <div className="grid grid-cols-1 gap-6">
             <div className="flex items-center items-end">
               <img src="/user_info.svg" className="mr-3" alt=""  />
-              <h2 className="font-black">Edit User Information</h2>
+              <h2 className="font-bold">Edit User Information</h2>
             </div>
             <label className="block">
               <span className="ml-1 font-semibold">First name</span>

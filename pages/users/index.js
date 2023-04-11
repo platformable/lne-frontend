@@ -59,7 +59,7 @@ export default function UsersIndex({ data }) {
                   <div className="flex justify-between   items-center ">
                     <div className="flex items-center gap-x-3   self-start ">
                       <img src="/LNE_users.svg" alt="" width={45} />
-                      <h1 className="font-black">LNE Users</h1>
+                      <h1 className="font-bold">LNE Users</h1>
                     </div>
 
                     <div>
@@ -80,28 +80,28 @@ export default function UsersIndex({ data }) {
                   <div
                     className={`${styles.dashboardActiveUsersListHeadRow} mt-10 gap-x-1 `}
                   >
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-left">Name</p>
                     </div>
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-left">Lastname</p>
                     </div>
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-left"> User Role</p>
                     </div>
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-left">Email</p>
                     </div>
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-center">Activated in</p>
                     </div>
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-center">Last login</p>
                     </div>
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-center">Edit</p>
                     </div>
-                    <div className="head-row font-black bg-blue-50 p-2">
+                    <div className="head-row font-bold bg-blue-50 p-2">
                       <p className="text-base text-center">Delete</p>
                     </div>
                   </div>

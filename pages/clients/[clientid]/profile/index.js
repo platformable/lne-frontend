@@ -81,14 +81,14 @@ export default function ClientProfilePage({
         data[0]?.msaformairsintakeform === null) &&
       data[0]?.servicesactionplanid === null
     ) {
-      result = "You need to fill in the client’s Intake Form";
+      result = "You need to fill in \n the client’s Intake Form";
       color = "bg-red-400";
     }
     if (
       data[0]?.msaformairsintakeform === "1" &&
       data[0]?.msaformcomprehensiveriskbehavrioassesment !== "1"
     ) {
-      result = "You need to fill in the client’s CBRA Form";
+      result = "You need to fill in \n the client’s CBRA Form";
       color = "bg-red-400";
     }
 
@@ -97,7 +97,7 @@ export default function ClientProfilePage({
       data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" &&
       data[0]?.servicesactionplanid !== "1"
     ) {
-      result = "You need to draft the client’s Service Action Plan and sign";
+      result = "You need to draft the client’s \n Service Action Plan and sign";
       color = "bg-orange-300";
     }
 
@@ -118,7 +118,8 @@ export default function ClientProfilePage({
       data[0]?.servicesactionplanid !== null
       //  && (data[0]?.msahnselegibilityform === "1" && data[0]?.msaformhnsreadinessform ==='1')
     ) {
-      result = "All core documents are up to date";
+      result = `All core documents\
+       are up to date`;
       color = "bg-green-300";
     }
 
@@ -145,7 +146,7 @@ export default function ClientProfilePage({
             src="/client/alerticonMSAdoc.svg"
             className="mt-3"
             alt=""
-            width={30}
+            width={50}
           />
         </div>
       </div>
@@ -192,7 +193,7 @@ export default function ClientProfilePage({
             <img
               src="/client/alerticonserviceactionplan.svg"
               alt=""
-              width={30}
+              width={50}
               className="mt-3"
             />
           </div>
@@ -218,7 +219,7 @@ export default function ClientProfilePage({
             <img
               src="/client/alerticonserviceactionplan.svg"
               alt=""
-              width={30}
+              width={50}
               className="mt-3"
             />
           </div>
@@ -243,7 +244,7 @@ export default function ClientProfilePage({
             <img
               src="/client/alerticonserviceactionplan.svg"
               alt=""
-              width={30}
+              width={50}
               className="mt-3"
             />
           </div>
@@ -270,7 +271,7 @@ export default function ClientProfilePage({
             <img
               src="/client/alerticonserviceactionplan.svg"
               alt=""
-              width={30}
+              width={50}
               className="mt-3"
             />
           </div>
@@ -332,7 +333,7 @@ export default function ClientProfilePage({
             <img
               src="/client/alert-icon-progress-note.svg"
               alt=""
-              width={30}
+              width={50}
               className="mt-3"
             />
           </div>
@@ -388,7 +389,7 @@ export default function ClientProfilePage({
               src="/client/alert-icon-progress-note.svg"
               alt=""
               className="mt-3"
-              width={30}
+              width={50}
             />
           </div>
         </div>
@@ -484,7 +485,7 @@ export default function ClientProfilePage({
                         }
                       >
                         <img src="/edit.svg" alt="" width={"14px"} />
-                        Edit
+                        <p className="text-xl">Edit</p> 
                       </button>
 
                       <button
@@ -499,22 +500,22 @@ export default function ClientProfilePage({
                           alt="delete button"
                           width={"11px"}
                         />
-                        Delete
+                       <p className="text-xl"> Delete</p>
                       </button>
                     </div>
                   </div>
                   {/* end first card */}
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-                    {checkMessage1()}
+                    <p>{checkMessage1()}</p>
                   </div>
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-                    {checkMessage2()}
+                   <p> {checkMessage2()}</p>
                   </div>
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-                    {checkMessage3()}
+                   <p> {checkMessage3()}</p>
                   </div>
                 </div>
               </div>
@@ -522,10 +523,10 @@ export default function ClientProfilePage({
           </section>
           <section
             id="client-profile-page-navigation"
-            className="mt-5 font-bold"
+            className="mt-5 "
           >
-            <div className="text-black ">
-              <h1 className="mb-4 container mx-auto text-center md:text-left  lg:pl-0 font-black">
+            <div className="">
+            <h1 className=" text-4xl mb-10 container mx-auto text-center md:text-left  lg:pl-0 font-bold">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>
@@ -551,8 +552,8 @@ export default function ClientProfilePage({
                         {data[0]?.msaformid === undefined ||
                         data[0]?.msaformid === "" ||
                         data[0]?.msaformid === null
-                          ? `Create MSA Form`
-                          : "Edit MSA Form"}
+                          ? (<p className="mt-5 text-2xl">Create  MSA Form</p>)
+                          : (<p className="mt-5 text-2xl">Edit <br /> MSA Form</p>)}
                       </h4>
                     </div>
                   </Link>
@@ -574,8 +575,8 @@ export default function ClientProfilePage({
                         {data[0]?.msaformid === undefined ||
                         data[0]?.msaformid === "" ||
                         data[0]?.msaformid === null
-                          ? `Create MSA Form`
-                          : "Edit MSA Form"}
+                        ? (<p className="mt-5 text-2xl">Create <br /> MSA Form</p>)
+                        : (<p className="mt-5 text-2xl">Edit <br /> MSA Form</p>)}
                       </h4>
                     </div>
                   </Link>
@@ -597,8 +598,8 @@ export default function ClientProfilePage({
                         {data[0]?.msaformid === undefined ||
                         data[0]?.msaformid === "" ||
                         data[0]?.msaformid === null
-                          ? `Add MSA Form`
-                          : `MSA Documentation`}
+                          ? (<p className="mt-5 text-2xl">Add <br /> MSA Form</p>)
+                          : (<p className="mt-5 text-2xl">MSA  <br /> Documentation</p>)}
                       </h4>
                     </div>
                   </Link>
@@ -621,11 +622,12 @@ export default function ClientProfilePage({
                           width={45}
                         />
                       </div>
-                      <h4 className="text-center ">
+                     
                         {data[0]?.servicesactionplanid
-                          ? "View Service Action Plans"
-                          : `Create Service Action Plan`}
-                      </h4>
+                           ? (<p className="mt-5 text-2xl">View Service <br /> Action Plans</p>)
+                          : (<p className="mt-5 text-2xl">Create Service <br /> Action Plan</p>)
+                        }
+                    
                     </div>
                   </Link>
                 ) : (
@@ -642,7 +644,7 @@ export default function ClientProfilePage({
                           width={45}
                         />
                       </div>
-                      <h4 className="text-center ">{`Create Progress Note`}</h4>
+                     <p className="mt-5 text-2xl">Progress <br />  Note</p>
                     </div>
                   </Link>
                 ) : (
@@ -657,7 +659,8 @@ export default function ClientProfilePage({
           >
             <div className="flex gap-x-3">
               <img src="/client/Client_progress_notes_icon.svg" alt="" />
-              <h3 className="font-black my-5">Impact Tracker</h3>
+              
+              <h3 className="font-bold my-5 text-2xl">Impact Tracker</h3>
             </div>
             <ProfilePageBaselineData
               impactBaseline={impactBaseline}
@@ -672,27 +675,27 @@ export default function ClientProfilePage({
             <div className="container mx-auto bg-white px-5 pt-5 pb-10  mt-5 rounded-md shadow-md">
               <div className="flex gap-x-3">
                 <img src="/client/Client_progress_notes_icon.svg" alt="" />
-                <h3 className="font-black my-5">Client progress notes</h3>
+                <h3 className="font-bold my-5 text-2xl">Client progress notes</h3>
               </div>
 
               <div className="grid client-progress-note-table gap-x-1 rounded-tl-md rounded-tr-md">
                 <div>
-                  <h3 className="bg-client-profile-pn-heading p-2 text-black py-2 px-5  mt-2 uppercase font-black text-lg">
+                  <h3 className="bg-client-profile-pn-heading p-2 text-bold table-headings py-2 px-5  mt-2  font-bold ">
                     Date
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading py-2 px-5 text-black   mt-2 uppercase font-black text-lg">
+                  <h3 className="bg-client-profile-pn-heading py-2 px-5 text-bold table-headings   mt-2  font-bold ">
                     Service
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center mt-2 uppercase font-black text-lg">
+                  <h3 className="bg-client-profile-pn-heading py-2 text-bold table-headings text-center mt-2  font-bold ">
                     Edit
                   </h3>
                 </div>
                 <div>
-                  <h3 className="bg-client-profile-pn-heading py-2 text-black text-center  mt-2 uppercase font-black text-lg">
+                  <h3 className="bg-client-profile-pn-heading py-2 text-bold table-headings text-center  mt-2  font-bold ">
                     Delete
                   </h3>
                 </div>
@@ -709,89 +712,89 @@ export default function ClientProfilePage({
                           index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
                         }`}
                       >
-                        <p className="px-5 text-lg">
+                        <p className="px-5 text-xl">
                           {new Date(pn.date).toLocaleDateString("en-US")}
                         </p>
                         <div className="px-5 ">
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.developmentactionplan === "1"
                               ? "Development of Action Plan with Client"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.cd4vllabreport === "1"
                               ? "CD4/VL Lab Report Check"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.transportationcoordination === "1"
                               ? "Transportation Coordination"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.translationinterpretation === "1"
                               ? "Translation/Interpretation"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.comprehensivebehavioralriskassessment === "1"
                               ? "Comprehensive Behavioral Risk Assessment"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.ticklerupdate === "1" ? "Tickler Update" : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.treatmenteducation === "1"
                               ? "Treatment Education and Adherence Counselling"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.preventioncounselling === "1"
                               ? "Prevention Counselling"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.supportivecounselling === "1"
                               ? "Supportive Counselling"
                               : ""}
                           </p>
-                          <p className=""text-lg>{pn.escort === "1" ? "Escort" : ""}</p>
-                          <p className="text-lg">
+                          <p className=""text-xl>{pn.escort === "1" ? "Escort" : ""}</p>
+                          <p className="text-xl">
                             {pn.caseclosuredischarge === "1"
                               ? "Case Closure/Discharge"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.linkagetoservices === "1"
                               ? "Linkage to Services"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.supportgroups === "1" ? "Support Groups" : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.implementationactionplan === "1"
                               ? "Implementation of Action Plan"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.housingassistance === "1"
                               ? "Assistance with Housing Services"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.benefitsassistance === "1"
                               ? "Assistance with Access to Benefits/Entitlements"
                               : ""}
                           </p>
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.employmentassistance === "1"
                               ? "Assistance with Employment/Education"
                               : ""}
                           </p>
 
-                          <p className="text-lg">
+                          <p className="text-xl">
                             {pn.otherassistance === "1"
                               ? "Other Assistance"
                               : ""}
@@ -824,7 +827,7 @@ export default function ClientProfilePage({
                     );
                   })
               ) : (
-                <center className="mt-5 font-black">
+                <center className="mt-5 font-bold">
                   No progress notes yet
                 </center>
               )}
@@ -856,7 +859,7 @@ export default function ClientProfilePage({
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
           notifyDeleteMessage={notifyDeleteMessage}
-          whatToDelete={"Progress Note"}
+          whatToDelete={"progress note"}
         />
       )}
     </>

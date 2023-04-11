@@ -187,7 +187,7 @@ console.log("clientdata",clientData)
       <Layout>
         <section className="my-5">
           <div className="container mx-auto">
-            <div className="md:text-center font-black md:p-0 px-5">
+            <div className="md:text-center font-bold md:p-0 px-5">
               <h1>Service Action Plan</h1>
             </div>
           </div>
@@ -201,18 +201,18 @@ console.log("clientdata",clientData)
         </section>
         <section id="info" className="my-5 container mx-auto">
             <div className="">
-              <h3 className="font-black my-5 text-dark-blue">
+              <h3 className="font-bold my-5 text-dark-blue">
                  Client Information
               </h3>
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 items-center border-dark-blue rounded-xl p-5`}
               >
                 <div className="service-action-plan-page-info-box md:my-1 my-5">
-                  <h3 className="font-black ">Plan start date</h3>
+                  <h3 className="font-bold ">Plan start date</h3>
 
                   <div className="flex gap-x-2 items-center">
                     <img src="/calendar-icon.svg" width="24"/>
-                    {/* <span className="mt-2 font-black">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
+                    {/* <span className="mt-2 font-bold">{new Date(clientData.planStartDate).toLocaleDateString('en',{year:'numeric',month:'numeric',day:'numeric'})}</span> */}
                     <input type="date" name="" id="" className={` border-black p-1 rounded-md`}
                     defaultValue={clientData.planStartDate==='1970-01-01' ? "":clientData.planStartDate}
                     onChange={(e)=>setClientData({...clientData,planStartDate:e.target.value})}
@@ -226,7 +226,7 @@ console.log("clientdata",clientData)
                       <div className="grid grid-cols-3 gap-4">
                       <div className="flex gap-x-2 mb-1 items-end">
                         <img src="/client-icon.svg" width="24" />
-                        <h3 className="font-black ">Client</h3>
+                        <h3 className="font-bold ">Client</h3>
                       </div>
                       <label className="block">
                         <span className=" font-bold">Client Name</span>
@@ -255,7 +255,7 @@ console.log("clientdata",clientData)
                   <div className="grid grid-cols-3 gap-4">
                   <div className="flex gap-x-2 mb-1 items-end">
                     <img src="/msa_form/LNEuser.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
+                    <h3 className="font-bold ">Health Care Worker</h3>
                   </div>
                     <label className="block">
                       <span className=" font-bold">First Name</span>
@@ -285,7 +285,7 @@ console.log("clientdata",clientData)
 
         <section id="goals" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h3 className="font-black my-5 text-dark-blue">Client Goals</h3>
+            <h3 className="font-bold my-5 text-dark-blue">Client Goals</h3>
           </div>
           <div
             className={`border-dark-blue container mx-auto rounded-xl px-5 py-5`}
@@ -295,7 +295,7 @@ console.log("clientdata",clientData)
                 <div className="service-action-plan-page-goals-top grid gap-5">
             
                   <div className="flex justify-between items-center ">
-                    <h3 className="font-black ">Goal 1</h3>
+                    <h3 className="font-bold ">Goal 1</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal01.svg'} alt=""/>
                     
@@ -303,7 +303,7 @@ console.log("clientdata",clientData)
 
                   <div className="h-2 mb-2">
                   {clientData.goal1Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                      <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal1CompletionDate
@@ -316,7 +316,7 @@ console.log("clientdata",clientData)
                     )}
                   </div>
                   <label className="block">
-                    <h4 className="font-black">Summary</h4>
+                    <h4 className="font-bold">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -337,7 +337,7 @@ console.log("clientdata",clientData)
                   </label>
 
                  {/*  <label className="block">
-                    <h4 className="font-black">Service Category</h4>
+                    <h4 className="font-bold">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -359,7 +359,7 @@ console.log("clientdata",clientData)
                     </select>
                   </label> */}
                   <label className="block">
-                    <h4 className="font-black">Details</h4>
+                    <h4 className="font-bold">Details</h4>
                     <textarea
                       name=""
                       id=""
@@ -377,7 +377,7 @@ console.log("clientdata",clientData)
                   </label>
 
                   <label className="block">
-                    <h4 className="font-black">Target Date</h4>
+                    <h4 className="font-bold">Target Date</h4>
                     <input
                       type="date"
                       className="border-black w-full rounded p-2 "
@@ -397,7 +397,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                     <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 1</h4>
+                    <h4 className="font-bold mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -418,7 +418,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 2</h4>
+                    <h4 className="font-bold mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -439,7 +439,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 3</h4>
+                    <h4 className="font-bold mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -463,13 +463,13 @@ console.log("clientdata",clientData)
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
-                    <h3 className="font-black ">Goal 2</h3>
+                    <h3 className="font-bold ">Goal 2</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal02.svg'} alt=""/>
                   </div>
                   <div className="h-2 mb-2">
                   {clientData.goal2Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                      <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal2CompletionDate
@@ -482,7 +482,7 @@ console.log("clientdata",clientData)
                     )}
                   </div>
                   <label className="block">
-                    <h4 className="font-black">Summary</h4>
+                    <h4 className="font-bold">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -503,7 +503,7 @@ console.log("clientdata",clientData)
                   </label>
 
                   {/* <label className="block">
-                    <h4 className="font-black">Service Category</h4>
+                    <h4 className="font-bold">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -525,7 +525,7 @@ console.log("clientdata",clientData)
                     </select>
                   </label> */}
                   <label className="block">
-                    <h4 className="font-black">Details</h4>
+                    <h4 className="font-bold">Details</h4>
                     <textarea
                       name=""
                       id=""
@@ -543,7 +543,7 @@ console.log("clientdata",clientData)
                   </label>
 
                   <label className="block">
-                    <h4 className="font-black">Target Date</h4>
+                    <h4 className="font-bold">Target Date</h4>
                     <input
                       type="date"
                       className="border-black w-full rounded p-2 "
@@ -563,7 +563,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 1</h4>
+                    <h4 className="font-bold mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -584,7 +584,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 2</h4>
+                    <h4 className="font-bold mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -605,7 +605,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 3</h4>
+                    <h4 className="font-bold mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -629,7 +629,7 @@ console.log("clientdata",clientData)
               <div className="service-action-plan-goal-box">
                 <div className="service-action-plan-page-goals-top grid gap-5">
                   <div className="flex justify-between items-center ">
-                    <h3 className="font-black ">Goal 3</h3>
+                    <h3 className="font-bold ">Goal 3</h3>
                     <div className="bg-dark-blue w-56 h-px"></div>
                     <img src={'/goal03.svg'} alt=""/>
           
@@ -637,7 +637,7 @@ console.log("clientdata",clientData)
 
                   <div className="h-2 mb-2">
                   {clientData.goal3Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
+                      <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
                         Completed:{" "}
                         {new Date(
                           clientData.goal3CompletionDate
@@ -651,7 +651,7 @@ console.log("clientdata",clientData)
                   </div>
 
                   <label className="block">
-                    <h4 className="font-black">Summary</h4>
+                    <h4 className="font-bold">Summary</h4>
 
                     <select
                       onChange={(e) =>
@@ -672,7 +672,7 @@ console.log("clientdata",clientData)
                   </label>
 
                   {/* <label className="block">
-                    <h4 className="font-black">Service Category</h4>
+                    <h4 className="font-bold">Service Category</h4>
 
                     <select
                       onChange={(e) =>
@@ -694,7 +694,7 @@ console.log("clientdata",clientData)
                     </select>
                   </label> */}
                   <label className="block">
-                    <h4 className="font-black">Details</h4>
+                    <h4 className="font-bold">Details</h4>
                     <textarea
                       name=""
                       id=""
@@ -712,7 +712,7 @@ console.log("clientdata",clientData)
                   </label>
 
                   <label className="block">
-                    <h4 className="font-black">Target Date</h4>
+                    <h4 className="font-bold">Target Date</h4>
                     <input
                       type="date"
                       className="border-black w-full rounded p-2 "
@@ -732,7 +732,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 1</h4>
+                    <h4 className="font-bold mr-2">Action 1</h4>
                     <img src={"/action01.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -753,7 +753,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 2</h4>
+                    <h4 className="font-bold mr-2">Action 2</h4>
                     <img src={"/action02.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -774,7 +774,7 @@ console.log("clientdata",clientData)
 
                   <label className="block">
                   <div className="flex items-center">
-                    <h4 className="font-black mr-2">Action 3</h4>
+                    <h4 className="font-bold mr-2">Action 3</h4>
                     <img src={"/action03.svg"} alt="" width="50" height="10"/>
                     </div>
                     <textarea
@@ -796,7 +796,7 @@ console.log("clientdata",clientData)
               </div>
             </div>
             <label className="block">
-              <h4 className="font-black">Additional Comments</h4>
+              <h4 className="font-bold">Additional Comments</h4>
               <textarea
                 name=""
                 id=""
@@ -813,10 +813,10 @@ console.log("clientdata",clientData)
         </section>
         <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h3 className="font-black my-5 text-dark-blue">Signatures</h3>
+            <h3 className="font-bold my-5 text-dark-blue">Signatures</h3>
 
             <div className={`border-dark-blue  rounded-xl px-5 py-5`}>
-              {/* <h6 className="font-black"></h6> */}
+              {/* <h6 className="font-bold"></h6> */}
               <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
                 <div className="others-container-box flex gap-2 justify-center items-center">
                   <p className="text-lg">Has the client signed?</p>
@@ -867,14 +867,14 @@ console.log("clientdata",clientData)
 
         {/* <section id="other" className="my-5 md:px-0 px-5">
           <div className="container mx-auto">
-            <h3 className="font-black my-5 text-dark-blue">Progress Notes</h3>
+            <h3 className="font-bold my-5 text-dark-blue">Progress Notes</h3>
 
             <div className="border-dark-blue  rounded-xl px-5 py-5">
               <div className="others-container grid md:grid-cols-3 grid-cols-1">
                 <div className="others-container-box flex gap-2 ">
                   <p className="text-lg" >
                     Number of client progress notes:{" "}
-                    <span className="text-dark-blue font-black text-lg">
+                    <span className="text-dark-blue font-bold text-lg">
                       {clientData.progressnotesid?.length}
                     </span>
                   </p>

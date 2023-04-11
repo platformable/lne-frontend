@@ -11,7 +11,7 @@ export const MonitorFundingTableToPrint = React.forwardRef((props, ref) => {
         <div className="bg-white py-3 flex justify-between items-center">
             <div className="flex">
             <img src="/funding-goals.svg" className="mr-3" alt="" />
-            <h3 className="font-black">Funding Goal Progress</h3>
+            <h3 className="font-bold">Funding Goal Progress</h3>
             </div>
             <img src="/logo.png" alt="" width={120}/>
           </div>

@@ -48,7 +48,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           <div></div>
           <div className="flex gap-x-1 justify-center">
              <img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/paper_document-512.png" alt="" width={24}/>
-        <h3 className="font-black text-center my-1 text-xs">
+        <h3 className="font-bold text-center my-1 text-xs">
             Service Action Plan
           </h3>
         </div>
@@ -63,7 +63,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </div>
         </div>
 
-        <p className="text-xs font-black px-5" style={{ fontSize: "8px" }}>
+        <p className="text-xs font-bold px-5" style={{ fontSize: "8px" }}>
           Information
         </p>
 
@@ -90,7 +90,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           </div>
         </div>
 
-        <p className="text-xs font-black px-5 my-2" style={{ fontSize: "8px" }}>
+        <p className="text-xs font-bold px-5 my-2" style={{ fontSize: "8px" }}>
           Client Goals
         </p>
 
@@ -98,37 +98,37 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
         <div className="goals-container grid grid-cols-3 gap-5 px-5  py-2 border rounded-lg">
 
             <div className="goals-box">
-                <h6 className="text-xs font-black " style={{ fontSize: "8px" }}>Goal 01</h6>
+                <h6 className="text-xs font-bold " style={{ fontSize: "8px" }}>Goal 01</h6>
 
                 <div className="grid grid-cols-3">
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Service Category</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Service Category</span>
                         <p className="text-xs leading-3 h-8" style={{ fontSize: "6px" }}>{goal1ServiceCategory}</p>
 
                     </div>
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Summary</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Summary</span>
                         <p className="text-xs leading-3 h-8" style={{ fontSize: "6px" }}>{goal1Summary}</p>
                     </div>
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Target Date</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Target Date</span>
                         <p className="text-xs leading-3" style={{ fontSize: "6px" }}>{goal1TargetDate}</p>
                     </div>
                    
                 </div>
-                {/* <h6 className="text-xs font-black my-4" style={{ fontSize: "8px" }}>Details</h6>
+                {/* <h6 className="text-xs font-bold my-4" style={{ fontSize: "8px" }}>Details</h6>
                 <div className="border rounded-lg px-2 py-1"> 
                     <p className="text-xs " style={{ fontSize: "10px" }}>{goal1Details}</p>
                 </div> */}
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 01</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 01</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal1ActionStep1}</p>
                 </div>
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 02</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 02</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal1ActionStep2}</p>
                 </div>
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 03</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 03</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3 " style={{ fontSize: "7px" }}>{goal1ActionStep3}</p>
                 </div>
@@ -136,37 +136,37 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
             </div> {/* goals box */}
 
             <div className="goals-box">
-                <h6 className="text-xs font-black " style={{ fontSize: "8px" }}>Goal 02</h6>
+                <h6 className="text-xs font-bold " style={{ fontSize: "8px" }}>Goal 02</h6>
 
                 <div className="grid grid-cols-3">
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Service Category</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Service Category</span>
                         <p className="text-xs leading-3 h-8" style={{ fontSize: "6px" }}>{goal2ServiceCategory}</p>
 
                     </div>
                     <div>
-                        <span className="text-xs italic font-black leading-3" style={{ fontSize: "6px" }}>Summary</span>
+                        <span className="text-xs italic font-bold leading-3" style={{ fontSize: "6px" }}>Summary</span>
                         <p className="text-xs leading-3 h-8" style={{ fontSize: "6px" }}>{goal2Summary}</p>
                     </div>
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Target Date</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Target Date</span>
                         <p className="text-xs leading-3" style={{ fontSize: "6px" }}>{goal2TargetDate}</p>
                     </div>
                    
                 </div>
-                {/* <h6 className="text-xs font-black my-4" style={{ fontSize: "8px" }}>Details</h6>
+                {/* <h6 className="text-xs font-bold my-4" style={{ fontSize: "8px" }}>Details</h6>
                 <div className="border rounded-lg px-2 py-1"> 
                     <p className="text-xs " style={{ fontSize: "10px" }}>{goal1Details}</p>
                 </div> */}
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 01</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 01</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal2ActionStep1}</p>
                 </div>
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 02</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 02</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal2ActionStep2}</p>
                 </div>
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 03</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 03</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal2ActionStep3}</p>
                 </div>
@@ -174,37 +174,37 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
             </div> {/* goals box */}
 
             <div className="goals-box">
-                <h6 className="text-xs font-black " style={{ fontSize: "8px" }}>Goal 03</h6>
+                <h6 className="text-xs font-bold " style={{ fontSize: "8px" }}>Goal 03</h6>
 
                 <div className="grid grid-cols-3">
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Service Category</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Service Category</span>
                         <p className="text-xs leading-3 h-8" style={{ fontSize: "6px" }}>{goal3ServiceCategory}</p>
 
                     </div>
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Summary</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Summary</span>
                         <p className="text-xs leading-3 h-8" style={{ fontSize: "6px" }}>{goal3Summary}</p>
                     </div>
                     <div>
-                        <span className="text-xs italic font-black" style={{ fontSize: "6px" }}>Target Date</span>
+                        <span className="text-xs italic font-bold" style={{ fontSize: "6px" }}>Target Date</span>
                         <p className="text-xs leading-3" style={{ fontSize: "6px" }}>{goal3TargetDate}</p>
                     </div>
                    
                 </div>
-                {/* <h6 className="text-xs font-black my-4" style={{ fontSize: "8px" }}>Details</h6>
+                {/* <h6 className="text-xs font-bold my-4" style={{ fontSize: "8px" }}>Details</h6>
                 <div className="border rounded-lg px-2 py-1"> 
                     <p className="text-xs " style={{ fontSize: "10px" }}>{goal1Details}</p>
                 </div> */}
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 01</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 01</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal3ActionStep1}</p>
                 </div>
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 02</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 02</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal3ActionStep2}</p>
                 </div>
-                <h6 className="text-xs font-black my-1 font-black" style={{ fontSize: "8px" }}>Action 03</h6>
+                <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 03</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal3ActionStep3}</p>
                 </div>
@@ -215,7 +215,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 
         </div> {/* goals container */}
 
-        <p className="text-xs font-black px-5 my-1" style={{ fontSize: "8px" }}>
+        <p className="text-xs font-bold px-5 my-1" style={{ fontSize: "8px" }}>
           Additional Comments
         </p>
               
@@ -223,7 +223,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
           <p className="text-xs h-14" style={{ fontSize: "8px" }}>{comments}</p>
         </div>
 
-        <p className="text-xs font-black px-5 my-1" style={{ fontSize: "8px" }}>
+        <p className="text-xs font-bold px-5 my-1" style={{ fontSize: "8px" }}>
           Signatures
         </p>
               

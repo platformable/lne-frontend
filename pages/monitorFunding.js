@@ -814,7 +814,7 @@ console.log("monitorMetricsData",monitorMetricsData)
           <div className="bg-white py-3 flex justify-between px-5 items-center mt-10 mb-1">
             <div className="flex  w-2/4">
               <img src="/funding-goals.svg" className="mr-3" alt="" />
-              <h3 className="font-black">Client Support Progress</h3>
+              <h3 className="font-bold">Client Support Progress</h3>
             </div>
             <ReactToPrint
               trigger={() => (
@@ -1105,7 +1105,7 @@ console.log("monitorMetricsData",monitorMetricsData)
        {/*    <div className="bg-white py-3 flex justify-between px-5 items-center">
             <div className="flex  w-2/4">
               <img src="/funding-goals.svg" className="mr-3" alt="" />
-              <h3 className="font-black">Funding Goal Progress</h3>
+              <h3 className="font-bold">Funding Goal Progress</h3>
             </div>
             <ReactToPrint
               trigger={() => (
@@ -1125,7 +1125,7 @@ console.log("monitorMetricsData",monitorMetricsData)
             </div> 
 
 
-            <h1 className="mb-4 container mx-auto text-center md:text-left   lg:pl-0 font-black">
+            <h1 className="mb-4 container mx-auto text-center md:text-left   lg:pl-0 font-bold">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>

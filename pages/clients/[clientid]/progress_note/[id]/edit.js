@@ -612,7 +612,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   src="/progress_notes/service_provided.svg"
                   alt="Services provided icon"
                 />
-                <h3 className="font-black text-3xl">Service Provided</h3>
+                <h3 className="font-bold text-3xl">Service Provided</h3>
               </div>
               <div className="services-container grid lg:grid-cols-2 grid-cols-1 gap-x-5 mt-10">
                 {/* SERVICE PROVIDED 1st COLUMN " */}
@@ -950,12 +950,12 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   src="/progress_notes/client_goals.svg"
                   alt="Client goals icon"
                 />
-                <h3 className="font-black text-3xl">Client Goals</h3>
+                <h3 className="font-bold text-3xl">Client Goals</h3>
               </div>
               <div className="goals-container grid lg:grid-cols-2  gap-5">
                 <div className="goal-box grid gap-y-7">
                   {/* <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 1</h3>
+                    <h3 className="font-bold">Goal 1</h3>
                     <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                     <img src={"/goal01.svg"} alt="" />
                   </div> */}
@@ -993,7 +993,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
 
                 <div className="goal-box grid gap-y-7">
                   {/* <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 2</h3>
+                    <h3 className="font-bold">Goal 2</h3>
                     <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                     <img src={"/goal02.svg"} alt="" />
                   </div> */}
@@ -1033,7 +1033,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
 
                 {/* <div className="goal-box">
                   <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 3</h3>
+                    <h3 className="font-bold">Goal 3</h3>
                     <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                     <img src={"/goal03.svg"} alt="" />
                   </div>
@@ -1081,7 +1081,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
             <section className="gap-x-5 pt-7 p-10" id="workedGoals">
               <div className="flex items-center mb-10 gap-x-3">
                 <img src={"/progress_notes/goals_worked_on.svg"} />
-                <h3 className="font-black text-3xl">
+                <h3 className="font-bold text-3xl">
                   Which of the goals were worked on?
                 </h3>
               </div>
@@ -1334,7 +1334,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   src={"/progress_notes/goals_completed.svg"}
                   alt="Goals completed icon"
                 />
-                <h3 className="font-black text-3xl">
+                <h3 className="font-bold text-3xl">
                   Were any of the clients goals completed?
                 </h3>
               </div>
@@ -1614,7 +1614,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
             <section className="gap-x-5 p-10 pt-7 workedGoals" id="workedGoals">
               <div className="flex items-center gap-x-3 mb-10">
                 <img src={"/progress_notes/notes.svg"} />
-                <h3 className="font-black text-3xl">
+                <h3 className="font-bold text-3xl">
                   Notes on the client progress
                 </h3>
               </div>
@@ -1676,7 +1676,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
             <section className="p-10 pt-7 workedGoals" id="workedGoals">
               <div className="flex items-center gap-x-3 mb-10">
                 <img src="/progress_notes/additional_forms.svg" alt="" />
-                <h3 className="font-black text-3xl font-medium">
+                <h3 className="font-bold text-3xl font-medium">
                   Were any additional forms added to the client´s profile?
                 </h3>
               </div>
