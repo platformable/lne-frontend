@@ -124,21 +124,21 @@ export default function ClientProfilePage({
     }
 
     return (
-      <div>
+      <div className="flex flex-col justify-between">
         <div
-          className={`flex ${color} px-5 py-3  items-center rounded-sm shadow-sm justify-center`}
+          className={`flex ${color} px-5 py-3  items-center rounded-sm shadow-md justify-center`}
         >
           {color === "bg-green-300" && (
-            <p className="text-center flex justify-center text-lg">On Track</p>
+            <p className="text-center text-lg">On Track</p>
           )}
           {color === "bg-orange-300" && (
-            <p className="text-center flex justify-center text-lg">Warning</p>
+            <p className="text-center text-lg">Warning</p>
           )}
           {color === "bg-red-400" && (
-            <p className="text-center flex justify-center text-lg">Alert</p>
+            <p className="text-center text-lg">Alert</p>
           )}
         </div>
-        <p className="text-center flex justify-center py-3 text-center text-lg">
+        <p className="text-center py-3 text-center text-lg">
           {result}
         </p>
         <div className="flex justify-center">
@@ -181,14 +181,14 @@ export default function ClientProfilePage({
       color = "bg-green-300";
       result = "No goals yet";
       return (
-        <div>
+        <div className="flex flex-col justify-between">
           <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
           >
             <p className="text-lg">On Track</p>
           </div>
 
-          <p className="px-4 my-3 text-center text-lg">{result}</p>
+          <p className="px-4 my-3 text-center text-lg pb-7">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -209,7 +209,7 @@ export default function ClientProfilePage({
       return (
         <div>
           <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
           >
             <p className="text-lg">Alert</p>
           </div>
@@ -234,7 +234,7 @@ export default function ClientProfilePage({
       return (
         <div>
           <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
           >
             <p className="text-lg">On Track</p>
           </div>
@@ -261,7 +261,7 @@ export default function ClientProfilePage({
       return (
         <div>
           <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-xl flex justify-center py-3`}
+            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
           >
             <p className="text-lg">Warning</p>
           </div>
@@ -314,7 +314,7 @@ export default function ClientProfilePage({
       return (
         <div>
           <div
-            className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}
+            className={`flex ${color} rounded-sm px-5 items-center shadow-md flex items-center justify-center py-3`}
           >
             {color === "bg-green-300" && <p>On Track</p>}
             {color === "bg-orange-300" && <p>Warning</p>}
@@ -372,7 +372,7 @@ export default function ClientProfilePage({
       return (
         <div>
           <div
-            className={`flex ${color} rounded-sm px-5 items-center shadow-xl flex items-center justify-center py-3`}
+            className={`flex ${color} rounded-sm px-5 items-center shadow-md flex items-center justify-center py-3`}
           >
             {color === "bg-green-300" && <p className="text-lg">On Track</p>}
             {color === "bg-orange-300" && <p className="text-lg">Warning</p>}
@@ -434,7 +434,7 @@ export default function ClientProfilePage({
         <ToastContainer autoClose={700} />
         <div className=" bg-light-blue h-full pb-20 ">
         <SubHeader pageTitle='Client Dashboard'/>
-          <section className="pb-5 pt-10 container mx-auto md:px-0 px-5 shadow-inner">
+          <section className="pb-5 pt-10 container mx-auto md:px-0 px-5 ">
             <section className="dashboard-clients-cards md:px-0 px-5">
               <div className="container mx-auto my-10" id="profile">
                 <div className="profile-client-information-top grid md:grid-cols-4 grid-cols-1 gap-x-5">
@@ -507,15 +507,15 @@ export default function ClientProfilePage({
                   {/* end first card */}
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-                    <p>{checkMessage1()}</p>
+                    {checkMessage1()}
                   </div>
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-                   <p> {checkMessage2()}</p>
+                    {checkMessage2()}
                   </div>
 
                   <div className="profile-client-information-top-2 bg-white rounded-md  shadow-md p-5">
-                   <p> {checkMessage3()}</p>
+                    {checkMessage3()}
                   </div>
                 </div>
               </div>
@@ -544,7 +544,7 @@ export default function ClientProfilePage({
                         : `/clients/${data[0]?.clientid}/msa_form`
                     }
                   >
-                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
                         <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
@@ -567,7 +567,7 @@ export default function ClientProfilePage({
                         : `/clients/${data[0]?.clientid}/msa_form`
                     }
                   >
-                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
                         <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
@@ -590,7 +590,7 @@ export default function ClientProfilePage({
                         : `/clients/${data[0]?.clientid}/msa_form`
                     }
                   >
-                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block items-center h">
+                    <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block items-center h">
                       <div className="flex justify-center">
                         <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
@@ -614,7 +614,7 @@ export default function ClientProfilePage({
                         : `/clients/${data[0]?.clientid}/service-action-plan`
                     } */ href={`/clients/${data[0]?.clientid}/profile/service_action_plans`}
                   >
-                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
                         <img
                           src="/client/Service_Action_Plan_button.svg"
@@ -636,7 +636,7 @@ export default function ClientProfilePage({
 
                 {data[0]?.servicesactionplanid ? (
                   <Link href={`/clients/${data[0]?.clientid}/progress_note`}>
-                    <div className="client-profile-page-navigation-icon-container bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
+                    <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
                         <img
                           src="/client/Progress_note_button.svg"

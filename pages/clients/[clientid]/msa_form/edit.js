@@ -11,8 +11,7 @@ import BackButton from "../../../../components/BackButton";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 
 import SubHeader from "../../../../components/SubHeader";
-import MsaTopClientInformation from "../../../../components/MsaTopClientInformation";
-
+import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 const EditMsaFormPage = ({ data }) => {
  
    const router = useRouter()
@@ -179,18 +178,22 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
 
       <SubHeader pageTitle={'Edit MSA FORM'}/>
 
-        <main className="container mx-auto bg-white my-10 rounded-md border-blue">
+        <div className="container mx-auto bg-white shadow divide-y-2 divide-blue-300 mt-10 rounded-md border-blue">
      
-        <MsaTopClientInformation data={data} clientData={clientData} setClientData={setClientData}/>
+        <ClientInfoTopHeader
+              data={data}
+              clientData={clientData}
+              setClientData={setClientData}
+            />
 
           <section
             id="form"
-            className="gap-x-5  rounded-md p-5 mb-5"
+            className="gap-x-5 px-10 pt-6 mb-7"
           >
             {/* {TABLE HEAD} */}
-            <div className="flex gap-x-3 items-center mt-5 mb-10">
+            <div className="flex gap-x-3 items-center mb-10">
               <img src="/forms_uploaded.svg" alt="" />
-            <p className="text-lg font-bold">Indicate which of the following forms you have uploaded to the client’s Dropbox</p>
+            <p className="text-2xl font-bold">Indicate which of the following forms you have uploaded to the client’s Dropbox</p>
             </div>
             <div
               id="form-head"
@@ -229,7 +232,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS Intake Form <span className="text-red-500">*</span></p>
+                <p className="text-lg">AIRS Intake Form <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
                {/*  {data[0].airsintakeform === "1" ?
@@ -247,7 +250,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSIntakeFormDate.split('T')[0]
                   }
                   //disabled={clientData.AIRSIntakeFormDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSIntakeForm){
                       setClientData({
@@ -301,7 +304,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
+                <p className="text-lg">Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
               </div>
               <div className="text-center">
               {/*   {data[0].comprehensiveriskbehaviorassessment === "1" ?
@@ -318,7 +321,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.ComprehensiveRiskBehaviorAssessmentDate.split('T')[0]
                   }
                   //disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -368,7 +371,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>HNS Eligibility Assessment <span className="text-red-500">*</span></p>
+                <p className="text-lg">HNS Eligibility Assessment <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
                 {/* {data[0].hnseligibilityform === "1" ?
@@ -385,7 +388,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.HNSEligibilityFormDate.split('T')[0]
                   }
                   //disabled={clientData.HNSEligibilityFormDate ? true: false} 
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
 
                     if(clientData.HNSEligibilityForm){
@@ -436,7 +439,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Service Action Plan  </p>
+                <p className="text-lg">Service Action Plan  </p>
               </div>
               <div className="text-center">
               {/* {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-8 py-1 rounded-lg"> 
@@ -449,7 +452,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.ServiceActionPlanDate.split('T')[0]
                   }
                   //disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -498,7 +501,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Progress Note </p>
+                <p className="text-lg">Progress Note </p>
                 {clientData.progressnotedateid}
               </div>
               <div className="text-center">
@@ -513,7 +516,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     formatDate(clientData.progressNoteDate)
                   }
                   disabled={clientData.progressNoteDate ? true: false}
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -566,7 +569,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Status Changes/ClosureForms</p>
+                <p className="text-lg">Status Changes/ClosureForms</p>
               </div>
               <div className="text-center">
               {/* {data[0].statuschangesform === "1" ?
@@ -583,7 +586,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.StatusChangesFormDate.split('T')[0]
                   }
                   // disabled={data[0].statuschangesform === "1" ? true : false}
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
                       setClientData({
@@ -639,7 +642,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Comprehensive Behavioral Risk Assessment Updates </p>
+                <p className="text-lg">Comprehensive Behavioral Risk Assessment Updates </p>
               </div>
               
               <div className="text-center">
@@ -657,7 +660,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate.split('T')[0]
                   }
                   // disabled={data[0].comprehensiveriskbehaviorassessmentupdates === "1"? true: false} 
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.ComprehensiveRiskBehaviorAssessmentUpdates ){
                       setClientData({
@@ -714,7 +717,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 M11Q
                 </p>
               </div>
@@ -732,7 +735,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.M11QFormDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.M11QForm ){
                       setClientData({
@@ -787,7 +790,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 CD4/VL Check Reports
                 </p>
               </div>
@@ -805,7 +808,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.CD4VLReportsDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.CD4VLReports ){
                       setClientData({
@@ -863,7 +866,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 Initial Treatment Adherence Intake 
                 </p>
               </div>
@@ -881,7 +884,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.InitialTreatmentAdherenceIntakeDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.InitialTreatmentAdherenceIntake ){
                       setClientData({
@@ -938,7 +941,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 Treatment Adherence Updates
                 </p>
               </div>
@@ -956,7 +959,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.TreatmentAdherenceUpdatesDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.TreatmentAdherenceUpdates ){
                       setClientData({
@@ -1018,7 +1021,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS Collateral Information </p>
+                <p className="text-lg">AIRS Collateral Information </p>
               </div>
               <div className="text-center">
                {/*  {data[0].airscollateralinformation === "1" ?
@@ -1034,7 +1037,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSCollateralInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSCollateralInformation){
                       setClientData({
@@ -1089,7 +1092,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 AIRS Drug Regimen History 
                 </p>
               </div>
@@ -1107,7 +1110,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AirsDrugRegimenDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AirsDrugRegimen ){
                       setClientData({
@@ -1163,7 +1166,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS Financial Information </p>
+                <p className="text-lg">AIRS Financial Information </p>
               </div>
               <div className="text-center">
                {/*  {data[0].airsfinancialinformation === "1" ?
@@ -1182,7 +1185,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSFinancialInformationDate.split('T')[0]
                   }
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if (clientData.AIRSFinancialInformation){
                       setClientData({
@@ -1236,7 +1239,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS HIV AIDS Risk History </p>
+                <p className="text-lg">AIRS HIV AIDS Risk History </p>
               </div>
               <div className="text-center">
                 {/* {data[0].airshivaidsriskhistory === "1" ?
@@ -1252,7 +1255,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSHIVAIDSRiskHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHIVAIDSRiskHistory){
                       setClientData({
@@ -1309,7 +1312,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 AIRS HIV Medical Provider History 
                 </p>
               </div>
@@ -1327,7 +1330,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AirsHIVMedicalProviderDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AirsHIVMedicalProvider ){
                       setClientData({
@@ -1382,7 +1385,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 AIRS HIV Status History 
                 </p>
               </div>
@@ -1401,7 +1404,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSHIVStatusHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHIVStatusHistory ){
                       setClientData({
@@ -1456,7 +1459,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS HCV History </p>
+                <p className="text-lg">AIRS HCV History </p>
               </div>
               <div className="text-center">
                {/*  {data[0].airshcvhistory === "1" ?
@@ -1472,7 +1475,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSHCVHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHCVHistory){
                       setClientData({
@@ -1527,7 +1530,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS Housing Information </p>
+                <p className="text-lg">AIRS Housing Information </p>
               </div>
               <div className="text-center">
                 {/* {data[0].airshousinginformation === "1" ?
@@ -1543,7 +1546,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSHousingInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHousingInformation){
                       setClientData({
@@ -1597,7 +1600,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS Insurance Information </p>
+                <p className="text-lg">AIRS Insurance Information </p>
               </div>
               <div className="text-center">
                 {/* {data[0].airsinsuranceinformation === "1" ?
@@ -1613,7 +1616,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSInsuranceInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if (clientData.AIRSInsuranceInformation){
                       setClientData({
@@ -1666,7 +1669,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>AIRS Substance Use History </p>
+                <p className="text-lg">AIRS Substance Use History </p>
               </div>
               <div className="text-center">
                {/*  {data[0].airssubstanceusehistory === "1" ?
@@ -1682,7 +1685,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.AIRSSubstanceUseHistoryDate.split('T')[0]
                   }
                   /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSSubstanceUseHistory){
                       setClientData({
@@ -1732,7 +1735,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>LNE Client Rights </p>
+                <p className="text-lg">LNE Client Rights </p>
               </div>
               <div className="text-center">
                 {/* {data[0].lneclientrights === "1" ?
@@ -1748,7 +1751,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.LNEClientRightsDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEClientRightsDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEClientRights){
                       setClientData({
@@ -1800,7 +1803,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>LNE Client Grievance Policy & Procedure </p>
+                <p className="text-lg">LNE Client Grievance Policy & Procedure </p>
               </div>
               <div className="text-center">
                {/*  {data[0].lneclientgrievancepolicyprocedure === "1" ?
@@ -1816,7 +1819,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.LNEClientGrievancePolicyProcedureDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEClientGrievancePolicyProcedure){
                       setClientData({
@@ -1868,7 +1871,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>LNE Program Rules </p>
+                <p className="text-lg">LNE Program Rules </p>
               </div>
               <div className="text-center">
                 {/* {data[0].lneprogramrules === "1" ?
@@ -1884,7 +1887,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.LNEProgramRulesDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEProgramRulesDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEProgramRules){
                       setClientData({
@@ -1936,7 +1939,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>LNE Emergency Contact Consent </p>
+                <p className="text-lg">LNE Emergency Contact Consent </p>
               </div>
               <div className="text-center">
                {/*  {data[0].lneemergencycontactconsent === "1" ?
@@ -1952,7 +1955,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.LNEEmergencyContactConsentDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEEmergencyContactConsent){
                       setClientData({
@@ -2007,7 +2010,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>LNE Consent for Release of Confidential Information </p>
+                <p className="text-lg">LNE Consent for Release of Confidential Information </p>
               </div>
               <div className="text-center">
                 {/* {data[0].lneconsentforreleaseofconfidentialinformation === "1" ?
@@ -2023,7 +2026,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEConsentForReleaseOfConfidentialInformation){
                       setClientData({
@@ -2077,7 +2080,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>HIPAA Consent Form (OCA Form 960)</p>
+                <p className="text-lg">HIPAA Consent Form (OCA Form 960)</p>
               </div>
               <div className="text-center">
                {/*  {data[0].hippaconsentform === "1" ?
@@ -2093,7 +2096,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.HIPPAConsentFormDate.split('T')[0]
                   }
                  /*  disabled={clientData.HIPPAConsentFormDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.HIPPAConsentForm){
                       setClientData({
@@ -2146,7 +2149,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                   NYC DOHMH Notice of Privacy Practices - Acknowledgement of
                   Receipt{" "}
                 </p>
@@ -2165,7 +2168,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate.split('T')[0]
                   }
                   /* disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.NYCDOHMHNoticeOfPrivacyPractices){
                       setClientData({
@@ -2218,7 +2221,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Linkage, Retention, & Adherence Forms</p>
+                <p className="text-lg">Linkage, Retention, & Adherence Forms</p>
               </div>
               <div className="text-center">
                {/*  {data[0].linkageretentionadherenceforms === "1" ?
@@ -2234,7 +2237,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.LinkageRetentionAdherenceFormsDate.split('T')[0]
                   }
                   /* disabled={clientData.LinkageRetentionAdherenceFormsDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.LinkageRetentionAdherenceForms){
                       setClientData({
@@ -2290,7 +2293,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Internal Referral Information</p>
+                <p className="text-lg">Internal Referral Information</p>
               </div>
               <div className="text-center">
                 {/* {data[0].internalreferralinformation === "1" ?
@@ -2307,7 +2310,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.InternalReferralInformationDate.split('T')[0]
                   }
                  /*  disabled={clientData.InternalReferralInformationDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.InternalReferralInformation){
                       setClientData({
@@ -2359,7 +2362,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Identification</p>
+                <p className="text-lg">Identification</p>
               </div>
               <div className="text-center">
                 {/* {data[0].lneclientreferralform === "1" ?
@@ -2375,7 +2378,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.LNEClientReferralFormDate.split('T')[0]
                   }
                   /* disabled={clientData.LNEClientReferralFormDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEClientReferralForm){
                       setClientData({
@@ -2424,7 +2427,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>HNS Readiness Assessment</p>
+                <p className="text-lg">HNS Readiness Assessment</p>
               </div>
               <div className="text-center">
                {/*  {data[0].hnsreadinessform === "1" ?
@@ -2440,7 +2443,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.HNSReadinessFormDate.split('T')[0]
                   }
                   /* disabled={clientData.HNSReadinessFormDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
 
                     if(clientData.HNSReadinessForm){
@@ -2490,7 +2493,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>Support Groups</p>
+                <p className="text-lg">Support Groups</p>
               </div>
               <div className="text-center">
                 {/* {data[0].supportgroups === "1" ?
@@ -2506,7 +2509,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.SupportGroupsDate.split('T')[0]
                   }
                   /* disabled={clientData.SupportGroupsDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
 
                     if(clientData.SupportGroups){
@@ -2556,7 +2559,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div>
-                <p>IDG</p>
+                <p className="text-lg">IDG</p>
               </div>
               <div className="text-center">
               {/*   {data[0].idgform  === "1" ?
@@ -2573,7 +2576,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                     clientData.IDGFormDate.split('T')[0]
                   }
                   /* disabled={clientData.IDGFormDate ? true: false} */
-                  className="rounded-lg  p-1"
+                  className="rounded  p-2 border"
                   onChange={(e) => {
 
                     if(clientData.IDGForm){
@@ -2600,16 +2603,19 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
             </div>
           </section>
 
-          <section id="save" className="my-5">
+         
+        </div>
+        <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
-              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
-                onClick={()=>handleMsaform()}
+              <button
+                className="btn-yellow px-5 py-3 flex items-center font-medium text-lg gap-3 px-5 rounded shadow inline-block"
+                onClick={() => handleMsaform()}
               >
+                <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>
                 Save and Update
               </button>
             </div>
           </section>
-        </main>
       </Layout>
     </>
   );

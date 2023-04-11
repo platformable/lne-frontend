@@ -13,7 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import BackButton from "../../../../components/BackButton";
 import SubHeader from "../../../../components/SubHeader";
-import MsaTopClientInformation from "../../../../components/MsaTopClientInformation";
+import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 
 const Index = ({ data }) => {
    const router = useRouter()
@@ -163,19 +163,23 @@ const handleMsaform = ()=> {
 
         
 
-        <main className="container mx-auto bg-white my-10 rounded-md border-blue">
+        <div className="container mx-auto bg-white mt-10 rounded-md shadow-md border-blue divide-y-2 divide-blue-300">
 
         
-          <MsaTopClientInformation data={data} clientData={clientData} setClientData={setClientData}/>
+        <ClientInfoTopHeader
+              data={data}
+              clientData={clientData}
+              setClientData={setClientData}
+            />
      
           <section
             id="form"
-            className="rounded-md p-5 mb-5"
+            className=" px-10 pt-6 mb-5"
           >
             {/* {TABLE HEAD} */}
-            <div className="flex gap-x-3 items-center mt-5 mb-10">
+            <div className="flex gap-x-3 items-center mb-10">
               <img src="/forms_uploaded.svg" alt="" />
-            <p className="text-lg font-bold">Indicate which of the following forms you have uploaded to the client’s Dropbox</p>
+            <p className="text-2xl font-bold">Indicate which of the following forms you have uploaded to the client’s Dropbox</p>
             </div>
             <div
               id="form-head"
@@ -214,7 +218,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS Intake Form <span className="text-red-500">*</span></p>
+                <p className="text-lg">AIRS Intake Form <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
                  
@@ -226,7 +230,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSIntakeFormDate
                   }
                   /* disabled={clientData.AIRSIntakeFormDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSIntakeForm){
                       setClientData({
@@ -279,7 +283,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
+                <p className="text-lg">Comprehensive Risk Behavior Assessment <span className="text-red-500">*</span> </p>
               </div>
               <div className="text-center">
                 <input
@@ -290,7 +294,7 @@ const handleMsaform = ()=> {
                     clientData.ComprehensiveRiskBehaviorAssessmentDate
                   }
                   /* disabled={clientData.ComprehensiveRiskBehaviorAssessmentDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.ComprehensiveRiskBehaviorAssessmentDate){
                       setClientData({
@@ -340,7 +344,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>HNS Eligibility Assessment <span className="text-red-500">*</span></p>
+                <p className="text-lg">HNS Eligibility Assessment <span className="text-red-500">*</span></p>
               </div>
               <div className="text-center">
                 <input
@@ -351,7 +355,7 @@ const handleMsaform = ()=> {
                     clientData.HNSEligibilityFormDate
                   }
                   // disabled={clientData.HNSEligibilityFormDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
 
                     if(clientData.HNSEligibilityForm){
@@ -401,7 +405,7 @@ const handleMsaform = ()=> {
                 /> */}
               </div>
               <div>
-                <p className="ml-4">Service Action Plan  </p>
+                <p className="ml-4 text-lg">Service Action Plan  </p>
               </div>
               <div className="text-center">
               {clientData.ServiceActionPlanDate ?  <p className="bg-white inline-block px-5 py-1 "> 
@@ -414,7 +418,7 @@ const handleMsaform = ()=> {
                     clientData.ServiceActionPlanDate
                   }
                   disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -463,7 +467,7 @@ const handleMsaform = ()=> {
                 /> 
               </div>
               <div>
-                <p>Progress Note </p>
+                <p className="text-lg">Progress Note </p>
               </div>
               <div className="text-center">
               {clientData.progressNote ?  <p className="bg-white inline-block px-5 py-1 "> 
@@ -476,7 +480,7 @@ const handleMsaform = ()=> {
                     clientData.ServiceActionPlanDate
                   }
                   disabled={clientData.ServiceActionPlanDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData){
                       setClientData({
@@ -528,7 +532,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>Status Changes/Closure Forms</p>
+                <p className="text-lg">Status Changes/Closure Forms</p>
               </div>
               <div className="text-center">
                 <input
@@ -539,7 +543,7 @@ const handleMsaform = ()=> {
                     clientData.StatusChangesFormDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.StatusChangesForm ){
                       setClientData({
@@ -594,7 +598,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>Comprehensive Behavioral Risk Assessment Updates </p>
+                <p className="text-lg">Comprehensive Behavioral Risk Assessment Updates </p>
               </div>
               <div className="text-center">
                 <input
@@ -605,7 +609,7 @@ const handleMsaform = ()=> {
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate ){
                       setClientData({
@@ -660,7 +664,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 M11Q
                 </p>
               </div>
@@ -673,7 +677,7 @@ const handleMsaform = ()=> {
                     clientData.M11QFormDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.M11QForm ){
                       setClientData({
@@ -727,7 +731,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 CD4/VL Check Reports
                 </p>
               </div>
@@ -740,7 +744,7 @@ const handleMsaform = ()=> {
                     clientData.CD4VLReportsDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.CD4VLReports ){
                       setClientData({
@@ -797,7 +801,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 Initial Treatment Adherence Intake 
                 </p>
               </div>
@@ -810,7 +814,7 @@ const handleMsaform = ()=> {
                     clientData.InitialTreatmentAdherenceIntakeDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.InitialTreatmentAdherenceIntake ){
                       setClientData({
@@ -866,7 +870,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 Treatment Adherence Updates
                 </p>
               </div>
@@ -879,7 +883,7 @@ const handleMsaform = ()=> {
                     clientData.TreatmentAdherenceUpdatesDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.TreatmentAdherenceUpdates ){
                       setClientData({
@@ -940,7 +944,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS Collateral Information </p>
+                <p className="text-lg">AIRS Collateral Information </p>
               </div>
               <div className="text-center">
                 <input
@@ -951,7 +955,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSCollateralInformationDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSCollateralInformation){
                       setClientData({
@@ -1005,7 +1009,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 AIRS Drug Regimen History 
                 </p>
               </div>
@@ -1018,7 +1022,7 @@ const handleMsaform = ()=> {
                     clientData.AirsDrugRegimenDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AirsDrugRegimen ){
                       setClientData({
@@ -1072,7 +1076,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS Financial Information </p>
+                <p className="text-lg">AIRS Financial Information </p>
               </div>
               <div className="text-center">
                 <input
@@ -1083,7 +1087,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSFinancialInformationDate
                   }
                  /*  disabled={clientData.AIRSFinancialInformation ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if (clientData.AIRSFinancialInformation){
                       setClientData({
@@ -1134,7 +1138,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS HIV AIDS Risk History </p>
+                <p className="text-lg">AIRS HIV AIDS Risk History </p>
               </div>
               <div className="text-center">
                 <input
@@ -1145,7 +1149,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSHIVAIDSRiskHistoryDate
                   }
                   /* disabled={clientData.AIRSHIVAIDSRiskHistoryDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHIVAIDSRiskHistory){
                       setClientData({
@@ -1201,7 +1205,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 AIRS HIV Medical Provider History 
                 </p>
               </div>
@@ -1214,7 +1218,7 @@ const handleMsaform = ()=> {
                     clientData.AirsHIVMedicalProviderDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AirsHIVMedicalProvider ){
                       setClientData({
@@ -1268,7 +1272,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                 AIRS HIV Status History 
                 </p>
               </div>
@@ -1281,7 +1285,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSHIVStatusHistoryDate
                   }
                   /* disabled={clientData.AIRSCollateralInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHIVStatusHistory ){
                       setClientData({
@@ -1335,7 +1339,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS HCV History </p>
+                <p className="text-lg">AIRS HCV History </p>
               </div>
               <div className="text-center">
                 <input
@@ -1346,7 +1350,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSHCVHistoryDate
                   }
                   /* disabled={clientData.AIRSHCVHistoryDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHCVHistory){
                       setClientData({
@@ -1400,7 +1404,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS Housing Information </p>
+                <p className="text-lg">AIRS Housing Information </p>
               </div>
               <div className="text-center">
                 <input
@@ -1411,7 +1415,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSHousingInformationDate
                   }
                   /* disabled={clientData.AIRSHousingInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSHousingInformation){
                       setClientData({
@@ -1464,7 +1468,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS Insurance Information </p>
+                <p className="text-lg">AIRS Insurance Information </p>
               </div>
               <div className="text-center">
                 <input
@@ -1475,7 +1479,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSInsuranceInformationDate
                   }
                   /* disabled={clientData.AIRSInsuranceInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if (clientData.AIRSInsuranceInformation){
                       setClientData({
@@ -1527,7 +1531,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>AIRS Substance Use History </p>
+                <p className="text-lg">AIRS Substance Use History </p>
               </div>
               <div className="text-center">
                 <input
@@ -1538,7 +1542,7 @@ const handleMsaform = ()=> {
                     clientData.AIRSSubstanceUseHistoryDate
                   }
                   /* disabled={clientData.AIRSSubstanceUseHistoryDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.AIRSSubstanceUseHistory){
                       setClientData({
@@ -1587,7 +1591,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>LNE Client Rights </p>
+                <p className="text-lg">LNE Client Rights </p>
               </div>
               <div className="text-center">
                 <input
@@ -1598,7 +1602,7 @@ const handleMsaform = ()=> {
                     clientData.LNEClientRightsDate
                   }
                   /* disabled={clientData.LNEClientRightsDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEClientRights){
                       setClientData({
@@ -1649,7 +1653,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>LNE Client Grievance Policy & Procedure </p>
+                <p className="text-lg">LNE Client Grievance Policy & Procedure </p>
               </div>
               <div className="text-center">
                 <input
@@ -1660,7 +1664,7 @@ const handleMsaform = ()=> {
                     clientData.LNEClientGrievancePolicyProcedureDate
                   }
                   /* disabled={clientData.LNEClientGrievancePolicyProcedureDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEClientGrievancePolicyProcedure){
                       setClientData({
@@ -1711,7 +1715,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>LNE Program Rules </p>
+                <p className="text-lg">LNE Program Rules </p>
               </div>
               <div className="text-center">
                 <input
@@ -1722,7 +1726,7 @@ const handleMsaform = ()=> {
                     clientData.LNEProgramRulesDate
                   }
                   /* disabled={clientData.LNEProgramRulesDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEProgramRules){
                       setClientData({
@@ -1773,7 +1777,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>LNE Emergency Contact Consent </p>
+                <p className="text-lg">LNE Emergency Contact Consent </p>
               </div>
               <div className="text-center">
                 <input
@@ -1784,7 +1788,7 @@ const handleMsaform = ()=> {
                     clientData.LNEEmergencyContactConsentDate
                   }
                   /* disabled={clientData.LNEEmergencyContactConsentDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEEmergencyContactConsent){
                       setClientData({
@@ -1838,7 +1842,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>LNE Consent for Release of Confidential Information </p>
+                <p className="text-lg">LNE Consent for Release of Confidential Information </p>
               </div>
               <div className="text-center">
                 <input
@@ -1849,7 +1853,7 @@ const handleMsaform = ()=> {
                     clientData.LNEConsentForReleaseOfConfidentialInformationDate
                   }
                   /* disabled={clientData.LNEConsentForReleaseOfConfidentialInformationDate ? true: false} */
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEConsentForReleaseOfConfidentialInformation){
                       setClientData({
@@ -1902,7 +1906,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>HIPAA Consent Form (OCA Form 960)</p>
+                <p className="text-lg">HIPAA Consent Form (OCA Form 960)</p>
               </div>
               <div className="text-center">
                 <input
@@ -1913,7 +1917,7 @@ const handleMsaform = ()=> {
                     clientData.HIPPAConsentFormDate
                   }
                   // disabled={clientData.HIPPAConsentFormDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.HIPPAConsentForm){
                       setClientData({
@@ -1965,7 +1969,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>
+                <p className="text-lg">
                   NYC DOHMH Notice of Privacy Practices - Acknowledgement of
                   Receipt{" "}
                 </p>
@@ -1979,7 +1983,7 @@ const handleMsaform = ()=> {
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesDate
                   }
                   // disabled={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.NYCDOHMHNoticeOfPrivacyPractices){
                       setClientData({
@@ -2031,7 +2035,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>Linkage, Retention, & Adherence Forms</p>
+                <p className="text-lg">Linkage, Retention, & Adherence Forms</p>
               </div>
               <div className="text-center">
                 <input
@@ -2042,7 +2046,7 @@ const handleMsaform = ()=> {
                     clientData.LinkageRetentionAdherenceFormsDate
                   }
                   // disabled={clientData.LinkageRetentionAdherenceFormsDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.LinkageRetentionAdherenceForms){
                       setClientData({
@@ -2097,7 +2101,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>Internal Referral Information</p>
+                <p className="text-lg">Internal Referral Information</p>
               </div>
               <div className="text-center">
                 <input
@@ -2108,7 +2112,7 @@ const handleMsaform = ()=> {
                     clientData.InternalReferralInformationDate
                   }
                   // disabled={clientData.InternalReferralInformationDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.InternalReferralInformation){
                       setClientData({
@@ -2159,7 +2163,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>Identification</p>
+                <p className="text-lg">Identification</p>
               </div>
               <div className="text-center">
                 <input
@@ -2170,7 +2174,7 @@ const handleMsaform = ()=> {
                     clientData.LNEClientReferralFormDate
                   }
                   // disabled={clientData.LNEClientReferralFormDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
                     if(clientData.LNEClientReferralForm){
                       setClientData({
@@ -2218,7 +2222,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>HNS Readiness Assessment</p>
+                <p className="text-lg">HNS Readiness Assessment</p>
               </div>
               <div className="text-center">
                 <input
@@ -2229,7 +2233,7 @@ const handleMsaform = ()=> {
                     clientData.HNSReadinessFormDate
                   }
                   // disabled={clientData.HNSReadinessFormDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
 
                     if(clientData.HNSReadinessForm){
@@ -2278,7 +2282,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>Support Groups</p>
+                <p className="text-lg">Support Groups</p>
               </div>
               <div className="text-center">
                 <input
@@ -2289,7 +2293,7 @@ const handleMsaform = ()=> {
                     clientData.SupportGroupsDate
                   }
                   // disabled={clientData.SupportGroupsDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
 
                     if(clientData.SupportGroups){
@@ -2338,7 +2342,7 @@ const handleMsaform = ()=> {
                 />
               </div>
               <div>
-                <p>IDG</p>
+                <p className="text-lg">IDG</p>
               </div>
               <div className="text-center">
                 <input
@@ -2349,7 +2353,7 @@ const handleMsaform = ()=> {
                     clientData.IDGFormDate
                   }
                   // disabled={clientData.IDGFormDate ? true: false}
-                  className="  p-1"
+                  className=" rounded p-2 border"
                   onChange={(e) => {
 
                     if(clientData.IDGForm){
@@ -2376,16 +2380,19 @@ const handleMsaform = ()=> {
             </div>
           </section>
 
-          <section id="save" className="my-5">
+          
+        </div>
+        <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
-              <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
-              onClick={()=>handleMsaform()}
+              <button
+                className="btn-yellow px-5 py-3 flex items-center font-medium text-lg gap-3 px-5 rounded shadow inline-block"
+                onClick={() => handleMsaform()}
               >
+                <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>
                 Save and Update
               </button>
             </div>
           </section>
-        </main>
       </Layout>
     </>
   );
