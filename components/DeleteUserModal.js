@@ -35,23 +35,23 @@ const DeleteUserModal = ({urlEntity,selectedUser, showDeleteUserModal, setShowDe
                 <div className=''>
                     <div className='flex items-center'>
                     <img src="/delete_client_black_icon.svg" alt="" width={14}/>
-                        <h3 className='ml-2'>Delete User</h3>
+                        <h3 className='ml-2 text-2xl font-bold'>Delete User</h3>
                     </div>
         
-                    <h4 className="mt-5 mb-3 text-lg">Name</h4>
+                    <h4 className="mt-5 mb-3 text-xl font-bold">Name</h4>
                     <p className="bg-blue-50 rounded-md py-3 px-3 mb-5 text-lg">{name} {lastname} </p>
-                     <p className='self-center text-center text-lg'>Are you sure you want to delete this user?</p>
+                     <p className='self-center text-center text-xl'>Are you sure you want to delete this user?</p>
                     <div className='grid grid-cols-2 gap-x-5 justify-between mt-5'>
                     
                         <button
                         onClick={()=> handleAuthUserDelete()}
-                        className="yellow-btn  rounded-md py-1">
+                        className="yellow-btn  rounded-md py-1 text-xl">
                             Yes
                         </button>
 
                         <button 
                         onClick={() => setShowDeleteUserModal(!showDeleteUserModal)}
-                        className="bg-black text-white rounded-md py-1">
+                        className="bg-black text-white rounded-md py-1 text-xl">
                             No
                         </button>
                     </div>
