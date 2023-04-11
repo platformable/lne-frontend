@@ -747,7 +747,7 @@ const EditMsaFormPage = ({ data }) => {
         <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
               <button
-                className="btn-yellow px-5 py-3 flex items-center font-medium gap-3 px-5 rounded shadow inline-block"
+                className="btn-yellow px-5 py-3 flex items-center font-medium text-lg gap-3 px-5 rounded shadow inline-block"
                 onClick={() => handleMsaform()}
               >
                 <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>

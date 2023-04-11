@@ -609,7 +609,7 @@ const ProgressNotesIndex = ({ data }) => {
                   src="/progress_notes/service_provided.svg"
                   alt="Services provided icon"
                 />
-                <h3 className="font-bold text-3xl">Service Provided</h3>
+                <h3 className="font-bold text-2xl">Service Provided</h3>
               </div>
 
               <div className="services-container grid lg:grid-cols-2 grid-cols-1 gap-x-5 mt-10">
@@ -920,7 +920,7 @@ const ProgressNotesIndex = ({ data }) => {
                   src="/progress_notes/client_goals.svg"
                   alt="Client goals icon"
                 />
-                <h3 className="font-bold text-3xl">Client Goals</h3>
+                <h3 className="font-bold text-2xl">Client Goals</h3>
               </div>
 
               <div className="goals-container grid lg:grid-cols-2  gap-5">
@@ -932,7 +932,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div> */}
                   <div className="goal-service grid my-2">
                     <div className="flex flex-col gap-3 items-start">
-                      <p className="text-lg font-medium">Target Date</p>
+                      <p className="text-xl font-medium">Target Date</p>
                       <p className="bg-primary-light-blue p-3 rounded text-lg">
                         {new Date(
                           serviceActionData?.goal1targetdate
@@ -945,7 +945,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </div>
                   </div>
                   <div className="goal-summary">
-                    <p className="text-lg font-medium">Summary</p>
+                    <p className="text-xl font-medium">Summary</p>
                     <p className="bg-primary-light-blue mt-5 p-3 rounded text-lg">
                       {serviceActionData?.goal1Details}
                     </p>
@@ -977,7 +977,7 @@ const ProgressNotesIndex = ({ data }) => {
                 </div> */}
                   <div className="goal-service grid my-2">
                     <div className="flex flex-col gap-3 items-start">
-                      <span className="text-lg font-medium">Target Date</span>
+                      <span className="text-xl font-medium">Target Date</span>
                       <p className="bg-primary-light-blue p-3 rounded text-lg">
                         {new Date(
                           serviceActionData?.goal2targetdate
@@ -990,7 +990,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </div>
                   </div>
                   <div className="goal-summary">
-                    <span className="text-lg font-medium">Summary</span>
+                    <span className="text-xl font-medium">Summary</span>
                     <p className="bg-primary-light-blue mt-5 p-3 rounded text-lg">
                       {serviceActionData?.goal2Details}
                     </p>
@@ -1064,16 +1064,16 @@ const ProgressNotesIndex = ({ data }) => {
             <section className="gap-x-5 pt-7 p-10" id="workedGoals">
               <div className="flex items-center mb-10 gap-x-3">
                 <img src={"/progress_notes/goals_worked_on.svg"} />
-                <h3 className="font-bold text-3xl">
+                <h3 className="font-bold text-2xl">
                   Which of the goals were worked on?
                 </h3>
               </div>
               <div className="goals-container grid md:grid-cols-2  gap-5">
                 <div>
-                  <p className="text-lg mb-3 font-medium">Goal 1</p>
+                  <p className="text-xl mb-3 font-medium">Goal 1</p>
 
                   <div className="workedGoals-box flex gap-20 gap-5 mb-7">
-                    <label className={`flex gap-5 text-lg`}>
+                    <label className={`flex gap-5 items-center text-xl`}>
                       <input
                         type="radio"
                         name="workedGoals1"
@@ -1088,7 +1088,7 @@ const ProgressNotesIndex = ({ data }) => {
                       Yes
                     </label>
 
-                    <label className={`flex gap-5 text-lg`}>
+                    <label className={`flex gap-5 items-center text-xl`}>
                       <input
                         type="radio"
                         name="workedGoals"
@@ -1107,7 +1107,7 @@ const ProgressNotesIndex = ({ data }) => {
                     {/* <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div> */}
-                    <h3 className="text-lg mb-3 font-medium">Target date</h3>
+                    <h3 className="text-xl mb-3 font-medium">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1126,7 +1126,7 @@ const ProgressNotesIndex = ({ data }) => {
                     />
                   </div>
                   <div className="">
-                    <p className="mb-3 font-medium text-lg">
+                    <p className="mb-3 font-medium text-xl">
                       Goal 1 worked comments
                     </p>
                     <textarea
@@ -1145,10 +1145,10 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
 
                 <div>
-                  <p className="text-lg mb-3 font-medium">Goal 2</p>
+                  <p className="text-xl mb-3 font-medium">Goal 2</p>
 
                   <div className="workedGoals-box flex gap-20 mb-7">
-                    <label className={`flex gap-5 text-lg`}>
+                    <label className={`flex gap-5 items-center text-xl`}>
                       <input
                         type="radio"
                         name="workedGoals2"
@@ -1163,7 +1163,7 @@ const ProgressNotesIndex = ({ data }) => {
                       Yes
                     </label>
 
-                    <label className={`flex gap-5 text-lg`}>
+                    <label className={`flex gap-5 items-center text-xl`}>
                       <input
                         type="radio"
                         name="workedGoals"
@@ -1182,7 +1182,7 @@ const ProgressNotesIndex = ({ data }) => {
                     {/* <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div> */}
-                    <h3 className="text-lg mb-3 font-medium">Target date</h3>
+                    <h3 className="text-xl mb-3 font-medium">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1201,7 +1201,7 @@ const ProgressNotesIndex = ({ data }) => {
                     />
                   </div>
                   <div className="">
-                    <p className="mb-3 font-medium text-lg">
+                    <p className="mb-3 font-medium text-xl">
                       Goal 2 worked comments
                     </p>
                     <textarea
@@ -1309,16 +1309,16 @@ const ProgressNotesIndex = ({ data }) => {
                   src={"/progress_notes/goals_completed.svg"}
                   alt="Goals completed icon"
                 />
-                <h3 className="font-bold text-3xl">
+                <h3 className="font-bold text-2xl">
                   Were any of the clients goals completed?
                 </h3>
               </div>
               <div className="goals-container grid md:grid-cols-2 gap-5">
                 <div className="">
-                  <p className="text-lg mb-3 font-medium">Goal 1</p>
+                  <p className="text-xl mb-3 font-medium">Goal 1</p>
 
                   <div className="workedGoals-box flex gap-20 mb-7">
-                    <label className={`flex items-center gap-5 text-lg`}>
+                    <label className={`flex items-center gap-5 text-xl`}>
                       <input
                         type="radio"
                         name="completedGoals1"
@@ -1337,7 +1337,7 @@ const ProgressNotesIndex = ({ data }) => {
                       Yes
                     </label>
 
-                    <label className={`flex items-center gap-5 text-lg`}>
+                    <label className={`flex items-center gap-5 text-xl`}>
                       <input
                         type="radio"
                         name="completedGoals1"
@@ -1357,11 +1357,11 @@ const ProgressNotesIndex = ({ data }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-lg mb-3">Target date</h3>
+                    <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
-                      className="rounded-lg border-black text-lg p-1"
+                      className="rounded-lg border-black text-xl p-1"
                       value={
                         clientData.goal1CompletedDate
                           ? clientData.goal1CompletedDate
@@ -1380,14 +1380,14 @@ const ProgressNotesIndex = ({ data }) => {
                     />
                   </div>
                   <div className="mt-5">
-                    <p className="text-lg font-medium mb-3">
+                    <p className="text-xl font-medium mb-3">
                       Goal 1 completion comments
                     </p>
                     <textarea
                       name=""
                       id=""
                       rows="10"
-                      className="border-black rounded-md w-full mt-1 p-2 text-lg"
+                      className="border-black rounded-md w-full mt-1 p-2 text-xl"
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
@@ -1398,10 +1398,10 @@ const ProgressNotesIndex = ({ data }) => {
                   </div>
                 </div>
                 <div className="">
-                  <p className="text-lg mb-3 font-medium">Goal 2</p>
+                  <p className="text-xl mb-3 font-medium">Goal 2</p>
 
                   <div className="workedGoals-box flex gap-20 mb-7">
-                    <label className={`flex items-center gap-5 text-lg`}>
+                    <label className={`flex items-center gap-5 text-xl`}>
                       <input
                         type="radio"
                         name="completedGoals2"
@@ -1420,7 +1420,7 @@ const ProgressNotesIndex = ({ data }) => {
                       Yes
                     </label>
 
-                    <label className={`flex items-center gap-5 text-lg`}>
+                    <label className={`flex items-center gap-5 text-xl`}>
                       <input
                         type="radio"
                         name="completedGoals2"
@@ -1440,7 +1440,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-lg mb-3">Target date</h3>
+                    <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1463,7 +1463,7 @@ const ProgressNotesIndex = ({ data }) => {
                     />
                   </div>
                   <div className="mt-5">
-                    <p className="text-lg font-medium mb-3">
+                    <p className="text-xl font-medium mb-3">
                       Goal 2 completion comments
                     </p>
                     <textarea
@@ -1574,11 +1574,11 @@ const ProgressNotesIndex = ({ data }) => {
             <section className="gap-x-5 p-10 pt-7 workedGoals" id="workedGoals">
               <div className="flex items-center gap-x-3 mb-10">
                 <img src={"/progress_notes/notes.svg"} />
-                <h3 className="font-bold text-3xl">
+                <h3 className="font-bold text-2xl">
                   Notes on the client progress
                 </h3>
               </div>
-              <p className="text-lg mb-3 font-medium">Progress Notes</p>
+              <p className="text-xl mb-3 font-medium">Progress Notes</p>
               <textarea
                 name="progressNotes"
                 id=""
@@ -1595,12 +1595,12 @@ const ProgressNotesIndex = ({ data }) => {
               ></textarea>
 
               <div className="progressnotes-box">
-                <p className="text-lg font-medium mb-5">
+                <p className="text-xl font-medium mb-5">
                   Has the health care worker signed
                 </p>
                 <div className="flex gap-x-20">
                   <label
-                    className={`flex items-center gap-x-5 text-lg font-medium`}
+                    className={`flex items-center gap-x-5 text-xl font-medium`}
                   >
                     <input
                       type="radio"
@@ -1613,7 +1613,7 @@ const ProgressNotesIndex = ({ data }) => {
                     Yes
                   </label>
                   <label
-                    className={`flex items-center gap-x-5 text-lg font-medium`}
+                    className={`flex items-center gap-x-5 text-xl font-medium`}
                   >
                     <input
                       type="radio"
@@ -1634,7 +1634,7 @@ const ProgressNotesIndex = ({ data }) => {
             <section className="p-10 pt-7 workedGoals" id="workedGoals">
               <div className="flex items-center gap-x-3 mb-10">
                 <img src="/progress_notes/additional_forms.svg" alt="" />
-                <h3 className="font-bold text-3xl font-medium">
+                <h3 className="font-bold text-2xl">
                   Were any additional forms added to the client´s profile?
                 </h3>
               </div>
@@ -1732,7 +1732,7 @@ const ProgressNotesIndex = ({ data }) => {
           <div className="container mx-auto flex justify-center gap-x-10 ">
             
             <button
-              className="btn-yellow flex items-center gap-3 px-5 py-2 rounded shadow-lg text-lg inline-block "
+              className="btn-yellow flex items-center gap-5 px-5 py-2 rounded shadow-lg textxl inline-block "
               onClick={() => handleProgressNote()}
             >
               <img
@@ -1744,7 +1744,7 @@ const ProgressNotesIndex = ({ data }) => {
 
             <ReactToPrint
               trigger={() => (
-                <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadow-lg text-lg inline-block ">
+                <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadowxl text-lg inline-block ">
                   <img src="/progress_notes/print_mini.svg" alt="print icon" />
                   Save and print
                 </button>

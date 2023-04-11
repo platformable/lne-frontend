@@ -71,6 +71,7 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
                   focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-500 active:shadow-lg transition 
                   duration-150 ease-in-out`}
               >
+                <img src="/client/search.svg" alt="search icon"  width={25}/>
                 {loggedUserRole === "DES" && !client.msaformid
                   ? "No MSA Form"
                   : "View Client"}
