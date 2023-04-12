@@ -70,7 +70,7 @@ const RowMsaFormDES = ({
       >
 
         <div className={`px-5 py-3 ${bgColor} `}>
-          <p>{fieldName}</p>
+          <p className="text-lg font-medium">{fieldName}</p>
         </div>
         {/* <div className="text-center">
           <input
@@ -98,11 +98,11 @@ const RowMsaFormDES = ({
           </a> 
           {/* <p className="text-dark-blue underline">Medical</p> */}
         </div>
-        <div className={`text-center px-5 py-3 ${bgColor}`}>
+        <div className={`flex items-center justify-center px-5 py-3 ${bgColor}`}>
           <input
             type="date"
             id={formString}
-            className={`${MSAStyles.inputDate}`}
+            className="font-medium text-lg text-center"
             value={
               (clientData[strings.formUploadDate] &&
               clientData[strings.formUploadDate].split("T")[0]) || (clientData[strings.formDate] && clientData[strings.formDate].split("T")[0]) 

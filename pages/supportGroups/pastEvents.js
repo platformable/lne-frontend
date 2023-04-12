@@ -47,28 +47,28 @@ const PastEvents = ({ events }) => {
       <ToastContainer autoClose={3000} />
       <SubHeader pageTitle={'Support Group Past Events'}/>
 
-      <div className="bg-light-blue  py-10  shadow-inner">
+      <div className="py-10  shadow-inner">
         <div className="bg-white rounded-md shadow-md container mx-auto"> 
-        <div className="container mx-auto bg-white rounded-tl-md rounded-tr-md px-10 shadow-md">
-          <div className="grid grid-cols-2 justify-between ">
-            <div className="flex items-center gap-x-3 py-10 px-5 pb-10 self-start ">
+        <div className="container mx-auto bg-white rounded-tl-md rounded-tr-md px-7 shadow-md">
+          <div className="grid lg:grid-cols-2 pb-5 justify-between ">
+            <div className="flex items-center gap-x-3 py-10 pr-5 pb-10 self-start ">
               <img
                 src="/support_groups/Past_group_events.png"
-                alt=""
+                alt="part group event icons"
                 className="grid items-center self-start"
               />
-              <h1 className="font-bold">Past Group Events</h1>
+              <h1 className="font-bold text-2xl">Past Group Events</h1>
             </div>
 
 
          
 
-            <div className="container mx-auto grid  items-center grid-cols-1 container mx-auto md:px-0 px-5 md:mb-5 md:gap-5">
+            <div className="container mx-auto grid  items-center grid-cols-1 md:px-0 px-5 md:gap-5">
               <div className="block md:flex xl:justify-end md:px-0 lg:col-start-4 py-5 md:py-0  mr-0">
-                <h3 className="">Filter by date</h3>
+                <h3 className="text-xl">Filter by date</h3>
               </div>
 
-              <div className="block md:flex flex-col gap-y-5 lg:flex-row gap-x-5 lg:col-end-6 items-center md:my-0">
+              <div className="block md:flex flex gap-y-5 md:flex-row gap-x-5 lg:col-end-6 items-center md:my-0">
                 <label className="w-full">
                   <input
                     type="date"
@@ -88,7 +88,7 @@ const PastEvents = ({ events }) => {
                     className="border-black rounded-md py-1 px-2  w-full"
                   />
                 </label>
-                <h3 className="text-left md:text-center md:py-5 md:py-0 py-5">
+                <h3 className="text-left md:text-center text-xl md:py-0">
                   and
                 </h3>
                 <label className="flex justify-end w-full">
@@ -110,8 +110,8 @@ const PastEvents = ({ events }) => {
           </div>
         </div>
 
-        <div className="container  mx-auto md:px-0 px-7 mb-10 pb-10 ">
-          <div className="px-10 bg-white">
+        <div className="container  mx-auto md:px-0 px-7 mb-10 pb-7 ">
+          <div className="px-7 bg-white">
             <div
               className={`hidden md:grid ${
                 loggedUserRole === "Supervisor"
@@ -120,19 +120,19 @@ const PastEvents = ({ events }) => {
               } container mx-auto gap-x-1 `}
             >
               {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-              <p className="font-bold  flex items-center  bg-support-groups-table-heading py-2  px-3">
+              <p className="font-bold  flex items-center text-lg  bg-support-groups-table-heading py-2  px-3">
                 Event date
               </p>
-              <p className="font-bold  flex items-center   bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-lg   bg-support-groups-table-heading py-2 px-3">
                 Name of Group
               </p>
-              <p className="font-bold  flex items-center  bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-lg  bg-support-groups-table-heading py-2 px-3">
                 Discussion topic
               </p>
-              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-lg justify-center bg-support-groups-table-heading py-2 px-3">
                 View/edit event
               </p>
-              <p className="font-bold  flex items-center justify-center bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-lg justify-center bg-support-groups-table-heading py-2 px-3">
                 Delete event
               </p>
             </div>
@@ -164,7 +164,7 @@ const PastEvents = ({ events }) => {
                 .map((event, index) => {
                   return (
                     <section className="hidden sm:block container mx-auto" key={index}>
-                      <div className="px-10 bg-white">
+                      <div className="px-7 bg-white">
                         <div
                           className={`hidden md:grid ${
                             loggedUserRole === "Supervisor"
@@ -175,7 +175,7 @@ const PastEvents = ({ events }) => {
                           }`}
                         >
                           {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-                          <p className="flex items-center p-3">
+                          <p className="flex items-center p-3 text-lg">
                             {event.supportmeetingdate &&
                               new Date(
                                 event?.supportmeetingdate
@@ -185,10 +185,10 @@ const PastEvents = ({ events }) => {
                                 year: "numeric",
                               })}
                           </p>
-                          <p className="flex items-center p-3">
+                          <p className="flex items-center p-3 text-lg">
                             {event.supportgroupname}
                           </p>
-                          <p className="flex items-center p-3">
+                          <p className="flex items-center p-3 text-base">
                             {event.supportgrouptopic}
                           </p>
                           <p className="flex items-center justify-center p-1">

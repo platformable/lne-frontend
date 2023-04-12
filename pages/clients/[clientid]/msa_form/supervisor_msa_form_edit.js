@@ -971,7 +971,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               <p className="  font-bold text-center">Dropbox Folder</p>
               </div>
               <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="  text-center font-bold">Date last updated</p>
+              <p className="  text-center font-bold">Date last updated by HCW</p>
               </div>
               <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
               <p className="  text-center font-bold">Supervisor has reviewed</p>
@@ -1639,7 +1639,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         <section id="save" className="py-10 pb-20">
             <div className="container mx-auto flex justify-center">
               <button
-                className="btn-yellow px-5 py-3 flex items-center font-medium gap-3 px-5 rounded shadow inline-block"
+                className="btn-yellow px-5 py-3 flex items-center font-medium text-lg gap-3 px-5 rounded shadow inline-block"
                 onClick={() => handleMsaform()}
               >
                 <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>

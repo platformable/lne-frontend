@@ -156,7 +156,7 @@ if(userid!=="All"){
       </Head>
 
       <Layout>
-        <main className="bg-light-blue h-screen">
+        <div className="bg-light-blue h-screen">
           <section id="dashboard-client-list">
             <section className="bg-white mb-7 shadow-inner">
               <div className="container mx-auto ">
@@ -377,7 +377,7 @@ if(userid!=="All"){
               </div>
             </div>
           </section>
-        </main>
+        </div>
       </Layout>
 
       {showModal && (

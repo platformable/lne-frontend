@@ -130,12 +130,12 @@ const RowMsaFormSupervisor = ({
       </div>*/}
 
       <div className={`${bgColor} px-3 h-full flex items-center `}>
-        <p>{fieldName}</p>
+        <p className="text-lg font-medium">{fieldName}</p>
       </div>
 
       <div className={`${bgColor} h-full flex items-center justify-center`}>
         {formDate ? (
-          <p className="font-medium">
+          <p className="font-medium text-lg">
             {new Date(formDate).toLocaleDateString("en-US", {
               year: "numeric",
               month: "numeric",
@@ -145,22 +145,7 @@ const RowMsaFormSupervisor = ({
         ) : (
           <p className="font-medium">-</p>
         )}
-        {/* < input
-          type="date"
-          id={strings.formDate}
-          className={MSAStyles.inputDate}
-          value={
-            formDate &&
-            formDate.split("T")[0]
-          }
-          disabled={form ? true : false}
-          onChange={(e) => {
-            setClientData((prev) => ({
-              ...prev,
-              [strings.formDate]: e.target.value,
-            }));
-          }}
-        /> */}
+        
       </div>
       
       <div
@@ -179,7 +164,7 @@ const RowMsaFormSupervisor = ({
 
       <div className={`text-center ${bgColor} h-full flex justify-center items-center`}>
         {formUploadDate ? (
-          <p className="">
+          <p className="text-lg">
             {new Date(formUploadDate).toLocaleDateString("en-US", {
               year: "numeric",
               month: "numeric",
