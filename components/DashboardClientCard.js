@@ -16,13 +16,14 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
 
   return (
     <Link
-      href={
-        loggedUserRole === "DES" && client.msaformid
-          ? `/clients/${client.clientid}/msa_form/des_msa_form_edit/`
-          : loggedUserRole === "DES"
-          ? ""
-          : `/clients/${client.clientid}/profile/`
-      }
+      // href={
+      //   loggedUserRole === "DES" && client.msaformid
+      //     ? `/clients/${client.clientid}/msa_form/des_msa_form_edit/`
+      //     : loggedUserRole === "DES"
+      //     ? ""
+      //     : `/clients/${client.clientid}/profile/`
+      // }
+      href={`/clients/${client.clientid}/profile/`}
     >
       <a>
         <div className="dashboard-clients-box" key={index}>
@@ -71,7 +72,7 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
                   focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-500 active:shadow-lg transition 
                   duration-150 ease-in-out`}
               >
-                <img src="/client/search.svg" alt="search icon"  width={25}/>
+                <img src="/viewclient_search.svg" alt="search icon"  width={25}/>
                 {loggedUserRole === "DES" && !client.msaformid
                   ? "No MSA Form"
                   : "View Client"}

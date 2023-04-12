@@ -135,13 +135,13 @@ export default function ClientServiceActionPlansListPage({ data }) {
                 </div>
 
                 <div className="sap-dashboard-client-table px-5 gap-x-2">
-                  <p className="bg-client-profile-sap-heading py-2 px-2 text-lg ">
+                  <p className="bg-client-profile-sap-heading py-2 px-2 text-xl font-medium ">
                     Plan start date
                   </p>
-                  <p className="bg-client-profile-sap-heading py-2 px-2 text-lg">
+                  <p className="bg-client-profile-sap-heading py-2 px-2 text-xl font-medium">
                     Status
                   </p>
-                  <p className="bg-client-profile-sap-heading py-2 px-2 text-center text-lg">
+                  <p className="bg-client-profile-sap-heading py-2 px-2 text-center text-xl font-medium">
                     Edit
                   </p>
                 </div>

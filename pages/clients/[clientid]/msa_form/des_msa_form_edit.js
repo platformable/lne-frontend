@@ -14,7 +14,7 @@ import RowMsaFormDES from "../../../../components/RowMsaFormDES";
 import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 
 const EditMsaFormPage = ({ data }) => {
-  // console.log("data", data);
+  console.log("data", data);
 
   const router = useRouter();
 
@@ -116,9 +116,9 @@ const EditMsaFormPage = ({ data }) => {
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesDate:
-      data[0].comprehensiveriskbehaviorassessmentdate,
+      data[0].comprehensiveriskbehaviorassessmentupdatesdate,
     ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate:
-      data[0].comprehensiveriskbehaviorassessmentuploaddate,
+      data[0].comprehensiveriskbehaviorassessmentupdatesuploaddate,
     ComprehensiveRiskBehaviorAssessmentUpdatesScan: false,
     ComprehensiveRiskBehaviorAssessmentUpdatesPDF: false,
     comprehensiveriskbehaviorassessmentupdatesreviewed:data[0].comprehensiveriskbehaviorassessmentupdatesreviewed,
@@ -612,7 +612,7 @@ const EditMsaFormPage = ({ data }) => {
                   src="/msa/forms_uploaded.svg"
                   alt="Client goals icon"
                 />
-                <h3 className="font-bold text-3xl">Indicate which of the following forms you have uploaded to the client’s Dropbox</h3>
+                <h3 className="font-bold text-2xl">Indicate which of the following forms you have uploaded to the client’s Dropbox</h3>
               </div>
             {/* {TABLE HEAD} */}
             {/* <div className={`${MSAStyles.line}`}></div> */}
@@ -620,20 +620,20 @@ const EditMsaFormPage = ({ data }) => {
               id="form-head"
               className={`${MSAStyles.formRowsContainerDesFormEdit} grid gap-1 justify-center rounded-tl-lg rounded-tr-lg py-1 `}
             >
-              <div className="flex justify-start items-center bg-client-profile-sap-heading">
-              <p className=" py-1 px-5 font-bold">Form</p>
+              <div className="flex h-24 py-2 justify-start items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-xl font-bold">Form</p>
               </div>
-              <div className="flex justify-center items-center bg-client-profile-sap-heading">
-              <p className=" py-1 px-5 font-bold text-center">Dropbox Folder</p>
+              <div className="flex h-24 py-2 justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-xl font-bold text-center">Dropbox Folder</p>
               </div>
-              <div className="flex justify-center items-center bg-client-profile-sap-heading">
-              <p className=" py-1 px-5 text-center font-bold">Date last updated by DES</p>
+              <div className="flex h-24 py-2 justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-xl text-center font-bold">Date last updated by DES</p>
               </div>
-              <div className="flex justify-center items-center bg-client-profile-sap-heading">
-              <p className=" py-1 px-5 text-center font-bold">PDF version uploaded</p>
+              <div className="flex h-24 py-2 justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-xl text-center font-bold">PDF version uploaded</p>
               </div>
-              <div className="flex justify-center items-center bg-client-profile-sap-heading">
-              <p className=" py-1 px-5 text-center font-bold">Scanned version uploaded</p>
+              <div className="flex h-24 py-2 justify-center items-center bg-client-profile-sap-heading">
+              <p className=" py-1 px-5 text-xl text-center font-bold">Scanned version uploaded</p>
               </div>
                 {/* what about Original Version Scanned */}
             </div>

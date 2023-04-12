@@ -200,7 +200,6 @@ if(userid!=="All"){
                   </Link>
                 )}
 
-                {loggedUserRole === "Supervisor" || loggedUserRole === "DES" ? (
                   <Link href="/condomsDistribution">
                     <div className="text-center ">
                       <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
@@ -220,9 +219,6 @@ if(userid!=="All"){
                       </div>{" "}
                     </div>
                   </Link>
-                ) : (
-                  ""
-                )}
                 {loggedUserRole === "Supervisor" ? (
                   <Link href="/supportGroups">
                     <div className="text-center ">
@@ -313,9 +309,9 @@ if(userid!=="All"){
                 )}
               </div>
 
-              <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
-                {loggedUserRole === "Supervisor" ||
-                  (loggedUserRole === "DES" && (
+              {/* <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
+                {loggedUserRole === "Supervisor" &&
+                  ((
                     <div className="search-box flex  items-center">
                       <p className="">Search by name or Client ID</p>
 
@@ -374,7 +370,7 @@ if(userid!=="All"){
                       </select>
                     </div>
                   ))}
-              </div>
+              </div> */}
             </div>
           </section>
         </div>

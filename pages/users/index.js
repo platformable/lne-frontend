@@ -81,28 +81,28 @@ export default function UsersIndex({ data }) {
                     className={`${styles.dashboardActiveUsersListHeadRow} mt-10 gap-x-1 `}
                   >
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-left">Name</p>
+                      <p className="text-xl text-left">Name</p>
                     </div>
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-left">Lastname</p>
+                      <p className="text-xl text-left">Lastname</p>
                     </div>
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-left"> User Role</p>
+                      <p className="text-xl text-left"> User Role</p>
                     </div>
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-left">Email</p>
+                      <p className="text-xl text-left">Email</p>
                     </div>
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-center">Activated in</p>
+                      <p className="text-xl text-center">Activated in</p>
                     </div>
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-center">Last login</p>
+                      <p className="text-xl text-center">Last login</p>
                     </div>
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-center">Edit</p>
+                      <p className="text-xl text-center">Edit</p>
                     </div>
                     <div className="head-row font-bold bg-blue-50 p-2">
-                      <p className="text-base text-center">Delete</p>
+                      <p className="text-xl text-center">Delete</p>
                     </div>
                   </div>
                 </div>

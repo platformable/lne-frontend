@@ -186,9 +186,9 @@ const handleMsaform = ()=> {
               className={`${MSAStyles.formRowsContainerHeading} gap-x-1    grid  rounded-tl-lg rounded-tr-lg my-1`}
             >
               
-              <p className="light-blue-bg pl-5 py-2 text-lg  ">Form name</p>
-              <p className="text-center light-blue-bg py-2 text-lg ">Date added</p>
-              <p className="text-center light-blue-bg py-2 text-lg ">Dropbox Folder</p>
+              <p className="light-blue-bg pl-5 py-2 text-xl  ">Form name</p>
+              <p className="text-center light-blue-bg py-2 text-xl ">Date added</p>
+              <p className="text-center light-blue-bg py-2 text-xl ">Dropbox Folder</p>
             </div>
             {/* {TABLE HEAD} */}
 

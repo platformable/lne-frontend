@@ -61,7 +61,7 @@ export default function ClientProfilePage({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
   const [progNotes, setProgNotes] = useState([]);
-
+console.log("data server", data)
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
@@ -289,16 +289,10 @@ export default function ClientProfilePage({
         data[0]?.planstartdate === "") ||
       data[0]?.planstartdate === null
     ) {
-      return null;
-    }
-    if (
-      progNotes[0]?.progressnotes?.length <= 0 &&
-      data[0]?.planstartdate !== ""
-    ) {
       const planstartdate = data[0]?.planstartdate;
 
       let date_1 =
-        planstartdate === null
+        !planstartdate 
           ? new Date(data[0]?.clientdatecreated)
           : new Date(planstartdate);
       let date_2 = new Date();
@@ -311,6 +305,57 @@ export default function ClientProfilePage({
       // console.log("client data", data);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
+      // if ()
+      return (
+        <div>
+          <div
+            className={`flex ${color} rounded-sm px-5 items-center shadow-md flex items-center justify-center py-3`}
+          >
+            {color === "bg-green-300" && <p className="text-lg">On Track</p>}
+            {color === "bg-orange-300" && <p className="text-lg">Warning</p>}
+            {color === "bg-red-400" && <p className="text-lg">Alert</p>}
+          </div>
+
+          <p className="px-4 my-3 pb-7 text-center text-lg">
+            {totalDays > 0
+              ? `You saw this client ${totalDays} days ago`
+              : totalDays < 0
+              ? `You will see this client soon`
+              : `You saw this client today`}
+          </p>
+
+          <div className="flex justify-center items-center">
+            <img
+              src="/client/alert-icon-progress-note.svg"
+              alt=""
+              width={50}
+              className="mt-3"
+            />
+          </div>
+        </div>
+      );
+    }
+    if (
+      progNotes[0]?.progressnotes?.length <= 0 &&
+      data[0]?.planstartdate !== ""
+    ) {
+      const planstartdate = data[0]?.planstartdate;
+
+      let date_1 =
+        !planstartdate 
+          ? new Date(data[0]?.clientdatecreated)
+          : new Date(planstartdate);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+
+      let color = "bg-red-400";
+      let fechaFin = new Date();
+
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      // console.log("client data", data);
+      if (totalDays <= 14) color = "bg-green-300";
+      if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
+      // if ()
       return (
         <div>
           <div
@@ -759,7 +804,7 @@ export default function ClientProfilePage({
                               ? "Supportive Counselling"
                               : ""}
                           </p>
-                          <p className=""text-xl>{pn.escort === "1" ? "Escort" : ""}</p>
+                          <p className="text-xl">{pn.escort === "1" ? "Escort" : ""}</p>
                           <p className="text-xl">
                             {pn.caseclosuredischarge === "1"
                               ? "Case Closure/Discharge"
