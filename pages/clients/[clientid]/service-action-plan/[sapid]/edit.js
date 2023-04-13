@@ -731,7 +731,7 @@ export default function EditServiceActionPlan({ data }) {
             <div className="container mx-auto">
             <div className="flex gap-x-3 px-5 items-center">
                 <img src="/Signatures.svg" alt="" />
-                <h3 className="font-bold   text-xl mb-1">Signatures</h3>
+                <h3 className="font-bold   text-2xl mb-1">Signatures</h3>
               </div>
 
               <div
@@ -822,17 +822,17 @@ export default function EditServiceActionPlan({ data }) {
         </section> */}
 
         <section id="save" className="my-5">
-          <div className="container mx-auto flex justify-center">
+          <div className="container mx-auto flex justify-center ">
             <div
               id="buttons-container"
-              className="flex items-center justify-around"
+              className="flex items-center justify-around gap-x-5"
             >
               {/*  {loggedUserRole==='DES' ? null : */}
               <>
                 <button
                   className={`${
                     !activeActionPlan ? "block" : "block"
-                  } w-60 btn-blue px-5 py-1 rounded text-white inline-block  mr-5 text-black flex gap-x-5 items-center`}
+                  } w-60 btn-new-blue px-5 py-2 rounded text-white inline-block  mr-5 text-black flex gap-x-5 items-center`}
                   onClick={() => setActiveActionPlan(!activeActionPlan)}
                 >
              <img src="/sap/edit_action_plan.svg" alt="" width={24}/>
@@ -840,7 +840,7 @@ export default function EditServiceActionPlan({ data }) {
                 </button>
 
                 <button
-                  className="w-60 bg-dark-yellow px-5 py-1 rounded text-white inline-block  mr-5 text-black flex gap-x-5 items-center"
+                  className="w-60 bg-dark-yellow px-5 py-2 rounded text-white inline-block  mr-5 text-black flex gap-x-5 items-center"
                   onClick={(e) => {
                     updateClientActionPlan();
                   }}
@@ -850,7 +850,7 @@ export default function EditServiceActionPlan({ data }) {
                 </button>
                 <ReactToPrint
                   trigger={() => (
-                    <button className="w-60 bg-black px-5 py-1 rounded text-white inline-block flex gap-x-5 items-center ">
+                    <button className="w-60 bg-black px-5 py-2 rounded text-white inline-block flex gap-x-5 items-center ">
                       <img src="/sap/print_and_sign.svg" alt="" width={22}/>
              <p className="text-lg ml-4">Print and sign</p>
                     </button>

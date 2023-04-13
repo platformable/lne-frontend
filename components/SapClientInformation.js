@@ -25,7 +25,7 @@ export default function SapClientInformation({
                 alt=""
                 className="grid items-center self-start"
               />
-              <h1 className="font-bold Client Information">Health Care Worker</h1>
+              <h1 className="font-bold Client Information text-2xl">Health Care Worker</h1>
             </div>
           </div>
 
