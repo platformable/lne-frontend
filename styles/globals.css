@@ -294,7 +294,7 @@ input[type="number"] {
 }
 
 .bg-extraLight-pink {
-  background-color: rgba(--extraLightPink);
+  background-color: var(--extraLightPink);
 }
 
 .bg-light-green {

@@ -92,7 +92,7 @@ const disableUserIfNotSupervisor = ()=> loggedUserRole ==='HCW' ? true : false
 
     StatusChangesForm:data[0].statuschangesform ==="0"|| data[0].statuschangesform ===null? false : true,
     StatusChangesFormDate:data[0].statuschangesformdate || "",
-    ComprehensiveRiskBehaviorAssessmentUpdates:data[0].comprehensiveriskbehaviorassessmentupdates ==="0"|| data[0].idgform ===null? false : true,
+    ComprehensiveRiskBehaviorAssessmentUpdates:data[0].comprehensiveriskbehaviorassessmentupdates ==="0"|| data[0].comprehensiveriskbehaviorassessmentupdates ===null? false : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesDate:data[0].comprehensiveriskbehaviorassessmentupdatesdate || "", 
     M11QForm :data[0].m11qform ==="0"|| data[0].m11qform ===null? false : true,
     M11QFormDate:data[0].m11qformdate || "",

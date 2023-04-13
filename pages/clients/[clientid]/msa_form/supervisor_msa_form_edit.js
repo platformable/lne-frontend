@@ -149,20 +149,20 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesDate:
-      data[0].comprehensiveriskbehaviorassessmentdate,
+      data[0].comprehensiveriskbehaviorassessmentupdatesdate,
     ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate:
-      data[0].comprehensiveriskbehaviorassessmentuploaddate === "" ||
-      data[0].comprehensiveriskbehaviorassessmentuploaddate === null
-        ? data[0].comprehensiveriskbehaviorassessmentdate
-        : data[0].comprehensiveriskbehaviorassessmentuploaddate,
+      data[0].comprehensiveriskbehaviorassessmentupdatesuploaddate === "" ||
+      data[0].comprehensiveriskbehaviorassessmentupdatesuploaddate === null
+        ? data[0].comprehensiveriskbehaviorassessmentupdatesdate
+        : data[0].comprehensiveriskbehaviorassessmentupdatesuploaddate,
     ComprehensiveRiskBehaviorAssessmentUpdatesFormScan:
       data[0].comprehensiveriskbehaviorassessmentupdatesformscan === "0" ||
       data[0].comprehensiveriskbehaviorassessmentupdatesformscan === null
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesPDF:
-      data[0].comprehensiveriskbehaviorassessmentpdf === "0" ||
-      data[0].comprehensiveriskbehaviorassessmentpdf === null
+      data[0].comprehensiveriskbehaviorassessmentupdatespdf === "0" ||
+      data[0].comprehensiveriskbehaviorassessmentupdatespdf === null
         ? false
         : true,
     ComprehensiveRiskBehaviorAssessmentUpdatesReviewed:

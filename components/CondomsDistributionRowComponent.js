@@ -17,7 +17,7 @@ const CondomsDistributionRowComponent = ({name,title,setFormData,bg}) => {
               [e.target.name]: Number(e.target.value),
             }));
           }}
-          className="p-2 rounded-lg text-lg text-center w-24"
+          className="p-2 rounded-lg text-lg text-center w-24 border-2"
           defaultValue={0}
         />
       </div>
