@@ -120,19 +120,19 @@ const PastEvents = ({ events }) => {
               } container mx-auto gap-x-1 `}
             >
               {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-              <p className="font-bold  flex items-center text-lg  bg-support-groups-table-heading py-2  px-3">
+              <p className="font-bold  flex items-center text-xl  bg-support-groups-table-heading py-2  px-3">
                 Event date
               </p>
-              <p className="font-bold  flex items-center text-lg   bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-xl   bg-support-groups-table-heading py-2 px-3">
                 Name of Group
               </p>
-              <p className="font-bold  flex items-center text-lg  bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-xl  bg-support-groups-table-heading py-2 px-3">
                 Discussion topic
               </p>
-              <p className="font-bold  flex items-center text-lg justify-center bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-xl justify-center bg-support-groups-table-heading py-2 px-3">
                 View/edit event
               </p>
-              <p className="font-bold  flex items-center text-lg justify-center bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-xl justify-center bg-support-groups-table-heading py-2 px-3">
                 Delete event
               </p>
             </div>

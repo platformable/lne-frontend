@@ -155,7 +155,7 @@ const ProfilePageBaselineData = ({
     <>
       <div className="overflow-x-auto mx-auto container shadow-md sm:rounded-lg">
         <table className="w-full text-base">
-          <thead className="text-bold text-xl text-black  ">
+          <thead className="">
             <tr>
               <th scope="col" className=" py-3 px-6 bg-client-profile-pn-heading text-bold table-headings text-black">
                 Key outcomes

@@ -102,7 +102,7 @@ const RowMsaFormDES = ({
           <input
             type="date"
             id={formString}
-            className="font-medium text-lg text-center"
+            className="pl-7 font-medium text-lg text-center"
             value={
               (clientData[strings.formUploadDate] &&
               clientData[strings.formUploadDate].split("T")[0]) || (clientData[strings.formDate] && clientData[strings.formDate].split("T")[0]) 

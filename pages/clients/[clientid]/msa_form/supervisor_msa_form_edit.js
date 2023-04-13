@@ -951,7 +951,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   src="/msa/forms_uploaded.svg"
                   alt="Services provided icon"
                 />
-                <h3 className="font-bold text-3xl">Indicate which of the following forms you have uploaded to the
+                <h3 className="font-bold text-2xl">Indicate which of the following forms you have uploaded to the
             client&apos;s Dropbox</h3>
               </div>
             {/* {TABLE HEAD} */}
@@ -961,23 +961,23 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               className={`${MSAStyles.formHeadTitlesSupervisor} grid gap-1 items-end mt-10 rounded-tl-lg rounded-tr-lg py-1`}
             >
 
-              <div className="py-3 flex justify-start items-center bg-client-profile-sap-heading">
-              <p className="  px-3 font-bold">Form</p>
+              <div className="py-3 h-24 flex justify-start items-center bg-client-profile-sap-heading">
+              <p className="text-xl  px-3 font-bold">Form</p>
               </div>
-              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="   font-bold">Date added</p>
+              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="text-xl   font-bold">Date added</p>
               </div>
-              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="  font-bold text-center">Dropbox Folder</p>
+              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="text-xl  font-bold text-center">Dropbox Folder</p>
               </div>
-              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="  text-center font-bold">Date last updated by HCW</p>
+              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="text-xl  text-center font-bold">Date last updated by HCW</p>
               </div>
-              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="  text-center font-bold">Supervisor has reviewed</p>
+              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="text-xl  text-center font-bold">Supervisor has reviewed</p>
               </div>
-              <div className="py-3 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="  text-center font-bold">Issues found</p>
+              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+              <p className="text-xl  text-center font-bold">Issues found</p>
               </div>
 
 
