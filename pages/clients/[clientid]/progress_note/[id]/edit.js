@@ -726,11 +726,6 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     ></span> */}
                     </label>
                   </div>
-                </div>
-
-                {/* SERVICE PROVIDED 2nd COLUMN " */}
-
-                <div className="services-box grid gap-y-10 text-lg items-start justify-start">
                   <div className="flex items-center">
                     <label className="flex items-center gap-x-5">
                       <input
@@ -781,6 +776,12 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                       {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                     </label>
                   </div>
+                </div>
+
+                {/* SERVICE PROVIDED 2nd COLUMN " */}
+
+                <div className="services-box grid gap-y-10 text-lg items-start justify-start">
+                 
                   <div className="flex items-center">
                     <label className="flex items-center gap-x-5">
                       <input
@@ -831,6 +832,108 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                       {/* <span
                       className={`${ProgressNotesStyles.checkmark} `}
                     ></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        defaultChecked={
+                          clientData.SupportGroups ? "checked" : ""
+                        }
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            SupportGroups: !clientData.SupportGroups,
+                          })
+                        }
+                      />
+                      Support Groups
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            implementationActionPlan:
+                              !clientData.implementationActionPlan,
+                          })
+                        }
+                        defaultChecked={
+                          clientData.implementationActionPlan ? "checked" : ""
+                        }
+                      />
+                      Implementation of Action Plan
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            housingAssistance: !clientData.housingAssistance,
+                          })
+                        }
+                        defaultChecked={
+                          clientData.housingAssistance ? "checked" : ""
+                        }
+                      />
+                      Assistance with Housing Services
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            benefitsAssistance: !clientData.benefitsAssistance,
+                          })
+                        }
+                        defaultChecked={
+                          clientData.benefitsAssistance ? "checked" : ""
+                        }
+                      />
+                      Assistance with Access to Benefits / Entitlements
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            employmentAssistance:
+                              !clientData.employmentAssistance,
+                          })
+                        }
+                        defaultChecked={
+                          clientData.employmentAssistance ? "checked" : ""
+                        }
+                      />
+                      Assistance with Employment / Education
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            OtherAssistance: !clientData.OtherAssistance,
+                          })
+                        }
+                        checked={clientData.OtherAssistance}
+                      />
+                      Other Form of Assistance
                     </label>
                   </div>
                 </div>
