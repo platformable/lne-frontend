@@ -698,24 +698,7 @@ console.log("data server", data)
               </div>
             </div>
           </section>
-          <section
-            id="baselineData"
-            className="mt-16 container mx-auto bg-white pt-5 px-5 pb-10 rounded-md shadow-md"
-          >
-            <div className="flex gap-x-3">
-              <img src="/client/Client_progress_notes_icon.svg" alt="" />
-              
-              <h3 className="font-bold my-5 text-2xl">Impact Tracker</h3>
-            </div>
-            <ProfilePageBaselineData
-              impactBaseline={impactBaseline}
-              impactTracker={impactTracker}
-              loggedUserRole={loggedUserRole}
-              notifyMessage={notifyMessage}
-              clientId={data[0]?.clientid}
-              clientUniqueId={data[0]?.id}
-            />
-          </section>
+
           <section id="progressnotes" className="my-10 ">
             <div className="container mx-auto bg-white px-5 pt-5 pb-10  mt-5 rounded-md shadow-md">
               <div className="flex gap-x-3">
@@ -878,6 +861,25 @@ console.log("data server", data)
               )}
             </div>
           </section>
+          <section
+            id="baselineData"
+            className="mt-16 container mx-auto bg-white pt-5 px-5 pb-10 rounded-md shadow-md"
+          >
+            <div className="flex gap-x-3">
+              <img src="/client/Client_progress_notes_icon.svg" alt="" />
+              
+              <h3 className="font-bold my-5 text-2xl">Impact Tracker</h3>
+            </div>
+            <ProfilePageBaselineData
+              impactBaseline={impactBaseline}
+              impactTracker={impactTracker}
+              loggedUserRole={loggedUserRole}
+              notifyMessage={notifyMessage}
+              clientId={data[0]?.clientid}
+              clientUniqueId={data[0]?.id}
+            />
+          </section>
+          
         </div>
       </Layout>
       {showEditClientModal && (
