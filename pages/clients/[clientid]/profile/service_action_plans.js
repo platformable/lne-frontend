@@ -78,8 +78,8 @@ export default function ClientServiceActionPlansListPage({ data }) {
           </div>
 
           <div className="sap-client-information-container grid grid-cols-2 gap-x-5">
-            <div className="sap-client-information grid grid-cols-3 gap-x-5">
-              <div>
+            <div className="sap-client-information grid grid-cols-2 gap-x-5">
+              {/* <div>
                 <p className=" text-xl font-bold">Plan start date</p>
                 <input
                   type="date"
@@ -91,7 +91,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                     })
                   }
                 />
-              </div>
+              </div> */}
 
               <div>
                 <p className="text-xl font-bold">Client name</p>
