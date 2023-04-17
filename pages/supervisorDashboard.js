@@ -26,7 +26,6 @@ export default function SupervisorDashboard({ msaforms, serviceactionplans }) {
   const [noDataMessage, setNoDataMessage] = useState(false);
   const router = useRouter();
 
-
   /*   const [liveData,setLiveData]=useState(data) */
 
   /* console.log("data",data) */
@@ -147,8 +146,6 @@ if(userid!=="All"){
     checkServiceActionPlanCompletedGoals(serviceactionplans);
   }, []);
 
- 
-
   return (
     <>
       <ToastContainer autoClose={60000} />
@@ -159,81 +156,43 @@ if(userid!=="All"){
       </Head>
 
       <Layout>
-        <main className="bg-light-blue h-screen">
+        <div className="bg-light-blue h-screen">
           <section id="dashboard-client-list">
+            <section className="bg-white mb-7 shadow-inner">
+              <div className="container mx-auto ">
+                <section className="py-5">
+                  <h1 className="text-5xl py-5 md:px-0 px-5">
+                    Hello{" "}
+                    <strong>
+                      {user && user["https://lanuevatest.herokuapp.com/name"]}
+                    </strong>
+                  </h1>
+
+                  <h1 className=" text-4xl container mx-auto text-center md:text-left  lg:pl-0 font-bold">
+                    What do you want{" "}
+                    <span className="bg-yellow px-1"> to do</span> today?
+                  </h1>
+                </section>
+              </div>
+            </section>
             <div className="container mx-auto">
-              <section className=" py-5">
-                <h1 className="font-black py-5 md:px-0 px-5">
-                  Hello {user && user["https://lanuevatest.herokuapp.com/name"]}
-                </h1>
-                
-               {/*  <div className="supervisor-dashboard-top-container  px-5 py-5 mb-1 bg-white">
-                  <div className="supervisor-dashboard-top  grid md:grid-cols-2  grid-cols-1">
-                    <div>
-                      <h1 className="font-black my-2">
-                        Here is a quick view of how things are doing
-                      </h1>
-                    </div>
-                    <div className="flex wrap justify-end">
-                      <div className="px-5 py-1 bg-green-100 w-40 mr-2 flex items-center justify-center">
-                        on-track
-                      </div>
-                      <div className="px-5 py-1 bg-orange-100 w-40 mr-2 flex items-center justify-center">
-                        warning
-                      </div>
-                      <div className="px-5 py-1 bg-red-100 w-40 flex items-center justify-center">
-                        alert
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="supervisor-dashboard-top-bottom grid md:grid-cols-4 grid-cols-1 gap-1">
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      MSA Forms completed but not uploaded
-                    </h4>
-                    <h1 className="text-center font-black">
-                      {totalMsaFormsNotCompleted.length}
-                    </h1>
-                  </div>
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      Average number of client goals outstanding
-                    </h4>
-                    <h1 className="text-center font-black">
-                      {notCompletedGoals ? notCompletedGoals.length : "-"}
-                    </h1>
-                  </div>
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      Number of requiered client visits vs Actual number of
-                      visits
-                    </h4>
-                    <h1 className="text-center font-black">120 vs 150</h1>
-                  </div>
-                  <div className="supervisor-dashboard-top-bottom-box bg-white p-5   grid justify-center items-center">
-                    <h4 className="text-center mb-5 px-10">
-                      Security incidents or <br /> data breaches
-                    </h4>
-                    <h1 className="text-center font-black">0</h1>
-                  </div>
-                </div> */}
-              </section>
-              <h1 className="mb-10 container mx-auto text-center md:text-left md:pl-12 lg:pl-0 font-black">
-                What do you want <span className="bg-yellow px-1"> to do</span>{" "}
-                today?
-              </h1>
-              <div className="grid md:grid-cols-6 grid-cols-1 gap-5 mb-2">
-                {loggedUserRole === "Supervisor" && (
-                  <Link href="/users">
-                    <div className="text-center  ">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
+
+              <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1 gap-5 mb-2">
+                 {loggedUserRole === "Supervisor" && (
+                  <Link href="/clients">
+                    <div className="text-center ">
+                      <div className="rounded blue-btn p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/manage-users-icon.svg" alt="" />
+                            <img
+                              src="/manage_clients_icon.svg"
+                              alt=""
+                              width={95}
+                            />
                           </div>
-                          <p className="mt-5">
-                            MANAGE <br /> USERS
+                          <p className="mt-5 text-2xl">
+                            Manage <br />
+                            Clients
                           </p>
                         </button>
                       </div>{" "}
@@ -241,17 +200,63 @@ if(userid!=="All"){
                   </Link>
                 )}
 
-                {loggedUserRole === "Supervisor" && (
-                  <Link href="/clients">
+                  <Link href="/condomsDistribution">
                     <div className="text-center ">
-                      <div className="rounded btn-darkBlue p-5 text-center shadow-xl  rounded-xl">
+                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/manage-clients-icon.svg" alt="" />
+                            <img
+                              src="/supervisor/Condoms_Distributed.svg"
+                              alt="condoms distribution icon"
+                              width={87}
+                            />
                           </div>
-                          <p className="mt-5 text-white">
-                            MANAGE <br />
-                            CLIENTS
+                          <p className="mt-5 text-2xl">
+                            Condoms <br />
+                            Distributed
+                          </p>
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </Link>
+                {loggedUserRole === "Supervisor" ? (
+                  <Link href="/supportGroups">
+                    <div className="text-center ">
+                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
+                        <button id="myBtn">
+                          <div className="flex justify-center">
+                            <img
+                              src="/supervisor/Support_Group.svg"
+                              alt="support groups icon"
+                              width={70}
+                            />
+                          </div>
+                          <p className="mt-5 text-2xl">
+                            Support <br />
+                            Groups
+                          </p>
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </Link>
+                ) : (
+                  ""
+                )}
+
+                {loggedUserRole === "Supervisor" && (
+                  <Link href="/users">
+                    <div className="text-center  ">
+                      <div className="rounded yellow-btn p-5 text-center shadow-xl  rounded-xl">
+                        <button id="myBtn">
+                          <div className="flex justify-center">
+                            <img
+                              src="/Manage_Users_icon.svg"
+                              alt=""
+                              width={95}
+                            />
+                          </div>
+                          <p className="mt-5 text-2xl">
+                            Manage <br /> Users
                           </p>
                         </button>
                       </div>{" "}
@@ -262,18 +267,18 @@ if(userid!=="All"){
                 {loggedUserRole === "Supervisor" && (
                   <Link href="/services">
                     <div className="text-center ">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
+                      <div className="rounded yellow-btn p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
                             <img
-                              src="/manage_services_icon.svg"
-                              width={64}
+                              src="/Manage-Services-icon.svg"
+                              width={95}
                               alt=""
                             />
                           </div>
-                          <p className="mt-5">
-                            MANAGE <br />
-                            SERVICES
+                          <p className="mt-5 text-2xl">
+                            Manage <br />
+                            Services
                           </p>
                         </button>
                       </div>{" "}
@@ -284,64 +289,29 @@ if(userid!=="All"){
                 {loggedUserRole === "Supervisor" && (
                   <Link href="/software">
                     <div className="text-center ">
-                      <div className="rounded btn-yellow p-5 text-center shadow-xl  rounded-xl">
+                      <div className="rounded yellow-btn p-5 text-center shadow-xl  rounded-xl">
                         <button id="myBtn">
                           <div className="flex justify-center">
-                            <img src="/manage_software_icon.svg" alt="" />
+                            <img
+                              src="/Manage-Software-icon.svg"
+                              alt=""
+                              width={125}
+                            />
                           </div>
-                          <p className="mt-5">
-                            MANAGE <br />
-                            SOFTWARE
+                          <p className="mt-5 text-2xl">
+                            Manage <br />
+                            Software
                           </p>
                         </button>
                       </div>{" "}
                     </div>
                   </Link>
                 )}
-
-                  
-                  {
-                  (loggedUserRole === "Supervisor" || loggedUserRole === "DES" ? (
-                    <Link href="/condomsDistribution">
-                    <div className="text-center ">
-                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
-                        <button id="myBtn">
-                          <div className="flex justify-center">
-                            <img src="/supervisor/condoms_distributed_icon.svg" alt="condoms distribution icon" width={73}/>
-                          </div>
-                          <p className="mt-5 uppercase">
-                            Condoms <br />
-                            Distributed
-                          </p>
-                        </button>
-                      </div>{" "}
-                    </div>
-                  </Link>
-                  ):"")}
-                  {
-                  (loggedUserRole === "Supervisor"  ? (
-                    <Link href="/supportGroups">
-                    <div className="text-center ">
-                      <div className="rounded bg-middle-purple p-5 text-center shadow-xl  rounded-xl">
-                        <button id="myBtn">
-                          <div className="flex justify-center">
-                            <img src="/supervisor/support_groups_icon.svg" alt="support groups icon" width={52}/>
-                          </div>
-                          <p className="mt-5 uppercase">
-                            Support <br />
-                            Groups
-                          </p>
-                        </button>
-                      </div>{" "}
-                    </div>
-                  </Link>
-                  ):"")}
-                  
               </div>
 
-              <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
-                {loggedUserRole === "Supervisor" ||
-                  (loggedUserRole === "DES" && (
+              {/* <div className="search-container grid md:grid-cols-2 grid-cols-1 gap-5 space-between">
+                {loggedUserRole === "Supervisor" &&
+                  ((
                     <div className="search-box flex  items-center">
                       <p className="">Search by name or Client ID</p>
 
@@ -400,10 +370,10 @@ if(userid!=="All"){
                       </select>
                     </div>
                   ))}
-              </div>
+              </div> */}
             </div>
           </section>
-        </main>
+        </div>
       </Layout>
 
       {showModal && (

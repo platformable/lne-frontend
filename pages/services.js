@@ -515,7 +515,7 @@ const Services = ({ clients, averageNumbers }) => {
             </div>
           </div> */}
 
-          <h1 className="mb-4 my-10 container mx-auto text-center md:text-left lg:pl-0 font-black">
+          <h1 className="mb-4 my-10 container mx-auto text-center md:text-left lg:pl-0 font-bold">
                 What do you want <span className="bg-yellow px-1"> to do</span>{" "}
                 today?
               </h1>

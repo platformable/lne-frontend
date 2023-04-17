@@ -17,13 +17,13 @@ export const SupportGroupToPrint = React.forwardRef((props, ref) => {
       <section className="container mx-auto px-10" ref={ref}>
         <div className="grid grid-cols-3 gap-5 justify-center items-center">
           <div>
-          <h3 className="font-black  my-1 text-xs">
+          <h3 className="font-bold  my-1 text-xs">
           Support Group Record
           </h3>
           </div>
           <div className="flex gap-x-1 justify-center">
          {/*     <img src="https://cdn3.iconfinder.com/data/icons/other-icons/48/paper_document-512.png" alt="" width={24}/>
-        <h3 className="font-black text-center my-1 text-xs">
+        <h3 className="font-bold text-center my-1 text-xs">
             Service Action Plan
           </h3> */}
         </div>
@@ -37,7 +37,7 @@ export const SupportGroupToPrint = React.forwardRef((props, ref) => {
             />
           </div>
         </div>
-        {/* <h1 className="font-black  my-5">Support Group Record</h1> */}
+        {/* <h1 className="font-bold  my-5">Support Group Record</h1> */}
         <div
           id="form"
           className="grid grid-cols-1 gap-5 border-dark-blue rounded-xl px-5 pt-5 pb-10 mb-5"

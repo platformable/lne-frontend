@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactToPrint from 'react-to-print'
 import SupportGroupToPrint from "../../components/SupportGroupToPrint";
 import Link from "next/link";
+import SubHeader from "../../components/SubHeader";
 
 const SupportGroups = ({hcworkers}) => {
   let componentRef = useRef();
@@ -67,71 +68,71 @@ const SupportGroups = ({hcworkers}) => {
    
           <Layout>
           <ToastContainer autoClose={1500} />
-            <div className="container mx-auto my-10 ">
-              <div className="flex justify-between">
-                <div className="flex gap-5">
-                  <BackButton />
-                  <BackToDashboardButton />
-                </div>
-                <Link href="/supportGroups/pastEvents">
-                  <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
-                          <img src="/supervisor/support_groups_icon.svg" alt="condoms distribution icon" width={18}/>
-                          <p className="p-2 text-base">
-                          Review past group events
-                          </p>
-                    </button>
-                </Link>
-              
-              </div>
-              <h1 className="font-black  my-5">
-                Support group record
-              </h1>
-               
-            </div>
+          
+
+
+            <SubHeader pageTitle={'Support Group Record'}>
+{ <Link href="/supportGroups/pastEvents">
+            <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
+                    <img src="/search_icon.svg" alt="review past group event icon" width={27}/>
+                    <p className="p-2 text-lg font-medium">
+                    Review past group events
+                    </p>
+              </button>
+          </Link>}
+             </SubHeader> 
+          <div className="bg-blue-50 py-10">
+            
     
-            <section className="container mx-auto">
+            <section className="container mx-auto bg-white rounded-xl shadow-md">
               <div
                 id="form"
-                className="grid grid-cols-1 gap-5 border-dark-blue rounded-xl p-5 mb-5"
+                className="grid grid-cols-1 gap-10  p-7 mb-5"
               >
+
+                <div className="flex gap-x-3 items-center">
+                <img src="/support_groups/Support_Group_information.png" alt="" />
+                <h1 className="font-bold text-2xl">Support Group Information</h1>
+                </div>
     
-                <label className="text-lg block">
+                <label className="text-xl font-medium flex flex-col items-start  gap-5">
                   Date group held
-                  <input type="date" value={form.supportMeetingDate} name="supportMeetingDate" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
+                  <input type="date" value={form.supportMeetingDate} name="supportMeetingDate" onChange={handleForm} className="border-black rounded p-2 block"/>
                 </label>
-                <label className="text-lg block">
+                <label className="text-xl font-medium flex flex-col items-start gap-5">
                   Start time
-                  <input type="time"  defaultValue={form.supportGroupStartTime} name="supportGroupStartTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block "/>
+                  <input type="time"  defaultValue={form.supportGroupStartTime} name="supportGroupStartTime" onChange={handleForm} className="border-black rounded p-2 block "/>
                 </label>
-                <label className="text-lg block">
+                <label className="text-xl font-medium flex flex-col items-start gap-5">
                   End time
-                  <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 mb-2 block"/>
+                  <input type="time"  defaultValue={form.supportGroupEndTime} name="supportGroupEndTime" onChange={handleForm} className="border-black rounded p-2 block"/>
                 </label>
-                <label className="text-lg block">
+                <label className="text-xl font-medium flex flex-col gap-5">
 
                   Name of group
-                  <input type="text" value={form.supportGroupName} name="supportGroupName" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  <input type="text" value={form.supportGroupName} name="supportGroupName" onChange={handleForm} className="border-black rounded p-2 block w-full"/>
                 </label>
-                <label className="text-lg block">
+                <label className="text-xl font-medium flex flex-col gap-5">
                   Target audience
-                  <input type="text" value={form.supportGroupAudience} name="supportGroupAudience" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  <input type="text" value={form.supportGroupAudience} name="supportGroupAudience" onChange={handleForm} className="border-black rounded p-2 block w-full"/>
                 </label>
-                <label className="text-lg block">
+                <label className="text-xl font-medium flex flex-col gap-5">
                   Discussion topic
-                  <input type="text" value={form.supportGroupTopic} name="supportGroupTopic" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  <input type="text" value={form.supportGroupTopic} name="supportGroupTopic" onChange={handleForm} className="border-black rounded p-2 block w-full"/>
                 </label>
-                <label className="text-lg block">
+                <label className="text-xl font-medium flex flex-col gap-5">
                   Summary of meeting
 
-                  <textarea cols="30" rows="12"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 mb-2 block w-full"/>
+                  <textarea cols="30" rows="12"  value={form.supportGroupSummary} name="supportGroupSummary" onChange={handleForm} className="border-black rounded p-2 block w-full"/>
 
                 </label>
-                <div className="search-box flex items-center  gap-3">
-                  <p className="text-lg">Facilitator</p>
+                <div className="search-box grid md:grid-cols-3 grid-cols-1  items-center  gap-3">
+                  <div>
+                  <p className="text-xl">Facilitator</p>
                   <select
                   name="facilitator"
                   onChange={handleForm}
-                    className=" w-1/2 mt-1 rounded-md py-2 p-r-5 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
+                    className=" mt-1 rounded-md py-2 px-4 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
                   >
                     <option selected={true} disabled="disabled">
                       Select facilitator
@@ -139,30 +140,37 @@ const SupportGroups = ({hcworkers}) => {
                     {/* <option onClick={() => setSearchByUser("All")}>All</option> */}
                     {displayUserList()}
                   </select>
-               </div>
 
-
-                <label className="flex items-center gap-5">
+                  </div>
+                <div className="flex justify-center">
+                  <label className="flex items-center text-xl gap-5 pt-7">
                   HCW signed?
                   <input type="checkbox" name="supportGroupSigned" onChange={handleForm}/>
                 </label>
+                </div>
+               </div>
+
+
+               
               </div>
     
               
     
-              <section id="save" className="my-5">
-                <div className="container mx-auto flex justify-center">
+              
+            </section>
+            <section id="save" className="mt-10">
+                <div className="container mx-auto flex justify-center gap-10">
                   <button
-                    className="flex gap-x-2 items-center bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5"
+                    className="btn-yellow grid grid-cols-3 items-center gap-7 pr-0  px-5 py-2 rounded shadow-lg text-xl inline-block "
                     onClick={submitForm}
                   >
-                    <img src="/check-save-and-finish.svg" alt="check and save icon" />
+                    <img src="/progress_notes/save_and_finish_mini.svg" alt="check and save icon" />
                     Save
                   </button>
                   <ReactToPrint
                     trigger={() => (
-                      <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block flex gap-2">
-                       <img src="/print-report.svg" alt="print icon"/>
+                      <button className="bg-black text-white grid grid-cols-3 items-center gap-7 pr-0  px-5 hover:bg-yellow-200 px-5  py-2 rounded shadow-lg text-xl inline-block ">
+                       <img src="/progress_notes/print_mini.svg" alt="print icon"/>
                         Print
                       </button>
                     )}
@@ -170,7 +178,7 @@ const SupportGroups = ({hcworkers}) => {
                   />
                 </div>
               </section>
-            </section>
+            </div>
           </Layout>
 
        

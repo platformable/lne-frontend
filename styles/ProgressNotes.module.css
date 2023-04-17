@@ -74,10 +74,12 @@
 
   /* The container */
 .radioBtnContainer {
-    display: block;
+    display: flex;
+    align-items: center;
+  
     position: relative;
-    padding-left: 25px;
-    margin-bottom: 12px;
+    padding-left: 55px;
+    /* margin-bottom: 12px; */
     cursor: pointer;
    
     -webkit-user-select: none;
@@ -85,6 +87,7 @@
     -ms-user-select: none;
     user-select: none;
   }
+ 
   
   /* Hide the browser's default radio button */
   .radioBtnContainer input {
@@ -99,8 +102,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: 35px;
+    width: 35px;
     background-color: white;
     border-radius: 50%;
     border:2px solid var(--darkBlue);

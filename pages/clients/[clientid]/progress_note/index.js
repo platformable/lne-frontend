@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from "../../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Styles from "../../../../styles/ServiceAP.module.css";
@@ -10,9 +10,11 @@ import ImpactTrackerModal from "../../../../components/ImpactTrackerModal";
 import BackButton from "../../../../components/BackButton";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 import ProgressNoteToPrint from "../../../../components/ProgressNoteToPrint";
-import ReactToPrint from 'react-to-print'
+import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
+import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SubHeader from "../../../../components/SubHeader";
 
 const ProgressNotesIndex = ({ data }) => {
   const router = useRouter();
@@ -26,8 +28,6 @@ const ProgressNotesIndex = ({ data }) => {
       position: toast.POSITION.TOP_CENTER,
     });
   };
-
-  
 
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();
@@ -61,77 +61,105 @@ const ProgressNotesIndex = ({ data }) => {
     return finalDate;
   };
   const [msaData, setMsaData] = useState({
-      clientId: data[0]?.clientid,
-      AIRSCollateralInformation: data[0]?.airscollateralinformation === "1" ? true : false,
-      AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate ,
-      AIRSFinancialInformation: data[0]?.airsfinancialinformation === "1" ? true : false,
-      AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate ,
-      AIRSHIVAIDSRiskHistory: data[0]?.airshivaidsriskhistory === "1" ? true : false,
-      AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate ,
-      AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
-      AIRSHCVHistoryDate: data[0]?.airshcvhistorydate,
-      AIRSHousingInformation: data[0]?.airshousinginformation === "1" ? true : false,
-      AIRSHousingInformationDate: data[0]?.airshousinginformationdate ,
-      AIRSInsuranceInformation: data[0]?.airsinsuranceinformation === "1" ? true : false,
-      AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate,
-      AIRSSubstanceUseHistory: data[0]?.airssubstanceusehistory === "1" ? true : false,
-      AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate,
-      LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
-      LNEClientRightsDate: data[0]?.lneclientrightsdate,
-      LNEClientGrievancePolicyProcedure: data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
-      LNEClientGrievancePolicyProcedureDate: data[0]?.lneclientgrievancepolicyproceduredate ,
-      LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
-      LNEProgramRulesDate: data[0]?.lneprogramrulesdate,
-      LNEEmergencyContactConsent: data[0]?.lneemergencycontactconsent === "1" ? true : false,
-      LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate,
-      LNEConsentForReleaseOfConfidentialInformation: data[0]?.lneconsentforreleaseofconfidentialinformation === "1" ? true : false,
-      LNEConsentForReleaseOfConfidentialInformationDate: data[0]?.lneconsentforreleaseofconfidentialinformationdate,
-      HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
-      HIPPAConsentFormDate: data[0]?.hippaconsentformdate ,
-      NYCDOHMHNoticeOfPrivacyPractices: data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
-      NYCDOHMHNoticeOfPrivacyPracticesDate: data[0]?.nycdohmhnoticeofprivacypracticesdate,
-      LNEOutreachRetentionTrackingForm: data[0]?.lneoutreachretentiontrackingform === "1" ? true : false,
-      LNEOutreachRetentionTrackingFormDate: data[0]?.lneoutreachretentiontrackingformdate,
-      LNEReferralInformation: data[0]?.lnereferralinformation === "1" ? true : false,
-      LNEReferralInformationDate: data[0]?.lnereferralinformationdate,
-      LNEClientReferralForm: data[0]?.lneclientreferralform === "1" ? true : false,
-      LNEClientReferralFormDate: data[0]?.lneclientreferralformdate ,
-      LNEHNSEligibilityForm: data[0]?.lnehnseligibilityform === "1" ? true : false,
-      LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate,
-      progressNoteDate: data[0]?.progressnotedate ,
-      StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false,
-      StatusChangesFormDate: data[0]?.statuschangesformdate,
-      ComprehensiveRiskBehaviorAssessmentUpdates: data[0]?.comprehensiveriskbehaviorassessmentupdates === "1" ? true : false,
-      ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate ,
-      M11QForm: data[0]?.m11qform === "1" ? true : false,
-      M11QFormDate: data[0]?.m11qformdate ,
-      CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false,
-      CD4VLReportsDate: data[0]?.cd4vlreportsdate ,
-      InitialTreatmentAdherenceIntake: data[0]?.initialtreatmentadherenceintake === "1" ? true : false,
-      InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate ,
-      TreatmentAdherenceUpdates: data[0]?.treatmentadherenceupdates === "1" ? true : false,
-      TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate ,
-      AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false,
-      AIRSDrugRegimenDate: data[0]?.airsdrugregimendate,
-      AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false,
-      AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate,
-      AIRSHIVMedicalProvider: data[0]?.airshivmedicalprovider === "1" ? true : false,
-      AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate,
-      SupportGroups: data[0]?.supportgroups === "1" ? true : false,
-      SupportGroupsDate: data[0]?.supportgroupsdate,
-      IDGForm: data[0]?.idgform === "1" ? true : false,
-      IDGFormDate: data[0]?.idgformdate,
-      HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false,
-      InternalReferralInformation: data[0]?.internalreferralinformation === "1" ? true : false,
-      LinkageRetentionAdherenceForms: data[0]?.linkageretentionadherenceforms === "1" ? true : false,
-      InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
-      LinkageRetentionAdherenceFormsDate: data[0]?.linkageretentionadherenceformsdate ,
-      HNSReadinessFormDate: data[0]?.hnsreadinessformdate ,
-      ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
-  })
-
-
-
+    clientId: data[0]?.clientid,
+    AIRSCollateralInformation:
+      data[0]?.airscollateralinformation === "1" ? true : false,
+    AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate,
+    AIRSFinancialInformation:
+      data[0]?.airsfinancialinformation === "1" ? true : false,
+    AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate,
+    AIRSHIVAIDSRiskHistory:
+      data[0]?.airshivaidsriskhistory === "1" ? true : false,
+    AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate,
+    AIRSHCVHistory: data[0]?.airshcvhistory === "1" ? true : false,
+    AIRSHCVHistoryDate: data[0]?.airshcvhistorydate,
+    AIRSHousingInformation:
+      data[0]?.airshousinginformation === "1" ? true : false,
+    AIRSHousingInformationDate: data[0]?.airshousinginformationdate,
+    AIRSInsuranceInformation:
+      data[0]?.airsinsuranceinformation === "1" ? true : false,
+    AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate,
+    AIRSSubstanceUseHistory:
+      data[0]?.airssubstanceusehistory === "1" ? true : false,
+    AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate,
+    LNEClientRights: data[0]?.lneclientrights === "1" ? true : false,
+    LNEClientRightsDate: data[0]?.lneclientrightsdate,
+    LNEClientGrievancePolicyProcedure:
+      data[0]?.lneclientgrievancepolicyprocedure === "1" ? true : false,
+    LNEClientGrievancePolicyProcedureDate:
+      data[0]?.lneclientgrievancepolicyproceduredate,
+    LNEProgramRules: data[0]?.lneprogramrules === "1" ? true : false,
+    LNEProgramRulesDate: data[0]?.lneprogramrulesdate,
+    LNEEmergencyContactConsent:
+      data[0]?.lneemergencycontactconsent === "1" ? true : false,
+    LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate,
+    LNEConsentForReleaseOfConfidentialInformation:
+      data[0]?.lneconsentforreleaseofconfidentialinformation === "1"
+        ? true
+        : false,
+    LNEConsentForReleaseOfConfidentialInformationDate:
+      data[0]?.lneconsentforreleaseofconfidentialinformationdate,
+    HIPPAConsentForm: data[0]?.hippaconsentform === "1" ? true : false,
+    HIPPAConsentFormDate: data[0]?.hippaconsentformdate,
+    NYCDOHMHNoticeOfPrivacyPractices:
+      data[0]?.nycdohmhnoticeofprivacypractices === "1" ? true : false,
+    NYCDOHMHNoticeOfPrivacyPracticesDate:
+      data[0]?.nycdohmhnoticeofprivacypracticesdate,
+    LNEOutreachRetentionTrackingForm:
+      data[0]?.lneoutreachretentiontrackingform === "1" ? true : false,
+    LNEOutreachRetentionTrackingFormDate:
+      data[0]?.lneoutreachretentiontrackingformdate,
+    LNEReferralInformation:
+      data[0]?.lnereferralinformation === "1" ? true : false,
+    LNEReferralInformationDate: data[0]?.lnereferralinformationdate,
+    LNEClientReferralForm:
+      data[0]?.lneclientreferralform === "1" ? true : false,
+    LNEClientReferralFormDate: data[0]?.lneclientreferralformdate,
+    LNEHNSEligibilityForm:
+      data[0]?.lnehnseligibilityform === "1" ? true : false,
+    LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate,
+    progressNoteDate: data[0]?.progressnotedate,
+    StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false,
+    StatusChangesFormDate: data[0]?.statuschangesformdate,
+    ComprehensiveRiskBehaviorAssessmentUpdates:
+      data[0]?.comprehensiveriskbehaviorassessmentupdates === "1"
+        ? true
+        : false,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate:
+      data[0]?.comprehensiveriskbehaviorassessmentupdatesdate,
+    M11QForm: data[0]?.m11qform === "1" ? true : false,
+    M11QFormDate: data[0]?.m11qformdate,
+    CD4VLReports: data[0]?.cd4vlreports === "1" ? true : false,
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate,
+    InitialTreatmentAdherenceIntake:
+      data[0]?.initialtreatmentadherenceintake === "1" ? true : false,
+    InitialTreatmentAdherenceIntakeDate:
+      data[0]?.initialtreatmentadherenceintakedate,
+    TreatmentAdherenceUpdates:
+      data[0]?.treatmentadherenceupdates === "1" ? true : false,
+    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate,
+    AIRSDrugRegimen: data[0]?.airsdrugregimen === "1" ? true : false,
+    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate,
+    AIRSHIVStatusHistory: data[0]?.airshivstatushistory === "1" ? true : false,
+    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate,
+    AIRSHIVMedicalProvider:
+      data[0]?.airshivmedicalprovider === "1" ? true : false,
+    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate,
+    SupportGroups: data[0]?.supportgroups === "1" ? true : false,
+    SupportGroupsDate: data[0]?.supportgroupsdate,
+    IDGForm: data[0]?.idgform === "1" ? true : false,
+    IDGFormDate: data[0]?.idgformdate,
+    HNSReadinessForm: data[0]?.hnsreadinessform === "1" ? true : false,
+    InternalReferralInformation:
+      data[0]?.internalreferralinformation === "1" ? true : false,
+    LinkageRetentionAdherenceForms:
+      data[0]?.linkageretentionadherenceforms === "1" ? true : false,
+    InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
+    LinkageRetentionAdherenceFormsDate:
+      data[0]?.linkageretentionadherenceformsdate,
+    HNSReadinessFormDate: data[0]?.hnsreadinessformdate,
+    ProgressNoteReviewed: data[0]?.progressnotereviewed === "1" ? true : false,
+  });
 
   const [clientData, setClientData] = useState({
     clientId: data[0]?.clientid,
@@ -142,7 +170,7 @@ const ProgressNotesIndex = ({ data }) => {
     userLastName: data[0]?.clienthcwlastname,
     progressNoteDate: crearFecha(),
     ProgressNoteReviewed: false,
-    
+
     // Services provided
     developmentActionPlan: false,
     CD4VLLabReport: false,
@@ -156,7 +184,7 @@ const ProgressNotesIndex = ({ data }) => {
     escort: false,
     caseClosureDischarge: false,
     linkageToServices: false,
-    supportGroup:false,
+    supportGroup: false,
     implementationActionPlan: false,
     housingAssistance: false,
     benefitsAssistance: false,
@@ -170,108 +198,101 @@ const ProgressNotesIndex = ({ data }) => {
     goal2ProgressDate: "",
     goal3Progress: false,
     goal3ProgressDate: "",
-    goal1Completed: data[0].sapgoal1completed==='1'?true:false,
+    goal1Completed: data[0].sapgoal1completed === "1" ? true : false,
     goal1CompletedDate: "",
-    goal2Completed: data[0].sapgoal2completed==='1'?true:false,
+    goal2Completed: data[0].sapgoal2completed === "1" ? true : false,
     goal2CompletedDate: "",
-    goal3Completed: data[0].sapgoal3completed==='1'?true:false,
+    goal3Completed: data[0].sapgoal3completed === "1" ? true : false,
     goal3CompletedDate: "",
-    sapGoal1Completed:data[0].sapgoal1completed==='1'?true:false,
-    sapGoal2Completed:data[0].sapgoal2completed==='1'?true:false,
-    sapGoal3Completed:data[0].sapgoal3completed==='1'?true:false,
-    sapGoal1CompletionDate:data[0].sapgoal1completiondate,
-    sapGoal2CompletionDate:data[0].sapgoal2completiondate,
-    sapGoal3CompletionDate:data[0].sapgoal3completiondate,
+    sapGoal1Completed: data[0].sapgoal1completed === "1" ? true : false,
+    sapGoal2Completed: data[0].sapgoal2completed === "1" ? true : false,
+    sapGoal3Completed: data[0].sapgoal3completed === "1" ? true : false,
+    sapGoal1CompletionDate: data[0].sapgoal1completiondate,
+    sapGoal2CompletionDate: data[0].sapgoal2completiondate,
+    sapGoal3CompletionDate: data[0].sapgoal3completiondate,
 
-    StatusChangesForm: false, 
-    StatusChangesFormDate: data[0]?.statuschangesformdate || null, 
+    StatusChangesForm: false,
+    StatusChangesFormDate: data[0]?.statuschangesformdate || null,
 
     ComprehensiveRiskBehaviorAssessmentUpdates: false,
-    ComprehensiveRiskBehaviorAssessmentUpdatesDate: data[0]?.comprehensiveriskbehaviorassessmentupdatesdate || null,
+    ComprehensiveRiskBehaviorAssessmentUpdatesDate:
+      data[0]?.comprehensiveriskbehaviorassessmentupdatesdate || null,
 
-    M11QForm: false, 
-    M11QFormDate: data[0]?.m11qformdate || null, 
+    M11QForm: false,
+    M11QFormDate: data[0]?.m11qformdate || null,
 
-    CD4VLReports: false, 
-    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null, 
+    CD4VLReports: false,
+    CD4VLReportsDate: data[0]?.cd4vlreportsdate || null,
 
-    InitialTreatmentAdherenceIntake: false, 
-    InitialTreatmentAdherenceIntakeDate: data[0]?.initialtreatmentadherenceintakedate || null, 
+    InitialTreatmentAdherenceIntake: false,
+    InitialTreatmentAdherenceIntakeDate:
+      data[0]?.initialtreatmentadherenceintakedate || null,
 
-    TreatmentAdherenceUpdates: false, 
-    TreatmentAdherenceUpdatesDate: data[0]?.treatmentadherenceupdatesdate || null, 
+    TreatmentAdherenceUpdates: false,
+    TreatmentAdherenceUpdatesDate:
+      data[0]?.treatmentadherenceupdatesdate || null,
 
-    AIRSCollateralInformation:
-      false,
-    AIRSCollateralInformationDate: data[0]?.airscollateralinformationdate || null,
+    AIRSCollateralInformation: false,
+    AIRSCollateralInformationDate:
+      data[0]?.airscollateralinformationdate || null,
 
-    AIRSDrugRegimen: false, 
-    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null, 
+    AIRSDrugRegimen: false,
+    AIRSDrugRegimenDate: data[0]?.airsdrugregimendate || null,
 
-    AIRSFinancialInformation:
-      false,
+    AIRSFinancialInformation: false,
     AIRSFinancialInformationDate: data[0]?.airsfinancialinformationdate || null,
-    AIRSHIVAIDSRiskHistory:
-      false,
+    AIRSHIVAIDSRiskHistory: false,
     AIRSHIVAIDSRiskHistoryDate: data[0]?.airshivaidsriskhistorydate || null,
 
-    AIRSHIVStatusHistory: false, 
-    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null, 
+    AIRSHIVStatusHistory: false,
+    AIRSHIVStatusHistoryDate: data[0]?.airshivstatushistorydate || null,
 
-    AIRSHIVMedicalProvider: false, 
-    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null, 
+    AIRSHIVMedicalProvider: false,
+    AIRSHIVMedicalProviderDate: data[0]?.airshivmedicalproviderdate || null,
 
     AIRSHCVHistory: false,
     AIRSHCVHistoryDate: data[0]?.airshcvhistorydate || null,
-    AIRSHousingInformation:
-      false,
+    AIRSHousingInformation: false,
     AIRSHousingInformationDate: data[0]?.airshousinginformationdate || null,
-    AIRSInsuranceInformation:
-      false,
+    AIRSInsuranceInformation: false,
     AIRSInsuranceInformationDate: data[0]?.airsinsuranceinformationdate || null,
-    AIRSSubstanceUseHistory:
-      false,
+    AIRSSubstanceUseHistory: false,
     AIRSSubstanceUseHistoryDate: data[0]?.airssubstanceusehistorydate || null,
     LNEClientRights: false,
     LNEClientRightsDate: data[0]?.lneclientrightsdate || null,
-    LNEClientGrievancePolicyProcedure:
-      false,
+    LNEClientGrievancePolicyProcedure: false,
     LNEClientGrievancePolicyProcedureDate:
       data[0]?.lneclientgrievancepolicyproceduredate || null,
     LNEProgramRules: false,
     LNEProgramRulesDate: data[0]?.lneprogramrulesdate || null,
-    LNEEmergencyContactConsent:
-      false,
-    LNEEmergencyContactConsentDate: data[0]?.lneemergencycontactconsentdate || null,
+    LNEEmergencyContactConsent: false,
+    LNEEmergencyContactConsentDate:
+      data[0]?.lneemergencycontactconsentdate || null,
     LNEConsentForReleaseOfConfidentialInformation: false,
     LNEConsentForReleaseOfConfidentialInformationDate:
       data[0]?.lneconsentforreleaseofconfidentialinformationdate || null,
     HIPPAConsentForm: false,
     HIPPAConsentFormDate: data[0]?.hippaconsentformdate || null,
-    NYCDOHMHNoticeOfPrivacyPractices:
-      false,
+    NYCDOHMHNoticeOfPrivacyPractices: false,
     NYCDOHMHNoticeOfPrivacyPracticesDate:
       data[0]?.nycdohmhnoticeofprivacypracticesdate || null,
-    LinkageRetentionAdherenceForms:
-      false,
+    LinkageRetentionAdherenceForms: false,
     LinkageRetentionAdherenceFormsDate:
       data[0]?.linkageretentionadherenceformsdate || null,
-      InternalReferralInformation:
-      false,
+    InternalReferralInformation: false,
     InternalReferralInformationDate: data[0]?.internalreferralinformationdate,
-    LNEClientReferralForm:
-      false,
+    LNEClientReferralForm: false,
     LNEClientReferralFormDate: data[0]?.lneclientreferralformdate || null,
     LNEHNSEligibilityForm: true,
     LNEHNSEligibilityFormDate: data[0]?.lnehnseligibilityformdate || new Date(),
-    HNSReadinessForm: false, 
-    HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null, 
+    HNSReadinessForm: false,
+    HNSReadinessFormDate: data[0]?.hnsreadinessformdate || null,
 
-    SupportGroups: false, 
-    SupportGroupsDate: data[0]?.supportgroupsdate || null, 
+    SupportGroups: false,
+    SupportGroupsDate: data[0]?.supportgroupsdate || null,
 
-    IDGForm: false, 
-    IDGFormDate: data[0]?.idgformdate || null, 
+    IDGForm: false,
+    IDGFormDate: data[0]?.idgformdate || null,
 
     progressNoteText: "",
     HCWSignature:
@@ -280,122 +301,122 @@ const ProgressNotesIndex = ({ data }) => {
       data[0]?.hcwsignature === null
         ? false
         : true,
-    clientUniqueId:data[0].id,
-    goal1ProgressComments:"",
-    goal2ProgressComments:"",
-    goal3ProgressComments:"",
-    goal1CompletionComments:"",
-    goal2CompletionComments:"",
-    goal3CompletionComments:"",
-    goal1WorkedComments:"",
-    goal2WorkedComments:"",
-    goal3WorkedComments:"",
+    clientUniqueId: data[0].id,
+    goal1ProgressComments: "",
+    goal2ProgressComments: "",
+    goal3ProgressComments: "",
+    goal1CompletionComments: "",
+    goal2CompletionComments: "",
+    goal3CompletionComments: "",
+    goal1WorkedComments: "",
+    goal2WorkedComments: "",
+    goal3WorkedComments: "",
   });
   console.log("clientData", clientData);
 
   console.log("msa", msaData);
   const whichServiceBeenAded = [
-   /* {
+    /* {
       value: clientData.LNEHNSEligibilityForm,
       state_label: "LNEHNSEligibilityForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "HNS Eligibility Assessment",
     },*/
     // {value:clientData.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
     {
       value: clientData.StatusChangesForm,
       state_label: "StatusChangesForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Status Changes/Closure Forms",
     },
     {
       value: clientData.ComprehensiveRiskBehaviorAssessmentUpdates,
       state_label: "ComprehensiveRiskBehaviorAssessmentUpdates",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Comprehensive Behavioral Risk Assessment Updates",
     },
     {
       value: clientData.M11QForm,
       state_label: "M11QForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "M11Q",
     },
     {
       value: clientData.CD4VLReports,
       state_label: "CD4VLReports",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "CD4/VL Check Reports",
     },
     {
       value: clientData.InitialTreatmentAdherenceIntake,
       state_label: "InitialTreatmentAdherenceIntake",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Initial Treatment Adherence Intake",
     },
     {
       value: clientData.TreatmentAdherenceUpdates,
       state_label: "TreatmentAdherenceUpdates",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Treatment Adherence Updates",
     },
-   /* {
+    /* {
       value: clientData.AIRSCollateralInformation,
       state_label: "AIRSCollateralInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Collateral Information",
     },
     {
       value: clientData.AIRSDrugRegimen,
       state_label: "AIRSDrugRegimen",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Drug Regimen History",
     },
     {
       value: clientData.AIRSFinancialInformation,
       state_label: "AIRSFinancialInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Financial Information",
     },
     {
       value: clientData.AIRSHIVAIDSRiskHistory,
       state_label: "AIRSHIVAIDSRiskHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV AIDS Risk History",
     },
     {
       value: clientData.AIRSHIVMedicalProvider,
       state_label: "AIRSHIVMedicalProvider",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV Medical Provider History",
     },
     {
       value: clientData.AIRSHIVStatusHistory,
       state_label: "AIRSHIVStatusHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV Status History",
     },
     {
       value: clientData.AIRSHCVHistory,
       state_label: "AIRSHCVHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HCV History",
     },
     {
       value: clientData.AIRSHousingInformation,
       state_label: "AIRSHousingInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Housing Information",
     },
     {
       value: clientData.AIRSInsuranceInformation,
       state_label: "AIRSInsuranceInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Insurance Information",
     },
     {
       value: clientData.AIRSSubstanceUseHistory,
       state_label: "AIRSSubstanceUseHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Substance Use History",
     }, 
     {
@@ -444,37 +465,37 @@ const ProgressNotesIndex = ({ data }) => {
     {
       value: clientData.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Linkage, Retention, & Adherence Forms",
     },
     {
       value: clientData.InternalReferralInformation,
       state_label: "InternalReferralInformation",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Internal Referral Information",
     },
     /*{
       value: clientData.LNEClientReferralForm,
       state_label: "LNEClientReferralForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Identification",
     },
     {
       value: clientData.HNSReadinessForm,
       state_label: "HNSReadinessForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "HNS Readiness Form",
     },*/
     {
       value: clientData.SupportGroups,
       state_label: "SupportGroups",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Support Groups",
     },
     {
       value: clientData.IDGForm,
       state_label: "IDGForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "IDG",
     },
   ];
@@ -490,9 +511,9 @@ const ProgressNotesIndex = ({ data }) => {
     goal3servicecategory: data[0]?.goal3servicecategory,
     goal3summary: data[0]?.goal3summary,
     goal3targetdate: data[0]?.goal3targetdate,
-    goal1Details:data[0]?.goal1details,
-    goal2Details:data[0]?.goal2details,
-    goal3Details:data[0]?.goal3details,
+    goal1Details: data[0]?.goal1details,
+    goal2Details: data[0]?.goal2details,
+    goal3Details: data[0]?.goal3details,
   });
 
   const [dataForSAP, setDataForSAP] = useState({
@@ -559,9 +580,9 @@ const ProgressNotesIndex = ({ data }) => {
             handleMsaformUpdate();
             handleServiceActionPlanFormUpdate();
             notifyMessage();
-           setTimeout(()=>{
-            setShowImpactTrackerModal(!showImpactTrackerModal)
-           },1500) 
+            setTimeout(() => {
+              setShowImpactTrackerModal(!showImpactTrackerModal);
+            }, 1500);
           }
         })
         .catch(function (error) {
@@ -574,600 +595,446 @@ const ProgressNotesIndex = ({ data }) => {
     <>
       <ToastContainer autoClose={1500} />
       <Layout>
-        <div className="container mx-auto">
-          <h1 className="font-black text-center my-5">Progress Notes </h1>
-        </div>
+  
 
-        <main className="container mx-auto">
-          <div className="flex gap-x-5">
-            <BackButton />
+        <SubHeader pageTitle={'Progress Note'}/>
 
-            <BackToDashboardButton />
-          </div>
-          <section id="info" className="my-5">
-            <div className="">
-              <h3 className="font-black my-5 text-dark-blue">
-                Client Information
-              </h3>
-              <div
-                className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
-              >
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/calendar-icon.svg" width="24" />
-                    <h3 className="font-black ">Date</h3>
-                  </div>
+        <div className="pt-10 shadow-inner">
+          <section className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
+            
+            <ClientInfoTopHeader data={data} clientData={clientData} setClientData={setClientData} />
+            <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
+              <div className="flex gap-x-3 items-center">
+                <img
+                  src="/progress_notes/service_provided.svg"
+                  alt="Services provided icon"
+                />
+                <h3 className="font-bold text-2xl">Service Provided</h3>
+              </div>
 
-                  <label className="block">
-                    <p className="text-base">Progress note date</p>
-                    <input type="date" name="" id="" className="border-black px-1 rounded-md" 
-                    value={clientData.progressNoteDate}
-                    onChange={(e)=>setClientData({...clientData,progressNoteDate:e.target.value})}
-                    />
-                  </label>
-                </div>
+              <div className="services-container grid lg:grid-cols-2 grid-cols-1 gap-x-5 mt-10">
+                {/* SERVICE PROVIDED 1st COLUMN " */}
 
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Client</h3>
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <label className="block">
-                      <span className="">First Name</span>
+                <div className="services-box grid gap-y-10 text-lg items-start justify-start">
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
                       <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0]?.clientfirstname}
-                        disabled
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        onChange={(e) =>
-                          setUserData({ ...clientData, email: e.target.value })
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            developmentActionPlan:
+                              !clientData.developmentActionPlan,
+                          })
                         }
-                        value={data[0]?.clientlastname.charAt(0)}
-                        disabled
                       />
+                      Development of Action Plan with Client
+                      {/* <span
+                      className={`${ProgressNotesStyles.checkmark} `}
+                    ></span> */}
                     </label>
-                    <label className="block">
-                      <span className="">Client ID</span>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
                       <input
-                        type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={data[0]?.clientid}
-                        disabled
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            CD4VLLabReport: !clientData.CD4VLLabReport,
+                          })
+                        }
                       />
+                      CD4/VL Lab Report Check
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            transportationCoordination:
+                              !clientData.transportationCoordination,
+                          })
+                        }
+                      />
+                      Transportation Coordination
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            translationInterpretation:
+                              !clientData.translationInterpretation,
+                          })
+                        }
+                      />
+                      Translation/Interpretation
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            comprehensiveBehavioralRiskAssessment:
+                              !clientData.comprehensiveBehavioralRiskAssessment,
+                          })
+                        }
+                      />
+                      Comprehensive Behavioral Risk Assessment
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            ticklerUpdate: !clientData.ticklerUpdate,
+                          })
+                        }
+                      />
+                      Tickler Update
+                      {/* <span
+                      className={`${ProgressNotesStyles.checkmark} `}
+                    ></span> */}
+                    </label>
+                  </div>
+
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            treatmentEducation: !clientData.treatmentEducation,
+                          })
+                        }
+                      />
+                      Treatment Education and Adherence Counselling
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            preventionCounselling:
+                              !clientData.preventionCounselling,
+                          })
+                        }
+                      />
+                      Prevention Counselling
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            supportiveCounselling:
+                              !clientData.supportiveCounselling,
+                          })
+                        }
+                      />
+                      Supportive Counselling
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                     </label>
                   </div>
                 </div>
 
-                <div className="service-action-plan-page-info-box">
-                  <div className="flex gap-x-2 mb-5 items-center">
-                    <img src="/client-icon.svg" width="24" />
-                    <h3 className="font-black ">Health Care Worker</h3>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <label className="block">
-                      <span className="">First Name</span>
+                {/* SERVICE PROVIDED 2nd COLUMN " */}
+                <div className="services-box grid gap-y-10 text-lg items-start justify-start">
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
                       <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={clientData.userFirstName}
-                        disabled
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            escort: !clientData.escort,
+                          })
+                        }
                       />
-                    </label>
-                    <label className="block">
-                      <span className="">Last Name</span>
-                      <input
-                        type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
-                        value={clientData.userLastName}
-                        disabled
-                      />
+                      Escort
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
                     </label>
                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
 
-          <h3 className="font-black my-5 text-dark-blue">Service Provided</h3>
-
-          <section
-            id="servidedProvided"
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
-          >
-            <div className="services-container grid md:grid-cols-3 grid-cols-1 gap-x-5">
-
-{/* SERVICE PROVIDED 1st COLUMN " */}
-
-              <div className="services-box grid gap-y-3 items-start justify-start">
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          developmentActionPlan:
-                            !clientData.developmentActionPlan,
-                        })
-                      }
-                    />
-                    Development of Action Plan with Client
-                    {/* <span
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            caseClosureDischarge:
+                              !clientData.caseClosureDischarge,
+                          })
+                        }
+                      />
+                      Case Closure/Discharge
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            linkageToServices: !clientData.linkageToServices,
+                          })
+                        }
+                      />
+                      Linkage to Services
+                      {/* <span
                       className={`${ProgressNotesStyles.checkmark} `}
                     ></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          CD4VLLabReport: !clientData.CD4VLLabReport,
-                        })
-                      }
-                    />
-                    CD4/VL Lab Report Check
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          transportationCoordination:
-                            !clientData.transportationCoordination,
-                        })
-                      }
-                    />
-                    Transportation Coordination
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          translationInterpretation:
-                            !clientData.translationInterpretation,
-                        })
-                      }
-                    />
-                    Translation/Interpretation
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
+                    </label>
+                  </div>
 
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          comprehensiveBehavioralRiskAssessment:
-                            !clientData.comprehensiveBehavioralRiskAssessment,
-                        })
-                      }
-                    />
-                    Comprehensive Behavioral Risk Assessment
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          ticklerUpdate: !clientData.ticklerUpdate,
-                        })
-                      }
-                    />
-                    Tickler Update
-                    {/* <span
-                      className={`${ProgressNotesStyles.checkmark} `}
-                    ></span> */}
-                  </label>
-                </div>
-                
-              </div>
-
-
-{/* SERVICE PROVIDED 2nd COLUMN " */}
-              <div className="services-box grid gap-y-3 items-start justify-start ">
-                
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          treatmentEducation: !clientData.treatmentEducation,
-                        })
-                      }
-                    />
-                    Treatment Education and Adherence Counselling
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          preventionCounselling:
-                            !clientData.preventionCounselling,
-                        })
-                      }
-                    />
-                    Prevention Counselling
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          supportiveCounselling:
-                            !clientData.supportiveCounselling,
-                        })
-                      }
-                    />
-                    Supportive Counselling
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          escort: !clientData.escort,
-                        })
-                      }
-                    />
-                    Escort
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          caseClosureDischarge:
-                            !clientData.caseClosureDischarge,
-                        })
-                      }
-                    />
-                    Case Closure/Discharge
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          linkageToServices: !clientData.linkageToServices,
-                        })
-                      }
-                    />
-                    Linkage to Services
-                    {/* <span
-                      className={`${ProgressNotesStyles.checkmark} `}
-                    ></span> */}
-                  </label>
-                </div>
-                
-              </div>
-
-
-{/* SERVICE PROVIDED 3rd COLUMN " */}
-              <div className="services-box grid grid-rows-5 gap-y-3 items-start justify-start">
-                
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          SupportGroup: !clientData.supportGroup,
-                        })
-                      }
-                    />
-                    Support Group
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          implementationActionPlan: !clientData.implementationActionPlan,
-                        })
-                      }
-                    />
-                    Implementation of Action Plan
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          housingAssistance: !clientData.housingAssistance,
-                        })
-                      }
-                    />
-                    Assistance with Housing Services
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          benefitsAssistance: !clientData.benefitsAssistance,
-                        })
-                      }
-                    />
-                    Assistance with Access to Benefits / Entitlements
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          employmentAssistance: !clientData.employmentAssistance,
-                        })
-                      }
-                    />
-                    Assistance with Employment / Education
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <label
-                  className="flex items-center gap-x-5"
-                  >
-                    <input
-                      type="checkbox"
-                      onChange={() =>
-                        setClientData({
-                          ...clientData,
-                          OtherAssistance: !clientData.OtherAssistance,
-                        })
-                      }
-                    />
-                    Other Form of Assistance
-                    {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
-                  </label>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            SupportGroup: !clientData.supportGroup,
+                          })
+                        }
+                      />
+                      Support Group
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            implementationActionPlan:
+                              !clientData.implementationActionPlan,
+                          })
+                        }
+                      />
+                      Implementation of Action Plan
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            housingAssistance: !clientData.housingAssistance,
+                          })
+                        }
+                      />
+                      Assistance with Housing Services
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            benefitsAssistance: !clientData.benefitsAssistance,
+                          })
+                        }
+                      />
+                      Assistance with Access to Benefits / Entitlements
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            employmentAssistance:
+                              !clientData.employmentAssistance,
+                          })
+                        }
+                      />
+                      Assistance with Employment / Education
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center gap-x-5">
+                      <input
+                        type="checkbox"
+                        onChange={() =>
+                          setClientData({
+                            ...clientData,
+                            OtherAssistance: !clientData.OtherAssistance,
+                          })
+                        }
+                      />
+                      Other Form of Assistance
+                      {/* <span className={`${ProgressNotesStyles.checkmark}`}></span> */}
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-          <h3 className="font-black my-5 text-dark-blue">Goals</h3>
+            </section>
 
-          <section
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 goals"
-            id="goals"
-          >
-            <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
-              <div className="goal-box">
-                <div className="goal-top flex items-center my-2">
-                  <h3 className="font-black">Goal 1</h3>
+            <section className="p-10 pt-7 goals" id="goals">
+              <div className="flex gap-3 items-center mb-10">
+                <img
+                  src="/progress_notes/client_goals.svg"
+                  alt="Client goals icon"
+                />
+                <h3 className="font-bold text-2xl">Client Goals</h3>
+              </div>
+
+              <div className="goals-container grid lg:grid-cols-2  gap-5">
+                <div className="goal-box grid gap-y-7">
+                  {/* <div className="goal-top flex items-center my-2">
+                  <h3 className="font-bold">Goal 1</h3>
                   <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
                   <img src={"/goal01.svg"} alt="" />
-                </div>
-                <div className="goal-service grid grid-cols-2 my-2">
-                  {/* <div>
-                    <span className="">Service Category</span>
-                    <p className=" text-dark-blue ">
-                      {serviceActionData?.goal1servicecategory}
+                </div> */}
+                  <div className="goal-service grid my-2">
+                    <div className="flex flex-col gap-3 items-start">
+                      <p className="text-xl font-medium">Target Date</p>
+                      <p className="bg-primary-light-blue p-3 rounded text-lg">
+                        {new Date(
+                          serviceActionData?.goal1targetdate
+                        ).toLocaleDateString("en", {
+                          year: "numeric",
+                          month: "numeric",
+                          day: "numeric",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="goal-summary">
+                    <p className="text-xl font-medium">Summary</p>
+                    <p className="bg-primary-light-blue mt-5 p-3 rounded text-lg">
+                      {serviceActionData?.goal1Details}
                     </p>
-                  </div> */}
-                  <div>
-                    <span className="">Target Date</span>
-                    <p className="text-dark-blue">
+                  </div>
+                  {clientData.sapGoal1Completed && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
                       {new Date(
-                        serviceActionData?.goal1targetdate
-                      ).toLocaleDateString("en", {
+                        clientData.sapGoal1CompletionDate
+                      ).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "numeric",
                         day: "numeric",
                       })}
                     </p>
-                  </div>
-                </div>
-                <div className="goal-summary my-2">
-                  <span className="">Summary</span>
-                  <p className=" text-dark-blue ">
-                    {serviceActionData?.goal1Details}
-                  </p>
-                </div>
-                {clientData.sapGoal1Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
-                        Completed:{" "}
-                        {new Date(
-                          clientData.sapGoal1CompletionDate
-                        ).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "numeric",
-                          day: "numeric",
-                        })}
-                      </p>
-                    )}
-                {/* <div className="">
+                  )}
+                  {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
                  onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}></textarea>
                 </div> */}
-              </div>
+                </div>
 
-              <div className="goal-box">
-                
-                  <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 2</h3>
-                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
-                    <img src={"/goal02.svg"} alt="" />
-                  </div>
-              
-                <div className="goal-service grid grid-cols-2 my-2">
-                  {/* <div>
-                    <span className="">Service Category</span>
-                    <p className=" text-dark-blue ">
-                    {serviceActionData?.goal2servicecategory}
-                    </p>
-                  </div> */}
-                  <div>
-                    <span className="">Target Date</span>
-                    <p className="text-dark-blue ">
-                      {
-                      serviceActionData?.goal2targetdate ?
-                      new Date(
-                        serviceActionData?.goal2targetdate
-                      ).toLocaleDateString("en", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      }):"-"
-                      }
-                    </p>
-                  </div>
-                </div>
-                <div className="goal-summary my-2">
-                  <span className="">Summary</span>
-                  <p className=" text-dark-blue">
-                    {serviceActionData?.goal2Details || "-"}
-                  </p>
-                </div>
-                {clientData.sapGoal2Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
-                        Completed:{" "}
+                <div className="goal-box grid gap-y-7">
+                  {/* <div className="goal-top flex items-center my-2">
+                  <h3 className="font-bold">Goal 1</h3>
+                  <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
+                  <img src={"/goal01.svg"} alt="" />
+                </div> */}
+                  <div className="goal-service grid my-2">
+                    <div className="flex flex-col gap-3 items-start">
+                      <span className="text-xl font-medium">Target Date</span>
+                      <p className="bg-primary-light-blue p-3 rounded text-lg">
                         {new Date(
-                          clientData.sapGoal2CompletionDate
-                        ).toLocaleDateString("en-US", {
+                          serviceActionData?.goal2targetdate
+                        ).toLocaleDateString("en", {
                           year: "numeric",
                           month: "numeric",
                           day: "numeric",
                         })}
                       </p>
-                    )}
-                {/* <div className="">
-                  <span className="">Goal 2 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                 onChange={(e)=>setClientData({...clientData,goal2ProgressComments:e.target.value})}></textarea>
-                </div> */}
-              </div>
-
-              <div className="goal-box">
-                
-                  <div className="goal-top flex items-center my-2">
-                    <h3 className="font-black">Goal 3</h3>
-                    <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
-                    <img src={"/goal03.svg"} alt="" />
+                    </div>
                   </div>
-               
-                <div className="goal-service grid grid-cols-2 my-2">
-                  {/* <div>
-                    <span className="">Service Category</span>
-                    <p className=" text-dark-blue ">
-                    {serviceActionData?.goal3servicecategory}
+                  <div className="goal-summary">
+                    <span className="text-xl font-medium">Summary</span>
+                    <p className="bg-primary-light-blue mt-5 p-3 rounded text-lg">
+                      {serviceActionData?.goal2Details}
                     </p>
-                  </div> */}
-                  <div>
-                    <span className="">Target Date</span>
-                    <p className="text-dark-blue ">
-                    {
-                      serviceActionData?.goal3targetdate ?
-                      new Date(
-                        serviceActionData?.goal3targetdate
-                      ).toLocaleDateString("en", {
+                  </div>
+                  {clientData.sapGoal1Completed && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData.sapGoal2CompletionDate
+                      ).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "numeric",
                         day: "numeric",
-                      }):"-"
-                      }
+                      })}
+                    </p>
+                  )}
+                  {/* <div className="">
+                  <span className="">Goal 1 Progress Comments</span>
+                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
+                 onChange={(e)=>setClientData({...clientData,goal1ProgressComments:e.target.value})}></textarea>
+                </div> */}
+                </div>
+
+                {/* <div className="goal-box">
+                <div className="goal-top flex items-center my-2">
+                  <h3 className="font-bold">Goal 3</h3>
+                  <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
+                  <img src={"/goal03.svg"} alt="" />
+                </div>
+
+                <div className="goal-service grid grid-cols-2 my-2">
+                  
+                  <div>
+                    <span className="">Target Date</span>
+                    <p className="text-dark-blue ">
+                      {serviceActionData?.goal3targetdate
+                        ? new Date(
+                            serviceActionData?.goal3targetdate
+                          ).toLocaleDateString("en", {
+                            year: "numeric",
+                            month: "numeric",
+                            day: "numeric",
+                          })
+                        : "-"}
                     </p>
                   </div>
                 </div>
@@ -1178,183 +1045,181 @@ const ProgressNotesIndex = ({ data }) => {
                   </p>
                 </div>
                 {clientData.sapGoal3Completed && (
-                      <p className="px-3 py-1 rounded-lg shadow font-black  bg-green-300">
-                        Completed:{" "}
-                        {new Date(
-                          clientData.sapGoal3CompletionDate
-                        ).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "numeric",
-                          day: "numeric",
-                        })}
-                      </p>
-                    )}
-                {/* <div className="">
-                  <span className="">Goal 3 Progress Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                 onChange={(e)=>setClientData({...clientData,goal3ProgressComments:e.target.value})}></textarea>
-                </div> */}
+                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                    Completed:{" "}
+                    {new Date(
+                      clientData.sapGoal3CompletionDate
+                    ).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                    })}
+                  </p>
+                )}
+               
+              </div> */}
               </div>
-            </div>
-          </section>
-          <div className="flex items-center ml-3 my-4">
-            <img src={"/goals-were-worked-on.svg"} />
-            <h3 className="font-black self-end text-dark-blue">
-              Which of the goals were worked on?
-            </h3>
-          </div>
-          <section
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
-            id="workedGoals"
-          >
-            <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
-              <div>
-                <div className="workedGoals-box flex gap-5 ">
-                  <p className="text-lg">Goal 1</p>
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    Yes
-                    <input
-                      type="radio"
-                      name="workedGoals"
-                      onChange={(e) => {
-                        setClientData({
-                          ...clientData,
-                          goal1Progress: true,
-                          goal1ProgressDate: clientData.progressNoteDate,
-                        });
-                      }}
-                    />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
+            </section>
 
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    No
-                    <input
-                      type="radio"
-                      name="workedGoals"
-                      onChange={(e) => {
-                        setClientData({
-                          ...clientData,
-                          goal1Progress: false,
-                          goal1ProgressDate: "",
-                        });
-                      }}
-                    />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
-                </div>
-                <div className="flex gap-5 items-center">
-                  <div className={`calendarIcon`}>
-                    <img src="/date-calendar.svg" width={24} alt="" />
+            <section className="gap-x-5 pt-7 p-10" id="workedGoals">
+              <div className="flex items-center mb-10 gap-x-3">
+                <img src={"/progress_notes/goals_worked_on.svg"} />
+                <h3 className="font-bold text-2xl">
+                  Which of the goals were worked on?
+                </h3>
+              </div>
+              <div className="goals-container grid md:grid-cols-2  gap-5">
+                <div>
+                  <p className="text-xl mb-3 font-medium">Goal 1</p>
+
+                  <div className="workedGoals-box flex gap-20 gap-5 mb-7">
+                    <label className={`flex gap-5 items-center text-xl`}>
+                      <input
+                        type="radio"
+                        name="workedGoals1"
+                        onChange={(e) => {
+                          setClientData({
+                            ...clientData,
+                            goal1Progress: true,
+                            goal1ProgressDate: clientData.progressNoteDate,
+                          });
+                        }}
+                      />
+                      Yes
+                    </label>
+
+                    <label className={`flex gap-5 items-center text-xl`}>
+                      <input
+                        type="radio"
+                        name="workedGoals"
+                        onChange={(e) => {
+                          setClientData({
+                            ...clientData,
+                            goal1Progress: false,
+                            goal1ProgressDate: "",
+                          });
+                        }}
+                      />
+                      No
+                    </label>
                   </div>
-                  <h3 className="">Date</h3>
-                  <input
-                    type="date"
-                    id=""
-                    className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal1ProgressDate
-                        ? clientData.goal1ProgressDate
-                        : ""
-                    }
-                    onChange={(e) =>
-                      setClientData({
-                        ...clientData,
-                        goal1ProgressDate: e.target.value,
-                      })
-                    }
-                    
-                  />
-                </div>
-                <div className="mt-5">
-                  <span className="">Goal 1 Worked Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                     onChange={(e)=>setClientData({...clientData,goal1WorkedComments:e.target.value})}></textarea>
-                </div>
-              </div>
-
-              <div>
-                <div className="workedGoals-box flex gap-5 ">
-                  <p className="text-lg">Goal 2</p>
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    Yes
+                  <div className="mb-7">
+                    {/* <div className={`calendarIcon`}>
+                    <img src="/date-calendar.svg" width={24} alt="" />
+                  </div> */}
+                    <h3 className="text-xl mb-3 font-medium">Target date</h3>
                     <input
-                      type="radio"
-                      name="workedGoals2"
+                      type="date"
+                      id=""
+                      className="rounded-lg border-black p-2 text-lg"
+                      value={
+                        clientData.goal1ProgressDate
+                          ? clientData.goal1ProgressDate
+                          : ""
+                      }
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
-                          goal2Progress: true,
-                          goal2ProgressDate: clientData.progressNoteDate,
+                          goal1ProgressDate: e.target.value,
                         })
                       }
                     />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
-
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    No
-                    <input
-                      type="radio"
-                      name="workedGoals2"
+                  </div>
+                  <div className="">
+                    <p className="mb-3 font-medium text-xl">
+                      Goal 1 worked comments
+                    </p>
+                    <textarea
+                      name=""
+                      id=""
+                      rows="10"
+                      className="border-black rounded-md w-full mt-1 text-lg p-2"
                       onChange={(e) =>
                         setClientData({
                           ...clientData,
-                          goal2Progress: false,
-                          goal2ProgressDate: "",
+                          goal1WorkedComments: e.target.value,
+                        })
+                      }
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xl mb-3 font-medium">Goal 2</p>
+
+                  <div className="workedGoals-box flex gap-20 mb-7">
+                    <label className={`flex gap-5 items-center text-xl`}>
+                      <input
+                        type="radio"
+                        name="workedGoals2"
+                        onChange={(e) => {
+                          setClientData({
+                            ...clientData,
+                            goal2Progress: true,
+                            goal2ProgressDate: clientData.progressNoteDate,
+                          });
+                        }}
+                      />
+                      Yes
+                    </label>
+
+                    <label className={`flex gap-5 items-center text-xl`}>
+                      <input
+                        type="radio"
+                        name="workedGoals"
+                        onChange={(e) => {
+                          setClientData({
+                            ...clientData,
+                            goal2Progress: false,
+                            goal2ProgressDate: "",
+                          });
+                        }}
+                      />
+                      No
+                    </label>
+                  </div>
+                  <div className="mb-7">
+                    {/* <div className={`calendarIcon`}>
+                    <img src="/date-calendar.svg" width={24} alt="" />
+                  </div> */}
+                    <h3 className="text-xl mb-3 font-medium">Target date</h3>
+                    <input
+                      type="date"
+                      id=""
+                      className="rounded-lg border-black p-2 text-lg"
+                      value={
+                        clientData.goal2ProgressDate
+                          ? clientData.goal2ProgressDate
+                          : ""
+                      }
+                      onChange={(e) =>
+                        setClientData({
+                          ...clientData,
+                          goal2ProgressDate: e.target.value,
                         })
                       }
                     />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
-                </div>
-                <div className="flex gap-5 items-center">
-                  <div className={`calendarIcon`}>
-                    <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
-                  <h3 className="">Date</h3>
-                  <input
-                    type="date"
-                    id=""
-                    className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal2ProgressDate
-                        ? clientData.goal2ProgressDate
-                        : ""
-                    }
-                    onChange={(e) =>
-                      setClientData({
-                        ...clientData,
-                        goal2ProgressDate: e.target.value,
-                      })
-                    }
-                  />
-                  
+                  <div className="">
+                    <p className="mb-3 font-medium text-xl">
+                      Goal 2 worked comments
+                    </p>
+                    <textarea
+                      name=""
+                      id=""
+                      rows="10"
+                      className="border-black rounded-md w-full text-lg p-2"
+                      onChange={(e) =>
+                        setClientData({
+                          ...clientData,
+                          goal2WorkedComments: e.target.value,
+                        })
+                      }
+                    ></textarea>
+                  </div>
                 </div>
-                <div className="mt-5">
-                  <span className="">Goal 2 Worked Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                     onChange={(e)=>setClientData({...clientData,goal2WorkedComments:e.target.value})}></textarea>
-                </div>
-              </div>
 
-              <div>
+                {/* <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 3</p>
                   <label
@@ -1421,182 +1286,202 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
                 <div className="mt-5">
                   <span className="">Goal 3 Worked Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                     onChange={(e)=>setClientData({...clientData,goal3WorkedComments:e.target.value})}></textarea>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <div className="flex items-center ml-3 my-4">
-            <img src={"/goals-completed-icon.svg"} />
-            <h3 className="font-black self-end text-dark-blue">
-              Were any of the clients goals completed?
-            </h3>
-          </div>
-
-          <section
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
-            id="workedGoals"
-          >
-            <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
-              <div>
-                <div className="workedGoals-box flex gap-5 ">
-                  <p className="text-lg">Goal 1</p>
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    Yes
-                    <input
-                      type="radio"
-                      name="completedGoals1"
-                      onClick={(e) => {
-                        setClientData({
-                          ...clientData,
-                          goal1Completed: true,
-                          goal1CompletedDate: clientData.progressNoteDate
-                        });
-                        setDataForSAP({ ...dataForSAP, goal1Completed: true });
-                      }}
-                    />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
-
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    No
-                    <input
-                      type="radio"
-                      name="completedGoals1"
-                      onClick={() => {
-                        setClientData({
-                          ...clientData,
-                          goal1Completed: false,
-                          goal1CompletedDate: "",
-                        });
-                        setDataForSAP({ ...dataForSAP, goal1Completed: false });
-                      }}
-                    />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
-                </div>
-                <div className="flex gap-5 items-center">
-                  <div className={`calendarIcon`}>
-                    <img src="/date-calendar.svg" width={24} alt="" />
-                  </div>
-                  <h3 className="">Date</h3>
-                  <input
-                    type="date"
+                  <textarea
+                    name=""
                     id=""
-                    className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal1CompletedDate
-                        ? clientData.goal1CompletedDate
-                        : ""
-                    }
-                    onChange={(e) => {
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
                       setClientData({
                         ...clientData,
-                        goal1CompletedDate: e.target.value,
-                      });
-                      setDataForSAP({
-                        ...dataForSAP,
-                        goal1CompletionDate: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="mt-5">
-                  <span className="">Goal 1 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                     onChange={(e)=>setClientData({...clientData,goal1CompletionComments:e.target.value})}></textarea>
-                </div>
-              </div>
-
-              <div>
-                <div className="workedGoals-box flex gap-5 ">
-                  <p className="text-lg">Goal 2</p>
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    Yes
-                    <input
-                      type="radio"
-                      name="completedGoals2"
-                      onClick={(e) => {
-                        setClientData({
-                          ...clientData,
-                          goal2Completed: true,
-                          goal2CompletedDate: clientData.progressNoteDate
-                        });
-                        setDataForSAP({ ...dataForSAP, goal2Completed: true });
-                      }}
-                    />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
-
-                  <label
-                    className={`${ProgressNotesStyles.radioBtnContainer} `}
-                  >
-                    No
-                    <input
-                      type="radio"
-                      name="completedGoals2"
-                      onClick={(e) => {
-                        setClientData({
-                          ...clientData,
-                          goal2Completed: false,
-                          goal2CompletedDate: "",
-                        });
-                        setDataForSAP({ ...dataForSAP, goal2Completed: false });
-                      }}
-                    />
-                    <span
-                      className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                    ></span>
-                  </label>
-                </div>
-                <div className="flex gap-5 items-center">
-                  <div className={`calendarIcon`}>
-                    <img src="/date-calendar.svg" width={24} alt="" />
-                  </div>
-                  <h3 className="">Date</h3>
-                  <input
-                    type="date"
-                    id=""
-                    className="rounded-lg  p-1 border-dark-blue"
-                    value={
-                      clientData.goal2CompletedDate
-                        ? clientData.goal2CompletedDate
-                        : ""
+                        goal3WorkedComments: e.target.value,
+                      })
                     }
-                    onChange={(e) => {
-                      setClientData({
-                        ...clientData,
-                        goal2CompletedDate: e.target.value,
-                      });
-                      setDataForSAP({
-                        ...dataForSAP,
-                        goal2CompletionDate: e.target.value,
-                      });
-                    }}
-                  />
+                  ></textarea>
                 </div>
-                <div className="mt-5">
-                  <span className="">Goal 2 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                 onChange={(e)=>setClientData({...clientData,goal2CompletionComments:e.target.value})}
-                 ></textarea>
-                </div>
+              </div> */}
               </div>
+            </section>
 
+            <section className="gap-x-5 p-10 pt-7" id="workedGoals">
+              <div className="flex items-center gap-3 mb-10">
+                <img
+                  src={"/progress_notes/goals_completed.svg"}
+                  alt="Goals completed icon"
+                />
+                <h3 className="font-bold text-2xl">
+                  Were any of the clients goals completed?
+                </h3>
+              </div>
+              <div className="goals-container grid md:grid-cols-2 gap-5">
+                <div className="">
+                  <p className="text-xl mb-3 font-medium">Goal 1</p>
+
+                  <div className="workedGoals-box flex gap-20 mb-7">
+                    <label className={`flex items-center gap-5 text-xl`}>
+                      <input
+                        type="radio"
+                        name="completedGoals1"
+                        onClick={(e) => {
+                          setClientData({
+                            ...clientData,
+                            goal1Completed: true,
+                            goal1CompletedDate: clientData.progressNoteDate,
+                          });
+                          setDataForSAP({
+                            ...dataForSAP,
+                            goal1Completed: true,
+                          });
+                        }}
+                      />
+                      Yes
+                    </label>
+
+                    <label className={`flex items-center gap-5 text-xl`}>
+                      <input
+                        type="radio"
+                        name="completedGoals1"
+                        onClick={() => {
+                          setClientData({
+                            ...clientData,
+                            goal1Completed: false,
+                            goal1CompletedDate: "",
+                          });
+                          setDataForSAP({
+                            ...dataForSAP,
+                            goal1Completed: false,
+                          });
+                        }}
+                      />
+                      No
+                    </label>
+                  </div>
+                  <div className="mb-7">
+                    <h3 className="font-medium text-xl mb-3">Target date</h3>
+                    <input
+                      type="date"
+                      id=""
+                      className="rounded-lg border-black text-xl p-1"
+                      value={
+                        clientData.goal1CompletedDate
+                          ? clientData.goal1CompletedDate
+                          : ""
+                      }
+                      onChange={(e) => {
+                        setClientData({
+                          ...clientData,
+                          goal1CompletedDate: e.target.value,
+                        });
+                        setDataForSAP({
+                          ...dataForSAP,
+                          goal1CompletionDate: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="mt-5">
+                    <p className="text-xl font-medium mb-3">
+                      Goal 1 completion comments
+                    </p>
+                    <textarea
+                      name=""
+                      id=""
+                      rows="10"
+                      className="border-black rounded-md w-full mt-1 p-2 text-xl"
+                      onChange={(e) =>
+                        setClientData({
+                          ...clientData,
+                          goal1CompletionComments: e.target.value,
+                        })
+                      }
+                    ></textarea>
+                  </div>
+                </div>
+                <div className="">
+                  <p className="text-xl mb-3 font-medium">Goal 2</p>
+
+                  <div className="workedGoals-box flex gap-20 mb-7">
+                    <label className={`flex items-center gap-5 text-xl`}>
+                      <input
+                        type="radio"
+                        name="completedGoals2"
+                        onClick={(e) => {
+                          setClientData({
+                            ...clientData,
+                            goal2Completed: true,
+                            goal2CompletedDate: clientData.progressNoteDate,
+                          });
+                          setDataForSAP({
+                            ...dataForSAP,
+                            goal2Completed: true,
+                          });
+                        }}
+                      />
+                      Yes
+                    </label>
+
+                    <label className={`flex items-center gap-5 text-xl`}>
+                      <input
+                        type="radio"
+                        name="completedGoals2"
+                        onClick={() => {
+                          setClientData({
+                            ...clientData,
+                            goal2Completed: false,
+                            goal2CompletedDate: "",
+                          });
+                          setDataForSAP({
+                            ...dataForSAP,
+                            goal2Completed: false,
+                          });
+                        }}
+                      />
+                      No
+                    </label>
+                  </div>
+                  <div className="mb-7">
+                    <h3 className="font-medium text-xl mb-3">Target date</h3>
+                    <input
+                      type="date"
+                      id=""
+                      className="rounded-lg border-black text-lg p-1 "
+                      value={
+                        clientData.goal2CompletedDate
+                          ? clientData.goal2CompletedDate
+                          : ""
+                      }
+                      onChange={(e) => {
+                        setClientData({
+                          ...clientData,
+                          goal2CompletedDate: e.target.value,
+                        });
+                        setDataForSAP({
+                          ...dataForSAP,
+                          goal2CompletionDate: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="mt-5">
+                    <p className="text-xl font-medium mb-3">
+                      Goal 2 completion comments
+                    </p>
+                    <textarea
+                      name=""
+                      id=""
+                      rows="10"
+                      className="border-black rounded-md w-full mt-1 p-2 text-lg"
+                      onChange={(e) =>
+                        setClientData({
+                          ...clientData,
+                          goal2CompletionComments: e.target.value,
+                        })
+                      }
+                    ></textarea>
+                  </div>
+                </div>
+
+                {/* 
               <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 3</p>
@@ -1611,7 +1496,7 @@ const ProgressNotesIndex = ({ data }) => {
                         setClientData({
                           ...clientData,
                           goal3Completed: true,
-                          goal3CompletedDate: clientData.progressNoteDate
+                          goal3CompletedDate: clientData.progressNoteDate,
                         });
                         setDataForSAP({ ...dataForSAP, goal3Completed: true });
                       }}
@@ -1669,195 +1554,208 @@ const ProgressNotesIndex = ({ data }) => {
                 </div>
                 <div className="mt-5">
                   <span className="">Goal 3 Completion Comments</span>
-                 <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
-                 onChange={(e)=>setClientData({...clientData,goal3CompletionComments:e.target.value})}
-                 ></textarea>
+                  <textarea
+                    name=""
+                    id=""
+                    rows="10"
+                    className="border-black rounded-md w-full mt-1 p-2"
+                    onChange={(e) =>
+                      setClientData({
+                        ...clientData,
+                        goal3CompletionComments: e.target.value,
+                      })
+                    }
+                  ></textarea>
+                </div>
+              </div> */}
+              </div>
+            </section>
+
+            <section className="gap-x-5 p-10 pt-7 workedGoals" id="workedGoals">
+              <div className="flex items-center gap-x-3 mb-10">
+                <img src={"/progress_notes/notes.svg"} />
+                <h3 className="font-bold text-2xl">
+                  Notes on the client progress
+                </h3>
+              </div>
+              <p className="text-xl mb-3 font-medium">Progress Notes</p>
+              <textarea
+                name="progressNotes"
+                id=""
+                cols="30"
+                rows="12"
+                className="border-black w-full rounded-lg p-2 mb-3 text-lg"
+                placeholder="Enter notes on the client progress/interaction followup here"
+                onChange={(e) => {
+                  setClientData({
+                    ...clientData,
+                    progressNoteText: e.target.value,
+                  });
+                }}
+              ></textarea>
+
+              <div className="progressnotes-box">
+                <p className="text-xl font-medium mb-5">
+                  Has the health care worker signed
+                </p>
+                <div className="flex gap-x-20">
+                  <label
+                    className={`flex items-center gap-x-5 text-xl font-medium`}
+                  >
+                    <input
+                      type="radio"
+                      name="hcwSignature"
+                      onChange={(e) => {
+                        setClientData({ ...clientData, HCWSignature: true });
+                        setDataForSAP({ ...dataForSAP, HCWSignature: true });
+                      }}
+                    />
+                    Yes
+                  </label>
+                  <label
+                    className={`flex items-center gap-x-5 text-xl font-medium`}
+                  >
+                    <input
+                      type="radio"
+                      name="hcwSignature"
+                      onChange={(e) => {
+                        setClientData({ ...clientData, HCWSignature: false });
+                        setDataForSAP({ ...dataForSAP, HCWSignature: false });
+                      }}
+                    />
+                    No
+                  </label>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          <div className="flex items-center ml-3 my-4 gap-x-2">
-            <img src={"/notes_icon.svg"} />
-            <h3 className="font-black self-end text-dark-blue">
-              Notes on the client progress
-            </h3>
-          </div>
+            {/* FIN DEL FORM BOX */}
 
-          <section
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
-            id="workedGoals"
-          >
-            <p className="text-lg">Progress Notes</p>
-            <textarea
-              name="progressNotes"
-              id=""
-              cols="30"
-              rows="12"
-              className="border-dark-blue w-full rounded-xl py-3 my-2 px-5"
-              placeholder="Enter notes on the client progress/interaction followup here"
-              onChange={(e) => {
-                setClientData({
-                  ...clientData,
-                  progressNoteText: e.target.value,
-                });
-              }}
-            ></textarea>
+            <section className="p-10 pt-7 workedGoals" id="workedGoals">
+              <div className="flex items-center gap-x-3 mb-10">
+                <img src="/progress_notes/additional_forms.svg" alt="" />
+                <h3 className="font-bold text-2xl">
+                  Were any additional forms added to the client´s profile?
+                </h3>
+              </div>
+              <div className="additional-forms-container  grid grid-cols-2 gap-10">
+                {[
+                  [0, 5],
+                  [5, 10],
+                ].map((e, index) => (
+                  <div className="additional-forms-box" key={index}>
+                    {whichServiceBeenAded &&
+                      whichServiceBeenAded.slice(...e).map((service, index) => (
+                        <div key={index}>
+                          <div
+                            className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 p-3  my-2`}
+                            key={index}
+                          >
+                            <label className={`flex items-center gap-5`}>
+                              <input
+                                type="checkbox"
+                                name=""
+                                id=""
+                                onChange={(e) => {
+                                  if (msaData[service.state_label]) {
+                                    if (
+                                      new Date(
+                                        msaData[`${service.state_label}Date`]
+                                      )
+                                        .toISOString()
+                                        .split("T")[0] ===
+                                      new Date().toISOString().split("T")[0]
+                                    ) {
+                                      let lastDateUpdated =
+                                        data[0][
+                                          `${service.state_label}Date`.toLowerCase()
+                                        ];
+                                      setMsaData({
+                                        ...msaData,
+                                        [service.state_label]: false,
+                                        [`${service.state_label}Date`]:
+                                          lastDateUpdated,
+                                      });
+                                    } else {
+                                      setMsaData({
+                                        ...msaData,
+                                        [service.state_label]:
+                                          msaData[service.state_label],
+                                        [`${service.state_label}Date`]:
+                                          new Date(),
+                                      });
+                                    }
+                                  }
+                                  if (!msaData[service.state_label]) {
+                                    setMsaData({
+                                      ...msaData,
+                                      [service.state_label]: true,
+                                      [`${service.state_label}Date`]:
+                                        new Date(),
+                                    });
+                                  }
 
-            <div className="progressnotes-box flex gap-x-5">
-              <p className="text-lg">Has the health care worker signed</p>
-              <label className={`${ProgressNotesStyles.radioBtnContainer} `}>
-                Yes
-                <input
-                  type="radio"
-                  name="hcwSignature"
-                  onChange={(e) => {
-                    setClientData({ ...clientData, HCWSignature: true });
-                    setDataForSAP({ ...dataForSAP, HCWSignature: true });
-                  }}
-                />
-                <span
-                  className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                ></span>
-              </label>
-              <label className={`${ProgressNotesStyles.radioBtnContainer} `}>
-                No
-                <input
-                  type="radio"
-                  name="hcwSignature"
-                  onChange={(e) => {
-                    setClientData({ ...clientData, HCWSignature: false });
-                    setDataForSAP({ ...dataForSAP, HCWSignature: false });
-                  }}
-                />
-                <span
-                  className={`${ProgressNotesStyles.radioBtnCheckmark}`}
-                ></span>
-              </label>
-            </div>
-          </section>
+                                  if (!clientData[service.state_label]) {
+                                    setClientData({
+                                      ...clientData,
+                                      [service.state_label]: true,
+                                      [`${service.state_label}Date`]:
+                                        new Date(),
+                                    });
+                                  }
 
-          <h3 className="font-black my-5 text-dark-blue">
-            Were any additional forms added to the client´s profile?
-          </h3>
-              {/* FIN DEL FORM BOX */}
+                                  if (clientData[service.state_label]) {
 
-          <section
-            className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals"
-            id="workedGoals"
-          >
-            <div className="additional-forms-container divide-x  divide-blue-500  grid grid-cols-2 gap-1">
-              {[[0,5], [5,10]].map((e,index) => (
-                <div className="additional-forms-box" key={index}>
-                {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(...e).map((service,index) => (
-                    <div key={index}>
-                      <div
-                        className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
-                      key={index}>
-                        <label
-                          className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                        >
-                          <input
-                            type="checkbox"
-                            name=""
-                            id=""
-                            onChange={(e) => {
-                                
-                    
-
-                              if ( msaData[service.state_label] ){
-                                if (new Date(msaData[`${service.state_label}Date`]).toISOString().split('T')[0] === new Date().toISOString().split('T')[0]) {
-                                  let lastDateUpdated = data[0][`${service.state_label}Date`.toLowerCase()]
-                                  setMsaData({
-                                    ...msaData, 
-                                    [service.state_label]: false,
-                                    [`${service.state_label}Date`]: lastDateUpdated,
-                                  })
-                                  
-                                } else {
-                                  setMsaData({
-                                    ...msaData, 
-                                    [service.state_label]: msaData[service.state_label],
-                                    [`${service.state_label}Date`]: new Date(),
-                                  })
-                                }
-                                
-                              }
-                              if (!msaData[service.state_label]) {
-
-                                setMsaData({
-                                  ...msaData,
-                                  [service.state_label]: true,
-                                  [`${service.state_label}Date`]: new Date(),
-
-                                }) 
-                               }
-                              
-                              if (!clientData[service.state_label]) {
-                              setClientData({
-                                ...clientData,
-                                [service.state_label]: true,
-                                [`${service.state_label}Date`]: new Date(),
-
-                              })
-                          
-                              }  
-
-                              
-                              if (clientData[service.state_label]) {
-                              console.log("pasa clientdata true",service.state_label,clientData[service.state_label])
-                              
-                              setClientData({
-                                ...clientData,
-                                [service.state_label]: false,
-                                [`${service.state_label}Date`]: null,
-
-                              })
-                              }
-                                
-                                 
-                                   
+                                    setClientData({
+                                      ...clientData,
+                                      [service.state_label]: false,
+                                      [`${service.state_label}Date`]: null,
+                                    });
+                                  }
                                 }}
-                          />
-                          <span
-                            className={`${ProgressNotesStyles.checkmark}`}
-                          ></span>
-                        </label>
-                        <div className="pl-2">
-                          <p>{service.form_text}</p>
+                              />
+                              <p className="text-lg">{service.form_text}</p>
+                            </label>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                      ))}
+                  </div>
+                ))}
               </div>
-              ))}
-              
-            </div>
+            </section>
           </section>
+        </div>
+        <section id="save" className="my-10">
+          {pnErrorMessage && (
+            <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
+          )}
+          <div className="container mx-auto flex justify-center gap-x-10 ">
+            
+            <button
+              className="btn-yellow flex items-center gap-5 px-5 py-2 rounded shadow-lg textxl inline-block "
+              onClick={() => handleProgressNote()}
+            >
+              <img
+                src="/progress_notes/save_and_finish_mini.svg"
+                alt="save icon"
+              />
+              Save and finish
+            </button>
 
-          <section id="save" className="my-5">
-            {pnErrorMessage && (
-              <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
-            )}
-            <div className="container mx-auto flex justify-center gap-x-5 ">
             <ReactToPrint
-                  trigger={() => <button className="bg-yellow-500 hover:bg-yellow-300 px-5 py-1 rounded text-white inline-block ">Save and print</button>}
-                  content={() => componentRef.current} />
-              <button
-                className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block mr-5"
-                onClick={() => handleProgressNote()}
-              >
-                Save and finish
-              </button>
-            </div>
-          </section>
-        </main>
-
-          
-              <div style={{display:'none'}}>
-                <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
-              </div>
+              trigger={() => (
+                <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadowxl text-lg inline-block ">
+                  <img src="/progress_notes/print_mini.svg" alt="print icon" />
+                  Save and print
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
+          </div>
+        </section>
+        <div style={{ display: "none" }}>
+          <ProgressNoteToPrint ref={componentRef} data={clientData} />
+        </div>
       </Layout>
       {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal

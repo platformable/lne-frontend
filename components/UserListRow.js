@@ -4,12 +4,12 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 
 import deleteIcon from '../public/delete-icon.svg'
-import editIcon from '../public/edit-icon.svg'
+import editIcon from '../public/edit.svg'
 import Image from 'next/image';
 
 
 export default function UserListRow({setSelectedEntity,authorizeduser,setSelectedUser,setShowEditUserModal,showEditUserModal,index,showDeleteUsermodal, setShowDeleteUserModal}) {
-  const {useremail,name,lastname,userrole,isactive,dateaccountactivated,datelastlogin,user_id} = authorizeduser
+  const {useremail,name,lastname,userrole,isactive,dateaccountactivated,datelastlogin,user_id,key} = authorizeduser
 
   const router = useRouter()
 
@@ -25,33 +25,33 @@ export default function UserListRow({setSelectedEntity,authorizeduser,setSelecte
     <> 
 
     <div
-                className={`${styles.dashboardActiveUsersListHeadRow} border  rounded-md py-3 px-5 my-1 bg-white`}
+                className={`${styles.dashboardActiveUsersListHeadRow} ${(index%2)===0 ? 'bg-light-gray':'bg-blue-50'}  py-3 bg-white`}
               >
-                <div className="head-row flex justify-start items-center ">
-                  <p className="text-left">{name}</p>
+                <div className="head-row flex px-2 justify-start items-center ">
+                  <p className="text-left text-lg">{name}</p>
                 </div>
-                <div className="head-row flex justify-start items-center ">
-                  <p className="text-left">{lastname}</p>
+                <div className="head-row flex px-2 justify-start items-center ">
+                  <p className="text-left text-lg">{lastname}</p>
                 </div>
-                 <div className="head-row flex justify-start items-center">
-                  <p className="text-left">{userrole}</p>
+                 <div className="head-row flex px-2 justify-start items-center">
+                  <p className="text-left text-lg">{userrole}</p>
                 </div>  
-                <div className="head-row flex justify-start items-center ">
-                  <p className="text-left">{useremail ? useremail : "-"}</p>
+                <div className="head-row flex px-2 justify-start items-center ">
+                  <p className="text-left text-lg">{useremail ? useremail : "-"}</p>
                 </div>
-                <div className="head-row flex justify-center items-center">
-                  <p className="text-left">{dateaccountactivated?dateaccountactivated.split('T')[0]:"-"}</p>
+                <div className="head-row flex px-2 justify-center items-center">
+                  <p className="text-left text-lg">{dateaccountactivated?dateaccountactivated.split('T')[0]:"-"}</p>
                 </div>
-                <div className="head-row flex justify-center items-center">
-                  <p className="text-left">{datelastlogin?datelastlogin.split('T')[0]:"-"}</p>
+                <div className="head-row flex px-2 justify-center items-center">
+                  <p className="text-left text-lg">{datelastlogin?datelastlogin.split('T')[0]:"-"}</p>
                 </div>
-                <div className="head-row flex justify-center items-center">
-                  <p className="text-left flex cursor-pointer" 
+                <div className="head-row flex px-2 justify-center items-center">
+                  <p className="text-left text-lg flex cursor-pointer" 
                    onClick={()=>handleSelectedUser(authorizeduser, 'EDIT')}>
                     <Image src={editIcon} alt="edit-icon"></Image>
                   </p>
                 </div>
-                <div className="head-row flex justify-center items-center">
+                <div className="head-row flex px-2 justify-center items-center">
                   <p className="text-left flex cursor-pointer" onClick={()=>handleSelectedUser(authorizeduser, 'DELETE')}>
                   <Image src={deleteIcon} alt="delete-icon"></Image>
                   </p>

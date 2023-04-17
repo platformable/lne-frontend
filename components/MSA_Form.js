@@ -111,7 +111,7 @@ else{
         <div className="mt-8 max-w-md mx-auto bg-white p-5 rounded">
           <div className="grid grid-cols-1 gap-6">
             <div className="flex justify-between">
-            <h1 className="font-black">MSA FORM</h1>
+            <h1 className="font-bold">MSA FORM</h1>
             <button
                     className="text-sm text-white"
                     onClick={() => setShowCreateClientModal(!showCreateClientModal)}

@@ -354,28 +354,28 @@ console.log("progNotes",progNotes)
             <div className="container mx-auto">
             <div>
                 
-                          <h1 className="font-black my-5">{data[0]?.clientfirstname}{" "}
+                          <h1 className="font-bold my-5">{data[0]?.clientfirstname}{" "}
                             {data[0]?.clientlastname.charAt(0)} ( {data[0]?.clientid}) Progress Notes</h1>
                         </div>
             
               <div className="grid grid-cols-4 bg-black py-2 px-5 rounded-tl-md rounded-tr-md">
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="text-white text-center text-xs mt-2 uppercase font-bold">
                     Date
                   </h3>
                 </div>
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="text-white text-center text-xs mt-2 uppercase font-bold">
                     Service
                   </h3>
                 </div>
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="text-white text-center text-xs mt-2 uppercase font-bold">
                     Edit
                   </h3>
                 </div>
                 <div>
-                  <h3 className="text-white text-center text-xs mt-2 uppercase font-black">
+                  <h3 className="text-white text-center text-xs mt-2 uppercase font-bold">
                     Delete
                   </h3>
                 </div>
@@ -495,7 +495,7 @@ console.log("progNotes",progNotes)
                     );
                   })
               ) : (
-                <center className="mt-5 font-black">
+                <center className="mt-5 font-bold">
                   No progress notes yet
                 </center>
               )}

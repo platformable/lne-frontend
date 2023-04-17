@@ -19,7 +19,8 @@ const RowMsaFormDES = ({
   setClientData,
   formString,
   data,
-  folderName
+  folderName,
+  bgColor
 }) => {
 
 
@@ -59,17 +60,17 @@ const RowMsaFormDES = ({
 
   return (
     <>
+      <div className="bg-white ">
       <div
         className={`${
           MSAStyles.formRowsContainerDesFormEdit
-        } justify-center items-center bg-light-purple grid gap-5 py-2 rounded-lg my-2 ${
+          }  justify-center   grid gap-1 divide border-white border-1 rounded-lg mt-1 ${
           clientData[formString] ? "" : "pointer-events-none"
         }`}
       >
-        <div className=""></div>
 
-        <div>
-          <p>{fieldName}</p>
+        <div className={`px-5 py-3 ${bgColor} `}>
+          <p className="text-lg font-medium">{fieldName}</p>
         </div>
         {/* <div className="text-center">
           <input
@@ -85,7 +86,7 @@ const RowMsaFormDES = ({
           />
         </div> */}
         <div
-          className={`${MSAStyles.dropboxFolderNames} text-center flex justify-center items-center border-l-dark-blue`}
+          className={`${MSAStyles.dropboxFolderNames} ${bgColor} text-center flex justify-center items-center px-5 py-3 ${bgColor} `}
         >
            <a
             href={folderName ? folderName : ""}
@@ -93,15 +94,15 @@ const RowMsaFormDES = ({
             rel="noreferrer"
           >
 
-            <img src={"/dropbox-folder.png"} alt="" width="34" />
+            <img src={"/msa/dropbox_folder.svg"} alt="" width="34" />
           </a> 
           {/* <p className="text-dark-blue underline">Medical</p> */}
         </div>
-        <div className="text-center">
+        <div className={`flex items-center justify-center px-5 py-3 ${bgColor}`}>
           <input
             type="date"
             id={formString}
-            className={`${MSAStyles.inputDate}`}
+            className="pl-7 font-medium text-lg text-center"
             value={
               (clientData[strings.formUploadDate] &&
               clientData[strings.formUploadDate].split("T")[0]) || (clientData[strings.formDate] && clientData[strings.formDate].split("T")[0]) 
@@ -110,7 +111,7 @@ const RowMsaFormDES = ({
           />
         </div>
         <div
-          className="ml-1 text-center flex justify-center items-center" 
+          className={`text-center flex justify-center items-center px-5 py-3 ${bgColor}`} 
         >
           
           <input
@@ -140,7 +141,7 @@ const RowMsaFormDES = ({
           />
         </div>
         <div
-          className="ml-1 text-center flex justify-center items-center"
+          className={`text-center flex justify-center items-center px-5 py-3 ${bgColor}`}
           
         >
 
@@ -170,6 +171,9 @@ const RowMsaFormDES = ({
             }}
           />
         </div>
+      </div>
+
+
       </div>
     </>
   );

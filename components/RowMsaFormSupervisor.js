@@ -1,15 +1,14 @@
-import React, { useState,useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import MSAStyles from "../styles/MSA.module.css";
 
 function iterateFormStringNames(raizName) {
-
-  const date = raizName + "Date"
-  const uploadDate = raizName + "UploadDate"
+  const date = raizName + "Date";
+  const uploadDate = raizName + "UploadDate";
   const issues = raizName + "Issues";
-  const reviewed = raizName + "Reviewed"
+  const reviewed = raizName + "Reviewed";
 
-  return [date, uploadDate, issues, reviewed]
-} 
+  return [date, uploadDate, issues, reviewed];
+}
 
 const RowMsaFormSupervisor = ({
   fieldName,
@@ -26,12 +25,11 @@ const RowMsaFormSupervisor = ({
   setIssueFounded,
   setShowIssuesFoundModal,
   showIssuesFoundModal,
-  bgColor
+  bgColor,
 }) => {
+  const nameStrings = useMemo(() => iterateFormStringNames(formString), []);
 
-  const nameStrings = useMemo(() => iterateFormStringNames(formString), [])
-
-  // names to use in the form  
+  // names to use in the form
   const [strings, setStrings] = useState({
     formDate: nameStrings[0],
     formUploadDate: nameStrings[1],
@@ -61,22 +59,19 @@ const RowMsaFormSupervisor = ({
     const uploadDate = new Date(formUploadDate);
     const dateComparison = todaysDate.getDate() === uploadDate.getDate();
 
-   dateComparison ?  
-    setClientData((prevState) => ({
-           ...prevState,
-           [e.target.name]:
-             !prevState[e.target.name],
-           [strings.formUploadDate]: formDate
-    })) :
-    setClientData((prevState) => ({
-      ...prevState,
-      [e.target.name]:
-        !prevState[e.target.name],
-      [strings.formUploadDate]: crearFecha()
-}))
+    dateComparison
+      ? setClientData((prevState) => ({
+          ...prevState,
+          [e.target.name]: !prevState[e.target.name],
+          [strings.formUploadDate]: formDate,
+        }))
+      : setClientData((prevState) => ({
+          ...prevState,
+          [e.target.name]: !prevState[e.target.name],
+          [strings.formUploadDate]: crearFecha(),
+        }));
 
-
-/*   formUploadDate ?  
+    /*   formUploadDate ?  
     setClientData((prevState) => ({
            ...prevState,
            [e.target.name]:
@@ -89,33 +84,34 @@ const RowMsaFormSupervisor = ({
         !prevState[e.target.name],
       [strings.formUploadDate]: ""
 })) */
- }
+  };
   const onChangeInputIssues = (e) => {
-
     //set info to display in issue popup
-    setIssueFounded((previousState) => ({...previousState,
+    setIssueFounded((previousState) => ({
+      ...previousState,
       form_issues: strings.formIssues,
       form_reviewed: strings.formReviewed,
       form_uploadDate: strings.formUploadDate,
-      msaform: e.target.name, 
+      msaform: e.target.name,
       lastdateupdated: formUploadDate || crearFecha(),
-      formDate:formDate
-       }));
-
-    setShowIssuesFoundModal((previousState) => !previousState)
-    setClientData(previousState => ({...previousState,
-      [strings.formIssues]: true, 
-      [strings.formReviewed]: true, 
-      [strings.formUploadDate]: crearFecha()
+      formDate: formDate,
     }));
-  }
 
-  return (  
+    setShowIssuesFoundModal((previousState) => !previousState);
+    setClientData((previousState) => ({
+      ...previousState,
+      [strings.formIssues]: true,
+      [strings.formReviewed]: true,
+      [strings.formUploadDate]: crearFecha(),
+    }));
+  };
+
+  return (
     <div
       className={`${
         MSAStyles.formHeadTitlesSupervisor
-      } justify-center items-center ${bgColor} grid gap-5 py-2 rounded-lg my-2 ${
-        form  ? "" : "pointer-events-none"
+      } items-center  grid gap-1 rounded-sm bg-white ${
+        form ? "" : "pointer-events-none"
       }`}
     >
       {/* 
@@ -132,54 +128,54 @@ const RowMsaFormSupervisor = ({
       
       /> 
       </div>*/}
-      
 
-      <div>
-        <p>
-          {fieldName}
-           {/* <span className="text-red-500">*</span> */}
-        </p>
+      <div className={`${bgColor} px-3 h-full flex items-center `}>
+        <p className="text-lg font-medium">{fieldName}</p>
       </div>
-       
-      <div className="text-center">
-      {formDate ? <p className="text-dark-blue">{new Date(formDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'})}</p>:"-"}
-       {/* < input
-          type="date"
-          id={strings.formDate}
-          className={MSAStyles.inputDate}
-          value={
-            formDate &&
-            formDate.split("T")[0]
-          }
-          disabled={form ? true : false}
-          onChange={(e) => {
-            setClientData((prev) => ({
-              ...prev,
-              [strings.formDate]: e.target.value,
-            }));
-          }}
-        /> */}
+
+      <div className={`${bgColor} h-full flex items-center justify-center`}>
+        {formDate ? (
+          <p className="font-medium text-lg">
+            {new Date(formDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+            })}
+          </p>
+        ) : (
+          <p className="font-medium">-</p>
+        )}
+        
       </div>
+      
       <div
-        className={`${MSAStyles.dropboxFolderNames}  text-center flex justify-center items-center border-l-dark-blue`}
+        className={`${MSAStyles.dropboxFolderNames} ${bgColor}  flex justify-center items-center  h-full`}
       >
         <a
-          href={
-            dependency_folder_url ? folder_url : ""
-          }
+          href={dependency_folder_url ? folder_url : ""}
           id={formString}
           target="_blank"
           rel="noreferrer"
         >
-          <img src={"/dropbox-folder.png"} alt="" width="34" />
+          <img src={"/msa/dropbox_folder.svg"} alt="" width="35" height={35} />
         </a>
         {/*  <p className="text-dark-blue underline">Intake</p> */}
       </div>
-      <div className="text-center">
-      {formUploadDate ? <p className="text-dark-blue">{new Date(formUploadDate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'})}</p>:"-"}
 
-        
-       {/*  <input
+      <div className={`text-center ${bgColor} h-full flex justify-center items-center`}>
+        {formUploadDate ? (
+          <p className="text-lg">
+            {new Date(formUploadDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+            })}
+          </p>
+        ) : (
+          <p className="font-medium">-</p>
+        )}
+
+        {/*  <input
           type="date"
           id={strings.formUploadDate}
           className={`${MSAStyles.inputDate} 
@@ -200,11 +196,14 @@ const RowMsaFormSupervisor = ({
             }));
           }}
         /> */}
-        
       </div>
-        <div
+
+      <div
         //handles the prohibition to change review`s input once was issue checked
-        className={`ml-1 text-center flex justify-center items-center  ${formIssues && "pointer-events-none"}`}> 
+        className={`${bgColor} h-full  text-center flex justify-center items-center  ${
+          formIssues && "pointer-events-none"
+        }`}
+      >
         <input
           className={`${
             !form && "pointer-events-none"
@@ -213,19 +212,17 @@ const RowMsaFormSupervisor = ({
           name={strings.formReviewed}
           id={strings.formReviewed}
           onChange={(e) => onChangeInputCheckbox(e)}
-          checked={
-            formReviewed || formIssues ? "checked" : false
-          }
+          checked={formReviewed || formIssues ? "checked" : false}
           disabled={!formDate}
         />
-      </div> 
+      </div>
+
       <div
-        className={`ml-1 text-center flex justify-center items-center`}
+        className={`${bgColor}  text-center flex justify-center items-center`}
       >
-        
         <input
           className={`${
-            formIssues && "pointer-events-none" 
+            formIssues && "pointer-events-none"
           } bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
           type="checkbox"
           name={fieldName}

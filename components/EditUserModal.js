@@ -46,23 +46,23 @@ console.log('selected', selectedUser)
   return (
     <>
       <div className="modal">
-        <div className="mt-8 relative max-w-sm mx-auto bg-yellow-400 p-10 rounded-md">
+        <div className="mt-8 relative max-w-sm mx-auto bg-white p-10 rounded-md border-yellow">
           <button
             className="absolute  top-0 right-0"
             onClick={() => setShowEditUserModal(!showEditUserModal)}
           >
-            <img src="/close-window-icon.svg" alt="close-window" title="close-window_" className="rounded-tr"  width="20" /> 
+            <img src="/close_modal_user.svg" alt="close-window" title="close-window_" className="rounded-tr m-2" width={24} /> 
           </button>
           <div className="grid grid-cols-1 gap-6">
-            <div className="flex ml-2.5 items-end">
-              <img src="/edit-user-icon.svg" className="mr-3" alt="" width="50" />
-              <h2 className="font-black">Edit User</h2>
+            <div className="flex items-center items-end">
+              <img src="/user_info.svg" className="mr-3" alt=""  />
+              <h2 className="font-bold text-2xl">Edit User Information</h2>
             </div>
             <label className="block">
-              <span className="ml-1 font-semibold">First name</span>
+              <span className="ml-1 font-semibold text-xl">First name</span>
               <input
                 type="text"
-                className="mt-1 block w-full bg-[#f6e89e] rounded-md  p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full border-black rounded-md  p-2 pl-3 shadow-sm "
                 placeholder="John Doe"
                 value={userData.name}
                 onChange={(e) =>
@@ -71,10 +71,10 @@ console.log('selected', selectedUser)
               />
             </label>
             <label className="block">
-              <span className="ml-1 font-semibold">Last name</span>
+              <span className="ml-1 font-semibold text-xl">Last name</span>
               <input
                 type="text"
-                className="mt-1 block w-full bg-[#f6e89e] rounded-md p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full  border-black rounded-md p-2 pl-3 shadow-sm "
                 placeholder="John Doe"
                 value={userData.lastname}
                 onChange={(e) =>
@@ -83,10 +83,10 @@ console.log('selected', selectedUser)
               />
             </label>
             <label className="block">
-              <span className="ml-1 font-semibold">Email address</span>
+              <span className="ml-1 font-semibold text-xl">Email address</span>
               <input
                 type="email"
-                className="mt-1 block w-full bg-[#f6e89e] rounded-md p-2 pl-3 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="mt-1 block w-full  border-black rounded-md p-2 pl-3 shadow-sm "
                 placeholder="john@example.com"
                 value={userData.useremail}
                 onChange={(e) =>
@@ -102,13 +102,13 @@ console.log('selected', selectedUser)
             />
           </label> */}
             <label className="block">
-              <span className="font-semibold ml-1">User role</span>
+              <span className="font-semibold ml-1 text-xl">User role</span>
               <select
                 value={userData.userrole}
                 onChange={(e) =>
                   setUserData({ ...userData, userrole: e.target.value })
                 }
-                className="select-add-edit-supervisor block w-full mt-1 text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="select-add-edit-supervisor block w-full mt-1  rounded-md p-2 border-black shadow-sm "
               >
                 <option value="HCW">HCW</option>
                 <option value="Supervisor">Supervisor</option>
@@ -117,13 +117,13 @@ console.log('selected', selectedUser)
             </label>
 
             <label className="block">
-              <span className="font-semibold ml-1">Active / Not active</span>
+              <span className="font-semibold ml-1 text-xl">Active / Not active</span>
               <select
                 value={userData.useractivestatus}
                 onChange={(e) =>
                   setUserData({ ...userData, useractivestatus:e.target.value })
                 }
-                className="select-add-edit-supervisor block w-full mt-1  text-[#00000065] rounded-md p-2 border-grey shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                className="select-add-edit-supervisor block w-full mt-1 rounded-md p-2 border-black shadow-sm "
               >
                 <option value="Active">Active</option>
                 <option value="No Active">Not Active</option>
@@ -133,7 +133,7 @@ console.log('selected', selectedUser)
               <div className="mt-2">
                 <div className="flex justify-center ">
                   <button
-                    className="px-4  py-2 mr-3 font-medium bg-[#23D3AA] hover:bg-green-500 text-sm flex shadow-xl rounded-md"
+                    className="px-4  py-2 px-14 font-medium yellow-btn  flex shadow-xl rounded-md"
                     onClick={() => {
                       EditUser(selectedUser);
                       setSaving(!saving);
@@ -142,11 +142,10 @@ console.log('selected', selectedUser)
                     {saving ? (
                       <Loader />
                     ) : (
-                      <img src="/update-icon.svg" className="mr-2" alt="" width="18" />
-
+                    <></>
 
                     )}
-                    Update
+                    Save
                   </button>
 
                 </div>
