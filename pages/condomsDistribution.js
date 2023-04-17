@@ -114,14 +114,14 @@ const CondomsDistributed = () => {
 
             <CondomsDistributionRowComponent
               bg={"extraLight"}
-              title={"External condoms distributed"}
+              title={"Condoms distributed outside of office"}
               setFormData={setFormData}
               name={"extCondomsDistributed"}
             />
 
             <CondomsDistributionRowComponent
               bg={"light"}
-              title={"External condoms distributed"}
+              title={"Condoms distributed at LNE office"}
               setFormData={setFormData}
               name={"intCondomsDistributed"}
             />
