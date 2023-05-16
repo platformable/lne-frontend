@@ -1912,10 +1912,10 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
           </section>
         </div>
 
-        {/*           
+                  
               <div style={{display:'none'}}>
                 <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
-              </div> */}
+              </div>
       </Layout>
       {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal
