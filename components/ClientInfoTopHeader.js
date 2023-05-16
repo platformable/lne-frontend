@@ -17,7 +17,7 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                         name=""
                         id=""
                         className="py-3 px-2 rounded-md text-lg  bg-primary-light-blue"
-                        value={clientData?.progressNoteDate.split("T")[0]}
+                        value={clientData?.ProgressNoteDate?.split("T")[0]||clientData?.progressNoteDate?.split("T")[0]}
                         onChange={(e) =>
                           setClientData({
                             ...clientData,
