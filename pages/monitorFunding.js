@@ -10,6 +10,7 @@ import ClientsEncounterCharts from "../components/ClientsEncounterCharts";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import ToogleButton from "../components/ToogleButton";
 import DataTable from "react-data-table-component";
+import KeyMetrics from "../components/KeyMetrics";
 
 /* import DataTableExtensions from "react-data-table-component-extensions"; */
 
@@ -22,22 +23,49 @@ import Pagination from "../components/Pagination";
 
 const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   const [monitorMetricsData, setMonitorMetricsData] = useState([]);
-  const [monitorFundingTableDataSortingByName,setMonitorFundingTableDataSortingByName]=useState(false)
-  const [monitorFundingTableDataSortingByLastname,setMonitorFundingTableDataSortingByLastname]=useState(false)
-  const [monitorFundingTableDataSortingByDate,setMonitorFundingTableDataSortingByDate]=useState(false)
-  const [monitorFundingTableDataSortingByClientId,setMonitorFundingTableDataSortingByClientId]=useState(false)
-  const [monitorFundingTableDataSortingByEncounters,setMonitorFundingTableDataSortingByEncounters]=useState(false)
-  const [monitorFundingTableDataSortingByLastEncounters,setMonitorFundingTableDataSortingByLastEncounters]=useState(false)
-  const [monitorFundingTableDataSortingByGoals,setMonitorFundingTableDataSortingByGoals]=useState(false)
-  const [monitorFundingTableDataSortingByHCW,setMonitorFundingTableDataSortingByHCW]=useState(false)
+  const [
+    monitorFundingTableDataSortingByName,
+    setMonitorFundingTableDataSortingByName,
+  ] = useState(false);
+  const [
+    monitorFundingTableDataSortingByLastname,
+    setMonitorFundingTableDataSortingByLastname,
+  ] = useState(false);
+  const [
+    monitorFundingTableDataSortingByDate,
+    setMonitorFundingTableDataSortingByDate,
+  ] = useState(false);
+  const [
+    monitorFundingTableDataSortingByClientId,
+    setMonitorFundingTableDataSortingByClientId,
+  ] = useState(false);
+  const [
+    monitorFundingTableDataSortingByEncounters,
+    setMonitorFundingTableDataSortingByEncounters,
+  ] = useState(false);
+  const [
+    monitorFundingTableDataSortingByLastEncounters,
+    setMonitorFundingTableDataSortingByLastEncounters,
+  ] = useState(false);
+  const [
+    monitorFundingTableDataSortingByGoals,
+    setMonitorFundingTableDataSortingByGoals,
+  ] = useState(false);
+  const [
+    monitorFundingTableDataSortingByHCW,
+    setMonitorFundingTableDataSortingByHCW,
+  ] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostsPerPage] = useState(4)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(4);
 
-  const indexOfLastPost = currentPage * postsPerPage
-  const indexofFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = monitorMetricsData.slice(indexofFirstPost, indexOfLastPost)
-console.log("monitorMetricsData",monitorMetricsData)
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexofFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = monitorMetricsData.slice(
+    indexofFirstPost,
+    indexOfLastPost
+  );
+  console.log("monitorMetricsData", monitorMetricsData);
   let componentRef = useRef();
 
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
@@ -49,19 +77,24 @@ console.log("monitorMetricsData",monitorMetricsData)
       const newClient = {};
       /*   newClient.progressnote = []; */
       newClient.clientid = client.id;
-    /*   newClient.startdate = new Date(
+      /*   newClient.startdate = new Date(
         client.clientdatecreated
       ).toLocaleDateString("en-US", {
         year: "numeric",
         month: "numeric",
         day: "numeric",
       }); */
-      newClient.serviceActionPlanDate=client?.planstartdate?  new Date(client.planstartdate).toLocaleDateString('en-US',{year:'numeric',month:'numeric',day:'numeric'}):'-';
-      newClient.startdate=client.clientdatecreated
+      newClient.serviceActionPlanDate = client?.planstartdate
+        ? new Date(client.planstartdate).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          })
+        : "-";
+      newClient.startdate = client.clientdatecreated;
       newClient.firstname = client.clientfirstname;
       newClient.lastname = client.clientlastname;
       newClient.clienthcwname = client.clienthcwname;
-      console.log("client name",client.clientfirstname,client.planstartdate)
       /* newClient.progressnotes = client.progressnotes.length; */
       newClient.progressNotesDates = client.progressnotes;
       newClient.lastEncounter = calculateLastEncounter(
@@ -69,6 +102,7 @@ console.log("monitorMetricsData",monitorMetricsData)
         client.progressnotes,
         client.clientdatecreated
       );
+
       newClient.joining = calculateDaysBetweenDates(client.clientdatecreated);
       newClient.goals =
         parseInt(client.goal1completed) +
@@ -92,41 +126,38 @@ console.log("monitorMetricsData",monitorMetricsData)
     progressnotes,
     clientdatecreated
   ) => {
-    console.log("progressnotes", progressnotes)
+    console.log("progressnotes", progressnotes);
     if (planstartdate === null) {
-      
       let date_1 = new Date(clientdatecreated);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
       let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays-1;
+      return TotalDays - 1;
     }
 
-    if ((planstartdate !==null || planstartdate !=='') && progressnotes.length===0) {
-
-
+    if (
+      (planstartdate !== null || planstartdate !== "") &&
+      progressnotes.length === 0
+    ) {
       let date_1 = new Date(planstartdate);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
       let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays-1;
+      return TotalDays - 1;
     }
 
     if (progressnotes.length > 0) {
-        const pn=progressnotes.sort((a, b) => new Date(b.date) - new Date(a.date)) 
-        console.log("pnx",pn)
-        let date_1 = new Date(pn[0].date);
-        console.log("date1",date_1)
-        let date_2 = new Date();
-        let difference = date_2.getTime() - date_1.getTime();
-        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-        return TotalDays
-      }
-   
-
-   
-  }
-  
+      const pn = progressnotes.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+      console.log("pnx", pn);
+      let date_1 = new Date(pn[0].date);
+      let date_2 = new Date();
+      let difference = date_2.getTime() - date_1.getTime();
+      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      return TotalDays;
+    }
+  };
 
   const data = [
     {
@@ -143,14 +174,6 @@ console.log("monitorMetricsData",monitorMetricsData)
       outdatedMsa: 1,
     },
   ];
-
-  const [numberOfActiveClients, setNumberOfActiveClients] = useState({
-    total: "",
-    color: "",
-  });
-
-  const [averageDays, setAverageDays] = useState({ total: "", color: "" });
-  const [averageGoals, setAverageGoals] = useState({ total: "", color: "" });
 
   const [newClientsChart, setNewClientsChart] = useState({
     group1: 0,
@@ -182,144 +205,6 @@ console.log("monitorMetricsData",monitorMetricsData)
   ];
   const date = new Date();
   let currentMonth = date.getMonth() + 1;
-
-  const clientsCount = (clients) => {
-    const totalActiveClients = clients?.filter(
-      (client) => client.clientactive === "1"
-    ).length;
-    const found = months.find((element) => element.month === currentMonth);
-    const fiftyPercent = found.total / 2;
-    const seventifyPercent = (found.total * 75) / 100;
-    if (totalActiveClients < fiftyPercent) {
-      setNumberOfActiveClients({
-        ...numberOfActiveClients,
-        total: totalActiveClients,
-        color: "bg-light-red",
-      });
-    }
-    if (
-      totalActiveClients > fiftyPercent &&
-      totalActiveClients < seventifyPercent
-    ) {
-      setNumberOfActiveClients({
-        ...numberOfActiveClients,
-        total: totalActiveClients,
-        color: "bg-orange",
-      });
-    }
-
-    if (totalActiveClients > seventifyPercent) {
-      setNumberOfActiveClients({
-        ...numberOfActiveClients,
-        total: totalActiveClients,
-        color: "bg-middle-green",
-      });
-    }
-  };
-
-  const calculateAverageDays = (averageNumbers) => {
-    let total = 0;
-    const totalActiveClients = clients?.filter(
-      (client) => client.clientactive === "1"
-    ).length;
-    /*   const clientsWithSAP=averageNumbers.filter((client,index)=>{
-    return client.planstartdate!==null
-  }) */
-
-    const calculate = averageNumbers.forEach((client, index) => {
-      const { planstartdate, progressnotedate } = client;
-      let date1;
-      if (progressnotedate === "" || progressnotedate === null) {
-        date1 = new Date(planstartdate);
-      } else {
-        date1 = new Date(progressnotedate);
-      }
-      let date2 = new Date();
-      let difference = date2.getDate() - date1.getDate();
-
-
-      // var days = Math.ceil(difference / (1000 * 3600 * 24));
-      total = total + difference;
-
-    });
-
-
-    let average = total / totalActiveClients;
-
-    if (average > 30) {
-      setAverageDays({
-        ...averageDays,
-        total: average.toFixed(0),
-        color: "bg-light-red",
-      });
-    }
-    if (average > 15 && average < 30) {
-      setAverageDays({
-        ...averageDays,
-        total: average.toFixed(0),
-        color: "bg-orange",
-      });
-    }
-    if (average < 15) {
-      setAverageDays({
-        ...averageDays,
-        total: average.toFixed(0),
-        color: "bg-middle-green",
-      });
-    }
-  };
-
-  const calculateNumberOfGoals = (averageNumbers) => {
-    let total = 0;
-
-    const totalActiveClients = clients?.filter(
-      (client) => client.clientactive === "1"
-    ).length;
-
-    const checkGoals = averageNumbers.forEach((client, index) => {
-      if (
-        client.goal1targetdate !== null &&
-        client.goal1completiondate === null
-      ) {
-        total = total + 1;
-      }
-      if (
-        client.goal2targetdate !== null &&
-        client.goal2completiondate === null
-      ) {
-        total = total + 1;
-      }
-      if (
-        client.goal3targetdate !== null &&
-        client.goal3completiondate === null
-      ) {
-        total = total + 1;
-      }
-    });
-
-    let average = total / totalActiveClients;
-    if (average > 2.5) {
-      setAverageGoals({
-        ...averageGoals,
-        total: averagetoFixed(1),
-        color: "bg-light-red",
-      });
-    }
-    if (average > 2.5 && average < 1.5) {
-      setAverageGoals({
-        ...averageGoals,
-        total: average.toFixed(1),
-        color: "bg-orange",
-      });
-    }
-    if (average < 1.5) {
-      setAverageGoals({
-        ...averageGoals,
-        total: average.toFixed(1),
-        color: "bg-middle-green",
-      });
-    }
-  };
 
   const chart1Data = async (averageNumbers) => {
     const clientsOfTheMonth = await averageNumbers.filter((client, index) => {
@@ -448,7 +333,7 @@ console.log("monitorMetricsData",monitorMetricsData)
       if (progressnotedate >= 23 && progressnotedate <= 30) {
         total4 = total4 + 1;
       }
-     
+
       setNumberOfClientsEncounter({
         ...numberOfClientsEncounter,
         group1: total1,
@@ -499,8 +384,6 @@ console.log("monitorMetricsData",monitorMetricsData)
     return numberOfClients;
   };
 
- 
-
   const paginationComponentOptions = {
     rowsPerPageText: "Rows per page",
     rangeSeparatorText: "of",
@@ -508,277 +391,236 @@ console.log("monitorMetricsData",monitorMetricsData)
     selectAllRowsItemText: "All",
   };
 
-/*   const tableData = {
+  /*   const tableData = {
     columns,
     monitorMetricsData,
   }; */
 
+  const getColorOfNumberOfEncounters = (encounters) => {
+    if (encounters < 15) {
+      return "bg-red-500 text-white";
+    }
+    if (encounters > 15 && encounters < 30) {
+      return "bg-orange-100 text-white";
+    }
+    if (encounters > 30) {
+      return "bg-green-100 text-white";
+    }
+  };
 
-  const getColorOfNumberOfEncounters=(encounters)=>{
-    if(encounters < 15){
-      return 'bg-red-500 text-white'
+  const getColorOfLastEncounter = (lastEncounter) => {
+    if (lastEncounter >= 30) {
+      return "bg-red-500 text-white";
     }
-    if(encounters > 15 && encounters < 30){
-      return 'bg-orange-100 text-white'
+    if (lastEncounter >= 14 && lastEncounter < 30) {
+      return "bg-orange-500 text-white";
     }
-    if(encounters > 30){
-      return 'bg-green-100 text-white'
+    if (lastEncounter < 14) {
+      return "bg-green-500 text-white";
     }
+  };
 
-  }
+  const getColorOfCompletedGoals = (goals) => {
+    if (goals === 0) {
+      return "bg-red-500 text-white";
+    }
+    if (goals >= 1 && goals <= 2) {
+      return "bg-orange-500 text-white";
+    }
+    if (goals === 3) {
+      return "bg-green-500 text-white";
+    }
+  };
 
-  const getColorOfLastEncounter=(lastEncounter)=>{
-    if(lastEncounter >= 30){
-      return 'bg-red-500 text-white'
-    }
-    if(lastEncounter >= 14 && lastEncounter <30){
-      return 'bg-orange-500 text-white'
-    }
-    if(lastEncounter < 14){
-      return 'bg-green-500 text-white'
-    }
-
-  }
-
-  const getColorOfCompletedGoals=(goals)=>{
-    if(goals === 0){
-      return 'bg-red-500 text-white'
-    }
-    if(goals >= 1 && goals <=2){
-      return 'bg-orange-500 text-white'
-    }
-    if(goals ===3 ){
-      return 'bg-green-500 text-white'
-    }
-
-  }
-
-  const handleSortByName=()=>{
- /*    const result = monitorMetricsData.sort(function(a,b){
+  const handleSortByName = () => {
+    /*    const result = monitorMetricsData.sort(function(a,b){
       // Turn your strings into dates, and then subtract them
       // to get a value that is either negative, positive, or zero.
       return new Date(b.startdate) - new Date(a.startdate);
     }); */
-    setMonitorFundingTableDataSortingByName(!monitorFundingTableDataSortingByName)
-   if(monitorFundingTableDataSortingByName){
-    const result= monitorMetricsData.sort((a, b) => a.firstname.localeCompare(b.firstname))
-    setMonitorMetricsData(prevMovies => ([...result])); 
-   } else {
-    const result= monitorMetricsData.sort((a, b) => b.firstname.localeCompare(a.firstname))
-    setMonitorMetricsData(prevMovies => ([...result]));
-   } 
-  }
-
-
-  const handleSortByClientId=()=>{
-
-       setMonitorFundingTableDataSortingByClientId(!monitorFundingTableDataSortingByClientId)
-      if(monitorFundingTableDataSortingByClientId){
-       const result= monitorMetricsData.sort((a, b) => a.clientid.localeCompare(b.clientid))
-       setMonitorMetricsData(prev => ([...result])); 
-      } else {
-       const result= monitorMetricsData.sort((a, b) => b.clientid.localeCompare(a.clientid))
-       setMonitorMetricsData(prev => ([...result]));
-      } 
-     }
-
-     const handleSortByEncounters=()=>{
-
-      setMonitorFundingTableDataSortingByEncounters(!monitorFundingTableDataSortingByEncounters)
-      if(monitorFundingTableDataSortingByEncounters){
-        const result=monitorMetricsData?.sort((a, b) => a.progressnotes - b.progressnotes);
-        setMonitorMetricsData(prev => ([...result])); 
-       } else {
-        const result=monitorMetricsData?.sort((a, b) => b.progressnotes - a.progressnotes);
-        setMonitorMetricsData(prev => ([...result])); 
-       } 
+    setMonitorFundingTableDataSortingByName(
+      !monitorFundingTableDataSortingByName
+    );
+    if (monitorFundingTableDataSortingByName) {
+      const result = monitorMetricsData.sort((a, b) =>
+        a.firstname.localeCompare(b.firstname)
+      );
+      setMonitorMetricsData((prevMovies) => [...result]);
+    } else {
+      const result = monitorMetricsData.sort((a, b) =>
+        b.firstname.localeCompare(a.firstname)
+      );
+      setMonitorMetricsData((prevMovies) => [...result]);
     }
+  };
 
-    const handleSortByLastEncounters=()=>{
-
-      setMonitorFundingTableDataSortingByLastEncounters(!monitorFundingTableDataSortingByLastEncounters)
-     if(monitorFundingTableDataSortingByLastEncounters){
-      const result=monitorMetricsData?.sort((a, b) => a.lastEncounter - b.lastEncounter);
-      setMonitorMetricsData(prev => ([...result])); 
-     } else {
-      const result=monitorMetricsData?.sort((a, b) => b.lastEncounter - a.lastEncounter);
-      setMonitorMetricsData(prev => ([...result])); 
-     } 
+  const handleSortByClientId = () => {
+    setMonitorFundingTableDataSortingByClientId(
+      !monitorFundingTableDataSortingByClientId
+    );
+    if (monitorFundingTableDataSortingByClientId) {
+      const result = monitorMetricsData.sort((a, b) =>
+        a.clientid.localeCompare(b.clientid)
+      );
+      setMonitorMetricsData((prev) => [...result]);
+    } else {
+      const result = monitorMetricsData.sort((a, b) =>
+        b.clientid.localeCompare(a.clientid)
+      );
+      setMonitorMetricsData((prev) => [...result]);
     }
+  };
 
-    const handleSortByGoals=()=>{
-
-      setMonitorFundingTableDataSortingByGoals(!monitorFundingTableDataSortingByGoals)
-      if(monitorFundingTableDataSortingByLastEncounters){
-        const result=monitorMetricsData?.sort((a, b) => a.goals - b.goals);
-        setMonitorMetricsData(prev => ([...result])); 
-       } else {
-        const result=monitorMetricsData?.sort((a, b) => b.goals - a.goals);
-        setMonitorMetricsData(prev => ([...result])); 
-       } 
+  const handleSortByEncounters = () => {
+    setMonitorFundingTableDataSortingByEncounters(
+      !monitorFundingTableDataSortingByEncounters
+    );
+    if (monitorFundingTableDataSortingByEncounters) {
+      const result = monitorMetricsData?.sort(
+        (a, b) => a.progressnotes - b.progressnotes
+      );
+      setMonitorMetricsData((prev) => [...result]);
+    } else {
+      const result = monitorMetricsData?.sort(
+        (a, b) => b.progressnotes - a.progressnotes
+      );
+      setMonitorMetricsData((prev) => [...result]);
     }
+  };
 
-
-  const handleSortByLastname=()=>{
-       setMonitorFundingTableDataSortingByLastname(!monitorFundingTableDataSortingByLastname)
-      if(monitorFundingTableDataSortingByLastname){
-       const result= monitorMetricsData.sort((a, b) => a.lastname.localeCompare(b.lastname))
-       setMonitorMetricsData(prevMovies => ([...result])); 
-      } else {
-       const result= monitorMetricsData.sort((a, b) => b.lastname.localeCompare(a.lastname))
-       setMonitorMetricsData(prevMovies => ([...result]));
-      } 
-     }
-
-     const handleSortByHCW=()=>{
-      setMonitorFundingTableDataSortingByHCW(!monitorFundingTableDataSortingByHCW)
-     if(monitorFundingTableDataSortingByHCW){
-      const result= monitorMetricsData.sort((a, b) => a.clienthcwname.localeCompare(b.clienthcwname))
-      setMonitorMetricsData(prevMovies => ([...result])); 
-     } else {
-      const result= monitorMetricsData.sort((a, b) => b.clienthcwname.localeCompare(a.clienthcwname))
-      setMonitorMetricsData(prevMovies => ([...result]));
-     } 
+  const handleSortByLastEncounters = () => {
+    setMonitorFundingTableDataSortingByLastEncounters(
+      !monitorFundingTableDataSortingByLastEncounters
+    );
+    if (monitorFundingTableDataSortingByLastEncounters) {
+      const result = monitorMetricsData?.sort(
+        (a, b) => a.lastEncounter - b.lastEncounter
+      );
+      setMonitorMetricsData((prev) => [...result]);
+    } else {
+      const result = monitorMetricsData?.sort(
+        (a, b) => b.lastEncounter - a.lastEncounter
+      );
+      setMonitorMetricsData((prev) => [...result]);
     }
+  };
 
-    const handleSortByDate=()=>{
-      const emptyValues = monitorMetricsData.filter(data => data.serviceActionPlanDate === "-")
-      const filledValues = monitorMetricsData.filter(data => data.serviceActionPlanDate !== "-")
-
-      setMonitorFundingTableDataSortingByDate(!monitorFundingTableDataSortingByDate)
-     if(monitorFundingTableDataSortingByDate){
-       const result = filledValues.sort(function(a,b){
-         
-         return new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate);
-
-       });
-       setMonitorMetricsData(prevMovies => ([...result, ...emptyValues]));
-
-     } else {
-       const result = filledValues.sort(function(a,b){
-         
-         return new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate);
-       });
-       setMonitorMetricsData(prevMovies => ([...result, ...emptyValues]));
-     } 
-
-  
+  const handleSortByGoals = () => {
+    setMonitorFundingTableDataSortingByGoals(
+      !monitorFundingTableDataSortingByGoals
+    );
+    if (monitorFundingTableDataSortingByLastEncounters) {
+      const result = monitorMetricsData?.sort((a, b) => a.goals - b.goals);
+      setMonitorMetricsData((prev) => [...result]);
+    } else {
+      const result = monitorMetricsData?.sort((a, b) => b.goals - a.goals);
+      setMonitorMetricsData((prev) => [...result]);
     }
+  };
 
+  const handleSortByLastname = () => {
+    setMonitorFundingTableDataSortingByLastname(
+      !monitorFundingTableDataSortingByLastname
+    );
+    if (monitorFundingTableDataSortingByLastname) {
+      const result = monitorMetricsData.sort((a, b) =>
+        a.lastname.localeCompare(b.lastname)
+      );
+      setMonitorMetricsData((prevMovies) => [...result]);
+    } else {
+      const result = monitorMetricsData.sort((a, b) =>
+        b.lastname.localeCompare(a.lastname)
+      );
+      setMonitorMetricsData((prevMovies) => [...result]);
+    }
+  };
 
+  const handleSortByHCW = () => {
+    setMonitorFundingTableDataSortingByHCW(
+      !monitorFundingTableDataSortingByHCW
+    );
+    if (monitorFundingTableDataSortingByHCW) {
+      const result = monitorMetricsData.sort((a, b) =>
+        a.clienthcwname.localeCompare(b.clienthcwname)
+      );
+      setMonitorMetricsData((prevMovies) => [...result]);
+    } else {
+      const result = monitorMetricsData.sort((a, b) =>
+        b.clienthcwname.localeCompare(a.clienthcwname)
+      );
+      setMonitorMetricsData((prevMovies) => [...result]);
+    }
+  };
 
-       const handleTableSearch=(value)=>{
-    
-        if(value===""){
-          updateMonitorMetricData()
-        } else {
-          const result = monitorMetricsData.filter(
-            (client, index) =>
-            client.lastname.toLowerCase().includes(value.toLowerCase()) || client.firstname.toLowerCase().includes(value.toLowerCase())
+  const handleSortByDate = () => {
+    const emptyValues = monitorMetricsData.filter(
+      (data) => data.serviceActionPlanDate === "-"
+    );
+    const filledValues = monitorMetricsData.filter(
+      (data) => data.serviceActionPlanDate !== "-"
+    );
+
+    setMonitorFundingTableDataSortingByDate(
+      !monitorFundingTableDataSortingByDate
+    );
+    if (monitorFundingTableDataSortingByDate) {
+      const result = filledValues.sort(function (a, b) {
+        return (
+          new Date(b.serviceActionPlanDate) - new Date(a.serviceActionPlanDate)
         );
-        setMonitorMetricsData(prevMovies => ([...result]));
-        }
-        
-       }
+      });
+      setMonitorMetricsData((prevMovies) => [...result, ...emptyValues]);
+    } else {
+      const result = filledValues.sort(function (a, b) {
+        return (
+          new Date(a.serviceActionPlanDate) - new Date(b.serviceActionPlanDate)
+        );
+      });
+      setMonitorMetricsData((prevMovies) => [...result, ...emptyValues]);
+    }
+  };
 
-       //PAGINATION
+  const handleTableSearch = (value) => {
+    if (value === "") {
+      updateMonitorMetricData();
+    } else {
+      const result = monitorMetricsData.filter(
+        (client, index) =>
+          client.lastname.toLowerCase().includes(value.toLowerCase()) ||
+          client.firstname.toLowerCase().includes(value.toLowerCase())
+      );
+      setMonitorMetricsData((prevMovies) => [...result]);
+    }
+  };
 
-       const paginate = pageNumber => {
-        setCurrentPage(pageNumber)
-      }
+  //PAGINATION
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
-    clientsCount(clients);
-    calculateAverageDays(averageNumbers);
-    calculateNumberOfGoals(averageNumbers);
     chart1Data(averageNumbers);
     chart2Data(averageNumbers);
-   updateMonitorMetricData();
+    updateMonitorMetricData();
   }, []);
   return (
     <Layout>
-      <div className="bg-light-blue">
-        <section className="container mx-auto grid-cols-1 gap-5">
-
-        <div className="py-5 flex gap-x-5">
-        <BackButton/>  
-        <BackToDashboardButton/>
-        
-        </div>
+      <div className="bg-white">
+        <section className="container mx-auto shadow-inner">
+          <div className="py-5 flex gap-x-5">
+            <BackButton />
+            <BackToDashboardButton />
+          </div>
           <div className=" py-5">
             <h1 className="font-bold px-2">Monitor Funding Requirements</h1>
           </div>
-
+        </section>
+        <section className="bg-light-blue py-10">
+        <div className="container mx-auto grid-cols-1 gap-5">
           {/* KEY METRICS */}
 
-          <div className="key-metrics grid grid-cols-1 gap-1 bg-light-blue shadow mx-3 md:mx-0">
-            <div className="grid grid-cols-2 gap-9 bg-white py-2 px-5">
-              <div className="flex">
-                <img src="/supervisor/key-metrics.svg" />
-                <h2 className="font-bold ml-3">Key Metrics</h2>
-              </div>
-              <div className="grid grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-2 md:w-5/6 md:justify-self-end">
-                <p className="font-bold px-3 text-center py-2 bg-middle-green">
-                  on track
-                </p>
-                <p className="font-bold px-3 text-center py-2 bg-orange">
-                  warning
-                </p>
-                <p className="font-bold px-3 text-center py-2 bg-light-red">
-                  alert
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:px-1 md:pb-1 .bg-middle-white shadow-md">
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  Number of active clients
-                </p>
-                <p
-                  className={`${
-                    numberOfActiveClients
-                      ? numberOfActiveClients.color
-                      : "bg-white"
-                  } flex items-center justify-center text-2xl font-bold py-5`}
-                >
-                  {numberOfActiveClients ? numberOfActiveClients.total : "0"}
-                </p>
-              </div>
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  Average # of days between client visits
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold py-5">
-                  {averageDays ? averageDays.total : "0"}
-                </p>
-              </div>
-              <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  Average number of client goals outstanding
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold py-5">
-                  {averageGoals ? averageGoals.total : "0"}
-                </p>
-              </div>
-            {/*   <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  % of clients who say they have reduced unsafe sexual behavior
-                  after 3 months
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
-                  72%
-                </p>
-              </div> */}
-              {/* <div className="grid grid-rows-2">
-                <p className="bg-white text-center py-12 md:py-0 flex items-center justify-center font-semibold text-lg p-4">
-                  % of clients who say they are undetectable after 3 months
-                </p>
-                <p className="bg-middle-green flex items-center justify-center text-2xl font-bold">
-                  63%
-                </p>
-              </div> */}
-            </div>
-          </div>
+          <KeyMetrics averageNumbers={averageNumbers} clients={clients} />
 
           {/* KEY METRICS */}
 
@@ -811,14 +653,14 @@ console.log("monitorMetricsData",monitorMetricsData)
             </div>
           </div> */}
 
-          <div className="bg-white py-3 flex justify-between px-5 items-center mt-10 mb-1">
+          <div className="bg-white py-3 flex justify-between px-5 items-center mt-10 rounded-t">
             <div className="flex  w-2/4">
               <img src="/funding-goals.svg" className="mr-3" alt="" />
-              <h3 className="font-bold">Client Support Progress</h3>
+              <h2 className="font-bold">Client Support Progress</h2>
             </div>
             <ReactToPrint
               trigger={() => (
-                <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white hover:text-black  text-xs">
+                <button className="flex items-center bg-black hover:bg-yellow-300 px-5 py-1 rounded text-white hover:text-black  ">
                   {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
                   Print Report
                 </button>
@@ -826,10 +668,10 @@ console.log("monitorMetricsData",monitorMetricsData)
               content={() => componentRef.current}
             />
           </div>
-{/* <input type="text" onChange={(e)=>handleTableSearch(e.target.value)} placeholder="search..." /> */}
+          {/* <input type="text" onChange={(e)=>handleTableSearch(e.target.value)} placeholder="search..." /> */}
 
           <div className="monitor-funding-table bg-white  ">
-            <div className="monitor-funding-table-column-container grid grid-cols-6 overflow-x py-5 bg-yellow-50">
+            <div className="monitor-funding-table-column-container grid grid-cols-6 gap-0.5 overflow-x py-0.5 mx-5 rounded ">
               {/* <div className="monitor-funding-table-col flex  items-center  flex gap-x-2">
                 <p className="font-xxs  cursor-pointer">Client Start Date</p>
                 <svg
@@ -856,10 +698,10 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div> */}
-              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
+              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold ">
                 <p className="">Client ID</p>
                 <svg
-                onClick={()=>handleSortByClientId()}
+                  onClick={() => handleSortByClientId()}
                   className="cursor-pointer"
                   width="20"
                   height="20"
@@ -882,10 +724,10 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
+              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
                 <p className="">First name</p>
                 <svg
-                onClick={()=>handleSortByName()}
+                  onClick={() => handleSortByName()}
                   className="cursor-pointer"
                   width="20"
                   height="20"
@@ -908,12 +750,14 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  justify-between items-center px-5">
-                <div><p className="">Last name</p>
-                <p>initial</p></div>
-                
+              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
+                <div>
+                  <p className="">Last name initial</p>
+                  
+                </div>
+
                 <svg
-                onClick={()=>handleSortByLastname()}
+                  onClick={() => handleSortByLastname()}
                   className="cursor-pointer"
                   width="20"
                   height="20"
@@ -936,7 +780,7 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              {/* <div className="monitor-funding-table-col flex   items-center  px-5">
+              {/* <div className="monitor-funding-table-col flex   items-center  px-5 py-3 font-bold">
                 <p className="">HCW <br /> assigned</p>
                 <svg
                 onClick={()=>handleSortByHCW()}
@@ -962,13 +806,15 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div> */}
-             {/*  <div className="monitor-funding-table-col flex  items-center  px-5">
+              {/*  <div className="monitor-funding-table-col flex  items-center  px-5 py-3 font-bold">
                 <p className="">Time since <br /> joining LNE</p>
               </div> */}
-              <div className="monitor-funding-table-col flex justify-between items-center px-5">
-                <p className="">Service action <br /> plan date</p>
+              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
+                <p className="">
+                  Service action  plan date
+                </p>
                 <svg
-                onClick={()=>handleSortByDate()}
+                  onClick={() => handleSortByDate()}
                   className="cursor-pointer"
                   width="20"
                   height="20"
@@ -991,10 +837,13 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex  justify-between items-center px-5 ">
-                <p className="">Days since <br />last encounter</p>
+              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold ">
+                <p className="">
+                  Days since 
+                  last encounter
+                </p>
                 <svg
-                onClick={()=>handleSortByLastEncounters()}
+                  onClick={() => handleSortByLastEncounters()}
                   className="cursor-pointer"
                   width="20"
                   height="20"
@@ -1017,10 +866,12 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-              <div className="monitor-funding-table-col flex justify-between items-center px-5">
-                <p className="">Goals <br /> completed</p>
+              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
+                <p className="">
+                  Goals completed
+                </p>
                 <svg
-                onClick={()=>handleSortByGoals()}
+                  onClick={() => handleSortByGoals()}
                   className="cursor-pointer"
                   width="20"
                   height="20"
@@ -1043,66 +894,79 @@ console.log("monitorMetricsData",monitorMetricsData)
                   />
                 </svg>
               </div>
-            {/*   <div className="monitor-funding-table-col flex  items-center px-5">
+              {/*   <div className="monitor-funding-table-col flex  items-center px-5 py-3 font-bold">
                 <p className="font-xxs ">Outdated MSA</p>
               </div> */}
             </div>
           </div>
-          <div className="monitor-funding-table bg-white mb-5 ">
-            {monitorMetricsData ? monitorMetricsData.map((client,index)=>{
-              return (
-           
-              <div className="monitor-funding-table-row-container grid grid-cols-6 border-t-2 " key={index}>
-             {/*  <div className={`monitor-funding-table-row px-5 text-left py-3`}>
+          <div className="monitor-funding-table grid auto-rows-auto bg-white mb-10 px-5 pb-5 rounded-b shadow">
+            {monitorMetricsData
+              ? monitorMetricsData.map((client, index) => {
+                  return (
+                    <div
+                      className="monitor-funding-table-row-container grid grid-cols-6 gap-0.5"
+                      key={index}
+                    >
+                      {/*  <div className={`monitor-funding-table-row px-5 text-left py-3`}>
                 <p className="font-xxs">{client.startdate}</p>
                 
               </div> */}
-              <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="hover:text-blue-500"><a href={`/clients/${client.clientid}/profile`}>{client.clientid}</a></p>
-                
-              </div>
-              <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="">{client.firstname}</p>
-                
-              </div>
-              <div className="monitor-funding-table-row px-5 text-left py-3">
-                <p className="">{client.lastname.charAt(0)}</p>
-                
-              </div>
-              {/* <div className="monitor-funding-table-row px-5 text-left py-3">
+                      <div className="monitor-funding-table-row px-5 text-left bg-row-light py-3">
+                        <p className="text-blue-500 underline">
+                          <a href={`/clients/${client.clientid}/profile`}>
+                            {client.clientid}
+                          </a>
+                        </p>
+                      </div>
+                      <div className="monitor-funding-table-row px-5 text-left bg-row-light py-3">
+                        <p className="">{client.firstname}</p>
+                      </div>
+                      <div className="monitor-funding-table-row px-5 text-left bg-row-light py-3">
+                        <p className="">{client.lastname.charAt(0)}</p>
+                      </div>
+                      {/* <div className="monitor-funding-table-row px-5 text-left bg-row-light py-3">
                 <p className="">{client.clienthcwname}</p>
                 
               </div> */}
-             {/*  <div className="monitor-funding-table-row px-5 text-left py-3">
+                      {/*  <div className="monitor-funding-table-row px-5 text-left bg-row-light py-3">
                 <p className="">{client.joining}</p>
                 
               </div> */}
-              <div className={`monitor-funding-table-row px-5 text-left py-3`}>
-                <p className="">{client.serviceActionPlanDate === "2058/01/01" ? "-" : client.serviceActionPlanDate}</p>
-                
-              </div>
-              <div className={`monitor-funding-table-row px-5 text-left py-3 ${ getColorOfLastEncounter(client.lastEncounter)}`}>
-                <p className="">{client.lastEncounter}</p>
-                
-              </div>
-              <div className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfCompletedGoals(client.goals)}`}>
-                <p className="">{client.goals}</p>
-                
-              </div>
-              {/* <div className="monitor-funding-table-row px-5 text-left py-3">
+                      <div
+                        className={`monitor-funding-table-row px-5 text-left bg-row-light py-3`}
+                      >
+                        <p className="">
+                          {client.serviceActionPlanDate === "2058/01/01"
+                            ? "-"
+                            : client.serviceActionPlanDate}
+                        </p>
+                      </div>
+                      <div
+                        className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfLastEncounter(
+                          client.lastEncounter
+                        )}`}
+                      >
+                        <p className="">{client.lastEncounter}</p>
+                      </div>
+                      <div
+                        className={`monitor-funding-table-row px-5 text-left py-3 ${getColorOfCompletedGoals(
+                          client.goals
+                        )}`}
+                      >
+                        <p className="">{client.goals}</p>
+                      </div>
+                      {/* <div className="monitor-funding-table-row px-5 text-left bg-row-light py-3">
                 <p className="font-xxs">0</p>
                 
               </div> */}
-         
-            </div>
-              )
-            }):"No data"}
-            
-           
+                    </div>
+                  );
+                })
+              : "No data"}
           </div>
           {/* <div className="flex gap-x-5 my-10"><p>Pagination:</p><Pagination postsPerPage={postsPerPage} TotalPosts={monitorMetricsData.length} paginate={paginate}/></div> */}
 
-       {/*    <div className="bg-white py-3 flex justify-between px-5 items-center">
+          {/*    <div className="bg-white py-3 flex justify-between px-5 items-center">
             <div className="flex  w-2/4">
               <img src="/funding-goals.svg" className="mr-3" alt="" />
               <h3 className="font-bold">Funding Goal Progress</h3>
@@ -1117,43 +981,42 @@ console.log("monitorMetricsData",monitorMetricsData)
               content={() => componentRef.current}
             />
           </div> */}
-       <div style={{ display: "none" }} className="p-5">
-              <MonitorFundingTableToPrint
-                ref={componentRef}
-                data={monitorMetricsData}
-              />
-            </div> 
+          <div style={{ display: "none" }} className="p-5">
+            <MonitorFundingTableToPrint
+              ref={componentRef}
+              data={monitorMetricsData}
+            />
+          </div>
 
-
-            <h1 className="mb-4 container mx-auto text-center md:text-left   lg:pl-0 font-bold">
-                What do you want <span className="bg-yellow px-1"> to do</span>{" "}
-                today?
-              </h1>
+          <h1 className="mb-4 container mx-auto text-center md:text-left   lg:pl-0 font-bold">
+            What do you want <span className="bg-yellow px-1"> to do</span>{" "}
+            today?
+          </h1>
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
-            <div className="p-3 rounded-md bg-white shadow-md cursor-pointer">
+            <div className="p-3 py-5 rounded-md bg-black  shadow-md cursor-pointer">
               {/* <Link href={"/services"}> */}
-                <figure className="flex flex-col items-center">
-                  <img
-                    src="/supervisor/monitor-staff-progres.svg"
-                    className="mb-5"
-                    alt="monitor STAFF PROGRESS"
-                  ></img>
-                 {/*  <figcaption className="font-bold text-xs text-center">
+              <figure className="flex flex-col items-center">
+                <img
+                  src="/supervisor/print_funding_report_large.svg"
+                  className="mb-5"
+                  alt="monitor STAFF PROGRESS"
+                ></img>
+                {/*  <figcaption className="font-bold text-xs text-center">
                     MANAGE SERVICES
                   </figcaption> */}
-                  <ReactToPrint
-              trigger={() => (
-                <button className="flex items-center px-5 py-1 rounded  hover:text-black  text-xs uppercase">
-                  {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
-                  Print funding report tables
-                </button>
-              )}
-              content={() => componentRef.current}
-            />
-                </figure>
-             {/*  </Link> */}
+                <ReactToPrint
+                  trigger={() => (
+                    <button className="flex items-center px-5 py-1 rounded  text-white ">
+                      {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
+                      Print Funding <br/>Report Tables
+                    </button>
+                  )}
+                  content={() => componentRef.current}
+                />
+              </figure>
+              {/*  </Link> */}
             </div>
-           {/*  <div className="p-3 rounded-md bg-white shadow-md">
+            {/*  <div className="p-3 rounded-md bg-white shadow-md">
               <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/monitor-staff-progres.svg"
@@ -1202,7 +1065,9 @@ console.log("monitorMetricsData",monitorMetricsData)
               </figure>
             </div> */}
           </div>
+        </div>
         </section>
+       
       </div>
     </Layout>
   );
