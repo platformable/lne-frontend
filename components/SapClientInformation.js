@@ -35,6 +35,7 @@ export default function SapClientInformation({
                 <p className="text-xl">Plan start date</p>
                 <input
                   type="date"
+                  value={clientData.planStartDate}
                   className="block bg-primary-light-blue w-full rounded-md  p-1  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 "
                   onChange={(e) =>
                     setClientData({
