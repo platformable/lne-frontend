@@ -357,9 +357,7 @@ input[type="number"] {
 }
 
 /* BORDERS */
-.border-black {
-  border: 1px solid black;
-}
+
 
 .border-b-black {
   border-bottom: 1px solid black;
