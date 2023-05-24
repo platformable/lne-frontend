@@ -16,10 +16,10 @@ export default function ColumnsTable2({ title, datapoints }) {
                  className="grid divide-x-2  divide-black grid-cols-[5fr_1fr] "
                >
                 {/* row title */}
-                 <p className="py-2 px-3">{item[0]}</p>
+                 <p className="py-2 px-3">{item[1].title}</p>
 
                 {/* sum of numbers */}
-                 <span className="py-2 text-center">{item[1]}</span>
+                 <span className="py-2 text-center">{item[1].number}</span>
                </div>
              ))}
          </div>

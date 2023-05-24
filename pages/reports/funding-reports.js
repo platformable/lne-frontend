@@ -27,14 +27,13 @@ const fundingReport = ({
   const [showReport, setShowReport] = useState(false);
 
   const generateReport = () => setShowReport((prev) => !prev);
-  console.log("selectedClients", selectedClients);
-  console.log("selectedProgressNotes", selectedProgressNotes);
-  console.log("selectedCondoms", selectedCondoms);
-  console.log("selectedSupportGroups", selectedSupportGroups);
-  console.log("clients", clients);
-  console.log("progressNotes", progressNotes);
-  console.log("condomsDistributed", condomsDistributed);
-  console.log("supportGroups", supportGroups);
+  // console.log("selectedClients", selectedClients);
+  // console.log("selectedProgressNotes", selectedProgressNotes);
+  // console.log("selectedCondoms", selectedCondoms);
+  // console.log("selectedSupportGroups", selectedSupportGroups);
+  // console.log("clients", clients);
+  // console.log("progressNotes", progressNotes);
+  // console.log("supportGroups", supportGroups);
 
   const [condomsDistributedNumbers, setCondomsDistributedNumbers] = useState({
     kitsdistributed: { title: "Safe Sex kits distributed", number: 0 },
@@ -80,24 +79,22 @@ const fundingReport = ({
       treatmenteducation: { title: "Treatment Adherence Assesment", number: 0 },
     }
   );
-  console.log(condomsDistributedNumbers)
+  console.log("condomsDistributed", condomsDistributedNumbers);
 
   useEffect(() => {
     Object.keys(condomsDistributedNumbers)?.map((item) => {
-      console.log(item);
       selectedCondoms.map((row) => {
         const convertNumber = !row[item] ? 0 : Number(row[item]);
-        setCondomsDistributedNumbers(prev => ({...prev, [item]: convertNumber}))
+        setCondomsDistributedNumbers(prev => ({...prev, [item]: {...prev[item], number: convertNumber}}))
       });
     });
   }, [showReport]);
 
   useEffect(() => {
     Object.keys(servicesProvidedNumbers)?.map((item) => {
-      console.log(item);
       selectedProgressNotes.map((row) => {
         const convertNumber = !row[item] ? 0 : Number(row[item]);
-        setServicesProvidedNumbers(prev => ({...prev, [item]: convertNumber}))
+        setServicesProvidedNumbers(prev => ({...prev, [item]: {...prev[item], number: convertNumber}}))
 
       });
     });
