@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import Link from "next/link";
-
 import Layout from "../../components/Layout";
-
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 import BackToDashboardButton from "../../components/BackToDashboardButton";
@@ -129,7 +126,7 @@ const fundingReport = ({
             setSelectedSupportGroups={setSelectedSupportGroups}
           />
 
-          <Textarea service={"Assitance with Benefits/Etitlements"} />
+          <Textarea service={"Assitance with Benefits/Entitlements"} />
 
           {showReport && (
             <>
@@ -144,7 +141,7 @@ const fundingReport = ({
             </>
           )}
 
-          <ThreeColumnsTable />
+          <ThreeColumnsTable data={condomsDistributed}/>
         </div>
       </section>
     </Layout>
@@ -155,28 +152,26 @@ export default fundingReport;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const [clients, progressNotes, supportGroups, condomsDistributed] =
-      await Promise.all([
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
-          r.json()
-        ),
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`).then(
-          (r) => r.json()
-        ),
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`).then(
-          (r) => r.json()
-        ),
-        fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
-        ).then((r) => r.json()),
-      ]);
-    return {
-      props: {
-        clients: clients,
-        progressNotes: progressNotes,
-        supportGroups: supportGroups,
-        condomsDistributed: condomsDistributed,
-      },
-    };
+
+    try {
+        const [clients, progressNotes,supportGroups,condomsDistributed] = await Promise.all([
+            fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+              r.json()
+            ),
+            fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`
+            ).then((r) => r.json()),
+            fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
+            ).then((r) => r.json()),
+            fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
+            ).then((r) => r.json()),
+          ]);
+          return { props: { clients: clients, progressNotes: progressNotes,supportGroups:supportGroups,condomsDistributed:condomsDistributed } };
+    } catch (error) {
+        return {props: {message:"An error ocurred"}}
+    }
+   
   },
 });
