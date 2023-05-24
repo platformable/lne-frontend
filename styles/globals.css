@@ -395,6 +395,10 @@ input[type="radio"], input[type="checkbox"]{
   height: 35px;
 }
 
+.border-left-black {
+  border-left:2px solid black;
+}
+
 
 
 

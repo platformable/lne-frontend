@@ -16,6 +16,8 @@ import ThreeColumnsTable from '../../components/ThreeColumnsTable'
 import DateRangeComponent from "../../components/DateRangeComponent";
 
 const fundingReport = ({ clients, progressNotes,condomsDistributed,supportGroups }) => {
+
+    console.log("condoms",condomsDistributed)
   
   return (
     <Layout>
@@ -43,7 +45,7 @@ const fundingReport = ({ clients, progressNotes,condomsDistributed,supportGroups
       <Textarea service={'Assitance with Benefits/Etitlements'}/>
 
       <ColumnsTable2 />
-      <ThreeColumnsTable />
+      <ThreeColumnsTable data={condomsDistributed}/>
 
 
            
@@ -57,20 +59,26 @@ export default fundingReport;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const [clients, progressNotes,supportGroups,condomsDistributed] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
-        r.json()
-      ),
-      fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`
-      ).then((r) => r.json()),
-      fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
-      ).then((r) => r.json()),
-      fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
-      ).then((r) => r.json()),
-    ]);
-    return { props: { clients: clients, progressNotes: progressNotes,supportGroups:supportGroups,condomsDistributed:condomsDistributed } };
+
+    try {
+        const [clients, progressNotes,supportGroups,condomsDistributed] = await Promise.all([
+            fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+              r.json()
+            ),
+            fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`
+            ).then((r) => r.json()),
+            fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
+            ).then((r) => r.json()),
+            fetch(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
+            ).then((r) => r.json()),
+          ]);
+          return { props: { clients: clients, progressNotes: progressNotes,supportGroups:supportGroups,condomsDistributed:condomsDistributed } };
+    } catch (error) {
+        return {props: {message:"An error ocurred"}}
+    }
+   
   },
 });
