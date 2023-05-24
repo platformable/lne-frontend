@@ -9,14 +9,99 @@ import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import BackToDashboardButton from "../../components/BackToDashboardButton";
 import BackButton from "../../components/BackButton";
 
-
 import Textarea from "../../components/Textarea";
-import ColumnsTable2 from '../../components/2ColumnsTable'
-import ThreeColumnsTable from '../../components/ThreeColumnsTable'
+import ColumnsTable2 from "../../components/2ColumnsTable";
+import ThreeColumnsTable from "../../components/ThreeColumnsTable";
 import DateRangeComponent from "../../components/DateRangeComponent";
 
-const fundingReport = ({ clients, progressNotes,condomsDistributed,supportGroups }) => {
-  
+const fundingReport = ({
+  clients,
+  progressNotes,
+  condomsDistributed,
+  supportGroups,
+}) => {
+  const [selectedClients, setSelectedClients] = useState([]);
+  const [selectedProgressNotes, setSelectedProgressNotes] = useState([]);
+  const [selectedCondoms, setSelectedCondoms] = useState([]);
+  const [selectedSupportGroups, setSelectedSupportGroups] = useState([]);
+  const [showReport, setShowReport] = useState(false);
+
+  const generateReport = () => setShowReport((prev) => !prev);
+  console.log("selectedClients", selectedClients);
+  console.log("selectedProgressNotes", selectedProgressNotes);
+  console.log("selectedCondoms", selectedCondoms);
+  console.log("selectedSupportGroups", selectedSupportGroups);
+  console.log("clients", clients);
+  console.log("progressNotes", progressNotes);
+  console.log("condomsDistributed", condomsDistributed);
+  console.log("supportGroups", supportGroups);
+
+  const [condomsDistributedNumbers, setCondomsDistributedNumbers] = useState({
+    kitsdistributed: { title: "Safe Sex kits distributed", number: 0 },
+    extcondomsdistributed: {
+      title: "Condoms distributed outside of office",
+      number: 0,
+    },
+    intcondomsdistributed: {
+      title: "Condoms distributed at LNE office",
+      number: 0,
+    },
+    oralcondomsdistributed: { title: "Oral condoms distributed", number: 0 },
+    lubesdistributed: { title: "Lube satchets distributed", number: 0 },
+    dentaldamsdistributed: { title: "Dental dams distributed", number: 0 },
+  });
+  const [servicesProvidedNumbers, setServicesProvidedNumbers] = useState(
+    {
+      benefitsassistance: {
+        title: "Assitance with Benefits/Entitlements",
+        number: 0,
+      },
+      housingassistance: { title: "Assistance with Housing", number: 0 },
+      employmentassistance: {
+        title: "Assistance with Employment/Education",
+        number: 0,
+      },
+      cd4vllabreport: { title: "CD4/VL Lab Report Check", number: 0 },
+      comprehensiveriskbehaviorassessmentupdates: {
+        title: "Comprehensive Behavioral Risk Assesment",
+        number: 0,
+      },
+      developmentactionplan: { title: "Development of Action Plan", number: 0 },
+      escort: { title: "Escort", number: 0 },
+      comprehensiveriskbehaviorassessment: { title: "Intake", number: 0 },
+      implementationactionplan: {
+        title: "Implementation of Action Plan",
+        number: 0,
+      },
+      preventioncounselling: { title: "Linkage to HIV Testing", number: 0 },
+      linkagetoservices: { title: "Linkage to HVC Screening", number: 0 },
+      linkagetoservices: { title: "Linkage to STD Screening", number: 0 },
+      supportivecounselling: { title: "Supportive Counseling", number: 0 },
+      treatmenteducation: { title: "Treatment Adherence Assesment", number: 0 },
+    }
+  );
+  console.log(condomsDistributedNumbers)
+
+  useEffect(() => {
+    Object.keys(condomsDistributedNumbers)?.map((item) => {
+      console.log(item);
+      selectedCondoms.map((row) => {
+        const convertNumber = !row[item] ? 0 : Number(row[item]);
+        setCondomsDistributedNumbers(prev => ({...prev, [item]: convertNumber}))
+      });
+    });
+  }, [showReport]);
+
+  useEffect(() => {
+    Object.keys(servicesProvidedNumbers)?.map((item) => {
+      console.log(item);
+      selectedProgressNotes.map((row) => {
+        const convertNumber = !row[item] ? 0 : Number(row[item]);
+        setServicesProvidedNumbers(prev => ({...prev, [item]: convertNumber}))
+
+      });
+    });
+  }, [showReport]);
   return (
     <Layout>
       <div className="bg-white">
@@ -31,24 +116,40 @@ const fundingReport = ({ clients, progressNotes,condomsDistributed,supportGroups
             <div className="flex justify-end self-end"></div>
           </div>
         </section>
-   
       </div>
 
-
       <section className="my-10">
-          <div className="container mx-auto grid-cols-1 gap-5">
+        <div className="container mx-auto grid-cols-1 gap-5">
+          <DateRangeComponent
+            generateReport={generateReport}
+            clients={clients}
+            setSelectedClients={setSelectedClients}
+            progressNotes={progressNotes}
+            setSelectedProgressNotes={setSelectedProgressNotes}
+            condomsDistributed={condomsDistributed}
+            setSelectedCondoms={setSelectedCondoms}
+            supportGroups={supportGroups}
+            setSelectedSupportGroups={setSelectedSupportGroups}
+          />
 
-        <DateRangeComponent />    
-      
-      <Textarea service={'Assitance with Benefits/Etitlements'}/>
+          <Textarea service={"Assitance with Benefits/Etitlements"} />
 
-      <ColumnsTable2 />
-      <ThreeColumnsTable />
+          {showReport && (
+            <>
+              <ColumnsTable2
+                datapoints={Object.entries(condomsDistributedNumbers)}
+                title="Number of resources distributed"
+              />
+              <ColumnsTable2
+                datapoints={Object.entries(servicesProvidedNumbers)}
+                title="Number of services provided"
+              />
+            </>
+          )}
 
-
-           
-          </div>
-        </section>
+          <ThreeColumnsTable />
+        </div>
+      </section>
     </Layout>
   );
 };
@@ -57,20 +158,28 @@ export default fundingReport;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const [clients, progressNotes,supportGroups,condomsDistributed] = await Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
-        r.json()
-      ),
-      fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`
-      ).then((r) => r.json()),
-      fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
-      ).then((r) => r.json()),
-      fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
-      ).then((r) => r.json()),
-    ]);
-    return { props: { clients: clients, progressNotes: progressNotes,supportGroups:supportGroups,condomsDistributed:condomsDistributed } };
+    const [clients, progressNotes, supportGroups, condomsDistributed] =
+      await Promise.all([
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+          r.json()
+        ),
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`).then(
+          (r) => r.json()
+        ),
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`).then(
+          (r) => r.json()
+        ),
+        fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
+        ).then((r) => r.json()),
+      ]);
+    return {
+      props: {
+        clients: clients,
+        progressNotes: progressNotes,
+        supportGroups: supportGroups,
+        condomsDistributed: condomsDistributed,
+      },
+    };
   },
 });
