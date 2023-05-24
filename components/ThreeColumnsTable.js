@@ -68,16 +68,16 @@ export default function ThreeColumnsTable({ data }) {
     },
   ];
   return (
-    <div className="grid grid-cols-3 border-black">
+    <div className="grid grid-cols-3 border-black-bold">
       <div className="column1">
-        <div className="border-black p-3 bg-gray-100">
+        <div className="border-black-bold p-3 bg-gray-100">
           <h3>Gender</h3>
         </div>
 
         {gender?.map((gender, index) => {
           return (
             <div
-              className={`dataItem flex  border-black ${
+              className={`dataItem flex  border-black-bold ${
                 index % 2 === 0 ? null : "bg-gray-100"
               }`}
             >
@@ -92,13 +92,13 @@ export default function ThreeColumnsTable({ data }) {
         })}
       </div>
       <div className="column2">
-        <div className="border-black p-3 bg-gray-100">
+        <div className="border-black-bold p-3 bg-gray-100">
           <h3>Ethnicity</h3>
         </div>
         {ethnicity?.map((ethnicity, index) => {
           return (
             <div
-              className={`dataItem flex  border-black ${
+              className={`dataItem flex  border-black-bold ${
                 index % 2 === 0 ? null : "bg-gray-100"
               }`}
             >
@@ -113,13 +113,13 @@ export default function ThreeColumnsTable({ data }) {
         })}
       </div>
       <div className="column3">
-        <div className="border-black p-3 bg-gray-100">
+        <div className="border-black-bold p-3 bg-gray-100">
           <h3>Age</h3>
         </div>
         {age?.map((age, index) => {
           return (
             <div
-              className={`dataItem flex  border-black ${
+              className={`dataItem flex  border-black-bold ${
                 index % 2 === 0 ? null : "bg-gray-100"
               }`}
             >
