@@ -301,6 +301,22 @@ const Services = ({ clients, averageNumbers }) => {
                   </figure>
                 </Link>
               </div>
+              <div className="p-3 py-5 rounded-md bg-white shadow-md cursor-pointer">
+                <Link href={"/reports/funding-reports"}>
+                  <figure className="flex flex-col items-center">
+                    <img
+                      src="/supervisor/monitor_funding_requirements.svg"
+                      className="mb-5"
+                      alt="monitor STAFF PROGRESS"
+                    ></img>
+                    <figcaption className="font-bold  text-center">
+                      Prepare Funding <br/>
+                      Report <br/>
+                    
+                    </figcaption>
+                  </figure>
+                </Link>
+              </div>
             </div>
             {/* <div className="p-3 rounded-md bg-white shadow-md">
       <figure className="flex flex-col items-center">

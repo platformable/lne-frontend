@@ -243,12 +243,12 @@ const CondomsDistributed = () => {
               setFormData={setFormData}
               name={"Aged45"}
             />
-            <CondomsDistributionRowComponent
+            {/* <CondomsDistributionRowComponent
               bg={"light"}
               title={"Safe Sex kits distributed"}
               setFormData={setFormData}
               name={"AgeNotSpecified"}
-            />
+            /> */}
           </section>
 
           <section id="save" className="my-5">
