@@ -379,7 +379,7 @@ input[type="number"] {
 }
 
 .border-right-black {
-  border-right:1px solid black;
+  border-right:0.6px solid black;
 }
 
 /*Client profile style */

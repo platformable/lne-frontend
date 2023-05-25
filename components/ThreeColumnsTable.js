@@ -1,6 +1,35 @@
 import React from "react";
 
-export default function ThreeColumnsTable({ data }) {
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+
+export default function ThreeColumnsTable({ data,notifyMessage }) {
+
+
+
+
+  const createTableImage= async ()=>{
+    var node = document.getElementById('table3');
+
+    htmlToImage.toPng(node)
+      .then(async function (dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        const data = await fetch(dataUrl);
+        const blob = await data.blob();
+    
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            [blob.type]: blob,
+          }),
+        ]);
+        
+      }).then(res=>notifyMessage())
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+}
+
   const calculate = (data, value) => {
     let total = 0;
     data?.forEach((item) => {
@@ -68,7 +97,11 @@ export default function ThreeColumnsTable({ data }) {
     },
   ];
   return (
-    <div className="grid grid-cols-3 border-black">
+    <div>
+
+
+
+<div className="grid grid-cols-3 border-black" id="table3">
       <div className="column1 divide-y divide-black grid grid-rows-6">
         <div className=" px-2 py-2 bg-gray-100">
           <h3 className="font-bold text-lg">Gender</h3>
@@ -112,7 +145,7 @@ export default function ThreeColumnsTable({ data }) {
             <div className="w-3/4 px-2 py-2 items-center flex">
                 <p>{ethnicity.ethnicity}</p>
               </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black " >
+              <div className="w-1/4 justify-center items-center flex border-left-black border-right-black" >
                 <p>{ethnicity.calculate}</p>
               </div>
             </div>
@@ -120,7 +153,7 @@ export default function ThreeColumnsTable({ data }) {
         })}
       </div>
       <div className="column3 divide-y divide-black grid grid-rows-6">
-        <div className="border-left-black px-2 py-2 bg-gray-100 ">
+        <div className="border-left-black px-2 py-2 bg-gray-100  border-right-black">
           <h3 className="font-bold text-lg">Age</h3>
         </div>
         {age?.map((age, index) => {
@@ -134,7 +167,7 @@ export default function ThreeColumnsTable({ data }) {
                 <div className="w-3/4 px-2 py-2  items-center flex">
                 <p>{age.age}</p>
               </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black " >
+              <div className="w-1/4 justify-center items-center flex border-left-black border-right-black " >
                 <p>{age.calculate}</p>
               </div>
             </div>
@@ -142,5 +175,18 @@ export default function ThreeColumnsTable({ data }) {
         })}
       </div>
     </div>
+
+
+
+<div className="flex justify-center my-10">
+        <button
+          onClick={createTableImage}
+          className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow"
+        >
+          <p className="text-lg"> Copy table </p>
+        </button>
+      </div>
+    </div>
+   
   );
 }

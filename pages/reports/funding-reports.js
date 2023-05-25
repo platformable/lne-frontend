@@ -215,27 +215,7 @@ const fundingReport = ({
   };
 
 
-const createTableImage1= async ()=>{
-    var node = document.getElementById('table1');
 
-    htmlToImage.toPng(node)
-      .then(async function (dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-        const data = await fetch(dataUrl);
-        const blob = await data.blob();
-    
-        await navigator.clipboard.write([
-          new ClipboardItem({
-            [blob.type]: blob,
-          }),
-        ]);
-        
-      }).then(res=>console.log("image created"))
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
-}
 
 
 //   console.log("selectedProgressNotes",selectedProgressNotes)
@@ -274,27 +254,17 @@ const createTableImage1= async ()=>{
             <>
               <div className="bg-white rounded-md shadow-md p-5 my-5">
                 <h3 className="font-bold text-2xl my-5">Condoms Distributed</h3>
-                <div id="table1">
+               
                 <ColumnsTable2
-                
+                name={'table1'}
                   datapoints={Object.entries(condomsDistributedNumbers)}
                   title="Number of resources distributed"
                 />
-                </div>
-                <div className="flex justify-center my-10">
-                  <button 
-                  onClick={createTableImage1}
-                  className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
-                    <p className="text-lg"> Copy table </p>
-                  </button>
-                </div>
-                <ThreeColumnsTable data={selectedCondoms} />
+                
+              
+                <ThreeColumnsTable data={selectedCondoms} notifyMessage={notifyMessage}/>
 
-                <div className="flex justify-center my-5">
-                  <button className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
-                    <p className="text-lg"> Copy table</p>
-                  </button>
-                </div>
+    
               </div>
 
               <div className="bg-white rounded-md shadow-md p-5 my-5">
@@ -310,6 +280,7 @@ const createTableImage1= async ()=>{
                     <p className="text-lg"> Copy text</p>
                   </button>
                 </div>
+
                 <ColumnsTable2
                   datapoints={Object.entries(servicesProvidedNumbers)}
                   title="Number of services provided"
@@ -365,7 +336,7 @@ const createTableImage1= async ()=>{
                       <ul>
                         {selectedSupportGroups?.map((item, index) => {
                           return (
-                            <li className="my-5">{item.supportgroupsummary}</li>
+                            <li className="my-5" key={index}>{item.supportgroupsummary}</li>
                           );
                         })}
                        
