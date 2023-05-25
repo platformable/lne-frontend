@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -74,7 +74,7 @@ const fundingReport = ({
     supportivecounselling: { title: "Supportive Counseling", number: 0 },
     treatmenteducation: { title: "Treatment Adherence Assesment", number: 0 },
   });
-  console.log("selectedprogressotes", selectedProgressNotes);
+  //console.log("selectedprogressotes", selectedProgressNotes);
 
   useEffect(() => {
     Object.keys(condomsDistributedNumbers)?.map((item) => {
@@ -105,29 +105,76 @@ const fundingReport = ({
       return service[serviceName] === "1";
     });
 
-    console.log("filtered", filtered);
-
     return filtered;
   };
 
-
   const services = [
-    {name:'Assistance with Benefits/Entitlements', value:'benefitsassistance'},
-    {name:'Assistance with Housing', value: 'housingassistance'},
-    {name:'Assistance with Employment/Education', value: 'employmentassistance'},
-    {name:'CD4/VL Lab Report Check', value: 'cd4vllabreport'},
-    {name:'Comprehensive Behavioral Risk Assessment',value:  'comprehensivebehavioralriskassessmentupdates'},
-    {name:'Development of Action Plan', value: 'developmentactionplan'},
-    {name:'Escort',value: 'escort'},
-    {name:'Intake',value:  'comprehensivebehavioralriskassessment'},
-    {name:'Implementation of Action Plan', value: 'implementationactionplan'},
-    {name:'Linkage to HIV Testing', value: 'preventioncounselling'},
-    {name:'Linkage to HCV Screening',value:  'linkagetoservices'},
-    {name:'Linkage to STD Screening',value:  'linkagetoservices'},
-    {name:'Supportive Counseling',value:  'supportivecounselling'},
-    {name:'Treatment Adherence Assessment', value: 'treatmenteducation'}
+    {
+      name: "Assistance with Benefits/Entitlements",
+      value: "benefitsassistance",
+    },
+    { name: "Assistance with Housing", value: "housingassistance" },
+    {
+      name: "Assistance with Employment/Education",
+      value: "employmentassistance",
+    },
+    { name: "CD4/VL Lab Report Check", value: "cd4vllabreport" },
+    {
+      name: "Comprehensive Behavioral Risk Assessment",
+      value: "comprehensivebehavioralriskassessmentupdates",
+    },
+    { name: "Development of Action Plan", value: "developmentactionplan" },
+    { name: "Escort", value: "escort" },
+    { name: "Intake", value: "comprehensivebehavioralriskassessment" },
+    {
+      name: "Implementation of Action Plan",
+      value: "implementationactionplan",
+    },
+    { name: "Linkage to HIV Testing", value: "preventioncounselling" },
+    { name: "Linkage to HCV Screening", value: "linkagetoservices" },
+    { name: "Linkage to STD Screening", value: "linkagetoservices" },
+    { name: "Supportive Counseling", value: "supportivecounselling" },
+    { name: "Treatment Adherence Assessment", value: "treatmenteducation" },
+  ];
 
-  ]
+  const countClientsPn = () => {
+    const clientList = [];
+
+    const checkIfExistOnList = selectedProgressNotes.forEach(
+      (client, index) => {
+        const check = clientList.filter(
+          (oldclient) => oldclient.progressnotedate === client.progressnotedate
+        );
+        check.length === 0 ? clientList.push(client) : null;
+      }
+    );
+    return clientList.length;
+  };
+
+  const dataPointA = countClientsPn();
+  const datapointB =  useMemo(() => selectedProgressNotes?.reduce((acc, curr) => acc.includes(curr.clientid) ? acc : acc.concat(curr.clientid) , []), [showReport]).length;
+  const datapointC = selectedProgressNotes.length;
+
+  const datapointD = useMemo(() => selectedSupportGroups?.filter(group => {
+    let regex = /^(men|mens)$/i
+    return regex.test(group.supportgroupaudience);
+   }), [showReport]).length
+  const datapointE = useMemo(() => selectedSupportGroups?.filter(group => {
+    let regex = /^(women|womens)$/i
+    return regex.test(group.supportgroupaudience);
+   }), [showReport]).length
+  const datapointF = useMemo(() => selectedSupportGroups?.filter(group => {
+    return new RegExp(`\\b(men and women|mens and womens)\\b`).test(group.supportgroupaudience);
+   }), [showReport]).length
+
+  const linkageRetenctionServicesText = `
+  MSA staff performed a total of ${dataPointA} HNE Encounters to ${datapointB} unduplicated clients, totaling ${datapointC} services. HNS services are provided only to HIV positive clients. This alleviates staff from falling off target dates, and managing caseloads. Linkages to detox and other drug treatment services will be counted as referrals.
+  `;
+
+  const supportGroupText = `${datapointD} groups were held in this reporting month for the men in the program. ${datapointE} groups were held for women in the program.`;
+
+
+//   console.log("selectedProgressNotes",selectedProgressNotes)
   return (
     <Layout>
       <div className="bg-white">
@@ -158,35 +205,109 @@ const fundingReport = ({
             setSelectedSupportGroups={setSelectedSupportGroups}
           />
 
-
-
           {showReport && (
             <>
-              <ColumnsTable2
-                datapoints={Object.entries(condomsDistributedNumbers)}
-                title="Number of resources distributed"
-              />
-              <ColumnsTable2
-                datapoints={Object.entries(servicesProvidedNumbers)}
-                title="Number of services provided"
-              />
+              <div className="bg-white rounded-md shadow-md p-5 my-5">
+                <h3 className="font-bold text-2xl my-5">Condoms Distributed</h3>
+                <ColumnsTable2
+                  datapoints={Object.entries(condomsDistributedNumbers)}
+                  title="Number of resources distributed"
+                />
 
-              <ThreeColumnsTable data={selectedCondoms} />
+                <div className="flex justify-center my-5">
+                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
+                    <p className="text-lg"> Copy table</p>
+                  </button>
+                </div>
+                <ThreeColumnsTable data={selectedCondoms} />
+
+                <div className="flex justify-center my-5">
+                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
+                    <p className="text-lg"> Copy table</p>
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-md shadow-md p-5 my-5">
+                <h3 className="text-xl font-bold my-5 ">
+                  {" "}
+                  Linkage, Retention and Adherence Services - PLWHA
+                </h3>
+                <div className="border-black p-5 ">
+                  <p className="text-lg">{linkageRetenctionServicesText}</p>
+                </div>
+                <div className="flex justify-center my-5">
+                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
+                    <p className="text-lg"> Copy table</p>
+                  </button>
+                </div>
+                <ColumnsTable2
+                  datapoints={Object.entries(servicesProvidedNumbers)}
+                  title="Number of services provided"
+                />
+                <div className="flex justify-center my-5">
+                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
+                    <p className="text-lg"> Copy table</p>
+                  </button>
+                </div>
+
+                {services
+                ? services.map((service, index) => {
+                    return (
+                      <Textarea
+                        key={index}
+                        service={service.name}
+                        data={filterService(
+                          service.value,
+                          selectedProgressNotes
+                        )}
+                        stateValue={"progressnotetext"}
+                      />
+                    );
+                  })
+                : null}
+              </div>
 
 
-              {services ? services.map((service,index)=>{
-                return (<Textarea
-                    key={index}
-                    service={service.name}
-                    data={filterService(service.value, selectedProgressNotes)}
-                  />)
-              }):null}
+              <div className="bg-white rounded-md shadow-md p-5 my-5">
+             
+              <h3 className="text-xl font-bold my-5 ">
+                  Support Groups
+                </h3>
+                <div className="border-black p-5 ">
+                  <p className="text-lg">{supportGroupText}</p>
+                </div>
 
+                <h3 className="text-xl font-bold my-5 ">
+                Here all support group narratives for that can be summarized
+                into a text statement:
+                </h3>
+               
+                <div id="SupportGroups" className=" table-list">
+                  {selectedSupportGroups && (
+                    <>
+                    <div className="bg-light-blue p-5 rounded-md">
+                      <ul>
+                        {selectedSupportGroups?.map((item, index) => {
+                          return (
+                            <li className="my-5">{item.supportgroupsummary}</li>
+                          );
+                        })}
+                       
+                      </ul>
+                      </div>
+                    </>
+                  )}
+                </div>
+             
+         
+              </div>
+              
 
+             
 
+             
             </>
-
-            
           )}
         </div>
       </section>

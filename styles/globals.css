@@ -374,6 +374,14 @@ input[type="number"] {
   border-left: 1px solid var(--darkBlue);
 }
 
+.border-top-black {
+  border-top:1px solid black;
+}
+
+.border-right-black {
+  border-right:1px solid black;
+}
+
 /*Client profile style */
 
 .border-r-dark-blue {
@@ -405,6 +413,8 @@ input[type="radio"], input[type="checkbox"]{
 
 .border-black {
   border:1px solid black;
+  --tw-border-opacity: 1;
+border-color: rgba(0, 0, 0, var(--tw-border-opacity));
 }
 
 .border-black-bold {
@@ -569,4 +579,9 @@ grid-template-columns: 2fr 8fr 2fr;
 
 .bg-dark-yellow {
   background-color: var(--darkYellow);
+}
+
+.reportTextarea {
+  min-height:100px;
+  background-color: var(--lightBlue);
 }

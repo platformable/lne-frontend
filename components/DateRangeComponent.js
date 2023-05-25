@@ -48,7 +48,7 @@ export default function DateRangeComponent({
   }, [selectedDate.start, selectedDate.finish]);
   return (
     <div>
-      <div className="flex justify-between items-center bg-white px-5 py-5 my-5 shadow rounded">
+      <div className="flex justify-between items-center bg-white px-5 py-5 my-5 shadow rounded-md">
         <div>
           <h3 className="font-bold">Choose data range:</h3>
         </div>
