@@ -69,8 +69,8 @@ export default function ThreeColumnsTable({ data }) {
   ];
   return (
     <div className="grid grid-cols-3 border-black">
-      <div className="column1">
-        <div className=" p-3 bg-gray-100">
+      <div className="column1 divide-y divide-black grid grid-rows-6">
+        <div className=" px-2 py-2 bg-gray-100">
           <h3 className="font-bold text-lg">Gender</h3>
         </div>
 
@@ -87,18 +87,18 @@ export default function ThreeColumnsTable({ data }) {
                 index % 2 === 0 ? null : "bg-gray-100"
               }`}
             key={index}>
-              <div className="w-3/4 p-3 border-top-black">
+              <div className="w-3/4 px-2 py-2 items-center flex">
                 <p>{gender.gender}</p>
               </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black border-top-black" >
+              <div className="w-1/4 justify-center items-center flex border-left-black " >
                 <p>{gender.calculate}</p>
               </div>
             </div>
           );
         })}
       </div>
-      <div className="column2">
-        <div className="p-3 bg-gray-100 border-left-black ">
+      <div className="column2 divide-y divide-black grid grid-rows-6">
+        <div className="px-2 py-2 bg-gray-100 border-left-black ">
           <h3 className="font-bold text-lg">Ethnicity</h3>
         </div>
         {ethnicity?.map((ethnicity, index) => {
@@ -109,18 +109,18 @@ export default function ThreeColumnsTable({ data }) {
               }`}
               key={index}
             >
-            <div className="w-3/4 p-3 border-top-black">
+            <div className="w-3/4 px-2 py-2 items-center flex">
                 <p>{ethnicity.ethnicity}</p>
               </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black border-top-black" >
+              <div className="w-1/4 justify-center items-center flex border-left-black " >
                 <p>{ethnicity.calculate}</p>
               </div>
             </div>
           );
         })}
       </div>
-      <div className="column3">
-        <div className="border-left-black p-3 bg-gray-100 ">
+      <div className="column3 divide-y divide-black grid grid-rows-6">
+        <div className="border-left-black px-2 py-2 bg-gray-100 ">
           <h3 className="font-bold text-lg">Age</h3>
         </div>
         {age?.map((age, index) => {
@@ -131,10 +131,10 @@ export default function ThreeColumnsTable({ data }) {
               }`}
               key={index}
             >
-                <div className="w-3/4 p-3 border-top-black">
+                <div className="w-3/4 px-2 py-2  items-center flex">
                 <p>{age.age}</p>
               </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black border-top-black" >
+              <div className="w-1/4 justify-center items-center flex border-left-black " >
                 <p>{age.calculate}</p>
               </div>
             </div>
