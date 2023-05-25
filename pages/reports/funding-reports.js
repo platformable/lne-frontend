@@ -46,43 +46,44 @@ const fundingReport = ({
     lubesdistributed: { title: "Lube satchets distributed", number: 0 },
     dentaldamsdistributed: { title: "Dental dams distributed", number: 0 },
   });
-  const [servicesProvidedNumbers, setServicesProvidedNumbers] = useState(
-    {
-      benefitsassistance: {
-        title: "Assitance with Benefits/Entitlements",
-        number: 0,
-      },
-      housingassistance: { title: "Assistance with Housing", number: 0 },
-      employmentassistance: {
-        title: "Assistance with Employment/Education",
-        number: 0,
-      },
-      cd4vllabreport: { title: "CD4/VL Lab Report Check", number: 0 },
-      comprehensiveriskbehaviorassessmentupdates: {
-        title: "Comprehensive Behavioral Risk Assesment",
-        number: 0,
-      },
-      developmentactionplan: { title: "Development of Action Plan", number: 0 },
-      escort: { title: "Escort", number: 0 },
-      comprehensiveriskbehaviorassessment: { title: "Intake", number: 0 },
-      implementationactionplan: {
-        title: "Implementation of Action Plan",
-        number: 0,
-      },
-      preventioncounselling: { title: "Linkage to HIV Testing", number: 0 },
-      linkagetoservices: { title: "Linkage to HVC Screening", number: 0 },
-      linkagetoservices: { title: "Linkage to STD Screening", number: 0 },
-      supportivecounselling: { title: "Supportive Counseling", number: 0 },
-      treatmenteducation: { title: "Treatment Adherence Assesment", number: 0 },
-    }
-  );
-  console.log("condomsDistributed", condomsDistributedNumbers);
+  const [servicesProvidedNumbers, setServicesProvidedNumbers] = useState({
+    benefitsassistance: {
+      title: "Assitance with Benefits/Entitlements",
+      number: 0,
+    },
+    housingassistance: { title: "Assistance with Housing", number: 0 },
+    employmentassistance: {
+      title: "Assistance with Employment/Education",
+      number: 0,
+    },
+    cd4vllabreport: { title: "CD4/VL Lab Report Check", number: 0 },
+    comprehensiveriskbehaviorassessmentupdates: {
+      title: "Comprehensive Behavioral Risk Assesment",
+      number: 0,
+    },
+    developmentactionplan: { title: "Development of Action Plan", number: 0 },
+    escort: { title: "Escort", number: 0 },
+    comprehensiveriskbehaviorassessment: { title: "Intake", number: 0 },
+    implementationactionplan: {
+      title: "Implementation of Action Plan",
+      number: 0,
+    },
+    preventioncounselling: { title: "Linkage to HIV Testing", number: 0 },
+    linkagetoservices: { title: "Linkage to HVC Screening", number: 0 },
+    linkagetoservices: { title: "Linkage to STD Screening", number: 0 },
+    supportivecounselling: { title: "Supportive Counseling", number: 0 },
+    treatmenteducation: { title: "Treatment Adherence Assesment", number: 0 },
+  });
+  console.log("selectedprogressotes", selectedProgressNotes);
 
   useEffect(() => {
     Object.keys(condomsDistributedNumbers)?.map((item) => {
       selectedCondoms.map((row) => {
         const convertNumber = !row[item] ? 0 : Number(row[item]);
-        setCondomsDistributedNumbers(prev => ({...prev, [item]: {...prev[item], number: convertNumber}}))
+        setCondomsDistributedNumbers((prev) => ({
+          ...prev,
+          [item]: { ...prev[item], number: convertNumber },
+        }));
       });
     });
   }, [showReport]);
@@ -91,11 +92,42 @@ const fundingReport = ({
     Object.keys(servicesProvidedNumbers)?.map((item) => {
       selectedProgressNotes.map((row) => {
         const convertNumber = !row[item] ? 0 : Number(row[item]);
-        setServicesProvidedNumbers(prev => ({...prev, [item]: {...prev[item], number: convertNumber}}))
-
+        setServicesProvidedNumbers((prev) => ({
+          ...prev,
+          [item]: { ...prev[item], number: convertNumber },
+        }));
       });
     });
   }, [showReport]);
+
+  const filterService = (serviceName, initialArray) => {
+    const filtered = initialArray.filter((service, index) => {
+      return service[serviceName] === "1";
+    });
+
+    console.log("filtered", filtered);
+
+    return filtered;
+  };
+
+
+  const services = [
+    {name:'Assistance with Benefits/Entitlements', value:'benefitsassistance'},
+    {name:'Assistance with Housing', value: 'housingassistance'},
+    {name:'Assistance with Employment/Education', value: 'employmentassistance'},
+    {name:'CD4/VL Lab Report Check', value: 'cd4vllabreport'},
+    {name:'Comprehensive Behavioral Risk Assessment',value:  'comprehensivebehavioralriskassessmentupdates'},
+    {name:'Development of Action Plan', value: 'developmentactionplan'},
+    {name:'Escort',value: 'escort'},
+    {name:'Intake',value:  'comprehensivebehavioralriskassessment'},
+    {name:'Implementation of Action Plan', value: 'implementationactionplan'},
+    {name:'Linkage to HIV Testing', value: 'preventioncounselling'},
+    {name:'Linkage to HCV Screening',value:  'linkagetoservices'},
+    {name:'Linkage to STD Screening',value:  'linkagetoservices'},
+    {name:'Supportive Counseling',value:  'supportivecounselling'},
+    {name:'Treatment Adherence Assessment', value: 'treatmenteducation'}
+
+  ]
   return (
     <Layout>
       <div className="bg-white">
@@ -126,7 +158,7 @@ const fundingReport = ({
             setSelectedSupportGroups={setSelectedSupportGroups}
           />
 
-          <Textarea service={"Assitance with Benefits/Entitlements"} />
+
 
           {showReport && (
             <>
@@ -138,10 +170,24 @@ const fundingReport = ({
                 datapoints={Object.entries(servicesProvidedNumbers)}
                 title="Number of services provided"
               />
-            </>
-          )}
 
-          <ThreeColumnsTable data={condomsDistributed}/>
+              <ThreeColumnsTable data={selectedCondoms} />
+
+
+              {services ? services.map((service,index)=>{
+                return (<Textarea
+                    key={index}
+                    service={service.name}
+                    data={filterService(service.value, selectedProgressNotes)}
+                  />)
+              }):null}
+
+
+
+            </>
+
+            
+          )}
         </div>
       </section>
     </Layout>
@@ -152,26 +198,32 @@ export default fundingReport;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-
     try {
-        const [clients, progressNotes,supportGroups,condomsDistributed] = await Promise.all([
-            fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
-              r.json()
-            ),
-            fetch(
-              `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`
-            ).then((r) => r.json()),
-            fetch(
-              `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
-            ).then((r) => r.json()),
-            fetch(
-              `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
-            ).then((r) => r.json()),
-          ]);
-          return { props: { clients: clients, progressNotes: progressNotes,supportGroups:supportGroups,condomsDistributed:condomsDistributed } };
+      const [clients, progressNotes, supportGroups, condomsDistributed] =
+        await Promise.all([
+          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+            r.json()
+          ),
+          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`).then(
+            (r) => r.json()
+          ),
+          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`).then(
+            (r) => r.json()
+          ),
+          fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
+          ).then((r) => r.json()),
+        ]);
+      return {
+        props: {
+          clients: clients,
+          progressNotes: progressNotes,
+          supportGroups: supportGroups,
+          condomsDistributed: condomsDistributed,
+        },
+      };
     } catch (error) {
-        return {props: {message:"An error ocurred"}}
+      return { props: { message: "An error ocurred" } };
     }
-   
   },
 });

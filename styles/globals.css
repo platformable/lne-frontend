@@ -398,6 +398,11 @@ input[type="radio"], input[type="checkbox"]{
 }
 
 
+.table-list ul li {
+  list-style-type: disc;
+  margin-left:20px;
+}
+
 .border-black {
   border:1px solid black;
 }
