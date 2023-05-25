@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo,useRef } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -10,6 +10,12 @@ import Textarea from "../../components/Textarea";
 import ColumnsTable2 from "../../components/2ColumnsTable";
 import ThreeColumnsTable from "../../components/ThreeColumnsTable";
 import DateRangeComponent from "../../components/DateRangeComponent";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 const fundingReport = ({
   clients,
@@ -174,9 +180,68 @@ const fundingReport = ({
   const supportGroupText = `${datapointD} groups were held in this reporting month for the men in the program. ${datapointE} groups were held for women in the program.`;
 
 
+
+  const linkageRef = useRef(null);
+  const spRef = useRef(null);
+  const divRef3 = useRef(null);
+
+  const notifyMessage = () => {
+    toast.success("Content copied", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
+  const handleCopyText = async (ref) => {
+
+    try {
+      const textToCopy = linkageRef.current.innerText;
+      await navigator.clipboard.writeText(textToCopy);
+      notifyMessage()
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
+  const handleSPCopyText = async (ref) => {
+
+    try {
+      const textToCopy = spRef.current.innerText;
+      await navigator.clipboard.writeText(textToCopy);
+      notifyMessage()
+
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
+
+const createTableImage1= async ()=>{
+    var node = document.getElementById('table1');
+
+    htmlToImage.toPng(node)
+      .then(async function (dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        const data = await fetch(dataUrl);
+        const blob = await data.blob();
+    
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            [blob.type]: blob,
+          }),
+        ]);
+        
+      }).then(res=>console.log("image created"))
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+}
+
+
 //   console.log("selectedProgressNotes",selectedProgressNotes)
   return (
     <Layout>
+        <ToastContainer autoClose={800} />
       <div className="bg-white">
         <section className="container mx-auto shadow-inner">
           <div className="py-5 flex gap-x-5">
@@ -209,20 +274,24 @@ const fundingReport = ({
             <>
               <div className="bg-white rounded-md shadow-md p-5 my-5">
                 <h3 className="font-bold text-2xl my-5">Condoms Distributed</h3>
+                <div id="table1">
                 <ColumnsTable2
+                
                   datapoints={Object.entries(condomsDistributedNumbers)}
                   title="Number of resources distributed"
                 />
-
-                <div className="flex justify-center my-5">
-                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
-                    <p className="text-lg"> Copy table</p>
+                </div>
+                <div className="flex justify-center my-10">
+                  <button 
+                  onClick={createTableImage1}
+                  className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
+                    <p className="text-lg"> Copy table </p>
                   </button>
                 </div>
                 <ThreeColumnsTable data={selectedCondoms} />
 
                 <div className="flex justify-center my-5">
-                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
+                  <button className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
                     <p className="text-lg"> Copy table</p>
                   </button>
                 </div>
@@ -233,12 +302,12 @@ const fundingReport = ({
                   {" "}
                   Linkage, Retention and Adherence Services - PLWHA
                 </h3>
-                <div className="border-black p-5 ">
+                <div className="border-black p-5 " ref={linkageRef}>
                   <p className="text-lg">{linkageRetenctionServicesText}</p>
                 </div>
                 <div className="flex justify-center my-5">
-                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
-                    <p className="text-lg"> Copy table</p>
+                  <button onClick={handleCopyText} className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
+                    <p className="text-lg"> Copy text</p>
                   </button>
                 </div>
                 <ColumnsTable2
@@ -246,7 +315,7 @@ const fundingReport = ({
                   title="Number of services provided"
                 />
                 <div className="flex justify-center my-5">
-                  <button className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
+                  <button className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
                     <p className="text-lg"> Copy table</p>
                   </button>
                 </div>
@@ -274,8 +343,14 @@ const fundingReport = ({
               <h3 className="text-xl font-bold my-5 ">
                   Support Groups
                 </h3>
-                <div className="border-black p-5 ">
+                <div className="border-black p-5 " ref={spRef}>
                   <p className="text-lg">{supportGroupText}</p>
+                </div>
+
+                <div className="flex justify-center my-10">
+                  <button onClick={handleSPCopyText} className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
+                    <p className="text-lg"> Copy text</p>
+                  </button>
                 </div>
 
                 <h3 className="text-xl font-bold my-5 ">
