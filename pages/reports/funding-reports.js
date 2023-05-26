@@ -54,31 +54,34 @@ const fundingReport = ({
   });
   const [servicesProvidedNumbers, setServicesProvidedNumbers] = useState({
     benefitsassistance: {
+        id:1,
       title: "Assitance with Benefits/Entitlements",
       number: 0,
     },
-    housingassistance: { title: "Assistance with Housing", number: 0 },
+    housingassistance: { title: "Assistance with Housing", number: 0, id:2, },
     employmentassistance: {
       title: "Assistance with Employment/Education",
       number: 0,
     },
-    cd4vllabreport: { title: "CD4/VL Lab Report Check", number: 0 },
+    cd4vllabreport: { title: "CD4/VL Lab Report Check", number: 0, id:3, },
     comprehensiveriskbehaviorassessmentupdates: {
+        id:3,
       title: "Comprehensive Behavioral Risk Assesment",
       number: 0,
     },
-    developmentactionplan: { title: "Development of Action Plan", number: 0 },
-    escort: { title: "Escort", number: 0 },
-    comprehensiveriskbehaviorassessment: { title: "Intake", number: 0 },
+    developmentactionplan: { title: "Development of Action Plan", number: 0, id:4, },
+    escort: { title: "Escort", number: 0 , id:5,},
+    comprehensiveriskbehaviorassessment: { title: "Intake", number: 0, id:6, },
     implementationactionplan: {
       title: "Implementation of Action Plan",
       number: 0,
+      id:7,
     },
-    preventioncounselling: { title: "Linkage to HIV Testing", number: 0 },
-    linkagetoservices: { title: "Linkage to HVC Screening", number: 0 },
-    linkagetoservices: { title: "Linkage to STD Screening", number: 0 },
-    supportivecounselling: { title: "Supportive Counseling", number: 0 },
-    treatmenteducation: { title: "Treatment Adherence Assesment", number: 0 },
+    preventioncounselling: { title: "Linkage to HIV Testing", number: 0, id:8, },
+    linkagetoservices: { title: "Linkage to HVC Screening", number: 0, id:9, },
+    linkagetoservices: { title: "Linkage to STD Screening", number: 0, id:10, },
+    supportivecounselling: { title: "Supportive Counseling", number: 0, id:11, },
+    treatmenteducation: { title: "Treatment Adherence Assesment", number: 0, id:12, },
   });
   //console.log("selectedprogressotes", selectedProgressNotes);
 
@@ -259,6 +262,7 @@ const fundingReport = ({
                 name={'table1'}
                   datapoints={Object.entries(condomsDistributedNumbers)}
                   title="Number of resources distributed"
+                  notifyMessage={notifyMessage}
                 />
                 
               
@@ -282,14 +286,12 @@ const fundingReport = ({
                 </div>
 
                 <ColumnsTable2
+                name={'table2'}
                   datapoints={Object.entries(servicesProvidedNumbers)}
                   title="Number of services provided"
+                  notifyMessage={notifyMessage}
                 />
-                <div className="flex justify-center my-5">
-                  <button className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
-                    <p className="text-lg"> Copy table</p>
-                  </button>
-                </div>
+       
 
                 {services
                 ? services.map((service, index) => {

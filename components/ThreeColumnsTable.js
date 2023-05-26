@@ -1,41 +1,38 @@
 import React from "react";
 
-import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import * as htmlToImage from "html-to-image";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 
-export default function ThreeColumnsTable({ data,notifyMessage }) {
+export default function ThreeColumnsTable({ data, notifyMessage }) {
+  const createTableImage = async () => {
+    var node = document.getElementById("table3");
 
-
-
-
-  const createTableImage= async ()=>{
-    var node = document.getElementById('table3');
-
-    htmlToImage.toPng(node)
+    htmlToImage
+      .toPng(node)
       .then(async function (dataUrl) {
         var img = new Image();
         img.src = dataUrl;
         const data = await fetch(dataUrl);
         const blob = await data.blob();
-    
+
         await navigator.clipboard.write([
           new ClipboardItem({
             [blob.type]: blob,
           }),
         ]);
-        
-      }).then(res=>notifyMessage())
+      })
+      .then((res) => notifyMessage())
       .catch(function (error) {
-        console.error('oops, something went wrong!', error);
+        console.error("oops, something went wrong!", error);
       });
-}
+  };
 
   const calculate = (data, value) => {
     let total = 0;
     data?.forEach((item) => {
       total += item[value];
-      if (value==='transwoman'){
-        console.log(value,item[value])
+      if (value === "transwoman") {
+        console.log(value, item[value]);
       }
     });
     return total;
@@ -98,87 +95,77 @@ export default function ThreeColumnsTable({ data,notifyMessage }) {
   ];
   return (
     <div>
+      <div className="grid grid-cols-3 border-black" id="table3">
+        <div className="column1 divide-y divide-black grid grid-rows-6">
+          <div className=" px-2 py-2 bg-gray-100">
+            <h3 className="font-bold text-lg">Gender</h3>
+          </div>
 
-
-
-<div className="grid grid-cols-3 border-black" id="table3">
-      <div className="column1 divide-y divide-black grid grid-rows-6">
-        <div className=" px-2 py-2 bg-gray-100">
-          <h3 className="font-bold text-lg">Gender</h3>
+          {gender?.map((gender, index) => {
+            return (
+              <div
+                className={`dataItem flex  ${
+                  index % 2 === 0 ? null : "bg-gray-100"
+                }`}
+                key={index}
+              >
+                <div className="w-3/4 px-2 py-2 items-center flex">
+                  <p>{gender.gender}</p>
+                </div>
+                <div className="w-1/4 justify-center items-center flex border-left-black ">
+                  <p>{gender.calculate}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
-
-
-       {/*  <div className="flex border-top-black">
-          <p>Men</p>
-          <p>0</p>
-        </div> */}
-
-        {gender?.map((gender, index) => {
-          return (
-            <div
-              className={`dataItem flex  ${
-                index % 2 === 0 ? null : "bg-gray-100"
-              }`}
-            key={index}>
-              <div className="w-3/4 px-2 py-2 items-center flex">
-                <p>{gender.gender}</p>
+        <div className="column2 divide-y divide-black grid grid-rows-6">
+          <div className="px-2 py-2 bg-gray-100 border-left-black border-right-black ">
+            <h3 className="font-bold text-lg">Ethnicity</h3>
+          </div>
+          {ethnicity?.map((ethnicity, index) => {
+            return (
+              <div
+                className={`dataItem flex border-left-black border-right-black ${
+                  index % 2 === 0 ? null : "bg-gray-100"
+                }`}
+                key={index}
+              >
+                <div className="w-3/4 px-2 py-2 items-center flex">
+                  <p>{ethnicity.ethnicity}</p>
+                </div>
+                <div className="w-1/4 justify-center items-center flex border-left-black ">
+                  <p>{ethnicity.calculate}</p>
+                </div>
               </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black " >
-                <p>{gender.calculate}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="column2 divide-y divide-black grid grid-rows-6">
-        <div className="px-2 py-2 bg-gray-100 border-left-black ">
-          <h3 className="font-bold text-lg">Ethnicity</h3>
+            );
+          })}
         </div>
-        {ethnicity?.map((ethnicity, index) => {
-          return (
-            <div
-              className={`dataItem flex border-left-black border-right-black ${
-                index % 2 === 0 ? null : "bg-gray-100"
-              }`}
-              key={index}
-            >
-            <div className="w-3/4 px-2 py-2 items-center flex">
-                <p>{ethnicity.ethnicity}</p>
-              </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black border-right-black" >
-                <p>{ethnicity.calculate}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="column3 divide-y divide-black grid grid-rows-6">
-        <div className="border-left-black px-2 py-2 bg-gray-100  border-right-black">
-          <h3 className="font-bold text-lg">Age</h3>
-        </div>
-        {age?.map((age, index) => {
-          return (
-            <div
-              className={`dataItem flex ${
-                index % 2 === 0 ? null : "bg-gray-100"
-              }`}
-              key={index}
-            >
+        <div className="column3 divide-y divide-black grid grid-rows-6">
+          <div className="px-2 py-2 bg-gray-100  ">
+            <h3 className="font-bold text-lg">Age</h3>
+          </div>
+          {age?.map((age, index) => {
+            return (
+              <div
+                className={`dataItem flex ${
+                  index % 2 === 0 ? null : "bg-gray-100"
+                }`}
+                key={index}
+              >
                 <div className="w-3/4 px-2 py-2  items-center flex">
-                <p>{age.age}</p>
+                  <p>{age.age}</p>
+                </div>
+                <div className="w-1/4 justify-center items-center flex border-left-black">
+                  <p>{age.calculate}</p>
+                </div>
               </div>
-              <div className="w-1/4 justify-center items-center flex border-left-black border-right-black " >
-                <p>{age.calculate}</p>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
 
-
-
-<div className="flex justify-center my-10">
+      <div className="flex justify-center my-10">
         <button
           onClick={createTableImage}
           className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow"
@@ -187,6 +174,5 @@ export default function ThreeColumnsTable({ data,notifyMessage }) {
         </button>
       </div>
     </div>
-   
   );
 }

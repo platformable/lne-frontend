@@ -358,6 +358,11 @@ input[type="number"] {
 
 /* BORDERS */
 
+.negative {
+
+  margin-top:1px;
+  margin-bottom:1px;
+}
 
 .border-b-black {
   border-bottom: 1px solid black;
