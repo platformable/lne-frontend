@@ -54,22 +54,22 @@ export default function ColumnsTable2({
   }, [ref]);
   return (
     <>
-    <div className="negative py-5" id={name}>
-      <div className="border-2 border-black divide-y-2 divide-black ">
+    <div className="" id={name}>
+      <div className="border-2 border-black divide-y divide-black ">
         <div className="bg-gray-100">
           <h4 className="px-3 py-2 font-bold text-lg">{title}</h4>
         </div>
-        <div className="grid grid-cols-2 divide-x-2  divide-black ">
+        <div className="grid grid-cols-2 divide-x  divide-black ">
           {datapoints &&
             [
               [0, Math.ceil(datapoints.length / 2)],
               [Math.ceil(datapoints.length / 2)],
             ].map((part, index) => (
-              <div className="divide-y-2 divide-black" key={index}>
+              <div className="divide-y divide-black" key={index}>
                 {datapoints.slice(...part).map((item, i) => (
                   <div
                     key={item.id}
-                    className="grid divide-x-2  divide-black grid-cols-[5fr_1fr] "
+                    className="grid divide-x  divide-black grid-cols-[5fr_1fr] "
                   >
                     <p className="py-2 px-3">{item[1].title}</p>
 
