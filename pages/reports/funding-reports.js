@@ -83,7 +83,6 @@ const fundingReport = ({
     supportivecounselling: { title: "Supportive Counseling", number: 0, id:11, },
     treatmenteducation: { title: "Treatment Adherence Assesment", number: 0, id:12, },
   });
-  //console.log("selectedprogressotes", selectedProgressNotes);
 
   useEffect(() => {
     Object.keys(condomsDistributedNumbers)?.map((item) => {
@@ -91,7 +90,7 @@ const fundingReport = ({
         const convertNumber = !row[item] ? 0 : Number(row[item]);
         setCondomsDistributedNumbers((prev) => ({
           ...prev,
-          [item]: { ...prev[item], number: convertNumber },
+          [item]: { ...prev[item], number: prev[item]['number'] + convertNumber },
         }));
       });
     });
@@ -101,9 +100,10 @@ const fundingReport = ({
     Object.keys(servicesProvidedNumbers)?.map((item) => {
       selectedProgressNotes.map((row) => {
         const convertNumber = !row[item] ? 0 : Number(row[item]);
+        // console.log(row[item], convertNumber)
         setServicesProvidedNumbers((prev) => ({
           ...prev,
-          [item]: { ...prev[item], number: convertNumber },
+          [item]: { ...prev[item], number: prev[item]['number'] + convertNumber },
         }));
       });
     });
@@ -218,14 +218,11 @@ const fundingReport = ({
   };
 
 
-
-
-
 //   console.log("selectedProgressNotes",selectedProgressNotes)
   return (
     <Layout>
         <ToastContainer autoClose={800} />
-      <div className="bg-white">
+      <div className="bg-white" id="top-header">
         <section className="container mx-auto shadow-inner">
           <div className="py-5 flex gap-x-5">
             <BackButton />
@@ -234,7 +231,6 @@ const fundingReport = ({
 
           <div className="grid grid-cols-2 py-5">
             <h1 className="font-bold px-2">Prepare Funding Reports</h1>
-            <div className="flex justify-end self-end"></div>
           </div>
         </section>
       </div>
@@ -259,7 +255,7 @@ const fundingReport = ({
                 <h3 className="font-bold text-2xl my-5">Condoms Distributed</h3>
                
                 <ColumnsTable2
-                name={'table1'}
+                  name={'table1'}
                   datapoints={Object.entries(condomsDistributedNumbers)}
                   title="Number of resources distributed"
                   notifyMessage={notifyMessage}
@@ -272,14 +268,14 @@ const fundingReport = ({
               </div>
 
               <div className="bg-white rounded-md shadow-md p-5 my-5">
-                <h3 className="text-xl font-bold my-5 ">
+                <h3 className=" font-bold my-5 ">
                   {" "}
                   Linkage, Retention and Adherence Services - PLWHA
                 </h3>
                 <div className="border-black p-5 " ref={linkageRef}>
                   <p className="text-lg">{linkageRetenctionServicesText}</p>
                 </div>
-                <div className="flex justify-center my-5">
+                <div className="flex justify-center my-10">
                   <button onClick={handleCopyText} className="bg-yellow py-2  rounded px-20 flex gap-3 items-center flex shadow">
                     <p className="text-lg"> Copy text</p>
                   </button>
@@ -348,10 +344,14 @@ const fundingReport = ({
                   )}
                 </div>
              
-         
               </div>
               
 
+              <div className="flex justify-center my-10">
+                  <a href="#top-header"  className="bg-yellow py-2  rounded px-14 flex gap-3 items-center flex shadow">
+                    <p className="text-lg">Back to the top</p>
+                  </a>
+                </div>
              
 
              
