@@ -357,8 +357,11 @@ input[type="number"] {
 }
 
 /* BORDERS */
-.border-black {
-  border: 1px solid black;
+
+.negative {
+
+  margin-top:1px;
+  margin-bottom:1px;
 }
 
 .border-b-black {
@@ -374,6 +377,14 @@ input[type="number"] {
 
 .border-l-dark-blue {
   border-left: 1px solid var(--darkBlue);
+}
+
+.border-top-black {
+  border-top:1px solid black;
+}
+
+.border-right-black {
+  border-right:0.6px solid black;
 }
 
 /*Client profile style */
@@ -395,8 +406,25 @@ input[type="radio"], input[type="checkbox"]{
   height: 35px;
 }
 
+.border-left-black {
+  border-left:1.4px solid black;
+}
 
 
+.table-list ul li {
+  list-style-type: disc;
+  margin-left:20px;
+}
+
+.border-black {
+  border:1px solid black;
+  --tw-border-opacity: 1;
+border-color: rgba(0, 0, 0, var(--tw-border-opacity));
+}
+
+.border-black-bold {
+  border:1px solid black;
+}
 
 .button-toogle:checked ~ .dot {
   transform: translateX(100%);
@@ -556,4 +584,9 @@ grid-template-columns: 2fr 8fr 2fr;
 
 .bg-dark-yellow {
   background-color: var(--darkYellow);
+}
+
+.reportTextarea {
+  min-height:100px;
+  background-color: var(--lightBlue);
 }
