@@ -240,6 +240,7 @@ const FundingReport = ({
 
       <section className="my-10">
         <div className="container mx-auto grid-cols-1 gap-5">
+          <p>Please use Google Chrome browser for better performance</p>
           <DateRangeComponent
             generateReport={generateReport}
             clients={clients}
