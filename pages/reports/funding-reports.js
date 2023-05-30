@@ -275,14 +275,17 @@ const FundingReport = ({
     const checkIfExistOnList = selectedProgressNotes.forEach(
       (client, index) => {
         const check = clientList.filter(
-          (oldclient) => oldclient.progressnotedate === client.progressnotedate
+          (oldclient) => oldclient.progressnotedate === client.progressnotedate && oldclient.clientid === client.clientid
         );
         check.length === 0 ? clientList.push(client) : null;
       }
     );
+
     return clientList.length;
   };
 
+
+  console.log("selected PN",selectedProgressNotes)
   const dataPointA = countClientsPn();
   const datapointB = useMemo(
     () =>
@@ -376,6 +379,7 @@ const FundingReport = ({
 
       <section className="my-10">
         <div className="container mx-auto grid-cols-1 gap-5">
+          <p>Please use Google Chrome browser for better performance</p>
           <DateRangeComponent
             generateReport={generateReport}
             clients={clients}

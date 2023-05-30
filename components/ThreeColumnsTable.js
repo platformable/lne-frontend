@@ -97,7 +97,7 @@ export default function ThreeColumnsTable({ data, notifyMessage }) {
     <div>
       <div className="grid grid-cols-3 border-black" id="table3">
         <div className="column1 divide-y divide-black grid grid-rows-6">
-          <div className=" px-2 py-2 bg-gray-100 flex items-center">
+          <div className=" px-2 py-2 bg-row-dark flex items-center">
             <h3 className="font-bold text-lg">Gender</h3>
           </div>
 
@@ -105,7 +105,7 @@ export default function ThreeColumnsTable({ data, notifyMessage }) {
             return (
               <div
                 className={`dataItem flex  ${
-                  index % 2 === 0 ? null : "bg-gray-100"
+                  index % 2 === 0 ? null : "ligth-blue-bg"
                 }`}
                 key={index}
               >
@@ -120,14 +120,14 @@ export default function ThreeColumnsTable({ data, notifyMessage }) {
           })}
         </div>
         <div className="column2 divide-y divide-black grid grid-rows-6">
-          <div className="px-2 py-2 bg-gray-100 border-left-black border-right-black flex items-center">
+          <div className="px-2 py-2 bg-row-dark border-left-black border-right-black flex items-center">
             <h3 className="font-bold text-lg">Ethnicity</h3>
           </div>
           {ethnicity?.map((ethnicity, index) => {
             return (
               <div
                 className={`dataItem flex border-left-black border-right-black ${
-                  index % 2 === 0 ? null : "bg-gray-100"
+                  index % 2 === 0 ? null : "ligth-blue-bg"
                 }`}
                 key={index}
               >
@@ -142,14 +142,14 @@ export default function ThreeColumnsTable({ data, notifyMessage }) {
           })}
         </div>
         <div className="column3 divide-y divide-black grid grid-rows-6">
-          <div className="px-2 py-2 bg-gray-100 flex items-center ">
+          <div className="px-2 py-2 bg-row-dark flex items-center ">
             <h3 className="font-bold text-lg">Age</h3>
           </div>
           {age?.map((age, index) => {
             return (
               <div
                 className={`dataItem flex ${
-                  index % 2 === 0 ? null : "bg-gray-100"
+                  index % 2 === 0 ? null : "ligth-blue-bg"
                 }`}
                 key={index}
               >
