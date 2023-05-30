@@ -14,7 +14,7 @@ export default function Textarea({ data, service,stateValue }) {
       <div
         id="message"
 
-        className="table-list reportTextarea block p-2.5 w-full text-sm  bg-blue-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="table-list reportTextarea block p-2.5 w-full text-sm  bg-blue-50 rounded-lg border border-gray-300  "
       >
       {data?.map((summary,index)=>summary[stateValue]===0 || summary[stateValue]=== '0' ? 'N/A' :<ul key={index}><li className="my-5">{summary[stateValue]}</li></ul>)}
       </div>
