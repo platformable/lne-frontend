@@ -305,7 +305,7 @@ const Services = ({ clients, averageNumbers }) => {
                 <Link href={"/reports/funding-reports"}>
                   <figure className="flex flex-col items-center">
                     <img
-                      src="/supervisor/monitor_funding_requirements.svg"
+                      src="/prepare_funding_report_icon.svg"
                       className="mb-5"
                       alt="monitor STAFF PROGRESS"
                     ></img>

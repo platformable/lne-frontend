@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import * as htmlToImage from "html-to-image";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 
-const fundingReport = ({
+const FundingReport = ({
   clients,
   progressNotes,
   condomsDistributed,
@@ -502,7 +502,7 @@ const fundingReport = ({
   );
 };
 
-export default fundingReport;
+export default FundingReport;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
