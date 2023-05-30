@@ -152,14 +152,17 @@ const FundingReport = ({
     const checkIfExistOnList = selectedProgressNotes.forEach(
       (client, index) => {
         const check = clientList.filter(
-          (oldclient) => oldclient.progressnotedate === client.progressnotedate
+          (oldclient) => oldclient.progressnotedate === client.progressnotedate && oldclient.clientid === client.clientid
         );
         check.length === 0 ? clientList.push(client) : null;
       }
     );
+
     return clientList.length;
   };
 
+
+  console.log("selected PN",selectedProgressNotes)
   const dataPointA = countClientsPn();
   const datapointB =  useMemo(() => selectedProgressNotes?.reduce((acc, curr) => acc.includes(curr.clientid) ? acc : acc.concat(curr.clientid) , []), [showReport]).length;
   const datapointC = selectedProgressNotes.length;
