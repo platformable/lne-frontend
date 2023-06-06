@@ -94,7 +94,9 @@ export default function AuthorizedUsersIndex({ data, users }) {
                     />
                     <h2 className="font-bold text-2xl">Authorized Users</h2>
                   </div>
-                  <button className="btn-yellow flex justify-between text-xl items-center py-2 rounded-md shadow-md gap-3 font-medium px-5">
+                  <button 
+                  onClick={()=>{setShowModal(!showModal)}}
+                  className="btn-yellow flex justify-between text-xl items-center py-2 rounded-md shadow-md gap-3 font-medium px-5">
                     <img
                       src="/authorised_users_supervisor/add_user.svg"
                       alt=""
