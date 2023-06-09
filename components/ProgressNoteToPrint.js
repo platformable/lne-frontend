@@ -8,109 +8,109 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
 
   const whichServiceBeenAded = [
-    {
+    /* {
       value: data.LNEHNSEligibilityForm,
-      state_label: "HNSEligibilityForm",
-      row_color: "bg-light-blue",
+      state_label: "LNEHNSEligibilityForm",
+      row_color: "bg-msaForm-light-blue",
       form_text: "HNS Eligibility Assessment",
-    },
+    },*/
     // {value:data.HNSReadinessForm ,state_label: "HNSReadinessForm",row_color: "bg-light-blue", form_text: "HNS Readiness Assessment", },
     {
       value: data.StatusChangesForm,
       state_label: "StatusChangesForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Status Changes/Closure Forms",
     },
     {
       value: data.ComprehensiveRiskBehaviorAssessmentUpdates,
       state_label: "ComprehensiveRiskBehaviorAssessmentUpdates",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Comprehensive Behavioral Risk Assessment Updates",
     },
     {
       value: data.M11QForm,
       state_label: "M11QForm",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "M11Q",
     },
     {
       value: data.CD4VLReports,
       state_label: "CD4VLReports",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "CD4/VL Check Reports",
     },
     {
       value: data.InitialTreatmentAdherenceIntake,
       state_label: "InitialTreatmentAdherenceIntake",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Initial Treatment Adherence Intake",
     },
     {
       value: data.TreatmentAdherenceUpdates,
       state_label: "TreatmentAdherenceUpdates",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "Treatment Adherence Updates",
     },
-    {
+    /* {
       value: data.AIRSCollateralInformation,
       state_label: "AIRSCollateralInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Collateral Information",
     },
     {
       value: data.AIRSDrugRegimen,
       state_label: "AIRSDrugRegimen",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Drug Regimen History",
     },
     {
       value: data.AIRSFinancialInformation,
       state_label: "AIRSFinancialInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Financial Information",
     },
     {
       value: data.AIRSHIVAIDSRiskHistory,
       state_label: "AIRSHIVAIDSRiskHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV AIDS Risk History",
     },
     {
       value: data.AIRSHIVMedicalProvider,
       state_label: "AIRSHIVMedicalProvider",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV Medical Provider History",
     },
     {
       value: data.AIRSHIVStatusHistory,
       state_label: "AIRSHIVStatusHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HIV Status History",
     },
     {
       value: data.AIRSHCVHistory,
       state_label: "AIRSHCVHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS HCV History",
     },
     {
       value: data.AIRSHousingInformation,
       state_label: "AIRSHousingInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Housing Information",
     },
     {
       value: data.AIRSInsuranceInformation,
       state_label: "AIRSInsuranceInformation",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Insurance Information",
     },
     {
       value: data.AIRSSubstanceUseHistory,
       state_label: "AIRSSubstanceUseHistory",
-      row_color: "bg-light-blue",
+      row_color: "bg-msaForm-light-blue",
       form_text: "AIRS Substance Use History",
-    },
+    }, 
     {
       value: data.LNEClientRights,
       state_label: "LNEClientRights",
@@ -153,44 +153,50 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
       row_color: "bg-light-green",
       form_text:
         "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt",
-    },
+    },*/
     {
-      value: data.LNEOutreachRetentionTrackingForm,
+      value: data.LinkageRetentionAdherenceForms,
       state_label: "LinkageRetentionAdherenceForms",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Linkage, Retention, & Adherence Forms",
     },
     {
-      value: data.LNEReferralInformation,
+      value: data.InternalReferralInformation,
       state_label: "InternalReferralInformation",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Internal Referral Information",
     },
-    {
+    /*{
       value: data.LNEClientReferralForm,
       state_label: "LNEClientReferralForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Identification",
     },
     {
+      value: data.HNSReadinessForm,
+      state_label: "HNSReadinessForm",
+      row_color: "bg-msaForm-light-violet",
+      form_text: "HNS Readiness Form",
+    },*/
+    {
       value: data.SupportGroups,
       state_label: "SupportGroups",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "Support Groups",
     },
     {
       value: data.IDGForm,
       state_label: "IDGForm",
-      row_color: "bg-light-pink",
+      row_color: "bg-msaForm-light-violet",
       form_text: "IDG",
     },
   ];
 
   return (
     <>
-      <div ref={ref}>
-        <div className="container mx-auto">
-          <h3 className="font-bold text-center my-5">Progress Notes </h3>
+      <div ref={ref} className="bg-white">
+        <div className="container mx-auto pt-7">
+          <h3 className="font-bold text-center ">Progress Notes </h3>
         </div>
 
         <main className="container mx-auto px-5">
@@ -202,15 +208,15 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
               <div
                 className={`${Styles.serviceActionPlanPageInfoContainer} gap-x-5 border-dark-blue rounded-xl p-5`}
               >
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 mb-5 items-center">
+                <div className="service-action-plan-page-info-box  ">
+                  <div className="flex gap-x-2 mb-3 items-center">
                     <img src="/calendar-icon.svg" width="24" />
                     <h3 className="font-bold ">Date</h3>
                   </div>
 
                   <label className="block">
-                    <span className="">Progress note date</span>
-                    <p className="">
+                    <span className="text-sm">Progress note date</span>
+                    <p className="text-sm">
                       {new Date(data.progressNoteDate).toLocaleDateString(
                         "en-US",
                         { year: "numeric", month: "numeric", day: "numeric" }
@@ -219,35 +225,35 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                   </label>
                 </div>
 
-                <div className="service-action-plan-page-info-box md:my-0 my-5">
-                  <div className="flex gap-x-2 mb-5 items-center">
+                <div className="service-action-plan-page-info-box ">
+                  <div className="flex gap-x-2 mb-3 items-center">
                     <img src="/client-icon.svg" width="24" />
                     <h3 className="font-bold ">Client</h3>
                   </div>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid  gap-4">
                     <label className="block">
-                      <span className="">First Name</span>
+                      <span className="text-sm">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm"
                         value={data.clientFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="">Last Name</span>
+                      <span className="text-sm">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm"
                         value={data.clientLastName.charAt(0)}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="">Client ID</span>
+                      <span className="text-sm">Client ID</span>
                       <input
                         type="text"
-                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-blue-50  p-2 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm"
                         value={data.clientId}
                         disabled
                       />
@@ -256,25 +262,25 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 </div>
 
                 <div className="service-action-plan-page-info-box">
-                  <div className="flex gap-x-2 mb-5 items-center">
+                  <div className="flex gap-x-2 mb-3 items-center">
                     <img src="/client-icon.svg" width="24" />
                     <h3 className="font-bold ">Health Care Worker</h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-4">
                     <label className="block">
-                      <span className="">First Name</span>
+                      <span className="text-sm">First Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm"
                         value={data.userFirstName}
                         disabled
                       />
                     </label>
                     <label className="block">
-                      <span className="">Last Name</span>
+                      <span className="text-sm">Last Name</span>
                       <input
                         type="text"
-                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-xs"
+                        className="block w-full bg-yellow-50 rounded-md  p-2  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm"
                         value={data.userLastName}
                         disabled
                       />
@@ -285,13 +291,13 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             </div>
           </section>
 
-          <h3 className="font-bold my-5 text-dark-blue">Service Provided</h3>
+          {/* <h3 className="font-bold my-1 text-dark-blue">Service Provided</h3> */}
 
           <section
             id="servidedProvided"
-            className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5"
+            className="gap-x-5 border-dark-blue  rounded-xl p-5 mb-5"
           >
-            <div className="services-container grid md:grid-cols-3 grid-cols-1 gap-x-5">
+            <div className="services-container grid gap-y-3 md:grid-cols-3 grid-cols-1 gap-x-5">
               {/* <div className="services-box grid gap-y-3 items-start justify-start"> */}
               <div className="flex items-center">
                 <label className="flex items-center gap-x-5">
@@ -602,11 +608,11 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     {/* {data.goal1Progress? 'YES':'NO'} */}
                   </label>
                 </div>
-                <div className="flex gap-5 items-center">
+                {/* <div className="flex gap-5 items-center">
                   <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
-                  <h3 className="">Date</h3>
+                   <h3 className="">Date</h3>
                   <p>
                     {data.goal1ProgressDate
                       ? new Date(data.goal1ProgressDate).toLocaleDateString(
@@ -614,15 +620,27 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                           { year: "numeric", month: "numeric", day: "numeric" }
                         )
                       : null}
-                  </p>
-                </div>
+                  </p> 
+                </div> */}
+                <div className="my-5">
+                    <p className="mb-3 text-base">
+                      Goal 1 worked comments
+                    </p>
+                    <textarea
+                      name=""
+                      id=""
+                      rows="10"
+                      className="border-black rounded-md w-full mt-1 text-lg p-2"
+                      value={data.goal1WorkedComments}
+                    ></textarea>
+                  </div>
               </div>
 
               <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 2</p>
                   <label
-                    className=""
+                    className="flex items-center "
                   >
                     <input
                       type="radio"
@@ -638,7 +656,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     No
                   </label>
                 </div>
-                <div className="flex gap-5 items-center">
+                {/* <div className="flex gap-5 items-center">
                   <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
@@ -651,7 +669,19 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                         )
                       : null}
                   </p>
-                </div>
+                </div> */}
+                 <div className="my-5">
+                    <p className="mb-3 font-medium text-base">
+                      Goal 2 worked comments
+                    </p>
+                    <textarea
+                      name=""
+                      id=""
+                      rows="10"
+                      className="border-black rounded-md w-full text-lg p-2"
+                      value={data.goal2WorkedComments}
+                    ></textarea>
+                  </div>
               </div>
 
               {/* <div>
@@ -709,7 +739,8 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 1</p>
 
-                  <label
+                  <label 
+                  className="flex items-center "
                   >
                     <input
                       type="radio"
@@ -725,7 +756,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     No
                   </label>
                 </div>
-                <div className="flex gap-5 items-center">
+                {/* <div className="flex gap-5 items-center">
                   <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
@@ -738,9 +769,9 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                         )
                       : null}
                   </p>
-                </div>
+                </div> */}
                 <div className="my-5">
-                  <span className="">Goal 1 Completion Comments</span>
+                  <span className="">Goal 1 completion comments</span>
                   <textarea
                     name=""
                     id=""
@@ -755,6 +786,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 2</p>
                   <label
+                  className="flex items-center "
                   >
                     <input
                       type="radio"
@@ -770,7 +802,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     No
                   </label>
                 </div>
-                <div className="flex gap-5 items-center">
+                {/* <div className="flex gap-5 items-center">
                   <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div>
@@ -783,9 +815,9 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                         )
                       : null}
                   </p>
-                </div>
+                </div> */}
                 <div className="my-5">
-                  <span className="">Goal 2 Completion Comments</span>
+                  <span className="">Goal 2 completion comments</span>
                   <textarea
                     name=""
                     id=""
@@ -867,7 +899,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
 
             <div className="progressnotes-box flex gap-x-5">
               <p className="text-lg">Has the health care worker signed</p>
-              <label >
+              <label className="flex items-center">
                 <input
                       type="radio"
                       defaultChecked={data.HCWSignature ? "checked" : ""}
@@ -893,16 +925,20 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             className="gap-x-5 border-dark-blue rounded-xl  mb-5 workedGoals mx-1"
             id="workedGoals"
           >
-            <div className="additional-forms-container grid grid-cols-2  divide-blue-500 divide-x-4">
-              <div className="additional-forms-box ">
+            {
+             [
+              [0, 5],
+              [5, 10],
+            ].map((e, index) => (
+                <div className="additional-forms-box " key={index}>
                 {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(0, 15).map((service) => (
+                  whichServiceBeenAded.slice(...e).map((service, i) => (
                     <>
-                      <div
+                      <div key={i}
                         className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
                       >
                         <label
-                          className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
+                          className={`flex items-center pl-5 `}
                         >
                           <input
                             type="checkbox"
@@ -924,59 +960,23 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                                   });
                             }}
                           />
-                          <span
+                          {/* <span
                             className={`${ProgressNotesStyles.checkmark}`}
-                          ></span>
+                          ></span> */}
                         </label>
                         <div className="pl-2">
-                          <p>{service.form_text}</p>
-                        </div>
-                      </div>
-                    </>
-                  ))}
-              </div>{" "}
-              {/* FIN DEL FORM BOX */}
-              <div className="additional-form-box ">
-                {whichServiceBeenAded &&
-                  whichServiceBeenAded.slice(15).map((service) => (
-                    <>
-                      <div
-                        className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 py-2 pl-2  my-2`}
-                      >
-                        <label
-                          className={`${ProgressNotesStyles.checkboxContainer} pl-5 `}
-                        >
-                          <input
-                            type="checkbox"
-                            name=""
-                            id=""
-                            checked={service.value ? "checked" : ""}
-                            // disabled={data[`${service.state_label}Date`] ? true : false} */
-                            onChange={(e) => {
-                              data[service.state_label] === "" ||
-                              data[`${service.state_label}Date`] === null
-                                ? setdata({
-                                    ...data,
-                                    [service.state_label]: !service.value,
-                                    [`${service.state_label}Date`]: new Date(),
-                                  })
-                                : setdata({
-                                    ...data,
-                                    [service.state_label]: !service.value,
-                                  });
-                            }}
-                          />
-                          <span
-                            className={`${ProgressNotesStyles.checkmark}`}
-                          ></span>
-                        </label>
-                        <div className="pl-2">
-                          <p>{service.form_text}</p>
+                          <p className="text-base">{service.form_text}</p>
                         </div>
                       </div>
                     </>
                   ))}
               </div>
+            )) 
+            }
+            <div className="additional-forms-container grid grid-cols-2  divide-blue-500 divide-x-4">
+              
+              {/* FIN DEL FORM BOX */}
+              
             </div>
           </section>
         </main>

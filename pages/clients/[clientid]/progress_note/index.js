@@ -1645,11 +1645,11 @@ const ProgressNotesIndex = ({ data }) => {
                 ].map((e, index) => (
                   <div className="additional-forms-box" key={index}>
                     {whichServiceBeenAded &&
-                      whichServiceBeenAded.slice(...e).map((service, index) => (
-                        <div key={index}>
+                      whichServiceBeenAded.slice(...e).map((service, i) => (
+                        <div key={i}>
                           <div
                             className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 p-3  my-2`}
-                            key={index}
+                           
                           >
                             <label className={`flex items-center gap-5`}>
                               <input
@@ -1753,7 +1753,7 @@ const ProgressNotesIndex = ({ data }) => {
             />
           </div>
         </section>
-        <div style={{ display: "none" }}>
+        <div style={{ display: "block" }}>
           <ProgressNoteToPrint ref={componentRef} data={clientData} />
         </div>
       </Layout>
