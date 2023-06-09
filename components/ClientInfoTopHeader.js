@@ -9,7 +9,7 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                     <img src="/client/client_information.svg"  />
                     <h3 className="font-bold text-2xl">Client Information</h3>
                   </div>
-                  <div className="grid md:grid-cols-3 items-end gap-7">
+                  <div className="grid lg:grid-cols-3 items-end gap-7">
                     <label className="block ">
                       <p className="text-xl font-medium mb-2">Date</p>
                       <input
@@ -52,7 +52,7 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                     />
                     <h3 className="font-bold text-2xl ">Health Care Worker</h3>
                   </div>
-                  <div className="grid md:flex items-end  gap-7">
+                  <div className="grid lg:flex items-end  gap-7">
                     <label className="block">
                       <p className="text-xl font-medium mb-2">First Name</p>
                       <p className="md:w-72 p-3 rounded-md text-lg bg-primary-light-blue">

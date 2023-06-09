@@ -1107,7 +1107,7 @@ const ProgressNotesIndex = ({ data }) => {
                     {/* <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div> */}
-                    <h3 className="text-xl mb-3 font-medium">Target date</h3>
+                    {/* <h3 className="text-xl mb-3 font-medium">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1123,7 +1123,7 @@ const ProgressNotesIndex = ({ data }) => {
                           goal1ProgressDate: e.target.value,
                         })
                       }
-                    />
+                    /> */}
                   </div>
                   <div className="">
                     <p className="mb-3 font-medium text-xl">
@@ -1182,7 +1182,7 @@ const ProgressNotesIndex = ({ data }) => {
                     {/* <div className={`calendarIcon`}>
                     <img src="/date-calendar.svg" width={24} alt="" />
                   </div> */}
-                    <h3 className="text-xl mb-3 font-medium">Target date</h3>
+                    {/* <h3 className="text-xl mb-3 font-medium">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1198,7 +1198,7 @@ const ProgressNotesIndex = ({ data }) => {
                           goal2ProgressDate: e.target.value,
                         })
                       }
-                    />
+                    /> */}
                   </div>
                   <div className="">
                     <p className="mb-3 font-medium text-xl">
@@ -1357,7 +1357,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-xl mb-3">Target date</h3>
+                  {/*   <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1377,7 +1377,7 @@ const ProgressNotesIndex = ({ data }) => {
                           goal1CompletionDate: e.target.value,
                         });
                       }}
-                    />
+                    /> */}
                   </div>
                   <div className="mt-5">
                     <p className="text-xl font-medium mb-3">
@@ -1440,7 +1440,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-xl mb-3">Target date</h3>
+                   {/*  <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1460,7 +1460,7 @@ const ProgressNotesIndex = ({ data }) => {
                           goal2CompletionDate: e.target.value,
                         });
                       }}
-                    />
+                    /> */}
                   </div>
                   <div className="mt-5">
                     <p className="text-xl font-medium mb-3">
@@ -1645,11 +1645,11 @@ const ProgressNotesIndex = ({ data }) => {
                 ].map((e, index) => (
                   <div className="additional-forms-box" key={index}>
                     {whichServiceBeenAded &&
-                      whichServiceBeenAded.slice(...e).map((service, index) => (
-                        <div key={index}>
+                      whichServiceBeenAded.slice(...e).map((service, i) => (
+                        <div key={i}>
                           <div
                             className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 p-3  my-2`}
-                            key={index}
+                           
                           >
                             <label className={`flex items-center gap-5`}>
                               <input
@@ -1753,7 +1753,7 @@ const ProgressNotesIndex = ({ data }) => {
             />
           </div>
         </section>
-        <div style={{ display: "none" }}>
+        <div style={{ display: "block" }}>
           <ProgressNoteToPrint ref={componentRef} data={clientData} />
         </div>
       </Layout>

@@ -1233,7 +1233,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     {/* <div className={`calendarIcon`}>
                       <img src="/date-calendar.svg" width={24} alt="" />
                     </div> */}
-                    <h3 className="text-xl mb-3 font-medium">Target date</h3>
+                   {/*  <h3 className="text-xl mb-3 font-medium">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1245,7 +1245,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                           goal1ProgressDate: e.target.value,
                         })
                       }
-                    />
+                    /> */}
                   </div>
                   <div className="">
                     <p className="mb-3 font-medium text-xl">
@@ -1309,7 +1309,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   {/* <div className={`calendarIcon`}>
                       <img src="/date-calendar.svg" width={24} alt="" />
                     </div> */}
-                  <h3 className="text-xl mb-3 font-medium">Target date</h3>
+                  {/* <h3 className="text-xl mb-3 font-medium">Target date</h3>
                   <input
                     type="date"
                     id=""
@@ -1321,7 +1321,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                         goal2ProgressDate: e.target.value,
                       })
                     }
-                  />
+                  /> */}
                 </div>
                 <div className="">
                   <p className="mb-3 font-medium text-xl">
@@ -1491,7 +1491,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-xl mb-3">Target date</h3>
+                    {/* <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1507,7 +1507,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                           goal1CompletionDate: e.target.value,
                         });
                       }}
-                    />
+                    /> */}
                   </div>
                   <div className="mt-5">
                     <p className="text-xl font-medium mb-3">
@@ -1578,7 +1578,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                    <h3 className="font-medium text-xl mb-3">Target date</h3>
+                    {/* <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1594,7 +1594,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                           goal2CompletionDate: e.target.value,
                         });
                       }}
-                    />
+                    /> */}
                   </div>
                   <div className="mt-5">
                     <p className="text-xl font-medium mb-3">
