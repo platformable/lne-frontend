@@ -453,7 +453,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 goals"
             id="goals"
           >
-            <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
+            <div className="goals-container grid md:grid-cols-2 grid-cols-2 gap-5">
               <div className="goal-box">
                 <div className="goal-top flex items-center my-2">
                   <h3 className="font-bold">Goal 1</h3>
@@ -534,7 +534,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="goal-box">
+             {/*  <div className="goal-box">
                 <div className="goal-top flex items-center my-2">
                   <h3 className="font-bold">Goal 3</h3>
                   <div className="bg-dark-blue md:w-24 lg:w-52  mx-2 h-px"></div>
@@ -569,7 +569,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     value={data.goal3ProgressComments}
                   ></textarea>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
           <div className="flex items-center ml-3 my-4">
@@ -582,7 +582,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
             id="workedGoals"
           >
-            <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
+            <div className="goals-container grid md:grid-cols-2 grid-cols-2 gap-5">
               <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 1</p>
@@ -654,7 +654,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div>
+              {/* <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 3</p>
                   <label
@@ -688,7 +688,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                       : null}
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
           <div className="page-break"></div>
@@ -704,7 +704,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
             className="gap-x-5 border-dark-blue rounded-xl p-5 mb-5 workedGoals"
             id="workedGoals"
           >
-            <div className="goals-container grid md:grid-cols-3 grid-cols-3 gap-5">
+            <div className="goals-container grid md:grid-cols-2 grid-cols-2 gap-5">
               <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 1</p>
@@ -796,7 +796,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div>
+             {/*  <div>
                 <div className="workedGoals-box flex gap-5 ">
                   <p className="text-lg">Goal 3</p>
                   <label
@@ -839,7 +839,7 @@ const ProgressNotesToPrint = React.forwardRef((props, ref) => {
                     value={data.goal3CompletionComments}
                   ></textarea>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
 
