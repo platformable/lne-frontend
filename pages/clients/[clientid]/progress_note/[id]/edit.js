@@ -1277,7 +1277,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                         setClientData({
                           ...clientData,
                           goal2Progress: true,
-                          goal2ProgressDate: "",
+                          goal2ProgressDate: clientData.progressNoteDate,
                         })
                       }
                       defaultChecked={
