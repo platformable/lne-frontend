@@ -1091,7 +1091,7 @@ const ProgressNotesIndex = ({ data }) => {
                     <label className={`flex gap-5 items-center text-xl`}>
                       <input
                         type="radio"
-                        name="workedGoals"
+                        name="workedGoals1"
                         onChange={(e) => {
                           setClientData({
                             ...clientData,
@@ -1166,7 +1166,7 @@ const ProgressNotesIndex = ({ data }) => {
                     <label className={`flex gap-5 items-center text-xl`}>
                       <input
                         type="radio"
-                        name="workedGoals"
+                        name="workedGoals2"
                         onChange={(e) => {
                           setClientData({
                             ...clientData,
