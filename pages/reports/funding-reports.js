@@ -365,7 +365,7 @@ const FundingReport = ({
     <Layout>
       <ToastContainer autoClose={800} />
       <div className="bg-white" id="top-header">
-        <section className="container mx-auto shadow-inner">
+        <section className="container mx-auto">
           <div className="py-5 flex gap-x-5">
             <BackButton />
             <BackToDashboardButton />
