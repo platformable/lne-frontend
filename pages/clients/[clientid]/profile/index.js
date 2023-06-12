@@ -731,7 +731,7 @@ console.log("data server", data)
 
               {progNotes[0]?.progressnotes?.length > 0 ? (
                 progNotes[0]?.progressnotes
-                  .sort((a, b) => new Date(a.date) - new Date(b.date))
+                  .sort((a, b) => new Date(b.date) - new Date(a.date))
                   .map((pn, index) => {
                     return (
                       <div
