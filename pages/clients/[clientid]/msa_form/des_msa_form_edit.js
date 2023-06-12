@@ -605,6 +605,7 @@ const EditMsaFormPage = ({ data }) => {
               data={data}
               clientData={clientData}
               setClientData={setClientData}
+              stateValue='dateFormReviewed'
             />
           <section className="p-10 pt-7 bg-white rounded-b-md goals" id="goals">
               <div className="flex gap-3 items-center mb-10">
@@ -630,7 +631,7 @@ const EditMsaFormPage = ({ data }) => {
               <p className=" py-1 px-5 text-xl text-center font-bold">Date last updated by DES</p>
               </div>
               <div className="flex h-24 py-2 justify-center items-center bg-client-profile-sap-heading">
-              <p className=" py-1 px-5 text-xl text-center font-bold">PDF version uploaded</p>
+              <p className=" py-1 px-5 text-xl text-center font-bold">Paperwork entered into system</p>
               </div>
               <div className="flex h-24 py-2 justify-center items-center bg-client-profile-sap-heading">
               <p className=" py-1 px-5 text-xl text-center font-bold">Scanned version uploaded</p>
