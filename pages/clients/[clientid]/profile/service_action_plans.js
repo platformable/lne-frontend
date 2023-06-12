@@ -146,7 +146,7 @@ export default function ClientServiceActionPlansListPage({ data }) {
                   </p>
                 </div>
 
-                {data?.clientData.length > 0 ? (
+                {data?.clientData?.length > 0 ? (
                   data?.clientData
                     .sort(
                       (a, b) =>
