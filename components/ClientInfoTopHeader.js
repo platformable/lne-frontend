@@ -1,7 +1,7 @@
 
 const ClientInfoTopHeader = ({clientData, setClientData, data,stateValue}) => {
-  console.log("pasa compo", clientData)
-  console.log("statevalue", stateValue)
+  // console.log("pasa compo", clientData)
+  // console.log("statevalue", stateValue)
     return (
         <section id="info" className="p-10 pt-7 bg-white rounded-t-md">
               <div className={`grid md:grid-cols-2 gap-x-5`}>
