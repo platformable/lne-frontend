@@ -16,7 +16,149 @@ import "react-toastify/dist/ReactToastify.css";
 
 import * as htmlToImage from "html-to-image";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
-
+const condomsDistributedInitialState = {
+  kitsdistributed: { title: "Safe Sex kits distributed", number: 0 },
+  extcondomsdistributed: {
+    title: "Condoms distributed outside of office",
+    number: 0,
+  },
+  intcondomsdistributed: {
+    title: "Condoms distributed at LNE office",
+    number: 0,
+  },
+  oralcondomsdistributed: { title: "Oral condoms distributed", number: 0 },
+  lubesdistributed: { title: "Lube satchets distributed", number: 0 },
+  dentaldamsdistributed: { title: "Dental dams distributed", number: 0 },
+}
+const servicesProvidedInitialState = {
+  benefitsassistance: {
+    db_label: "benefitsassistance",
+    title: "Assistance with Benefits/Entitlements",
+    number: 0,
+    id: 1,
+  },
+  housingassistance: {
+    db_label: "housingassistance",
+    title: "Assistance with Housing",
+    number: 0,
+    id: 2,
+  },
+  employmentassistance: {
+    db_label: "",
+    title: "Assistance with Employment/Education",
+    number: 0,
+    id: 3,
+  },
+  cd4vllabreport: {
+    db_label: "cd4vllabreport",
+    title: "CD4/VL Lab Report Check",
+    number: 0,
+    id: 4,
+  },
+  comprehensiveriskbehavioralassessment: {
+    id: 5,
+    db_label: "comprehensivebehavioralriskassessment",
+    title: "Comprehensive Behavioral Risk Assessment",
+    number: 0,
+  },
+  developmentactionplan: {
+    db_label: "developmentactionplan",
+    title: "Development of Action Plan",
+    number: 0,
+    id: 6,
+  },
+  escort: { db_label: "escort", title: "Escort", number: 0, id: 7 },
+  intake: {
+    db_label: "comprehensivebehavioralriskassessment",
+    title: "Intake",
+    number: 0,
+    id: 8,
+  },
+  implementationactionplan: {
+    db_label: "implementationactionplan",
+    title: "Implementation of Action Plan",
+    number: 0,
+    id: 9,
+  },
+  preventioncounselling: {
+    db_label: "preventioncounselling",
+    title: "Linkage to HIV Testing",
+    number: 0,
+    id: 10,
+  },
+  linkagetoHCV: {
+    db_label: "linkagetoservices",
+    title: "Linkage to HVC Screening",
+    number: 0,
+    id: 11,
+  },
+  linkagetoSTD: {
+    db_label: "linkagetoservices",
+    title: "Linkage to STD Screening",
+    number: 0,
+    id: 12,
+  },
+  supportivecounselling: {
+    db_label: "supportivecounselling",
+    title: "Supportive Counseling",
+    number: 0,
+    id: 13,
+  },
+  caseclosuredischarge: {
+    db_label: "caseclosuredischarge",
+    title: "Case Closure/Discharge",
+    number: 0,
+    id: 14,
+  },
+  supportgroups: {
+    db_label: "supportgroups",
+    title: "Support Groups",
+    number: 0,
+    id: 15,
+  },
+  ticklerupdate: {
+    db_label: "ticklerupdate",
+    title: "Tickler Update",
+    number: 0,
+    id: 16,
+  },
+  transportationcoordination: {
+    db_label: "transportationcoordination",
+    title: "Transportation Coordination",
+    number: 0,
+    id: 17,
+  },
+  translationinterpretation: {
+    db_label: "translationinterpretation",
+    title: "Translation/Interpretation",
+    number: 0,
+    id: 18,
+  },
+  treatmenteducation: {
+    db_label: "treatmenteducation",
+    title: "Treatment Adherence Assessment",
+    number: 0,
+    id: 19,
+  },
+  otherassistance: {
+    db_label: "otherassistance",
+    title: "Other Form of Assistance",
+    number: 0,
+    id: 20,
+  },
+  noServicesAdded: {
+    db_label: "noServicesAdded",
+    title: "No Services added",
+    number: 0,
+    id: 21,
+  },
+  total: {
+    // db_label: "noServicesAdded",
+    title: "Total of services provided",
+    number: 0,
+    id: 22,
+  },
+}
 const FundingReport = ({
   clients,
   progressNotes,
@@ -27,7 +169,7 @@ const FundingReport = ({
   const [selectedProgressNotes, setSelectedProgressNotes] = useState([]);
   const [selectedCondoms, setSelectedCondoms] = useState([]);
   const [selectedSupportGroups, setSelectedSupportGroups] = useState([]);
-  const [showReport, setShowReport] = useState(false);
+  const [showReport, setShowReport] = useState(null);
 
   const generateReport = () => setShowReport((prev) => !prev);
   // console.log("selectedClients", selectedClients);
@@ -38,151 +180,11 @@ const FundingReport = ({
   // console.log("progressNotes", progressNotes);
   // console.log("supportGroups", supportGroups);
 
-  const [condomsDistributedNumbers, setCondomsDistributedNumbers] = useState({
-    kitsdistributed: { title: "Safe Sex kits distributed", number: 0 },
-    extcondomsdistributed: {
-      title: "Condoms distributed outside of office",
-      number: 0,
-    },
-    intcondomsdistributed: {
-      title: "Condoms distributed at LNE office",
-      number: 0,
-    },
-    oralcondomsdistributed: { title: "Oral condoms distributed", number: 0 },
-    lubesdistributed: { title: "Lube satchets distributed", number: 0 },
-    dentaldamsdistributed: { title: "Dental dams distributed", number: 0 },
-  });
-  const [servicesProvidedNumbers, setServicesProvidedNumbers] = useState({
-    benefitsassistance: {
-      db_label: "benefitsassistance",
-      title: "Assistance with Benefits/Entitlements",
-      number: 0,
-      id: 1,
-    },
-    housingassistance: {
-      db_label: "housingassistance",
-      title: "Assistance with Housing",
-      number: 0,
-      id: 2,
-    },
-    employmentassistance: {
-      db_label: "",
-      title: "Assistance with Employment/Education",
-      number: 0,
-      id: 3,
-    },
-    cd4vllabreport: {
-      db_label: "cd4vllabreport",
-      title: "CD4/VL Lab Report Check",
-      number: 0,
-      id: 4,
-    },
-    comprehensiveriskbehavioralassessment: {
-      id: 5,
-      db_label: "comprehensivebehavioralriskassessment",
-      title: "Comprehensive Behavioral Risk Assessment",
-      number: 0,
-    },
-    developmentactionplan: {
-      db_label: "developmentactionplan",
-      title: "Development of Action Plan",
-      number: 0,
-      id: 6,
-    },
-    escort: { db_label: "escort", title: "Escort", number: 0, id: 7 },
-    intake: {
-      db_label: "comprehensivebehavioralriskassessment",
-      title: "Intake",
-      number: 0,
-      id: 8,
-    },
-    implementationactionplan: {
-      db_label: "implementationactionplan",
-      title: "Implementation of Action Plan",
-      number: 0,
-      id: 9,
-    },
-    preventioncounselling: {
-      db_label: "preventioncounselling",
-      title: "Linkage to HIV Testing",
-      number: 0,
-      id: 10,
-    },
-    linkagetoHCV: {
-      db_label: "linkagetoservices",
-      title: "Linkage to HVC Screening",
-      number: 0,
-      id: 11,
-    },
-    linkagetoSTD: {
-      db_label: "linkagetoservices",
-      title: "Linkage to STD Screening",
-      number: 0,
-      id: 12,
-    },
-    supportivecounselling: {
-      db_label: "supportivecounselling",
-      title: "Supportive Counseling",
-      number: 0,
-      id: 13,
-    },
-    caseclosuredischarge: {
-      db_label: "caseclosuredischarge",
-      title: "Case Closure/Discharge",
-      number: 0,
-      id: 14,
-    },
-    supportgroups: {
-      db_label: "supportgroups",
-      title: "Support Groups",
-      number: 0,
-      id: 15,
-    },
-    ticklerupdate: {
-      db_label: "ticklerupdate",
-      title: "Tickler Update",
-      number: 0,
-      id: 16,
-    },
-    transportationcoordination: {
-      db_label: "transportationcoordination",
-      title: "Transportation Coordination",
-      number: 0,
-      id: 17,
-    },
-    translationinterpretation: {
-      db_label: "translationinterpretation",
-      title: "Translation/Interpretation",
-      number: 0,
-      id: 18,
-    },
-    treatmenteducation: {
-      db_label: "treatmenteducation",
-      title: "Treatment Adherence Assessment",
-      number: 0,
-      id: 19,
-    },
-    otherassistance: {
-      db_label: "otherassistance",
-      title: "Other Form of Assistance",
-      number: 0,
-      id: 20,
-    },
-    noServicesAdded: {
-      db_label: "noServicesAdded",
-      title: "No Services added",
-      number: 0,
-      id: 21,
-    },
-    total: {
-      // db_label: "noServicesAdded",
-      title: "Total of services provided",
-      number: 0,
-      id: 22,
-    },
-  });
+  const [condomsDistributedNumbers, setCondomsDistributedNumbers] = useState(condomsDistributedInitialState);
+  const [servicesProvidedNumbers, setServicesProvidedNumbers] = useState(servicesProvidedInitialState);
 
   useEffect(() => {
+    setCondomsDistributedNumbers(condomsDistributedInitialState)
     Object.keys(condomsDistributedNumbers)?.map((item) => {
       selectedCondoms.map((row) => {
         const convertNumber = !row[item] ? 0 : Number(row[item]);
@@ -198,6 +200,7 @@ const FundingReport = ({
   }, [showReport]);
 
   useEffect(() => {
+    setServicesProvidedNumbers(servicesProvidedInitialState)
     selectedProgressNotes.map((row) => {
       const counterOfNoServices = 0;
 
@@ -328,7 +331,7 @@ const FundingReport = ({
   MSA staff performed a total of ${dataPointA} HNE Encounters to ${datapointB} unduplicated clients, totaling ${servicesProvidedNumbers?.total.number} services. HNS services are provided only to HIV positive clients. This alleviates staff from falling off target dates, and managing caseloads. Linkages to detox and other drug treatment services will be counted as referrals.
   `;
 
-  const supportGroupText = `${datapointD} groups were held in this reporting month for the men in the program. ${datapointE} groups were held for women in the program.`;
+  const supportGroupText = `${datapointD} groups were held in this reporting month for the men in the program. ${datapointE} groups were held for women in the program.Lastly ${datapointF} groups were held including men and women.`;
 
   const linkageRef = useRef(null);
   const spRef = useRef(null);
