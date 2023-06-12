@@ -1,6 +1,7 @@
 
-const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
-  console.log("pasa compo", data)
+const ClientInfoTopHeader = ({clientData, setClientData, data,stateValue}) => {
+  // console.log("pasa compo", clientData)
+  // console.log("statevalue", stateValue)
     return (
         <section id="info" className="p-10 pt-7 bg-white rounded-t-md">
               <div className={`grid md:grid-cols-2 gap-x-5`}>
@@ -17,11 +18,11 @@ const ClientInfoTopHeader = ({clientData, setClientData, data}) => {
                         name=""
                         id=""
                         className="py-3 px-2 rounded-md text-lg  bg-primary-light-blue"
-                        value={clientData?.ProgressNoteDate?.split("T")[0]||clientData?.progressNoteDate?.split("T")[0]}
+                        defaultValue={new Date(clientData[stateValue]).toISOString().split("T")[0]}
                         onChange={(e) =>
                           setClientData({
                             ...clientData,
-                            progressNoteDate: e.target.value,
+                            [stateValue]: e.target.value,
                           })
                         }
                       />

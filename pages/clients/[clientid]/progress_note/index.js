@@ -602,7 +602,7 @@ const ProgressNotesIndex = ({ data }) => {
         <div className="pt-10 shadow-inner">
           <section className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
             
-            <ClientInfoTopHeader data={data} clientData={clientData} setClientData={setClientData} />
+            <ClientInfoTopHeader data={data} clientData={clientData} setClientData={setClientData} stateValue='progressNoteDate'/>
             <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
               <div className="flex gap-x-3 items-center">
                 <img
@@ -1753,7 +1753,7 @@ const ProgressNotesIndex = ({ data }) => {
             />
           </div>
         </section>
-        <div style={{ display: "block" }}>
+        <div style={{ display: "none" }}>
           <ProgressNoteToPrint ref={componentRef} data={clientData} />
         </div>
       </Layout>

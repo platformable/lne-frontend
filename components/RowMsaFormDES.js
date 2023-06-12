@@ -57,15 +57,13 @@ const RowMsaFormDES = ({
   };
 
  
-
   return (
     <>
       <div className="bg-white ">
       <div
         className={`${
           MSAStyles.formRowsContainerDesFormEdit
-          }  justify-center   grid gap-1 divide border-white border-1 rounded-lg mt-1 ${
-          clientData[formString] ? "" : "pointer-events-none"
+          }  justify-center   grid gap-1 divide border-white border-1 rounded-lg mt-1 
         }`}
       >
 
@@ -99,16 +97,13 @@ const RowMsaFormDES = ({
           {/* <p className="text-dark-blue underline">Medical</p> */}
         </div>
         <div className={`flex items-center justify-center px-5 py-3 ${bgColor}`}>
-          <input
-            type="date"
-            id={formString}
-            className="pl-7 font-medium text-lg text-center"
-            value={
+          
+          <p className="text-lg">
+          {
               (clientData[strings.formUploadDate] &&
-              clientData[strings.formUploadDate].split("T")[0]) || (clientData[strings.formDate] && clientData[strings.formDate].split("T")[0]) 
+              clientData[strings.formUploadDate].split("T")[0]) || (clientData[strings.formDate] && clientData[strings.formDate].split("T")[0] || 'mm/dd/yyy') 
             }
-            disabled={true}
-          />
+          </p>
         </div>
         <div
           className={`text-center flex justify-center items-center px-5 py-3 ${bgColor}`} 
@@ -119,7 +114,7 @@ const RowMsaFormDES = ({
             type="checkbox"
             name={strings.formPdf}
             id=""
-            disabled={!clientData[strings.formDate]}
+            // disabled={!clientData[strings.formDate]}
             onClick={() => {
               clientData[strings.formPdf]
                 ? setClientData((formState) => ({
@@ -150,7 +145,7 @@ const RowMsaFormDES = ({
             type="checkbox"
             name={strings.formScan}
             id=""
-            disabled={!clientData[strings.formDate]}
+            // disabled={!clientData[strings.formDate]}
             onClick={() => {
               clientData[strings.formScan]
                 ? setClientData((formState) => ({

@@ -114,7 +114,20 @@ const SupportGroups = ({hcworkers}) => {
                 </label>
                 <label className="text-xl font-medium flex flex-col gap-5">
                   Target audience
-                  <input type="text" value={form.supportGroupAudience} name="supportGroupAudience" onChange={handleForm} className="border-black rounded p-2 block w-full"/>
+                  {/* <input type="text" value={form.supportGroupAudience} name="supportGroupAudience" onChange={handleForm} className="border-black rounded p-2 block w-full"/> */}
+                  <select
+                  name="supportGroupAudience"
+                  onChange={handleForm}
+                    className=" mt-1 rounded-md py-2 px-4 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-black"
+                  >
+                    <option selected={true} disabled="disabled">
+                      Select
+                    </option>
+                    {/* <option onClick={() => setSearchByUser("All")}>All</option> */}
+               <option value="mens">Mens</option>
+               <option value="womens">Womens</option>
+               <option value="men and women">Men and Women</option>
+                  </select>
                 </label>
                 <label className="text-xl font-medium flex flex-col gap-5">
                   Discussion topic
