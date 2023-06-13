@@ -138,7 +138,7 @@ console.log("data server", data)
             <p className="text-center text-lg">Alert</p>
           )}
         </div>
-        <p className="text-center py-3 text-center text-lg">
+        <p className="text-center my-3  text-center text-lg">
           {result}
         </p>
         <div className="flex justify-center">
@@ -188,7 +188,7 @@ console.log("data server", data)
             <p className="text-lg">On Track</p>
           </div>
 
-          <p className="px-4 my-3 text-center text-lg pb-7">{result}</p>
+          <p className="px-4 my-3  text-center text-lg pb-7">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -214,7 +214,7 @@ console.log("data server", data)
             <p className="text-lg">Alert</p>
           </div>
 
-          <p className="px-4 my-3 text-center text-lg">{result}</p>
+          <p className="px-4 my-3  text-center text-lg">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -239,7 +239,7 @@ console.log("data server", data)
             <p className="text-lg">On Track</p>
           </div>
 
-          <p className="px-4 my-3 text-center text-lg">{result}</p>
+          <p className="px-4 my-3  text-center text-lg">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -266,7 +266,7 @@ console.log("data server", data)
             <p className="text-lg">Warning</p>
           </div>
 
-          <p className="px-4 my-3 text-center text-lg">{result}</p>
+          <p className="px-4 my-3  text-center text-lg">{result}</p>
           <div className="flex justify-center items-center">
             <img
               src="/client/alerticonserviceactionplan.svg"
@@ -316,7 +316,7 @@ console.log("data server", data)
             {color === "bg-red-400" && <p className="text-lg">Alert</p>}
           </div>
 
-          <p className="px-4 my-3 pb-7 text-center text-lg">
+          <p className="px-4 my-3  text-center text-lg pb-7">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : totalDays < 0
@@ -366,7 +366,7 @@ console.log("data server", data)
             {color === "bg-red-400" && <p>Alert</p>}
           </div>
 
-          <p className="px-4 my-3 text-center text-lg">
+          <p className="px-4 my-3  text-center text-lg">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : totalDays < 0
@@ -424,7 +424,7 @@ console.log("data server", data)
             {color === "bg-red-400" && <p className="text-lg">Alert</p>}
           </div>
 
-          <p className="px-4 my-3 text-center text-lg">
+          <p className="px-4 my-3  text-center text-lg">
             {totalDays > 0
               ? `You saw this client ${totalDays} days ago`
               : `You saw this client today`}{" "}
