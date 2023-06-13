@@ -42,7 +42,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
       <div
         ref={ref}
         className="my-5 mx-auto px-5"
-        style={{ backgroundColor: "0099bb" }}
+        style={{ backgroundColor: "white" }}
       >
         <div className="grid grid-cols-3 gap-5 justify-center items-center">
           <div></div>
@@ -95,7 +95,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
         </p>
 
 
-        <div className="goals-container grid grid-cols-3 gap-5 px-5  py-2 border rounded-lg">
+        <div className="goals-container grid grid-cols-2 gap-5 px-5  py-2 border rounded-lg">
 
             <div className="goals-box">
                 <h6 className="text-xs font-bold " style={{ fontSize: "8px" }}>Goal 01</h6>
@@ -173,7 +173,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
 
             </div> {/* goals box */}
 
-            <div className="goals-box">
+            {/* <div className="goals-box">
                 <h6 className="text-xs font-bold " style={{ fontSize: "8px" }}>Goal 03</h6>
 
                 <div className="grid grid-cols-3">
@@ -192,10 +192,10 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                     </div>
                    
                 </div>
-                {/* <h6 className="text-xs font-bold my-4" style={{ fontSize: "8px" }}>Details</h6>
+                <h6 className="text-xs font-bold my-4" style={{ fontSize: "8px" }}>Details</h6>
                 <div className="border rounded-lg px-2 py-1"> 
                     <p className="text-xs " style={{ fontSize: "10px" }}>{goal1Details}</p>
-                </div> */}
+                </div>
                 <h6 className="text-xs font-bold my-1 font-bold" style={{ fontSize: "8px" }}>Action 01</h6>
                 <div className="border rounded-lg px-2 py-1 h-24"> 
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal3ActionStep1}</p>
@@ -209,7 +209,7 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                     <p className="text-xs leading-3" style={{ fontSize: "7px" }}>{goal3ActionStep3}</p>
                 </div>
 
-            </div> {/* goals box */}
+            </div> goals box */}
 
            
 
