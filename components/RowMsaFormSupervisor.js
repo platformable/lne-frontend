@@ -200,7 +200,7 @@ const RowMsaFormSupervisor = ({
 
       <div
         //handles the prohibition to change review`s input once was issue checked
-        className={`${bgColor} h-full  text-center flex justify-center items-center  ${
+        className={`${bgColor} h-full py-1 text-center flex justify-center items-center  ${
           formIssues && "pointer-events-none"
         }`}
       >
@@ -218,7 +218,7 @@ const RowMsaFormSupervisor = ({
       </div>
 
       <div
-        className={`${bgColor}  text-center flex justify-center items-center`}
+        className={`${bgColor} h-full py-1 text-center flex justify-center items-center`}
       >
         <input
           className={`${
