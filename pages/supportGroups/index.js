@@ -53,7 +53,7 @@ const SupportGroups = ({hcworkers}) => {
     const displayUserList = () => {
       return (
         hcworkers &&
-        hcworkers.filter(user=>user.userrole !=='DES').
+        /* hcworkers.filter(user=>user.userrole !=='DES') */hcworkers.
         map((user, index) => {
           return (
             <option className="text-black" value={user.username} key={index}>

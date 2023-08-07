@@ -235,7 +235,7 @@ export default function CreateClientModal({
               <div>
                 <input
                   type="number"
-                  className="mt-3 block text-2xl rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="mt-3  text-2xl w-20 rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   placeholder="1234"
                   min="4"
                   max="4"
@@ -270,7 +270,7 @@ export default function CreateClientModal({
                   <option>-</option>
                   {users &&
                     users
-                      ?.filter((user) => user.userrole !== "DES")
+                      // ?.filter((user) => user.userrole !== "DES")
                       .map((user, index) => {
                         return (
                           <option value={user.user_id} key={index}>

@@ -248,7 +248,7 @@ export default function EditClientModal({
               <div>
                 <input
                   type="number"
-                  className="mt-1 block w-full rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="mt-1 block w-full w-20 rounded-md border p-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   placeholder="1234"
                   value={clientData.clientSSN}
                   min="4"
@@ -296,7 +296,7 @@ export default function EditClientModal({
                   </option>
                   {users &&
                     users
-                      ?.filter((user) => user.userrole !== "DES")
+                      // ?.filter((user) => user.userrole !== "DES")
                       .map((user, index) => {
                         return (
                           <option value={user.user_id} key={index}>
