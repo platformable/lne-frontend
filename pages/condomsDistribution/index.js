@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import CondomsDistributionRowComponent from "../components/CondomsDistributionRowComponent";
-import Styles from "../styles/ServiceAP.module.css";
-import MSAStyles from "../styles/MSA.module.css";
+import CondomsDistributionRowComponent from "../../components/CondomsDistributionRowComponent";
+/* import Styles from "../styles/ServiceAP.module.css";
+import MSAStyles from "../styles/MSA.module.css"; */
 import axios from "axios";
 import { useRouter } from "next/router";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BackButton from "../components/BackButton";
-import BackToDashboardButton from "../components/BackToDashboardButton";
-import SubHeader from "../components/SubHeader";
+import BackButton from "../../components/BackButton";
+import BackToDashboardButton from "../../components/BackToDashboardButton";
+import SubHeader from "../../components/SubHeader";
+import Link from "next/link";
 
 const CondomsDistributed = () => {
   const router = useRouter();
@@ -71,7 +72,17 @@ const CondomsDistributed = () => {
       <ToastContainer autoClose={2000} />
       <Layout>
       
-        <SubHeader pageTitle={'Condoms Distribution'}/>
+        <SubHeader pageTitle={'Condoms Distribution'}>
+        
+      {/*   { <Link href="/condomsDistribution/pastEvents">
+            <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
+                    <img src="/search_icon.svg" alt="review past group event icon" width={27}/>
+                    <p className="p-2 text-lg font-medium">
+                    Review past condoms distributions
+                    </p>
+              </button>
+          </Link>} */}
+          </SubHeader> 
 
         <div className="bg-light-blue pt-5 shadow-inner h-100 pb-10">
           <section
