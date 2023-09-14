@@ -120,19 +120,19 @@ const PastEvents = ({ events }) => {
               } container mx-auto gap-x-1 `}
             >
               {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
-              <p className="font-bold  flex items-center text-xl  bg-support-groups-table-heading py-2  px-3">
+              <p className="font-bold  flex items-center text-xl  bg-middle-purple py-2  px-3">
                 Date
               </p>
-          {/*     <p className="font-bold  flex items-center text-xl   bg-support-groups-table-heading py-2 px-3">
+          {/*     <p className="font-bold  flex items-center text-xl   bg-middle-purple py-2 px-3">
                 Name of Group
               </p>
-              <p className="font-bold  flex items-center text-xl  bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-xl  bg-middle-purple py-2 px-3">
                 Discussion topic
               </p> */}
-              <p className="font-bold  flex items-center text-xl justify-center bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-xl justify-center bg-middle-purple py-2 px-3">
                 View/edit
               </p>
-              <p className="font-bold  flex items-center text-xl justify-center bg-support-groups-table-heading py-2 px-3">
+              <p className="font-bold  flex items-center text-xl justify-center bg-middle-purple py-2 px-3">
                 Delete 
               </p>
             </div>
@@ -171,7 +171,7 @@ const PastEvents = ({ events }) => {
                               ? "grid-cols-3 "
                               : `grid-cols-3`
                           } container mx-auto bg-white  ${
-                            index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
+                            index % 2 === 0 ? "bg-ligh-pink" : "bg-purple-50"
                           }`}
                         >
                           {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
