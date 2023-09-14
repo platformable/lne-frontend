@@ -5,10 +5,10 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 import BackButton from "../../components/BackButton";
 import BackToDashboardButton from "../../components/BackToDashboardButton";
-import DeleteSupportGroupEvent from "../../components/DeleteSupportGroupEvent";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SubHeader from "../../components/SubHeader";
+import DeleteSuppliesDistributedEvent from "../../components/DeleteSuppliesDistributedEvent";
 
 const PastEvents = ({ events }) => {
   console.log("events", events);
@@ -28,7 +28,7 @@ const PastEvents = ({ events }) => {
     user && user["https://lanuevatest.herokuapp.com/roles"];
 
   const handleDeleteEvent = (id, topic) => {
-    console.log(id);
+    // console.log(id);
     setSelectedEventToDelete({ id: id, supportgrouptopic: topic });
     setShowDeleteEventModal(!showDeleteEventModal);
   };
@@ -39,7 +39,7 @@ const PastEvents = ({ events }) => {
   const ref = useRef();
 
   const sortedEventsByDate = events.sort(
-    (a, b) => new Date(b.supportmeetingdate) - new Date(a.supportmeetingdate)
+    (a, b) => new Date(b.date) - new Date(a.date)
   );
 
   return (
@@ -150,7 +150,7 @@ const PastEvents = ({ events }) => {
                   );
                   if (startDate !== null && endDate !== null) {
                     let filterPass = true;
-                    const date = new Date(event.supportmeetingdate);
+                    const date = new Date(event.date);
 
                     if (dateFilter.startDate) {
                       filterPass = filterPass && startDate <= date;
@@ -176,9 +176,9 @@ const PastEvents = ({ events }) => {
                         >
                           {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
                           <p className="flex items-center p-3 text-lg">
-                            {event.supportmeetingdate &&
+                            {event.date &&
                               new Date(
-                                event?.supportmeetingdate
+                                event?.date
                               ).toLocaleDateString("en-US", {
                                 month: "2-digit",
                                 day: "2-digit",
@@ -192,7 +192,7 @@ const PastEvents = ({ events }) => {
                             {event.supportgrouptopic}
                           </p> */}
                           <p className="flex items-center justify-center p-1">
-                            <Link href={`/supportGroups/${event.id}/edit`}>
+                            <Link href={`/condomsDistribution/${event.id}/edit`}>
                               <a className="flex items-center justify-center">
                                 <img
                                   src="/edit.svg"
@@ -227,7 +227,7 @@ const PastEvents = ({ events }) => {
                 })}
           </div>
           {showDeleteEventModal && (
-            <DeleteSupportGroupEvent
+            <DeleteSuppliesDistributedEvent
               setShowDeleteEventModal={setShowDeleteEventModal}
               showDeleteEventModal={showDeleteEventModal}
               selectedEventToDelete={selectedEventToDelete}
@@ -248,7 +248,7 @@ export default PastEvents;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
     );
     const events = await response.json();
 
