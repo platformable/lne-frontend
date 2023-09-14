@@ -74,14 +74,14 @@ const CondomsDistributed = () => {
       
         <SubHeader pageTitle={'Condoms Distribution'}>
         
-      {/*   { <Link href="/condomsDistribution/pastEvents">
+        { <Link href="/condomsDistribution/pastEvents">
             <button className=" rounded bg-middle-purple text-center px-5 py-1 shadow-xl rounded-lg flex items-center block">
                     <img src="/search_icon.svg" alt="review past group event icon" width={27}/>
                     <p className="p-2 text-lg font-medium">
                     Review past condoms distributions
                     </p>
               </button>
-          </Link>} */}
+          </Link>}
           </SubHeader> 
 
         <div className="bg-light-blue pt-5 shadow-inner h-100 pb-10">
