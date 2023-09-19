@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CondomsDistributionRowComponent = ({name,title,setFormData,bg}) => {
+const CondomsDistributionRowComponent = ({name,title,setFormData,bg, defaultValue}) => {
     const isNumberKey = (e) => {
     const invalidChars = [
       "-",
@@ -28,7 +28,7 @@ const CondomsDistributionRowComponent = ({name,title,setFormData,bg}) => {
             }));
           }}
           className="p-2 rounded-lg text-lg text-center w-24 border-2"
-          defaultValue={0}
+          defaultValue={defaultValue || 0}
         />
       </div>
     </div>

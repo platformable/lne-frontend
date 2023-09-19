@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import { useUser, getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import CondomsDistributionRowComponent from "../../components/CondomsDistributionRowComponent";
+import CondomsDistributionRowComponent from "../../../components/CondomsDistributionRowComponent";
 /* import Styles from "../styles/ServiceAP.module.css";
 import MSAStyles from "../styles/MSA.module.css"; */
 import axios from "axios";
@@ -9,38 +9,39 @@ import { useRouter } from "next/router";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BackButton from "../../components/BackButton";
-import BackToDashboardButton from "../../components/BackToDashboardButton";
-import SubHeader from "../../components/SubHeader";
+import BackButton from "../../../components/BackButton";
+import BackToDashboardButton from "../../../components/BackToDashboardButton";
+import SubHeader from "../../../components/SubHeader";
 import Link from "next/link";
 
-const CondomsDistributed = () => {
+const CondomsDistributedEdit = ({data}) => {
   const router = useRouter();
-
+    console.log("data", data)
   const [formData, setFormData] = useState({
-    date: new Date().toISOString().slice(0, 10),
-    kitsDistributed: "0",
-    extCondomsDistributed: "0",
-    intCondomsDistributed: "0",
-    oralCondomsDistributed: "0",
-    lubesDistributed: "0",
-    dentalDamsDistributed: "0",
-    fingerCotsDistributed: "0",
-    Men: "0",
-    Women: "0",
-    TransMen: "0",
-    TransWomen: "0",
-    GenderNotSpecified: "0",
-    Hispanic: "0",
-    AfricanAmerican: "0",
-    Caucasian: "0",
-    Asian: "0",
-    RaceEthnicityNotSpecified: "0",
-    Aged19_24: "0",
-    Aged25_35: "0",
-    Aged35_44: "0",
-    Aged45: "0",
-    AgeNotSpecified: "0",
+    id: data?.id,
+    date: data?.date?.split('T')[0],
+    kitsDistributed: data?.kitsdistributed,
+    extCondomsDistributed: data?.extcondomsdistributed,
+    intCondomsDistributed: data?.intcondomsdistributed,
+    oralCondomsDistributed: data?.oralcondomsdistributed,
+    lubesDistributed: data?.lubesdistributed,
+    dentalDamsDistributed: data?.dentaldamsdistributed,
+    fingerCotsDistributed: data?.fingercotsdistributed,
+    Men: data?.men,
+    Women: data?.women,
+    TransMen: data?.transmen,
+    TransWomen: data?.transwomen,
+    GenderNotSpecified: data?.gendernotspecified,
+    Hispanic: data?.hispanic,
+    AfricanAmerican: data?.africanamerican,
+    Caucasian: data?.caucasian,
+    Asian: data?.asian,
+    RaceEthnicityNotSpecified: data?.raceethnicitynotspecified,
+    Aged19_24: data?.aged19_24,
+    Aged25_35: data?.aged25_35,
+    Aged35_44: data?.aged35_44,
+    Aged45: data?.aged45,
+    AgeNotSpecified: data?.agenotspecified,
   });
 
   const notifyMessage = () => {
@@ -51,7 +52,7 @@ const CondomsDistributed = () => {
 
   const handleForm = () => {
     axios
-      .post(
+      .put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`,
         formData
       )
@@ -59,7 +60,7 @@ const CondomsDistributed = () => {
         notifyMessage();
         setTimeout(() => {
           router.back();
-        }, 1500);
+        }, 2500);
       })
       .catch(function (error) {
         console.log("error del server", error);
@@ -120,6 +121,7 @@ const CondomsDistributed = () => {
               title={"Safe Sex kits distributed"}
               setFormData={setFormData}
               name={"kitsDistributed"}
+              defaultValue={formData?.kitsDistributed}
             />
 
             <CondomsDistributionRowComponent
@@ -127,6 +129,7 @@ const CondomsDistributed = () => {
               title={"Condoms distributed outside of office"}
               setFormData={setFormData}
               name={"extCondomsDistributed"}
+              defaultValue={formData?.extCondomsDistributed}
             />
 
             <CondomsDistributionRowComponent
@@ -134,6 +137,7 @@ const CondomsDistributed = () => {
               title={"Condoms distributed at LNE office"}
               setFormData={setFormData}
               name={"intCondomsDistributed"}
+              defaultValue={formData?.intCondomsDistributed}
             />
 
             <CondomsDistributionRowComponent
@@ -141,6 +145,7 @@ const CondomsDistributed = () => {
               title={"Oral condoms distributed"}
               setFormData={setFormData}
               name={"oralCondomsDistributed"}
+              defaultValue={formData?.oralCondomsDistributed}
             />
 
             <CondomsDistributionRowComponent
@@ -148,6 +153,7 @@ const CondomsDistributed = () => {
               title={"Lube satchets distributed"}
               setFormData={setFormData}
               name={"lubesDistributed"}
+              defaultValue={formData?.lubesDistributed}
             />
 
             <CondomsDistributionRowComponent
@@ -155,6 +161,7 @@ const CondomsDistributed = () => {
               title={"Dental dams distributed"}
               setFormData={setFormData}
               name={"dentalDamsDistributed"}
+              defaultValue={formData?.dentalDamsDistributed}
             />
 
             <div className="flex gap-3 items-center my-10">
@@ -171,30 +178,35 @@ const CondomsDistributed = () => {
               title={"Number of men seen"}
               setFormData={setFormData}
               name={"Men"}
+              defaultValue={formData?.Men}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
               title={"Number of woman seen"}
               setFormData={setFormData}
               name={"Women"}
+              defaultValue={formData?.Women}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
               title={"Number of trans men seen"}
               setFormData={setFormData}
               name={"TransMen"}
+              defaultValue={formData?.TransMen}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
               title={"Number of trans woman seen"}
               setFormData={setFormData}
               name={"TransWomen"}
+              defaultValue={formData?.TransWomen}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
               title={"Number of gender not specified seen"}
               setFormData={setFormData}
               name={"GenderNotSpecified"}
+              defaultValue={formData?.GenderNotSpecified}
             />
             <hr className="my-4" />
             <CondomsDistributionRowComponent
@@ -202,30 +214,35 @@ const CondomsDistributed = () => {
               title={"Number of Hispanic seen"}
               setFormData={setFormData}
               name={"Hispanic"}
+              defaultValue={formData?.Hispanic}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
               title={"Number of African-American seen"}
               setFormData={setFormData}
               name={"AfricanAmerican"}
+              defaultValue={formData?.AfricanAmerican}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
               title={"Number of Caucasian seen"}
               setFormData={setFormData}
               name={"Caucasian"}
+              defaultValue={formData?.Caucasian}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
               title={"Number of Asian seen"}
               setFormData={setFormData}
               name={"Asian"}
+              defaultValue={formData?.Asian}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
               title={"Number of people race/ethnicity not specified seen"}
               setFormData={setFormData}
               name={"RaceEthnicityNotSpecified"}
+              defaultValue={formData?.RaceEthnicityNotSpecified}
             />
             <hr className="my-4" />
 
@@ -234,30 +251,35 @@ const CondomsDistributed = () => {
               title={"Number of people aged 19-24 seen"}
               setFormData={setFormData}
               name={"Aged19_24"}
+              defaultValue={formData?.Aged19_24}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
               title={"Number of people aged 25-34 seen"}
               setFormData={setFormData}
               name={"Aged25_35"}
+              defaultValue={formData?.Aged25_35}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
               title={"Number of people aged 35-44 seen"}
               setFormData={setFormData}
               name={"Aged35_44"}
+              defaultValue={formData?.Aged35_44}
             />
             <CondomsDistributionRowComponent
               bg={"extraLight"}
               title={"Number of people 45+ seen"}
               setFormData={setFormData}
               name={"Aged45"}
+              defaultValue={formData?.Aged45}
             />
             <CondomsDistributionRowComponent
               bg={"light"}
               title={"Number of people age not specified seen"}
               setFormData={setFormData}
               name={"AgeNotSpecified"}
+              defaultValue={formData?.AgeNotSpecified}
             />
           </section>
 
@@ -278,16 +300,16 @@ const CondomsDistributed = () => {
   );
 };
 
-export default CondomsDistributed;
+export default CondomsDistributedEdit;
 
 export const getServerSideProps = withPageAuthRequired({
-  /* async getServerSideProps(ctx) {
-      let { clientid } = ctx.params;
+  async getServerSideProps(ctx) {
+      let { id } = ctx.params;
       const  response = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed/${id}`
       );
   
       const data = await  response.json();
-      return { props: { data } };
-    }, */
+      return { props: { data: data[0] } };
+    },
 });
