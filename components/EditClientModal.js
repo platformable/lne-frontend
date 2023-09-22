@@ -311,7 +311,7 @@ export default function EditClientModal({
             )}
 
             <label className="block">
-              <span className="font-bold">is Active / No active</span>
+              <span className="font-bold">is Active / Not Active</span>
               <select
                 value={clientData.clientActive}
                 onChange={(e) =>
@@ -320,7 +320,7 @@ export default function EditClientModal({
                 className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
                 <option value="1">Active</option>
-                <option value="0">No Active</option>
+                <option value="0">Not Active</option>
               </select>
             </label>
 

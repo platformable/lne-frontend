@@ -285,7 +285,7 @@ export default function CreateClientModal({
             )}
 
             <label className="block">
-              <span className="text-xl font-bold">Is Active / No Active</span>
+              <span className="text-xl font-bold">Is Active / Not Active</span>
               <select
                 onChange={() =>
                   setClientData({
@@ -296,7 +296,7 @@ export default function CreateClientModal({
                 className="block w-full mt-3 text-2xl rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               >
                 <option>Active</option>
-                <option>No Active</option>
+                <option>Not Active</option>
               </select>
             </label>
 
