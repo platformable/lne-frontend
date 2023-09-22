@@ -13,7 +13,7 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
     const finalDate = separatedDate.join("-");
     return newDate;
   };
-
+console.log("clientnnnnn",client)
   return (
     <Link
       // href={
@@ -41,8 +41,8 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
               </div>
             </div>
 
-            <div className="grid text-lg my-3 items-center bg-alert-green font-medium text-center py-1 rounded">
-              Active
+            <div className={`${client?.clientactive === '1' ? 'bg-alert-green ' : 'bg-red-400 '} grid text-lg my-3 items-center font-medium text-center py-1 rounded`}>
+              {client?.clientactive === '1' ? 'Active' : 'Not active'}
             </div>
 
             <div className="flex dashboard-card-name-box  items-center pl-2 justify-between mb-3">
