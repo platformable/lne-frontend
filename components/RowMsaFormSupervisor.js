@@ -111,7 +111,8 @@ const RowMsaFormSupervisor = ({
       className={`${
         MSAStyles.formHeadTitlesSupervisor
       } items-center  grid gap-1 rounded-sm bg-white ${
-        form ? "" : "pointer-events-none"
+        // form ? "" : "pointer-events-none"""
+        ""
       }`}
     >
       {/* 
@@ -205,15 +206,15 @@ const RowMsaFormSupervisor = ({
         }`}
       >
         <input
-          className={`${
-            !form && "pointer-events-none"
+          className={`${''
+            //!form && "pointer-events-none"
           } bg-white   rounded-md  h-6 w-6 `}
           type="checkbox"
           name={strings.formReviewed}
           id={strings.formReviewed}
           onChange={(e) => onChangeInputCheckbox(e)}
-          checked={formReviewed || formIssues ? "checked" : false}
-          disabled={!formDate}
+          //checked={formReviewed || formIssues ? "checked" : false}
+          //disabled={!formDate}
         />
       </div>
 
@@ -222,14 +223,15 @@ const RowMsaFormSupervisor = ({
       >
         <input
           className={`${
-            formIssues && "pointer-events-none"
+            // formIssues && "pointer-events-none"
+            ""
           } bg-white  border-2 border-dark-blue rounded-md  h-6 w-6 `}
           type="checkbox"
           name={fieldName}
           id={strings.formIssues}
           onChange={(e) => onChangeInputIssues(e)}
-          checked={formIssues ? "checked" : false}
-          disabled={!formDate}
+          //checked={formIssues ? "checked" : false}
+          //disabled={!formDate}
         />
       </div>
     </div>
