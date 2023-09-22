@@ -331,7 +331,7 @@ const FundingReport = ({
   MSA staff performed a total of ${dataPointA} HNE Encounters to ${datapointB} unduplicated clients, totaling ${servicesProvidedNumbers?.total.number} services. HNS services are provided only to HIV positive clients. This alleviates staff from falling off target dates, and managing caseloads. Linkages to detox and other drug treatment services will be counted as referrals.
   `;
 
-  const supportGroupText = `${datapointD} groups were held in this reporting month for the men in the program. ${datapointE} groups were held for women in the program.Lastly ${datapointF} groups were held including men and women.`;
+  const supportGroupText = `${datapointD} groups were held in this reporting month for the men in the program.${datapointE} groups were held for women in the program.${datapointF} groups were held including men and women.`;
 
   const linkageRef = useRef(null);
   const spRef = useRef(null);
