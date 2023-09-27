@@ -1605,7 +1605,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.SupportGroupsReviewed}
               formIssues={clientData.SupportGroupsIssues}
               formString={"SupportGroups"}
-              folder_url={data[0].intake_folder_url}
+              folder_url={data[0].support_groups_folder_url}
               dependency_folder_url={data[0].support_groups_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
@@ -1623,8 +1623,8 @@ const EditSupervisorMSAFormPage = ({ data }) => {
               formReviewed={clientData.IDGFormReviewed}
               formIssues={clientData.IDGFormIssues}
               formString={"IDGForm"}
-              folder_url={data[0].intake_folder_url}
-              dependency_folder_url={data[0].intake_folder_url}
+              folder_url={data[0].idg_folder_url}
+              dependency_folder_url={data[0].idg_folder_url}
               setClientData={setClientData}
               setIssueFounded={setIssueFounded}
               showIssuesFoundModal={showIssuesFoundModal}
