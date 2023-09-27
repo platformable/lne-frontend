@@ -915,7 +915,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                 <h3 className="font-bold text-2xl">Client Goals</h3>
                 
               </div>
-              <label for="selectedSAP" className="text-xl mr-5">Select service action plan</label>
+              <label htmlFor="selectedSAP" className="text-xl mr-5">Select service action plan</label>
               <select onChange={(e) => setSelectedSAP(sap[e.target.value])} className="mb-10 rounded shadow border-black py-2 px-2">
                   <option value={'current'}>Current service action plan</option>
                   <option value={'archived'}>Previous service action plan</option>
