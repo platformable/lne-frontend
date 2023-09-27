@@ -5,7 +5,7 @@ import DashboardClientCard from "../../components/DashboardClientCard";
 import AddClientModal from "../../components/CreateClientModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Link from "next/link";
 import { useRouter } from "next/router";
 import BackToDashboardButton from "../../components/BackToDashboardButton";
 import BackButton from "../../components/BackButton";
@@ -147,7 +147,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
               </div>
             </div>
 
-            <div className="search-box flex items-center ">
+            {/* <div className="search-box flex items-center ">
               <img src="/client/health_care_worker.svg" alt="Select Health care worker icon" className="mr-4" />
               
               <p className="mr-5 text-xl">Select HCW</p>
@@ -161,7 +161,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
                 <option className="text-xl" onClick={() => setSearchByUser("All")}>All</option>
                 {displayUserList()}
               </select>
-            </div>
+            </div> */}
           </div>
         </div>
         </div>
@@ -180,8 +180,25 @@ const ClientsIndex = ({ data, hcworkers }) => {
             )}
           </div>
           <div className="dashboard-clients-container grid md:grid-cols-3 lg:grid-cols-5  md:px-0 px-5 gap-5">
+          <Link href="/clients/progress-notes">
+          <div
+              className="p-5 flex flex-col gap-5 items-center justify-center text-center mb-2  text-center btn-new-blue rounded shadow-xl rounded cursor-pointer"
+              
+            >
+              
+              <div className="  ">
+                <button id="myBtn">
+                  <div className="flex justify-center">
+                    <img src="/client/Progress_note_button.svg" width={65} alt="" />
+                  </div>
+                </button>
+              </div>{" "}
+             
+              <p className="text-2xl">All<br/> Progress Notes</p>
+            </div>
+            </Link>
             <div
-              className="p-5 flex flex-col gap-5 items-center justify-center text-center mb-2  text-center btn-new-blue rounded shadow-xl rounded"
+              className="p-5 flex flex-col gap-5 items-center justify-center text-center mb-2  text-center btn-new-blue rounded shadow-xl rounded cursor-pointer"
               onClick={() => setShowCreateClientModal(!showCreateClientModal)}
             >
               <div className="  ">

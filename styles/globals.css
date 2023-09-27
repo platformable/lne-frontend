@@ -529,8 +529,17 @@ border:2px solid #5AC0FF;
   grid-template-columns: 2fr 8fr 2fr 2fr;
 }
 
+.all-client-progress-note-table {
+  grid-template-columns: 2fr 2fr 6fr 2fr 2fr;
+}
+
+
 @media only screen and (max-width: 600px) {
   .client-progress-note-table {
+    grid-template-columns: 1fr;
+  }
+
+  .all-client-progress-note-table {
     grid-template-columns: 1fr;
   }
 }
