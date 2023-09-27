@@ -730,7 +730,7 @@ const EditMsaFormPage = ({ data }) => {
             <RowMsaFormDES fieldName="Identification" clientData={clientData} setClientData={setClientData} formString="LNEClientReferralForm" data={data} folderName={data[0].miscellaneous_folder_url} bgColor="msa-table-light-light-pink-bg"/>
 
             
-            <RowMsaFormDES fieldName="HNS Readiness Assessment" clientData={clientData} setClientData={setClientData} formString="HNSReadinessForm" data={data} folderName={data[0].miscellaneous_folder_url} bgColor="msa-table-light-pink-bg"/>
+            <RowMsaFormDES fieldName="HNS Readiness Assessment" clientData={clientData} setClientData={setClientData} formString="HNSReadinessForm" data={data} folderName={data[0].intake_folder_url} bgColor="msa-table-light-pink-bg"/>
 
 
             <RowMsaFormDES fieldName="Support Groups" clientData={clientData} setClientData={setClientData} formString="SupportGroups" data={data} folderName={data[0].support_groups_folder_url} bgColor="msa-table-light-pink-bg"/>

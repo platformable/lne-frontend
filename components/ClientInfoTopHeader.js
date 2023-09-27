@@ -18,7 +18,7 @@ const ClientInfoTopHeader = ({clientData, setClientData, data,stateValue}) => {
                         name=""
                         id=""
                         className="py-3 px-2 rounded-md text-lg  bg-primary-light-blue"
-                        defaultValue={new Date(clientData[stateValue]).toISOString().split("T")[0]}
+                        defaultValue={new Date(clientData[stateValue])?.toISOString().split("T")[0]}
                         onChange={(e) =>
                           setClientData({
                             ...clientData,
