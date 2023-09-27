@@ -16,10 +16,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SubHeader from "../../../../components/SubHeader";
 
-const ProgressNotesIndex = ({ data }) => {
+const ProgressNotesIndex = ({ data, sap }) => {
   const router = useRouter();
-  console.log("data", data);
+  // console.log("sap", sap);
 
+  const [selectedSAP, setSelectedSAP] = useState(sap?.current);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
   let componentRef = useRef();
@@ -198,18 +199,18 @@ const ProgressNotesIndex = ({ data }) => {
     goal2ProgressDate: "",
     goal3Progress: false,
     goal3ProgressDate: "",
-    goal1Completed: data[0].sapgoal1completed === "1" ? true : false,
+    goal1Completed: selectedSAP?.goal1completed === "1" ? true : false,
     goal1CompletedDate: "",
-    goal2Completed: data[0].sapgoal2completed === "1" ? true : false,
+    goal2Completed: selectedSAP?.goal2completed === "1" ? true : false,
     goal2CompletedDate: "",
-    goal3Completed: data[0].sapgoal3completed === "1" ? true : false,
+    goal3Completed: selectedSAP?.goal3completed === "1" ? true : false,
     goal3CompletedDate: "",
-    sapGoal1Completed: data[0].sapgoal1completed === "1" ? true : false,
-    sapGoal2Completed: data[0].sapgoal2completed === "1" ? true : false,
-    sapGoal3Completed: data[0].sapgoal3completed === "1" ? true : false,
-    sapGoal1CompletionDate: data[0].sapgoal1completiondate,
-    sapGoal2CompletionDate: data[0].sapgoal2completiondate,
-    sapGoal3CompletionDate: data[0].sapgoal3completiondate,
+    sapGoal1Completed: selectedSAP?.goal1completed === "1" ? true : false,
+    sapGoal2Completed: selectedSAP?.goal2completed === "1" ? true : false,
+    sapGoal3Completed: selectedSAP?.goal3completed === "1" ? true : false,
+    sapGoal1CompletionDate: selectedSAP?.goal1completiondate,
+    sapGoal2CompletionDate: selectedSAP?.goal2completiondate,
+    sapGoal3CompletionDate: selectedSAP?.goal3completiondate,
 
     StatusChangesForm: false,
     StatusChangesFormDate: data[0]?.statuschangesformdate || null,
@@ -312,9 +313,9 @@ const ProgressNotesIndex = ({ data }) => {
     goal2WorkedComments: "",
     goal3WorkedComments: "",
   });
-  console.log("clientData", clientData);
+  // console.log("clientData", clientData);
 
-  console.log("msa", msaData);
+  // console.log("msa", msaData);
   const whichServiceBeenAded = [
     /* {
       value: clientData.LNEHNSEligibilityForm,
@@ -501,22 +502,10 @@ const ProgressNotesIndex = ({ data }) => {
   ];
 
   const todaysDate = new Date();
-  const [serviceActionData, setServiceActionData] = useState({
-    goal1servicecategory: data[0]?.goal1servicecategory,
-    goal1summary: data[0]?.goal1summary,
-    goal1targetdate: data[0]?.goal1targetdate,
-    goal2servicecategory: data[0]?.goal2servicecategory,
-    goal2summary: data[0]?.goal2summary,
-    goal2targetdate: data[0]?.goal2targetdate,
-    goal3servicecategory: data[0]?.goal3servicecategory,
-    goal3summary: data[0]?.goal3summary,
-    goal3targetdate: data[0]?.goal3targetdate,
-    goal1Details: data[0]?.goal1details,
-    goal2Details: data[0]?.goal2details,
-    goal3Details: data[0]?.goal3details,
-  });
+  
 
   const [dataForSAP, setDataForSAP] = useState({
+    id: selectedSAP?.id,
     clientId: data[0]?.clientid,
     goal1Completed: clientData.goal1Completed,
     goal1CompletionDate: clientData.goal1CompletedDate,
@@ -590,19 +579,22 @@ const ProgressNotesIndex = ({ data }) => {
         });
     }
   };
+  // console.log("change sap", selectedSAP)
 
   return (
     <>
       <ToastContainer autoClose={1500} />
       <Layout>
-  
-
-        <SubHeader pageTitle={'Progress Note'}/>
+        <SubHeader pageTitle={"Progress Note"} />
 
         <div className="pt-10 shadow-inner">
           <section className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
-            
-            <ClientInfoTopHeader data={data} clientData={clientData} setClientData={setClientData} stateValue='progressNoteDate'/>
+            <ClientInfoTopHeader
+              data={data}
+              clientData={clientData}
+              setClientData={setClientData}
+              stateValue="progressNoteDate"
+            />
             <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
               <div className="flex gap-x-3 items-center">
                 <img
@@ -915,14 +907,49 @@ const ProgressNotesIndex = ({ data }) => {
             </section>
 
             <section className="p-10 pt-7 goals" id="goals">
-              <div className="flex gap-3 items-center mb-10">
+              <div className="flex gap-3 items-center mb-5">
                 <img
                   src="/progress_notes/client_goals.svg"
                   alt="Client goals icon"
                 />
                 <h3 className="font-bold text-2xl">Client Goals</h3>
+                
               </div>
-
+              <label for="selectedSAP" className="text-xl mr-5">Select service action plan</label>
+              <select onChange={(e) => setSelectedSAP(sap[e.target.value])} className="mb-10 rounded shadow border-black py-2 px-2">
+                  <option value={'current'}>Current service action plan</option>
+                  <option value={'archived'}>Previous service action plan</option>
+                </select>
+              <div className="grid lg:grid-cols-2 gap-5 mb-3">
+               <div>
+               {selectedSAP?.goal1completed === "1" && (
+                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                    Completed:{" "}
+                    {new Date(
+                      data[0]?.sapgoal1completiondate
+                    ).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                    })}
+                  </p>
+                )}
+               </div>
+                <div>
+                {selectedSAP?.goal2completed === "1" && (
+                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                    Completed:{" "}
+                    {new Date(
+                      data[0]?.sapgoal2completiondate
+                    ).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                    })}
+                  </p>
+                )}
+                </div>
+              </div>
               <div className="goals-container grid lg:grid-cols-2  gap-5">
                 <div className="goal-box grid gap-y-7">
                   {/* <div className="goal-top flex items-center my-2">
@@ -935,7 +962,7 @@ const ProgressNotesIndex = ({ data }) => {
                       <p className="text-xl font-medium">Target Date</p>
                       <p className="bg-primary-light-blue p-3 rounded text-lg">
                         {new Date(
-                          serviceActionData?.goal1targetdate
+                          selectedSAP?.goal1targetdate
                         ).toLocaleDateString("en", {
                           year: "numeric",
                           month: "numeric",
@@ -947,21 +974,10 @@ const ProgressNotesIndex = ({ data }) => {
                   <div className="goal-summary">
                     <p className="text-xl font-medium">Summary</p>
                     <p className="bg-primary-light-blue mt-5 p-3 rounded text-lg">
-                      {serviceActionData?.goal1Details}
+                      {selectedSAP?.goal1details}
                     </p>
                   </div>
-                  {clientData.sapGoal1Completed && (
-                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
-                      Completed:{" "}
-                      {new Date(
-                        clientData.sapGoal1CompletionDate
-                      ).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
-                    </p>
-                  )}
+                  
                   {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
@@ -980,7 +996,7 @@ const ProgressNotesIndex = ({ data }) => {
                       <span className="text-xl font-medium">Target Date</span>
                       <p className="bg-primary-light-blue p-3 rounded text-lg">
                         {new Date(
-                          serviceActionData?.goal2targetdate
+                          selectedSAP?.goal2targetdate
                         ).toLocaleDateString("en", {
                           year: "numeric",
                           month: "numeric",
@@ -992,21 +1008,10 @@ const ProgressNotesIndex = ({ data }) => {
                   <div className="goal-summary">
                     <span className="text-xl font-medium">Summary</span>
                     <p className="bg-primary-light-blue mt-5 p-3 rounded text-lg">
-                      {serviceActionData?.goal2Details}
+                      {selectedSAP?.goal2details}
                     </p>
                   </div>
-                  {clientData.sapGoal1Completed && (
-                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
-                      Completed:{" "}
-                      {new Date(
-                        clientData.sapGoal2CompletionDate
-                      ).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "numeric",
-                        day: "numeric",
-                      })}
-                    </p>
-                  )}
+                 
                   {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
@@ -1026,9 +1031,9 @@ const ProgressNotesIndex = ({ data }) => {
                   <div>
                     <span className="">Target Date</span>
                     <p className="text-dark-blue ">
-                      {serviceActionData?.goal3targetdate
+                      {selectedSAP?.goal3targetdate
                         ? new Date(
-                            serviceActionData?.goal3targetdate
+                            selectedSAP?.goal3targetdate
                           ).toLocaleDateString("en", {
                             year: "numeric",
                             month: "numeric",
@@ -1041,7 +1046,7 @@ const ProgressNotesIndex = ({ data }) => {
                 <div className="goal-summary my-2  ">
                   <span className="">Summary</span>
                   <p className=" text-dark-blue">
-                    {serviceActionData?.goal3Details || "-"}
+                    {selectedSAP?.goal3Details || "-"}
                   </p>
                 </div>
                 {clientData.sapGoal3Completed && (
@@ -1313,6 +1318,36 @@ const ProgressNotesIndex = ({ data }) => {
                   Were any of the clients goals completed?
                 </h3>
               </div>
+              <div className="grid lg:grid-cols-2 gap-5 mb-5">
+               <div>
+               {data[0]?.sapgoal1completed === "1" && (
+                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                    Completed:{" "}
+                    {new Date(
+                      data[0]?.sapgoal1completiondate
+                    ).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                    })}
+                  </p>
+                )}
+               </div>
+                <div>
+                {data[0]?.sapgoal2completed === "1" && (
+                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                    Completed:{" "}
+                    {new Date(
+                      data[0]?.sapgoal2completiondate
+                    ).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                    })}
+                  </p>
+                )}
+                </div>
+              </div>
               <div className="goals-container grid md:grid-cols-2 gap-5">
                 <div className="">
                   <p className="text-xl mb-3 font-medium">Goal 1</p>
@@ -1357,7 +1392,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                  {/*   <h3 className="font-medium text-xl mb-3">Target date</h3>
+                    {/*   <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1440,7 +1475,7 @@ const ProgressNotesIndex = ({ data }) => {
                     </label>
                   </div>
                   <div className="mb-7">
-                   {/*  <h3 className="font-medium text-xl mb-3">Target date</h3>
+                    {/*  <h3 className="font-medium text-xl mb-3">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1649,7 +1684,6 @@ const ProgressNotesIndex = ({ data }) => {
                         <div key={i}>
                           <div
                             className={`${MSAStyles.formRowsContainer} ${service.row_color} flex gap-3 p-3  my-2`}
-                           
                           >
                             <label className={`flex items-center gap-5`}>
                               <input
@@ -1705,7 +1739,6 @@ const ProgressNotesIndex = ({ data }) => {
                                   }
 
                                   if (clientData[service.state_label]) {
-
                                     setClientData({
                                       ...clientData,
                                       [service.state_label]: false,
@@ -1730,7 +1763,6 @@ const ProgressNotesIndex = ({ data }) => {
             <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
           )}
           <div className="container mx-auto flex justify-center gap-x-10 ">
-            
             <button
               className="btn-yellow flex items-center gap-5 px-5 py-2 rounded shadow-lg textxl inline-block "
               onClick={() => handleProgressNote()}
@@ -1777,10 +1809,15 @@ export default ProgressNotesIndex;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}`
-    );
-    const data = await response.json();
-    return { props: { data } };
+
+    const [data, sap] = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}`
+      ).then((data) => data.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/sapForProgressNotes/${clientid}`
+      ).then((data) => data.json()),
+    ]);
+    return { props: { data, sap } };
   },
 });

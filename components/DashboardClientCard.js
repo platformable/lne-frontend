@@ -13,7 +13,7 @@ export default function DashboardClientCard({ client, index, loggedUserRole }) {
     const finalDate = separatedDate.join("-");
     return newDate;
   };
-console.log("clientnnnnn",client)
+// console.log("clientnnnnn",client)
   return (
     <Link
       // href={
