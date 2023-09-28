@@ -18,7 +18,7 @@ import SubHeader from "../../../../components/SubHeader";
 
 const ProgressNotesIndex = ({ data, sap }) => {
   const router = useRouter();
-  // console.log("sap", sap);
+  console.log("sap", sap);
 
   const [selectedSAP, setSelectedSAP] = useState(sap?.current);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
@@ -918,7 +918,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
               <label htmlFor="selectedSAP" className="text-xl mr-5">Select service action plan</label>
               <select onChange={(e) => setSelectedSAP(sap[e.target.value])} className="mb-10 rounded shadow border-black py-2 px-2">
                   <option value={'current'}>Current service action plan</option>
-                  <option value={'archived'}>Previous service action plan</option>
+               {sap.archived && <option value={'archived'}>Previous service action plan</option>}   
                 </select>
               <div className="grid lg:grid-cols-2 gap-5 mb-3">
                <div>
