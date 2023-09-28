@@ -61,7 +61,7 @@ export default function ClientProfilePage({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
   const [progNotes, setProgNotes] = useState([]);
-console.log("data server", data)
+// console.log("data server", data)
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];

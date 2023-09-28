@@ -16,9 +16,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SubHeader from "../../../../../components/SubHeader";
 
-const ProgressNotesIndex = ({ data, id, msa }) => {
+const ProgressNotesIndex = ({ data, id, msa, sap }) => {
   const router = useRouter();
-  console.log("data", data);
+  // console.log("sap", sap);
+
+  const [selectedSAP, setSelectedSAP] = useState(sap?.current);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
   let componentRef = useRef();
@@ -102,12 +104,12 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
     goal2ProgressDate: data[0]?.goal2progressdate || "",
     goal3Progress: data[0]?.goal3progress === "1" ? true : false,
     goal3ProgressDate: data[0]?.goal3progressdate || "",
-    goal1Completed: data[0]?.goal1completed === "1" ? true : false,
-    goal1CompletedDate: data[0]?.goal1completeddate || "",
-    goal2Completed: data[0]?.goal2completed === "1" ? true : false,
-    goal2CompletedDate: data[0]?.goal2completeddate || "",
-    goal3Completed: data[0]?.goal3completed === "1" ? true : false,
-    goal3CompletedDate: data[0]?.goal3completeddate || "",
+    goal1Completed: selectedSAP?.goal1completed === "1" ? true : false,
+    goal1CompletedDate: selectedSAP?.goal1completiondate || "",
+    goal2Completed: selectedSAP?.goal2completed === "1" ? true : false,
+    goal2CompletedDate: selectedSAP?.goal2completiondate || "",
+    goal3Completed: selectedSAP?.goal3completed === "1" ? true : false,
+    goal3CompletedDate: selectedSAP?.goal3completiondate || "",
     StatusChangesForm: data[0]?.statuschangesform === "1" ? true : false,
     StatusChangesFormDate: data[0]?.statuschangesformdate || null,
     ComprehensiveRiskBehaviorAssessmentUpdates:
@@ -216,7 +218,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
     goal2WorkedComments: data[0]?.goal2workedcomments || "",
     goal3WorkedComments: data[0]?.goal3workedcomments || "",
   });
-  console.log("form", clientData);
+  // console.log("form", clientData);
 
   const [msaData, setMsaData] = useState({
     clientId: msa[0]?.clientid,
@@ -500,33 +502,22 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
   ];
 
   const todaysDate = new Date();
-  const [serviceActionData, setServiceActionData] = useState({
-    goal1servicecategory: data[0]?.goal1servicecategory,
-    goal1summary: data[0]?.goal1summary,
-    goal1targetdate: data[0]?.goal1targetdate,
-    goal2servicecategory: data[0]?.goal2servicecategory,
-    goal2summary: data[0]?.goal2summary,
-    goal2targetdate: data[0]?.goal2targetdate,
-    goal3servicecategory: data[0]?.goal3servicecategory,
-    goal3summary: data[0]?.goal3summary,
-    goal3targetdate: data[0]?.goal3targetdate,
-    goal1Details: data[0]?.goal1details,
-    goal2Details: data[0]?.goal2details,
-    goal3Details: data[0]?.goal3details,
-  });
+  
 
   const [dataForSAP, setDataForSAP] = useState({
+    id: selectedSAP?.id,
     clientId: data[0]?.clientid,
     goal1Completed: clientData.goal1Completed,
     goal1CompletionDate: clientData.goal1CompletedDate,
-    goal2Completed: clientData.goal1Completed,
-    goal2CompletionDate: clientData.goal1CompletedDate,
-    goal3Completed: clientData.goal1Completed,
-    goal3CompletionDate: clientData.goal1CompletedDate,
+    goal2Completed: clientData.goal2Completed,
+    goal2CompletionDate: clientData.goal2CompletedDate,
+    goal3Completed: clientData.goal3Completed,
+    goal3CompletionDate: clientData.goal3CompletedDate,
     HCWSignature: false,
   });
+  // console.log("conpleted dates", clientData, dataForSAP )
 
-  console.log("msaData", msaData);
+  // console.log("msaData", msaData);
   const handleMsaformUpdate = () => {
     axios
       .put(
@@ -537,7 +528,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
       )
       .then(function (response) {
         if (response.status === 200 || response.statusText === "Ok") {
-          console.log("msa form updated success", response);
+          // console.log("msa form updated success", response);
         }
       })
       .catch(function (error) {
@@ -1052,6 +1043,13 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                 />
                 <h3 className="font-bold text-2xl">Client Goals</h3>
               </div>
+
+              <label htmlFor="selectedSAP" className="text-xl mr-5">Select service action plan</label>
+              <select onChange={(e) => setSelectedSAP(sap[e.target.value])} className="mb-10 rounded shadow border-black py-2 px-2">
+                  <option value={'current'}>Current service action plan</option>
+                  {sap.archived && <option value={'archived'}>Previous service action plan</option>}   
+                </select>
+              
               <div className="goals-container grid lg:grid-cols-2  gap-5">
                 <div className="goal-box grid gap-y-7">
                   {/* <div className="goal-top flex items-center my-2">
@@ -1063,14 +1061,14 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     <div className="flex flex-col gap-3 items-start">
                       <p className="text-xl font-medium">Target Date</p>
                       <p className="bg-primary-light-blue p-3 rounded text-lg">
-                        {serviceActionData?.goal1targetdate?.split("T")[0]}
+                        {selectedSAP?.goal1targetdate?.split("T")[0]}
                       </p>
                     </div>
                   </div>
                   <div className="goal-summary">
                     <p className="text-xl font-medium">Summary</p>
                     <p className="bg-primary-light-blue mt-3 p-3 rounded text-lg ">
-                      {serviceActionData?.goal1Details || "-"}
+                      {selectedSAP?.goal1details || "-"}
                     </p>
                   </div>
                   {/* <div className="">
@@ -1102,7 +1100,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     <div className="flex flex-col gap-3 items-start">
                       <span className="text-xl font-medium">Target Date</span>
                       <p className="bg-primary-light-blue p-3 rounded text-lg">
-                        {serviceActionData?.goal2targetdate?.split("T")[0] ||
+                        {selectedSAP?.goal2targetdate?.split("T")[0] ||
                           "-"}
                       </p>
                     </div>
@@ -1110,7 +1108,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   <div className="goal-summary">
                     <span className="text-xl font-medium">Summary</span>
                     <p className="bg-primary-light-blue mt-3 p-3 rounded text-lg">
-                      {serviceActionData?.goal2Details || "-"}
+                      {selectedSAP?.goal2details || "-"}
                     </p>
                   </div>
                   {/* <div className="">
@@ -1142,13 +1140,13 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                     {/* <div>
                     <span className="">Service Category</span>
                     <p className=" text-dark-blue ">
-                    {serviceActionData?.goal3servicecategory}
+                    {selectedSAP?.goal3servicecategory}
                     </p>
                   </div> 
                     <div>
                       <span className="">Target Date</span>
                       <p className="text-dark-blue ">
-                        {serviceActionData?.goal3targetdate?.split("T")[0] ||
+                        {selectedSAP?.goal3targetdate?.split("T")[0] ||
                           "-"}
                       </p>
                     </div>
@@ -1156,7 +1154,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                   <div className="goal-summary my-2  ">
                     <span className="">Summary</span>
                     <p className=" text-dark-blue">
-                      {serviceActionData?.goal3Details || "-"}
+                      {selectedSAP?.goal3Details || "-"}
                     </p>
                   </div>
                   {/*  <div className="">
@@ -1456,6 +1454,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                           setDataForSAP({
                             ...dataForSAP,
                             goal1Completed: true,
+                            goal1CompletionDate: crearFecha(),
                           });
                         }}
                         defaultChecked={
@@ -1478,6 +1477,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                           setDataForSAP({
                             ...dataForSAP,
                             goal1Completed: false,
+                            goal1CompletionDate: null
                           });
                         }}
                         defaultChecked={
@@ -1543,6 +1543,7 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                           setDataForSAP({
                             ...dataForSAP,
                             goal2Completed: true,
+                            goal2CompletionDate: crearFecha(),
                           });
                         }}
                         defaultChecked={
@@ -1560,11 +1561,12 @@ const ProgressNotesIndex = ({ data, id, msa }) => {
                           setClientData({
                             ...clientData,
                             goal2Completed: false,
-                            goal2CompletedDate: "",
+                            goal2CompletionDate: "",
                           });
                           setDataForSAP({
                             ...dataForSAP,
                             goal2Completed: false,
+                            goal2CompletionDate: null,
                           });
                         }}
                         defaultChecked={
@@ -1932,16 +1934,19 @@ export default ProgressNotesIndex;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid, id } = ctx.params;
-    console.log(ctx.params);
-    const [data, msa] = await Promise.all([
+    // console.log(ctx.params);
+    const [data, msa, sap] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/${clientid}/profile/${id}`
       ).then((data) => data.json()),
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/msa/${clientid}`
       ).then((data) => data.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/sapForProgressNotes/${clientid}`
+      ).then((data) => data.json()),
     ]);
 
-    return { props: { data, id, msa } };
+    return { props: { data, id, msa, sap } };
   },
 });

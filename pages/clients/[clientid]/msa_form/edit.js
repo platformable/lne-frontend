@@ -478,7 +478,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
             </div>
 
-            {/* <div
+             <div
               className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-2 rounded-lg my-2`}
             >
               <div className="form-row-item px-5 pointer-events-none">
@@ -503,20 +503,19 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div>
               <div>
                 <p className="text-lg">Progress Note </p>
-                {clientData.progressnotedateid}
               </div>
               <div className="text-center">
-              {clientData.progressNote ?  <p className="bg-white inline-block  px-8 py-1 rounded-lg text-left"> 
+              {/* {clientData.progressNote ?  <p className="bg-white inline-block  px-8 py-1 rounded-lg text-left"> 
                    {clientData.progressNoteDate.split('T')[0]}</p>: <p className="bg-white inline-block px-5 py-1 rounded-lg">MM/DD/YYYY</p>
-              }
-               {/*  <input
+              } */}
+                <input
                   type="date"
                   id="AIRSIntakeForm"
                   value={
                     clientData.progressNoteDate &&
                     formatDate(clientData.progressNoteDate)
                   }
-                  disabled={clientData.progressNoteDate ? true: false}
+                  // disabled={clientData.progressNoteDate ? true: false}
                   className="rounded  p-2 border"
                   onChange={(e) => {
                     if(clientData){
@@ -536,11 +535,11 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 /> 
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.action_plans_folder_url ? data[0]?.action_plans_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.action_plans_folder_url ? data[0]?.linkage_navigation_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
-            </div> */}
+            </div> 
 
             <div
               className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1 my-2`}
@@ -607,7 +606,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 /> 
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
@@ -682,7 +681,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
               </div> 
               
               <div className="text-center flex justify-center">
-              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.cbra_folder_url ? data[0]?.cbra_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
@@ -756,7 +755,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
@@ -829,7 +828,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
@@ -905,7 +904,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
@@ -980,7 +979,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.medical_folder_url ? data[0]?.medical_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
@@ -1907,7 +1906,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.miscellaneous_folder_url ? data[0]?.miscellaneous_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.consent_folder_url ? data[0]?.consent_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
@@ -2597,7 +2596,7 @@ const defaultTodaysDateValue = new Date().toISOString().split('T')[0]
                 />
               </div>
               <div className="text-center flex justify-center">
-              <a href={data[0]?.intake_folder_url ? data[0]?.intake_folder_url : ""} target="_blank" rel="noreferrer">
+              <a href={data[0]?.idg_folder_url ? data[0]?.idg_folder_url : ""} target="_blank" rel="noreferrer">
               <img src={'/dropbox_folder.svg'} alt="" width="34"/>
                 </a>
               </div>
