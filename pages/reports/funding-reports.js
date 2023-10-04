@@ -519,7 +519,7 @@ export const getServerSideProps = withPageAuthRequired({
           fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
             r.json()
           ),
-          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes`).then(
+          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/clients/allprogressnotes`).then(
             (r) => r.json()
           ),
           fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`).then(
