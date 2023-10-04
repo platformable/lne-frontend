@@ -43,6 +43,9 @@ export default function DateRangeComponent({
 
 
   }, [selectedDate.start, selectedDate.finish]);
+
+
+  
   return (
     <div>
       <div className="flex justify-between items-center bg-white px-5 py-5 my-5 shadow rounded-md">
