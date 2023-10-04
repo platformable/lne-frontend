@@ -166,15 +166,15 @@ export default function KeyMetrics({ clients, averageNumbers }) {
           <h2 className="font-bold ml-3">Key Metrics</h2>
         </div>
         <div className="grid grid-rows-3 md:grid-rows-none md:grid-cols-3 gap-2 md:w-4/6 md:justify-self-end">
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex items-center justify-start gap-2 ">
             <div className="px-4 text-center py-2 rounded bg-middle-green"></div>
             <span className="font-medium">on track</span>
           </div>
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex items-center justify-start md:justify-end gap-2 ">
             <div className="px-4 text-center py-2 rounded bg-orange"></div>
             <span className="font-medium">warning</span>
           </div>
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex items-center justify-start md:justify-end gap-2 ">
             <div className="px-4 text-center py-2 rounded bg-light-red"></div>
             <span className="font-medium">alert</span>
           </div>
