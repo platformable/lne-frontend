@@ -69,11 +69,11 @@ export default function Header() {
               </div>
             </div>
             <Link href="/api/auth/logout">
-              <a
+              <span
                 className={`${styles.btnIndexPage} inline-block btn-yellow text-black px-10 py-1 rounded-md shadow-lg`}
               >
                 Logout
-              </a>
+              </span>
             </Link>
           </div>
         </div>
