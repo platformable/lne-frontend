@@ -30,7 +30,7 @@ const loggedUserStatus =
   const router = useRouter();
 
 
-  console.log("user",user)
+  
 
   /* const getNotCompletedMsaForms = (data) => {
     const noCompleted = [];
