@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  largePageDataBytes: 10000000,
+  experimental: {
+    largePageDataBytes: 128 * 100000,
+  },
 }
 
 module.exports = nextConfig
