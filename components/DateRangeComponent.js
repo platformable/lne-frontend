@@ -2,47 +2,45 @@ import React, { useState, useEffect } from "react";
 
 export default function DateRangeComponent({
   generateReport,
-  clients,
   setSelectedClients,
-  progressNotes,
   setSelectedProgressNotes,
-  condomsDistributed,
   setSelectedCondoms,
-  supportGroups,
   setSelectedSupportGroups,
+  setErrorRequest
 }) {
   const [selectedDate, setSelectedDate] = useState({
     start: null,
     finish: null,
   });
 
-  
+  const fetchReport = async() => {
+    try {
+      const [clientsReport, progressNotesReport, supportGroupsReport, condomsDistributedReport] =
+        await Promise.all([
+          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/reports/getall/${selectedDate.start}&${selectedDate.finish}`).then((r) =>
+            r.json()
+          ),
+          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/clients/allprogressnotesforreports/${selectedDate.start}&${selectedDate.finish}`).then(
+            (r) => r.json()
+          ),
+          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups/reports/getall/${selectedDate.start}&${selectedDate.finish}`).then(
+            (r) => r.json()
+          ),
+          fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed/reports/getall/${selectedDate.start}&${selectedDate.finish}`
+          ).then((r) => r.json()),
+        ]);
+        setSelectedClients(clientsReport)
+        setSelectedProgressNotes(progressNotesReport)
+        setSelectedCondoms(condomsDistributedReport)
+        setSelectedSupportGroups(supportGroupsReport)
+    } catch (error) {
+      setErrorRequest(error.message)
+      console.log("error", error)
+    }
+  }
 
-  useEffect(() => {
-    // console.log("selectedDate", selectedDate);
-    const selectReportsInDateRange = (reports, dateField) =>
-      reports.filter((report) => {
-        const start = new Date(new Date(selectedDate.start).setHours(0));
-        const end = new Date(new Date(selectedDate.finish).setHours(23));
-        const eventdate = new Date(report?.[dateField]);
-        // console.log("start", start)
-        // console.log("end", end)
-        // console.log("eventdate", eventdate)
-        // console.log(eventdate >= start && eventdate <= end);
-        return eventdate >= start && eventdate <= end;
-      });
-      const clientsReport = selectReportsInDateRange(clients, "clientdatecreated")
-      const progressNotesReport = selectReportsInDateRange(progressNotes, "progressnotedate")
-      const condomsDistributedReport = selectReportsInDateRange(condomsDistributed, "date")
-      const supportGroupsReport = selectReportsInDateRange(supportGroups, "supportmeetingdate")
-      
-      setSelectedClients(clientsReport)
-      setSelectedProgressNotes(progressNotesReport)
-      setSelectedCondoms(condomsDistributedReport)
-      setSelectedSupportGroups(supportGroupsReport)
 
-
-  }, [selectedDate.start, selectedDate.finish]);
 
 
   
@@ -79,7 +77,10 @@ export default function DateRangeComponent({
           </label>
         </div>
         <button 
-        onClick={generateReport}
+        onClick={() => {
+          fetchReport()
+          generateReport()
+        }}
         className="bg-yellow py-2  rounded px-5 flex gap-3 items-center flex shadow">
           <img src="/supervisor/generate_data_and_charts_icon.svg" alt="generate report" width={25}/>
             <p className="text-lg"> Generate Report</p>

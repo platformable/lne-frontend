@@ -171,6 +171,9 @@ const FundingReport = ({
   const [selectedSupportGroups, setSelectedSupportGroups] = useState([]);
   const [showReport, setShowReport] = useState(null);
 
+  const [errorRequest, setErrorRequest] = useState('');
+
+
   const generateReport = () => setShowReport((prev) => !prev);
   // console.log("selectedClients", selectedClients);
   // console.log("selectedProgressNotes", selectedProgressNotes);
@@ -393,9 +396,10 @@ const FundingReport = ({
             setSelectedCondoms={setSelectedCondoms}
             supportGroups={supportGroups}
             setSelectedSupportGroups={setSelectedSupportGroups}
+            setErrorRequest={setErrorRequest}
           />
-
-          {showReport && (
+          {errorRequest && (<center>{errorRequest}</center>)}
+          {showReport && errorRequest === '' && (
             <>
               <div className="bg-white rounded-md shadow-md p-5 my-5">
                 <h3 className="font-bold text-2xl my-5">Condoms Distributed</h3>
@@ -511,34 +515,34 @@ const FundingReport = ({
 
 export default FundingReport;
 
-export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps(ctx) {
-    try {
-      const [clients, progressNotes, supportGroups, condomsDistributed] =
-        await Promise.all([
-          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
-            r.json()
-          ),
-          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/clients/allprogressnotes`).then(
-            (r) => r.json()
-          ),
-          fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`).then(
-            (r) => r.json()
-          ),
-          fetch(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
-          ).then((r) => r.json()),
-        ]);
-      return {
-        props: {
-          clients: clients,
-          progressNotes: progressNotes,
-          supportGroups: supportGroups,
-          condomsDistributed: condomsDistributed,
-        },
-      };
-    } catch (error) {
-      return { props: { message: "An error ocurred" } };
-    }
-  },
-});
+// export const getServerSideProps = withPageAuthRequired({
+//   async getServerSideProps(ctx) {
+//     try {
+//       const [clients, progressNotes, supportGroups, condomsDistributed] =
+//         await Promise.all([
+//           fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
+//             r.json()
+//           ),
+//           fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/clients/allprogressnotes`).then(
+//             (r) => r.json()
+//           ),
+//           fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/support_groups`).then(
+//             (r) => r.json()
+//           ),
+//           fetch(
+//             `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`
+//           ).then((r) => r.json()),
+//         ]);
+//       return {
+//         props: {
+//           clients: clients,
+//           progressNotes: progressNotes,
+//           supportGroups: supportGroups,
+//           condomsDistributed: condomsDistributed,
+//         },
+//       };
+//     } catch (error) {
+//       return { props: { message: "An error ocurred" } };
+//     }
+//   },
+// });
