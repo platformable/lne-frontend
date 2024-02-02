@@ -399,7 +399,11 @@ const FundingReport = ({
             setErrorRequest={setErrorRequest}
           />
           {errorRequest && (<center>{errorRequest}</center>)}
-          {showReport && errorRequest === '' && (
+          {showReport  &&
+          selectedProgressNotes.length > 0 &&
+          selectedCondoms.length > 0 &&
+          selectedSupportGroups.length > 0
+          && errorRequest === '' && (
             <>
               <div className="bg-white rounded-md shadow-md p-5 my-5">
                 <h3 className="font-bold text-2xl my-5">Condoms Distributed</h3>
@@ -443,6 +447,7 @@ const FundingReport = ({
 
                 {services
                   ? services.map((service, index) => {
+                    // console.log("service", service)
                       return (
                         <Textarea
                           key={index}

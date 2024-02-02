@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Textarea({ data, service,stateValue }) {
+  console.log("data textarea", data, service, "stateVAlue )> ",stateValue)
 
   const finalTitle= <p className="text-xl">Here are all services narrratives for <strong>{service}</strong> so that you can write a summary: </p>
   return (
@@ -16,7 +17,7 @@ export default function Textarea({ data, service,stateValue }) {
 
         className="table-list reportTextarea block p-2.5 w-full text-sm  bg-blue-50 rounded-lg border border-gray-300  "
       >
-      {data?.map((summary,index)=>summary[stateValue]===0 || summary[stateValue]=== '0' ? 'N/A' :<ul key={index}><li className="my-5">{summary[stateValue]}</li></ul>)}
+      {data?.map((summary,index)=> summary[stateValue] === '' || summary[stateValue]=== null ? 'N/A' :<ul key={index}><li className="my-5">{summary[stateValue]}</li></ul>)}
       </div>
     </>
   );
