@@ -20,7 +20,6 @@ import SubHeader from "../../../../../components/SubHeader";
 export default function EditServiceActionPlan({ data }) {
   const router = useRouter();
   let componentRef = useRef();
-
   const [activeActionPlan, setActiveActionPlan] = useState(false);
 
   const notifyMessage = () => {
@@ -194,7 +193,6 @@ export default function EditServiceActionPlan({ data }) {
     return finalDate;
   };
 
-  console.log("clientdata", clientData);
 
   return (
     <>

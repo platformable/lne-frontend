@@ -8,9 +8,6 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
-  /*   const {data} = getSession() */
-  const loggedUserStatus = user && user["https://lanuevatest.herokuapp.com/activestatus"];
-  const router = useRouter()
   
 
 

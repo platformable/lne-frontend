@@ -9,16 +9,17 @@ export default function EditInactiveUserModal({
   showEditInactiveUserModal,
 }) {
   const router = useRouter();
-  console.log("selecteduser", selectedUser);
+  // console.log("selecteduser inactive", selectedUser);
   const [userData, setUserData] = useState({
     user_id: selectedUser.user_id,
+    id: selectedUser.id,
     name: selectedUser.name,
     lastname: selectedUser.lastname,
     useremail: selectedUser.useremail,
     userrole: selectedUser.userrole,
     useractivestatus: selectedUser.useractivestatus,
   });
-  console.log("userDataInactive", userData);
+  // console.log("userDataInactive", userData);
 
   const [saving, setSaving] = useState(false);
 

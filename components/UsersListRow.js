@@ -54,10 +54,10 @@ export default function UsersListRow({
         {/* <div className="head-row ">
                   <p className="text-center">{id}</p>
                 </div> */}
-        <p className="py-2 px-5">{name}</p>
-        <p className="py-2 px-5">{lastname}</p>
-        <p className="py-2 px-5">{role || authorizeduser.userrole}</p>
-        <p className="py-2 px-5">
+        <p className="py-2 px-5 text-lg">{name}</p>
+        <p className="py-2 px-5 text-lg">{lastname}</p>
+        <p className="py-2 px-5 text-lg">{role || authorizeduser.userrole}</p>
+        <p className="py-2 px-5 text-lg">
           {email || authorizeduser.useremail
             ? email || authorizeduser.useremail
             : "-"}
