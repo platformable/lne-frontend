@@ -7,13 +7,14 @@ export default function EditUserModal({selectedUser, setShowEditUserModal, showE
   const router = useRouter()
   const [userData,setUserData]= useState(selectedUser || {
     user_id: selectedUser.user_id,
+    id: selectedUser.id,
     name: "",
     lastname: "",
     useremail: "",
     userRole: "",
     useractivestatus: ''
   })
-console.log('selected', selectedUser)
+// console.log('selected', selectedUser)
   const [saving,setSaving] = useState(false)
 
   const EditUser =  (user)=> {
@@ -41,7 +42,7 @@ console.log('selected', selectedUser)
      }); 
    }
 
-  console.log("userData",userData)
+  // console.log("userData",userData)
 
   return (
     <>

@@ -36,7 +36,7 @@ const RowMsaFormSupervisor = ({
     formIssues: nameStrings[2],
     formReviewed: nameStrings[3],
   });
-  // console.log("form : ",form);
+  console.log("strings ",strings);
   // console.log("form name: ", formString, formDate)
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();
@@ -176,27 +176,7 @@ const RowMsaFormSupervisor = ({
           <p className="font-medium">-</p>
         )}
 
-        {/*  <input
-          type="date"
-          id={strings.formUploadDate}
-          className={`${MSAStyles.inputDate} 
-           ${
-            formReviewed || formIssues
-              ? ""
-              : " border-2 border-dark-blue rounded-md p-px bg-white"
-          }`}
-          value={
-            formUploadDate &&
-            formUploadDate.split("T")[0] 
-          }
-          disabled={formUploadDate ? true : false}
-          onChange={(e) => {
-            setClientData((prev) => ({
-              ...prev,
-              [strings.formUploadDate]: e.target.value,
-            }));
-          }}
-        /> */}
+       
       </div>
 
       <div

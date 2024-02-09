@@ -76,7 +76,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? true
         : false,
     ComprehensiveRiskBehaviorAssessmentUploadDate:
-      data[0].comprehensiveriskbehaviorassessmentdate || null,
+      data[0].comprehensiveriskbehaviorassessmentuploaddate || null,
 
     ServiceActionPlan:
       data[0].serviceactionplan === "0" || data[0].serviceactionplan === null
@@ -124,11 +124,12 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         ? false
         : true,
     StatusChangesFormDate: data[0].statuschangesformdate,
+
     StatusChangesFormUploadDate:
       data[0].statuschangesformuploaddate === "" ||
       data[0].statuschangesformuploaddate === null
         ? data[0].statuschangesformdate
-        : data[0].statuschangesformdate,
+        : data[0].statuschangesformuploaddate,
     StatusChangesFormScan:
       data[0].statuschangesformscan === "0" ||
       data[0].statuschangesformscan === null
@@ -867,7 +868,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     clientUniqueId: data[0]?.id,
   });
 
-  console.log("date sap", data[0]);
+  // console.log("date sap", data[0]);
   const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
   const [issueFounded, setIssueFounded] = useState({
     clientId: clientData.clientId,
@@ -904,7 +905,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
 
   const todaysDate = new Date();
 
-  console.log(" data", data);
+  console.log("form data", clientData);
 
   const handleMsaform = () => {
     axios
@@ -918,9 +919,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         console.log(response);
         if (response.status === 200 || response.statusText === "Ok") {
           notifyMessage();
-          setTimeout(() => {
-            router.push(`/supervisorDashboard`);
-          }, 2300);
+          // setTimeout(() => {
+          //   router.push(`/supervisorDashboard/clients/${clientData.clientId}/profile`);
+          // }, 2300);
         }
       })
       .catch(function (error) {

@@ -23,7 +23,7 @@ const DeleteClientModal = ({
 
       .then((response) => {
         console.log(response);
-        if (response.statusText === "OK") {
+        if (response.data.status === "OK") {
           notifyDeleteMessage();
           setTimeout(() => {
             router.push("/clients");

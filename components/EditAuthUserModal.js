@@ -5,7 +5,7 @@ import Loader from "./Loader";
 
 export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserModal, showEditAuthUserModal }) {
   const router = useRouter()
-  console.log('selecteduser',selectedUser)
+  // console.log('selecteduser',selectedUser)
   const [userData, setUserData] = useState(selectedUser || {
     id: selectedUser.id,
     name: selectedUser.name,
@@ -14,7 +14,7 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
     role: selectedUser.role,
     isactive: selectedUser.isactive
   })
-  console.log('userData',userData)
+  // console.log('userData',userData)
 
   const [saving, setSaving] = useState(false)
 
@@ -22,7 +22,7 @@ export default function EditAuthUserModal({ selectedUser, setShowEditAuthUserMod
 
     axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers`, userData)
       .then(function (response) {
-        console.log("response",response)
+        // console.log("response",response)
         setShowEditAuthUserModal(!showEditAuthUserModal)
         router.reload()
       })

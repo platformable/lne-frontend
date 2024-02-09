@@ -36,7 +36,7 @@ export default function AuthorizedUsersIndex({ data, users }) {
 
   const [selectedUser, setSelectedUser] = useState({});
 
-  console.log("data", data);
+  // console.log("data auth users", data);
 
   useEffect(() => {
     getNotRegisteredUser(data, users);
