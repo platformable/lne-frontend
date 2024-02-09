@@ -603,12 +603,12 @@ export default function ClientProfilePage({
                     </div>
                   </Link>
                 )}
-
+{/* 
                 {loggedUserRole === "DES" && (
                   <Link
                     href={
                       data[0]?.msaformid
-                        ? `/clients/${data[0]?.clientid}/msa_form/des_msa_form_edit`
+                        ? `/clients/${data[0]?.clientid}/msa_form/edit`
                         : `/clients/${data[0]?.clientid}/msa_form`
                     }
                   >
@@ -625,7 +625,7 @@ export default function ClientProfilePage({
                       </h4>
                     </div>
                   </Link>
-                )}
+                )} */}
 
                 {loggedUserRole === "HCW" && (
                   <Link

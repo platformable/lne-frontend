@@ -17,6 +17,7 @@ export default function EditClientModal({
   const loggedUserName = user[`https://lanuevatest.herokuapp.com/name`];
   const loggedUserLastname = user[`https://lanuevatest.herokuapp.com/lastname`];
 
+
   const client = data[0];
 
   const [users, setUsers] = useState([]);
@@ -25,7 +26,8 @@ export default function EditClientModal({
   const [emptyFields, setEmptyFields] = useState(false);
   const [errorsInFields, setErrorsInFields] = useState(false);
 
-  console.log("client", client);
+  // console.log("client", client);
+
 
   const IdWithNoLetters = client?.clientid?.slice(1, -1);
 
@@ -38,10 +40,7 @@ export default function EditClientModal({
     clientActive: client?.clientactive === "1" ? "1" : "0",
     clientHCWID: client?.clienthcwid,
     clientHCWName: client?.clienthcwname,
-    clientHCWLastname:
-      loggeduserId !== "Supervisor"
-        ? loggedUserLastname
-        : client?.clienthcwlastname,
+    clientHCWLastname: client?.clienthcwlastname,
     clientID: "",
     clientHCWemail:
       loggeduserId !== "Supervisor" ? user.email : client?.clienthcwemail,
@@ -50,7 +49,7 @@ export default function EditClientModal({
   });
 
   const createClientId = () => {
-    console.log("creating id");
+    // console.log("creating id");
     const firstNameLetter = clientData?.clientFirstName?.slice(0, 1);
     let shortSsn = String(clientData?.clientSSN);
     let shortSsnNumber = shortSsn;
@@ -131,8 +130,8 @@ export default function EditClientModal({
           console.log("response", response);
           notifyMessage();
           setTimeout(() => {
-            // router.reload();
-            router.push("/clients");
+            router.reload();
+            // router.push(`/clients/${clientData.id}/profile`);
           }, 1000);
           setShowEditClientModal(!showEditClientModal);
         })
@@ -164,7 +163,7 @@ export default function EditClientModal({
     }
   };
 
-  console.log("clientData", clientData);
+  // console.log("clientData", clientData);
 
   useEffect(() => {
     getUsers();
@@ -280,7 +279,6 @@ export default function EditClientModal({
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             />
           </label> */}
-            {loggeduserId === "Supervisor" ? (
               <label className="block">
                 <span className="font-bold">Asign user</span>
                 <select
@@ -292,7 +290,7 @@ export default function EditClientModal({
                   className="block w-full mt-1 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 >
                   <option>
-                    {clientData.clientHCWName} {clientData.clientHCWLastname}
+                    {clientData.clientHCWName} {clientData.clientHCWLastname} 
                   </option>
                   {users &&
                     users
@@ -306,9 +304,7 @@ export default function EditClientModal({
                       })}
                 </select>
               </label>
-            ) : (
-              ""
-            )}
+            
 
             <label className="block">
               <span className="font-bold">is Active / Not Active</span>

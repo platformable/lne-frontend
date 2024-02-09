@@ -22,7 +22,7 @@ const DeleteModal = ({
 
       .then((response) => {
         console.log(response);
-        if (response.statusText === "OK") {
+        if (response.data.statusText === "OK") {
           notifyDeleteMessage();
           setTimeout(() => {
             router.reload();

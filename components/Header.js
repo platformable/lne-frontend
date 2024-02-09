@@ -70,7 +70,7 @@ export default function Header() {
             </div>
             <Link href="/api/auth/logout">
               <span
-                className={`${styles.btnIndexPage} inline-block btn-yellow text-black px-10 py-1 rounded-md shadow-lg`}
+                className={`${styles.btnIndexPage} cursor-pointer inline-block btn-yellow text-black px-10 py-1 rounded-md shadow-lg`}
               >
                 Logout
               </span>
