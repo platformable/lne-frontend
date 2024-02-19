@@ -15,12 +15,7 @@ import "react-toastify/dist/ReactToastify.minimal.css";
 import SubHeader from "../../../components/SubHeader";
 import "react-toastify/dist/ReactToastify.css";
 const SupportGroups = ({ hcworkers, data }) => {
-  console.log(
 
-    
-    "dataaa",
-    new Date(data.supportmeetingdate).toISOString().slice(0, 10)
-  );
   let componentRef = useRef();
   const [form, setForm] = useState({
     id: data?.id,

@@ -6,7 +6,7 @@ import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { Dropbox } from "dropbox";
-import Loader from "../../components/Loader";
+import Loader from "../../../../components/Loader";
 
 
 import { ToastContainer, toast } from "react-toastify";
@@ -18,7 +18,7 @@ import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 const Index = ({ data }) => {
    const router = useRouter()
    const [isSaving, setIsSaving] = useState(false);
-console.log("data",data)
+
 const notifyMessage = (status) => {
   if (status === "ok") {
     toast.success("Form saved successfully!", {
@@ -139,8 +139,6 @@ const notifyMessage = (status) => {
 
   const todaysDate = new Date();
 
-
-console.log("clientData",clientData)
 const handleMsaform = ()=> {
   setIsSaving(true);
   setTimeout(() => {
