@@ -15,19 +15,29 @@ import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SubHeader from "../../../../components/SubHeader";
+import Loader from "../../../../components/Loader";
 
 const ProgressNotesIndex = ({ data, sap }) => {
   const router = useRouter();
-  console.log("sap", sap);
+  // console.log("sap", sap);
 
   const [selectedSAP, setSelectedSAP] = useState(sap?.current);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
   let componentRef = useRef();
-  const notifyMessage = () => {
-    toast.success("Progress Note Saved!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyMessage = (status) => {
+    if (status === "ok") {
+      toast.success("Progress note saved successfuly", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+    if (status === "fail") {
+      toast.error("Something went wrong try again", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
 
   const crearFecha = () => {
@@ -47,20 +57,6 @@ const ProgressNotesIndex = ({ data, sap }) => {
     return fixedDate;
   };
 
-  const setLocaleDateString = (date) => {
-    const fecha = Date.parse(date);
-    const newDate = new Date(fecha)
-      .toLocaleDateString()
-      .replace("/", "-")
-      .replace("/", "-");
-    const separatedDate = newDate.split("-");
-    const finalDate = `${separatedDate[2]}-${
-      separatedDate[1]?.length === 1 ? `0${separatedDate[1]}` : separatedDate[1]
-    }-${
-      separatedDate[0]?.length === 1 ? `0${separatedDate[0]}` : separatedDate[0]
-    }`;
-    return finalDate;
-  };
   const [msaData, setMsaData] = useState({
     clientId: data[0]?.clientid,
     AIRSCollateralInformation:
@@ -502,7 +498,6 @@ const ProgressNotesIndex = ({ data, sap }) => {
   ];
 
   const todaysDate = new Date();
-  
 
   const [dataForSAP, setDataForSAP] = useState({
     id: selectedSAP?.id,
@@ -519,7 +514,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
   const handleMsaformUpdate = () => {
     axios
       .put(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update_msa_form_from_progress_note`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update_msa_form_from_progress_notesss`,
         {
           msaData,
         }
@@ -559,6 +554,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
       );
     } else {
       setPNErrorMessage("");
+      setIsSaving(true);
       axios
         .post(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/`, {
           clientData,
@@ -568,13 +564,17 @@ const ProgressNotesIndex = ({ data, sap }) => {
             setProgressNoteId(response.data.progress_note_id);
             handleMsaformUpdate();
             handleServiceActionPlanFormUpdate();
-            notifyMessage();
+            notifyMessage("ok");
             setTimeout(() => {
+              setIsSaving(false);
               setShowImpactTrackerModal(!showImpactTrackerModal);
             }, 1500);
           }
         })
         .catch(function (error) {
+          notifyMessage("fail");
+          setIsSaving(false);
+
           console.log(error);
         });
     }
@@ -913,41 +913,49 @@ const ProgressNotesIndex = ({ data, sap }) => {
                   alt="Client goals icon"
                 />
                 <h3 className="font-bold text-2xl">Client Goals</h3>
-                
               </div>
-              <label htmlFor="selectedSAP" className="text-xl mr-5">Select service action plan</label>
-              <select onChange={(e) => setSelectedSAP(sap[e.target.value])} className="mb-10 rounded shadow border-black py-2 px-2">
-                  <option value={'current'}>Current service action plan</option>
-               {sap.archived && <option value={'archived'}>Previous service action plan</option>}   
-                </select>
+              <label htmlFor="selectedSAP" className="text-xl mr-5">
+                Select service action plan
+              </label>
+              <select
+                onChange={(e) => setSelectedSAP(sap[e.target.value])}
+                className="mb-10 rounded shadow border-black py-2 px-2"
+              >
+                <option value={"current"}>Current service action plan</option>
+                {sap.archived && (
+                  <option value={"archived"}>
+                    Previous service action plan
+                  </option>
+                )}
+              </select>
               <div className="grid lg:grid-cols-2 gap-5 mb-3">
-               <div>
-               {selectedSAP?.goal1completed === "1" && (
-                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
-                    Completed:{" "}
-                    {new Date(
-                      data[0]?.sapgoal1completiondate
-                    ).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "numeric",
-                      day: "numeric",
-                    })}
-                  </p>
-                )}
-               </div>
                 <div>
-                {selectedSAP?.goal2completed === "1" && (
-                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
-                    Completed:{" "}
-                    {new Date(
-                      data[0]?.sapgoal2completiondate
-                    ).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "numeric",
-                      day: "numeric",
-                    })}
-                  </p>
-                )}
+                  {selectedSAP?.goal1completed === "1" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        data[0]?.sapgoal1completiondate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {selectedSAP?.goal2completed === "1" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        data[0]?.sapgoal2completiondate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="goals-container grid lg:grid-cols-2  gap-5">
@@ -977,7 +985,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                       {selectedSAP?.goal1details}
                     </p>
                   </div>
-                  
+
                   {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
@@ -1011,7 +1019,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                       {selectedSAP?.goal2details}
                     </p>
                   </div>
-                 
+
                   {/* <div className="">
                   <span className="">Goal 1 Progress Comments</span>
                  <textarea name="" id=""  rows="10" className="border-black rounded-md w-full mt-1 p-2"
@@ -1319,33 +1327,33 @@ const ProgressNotesIndex = ({ data, sap }) => {
                 </h3>
               </div>
               <div className="grid lg:grid-cols-2 gap-5 mb-5">
-               <div>
-               {data[0]?.sapgoal1completed === "1" && (
-                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
-                    Completed:{" "}
-                    {new Date(
-                      data[0]?.sapgoal1completiondate
-                    ).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "numeric",
-                      day: "numeric",
-                    })}
-                  </p>
-                )}
-               </div>
                 <div>
-                {data[0]?.sapgoal2completed === "1" && (
-                  <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
-                    Completed:{" "}
-                    {new Date(
-                      data[0]?.sapgoal2completiondate
-                    ).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "numeric",
-                      day: "numeric",
-                    })}
-                  </p>
-                )}
+                  {data[0]?.sapgoal1completed === "1" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        data[0]?.sapgoal1completiondate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {data[0]?.sapgoal2completed === "1" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        data[0]?.sapgoal2completiondate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="goals-container grid md:grid-cols-2 gap-5">
@@ -1762,28 +1770,37 @@ const ProgressNotesIndex = ({ data, sap }) => {
           {pnErrorMessage && (
             <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
           )}
-          <div className="container mx-auto flex justify-center gap-x-10 ">
-            <button
-              className="btn-yellow flex items-center gap-5 px-5 py-2 rounded shadow-lg textxl inline-block "
-              onClick={() => handleProgressNote()}
-            >
-              <img
-                src="/progress_notes/save_and_finish_mini.svg"
-                alt="save icon"
-              />
-              Save and finish
-            </button>
+          {!isSaving ? (
+            <div className="container mx-auto flex justify-center gap-x-10 ">
+              <button
+                className="btn-yellow flex items-center gap-5 px-5 py-2 rounded shadow-lg textxl inline-block "
+                onClick={() => handleProgressNote()}
+              >
+                <img
+                  src="/progress_notes/save_and_finish_mini.svg"
+                  alt="save icon"
+                />
+                Save and finish
+              </button>
 
-            <ReactToPrint
-              trigger={() => (
-                <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadowxl text-lg inline-block ">
-                  <img src="/progress_notes/print_mini.svg" alt="print icon" />
-                  Save and print
-                </button>
-              )}
-              content={() => componentRef.current}
-            />
-          </div>
+              <ReactToPrint
+                trigger={() => (
+                  <button className="bg-black text-white flex items-center gap-3 px-5 hover:bg-yellow-200 px-5 py-2 rounded shadowxl text-lg inline-block ">
+                    <img
+                      src="/progress_notes/print_mini.svg"
+                      alt="print icon"
+                    />
+                    Save and print
+                  </button>
+                )}
+                content={() => componentRef.current}
+              />
+            </div>
+          ) : (
+            <div className="grid justify-center">
+              <Loader />
+            </div>
+          )}
         </section>
         <div style={{ display: "none" }}>
           <ProgressNoteToPrint ref={componentRef} data={clientData} />

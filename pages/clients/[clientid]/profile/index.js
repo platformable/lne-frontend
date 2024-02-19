@@ -25,6 +25,7 @@ export function getDatex(string) {
   return result;
 }
 export function setLocaleDateString(date) {
+
   const fecha = Date.parse(date);
   const newDate = new Date(fecha)
     .toLocaleDateString()
@@ -442,18 +443,49 @@ export default function ClientProfilePage({
     }
   };
 
-  const notifyMessage = () => {
-    toast.success("Updating client", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyMessage = (status) => {
+    if (status === 'ok') {
+      toast.success("Updating client", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } 
+    if (status === 'fail') {
+      toast.error('Something went wrong try again',{
+        position: toast.POSITION.TOP_CENTER,
+      })
+    }
+   
   };
 
-  const notifyDeleteMessage = () => {
-    toast.success("Deleting", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyDeleteMessage = (status) => {
+    
+    if (status === 'ok') {
+      toast.success("Deleting client", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } 
+    if (status === 'fail') {
+      toast.error('Something went wrong try again',{
+        position: toast.POSITION.TOP_CENTER,
+      })
+    }
+    
   };
-
+  const notifyDeletePNMessage = (status) => {
+    
+    if (status === 'ok') {
+      toast.success("Deleting client", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } 
+    if (status === 'fail') {
+      toast.error('Something went wrong try again',{
+        position: toast.POSITION.TOP_CENTER,
+      })
+    }
+    
+  };
+  
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -476,7 +508,7 @@ export default function ClientProfilePage({
   return (
     <>
       <Layout>
-        <ToastContainer autoClose={700} />
+        <ToastContainer autoClose={1000} />
         <div className=" bg-light-blue h-full pb-20 ">
         <SubHeader pageTitle='Client Dashboard'/>
           <section className="pb-5 pt-10 container mx-auto md:px-0 px-5 ">
@@ -905,7 +937,7 @@ export default function ClientProfilePage({
           id={selectedProgressNoteId}
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
-          notifyDeleteMessage={notifyDeleteMessage}
+          notifyDeleteMessage={notifyDeletePNMessage}
           whatToDelete={"progress note"}
         />
       )}
@@ -913,14 +945,6 @@ export default function ClientProfilePage({
   );
 }
 
-/* export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps(ctx) {
-    let { clientid } = ctx.params;
-    const  response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`);
-    const data = await  response.json();
-    return { props: { data } };
-  },
-}); */
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
