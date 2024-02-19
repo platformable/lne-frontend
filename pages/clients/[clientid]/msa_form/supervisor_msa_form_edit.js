@@ -16,10 +16,12 @@ import BackButton from "../../../../components/BackButton";
 import BackToDashboardButton from "../../../../components/BackToDashboardButton";
 import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 import SubHeader from "../../../../components/SubHeader";
+import Loader from "../../../../components/Loader";
 
 const EditSupervisorMSAFormPage = ({ data }) => {
   const { user, error, isLoading } = useUser();
-  console.log("server data",data)
+
+  const [isSaving, setIsSaving] = useState(false);
   const router = useRouter();
   const [clientData, setClientData] = useState({
     dateFormReviewed: new Date(),
@@ -883,10 +885,17 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     formDate: null,
   });
 
-  const notifyMessage = () => {
-    toast.success("MSA Form updated!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyMessage = (status) => {
+    if (status === "ok") {
+      toast.success("Form saved successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+    if (status === "fail") {
+      toast.error("Something went wrong try again", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
   const resetIssuesAndReviewCheckbox = (issueFounded) => {
     setClientData({
@@ -908,6 +917,10 @@ const EditSupervisorMSAFormPage = ({ data }) => {
   console.log("form data", clientData);
 
   const handleMsaform = () => {
+    setIsSaving(true);
+    setTimeout(() => {
+      setIsSaving(false);
+    }, 3000);
     axios
       .put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/${clientData.clientId}/update_supervisor_msa_form`,
@@ -918,13 +931,15 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       .then(function (response) {
         console.log(response);
         if (response.status === 200 || response.statusText === "Ok") {
-          notifyMessage();
+          notifyMessage('ok');
           // setTimeout(() => {
           //   router.push(`/supervisorDashboard/clients/${clientData.clientId}/profile`);
           // }, 2300);
         }
       })
       .catch(function (error) {
+        notifyMessage('fail');
+        setIsSaving(false);
         console.log(error);
       });
   };
@@ -936,718 +951,751 @@ const EditSupervisorMSAFormPage = ({ data }) => {
         <SubHeader pageTitle={"Edit MSA form"} />
 
         <section className="shadow-inner pt-10">
-          
-
-        
-        <div className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
-        <ClientInfoTopHeader
+          <div className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
+            <ClientInfoTopHeader
               data={data}
               clientData={clientData}
               setClientData={setClientData}
-              stateValue='dateFormReviewed'
+              stateValue="dateFormReviewed"
             />
-          
-          <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
+
+            <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
               <div className="flex gap-x-3 items-center">
                 <img
                   src="/msa/forms_uploaded.svg"
                   alt="Services provided icon"
                 />
-                <h3 className="font-bold text-2xl">Indicate which of the following forms you have uploaded to the
-            client&apos;s Dropbox</h3>
+                <h3 className="font-bold text-2xl">
+                  Indicate which of the following forms you have uploaded to the
+                  client&apos;s Dropbox
+                </h3>
               </div>
-            {/* {TABLE HEAD} */}
-            {/* <div className={`${MSAStyles.line}`}></div> */}
-            <div
-              id="form-head"
-              className={`${MSAStyles.formHeadTitlesSupervisor} grid gap-1 items-end mt-10 rounded-tl-lg rounded-tr-lg py-1`}
-            >
-
-              <div className="py-3 h-24 flex justify-start items-center bg-client-profile-sap-heading">
-              <p className="text-xl  px-3 font-bold">Form</p>
+              {/* {TABLE HEAD} */}
+              {/* <div className={`${MSAStyles.line}`}></div> */}
+              <div
+                id="form-head"
+                className={`${MSAStyles.formHeadTitlesSupervisor} grid gap-1 items-end mt-10 rounded-tl-lg rounded-tr-lg py-1`}
+              >
+                <div className="py-3 h-24 flex justify-start items-center bg-client-profile-sap-heading">
+                  <p className="text-xl  px-3 font-bold">Form</p>
+                </div>
+                <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+                  <p className="text-xl   font-bold">Date added</p>
+                </div>
+                <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+                  <p className="text-xl  font-bold text-center">
+                    Dropbox Folder
+                  </p>
+                </div>
+                <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+                  <p className="text-xl  text-center font-bold">
+                    Date last updated by HCW
+                  </p>
+                </div>
+                <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+                  <p className="text-xl  text-center font-bold">
+                    Supervisor has reviewed
+                  </p>
+                </div>
+                <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
+                  <p className="text-xl  text-center font-bold">Issues found</p>
+                </div>
               </div>
-              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="text-xl   font-bold">Date added</p>
+              {/* {TABLE HEAD} */}
+              <div className="table-body grid gap-y-1 ">
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS Intake Form"}
+                  form={clientData.AIRSIntakeForm}
+                  formDate={clientData.AIRSIntakeFormDate}
+                  formUploadDate={clientData.AIRSIntakeFormUploadDate}
+                  formPDF={clientData.AIRSIntakeFormPDF}
+                  formReviewed={clientData.AIRSIntakeFormReviewed}
+                  formIssues={clientData.AIRSIntakeFormIssues}
+                  formString={"AIRSIntakeForm"}
+                  folder_url={data[0].intake_folder_url}
+                  dependency_folder_url={data[0].intake_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Comprehensive Behavioral Risk Assessment"}
+                  form={clientData.ComprehensiveRiskBehaviorAssessment}
+                  formDate={clientData.ComprehensiveRiskBehaviorAssessmentDate}
+                  formUploadDate={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUploadDate
+                  }
+                  formPDF={clientData.ComprehensiveRiskBehaviorAssessmentPDF}
+                  formReviewed={
+                    clientData.ComprehensiveRiskBehaviorAssessmentReviewed
+                  }
+                  formIssues={
+                    clientData.ComprehensiveRiskBehaviorAssessmentIssues
+                  }
+                  formString={"ComprehensiveRiskBehaviorAssessment"}
+                  folder_url={data[0].cbra_folder_url}
+                  dependency_folder_url={data[0].cbra_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Service Action Plan"}
+                  form={clientData.ServiceActionPlan}
+                  formDate={clientData.ServiceActionPlanDate}
+                  formUploadDate={clientData.ServiceActionPlanUploadDate}
+                  formPDF={clientData.ServiceActionPlanPDF}
+                  formReviewed={clientData.ServiceActionPlanReviewed}
+                  formIssues={clientData.ServiceActionPlanIssues}
+                  formString={"ServiceActionPlan"}
+                  folder_url={data[0].action_plans_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Progress Note"}
+                  form={clientData.ProgressNote}
+                  formDate={clientData.ProgressNoteDate}
+                  formUploadDate={clientData.ProgressNoteUploadDate}
+                  formPDF={clientData.ProgressNotePDF}
+                  formReviewed={clientData.ProgressNoteReviewed}
+                  formIssues={clientData.ProgressNoteIssues}
+                  formString={"ProgressNote"}
+                  folder_url={data[0].linkage_navigation_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Status Changes/Closure Forms"}
+                  form={clientData.StatusChangesForm}
+                  formDate={clientData.StatusChangesFormDate}
+                  formUploadDate={clientData.StatusChangesFormUploadDate}
+                  formPDF={clientData.StatusChangesFormPDF}
+                  formReviewed={clientData.StatusChangesFormReviewed}
+                  formIssues={clientData.StatusChangesFormIssues}
+                  formString={"StatusChangesForm"}
+                  folder_url={data[0].intake_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Comprehensive Behavioral Risk Assessment Updates"}
+                  form={clientData.ComprehensiveRiskBehaviorAssessmentUpdates}
+                  formDate={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate
+                  }
+                  formUploadDate={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate
+                  }
+                  formPDF={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF
+                  }
+                  formReviewed={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed
+                  }
+                  formIssues={
+                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesIssues
+                  }
+                  formString={"ComprehensiveRiskBehaviorAssessmentUpdates"}
+                  folder_url={data[0].cbra_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"M11Q"}
+                  form={clientData.M11QForm}
+                  formDate={clientData.M11QFormDate}
+                  formUploadDate={clientData.M11QFormUploadDate}
+                  formPDF={clientData.M11QFormPDF}
+                  formReviewed={clientData.M11QFormReviewed}
+                  formIssues={clientData.M11QFormIssues}
+                  formString={"M11QForm"}
+                  folder_url={data[0].medical_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"CD4/VL Check Reports"}
+                  form={clientData.CD4VLReports}
+                  formDate={clientData.CD4VLReportsDate}
+                  formUploadDate={clientData.CD4VLReportsUploadDate}
+                  formPDF={clientData.CD4VLReportsPDF}
+                  formReviewed={clientData.CD4VLReportsReviewed}
+                  formIssues={clientData.CD4VLReportsIssues}
+                  formString={"CD4VLReports"}
+                  folder_url={data[0].medical_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Initial Treatment Adherence Intake"}
+                  form={clientData.InitialTreatmentAdherenceIntake}
+                  formDate={clientData.InitialTreatmentAdherenceIntakeDate}
+                  formUploadDate={
+                    clientData.InitialTreatmentAdherenceIntakeUploadDate
+                  }
+                  formPDF={clientData.InitialTreatmentAdherenceIntakePDF}
+                  formReviewed={
+                    clientData.InitialTreatmentAdherenceIntakeReviewed
+                  }
+                  formIssues={clientData.InitialTreatmentAdherenceIntakeIssues}
+                  formString={"InitialTreatmentAdherenceIntake"}
+                  folder_url={data[0].medical_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Treatment Adherence Updates"}
+                  form={clientData.TreatmentAdherenceUpdates}
+                  formDate={clientData.TreatmentAdherenceUpdatesDate}
+                  formUploadDate={
+                    clientData.TreatmentAdherenceUpdatesUploadDate
+                  }
+                  formPDF={clientData.TreatmentAdherenceUpdatesPDF}
+                  formReviewed={clientData.TreatmentAdherenceUpdatesReviewed}
+                  formIssues={clientData.TreatmentAdherenceUpdatesIssues}
+                  formString={"TreatmentAdherenceUpdates"}
+                  folder_url={data[0].medical_folder_url}
+                  dependency_folder_url={data[0].action_plans_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS Collateral Information"}
+                  form={clientData.AIRSCollateralInformation}
+                  formDate={clientData.AIRSCollateralInformationDate}
+                  formUploadDate={
+                    clientData.AIRSCollateralInformationUploadDate
+                  }
+                  formPDF={clientData.AIRSCollateralInformationPDF}
+                  formReviewed={clientData.AIRSCollateralInformationReviewed}
+                  formIssues={clientData.AIRSCollateralInformationIssues}
+                  formString={"AIRSCollateralInformation"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS Drug Regimen History"}
+                  form={clientData.AIRSDrugRegimen}
+                  formDate={clientData.AIRSDrugRegimenDate}
+                  formUploadDate={clientData.AIRSDrugRegimenUploadDate}
+                  formPDF={clientData.AIRSDrugRegimenPDF}
+                  formReviewed={clientData.AIRSDrugRegimenReviewed}
+                  formIssues={clientData.AIRSDrugRegimenFormIssues}
+                  formString={"AIRSDrugRegimen"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS Financial Information"}
+                  form={clientData.AIRSFinancialInformation}
+                  formDate={clientData.AIRSFinancialInformationDate}
+                  formUploadDate={clientData.AIRSFinancialInformationUploadDate}
+                  formPDF={clientData.AIRSFinancialInformationPDF}
+                  formReviewed={clientData.AIRSFinancialInformationReviewed}
+                  formIssues={clientData.AIRSFinancialInformationIssues}
+                  formString={"AIRSFinancialInformation"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS HIV AIDS Risk History"}
+                  form={clientData.AIRSHIVAIDSRiskHistory}
+                  formDate={clientData.AIRSHIVAIDSRiskHistoryDate}
+                  formUploadDate={clientData.AIRSHIVAIDSRiskHistoryUploadDate}
+                  formPDF={clientData.AIRSHIVAIDSRiskHistoryPDF}
+                  formReviewed={clientData.AIRSHIVAIDSRiskHistoryReviewed}
+                  formIssues={clientData.AIRSHIVAIDSRiskHistoryIssues}
+                  formString={"AIRSHIVAIDSRiskHistory"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS HIV Medical Provider History"}
+                  form={clientData.AIRSHIVMedicalProvider}
+                  formDate={clientData.AIRSHIVMedicalProviderDate}
+                  formUploadDate={clientData.AIRSHIVMedicalProviderUploadDate}
+                  formPDF={clientData.AIRSHIVMedicalProviderPDF}
+                  formReviewed={clientData.AIRSHIVMedicalProviderReviewed}
+                  formIssues={clientData.AIRSHIVMedicalProviderIssues}
+                  formString={"AIRSHIVMedicalProvider"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS HIV Status History"}
+                  form={clientData.AIRSHIVStatusHistory}
+                  formDate={clientData.AIRSHIVStatusHistoryDate}
+                  formUploadDate={clientData.AIRSHIVStatusHistoryUploadDate}
+                  formPDF={clientData.AIRSHIVStatusHistoryPDF}
+                  formReviewed={clientData.AIRSHIVStatusHistoryReviewed}
+                  formIssues={clientData.AIRSHIVStatusHistoryIssues}
+                  formString={"AIRSHIVStatusHistory"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS HCV History"}
+                  form={clientData.AIRSHCVHistory}
+                  formDate={clientData.AIRSHCVHistoryDate}
+                  formUploadDate={clientData.AIRSHCVHistoryUploadDate}
+                  formPDF={clientData.AIRSHCVHistoryPDF}
+                  formReviewed={clientData.AIRSHCVHistoryReviewed}
+                  formIssues={clientData.AIRSHCVHistoryIssues}
+                  formString={"AIRSHCVHistory"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS Housing Information"}
+                  form={clientData.AIRSHousingInformation}
+                  formDate={clientData.AIRSHousingInformationDate}
+                  formUploadDate={clientData.AIRSHousingInformationUploadDate}
+                  formPDF={clientData.AIRSHousingInformationPDF}
+                  formReviewed={clientData.AIRSHousingInformationReviewed}
+                  formIssues={clientData.AIRSHousingInformationIssues}
+                  formString={"AIRSHousingInformation"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS Insurance Information"}
+                  form={clientData.AIRSInsuranceInformation}
+                  formDate={clientData.AIRSInsuranceInformationDate}
+                  formUploadDate={clientData.AIRSInsuranceInformationUploadDate}
+                  formPDF={clientData.AIRSInsuranceInformationPDF}
+                  formReviewed={clientData.AIRSInsuranceInformationReviewed}
+                  formIssues={clientData.AIRSInsuranceInformationIssues}
+                  formString={"AIRSInsuranceInformation"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"AIRS Substance Use History"}
+                  form={clientData.AIRSSubstanceUseHistory}
+                  formDate={clientData.AIRSSubstanceUseHistoryDate}
+                  formUploadDate={clientData.AIRSSubstanceUseHistoryUploadDate}
+                  formPDF={clientData.AIRSSubstanceUseHistoryPDF}
+                  formReviewed={clientData.AIRSSubstanceUseHistoryReviewed}
+                  formIssues={clientData.AIRSSubstanceUseHistoryIssues}
+                  formString={"AIRSSubstanceUseHistory"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"LNE Client Rights"}
+                  form={clientData.LNEClientRights}
+                  formDate={clientData.LNEClientRightsDate}
+                  formUploadDate={clientData.LNEClientRightsUploadDate}
+                  formPDF={clientData.LNEClientRightsPDF}
+                  formReviewed={clientData.LNEClientRightsReviewed}
+                  formIssues={clientData.LNEClientRightsIssues}
+                  formString={"LNEClientRights"}
+                  folder_url={data[0].consent_folder_url}
+                  dependency_folder_url={data[0].consent_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"LNE Client Grievance Policy & Procedure"}
+                  form={clientData.LNEClientGrievancePolicyProcedure}
+                  formDate={clientData.LNEClientGrievancePolicyProcedureDate}
+                  formUploadDate={
+                    clientData.LNEClientGrievancePolicyProcedureUploadDate
+                  }
+                  formPDF={clientData.LNEClientGrievancePolicyProcedurePDF}
+                  formReviewed={
+                    clientData.LNEClientGrievancePolicyProcedureReviewed
+                  }
+                  formIssues={
+                    clientData.LNEClientGrievancePolicyProcedureIssues
+                  }
+                  formString={"LNEClientGrievancePolicyProcedure"}
+                  folder_url={data[0].consent_folder_url}
+                  dependency_folder_url={data[0].consent_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"LNE Program Rules"}
+                  form={clientData.LNEProgramRules}
+                  formDate={clientData.LNEProgramRulesDate}
+                  formUploadDate={clientData.LNEProgramRulesUploadDate}
+                  formPDF={clientData.LNEProgramRulesPDF}
+                  formReviewed={clientData.LNEProgramRulesReviewed}
+                  formIssues={clientData.LNEProgramRulesIssues}
+                  formString={"LNEProgramRules"}
+                  folder_url={data[0].consent_folder_url}
+                  dependency_folder_url={data[0].miscellaneous_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"LNE Emergency Contact Consent"}
+                  form={clientData.LNEEmergencyContactConsent}
+                  formDate={clientData.LNEEmergencyContactConsentDate}
+                  formUploadDate={
+                    clientData.LNEEmergencyContactConsentUploadDate
+                  }
+                  formPDF={clientData.LNEEmergencyContactConsentPDF}
+                  formReviewed={clientData.LNEEmergencyContactConsentReviewed}
+                  formIssues={clientData.LNEEmergencyContactConsentIssues}
+                  formString={"LNEEmergencyContactConsent"}
+                  folder_url={data[0].consent_folder_url}
+                  dependency_folder_url={data[0].consent_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={
+                    "LNE Consent for Release of Confidential Information"
+                  }
+                  form={
+                    clientData.LNEConsentForReleaseOfConfidentialInformation
+                  }
+                  formDate={
+                    clientData.LNEConsentForReleaseOfConfidentialInformationDate
+                  }
+                  formUploadDate={
+                    clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate
+                  }
+                  formPDF={
+                    clientData.LNEConsentForReleaseOfConfidentialInformationPDF
+                  }
+                  formReviewed={
+                    clientData.LNEConsentForReleaseOfConfidentialInformationReviewed
+                  }
+                  formIssues={
+                    clientData.LNEConsentForReleaseOfConfidentialInformationIssues
+                  }
+                  formString={"LNEConsentForReleaseOfConfidentialInformation"}
+                  folder_url={data[0].consent_folder_url}
+                  dependency_folder_url={data[0].consent_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"HIPAA Consent Form (OCA Form 960)"}
+                  form={clientData.HIPPAConsentForm}
+                  formDate={clientData.HIPPAConsentFormDate}
+                  formUploadDate={clientData.HIPPAConsentFormUploadDate}
+                  formPDF={clientData.HIPPAConsentFormPDF}
+                  formReviewed={clientData.HIPPAConsentFormReviewed}
+                  formIssues={clientData.HIPPAConsentFormIssues}
+                  formString={"HIPPAConsentForm"}
+                  folder_url={data[0].consent_folder_url}
+                  dependency_folder_url={data[0].consent_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={
+                    "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt"
+                  }
+                  form={clientData.NYCDOHMHNoticeOfPrivacyPractices}
+                  formDate={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate}
+                  formUploadDate={
+                    clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate
+                  }
+                  formPDF={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF}
+                  formReviewed={
+                    clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed
+                  }
+                  formIssues={clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues}
+                  formString={"NYCDOHMHNoticeOfPrivacyPractices"}
+                  folder_url={data[0].consent_folder_url}
+                  dependency_folder_url={data[0].consent_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-green-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Linkage, Retention, & Adherence Forms"}
+                  form={clientData.LinkageRetentionAdherenceForms}
+                  formDate={clientData.LinkageRetentionAdherenceFormsDate}
+                  formUploadDate={
+                    clientData.LinkageRetentionAdherenceFormsUploadDate
+                  }
+                  formPDF={clientData.LinkageRetentionAdherenceFormsPDF}
+                  formReviewed={
+                    clientData.LinkageRetentionAdherenceFormsReviewed
+                  }
+                  formIssues={clientData.LinkageRetentionAdherenceFormsIssues}
+                  formString={"LinkageRetentionAdherenceForms"}
+                  folder_url={data[0].linkage_navigation_folder_url}
+                  dependency_folder_url={data[0].linkage_navigation_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-pink-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"LNE Referral Information"}
+                  form={clientData.InternalReferralInformation}
+                  formDate={clientData.InternalReferralInformationDate}
+                  formUploadDate={
+                    clientData.InternalReferralInformationUploadDate
+                  }
+                  formPDF={clientData.InternalReferralInformationPDF}
+                  formReviewed={clientData.InternalReferralInformationReviewed}
+                  formIssues={clientData.InternalReferralInformationIssues}
+                  formString={"InternalReferralInformation"}
+                  folder_url={data[0].miscellaneous_folder_url}
+                  dependency_folder_url={data[0].linkage_navigation_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-pink-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Identification"}
+                  form={clientData.LNEClientReferralForm}
+                  formDate={clientData.LNEClientReferralFormDate}
+                  formUploadDate={clientData.LNEClientReferralFormUploadDate}
+                  formPDF={clientData.LNEClientReferralFormPDF}
+                  formReviewed={clientData.LNEClientReferralFormReviewed}
+                  formIssues={clientData.LNEClientReferralFormIssues}
+                  formString={"LNEClientReferralForm"}
+                  folder_url={data[0].miscellaneous_folder_url}
+                  dependency_folder_url={data[0].miscellaneous_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-pink-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"LNE HNS Eligibility Form"}
+                  form={clientData.HNSEligibilityForm}
+                  formDate={clientData.HNSEligibilityFormDate}
+                  formUploadDate={clientData.HNSEligibilityFormUploadDate}
+                  formPDF={clientData.HNSEligibilityFormPDF}
+                  formReviewed={clientData.HNSEligibilityFormReviewed}
+                  formIssues={clientData.HNSEligibilityFormIssues}
+                  formString={"HNSEligibilityForm"}
+                  folder_url={data[0].intake_folder_url}
+                  dependency_folder_url={data[0].miscellaneous_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-pink-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"HNS Readiness Assessment"}
+                  form={clientData.HNSReadinessForm}
+                  formDate={clientData.HNSReadinessFormDate}
+                  formUploadDate={clientData.HNSReadinessFormUploadDate}
+                  formPDF={clientData.HNSReadinessFormPDF}
+                  formReviewed={clientData.HNSReadinessFormReviewed}
+                  formIssues={clientData.HNSReadinessFormIssues}
+                  formString={"HNSReadinessForm"}
+                  folder_url={data[0].intake_folder_url}
+                  dependency_folder_url={data[0].intake_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-pink-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Support Groups"}
+                  form={clientData.SupportGroups}
+                  formDate={clientData.SupportGroupsDate}
+                  formUploadDate={clientData.SupportGroupsUploadDate}
+                  formPDF={clientData.SupportGroupsPDF}
+                  formReviewed={clientData.SupportGroupsReviewed}
+                  formIssues={clientData.SupportGroupsIssues}
+                  formString={"SupportGroups"}
+                  folder_url={data[0].support_groups_folder_url}
+                  dependency_folder_url={data[0].support_groups_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-pink-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"IDG"}
+                  form={clientData.IDGForm}
+                  formDate={clientData.IDGFormDate}
+                  formUploadDate={clientData.IDGFormUploadDate}
+                  formPDF={clientData.IDGFormPDF}
+                  formReviewed={clientData.IDGFormReviewed}
+                  formIssues={clientData.IDGFormIssues}
+                  formString={"IDGForm"}
+                  folder_url={data[0].idg_folder_url}
+                  dependency_folder_url={data[0].idg_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-pink-bg"}
+                />
               </div>
-              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="text-xl  font-bold text-center">Dropbox Folder</p>
-              </div>
-              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="text-xl  text-center font-bold">Date last updated by HCW</p>
-              </div>
-              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="text-xl  text-center font-bold">Supervisor has reviewed</p>
-              </div>
-              <div className="py-3 h-24 flex justify-center items-center bg-client-profile-sap-heading">
-              <p className="text-xl  text-center font-bold">Issues found</p>
-              </div>
+            </section>
+          </div>
 
-
-            </div>
-            {/* {TABLE HEAD} */}
-            <div className="table-body grid gap-y-1 ">
-              
-            <RowMsaFormSupervisor
-              fieldName={"AIRS Intake Form"}
-              form={clientData.AIRSIntakeForm}
-              formDate={clientData.AIRSIntakeFormDate}
-              formUploadDate={clientData.AIRSIntakeFormUploadDate}
-              formPDF={clientData.AIRSIntakeFormPDF}
-              formReviewed={clientData.AIRSIntakeFormReviewed}
-              formIssues={clientData.AIRSIntakeFormIssues}
-              formString={"AIRSIntakeForm"}
-              folder_url={data[0].intake_folder_url}
-              dependency_folder_url={data[0].intake_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Comprehensive Behavioral Risk Assessment"}
-              form={clientData.ComprehensiveRiskBehaviorAssessment}
-              formDate={clientData.ComprehensiveRiskBehaviorAssessmentDate}
-              formUploadDate={
-                clientData.ComprehensiveRiskBehaviorAssessmentUploadDate
-              }
-              formPDF={clientData.ComprehensiveRiskBehaviorAssessmentPDF}
-              formReviewed={
-                clientData.ComprehensiveRiskBehaviorAssessmentReviewed
-              }
-              formIssues={clientData.ComprehensiveRiskBehaviorAssessmentIssues}
-              formString={"ComprehensiveRiskBehaviorAssessment"}
-              folder_url={data[0].cbra_folder_url}
-              dependency_folder_url={data[0].cbra_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Service Action Plan"}
-              form={clientData.ServiceActionPlan}
-              formDate={clientData.ServiceActionPlanDate}
-              formUploadDate={clientData.ServiceActionPlanUploadDate}
-              formPDF={clientData.ServiceActionPlanPDF}
-              formReviewed={clientData.ServiceActionPlanReviewed}
-              formIssues={clientData.ServiceActionPlanIssues}
-              formString={"ServiceActionPlan"}
-              folder_url={data[0].action_plans_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Progress Note"}
-              form={clientData.ProgressNote}
-              formDate={clientData.ProgressNoteDate}
-              formUploadDate={clientData.ProgressNoteUploadDate}
-              formPDF={clientData.ProgressNotePDF}
-              formReviewed={clientData.ProgressNoteReviewed}
-              formIssues={clientData.ProgressNoteIssues}
-              formString={"ProgressNote"}
-              folder_url={data[0].linkage_navigation_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Status Changes/Closure Forms"}
-              form={clientData.StatusChangesForm}
-              formDate={clientData.StatusChangesFormDate}
-              formUploadDate={clientData.StatusChangesFormUploadDate}
-              formPDF={clientData.StatusChangesFormPDF}
-              formReviewed={clientData.StatusChangesFormReviewed}
-              formIssues={clientData.StatusChangesFormIssues}
-              formString={"StatusChangesForm"}
-              folder_url={data[0].intake_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Comprehensive Behavioral Risk Assessment Updates"}
-              form={clientData.ComprehensiveRiskBehaviorAssessmentUpdates}
-              formDate={
-                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesDate
-              }
-              formUploadDate={
-                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate
-              }
-              formPDF={clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF}
-              formReviewed={
-                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed
-              }
-              formIssues={
-                clientData.ComprehensiveRiskBehaviorAssessmentUpdatesIssues
-              }
-              formString={"ComprehensiveRiskBehaviorAssessmentUpdates"}
-              folder_url={data[0].cbra_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"M11Q"}
-              form={clientData.M11QForm}
-              formDate={clientData.M11QFormDate}
-              formUploadDate={clientData.M11QFormUploadDate}
-              formPDF={clientData.M11QFormPDF}
-              formReviewed={clientData.M11QFormReviewed}
-              formIssues={clientData.M11QFormIssues}
-              formString={"M11QForm"}
-              folder_url={data[0].medical_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"CD4/VL Check Reports"}
-              form={clientData.CD4VLReports}
-              formDate={clientData.CD4VLReportsDate}
-              formUploadDate={clientData.CD4VLReportsUploadDate}
-              formPDF={clientData.CD4VLReportsPDF}
-              formReviewed={clientData.CD4VLReportsReviewed}
-              formIssues={clientData.CD4VLReportsIssues}
-              formString={"CD4VLReports"}
-              folder_url={data[0].medical_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Initial Treatment Adherence Intake"}
-              form={clientData.InitialTreatmentAdherenceIntake}
-              formDate={clientData.InitialTreatmentAdherenceIntakeDate}
-              formUploadDate={
-                clientData.InitialTreatmentAdherenceIntakeUploadDate
-              }
-              formPDF={clientData.InitialTreatmentAdherenceIntakePDF}
-              formReviewed={clientData.InitialTreatmentAdherenceIntakeReviewed}
-              formIssues={clientData.InitialTreatmentAdherenceIntakeIssues}
-              formString={"InitialTreatmentAdherenceIntake"}
-              folder_url={data[0].medical_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Treatment Adherence Updates"}
-              form={clientData.TreatmentAdherenceUpdates}
-              formDate={clientData.TreatmentAdherenceUpdatesDate}
-              formUploadDate={clientData.TreatmentAdherenceUpdatesUploadDate}
-              formPDF={clientData.TreatmentAdherenceUpdatesPDF}
-              formReviewed={clientData.TreatmentAdherenceUpdatesReviewed}
-              formIssues={clientData.TreatmentAdherenceUpdatesIssues}
-              formString={"TreatmentAdherenceUpdates"}
-              folder_url={data[0].medical_folder_url}
-              dependency_folder_url={data[0].action_plans_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS Collateral Information"}
-              form={clientData.AIRSCollateralInformation}
-              formDate={clientData.AIRSCollateralInformationDate}
-              formUploadDate={clientData.AIRSCollateralInformationUploadDate}
-              formPDF={clientData.AIRSCollateralInformationPDF}
-              formReviewed={clientData.AIRSCollateralInformationReviewed}
-              formIssues={clientData.AIRSCollateralInformationIssues}
-              formString={"AIRSCollateralInformation"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS Drug Regimen History"}
-              form={clientData.AIRSDrugRegimen}
-              formDate={clientData.AIRSDrugRegimenDate}
-              formUploadDate={clientData.AIRSDrugRegimenUploadDate}
-              formPDF={clientData.AIRSDrugRegimenPDF}
-              formReviewed={clientData.AIRSDrugRegimenReviewed}
-              formIssues={clientData.AIRSDrugRegimenFormIssues}
-              formString={"AIRSDrugRegimen"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS Financial Information"}
-              form={clientData.AIRSFinancialInformation}
-              formDate={clientData.AIRSFinancialInformationDate}
-              formUploadDate={clientData.AIRSFinancialInformationUploadDate}
-              formPDF={clientData.AIRSFinancialInformationPDF}
-              formReviewed={clientData.AIRSFinancialInformationReviewed}
-              formIssues={clientData.AIRSFinancialInformationIssues}
-              formString={"AIRSFinancialInformation"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS HIV AIDS Risk History"}
-              form={clientData.AIRSHIVAIDSRiskHistory}
-              formDate={clientData.AIRSHIVAIDSRiskHistoryDate}
-              formUploadDate={clientData.AIRSHIVAIDSRiskHistoryUploadDate}
-              formPDF={clientData.AIRSHIVAIDSRiskHistoryPDF}
-              formReviewed={clientData.AIRSHIVAIDSRiskHistoryReviewed}
-              formIssues={clientData.AIRSHIVAIDSRiskHistoryIssues}
-              formString={"AIRSHIVAIDSRiskHistory"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS HIV Medical Provider History"}
-              form={clientData.AIRSHIVMedicalProvider}
-              formDate={clientData.AIRSHIVMedicalProviderDate}
-              formUploadDate={clientData.AIRSHIVMedicalProviderUploadDate}
-              formPDF={clientData.AIRSHIVMedicalProviderPDF}
-              formReviewed={clientData.AIRSHIVMedicalProviderReviewed}
-              formIssues={clientData.AIRSHIVMedicalProviderIssues}
-              formString={"AIRSHIVMedicalProvider"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS HIV Status History"}
-              form={clientData.AIRSHIVStatusHistory}
-              formDate={clientData.AIRSHIVStatusHistoryDate}
-              formUploadDate={clientData.AIRSHIVStatusHistoryUploadDate}
-              formPDF={clientData.AIRSHIVStatusHistoryPDF}
-              formReviewed={clientData.AIRSHIVStatusHistoryReviewed}
-              formIssues={clientData.AIRSHIVStatusHistoryIssues}
-              formString={"AIRSHIVStatusHistory"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS HCV History"}
-              form={clientData.AIRSHCVHistory}
-              formDate={clientData.AIRSHCVHistoryDate}
-              formUploadDate={clientData.AIRSHCVHistoryUploadDate}
-              formPDF={clientData.AIRSHCVHistoryPDF}
-              formReviewed={clientData.AIRSHCVHistoryReviewed}
-              formIssues={clientData.AIRSHCVHistoryIssues}
-              formString={"AIRSHCVHistory"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS Housing Information"}
-              form={clientData.AIRSHousingInformation}
-              formDate={clientData.AIRSHousingInformationDate}
-              formUploadDate={clientData.AIRSHousingInformationUploadDate}
-              formPDF={clientData.AIRSHousingInformationPDF}
-              formReviewed={clientData.AIRSHousingInformationReviewed}
-              formIssues={clientData.AIRSHousingInformationIssues}
-              formString={"AIRSHousingInformation"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS Insurance Information"}
-              form={clientData.AIRSInsuranceInformation}
-              formDate={clientData.AIRSInsuranceInformationDate}
-              formUploadDate={clientData.AIRSInsuranceInformationUploadDate}
-              formPDF={clientData.AIRSInsuranceInformationPDF}
-              formReviewed={clientData.AIRSInsuranceInformationReviewed}
-              formIssues={clientData.AIRSInsuranceInformationIssues}
-              formString={"AIRSInsuranceInformation"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"AIRS Substance Use History"}
-              form={clientData.AIRSSubstanceUseHistory}
-              formDate={clientData.AIRSSubstanceUseHistoryDate}
-              formUploadDate={clientData.AIRSSubstanceUseHistoryUploadDate}
-              formPDF={clientData.AIRSSubstanceUseHistoryPDF}
-              formReviewed={clientData.AIRSSubstanceUseHistoryReviewed}
-              formIssues={clientData.AIRSSubstanceUseHistoryIssues}
-              formString={"AIRSSubstanceUseHistory"}
-              folder_url={data[0].tickler_updates_folder_url}
-              dependency_folder_url={data[0].tickler_updates_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-blue-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"LNE Client Rights"}
-              form={clientData.LNEClientRights}
-              formDate={clientData.LNEClientRightsDate}
-              formUploadDate={clientData.LNEClientRightsUploadDate}
-              formPDF={clientData.LNEClientRightsPDF}
-              formReviewed={clientData.LNEClientRightsReviewed}
-              formIssues={clientData.LNEClientRightsIssues}
-              formString={"LNEClientRights"}
-              folder_url={data[0].consent_folder_url}
-              dependency_folder_url={data[0].consent_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"LNE Client Grievance Policy & Procedure"}
-              form={clientData.LNEClientGrievancePolicyProcedure}
-              formDate={clientData.LNEClientGrievancePolicyProcedureDate}
-              formUploadDate={
-                clientData.LNEClientGrievancePolicyProcedureUploadDate
-              }
-              formPDF={clientData.LNEClientGrievancePolicyProcedurePDF}
-              formReviewed={
-                clientData.LNEClientGrievancePolicyProcedureReviewed
-              }
-              formIssues={clientData.LNEClientGrievancePolicyProcedureIssues}
-              formString={"LNEClientGrievancePolicyProcedure"}
-              folder_url={data[0].consent_folder_url}
-              dependency_folder_url={data[0].consent_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"LNE Program Rules"}
-              form={clientData.LNEProgramRules}
-              formDate={clientData.LNEProgramRulesDate}
-              formUploadDate={clientData.LNEProgramRulesUploadDate}
-              formPDF={clientData.LNEProgramRulesPDF}
-              formReviewed={clientData.LNEProgramRulesReviewed}
-              formIssues={clientData.LNEProgramRulesIssues}
-              formString={"LNEProgramRules"}
-              folder_url={data[0].consent_folder_url}
-              dependency_folder_url={data[0].miscellaneous_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"LNE Emergency Contact Consent"}
-              form={clientData.LNEEmergencyContactConsent}
-              formDate={clientData.LNEEmergencyContactConsentDate}
-              formUploadDate={clientData.LNEEmergencyContactConsentUploadDate}
-              formPDF={clientData.LNEEmergencyContactConsentPDF}
-              formReviewed={clientData.LNEEmergencyContactConsentReviewed}
-              formIssues={clientData.LNEEmergencyContactConsentIssues}
-              formString={"LNEEmergencyContactConsent"}
-              folder_url={data[0].consent_folder_url}
-              dependency_folder_url={data[0].consent_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"LNE Consent for Release of Confidential Information"}
-              form={clientData.LNEConsentForReleaseOfConfidentialInformation}
-              formDate={
-                clientData.LNEConsentForReleaseOfConfidentialInformationDate
-              }
-              formUploadDate={
-                clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate
-              }
-              formPDF={
-                clientData.LNEConsentForReleaseOfConfidentialInformationPDF
-              }
-              formReviewed={
-                clientData.LNEConsentForReleaseOfConfidentialInformationReviewed
-              }
-              formIssues={
-                clientData.LNEConsentForReleaseOfConfidentialInformationIssues
-              }
-              formString={"LNEConsentForReleaseOfConfidentialInformation"}
-              folder_url={data[0].consent_folder_url}
-              dependency_folder_url={data[0].consent_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"HIPAA Consent Form (OCA Form 960)"}
-              form={clientData.HIPPAConsentForm}
-              formDate={clientData.HIPPAConsentFormDate}
-              formUploadDate={clientData.HIPPAConsentFormUploadDate}
-              formPDF={clientData.HIPPAConsentFormPDF}
-              formReviewed={clientData.HIPPAConsentFormReviewed}
-              formIssues={clientData.HIPPAConsentFormIssues}
-              formString={"HIPPAConsentForm"}
-              folder_url={data[0].consent_folder_url}
-              dependency_folder_url={data[0].consent_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={
-                "NYC DOHMH Notice of Privacy Practices - Acknowledgement of Receipt"
-              }
-              form={clientData.NYCDOHMHNoticeOfPrivacyPractices}
-              formDate={clientData.NYCDOHMHNoticeOfPrivacyPracticesDate}
-              formUploadDate={
-                clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate
-              }
-              formPDF={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF}
-              formReviewed={clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed}
-              formIssues={clientData.NYCDOHMHNoticeOfPrivacyPracticesIssues}
-              formString={"NYCDOHMHNoticeOfPrivacyPractices"}
-              folder_url={data[0].consent_folder_url}
-              dependency_folder_url={data[0].consent_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-green-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Linkage, Retention, & Adherence Forms"}
-              form={clientData.LinkageRetentionAdherenceForms}
-              formDate={clientData.LinkageRetentionAdherenceFormsDate}
-              formUploadDate={
-                clientData.LinkageRetentionAdherenceFormsUploadDate
-              }
-              formPDF={clientData.LinkageRetentionAdherenceFormsPDF}
-              formReviewed={clientData.LinkageRetentionAdherenceFormsReviewed}
-              formIssues={clientData.LinkageRetentionAdherenceFormsIssues}
-              formString={"LinkageRetentionAdherenceForms"}
-              folder_url={data[0].linkage_navigation_folder_url}
-              dependency_folder_url={data[0].linkage_navigation_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-pink-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"LNE Referral Information"}
-              form={clientData.InternalReferralInformation}
-              formDate={clientData.InternalReferralInformationDate}
-              formUploadDate={clientData.InternalReferralInformationUploadDate}
-              formPDF={clientData.InternalReferralInformationPDF}
-              formReviewed={clientData.InternalReferralInformationReviewed}
-              formIssues={clientData.InternalReferralInformationIssues}
-              formString={"InternalReferralInformation"}
-              folder_url={data[0].miscellaneous_folder_url}
-              dependency_folder_url={data[0].linkage_navigation_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-pink-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Identification"}
-              form={clientData.LNEClientReferralForm}
-              formDate={clientData.LNEClientReferralFormDate}
-              formUploadDate={clientData.LNEClientReferralFormUploadDate}
-              formPDF={clientData.LNEClientReferralFormPDF}
-              formReviewed={clientData.LNEClientReferralFormReviewed}
-              formIssues={clientData.LNEClientReferralFormIssues}
-              formString={"LNEClientReferralForm"}
-              folder_url={data[0].miscellaneous_folder_url}
-              dependency_folder_url={data[0].miscellaneous_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-light-pink-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"LNE HNS Eligibility Form"}
-              form={clientData.HNSEligibilityForm}
-              formDate={clientData.HNSEligibilityFormDate}
-              formUploadDate={clientData.HNSEligibilityFormUploadDate}
-              formPDF={clientData.HNSEligibilityFormPDF}
-              formReviewed={clientData.HNSEligibilityFormReviewed}
-              formIssues={clientData.HNSEligibilityFormIssues}
-              formString={"HNSEligibilityForm"}
-              folder_url={data[0].intake_folder_url}
-              dependency_folder_url={data[0].miscellaneous_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-pink-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"HNS Readiness Assessment"}
-              form={clientData.HNSReadinessForm}
-              formDate={clientData.HNSReadinessFormDate}
-              formUploadDate={clientData.HNSReadinessFormUploadDate}
-              formPDF={clientData.HNSReadinessFormPDF}
-              formReviewed={clientData.HNSReadinessFormReviewed}
-              formIssues={clientData.HNSReadinessFormIssues}
-              formString={"HNSReadinessForm"}
-              folder_url={data[0].intake_folder_url}
-              dependency_folder_url={data[0].intake_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-pink-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"Support Groups"}
-              form={clientData.SupportGroups}
-              formDate={clientData.SupportGroupsDate}
-              formUploadDate={clientData.SupportGroupsUploadDate}
-              formPDF={clientData.SupportGroupsPDF}
-              formReviewed={clientData.SupportGroupsReviewed}
-              formIssues={clientData.SupportGroupsIssues}
-              formString={"SupportGroups"}
-              folder_url={data[0].support_groups_folder_url}
-              dependency_folder_url={data[0].support_groups_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-pink-bg"}
-            />
-
-            <RowMsaFormSupervisor
-              fieldName={"IDG"}
-              form={clientData.IDGForm}
-              formDate={clientData.IDGFormDate}
-              formUploadDate={clientData.IDGFormUploadDate}
-              formPDF={clientData.IDGFormPDF}
-              formReviewed={clientData.IDGFormReviewed}
-              formIssues={clientData.IDGFormIssues}
-              formString={"IDGForm"}
-              folder_url={data[0].idg_folder_url}
-              dependency_folder_url={data[0].idg_folder_url}
-              setClientData={setClientData}
-              setIssueFounded={setIssueFounded}
-              showIssuesFoundModal={showIssuesFoundModal}
-              setShowIssuesFoundModal={setShowIssuesFoundModal}
-              bgColor={"msa-table-light-pink-bg"}
-            />
-
-            </div>
-          </section>
-        </div>
-          
-
-        <section id="save" className="py-10 pb-20">
+          <section id="save" className="py-10 pb-20">
+          {isSaving ? (
+              <center>
+                <Loader />
+              </center>
+            ) : (
             <div className="container mx-auto flex justify-center">
               <button
                 className="btn-yellow px-5 py-3 flex items-center font-medium text-lg gap-3 px-5 rounded shadow inline-block"
                 onClick={() => handleMsaform()}
               >
-                <img src="/msa/save_and_finish.svg" alt="save icon" width={20}/>
+                <img
+                  src="/msa/save_and_finish.svg"
+                  alt="save icon"
+                  width={20}
+                />
                 Save and Update
               </button>
             </div>
+             )}
           </section>
         </section>
       </Layout>

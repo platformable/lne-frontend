@@ -180,26 +180,26 @@ export default function AuthorizedUsersIndex({ data, users }) {
                     <div
                       className={`${styles.dashboardClientListHeadRow}  mt-10 gap-x-1`}
                     >
-                      <p className="bg-client-profile-sap-heading py-2 px-5 text-xl">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-xl">
                         Name
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-5 text-xl">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-xl">
                         Last Name
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-5 text-xl">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-xl">
                         User Role
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-5 text-xl">
+                      <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-xl">
                         Email
                       </p>
 
-                      <p className="bg-client-profile-sap-heading py-2 px-5 text-xl">
-                        Date User added by the supervisor
+                      <p className="bg-client-profile-sap-heading py-2 px-5 font-bold text-xl">
+                        Date added
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center text-xl">
+                      <p className="bg-client-profile-sap-heading py-2 px-2 font-bold text-center text-xl">
                         Edit
                       </p>
-                      <p className="bg-client-profile-sap-heading py-2 px-2 text-center text-xl">
+                      <p className="bg-client-profile-sap-heading py-2 px-2 font-bold text-center text-xl">
                         {" "}
                         Delete
                       </p>
