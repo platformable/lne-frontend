@@ -11,7 +11,7 @@ import BackToDashboardButton from "../../components/BackToDashboardButton";
 import BackButton from "../../components/BackButton";
 
 const ClientsIndex = ({ data, hcworkers }) => {
-  console.log("data", data);
+
   const router = useRouter();
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
@@ -23,6 +23,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
   const [noDataMessage, setNoDataMessage] = useState(false);
   const [searchWord, setSearchWord] = useState("");
   const [searchByUser, setSearchByUser] = useState("All");
+  const [usersStatus,setUsersStatus]=useState('Active')
 
   const notifyMessage = () => {
     toast.success("A new client is being created!", {
@@ -112,6 +113,12 @@ const ClientsIndex = ({ data, hcworkers }) => {
   const searchFunction = (word) => {
     setSearchWord(word);
   };
+
+  const handleUsersStatus = (status)=>{
+    setUsersStatus(status)
+  }
+
+  console.log("usersStatus",data)
   return (
     <Layout>
       <ToastContainer autoClose={50000} />
@@ -127,7 +134,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
             <h1 className="font-bold text-4xl">Manage Clients</h1>
           </div>
           <div className=" mt-10 search-container grid  grid-cols-1 md:flex  gap-5 justify-between">
-            <div className="search-box flex items-center">
+            <div className="search-box flex  items-center">
                <img src="/client/client_information.svg" alt="search by client icon"  className="mr-4"/>
 
               <p className="mr-5 text-xl">Search by Name or Client ID</p>
@@ -144,6 +151,14 @@ const ClientsIndex = ({ data, hcworkers }) => {
                    <img src="/client/search.svg" alt="search icon" />
                   </button>
                 </div>
+              </div>
+              <div className="ml-5 flex gap-x-5 items-center"> 
+              <p className="mr-5 text-xl">User status: </p>
+                <select name="activeornotactiveusers" id="" className=" border rounded py-3 px-5 border-black"
+                onChange={(e) => setUsersStatus(e.target.value)}>
+                  <option value="Active">Active</option>
+                  <option value="Not Active">Not Active</option>
+                </select>
               </div>
             </div>
 
@@ -215,6 +230,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
               .sort((a, b) =>
                 a.clientfirstname.localeCompare(b.clientfirstname)
               )
+              .filter((client,index)=>{return usersStatus==='Active' ? client.clientactive==='1':client.clientactive==='0'})
               .filter((client, index) => {
                 if (searchWord === "") {
                   return client;
