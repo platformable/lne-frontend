@@ -49,7 +49,7 @@ export default function UsersListRow({
       <div
         className={`${styles.dashboardClientListHeadRow} ${
           index % 2 === 0 ? "bg-row-light" : "bg-row-dark"
-        } bg-white border rounded-md py-3 px-5 my-1 `}
+        } bg-white border rounded-md py-3 my-1 `}
       >
         {/* <div className="head-row ">
                   <p className="text-center">{id}</p>
@@ -62,7 +62,7 @@ export default function UsersListRow({
             ? email || authorizeduser.useremail
             : "-"}
         </p>
-        <p className="py-2 px-5">
+        <p className="py-2 px-5 text-lg">
           {dateaccountactivated ? `${month}/${day}/${year}` : "-"}
         </p>
 
