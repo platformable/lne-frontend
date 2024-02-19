@@ -17,13 +17,13 @@ import BackToDashboardButton from "../../../../components/BackToDashboardButton"
 
 import SapClientInformation from "../../../../components/SapClientInformation";
 import SubHeader from "../../../../components/SubHeader";
-
+import Loader from "../../../../components/Loader";
 export default function IndexServoceActionPlan({ data }) {
   let componentRef = useRef();
 
   const router = useRouter();
   const [showImpactBaselineModal, setShowImpactBaselineModal] = useState(false);
-
+  const [isSaving, setIsSaving] = useState(false);
   const [errorCompleteAllFieldsMessage, setErrorCompleteAllFieldsMessage] =
     useState("");
   const [loading, setLoading] = useState(false);
@@ -117,10 +117,17 @@ export default function IndexServoceActionPlan({ data }) {
       );
     });
   };
-  const notifyMessage = () => {
-    toast.success("Service Action Plan updated", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyMessage = (status) => {
+    if (status === "ok") {
+      toast.success("Form saved successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+    if (status === "fail") {
+      toast.error("Something went wrong try again", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
   const createClientActionPlan = () => {
     if (
@@ -154,25 +161,28 @@ export default function IndexServoceActionPlan({ data }) {
         setLoading(false);
       }, 200);
     } else {
+      setIsSaving(true);
+      setTimeout(() => {
+        setIsSaving(false);
+      }, 3000);
       axios
         .post(`${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan`, {
           clientData,
         })
         .then(function (response) {
-          //console.log("response",response)
+
           console.log(response.data);
           if (response.status === 200 || response.statusText === "Ok") {
             setErrorCompleteAllFieldsMessage("");
             setServiceActionPlanId(response.data.service_action_plan_id);
             setShowImpactBaselineModal(!showImpactBaselineModal);
-            notifyMessage();
-            /*   setTimeout(()=>{
-            router.push(`/clients/${clientData.clientId}/profile`)
-          },2300)  */
+            notifyMessage('ok');
           }
         })
         .catch(function (error) {
           console.log(error);
+          setIsSaving(false);
+          notifyMessage('fail');
         });
     }
   };
@@ -182,32 +192,31 @@ export default function IndexServoceActionPlan({ data }) {
       <Layout>
         <ToastContainer autoClose={2000} />
 
-
-        <SubHeader pageTitle={'Service Action Plan'}/>
+        <SubHeader pageTitle={"Service Action Plan"} />
 
         <div
           id="mainContent"
           className="container mx-auto bg-white rounded-md  my-10 shadow-md border-blue"
         >
-          <SapClientInformation data={data} clientData={clientData} setClientData={setClientData}/>
+          <SapClientInformation
+            data={data}
+            clientData={clientData}
+            setClientData={setClientData}
+          />
 
           {/*client information end */}
 
           <section id="goals" className="border-blue-bottom">
-          <div className="container mx-auto px-5">
-            <div className="flex gap-x-3 items-center mt-10 mb-5">
+            <div className="container mx-auto px-5">
+              <div className="flex gap-x-3 items-center mt-10 mb-5">
                 <img src="/client_goals.svg" alt="" />
-              <h2 className="font-bold text-2xl">Client Goals</h2>
+                <h2 className="font-bold text-2xl">Client Goals</h2>
               </div>
             </div>
-            <div
-              className={`container mx-auto rounded-xl px-5 py-5`}
-            >
+            <div className={`container mx-auto rounded-xl px-5 py-5`}>
               <div className="service-action-plan-goals-container grid md:grid-cols-2 grid-cols-1 gap-5">
                 <div className="service-action-plan-goal-box">
                   <div className="service-action-plan-page-goals-top grid gap-5">
-                   
-
                     <label className="block">
                       <h4 className="text-xl mb-1">Goal 1 Summary</h4>
 
@@ -338,8 +347,6 @@ export default function IndexServoceActionPlan({ data }) {
 
                 <div className="service-action-plan-goal-box">
                   <div className="service-action-plan-page-goals-top grid gap-5">
-                
-
                     <label className="block">
                       <h4 className="text-xl mb-1">Goal 2 Summary</h4>
 
@@ -360,7 +367,6 @@ export default function IndexServoceActionPlan({ data }) {
                       </select>
                     </label>
 
-            
                     <label className="block">
                       <h4 className="text-xl mb-1">Details</h4>
                       <textarea
@@ -623,11 +629,10 @@ export default function IndexServoceActionPlan({ data }) {
           </section>
           <section id="other" className="my-5 md:px-0 px-5">
             <div className="container mx-auto">
-            <div className="flex gap-x-3 px-5 items-center">
+              <div className="flex gap-x-3 px-5 items-center">
                 <img src="/Signatures.svg" alt="" />
                 <h3 className="font-bold   text-2xl mb-1">Signatures</h3>
               </div>
-            
 
               <div className={`rounded-xl px-5 py-5`}>
                 <div className="others-container grid md:grid-cols-3 grid-cols-1 justify-center">
@@ -684,6 +689,11 @@ export default function IndexServoceActionPlan({ data }) {
           </p>
         )}
         <section id="save" className="my-5">
+        {isSaving ? (
+              <center>
+                <Loader />
+              </center>
+            ) : (
           <div className="container mx-auto flex justify-center gap-x-5">
             {/*          <button className="bg-blue-500 hover:bg-blue-300 px-5 py-1 rounded text-white inline-block  mr-5">
             Save Progress</button> */}
@@ -694,14 +704,14 @@ export default function IndexServoceActionPlan({ data }) {
                 createClientActionPlan();
               }}
             >
-              <img src="/sap/save_icon.svg" alt="" width={24}/>
-             <p className="text-lg ml-2">Save and finish</p>
+              <img src="/sap/save_icon.svg" alt="" width={24} />
+              <p className="text-lg ml-2">Save and finish</p>
             </button>
             <ReactToPrint
               trigger={() => (
                 <button className="w-60 bg-black px-5 py-2 rounded text-white inline-block flex gap-x-5 items-center ">
-                    <img src="/sap/print_and_sign.svg" alt="" width={22}/>
-             <p className="text-lg ml-4">Print and sign</p>
+                  <img src="/sap/print_and_sign.svg" alt="" width={22} />
+                  <p className="text-lg ml-4">Print and sign</p>
                 </button>
               )}
               content={() => componentRef.current}
@@ -715,6 +725,7 @@ export default function IndexServoceActionPlan({ data }) {
               />
             </div>
           </div>
+           )}
         </section>
       </Layout>
       {showImpactBaselineModal && serviceActionPlanId && (

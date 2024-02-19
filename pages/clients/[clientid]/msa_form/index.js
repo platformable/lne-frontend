@@ -6,7 +6,7 @@ import MSAStyles from "../../../../styles/MSA.module.css";
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { Dropbox } from "dropbox";
-
+import Loader from "../../components/Loader";
 
 
 import { ToastContainer, toast } from "react-toastify";
@@ -17,13 +17,20 @@ import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 
 const Index = ({ data }) => {
    const router = useRouter()
-
+   const [isSaving, setIsSaving] = useState(false);
 console.log("data",data)
-  const notifyMessage = () => {
-    toast.success("A new MSA Form has been created!", {
+const notifyMessage = (status) => {
+  if (status === "ok") {
+    toast.success("Form saved successfully!", {
       position: toast.POSITION.TOP_CENTER,
     });
-  };
+  }
+  if (status === "fail") {
+    toast.error("Something went wrong try again", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  }
+};
 
 /*   const crearFecha=()=>{
     const initialDate= new Date().toLocaleDateString()
@@ -135,19 +142,24 @@ console.log("data",data)
 
 console.log("clientData",clientData)
 const handleMsaform = ()=> {
-
+  setIsSaving(true);
+  setTimeout(() => {
+    setIsSaving(false);
+  }, 3000);
     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/msa_forms/create_msa_form`, {
         clientData
       })
       .then(function (response) {
         if(response.status===200 || response.statusText==='Ok'){
-          notifyMessage()
+          notifyMessage('ok')
           setTimeout(()=>{
             router.push(`/clients/${clientData.clientId}/profile`)
           },2300)
         } 
       })
       .catch(function (error) {
+        notifyMessage('fail')
+        setIsSaving(false);
             console.log("error del server",error)
       });
 }
@@ -2384,6 +2396,11 @@ const handleMsaform = ()=> {
           
         </div>
         <section id="save" className="py-10 pb-20">
+        {isSaving ? (
+              <center>
+                <Loader />
+              </center>
+            ) : (
             <div className="container mx-auto flex justify-center">
               <button
                 className="btn-yellow px-5 py-3 flex items-center font-medium text-lg gap-3 px-5 rounded shadow inline-block"
@@ -2393,6 +2410,7 @@ const handleMsaform = ()=> {
                 Save and Update
               </button>
             </div>
+             )}
           </section>
       </Layout>
     </>
