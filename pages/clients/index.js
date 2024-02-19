@@ -25,10 +25,26 @@ const ClientsIndex = ({ data, hcworkers }) => {
   const [searchByUser, setSearchByUser] = useState("All");
   const [usersStatus,setUsersStatus]=useState('Active')
 
-  const notifyMessage = () => {
-    toast.success("A new client is being created!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyMessage = (status) => {
+    if (status === 'saving') {
+      toast.info("Creating client folders", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 50000
+      });
+    }
+    if (status === 'ok') {
+      toast.success("Form saved successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500
+      });
+    } 
+    if (status === 'fail') {
+      toast.error('Something went wrong try again',{
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500
+      })
+    }
+    
   };
 
   const searchByClientIdOrClientName = (text) => {
@@ -118,10 +134,10 @@ const ClientsIndex = ({ data, hcworkers }) => {
     setUsersStatus(status)
   }
 
-  console.log("usersStatus",data)
+  // console.log("usersStatus",data)
   return (
     <Layout>
-      <ToastContainer autoClose={50000} />
+      <ToastContainer  />
       <section id="search" className="">
         <div className="bg-white pb-5 pt-10 shadow-inner ">
         <div className="container mx-auto ">

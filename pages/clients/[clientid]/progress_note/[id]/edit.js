@@ -7,8 +7,7 @@ import MSAStyles from "../../../../../styles/MSA.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ImpactTrackerModal from "../../../../../components/ImpactTrackerModal";
-import BackButton from "../../../../../components/BackButton";
-import BackToDashboardButton from "../../../../../components/BackToDashboardButton";
+import Loader from "../../../../../components/Loader";
 import ProgressNoteToPrint from "../../../../../components/ProgressNoteToPrint";
 import ClientInfoTopHeader from "../../../../../components/ClientInfoTopHeader";
 import ReactToPrint from "react-to-print";
@@ -23,13 +22,21 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
   const [selectedSAP, setSelectedSAP] = useState(sap?.current);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
   const [progressNoteId, setProgressNoteId] = useState("");
-  let componentRef = useRef();
-  const notifyMessage = () => {
-    toast.success("Progress Note Saved!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
-  };
+  const [isSaving, setIsSaving] = useState(false);
 
+  let componentRef = useRef();
+  const notifyMessage = (status) => {
+    if (status === "ok") {
+      toast.success("Progress note saved successfuly", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+    if (status === "fail") {
+      toast.error("Something went wrong try again", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  };
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();
     const newDate = initialDate.split("/");
@@ -47,20 +54,6 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
     return fixedDate;
   };
 
-  const setLocaleDateString = (date) => {
-    const fecha = Date.parse(date);
-    const newDate = new Date(fecha)
-      .toLocaleDateString()
-      .replace("/", "-")
-      .replace("/", "-");
-    const separatedDate = newDate.split("-");
-    const finalDate = `${separatedDate[2]}-${
-      separatedDate[1]?.length === 1 ? `0${separatedDate[1]}` : separatedDate[1]
-    }-${
-      separatedDate[0]?.length === 1 ? `0${separatedDate[0]}` : separatedDate[0]
-    }`;
-    return finalDate;
-  };
   const [clientData, setClientData] = useState({
     progressNoteId: Number(id),
     clientId: data[0]?.clientid,
@@ -501,9 +494,6 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
     },
   ];
 
-  const todaysDate = new Date();
-  
-
   const [dataForSAP, setDataForSAP] = useState({
     id: selectedSAP?.id,
     clientId: data[0]?.clientid,
@@ -560,6 +550,8 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
     //     "Please enter text to describe the progress made today"
     //   );
     // } else {
+    setIsSaving(true);
+
     setPNErrorMessage("");
     axios
       .put(`${process.env.NEXT_PUBLIC_SERVER_URL}/progress_notes/update`, {
@@ -571,11 +563,16 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
           handleMsaformUpdate();
           handleServiceActionPlanFormUpdate();
           setTimeout(() => router.back(), 2000);
-          // console.log(response);
-          notifyMessage();
+          setIsSaving(false)
+
+          notifyMessage('ok');
         }
       })
       .catch(function (error) {
+        notifyMessage('fail');
+
+        setIsSaving(false)
+
         console.log(error);
       });
     // }
@@ -585,14 +582,16 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
     <>
       <ToastContainer autoClose={2000} />
       <Layout>
-      
-
-        <SubHeader pageTitle={'Edit Progress Note'}/>
+        <SubHeader pageTitle={"Edit Progress Note"} />
 
         <div className="pt-10 shadow-inner">
           <section className="container mx-auto bg-white grid divide-y-2 divide-[#5AC0FF] shadow-lg border-blue rounded-md ">
-          <ClientInfoTopHeader data={data} clientData={clientData} setClientData={setClientData} stateValue='progressNoteDate'/>
-
+            <ClientInfoTopHeader
+              data={data}
+              clientData={clientData}
+              setClientData={setClientData}
+              stateValue="progressNoteDate"
+            />
 
             <section id="servidedProvided" className="gap-x-5 p-10 pt-7">
               <div className="flex gap-x-3 items-center">
@@ -769,7 +768,6 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 {/* SERVICE PROVIDED 2nd COLUMN " */}
 
                 <div className="services-box grid gap-y-10 text-lg items-start justify-start">
-                 
                   <div className="flex items-center">
                     <label className="flex items-center gap-x-5">
                       <input
@@ -1044,12 +1042,21 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 <h3 className="font-bold text-2xl">Client Goals</h3>
               </div>
 
-              <label htmlFor="selectedSAP" className="text-xl mr-5">Select service action plan</label>
-              <select onChange={(e) => setSelectedSAP(sap[e.target.value])} className="mb-10 rounded shadow border-black py-2 px-2">
-                  <option value={'current'}>Current service action plan</option>
-                  {sap.archived && <option value={'archived'}>Previous service action plan</option>}   
-                </select>
-              
+              <label htmlFor="selectedSAP" className="text-xl mr-5">
+                Select service action plan
+              </label>
+              <select
+                onChange={(e) => setSelectedSAP(sap[e.target.value])}
+                className="mb-10 rounded shadow border-black py-2 px-2"
+              >
+                <option value={"current"}>Current service action plan</option>
+                {sap.archived && (
+                  <option value={"archived"}>
+                    Previous service action plan
+                  </option>
+                )}
+              </select>
+
               <div className="goals-container grid lg:grid-cols-2  gap-5">
                 <div className="goal-box grid gap-y-7">
                   {/* <div className="goal-top flex items-center my-2">
@@ -1100,8 +1107,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                     <div className="flex flex-col gap-3 items-start">
                       <span className="text-xl font-medium">Target Date</span>
                       <p className="bg-primary-light-blue p-3 rounded text-lg">
-                        {selectedSAP?.goal2targetdate?.split("T")[0] ||
-                          "-"}
+                        {selectedSAP?.goal2targetdate?.split("T")[0] || "-"}
                       </p>
                     </div>
                   </div>
@@ -1228,7 +1234,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                     {/* <div className={`calendarIcon`}>
                       <img src="/date-calendar.svg" width={24} alt="" />
                     </div> */}
-                   {/*  <h3 className="text-xl mb-3 font-medium">Target date</h3>
+                    {/*  <h3 className="text-xl mb-3 font-medium">Target date</h3>
                     <input
                       type="date"
                       id=""
@@ -1262,49 +1268,49 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                   </div>
                 </div>
                 <div>
-                <p className="text-xl mb-3 font-medium">Goal 2</p>
-                <div className="workedGoals-box flex gap-20 mb-7">
-                  <label className="flex gap-5 text-xl items-center">
-                    <input
-                      type="radio"
-                      name="workedGoals2"
-                      onChange={(e) =>
-                        setClientData({
-                          ...clientData,
-                          goal2Progress: true,
-                          goal2ProgressDate: clientData.progressNoteDate,
-                        })
-                      }
-                      defaultChecked={
-                        clientData.goal2Progress === true ? "checked" : ""
-                      }
-                    />
-                    Yes
-                  </label>
-                  <label className="flex gap-5 text-xl items-center">
-                    <input
-                      type="radio"
-                      name="workedGoals2"
-                      onChange={(e) =>
-                        setClientData({
-                          ...clientData,
-                          goal2Progress: false,
-                          goal2ProgressDate: "",
-                        })
-                      }
-                      defaultChecked={
-                        clientData.goal2Progress === false ? "checked" : ""
-                      }
-                    />
-                    No
-                  </label>
-                </div>
+                  <p className="text-xl mb-3 font-medium">Goal 2</p>
+                  <div className="workedGoals-box flex gap-20 mb-7">
+                    <label className="flex gap-5 text-xl items-center">
+                      <input
+                        type="radio"
+                        name="workedGoals2"
+                        onChange={(e) =>
+                          setClientData({
+                            ...clientData,
+                            goal2Progress: true,
+                            goal2ProgressDate: clientData.progressNoteDate,
+                          })
+                        }
+                        defaultChecked={
+                          clientData.goal2Progress === true ? "checked" : ""
+                        }
+                      />
+                      Yes
+                    </label>
+                    <label className="flex gap-5 text-xl items-center">
+                      <input
+                        type="radio"
+                        name="workedGoals2"
+                        onChange={(e) =>
+                          setClientData({
+                            ...clientData,
+                            goal2Progress: false,
+                            goal2ProgressDate: "",
+                          })
+                        }
+                        defaultChecked={
+                          clientData.goal2Progress === false ? "checked" : ""
+                        }
+                      />
+                      No
+                    </label>
+                  </div>
 
-                <div className="mb-7">
-                  {/* <div className={`calendarIcon`}>
+                  <div className="mb-7">
+                    {/* <div className={`calendarIcon`}>
                       <img src="/date-calendar.svg" width={24} alt="" />
                     </div> */}
-                  {/* <h3 className="text-xl mb-3 font-medium">Target date</h3>
+                    {/* <h3 className="text-xl mb-3 font-medium">Target date</h3>
                   <input
                     type="date"
                     id=""
@@ -1317,27 +1323,26 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                       })
                     }
                   /> */}
+                  </div>
+                  <div className="">
+                    <p className="mb-3 font-medium text-xl">
+                      Goal 2 Worked Comments
+                    </p>
+                    <textarea
+                      name=""
+                      id=""
+                      rows="10"
+                      className="border-black rounded-md w-full text-lg p-2"
+                      onChange={(e) =>
+                        setClientData({
+                          ...clientData,
+                          goal2WorkedComments: e.target.value,
+                        })
+                      }
+                      defaultValue={clientData.goal2WorkedComments}
+                    ></textarea>
+                  </div>
                 </div>
-                <div className="">
-                  <p className="mb-3 font-medium text-xl">
-                    Goal 2 Worked Comments
-                  </p>
-                  <textarea
-                    name=""
-                    id=""
-                    rows="10"
-                    className="border-black rounded-md w-full text-lg p-2"
-                    onChange={(e) =>
-                      setClientData({
-                        ...clientData,
-                        goal2WorkedComments: e.target.value,
-                      })
-                    }
-                    defaultValue={clientData.goal2WorkedComments}
-                  ></textarea>
-                </div>
-                </div>
-
               </div>
               {/* <div>
                   <div className="workedGoals-box flex gap-5 ">
@@ -1477,7 +1482,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                           setDataForSAP({
                             ...dataForSAP,
                             goal1Completed: false,
-                            goal1CompletionDate: null
+                            goal1CompletionDate: null,
                           });
                         }}
                         defaultChecked={
@@ -1883,8 +1888,10 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
             {pnErrorMessage && (
               <p className="text-red-500 text-center my-3">{pnErrorMessage}</p>
             )}
+            {!isSaving ? (
             <div className="container mx-auto flex justify-center gap-x-10">
-              <button
+              
+                <button
                 className="btn-yellow hover:bg-yellow-100 flex items-center gap-5 px-5 py-2 rounded shadow-lg text-xl inline-block "
                 onClick={() => handleProgressNote()}
               >
@@ -1894,6 +1901,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 />
                 Save and finish
               </button>
+              
 
               <ReactToPrint
                 trigger={() => (
@@ -1908,12 +1916,17 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 content={() => componentRef.current}
               />
             </div>
+            ) : (
+              <div className="grid  justify-center">
+                <Loader />
+              </div>
+            )}
           </section>
         </div>
-      
-              <div style={{display:'none'}}>
-                <ProgressNoteToPrint ref={componentRef}  data={clientData}/>
-              </div>
+
+        <div style={{ display: "none" }}>
+          <ProgressNoteToPrint ref={componentRef} data={clientData} />
+        </div>
       </Layout>
       {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal

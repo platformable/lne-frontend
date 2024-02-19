@@ -9,10 +9,9 @@ import { useRouter } from "next/router";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BackButton from "../../components/BackButton";
-import BackToDashboardButton from "../../components/BackToDashboardButton";
 import SubHeader from "../../components/SubHeader";
 import Link from "next/link";
+import Loader from "../../components/Loader";
 
 const CondomsDistributed = () => {
   const router = useRouter();
@@ -42,26 +41,45 @@ const CondomsDistributed = () => {
     Aged45: "0",
     AgeNotSpecified: "0",
   });
+  const [isSaving, setIsSaving] = useState(false)
 
-  const notifyMessage = () => {
-    toast.success("Form saved successfully!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyMessage = (status) => {
+    if (status === 'ok') {
+      toast.success("Form saved successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } 
+    if (status === 'fail') {
+      toast.error('Something went wrong try again',{
+        position: toast.POSITION.TOP_CENTER,
+      })
+    }
+    
   };
 
   const handleForm = () => {
+    setIsSaving(true)
+
     axios
       .post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`,
         formData
       )
       .then((data) => {
-        notifyMessage();
-        setTimeout(() => {
-          router.back();
-        }, 1500);
+
+        if (data.status === 200) {
+          notifyMessage('ok');
+          setTimeout(() => {
+            setIsSaving(false)
+            router.back();
+          }, 1500);
+        }
+       
       })
       .catch(function (error) {
+        setIsSaving(false)
+        notifyMessage('fail');
+
         console.log("error del server", error);
       });
   };
@@ -263,13 +281,17 @@ const CondomsDistributed = () => {
 
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
-              <button
+              {!isSaving ? (
+                <button
                 className="grid grid-cols-3 w-60 text-medium items-center text-lg btn-yellow hover:btn-darkYellow px-4 py-2 rounded shadow-lg"
                 onClick={() => handleForm()}
               >
                 <img src="/client/Save.svg" alt="Save form icon" /> 
                 Save
               </button>
+              ) : (
+                <Loader/>
+              )}
             </div>
           </section>
         </div>
