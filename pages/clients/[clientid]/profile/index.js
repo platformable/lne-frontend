@@ -40,17 +40,7 @@ export function setLocaleDateString(date) {
   return finalDate;
 }
 
-const getDate = (date) => {
-  const fecha = Date.parse(date);
-  const newDate = new Date(fecha).toLocaleDateString("en", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  });
-  const separatedDate = newDate.split("/");
-  const finalDate = separatedDate.join("-");
-  return newDate;
-};
+
 
 export default function ClientProfilePage({
   data,
@@ -62,62 +52,59 @@ export default function ClientProfilePage({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
   const [progNotes, setProgNotes] = useState([]);
-// console.log("data server", data)
+// console.log("data server progress notes", progNotes)
+// console.log("data client", data) 
+
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
 
-  const router = useRouter();
 
-  const [message1, setMessage1] = useState({
-    result: "",
-    color: "",
-  });
 
   const checkMessage1 = () => {
     let result;
     let color;
     if (
-      (data[0]?.msaformairsintakeform === "0" ||
-        data[0]?.msaformairsintakeform === null) &&
-      data[0]?.servicesactionplanid === null
+      (data?.msaformairsintakeform === "0" ||
+        data?.msaformairsintakeform === null) &&
+      data?.servicesactionplanid === null
     ) {
       result = "You need to fill in \n the client’s Intake Form";
       color = "bg-red-400";
     }
     if (
-      data[0]?.msaformairsintakeform === "1" &&
-      data[0]?.msaformcomprehensiveriskbehavrioassesment !== "1"
+      data?.msaformairsintakeform === "1" &&
+      data?.msaformcomprehensiveriskbehavrioassesment !== "1"
     ) {
       result = "You need to fill in \n the client’s CBRA Form";
       color = "bg-red-400";
     }
 
     if (
-      data[0]?.msaformairsintakeform === "1" &&
-      data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" &&
-      data[0]?.servicesactionplanid !== "1"
+      data?.msaformairsintakeform === "1" &&
+      data?.msaformcomprehensiveriskbehavrioassesment === "1" &&
+      data?.servicesactionplanid !== "1"
     ) {
       result = "You need to draft the client’s \n Service Action Plan and sign";
       color = "bg-orange-300";
     }
 
     if (
-      data[0]?.msaformairsintakeform === "1" &&
-      data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" &&
-      data[0]?.servicesactionplanid !== null &&
-      (data[0]?.msahnselegibilityform !== "1" ||
-        data[0]?.msaformhnsreadinessform !== "1")
+      data?.msaformairsintakeform === "1" &&
+      data?.msaformcomprehensiveriskbehavrioassesment === "1" &&
+      data?.servicesactionplanid !== null &&
+      (data?.msahnselegibilityform !== "1" ||
+        data?.msaformhnsreadinessform !== "1")
     ) {
       result = "You need to fill in the client’s HNS Forms";
       color = "bg-orange-300";
     }
 
     if (
-      data[0]?.msaformairsintakeform === "1" &&
-      data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" &&
-      data[0]?.servicesactionplanid !== null
-      //  && (data[0]?.msahnselegibilityform === "1" && data[0]?.msaformhnsreadinessform ==='1')
+      data?.msaformairsintakeform === "1" &&
+      data?.msaformcomprehensiveriskbehavrioassesment === "1" &&
+      data?.servicesactionplanid !== null
+      //  && (data?.msahnselegibilityform === "1" && data?.msaformhnsreadinessform ==='1')
     ) {
       result = `All core documents\
        are up to date`;
@@ -125,7 +112,7 @@ export default function ClientProfilePage({
     }
 
     return (
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-start h-full">
         <div
           className={`flex ${color} px-5 py-3  items-center rounded-sm shadow-md justify-center`}
         >
@@ -142,7 +129,7 @@ export default function ClientProfilePage({
         <p className="text-center my-3  text-center text-lg">
           {result}
         </p>
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-auto">
           <img
             src="/client/alerticonMSAdoc.svg"
             className="mt-3"
@@ -157,49 +144,40 @@ export default function ClientProfilePage({
   const checkMessage2 = () => {
     const completedGoals = {
       goal1: {
-        summary: data[0]?.goal1summary,
-        completed: data[0]?.goal1completed,
+        summary: data?.goal1summary,
+        completed: data?.goal1completed,
       },
       goal2: {
-        summary: data[0]?.goal2summary,
-        completed: data[0]?.goal2completed,
+        summary: data?.goal2summary,
+        completed: data?.goal2completed,
       },
-      goal3: {
-        summary: data[0]?.goal3summary,
-        completed: data[0]?.goal3completed,
-      },
+      // goal3: {
+      //   summary: data?.goal3summary,
+      //   completed: data?.goal3completed,
+      // },
     };
-    let result;
-    let color;
+    let result = "-";
+    let alert = "-";
+    let color = "bg-red-400";
     let totalGoals = 0;
     let totalGoalsCompleted = 0;
-
     Object.values(completedGoals).forEach((goal) => {
       if (goal.summary) totalGoals += 1;
       if (goal.completed === "1") totalGoalsCompleted += 1;
     });
-    if (totalGoals === 0) {
+
+    if (totalGoals === 0 && totalGoalsCompleted === 0) {
       color = "bg-green-300";
       result = "No goals yet";
-      return (
-        <div className="flex flex-col justify-between">
-          <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
-          >
-            <p className="text-lg">On Track</p>
-          </div>
+      alert = "On Track"
+      
+    }
+    
+    if (totalGoals > 0 && totalGoals === totalGoalsCompleted) {
+      result = "All client goals have been completed!";
+      color = "bg-green-300";
+      alert = "On Track"
 
-          <p className="px-4 my-3  text-center text-lg pb-7">{result}</p>
-          <div className="flex justify-center items-center">
-            <img
-              src="/client/alerticonserviceactionplan.svg"
-              alt=""
-              width={50}
-              className="mt-3"
-            />
-          </div>
-        </div>
-      );
     }
 
     if (totalGoals > 0 && totalGoalsCompleted === 0) {
@@ -207,78 +185,40 @@ export default function ClientProfilePage({
       result = `There are ${
         totalGoals - totalGoalsCompleted
       } client goals outstanding`;
-      return (
-        <div>
-          <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
-          >
-            <p className="text-lg">Alert</p>
-          </div>
-
-          <p className="px-4 my-3  text-center text-lg">{result}</p>
-          <div className="flex justify-center items-center">
-            <img
-              src="/client/alerticonserviceactionplan.svg"
-              alt=""
-              width={50}
-              className="mt-3"
-            />
-          </div>
-        </div>
-      );
+      alert = "Alert"
+      
     }
 
-    if (totalGoals === totalGoalsCompleted) {
-      result = "All client goals have been completed!";
-      color = "bg-green-300";
-
-      return (
-        <div>
-          <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
-          >
-            <p className="text-lg">On Track</p>
-          </div>
-
-          <p className="px-4 my-3  text-center text-lg">{result}</p>
-          <div className="flex justify-center items-center">
-            <img
-              src="/client/alerticonserviceactionplan.svg"
-              alt=""
-              width={50}
-              className="mt-3"
-            />
-          </div>
-        </div>
-      );
-    }
+   
 
     if (totalGoalsCompleted >= 1 && totalGoalsCompleted <= totalGoals) {
       color = "bg-orange-300";
       result = `There are ${
         totalGoals - totalGoalsCompleted
       } client goals outstanding`;
-
-      return (
-        <div>
-          <div
-            className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
-          >
-            <p className="text-lg">Warning</p>
-          </div>
-
-          <p className="px-4 my-3  text-center text-lg">{result}</p>
-          <div className="flex justify-center items-center">
-            <img
-              src="/client/alerticonserviceactionplan.svg"
-              alt=""
-              width={50}
-              className="mt-3"
-            />
-          </div>
-        </div>
-      );
+      alert = "Warning"
+      
     }
+
+    return (
+      <div className="flex flex-col justify-start h-full">
+        <div
+          className={`flex ${color} rounded-sm px-5  items-center shadow-md flex justify-center py-3`}
+        >
+          <p className="text-lg">{alert}</p>
+        </div>
+
+        <p className="px-4 my-3  text-center text-lg">{result}</p>
+        <div className="flex justify-center items-center mt-auto">
+          <img
+            src="/client/alerticonserviceactionplan.svg"
+            alt=""
+            width={50}
+            className="mt-3"
+          />
+        </div>
+      </div>
+    );
   };
   let fechaInicio = new Date(
     `2022-03-${Math.floor(Math.random() * (30 - 1 + 1) + 1)}`
@@ -286,16 +226,14 @@ export default function ClientProfilePage({
 
   const checkMessage3 = () => {
     if (
-      (progNotes[0]?.progressnotes?.length === 0 &&
-        data[0]?.planstartdate === "") ||
-      data[0]?.planstartdate === null
+      progNotes.length === 0 &&
+        (data?.planstartdate === "" ||
+      data?.planstartdate === null)
     ) {
-      const planstartdate = data[0]?.planstartdate;
+      // const planstartdate = data?.planstartdate;
 
-      let date_1 =
-        !planstartdate 
-          ? new Date(data[0]?.clientdatecreated)
-          : new Date(planstartdate);
+      let date_1 = new Date(data?.clientdatecreated)
+          
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
 
@@ -308,7 +246,7 @@ export default function ClientProfilePage({
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       // if ()
       return (
-        <div>
+        <div className="flex flex-col justify-start h-full">
           <div
             className={`flex ${color} rounded-sm px-5 items-center shadow-md flex items-center justify-center py-3`}
           >
@@ -325,7 +263,7 @@ export default function ClientProfilePage({
               : `You saw this client today`}
           </p>
 
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mt-auto">
             <img
               src="/client/alert-icon-progress-note.svg"
               alt=""
@@ -337,15 +275,12 @@ export default function ClientProfilePage({
       );
     }
     if (
-      progNotes[0]?.progressnotes?.length <= 0 &&
-      data[0]?.planstartdate !== ""
+      progNotes.length <= 0 &&
+      (data?.planstartdate !== "" || data?.planstartdate !== null) 
     ) {
-      const planstartdate = data[0]?.planstartdate;
+      const planstartdate = data?.planstartdate;
 
-      let date_1 =
-        !planstartdate 
-          ? new Date(data[0]?.clientdatecreated)
-          : new Date(planstartdate);
+      let date_1 = new Date(planstartdate);
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
 
@@ -358,7 +293,7 @@ export default function ClientProfilePage({
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       // if ()
       return (
-        <div>
+        <div className="flex flex-col justify-start h-full">
           <div
             className={`flex ${color} rounded-sm px-5 items-center shadow-md flex items-center justify-center py-3`}
           >
@@ -375,7 +310,7 @@ export default function ClientProfilePage({
               : `You saw this client today`}
           </p>
 
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mt-auto">
             <img
               src="/client/alert-icon-progress-note.svg"
               alt=""
@@ -388,22 +323,14 @@ export default function ClientProfilePage({
     }
 
     if (
-      progNotes[0]?.progressnotes?.length > 0 &&
-      data[0]?.planstartdate !== null
+      progNotes.length > 0 
     ) {
       // console.log("progress notes date");
-      const pn = progNotes[0].progressnotes.sort(
-        (a, b) => new Date(a.date) - new Date(b.date)
-      );
-      const planstartdate =
-        pn.length > 1
-          ? pn[pn.length - 1]?.date
-          : progNotes[0]?.progressnotes[0]?.date;
+      const lastProgressNote = progNotes[0]
+      // console.log("aqui", pn )
+     
 
-      let date_1 =
-        planstartdate === null
-          ? new Date(data[0]?.clientdatecreated)
-          : new Date(planstartdate);
+      let date_1 = new Date(lastProgressNote.date)
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
 
@@ -416,7 +343,7 @@ export default function ClientProfilePage({
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
       if (totalDays > 30) color = "bg-red-400";
       return (
-        <div>
+        <div className="flex flex-col justify-start h-full">
           <div
             className={`flex ${color} rounded-sm px-5 items-center shadow-md flex items-center justify-center py-3`}
           >
@@ -430,7 +357,7 @@ export default function ClientProfilePage({
               ? `You saw this client ${totalDays} days ago`
               : `You saw this client today`}{" "}
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-auto">
             <img
               src="/client/alert-icon-progress-note.svg"
               alt=""
@@ -492,18 +419,18 @@ export default function ClientProfilePage({
     setHasMounted(true);
 
     const getPnData = async () => {
-      const clientid = data[0]?.clientid;
+      const clientid = data?.clientid;
       const getPnData = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`
       );
       const pnData = await getPnData.json();
-      const response = setProgNotes(pnData);
+      setProgNotes(pnData);
     };
     getPnData();
   }, [progNotes.progressnotes]);
   if (!hasMounted) {
     return null;
-  }
+  } 
 
   return (
     <>
@@ -525,11 +452,11 @@ export default function ClientProfilePage({
                       <div>
                         {" "}
                         <p className="text-black font-bold text-2xl">
-                          {data[0]?.clientfirstname}{" "}
-                          {data[0]?.clientlastname.charAt(0)}
+                          {data?.clientfirstname}{" "}
+                          {data?.clientlastname.charAt(0)}
                         </p>
                         <p className="text-dark-blue text-lg">
-                          {data[0]?.clientid}
+                          {data?.clientid}
                         </p>
                       </div>
                     </div>
@@ -545,7 +472,7 @@ export default function ClientProfilePage({
                       </div>
                       <p className="justify-self-end text-lg">
                         {new Date(
-                          data[0]?.clientdatecreated
+                          data?.clientdatecreated
                         ).toLocaleDateString("en-EN", {
                           year: "numeric",
                           month: "numeric",
@@ -616,9 +543,9 @@ export default function ClientProfilePage({
                 {loggedUserRole === "Supervisor" && (
                   <Link
                     href={
-                      data[0]?.msaformid
-                        ? `/clients/${data[0]?.clientid}/msa_form/supervisor_msa_form_edit`
-                        : `/clients/${data[0]?.clientid}/msa_form`
+                      data?.msaformid
+                        ? `/clients/${data?.clientid}/msa_form/supervisor_msa_form_edit`
+                        : `/clients/${data?.clientid}/msa_form`
                     }
                   >
                     <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
@@ -626,9 +553,9 @@ export default function ClientProfilePage({
                         <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
                       <h4 className="text-center">
-                        {data[0]?.msaformid === undefined ||
-                        data[0]?.msaformid === "" ||
-                        data[0]?.msaformid === null
+                        {data?.msaformid === undefined ||
+                        data?.msaformid === "" ||
+                        data?.msaformid === null
                           ? (<p className="mt-5 text-2xl">Create  MSA Form</p>)
                           : (<p className="mt-5 text-2xl">Edit <br /> MSA Form</p>)}
                       </h4>
@@ -639,9 +566,9 @@ export default function ClientProfilePage({
                 {loggedUserRole === "DES" && (
                   <Link
                     href={
-                      data[0]?.msaformid
-                        ? `/clients/${data[0]?.clientid}/msa_form/edit`
-                        : `/clients/${data[0]?.clientid}/msa_form`
+                      data?.msaformid
+                        ? `/clients/${data?.clientid}/msa_form/edit`
+                        : `/clients/${data?.clientid}/msa_form`
                     }
                   >
                     <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
@@ -649,9 +576,9 @@ export default function ClientProfilePage({
                         <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
                       <h4 className="text-center">
-                        {data[0]?.msaformid === undefined ||
-                        data[0]?.msaformid === "" ||
-                        data[0]?.msaformid === null
+                        {data?.msaformid === undefined ||
+                        data?.msaformid === "" ||
+                        data?.msaformid === null
                         ? (<p className="mt-5 text-2xl">Create <br /> MSA Form</p>)
                         : (<p className="mt-5 text-2xl">Edit <br /> MSA Form</p>)}
                       </h4>
@@ -662,9 +589,9 @@ export default function ClientProfilePage({
                 {loggedUserRole === "HCW" && (
                   <Link
                     href={
-                      data[0]?.msaformid
-                        ? `/clients/${data[0]?.clientid}/msa_form/edit`
-                        : `/clients/${data[0]?.clientid}/msa_form`
+                      data?.msaformid
+                        ? `/clients/${data?.clientid}/msa_form/edit`
+                        : `/clients/${data?.clientid}/msa_form`
                     }
                   >
                     <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block items-center h">
@@ -672,9 +599,9 @@ export default function ClientProfilePage({
                         <img src="/client/MSA_button.svg" alt="" width={45} />
                       </div>
                       <h4 className="text-center ">
-                        {data[0]?.msaformid === undefined ||
-                        data[0]?.msaformid === "" ||
-                        data[0]?.msaformid === null
+                        {data?.msaformid === undefined ||
+                        data?.msaformid === "" ||
+                        data?.msaformid === null
                           ? (<p className="mt-5 text-2xl">Add <br /> MSA Form</p>)
                           : (<p className="mt-5 text-2xl">MSA  <br /> Documentation</p>)}
                       </h4>
@@ -682,14 +609,14 @@ export default function ClientProfilePage({
                   </Link>
                 )}
 
-                {data[0]?.msaformairsintakeform === "1" &&
-                data[0]?.msaformcomprehensiveriskbehavrioassesment === "1" ? (
+                {data?.msaformairsintakeform === "1" &&
+                data?.msaformcomprehensiveriskbehavrioassesment === "1" ? (
                   <Link
                     /* href={
-                      data[0]?.servicesactionplanid
-                        ? `/clients/${data[0]?.clientid}/service-action-plan/edit`
-                        : `/clients/${data[0]?.clientid}/service-action-plan`
-                    } */ href={`/clients/${data[0]?.clientid}/profile/service_action_plans`}
+                      data?.servicesactionplanid
+                        ? `/clients/${data?.clientid}/service-action-plan/edit`
+                        : `/clients/${data?.clientid}/service-action-plan`
+                    } */ href={`/clients/${data?.clientid}/profile/service_action_plans`}
                   >
                     <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
@@ -700,7 +627,7 @@ export default function ClientProfilePage({
                         />
                       </div>
                      
-                        {data[0]?.servicesactionplanid
+                        {data?.servicesactionplanid
                            ? (<p className="mt-5 text-2xl">View Service <br /> Action Plans</p>)
                           : (<p className="mt-5 text-2xl">Create Service <br /> Action Plan</p>)
                         }
@@ -711,8 +638,8 @@ export default function ClientProfilePage({
                   ""
                 )}
 
-                {data[0]?.servicesactionplanid ? (
-                  <Link href={`/clients/${data[0]?.clientid}/progress_note`}>
+                {data?.servicesactionplanid ? (
+                  <Link href={`/clients/${data?.clientid}/progress_note`}>
                     <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
                         <img
@@ -761,8 +688,8 @@ export default function ClientProfilePage({
                 </div>
               </div>
 
-              {progNotes[0]?.progressnotes?.length > 0 ? (
-                progNotes[0]?.progressnotes
+              {progNotes.length > 0 ? (
+                progNotes
                   .sort((a, b) => new Date(b.date) - new Date(a.date))
                   .map((pn, index) => {
                     return (
@@ -862,7 +789,7 @@ export default function ClientProfilePage({
                         </div>
                         <div className="flex justify-center ">
                           <Link
-                            href={`/clients/${data[0]?.clientid}/progress_note/${pn.id}/edit`}
+                            href={`/clients/${data?.clientid}/progress_note/${pn.id}/edit`}
                           >
                             <a
                               href={"/clients/devs"}
@@ -907,8 +834,8 @@ export default function ClientProfilePage({
               impactTracker={impactTracker}
               loggedUserRole={loggedUserRole}
               notifyMessage={notifyMessage}
-              clientId={data[0]?.clientid}
-              clientUniqueId={data[0]?.id}
+              clientId={data?.clientid}
+              clientUniqueId={data?.id}
             />
           </section>
           
