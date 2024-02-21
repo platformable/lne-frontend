@@ -13,10 +13,11 @@ import BackButton from "../../../components/BackButton";
 import BackToDashboardButton from "../../../components/BackToDashboardButton";
 import SubHeader from "../../../components/SubHeader";
 import Link from "next/link";
+import Loader from "../../../components/Loader";
 
 const CondomsDistributedEdit = ({data}) => {
   const router = useRouter();
-    console.log("data", data)
+    // console.log("data", data)
   const [formData, setFormData] = useState({
     id: data?.id,
     date: data?.date?.split('T')[0],
@@ -43,26 +44,46 @@ const CondomsDistributedEdit = ({data}) => {
     Aged45: data?.aged45,
     AgeNotSpecified: data?.agenotspecified,
   });
+  const [isSaving, setIsSaving] = useState(false)
 
-  const notifyMessage = () => {
-    toast.success("Form saved successfully!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const notifyMessage = (status) => {
+    if (status === 'ok') {
+      toast.success("Form saved successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } 
+    if (status === 'fail') {
+      toast.error('Something went wrong try again',{
+        position: toast.POSITION.TOP_CENTER,
+      })
+    }
+    
   };
-
   const handleForm = () => {
+    setIsSaving(true)
+
     axios
       .put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/supplies_distributed`,
         formData
       )
       .then((data) => {
-        notifyMessage();
-        setTimeout(() => {
-          router.back();
-        }, 2500);
+
+        if (data.status === 200) {
+
+          notifyMessage('ok');
+          setTimeout(() => {
+            setIsSaving(false)
+
+            router.back();
+          }, 2500);
+        }
+        
       })
       .catch(function (error) {
+        setIsSaving(false)
+        notifyMessage('fail');
+
         console.log("error del server", error);
       });
   };
@@ -285,13 +306,17 @@ const CondomsDistributedEdit = ({data}) => {
 
           <section id="save" className="my-5">
             <div className="container mx-auto flex justify-center">
-              <button
+            {!isSaving ? (
+                <button
                 className="grid grid-cols-3 w-60 text-medium items-center text-lg btn-yellow hover:btn-darkYellow px-4 py-2 rounded shadow-lg"
                 onClick={() => handleForm()}
               >
                 <img src="/client/Save.svg" alt="Save form icon" /> 
                 Save
               </button>
+            ) : (
+              <Loader />
+            )}
             </div>
           </section>
         </div>

@@ -16,16 +16,24 @@ import BackToDashboardButton from "../../../../../components/BackToDashboardButt
 
 import SapClientInformation from "../../../../../components/SapClientInformation";
 import SubHeader from "../../../../../components/SubHeader";
+import Loader from "../../../../../components/Loader";
 
 export default function EditServiceActionPlan({ data }) {
   const router = useRouter();
   let componentRef = useRef();
   const [activeActionPlan, setActiveActionPlan] = useState(false);
-
-  const notifyMessage = () => {
-    toast.success("Service Action Plan updated!", {
-      position: toast.POSITION.TOP_CENTER,
-    });
+  const [isSaving, setIsSaving] = useState(false);
+  const notifyMessage = (status) => {
+    if (status === "ok") {
+      toast.success("Form saved successfully!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+    if (status === "fail") {
+      toast.error("Something went wrong try again", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
 
   const { user, error, isLoading } = useUser();
@@ -149,6 +157,10 @@ export default function EditServiceActionPlan({ data }) {
   };
 
   const updateClientActionPlan = () => {
+    setIsSaving(true);
+    setTimeout(() => {
+      setIsSaving(false);
+    }, 3000);
     axios
       .put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/services_action_plan/${clientData.clientId}`,
@@ -158,7 +170,7 @@ export default function EditServiceActionPlan({ data }) {
       )
       .then(function (response) {
         if (response.status === 200 || response.statusText === "Ok") {
-          notifyMessage();
+          notifyMessage('ok');
           setTimeout(() => {
             router.push(`/clients/${clientData.clientId}/profile`);
           }, 2300);
@@ -166,6 +178,8 @@ export default function EditServiceActionPlan({ data }) {
       })
       .catch(function (error) {
         console.log(error);
+        notifyMessage('fail');
+        setIsSaving(false);
       });
   };
 
@@ -820,12 +834,17 @@ export default function EditServiceActionPlan({ data }) {
         </section> */}
 
         <section id="save" className="my-5">
+        {isSaving ? (
+              <center>
+                <Loader />
+              </center>
+            ) : (
           <div className="container mx-auto flex justify-center ">
             <div
               id="buttons-container"
               className="flex items-center justify-around gap-x-5"
             >
-              {/*  {loggedUserRole==='DES' ? null : */}
+             
               <>
                 <button
                   className={`${
@@ -867,6 +886,7 @@ export default function EditServiceActionPlan({ data }) {
               />
             </div>
           </div>
+          )}
         </section>
       </Layout>
     </>

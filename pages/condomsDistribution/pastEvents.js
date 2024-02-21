@@ -11,7 +11,7 @@ import SubHeader from "../../components/SubHeader";
 import DeleteSuppliesDistributedEvent from "../../components/DeleteSuppliesDistributedEvent";
 
 const PastEvents = ({ events }) => {
-  console.log("events", events);
+  // console.log("events", events);
 
   const { user, error, isLoading } = useUser();
   const [selectedEventToDelete, setSelectedEventToDelete] = useState("");

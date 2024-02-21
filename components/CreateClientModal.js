@@ -7,8 +7,6 @@ export default function CreateClientModal({
   setShowCreateClientModal,
   showCreateClientModal,
   notifyMessage,
-  setNotifyMessage,
-  data,
   user,
 }) {
   const router = useRouter();
@@ -25,7 +23,7 @@ export default function CreateClientModal({
   const [emptyFields, setEmptyFields] = useState(false);
   const [errorsInFields, setErrorsInFields] = useState(false);
 
-  console.log("users", users);
+  // console.log("users", users);
   const [clientData, setClientData] = useState({
     clientFirstName: "",
     clientLastName: "",
@@ -60,56 +58,40 @@ export default function CreateClientModal({
 
   const checkErrorsFields = () => {
     // setErrorMessage('');
-    setErrorsInFields((prevSelected) => {
-      return !prevSelected;
-    });
-    setSaving((prevSelected) => {
-      return !prevSelected;
-    });
+    setErrorsInFields(true);
+    setSaving(false);
   };
 
-  const changeSaving = (error) => {
-    
-      setSaving((prevSelected) => {
-        return !prevSelected;
-      
-    })
-  };
+  
 
   const checkEmtpyFields = () => {
     setErrorMessage("");
-    setEmptyFields((prevState) => {
-      return !prevState;
-    });
-    setSaving((prevSelected) => {
-      return !prevSelected;
-    });
+    setEmptyFields(true);
+    setSaving(false);
   };
 
   const addClient = () => {
-    setSaving(!saving);
+    setSaving(true);
     setEmptyFields(false);
-    console.log(clientData);
+    // console.log(clientData);
     if (
       clientData.clientFirstName === "" ||
       clientData.clientLastName === "" ||
       clientData.clientSSN === "" ||
       clientData.clientID === "" ||
-      !clientData.length === 6
+      !clientData.length === 6 ||
+      clientData.clientCategory === ''
     ) {
       checkEmtpyFields();
     }
-    if (
-      /*   clientData.clientFirstName.match(/[^a-zA-Z]/) 
-|| clientData.clientLastName.match(/[^a-zA-Z]/)
-
-||  */
+    else if (
+   
       clientData.clientSSN.length <= 3 ||
       clientData.clientSSN.length > 4
     ) {
       checkErrorsFields();
     } else {
-      notifyMessage();
+      notifyMessage('info');
 
       axios(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`, {
         method: "POST",
@@ -121,6 +103,9 @@ export default function CreateClientModal({
       })
         .then(function (response) {
           if (response.status === 200 || response.statusText === "OK") {
+            notifyMessage('ok');
+
+            setSaving(false)
             setShowCreateClientModal(!showCreateClientModal);
             setTimeout(() => {
               router.reload();
@@ -129,14 +114,16 @@ export default function CreateClientModal({
         })
         .catch(function (error) {
           //showErrors(error.response.data)
-          changeSaving(error);
+          notifyMessage('fail');
+
+          setSaving(false)
         });
     }
   };
 
-  const assignUser = async (clientHCWID) => {
-    console.log("ejecutandose assign", clientHCWID);
-    const filteredusers = await users.filter(
+  const assignUser = (clientHCWID) => {
+    // console.log("ejecutandose assign", clientHCWID);
+    const filteredusers = users.filter(
       (user, index) => user.user_id === clientHCWID
     );
 
@@ -171,8 +158,8 @@ export default function CreateClientModal({
   }
   return (
     <>
-      <div className="modal">
-        <div className="mt-8 max-w-md mx-auto bg-white rounded pb-3">
+      <div className="modal overflow-auto">
+        <div className="mt-8 max-w-md mx-auto bg-white rounded pb-3 ">
           <div className="flex justify-end">
             <button
               onClick={() => setShowCreateClientModal(!showCreateClientModal)}
@@ -181,7 +168,7 @@ export default function CreateClientModal({
               <img src="/client/close_modal_client.svg" title="Close" alt="Close modal"/>
             </button>
           </div>
-          <div className="grid grid-cols-1 gap-9 px-9 pb-6">
+          <div className="grid grid-cols-1 gap-6 px-9 pb-6">
             <div className="flex items-center pt-1 gap-3">
               <img src="/client/add_info_icon.svg" alt="add info icon"/>
               <h1 className="font-medium text-3xl">Client Information</h1>
@@ -328,15 +315,18 @@ export default function CreateClientModal({
             )}
 
                 <div className="flex justify-center">
-                  <button
-                    className="px-10  py-1  font-medium btn-new-blue text-xl flex shadow-xl items-center rounded-md"
-                    onClick={() => addClient()}
-                  >
-                    {saving ? (
+                {saving ? (
                       <Loader />
-                    ) : null}
-                    Save
-                  </button>
+                    ) : (
+                      <button
+                      className="px-10  py-1  font-medium btn-new-blue text-xl flex shadow-xl items-center rounded-md"
+                      onClick={() => addClient()}
+                    >
+                      
+                      Save
+                    </button>
+                    )}
+                 
                  
               </div>
         </div>
