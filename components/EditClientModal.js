@@ -13,12 +13,14 @@ export default function EditClientModal({
 }) {
   const router = useRouter();
 
+  console.log("data",data)
+
   const loggeduserId = user[`https://lanuevatest.herokuapp.com/roles`];
   const loggedUserName = user[`https://lanuevatest.herokuapp.com/name`];
   const loggedUserLastname = user[`https://lanuevatest.herokuapp.com/lastname`];
 
 
-  const client = data[0];
+  const client = data;
 
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -36,7 +38,7 @@ export default function EditClientModal({
     clientFirstName: client?.clientfirstname,
     clientLastName: client?.clientlastname,
     clientSSN: IdWithNoLetters,
-    clientDateCreated: new Date(client.clientdatecreated),
+    clientDateCreated: new Date(client?.clientdatecreated),
     clientActive: client?.clientactive === "1" ? "1" : "0",
     clientHCWID: client?.clienthcwid,
     clientHCWName: client?.clienthcwname,
@@ -55,9 +57,9 @@ export default function EditClientModal({
     let shortSsnNumber = shortSsn;
     const lastnameFirstLetter = clientData?.clientLastName?.slice(0, 1);
     const result =
-      firstNameLetter.toUpperCase() +
+      firstNameLetter?.toUpperCase() +
       shortSsnNumber +
-      lastnameFirstLetter.toUpperCase();
+      lastnameFirstLetter?.toUpperCase();
     setClientData({ ...clientData, clientID: result });
   };
 
