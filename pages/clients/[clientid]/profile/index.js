@@ -586,7 +586,7 @@ export default function ClientProfilePage({
                   </Link>
                 )} */}
 
-                {loggedUserRole === "HCW" && (
+                {loggedUserRole === "HCW" || loggedUserRole === "DES" && (
                   <Link
                     href={
                       data?.msaformid
