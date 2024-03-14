@@ -83,7 +83,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
     return (
       hcworkers &&
       hcworkers
-        .filter((user) => user.userrole !== "DES")
+        /* .filter((user) => user.userrole !== "DES") */
         .map((user, index) => {
           return (
             <option className=" text-xl" value={user.user_id} key={index}>
@@ -134,6 +134,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
     setUsersStatus(status)
   }
 
+
   // console.log("usersStatus",data)
   return (
     <Layout>
@@ -169,7 +170,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
                 </div>
               </div>
               <div className="ml-5 flex gap-x-5 items-center"> 
-              <p className="mr-5 text-xl">User status: </p>
+              <p className="mr-3 text-xl">User status: </p>
                 <select name="activeornotactiveusers" id="" className=" border rounded py-3 px-5 border-black"
                 onChange={(e) => setUsersStatus(e.target.value)}>
                   <option value="Active">Active</option>
@@ -178,10 +179,10 @@ const ClientsIndex = ({ data, hcworkers }) => {
               </div>
             </div>
 
-            {/* <div className="search-box flex items-center ">
-              <img src="/client/health_care_worker.svg" alt="Select Health care worker icon" className="mr-4" />
+            <div className="search-box flex items-center ">
+             {/*  <img src="/client/health_care_worker.svg" alt="Select Health care worker icon" className="mr-4" /> */}
               
-              <p className="mr-5 text-xl">Select HCW</p>
+              <p className="mr-3 text-xl">Select HCW</p>
               <select
                 onChange={(e) => setSearchByUser(e.target.value)}
                 className="md:w-64 rounded-md p-2 p-r-5 border-black shadow-sm text-black text-xl"
@@ -192,7 +193,7 @@ const ClientsIndex = ({ data, hcworkers }) => {
                 <option className="text-xl" onClick={() => setSearchByUser("All")}>All</option>
                 {displayUserList()}
               </select>
-            </div> */}
+            </div>
           </div>
         </div>
         </div>
