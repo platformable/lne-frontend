@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, msaFormsXClient }) {
-  console.log(sapXClient)
+export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, msaFormsXClient, clientSaps }) {
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
     total: 0,
     color: "bg-light-red",
@@ -57,51 +56,43 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
     const totalActiveClients = activeClients.length;
 
     activeClients.forEach((client, index) => {
-      console.log("client", ProgressNotesXClient)
       let date1;
      
       if (ProgressNotesXClient?.some(pn => pn.clientid === client.clientid)) {
-        console.log("pasa pn")
+        // console.log("pasa pn")
         const progressnotedate = ProgressNotesXClient.find(pn => pn.clientid === client.clientid)?.progressnotedate
         date1 = new Date(progressnotedate);
      
       } else if (sapXClient?.some(pn => pn.clientid === client.clientid)){
-        console.log("pasa sap")
+        // console.log("pasa sap")
 
         const planstartdate = sapXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate
         date1 = new Date(planstartdate);
 
       }
-      else if (sapXClient?.some(pn => pn.clientid === client.clientid)){
-        console.log("pasa msa")
+      else if (msaFormsXClient?.some(pn => pn.clientid === client.clientid)){
+        // console.log("pasa sap")
 
-        const planstartdate = sapXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate
+        const planstartdate = msaFormsXClient?.find(pn => pn.clientid === client.clientid)?.msaformdate
+
         date1 = new Date(planstartdate);
 
       } else {
-        console.log("pasa date created")
+        // console.log("pasa date created")
 
         date1 = new Date(client?.clientdatecreated)
       }
-      console.log(date1)
+
       let date2 = new Date();
-      // let difference = date2.getDate() - date1.getDate();
-      // let difference = date2.getDate() - date1.getDate();
+     
       const diffTime = Math.abs(date2 - date1);
       const difference = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+      
 
-      console.log(date2)
-
-      console.log(difference)
-
-      // let days = Math.ceil(difference / (1000 * 3600 * 24));
       total = total + difference;
-      // console.log(total)
     
       return total;
     });
-    // console.log("services",total, totalActiveClients)
-
     let average = total / totalActiveClients;
 
     if (average > 30) {
@@ -127,7 +118,7 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
     }
   };
 
-  const calculateNumberOfGoals = (clients) => {
+  const calculateNumberOfGoals = () => {
     let total = 0;
 
     const activeClients = clients?.filter(
@@ -135,27 +126,17 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
     )
     const totalActiveClients = activeClients.length;
 
-    const checkGoals = clients.forEach((client, index) => {
-      if (
-        client.goal1targetdate !== null &&
-        client.goal1completiondate === null
-      ) {
-        total = total + 1;
-      }
-      if (
-        client.goal2targetdate !== null &&
-        client.goal2completiondate === null
-      ) {
-        total = total + 1;
-      }
-      if (
-        client.goal3targetdate !== null &&
-        client.goal3completiondate === null
-      ) {
-        total = total + 1;
-      }
-    });
 
+    clientSaps?.forEach((client, index) => {
+     
+      client.saps.forEach(sap => {
+        if (sap.goal1Completed === '0') {
+          total += 1
+        }  
+
+      })
+    });
+    // console.log("total",)
     let average = total / totalActiveClients;
     if (average > 1) {
       setAverageGoals({
@@ -183,7 +164,7 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
   useEffect(() => {
     clientsCount(clients);
     calculateAverageDays();
-    // calculateNumberOfGoals();
+    calculateNumberOfGoals();
   }, [clients, ]);
 
   return (
