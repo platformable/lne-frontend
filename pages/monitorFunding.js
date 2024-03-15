@@ -20,8 +20,9 @@ import ReactToPrint from "react-to-print";
 import ComponentToPrint from "../components/ComponentToPrint";
 import MonitorFundingTableToPrint from "../components/MonitorFundingTableToPrint";
 import Pagination from "../components/Pagination";
+import MonitorFundingMetricsTableHeader from "../components/MonitorFundingMetricsTableHeader";
 
-const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
+const MonitorFunding = ({ clients, averageNumbers, msaFormsXClient,sapXClient, ProgressNotesXClient }) => {
   const [monitorMetricsData, setMonitorMetricsData] = useState([]);
   const [
     monitorFundingTableDataSortingByName,
@@ -65,18 +66,20 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     indexofFirstPost,
     indexOfLastPost
   );
-  console.log("monitorMetricsData", monitorMetricsData);
+  // console.log("monitorMetricsData", msaFormsXClient);
   let componentRef = useRef();
 
   const [dataGraphicPeriod, setDataGraphicPeriod] = useState("Month");
 
   const updateMonitorMetricData = async () => {
-    const clients = [];
-
-    const result = await monitorMetrics.forEach((client, index) => {
+    const newClients = [];
+    const activeClients = clients?.filter(
+      (client) => client.clientactive === "1"
+    )
+    activeClients.forEach((client, index) => {
       const newClient = {};
       /*   newClient.progressnote = []; */
-      newClient.clientid = client.id;
+      newClient.clientid = client.clientid;
       /*   newClient.startdate = new Date(
         client.clientdatecreated
       ).toLocaleDateString("en-US", {
@@ -84,8 +87,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
         month: "numeric",
         day: "numeric",
       }); */
-      newClient.serviceActionPlanDate = client?.planstartdate
-        ? new Date(client.planstartdate).toLocaleDateString("en-US", {
+      
+      newClient.serviceActionPlanDate = sapXClient?.some(pn => pn.clientid === client.clientid) ?  new Date(sapXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "numeric",
             day: "numeric",
@@ -97,20 +100,19 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       newClient.clienthcwname = client.clienthcwname;
       /* newClient.progressnotes = client.progressnotes.length; */
       newClient.progressNotesDates = client.progressnotes;
-      newClient.lastEncounter = calculateLastEncounter(
-        client.planstartdate,
-        client.progressnotes,
-        client.clientdatecreated
-      );
+      newClient.lastEncounter = calculateDaysBetweenDates(calculateLastEncounterDifference(
+        client
+      ));
 
       newClient.joining = calculateDaysBetweenDates(client.clientdatecreated);
-      newClient.goals =
-        parseInt(client.goal1completed) +
-        parseInt(client.goal2completed) +
-        parseInt(client.goal3completed);
-      clients.push(newClient);
+      // newClient.goals =
+      //   parseInt(client.goal1completed) +
+      //   parseInt(client.goal2completed) +
+      //   parseInt(client.goal3completed);
+      newClients.push(newClient);
     });
-    setMonitorMetricsData(clients);
+    console.log("clients to push", newClients)
+    setMonitorMetricsData(newClients);
   };
 
   const calculateDaysBetweenDates = (clientStartDate) => {
@@ -121,59 +123,36 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
     return TotalDays;
   };
 
-  const calculateLastEncounter = (
-    planstartdate,
-    progressnotes,
-    clientdatecreated
+  const calculateLastEncounterDifference = (
+   client
   ) => {
-    console.log("progressnotes", progressnotes);
-    if (planstartdate === null) {
-      let date_1 = new Date(clientdatecreated);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays - 1;
-    }
+    
+      let date1;
+     
+      if (ProgressNotesXClient?.some(pn => pn.clientid === client.clientid)) {
+        const progressnotedate = ProgressNotesXClient.find(pn => pn.clientid === client.clientid)?.progressnotedate
+        date1 = new Date(progressnotedate);
+     
+      } else if (sapXClient?.some(pn => pn.clientid === client.clientid)){
 
-    if (
-      (planstartdate !== null || planstartdate !== "") &&
-      progressnotes.length === 0
-    ) {
-      let date_1 = new Date(planstartdate);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays - 1;
-    }
+        const planstartdate = sapXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate
+        date1 = new Date(planstartdate);
 
-    if (progressnotes.length > 0) {
-      const pn = progressnotes.sort(
-        (a, b) => new Date(b.date) - new Date(a.date)
-      );
-      console.log("pnx", pn);
-      let date_1 = new Date(pn[0].date);
-      let date_2 = new Date();
-      let difference = date_2.getTime() - date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays;
-    }
+      }
+      else if (msaFormsXClient?.some(pn => pn.clientid === client.clientid)){
+
+        const msaformDate = msaFormsXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate
+        date1 = new Date(msaformDate);
+
+      } else {
+
+        date1 = new Date(client?.clientdatecreated)
+      }
+      return date1
+   
   };
 
-  const data = [
-    {
-      id: 1,
-      startDate: "02/05/2022",
-      clientId: "W1988B",
-      firstName: "Alexei",
-      lastName: "Garban",
-      hcw: "Mark",
-      joining: 30,
-      encounters: 5,
-      lastEncounter: 5,
-      goals: 2,
-      outdatedMsa: 1,
-    },
-  ];
+
 
   const [newClientsChart, setNewClientsChart] = useState({
     group1: 0,
@@ -579,7 +558,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
       setMonitorMetricsData((prevMovies) => [...result, ...emptyValues]);
     }
   };
-
+  
   const handleTableSearch = (value) => {
     if (value === "") {
       updateMonitorMetricData();
@@ -600,8 +579,8 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
   };
 
   useEffect(() => {
-    chart1Data(averageNumbers);
-    chart2Data(averageNumbers);
+    // chart1Data(averageNumbers);
+    // chart2Data(averageNumbers);
     updateMonitorMetricData();
   }, []);
   return (
@@ -620,7 +599,7 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
         <div className="container mx-auto grid-cols-1 gap-5">
           {/* KEY METRICS */}
 
-          <KeyMetrics averageNumbers={averageNumbers} clients={clients} />
+          <KeyMetrics clients={clients} sapXClient={sapXClient} ProgressNotesXClient={ProgressNotesXClient}/>
 
           {/* KEY METRICS */}
 
@@ -672,231 +651,20 @@ const MonitorFunding = ({ clients, averageNumbers, monitorMetrics }) => {
 
           <div className="monitor-funding-table bg-white  ">
             <div className="monitor-funding-table-column-container grid grid-cols-6 gap-0.5 overflow-x py-0.5 mx-5 rounded ">
-              {/* <div className="monitor-funding-table-col flex  items-center  flex gap-x-2">
-                <p className="font-xxs  cursor-pointer">Client Start Date</p>
-                <svg
-                onClick={()=>handleSortByDate()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div> */}
-              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold ">
-                <p className="">Client ID</p>
-                <svg
-                  onClick={() => handleSortByClientId()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
-                <p className="">First name</p>
-                <svg
-                  onClick={() => handleSortByName()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
-                <div>
-                  <p className="">Last name initial</p>
-                  
-                </div>
+              {/* <MonitorFundingMetricsTableHeader title="Client Start Date" sortFunction={handleSortByDate} /> */}
+              <MonitorFundingMetricsTableHeader title="Client ID" sortFunction={handleSortByClientId} />
+              <MonitorFundingMetricsTableHeader title="First name" sortFunction={handleSortByName} />
+              <MonitorFundingMetricsTableHeader title="Last name initial" sortFunction={handleSortByLastname} />
+              {/* <MonitorFundingMetricsTableHeader title="HCW <br /> assigned" sortFunction={handleSortByHCW} /> */}
+            
+           
+              <MonitorFundingMetricsTableHeader title="Service action  plan date" sortFunction={handleSortByDate} />
+              <MonitorFundingMetricsTableHeader title="Days since 
+                  last encounter" sortFunction={handleSortByLastEncounters} />
 
-                <svg
-                  onClick={() => handleSortByLastname()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              {/* <div className="monitor-funding-table-col flex   items-center  px-5 py-3 font-bold">
-                <p className="">HCW <br /> assigned</p>
-                <svg
-                onClick={()=>handleSortByHCW()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div> */}
-              {/*  <div className="monitor-funding-table-col flex  items-center  px-5 py-3 font-bold">
-                <p className="">Time since <br /> joining LNE</p>
-              </div> */}
-              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
-                <p className="">
-                  Service action  plan date
-                </p>
-                <svg
-                  onClick={() => handleSortByDate()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold ">
-                <p className="">
-                  Days since 
-                  last encounter
-                </p>
-                <svg
-                  onClick={() => handleSortByLastEncounters()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="monitor-funding-table-col flex light-blue-bg justify-between items-center px-5 py-3 font-bold">
-                <p className="">
-                  Goals completed
-                </p>
-                <svg
-                  onClick={() => handleSortByGoals()}
-                  className="cursor-pointer"
-                  width="20"
-                  height="20"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.5 9.5L12 6L8.5 9.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.5 14L12 17.5L8.5 14"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              {/*   <div className="monitor-funding-table-col flex  items-center px-5 py-3 font-bold">
-                <p className="font-xxs ">Outdated MSA</p>
-              </div> */}
+              <MonitorFundingMetricsTableHeader title="Goals completed" sortFunction={handleSortByGoals} />
+
+            
             </div>
           </div>
           <div className="monitor-funding-table grid auto-rows-auto bg-white mb-10 px-5 pb-5 rounded-b shadow">
@@ -1077,22 +845,26 @@ export default MonitorFunding;
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
-    const [clients, averageNumbers, monitorMetrics] = await Promise.all([
+    const [clients, msaFormsXClient, sapXClient, ProgressNotesXClient] = await Promise.all([
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients`).then((r) =>
         r.json()
       ),
       fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/manage_services/manage_services_metric`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/msa_forms`
       ).then((r) => r.json()),
       fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/monitor_funding/metrics`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/monitor_funding/metrics/monitorFundingSap`
+      ).then((r) => r.json()),
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/monitor_funding/metrics/monitorFundingProgressNotes`
       ).then((r) => r.json()),
     ]);
     return {
       props: {
         clients: clients,
-        averageNumbers: averageNumbers,
-        monitorMetrics: monitorMetrics,
+        msaFormsXClient: msaFormsXClient,
+        sapXClient,
+        ProgressNotesXClient
       },
     };
   },
