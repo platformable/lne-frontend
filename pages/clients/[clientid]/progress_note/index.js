@@ -504,10 +504,10 @@ const ProgressNotesIndex = ({ data, sap }) => {
     clientId: data[0]?.clientid,
     goal1Completed: clientData.goal1Completed,
     goal1CompletionDate: clientData.goal1CompletedDate,
-    goal2Completed: clientData.goal1Completed,
-    goal2CompletionDate: clientData.goal1CompletedDate,
-    goal3Completed: clientData.goal1Completed,
-    goal3CompletionDate: clientData.goal1CompletedDate,
+    goal2Completed: clientData.goal2Completed,
+    goal2CompletionDate: clientData.goal2CompletedDate,
+    goal3Completed: clientData.goal3Completed,
+    goal3CompletionDate: clientData.goal3CompletedDate,
     HCWSignature: false,
   });
 
