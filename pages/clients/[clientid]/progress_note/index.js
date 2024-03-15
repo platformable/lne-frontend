@@ -165,7 +165,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
     clientHCWID: data[0]?.clienthcwid,
     userFirstName: data[0]?.clienthcwname,
     userLastName: data[0]?.clienthcwlastname,
-    progressNoteDate: crearFecha(),
+    progressNoteDate: '',
     ProgressNoteReviewed: false,
 
     // Services provided
@@ -552,7 +552,13 @@ const ProgressNotesIndex = ({ data, sap }) => {
       setPNErrorMessage(
         "Please enter text to describe the progress made today"
       );
-    } else {
+      
+    } else if (clientData.progressNoteDate === "") {
+      setPNErrorMessage(
+        "Please enter progress note date"
+      );
+    }
+    else {
       setPNErrorMessage("");
       setIsSaving(true);
       axios
@@ -579,7 +585,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
         });
     }
   };
-  // console.log("change sap", selectedSAP)
+  console.log("clientData", clientData)
 
   return (
     <>
