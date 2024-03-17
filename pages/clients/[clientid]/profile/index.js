@@ -44,8 +44,7 @@ export function setLocaleDateString(date) {
 
 export default function ClientProfilePage({
   data,
-  impactBaseline,
-  impactTracker,
+  clientTotalGoals
 }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal, setShowDeleteClientModal] = useState(false);
@@ -59,7 +58,7 @@ export default function ClientProfilePage({
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
 
-
+console.log("clientTotalGoals",clientTotalGoals)
 
   const checkMessage1 = () => {
     let result;
@@ -159,12 +158,12 @@ export default function ClientProfilePage({
     let result = "-";
     let alert = "-";
     let color = "bg-red-400";
-    let totalGoals = 0;
-    let totalGoalsCompleted = 0;
-    Object.values(completedGoals).forEach((goal) => {
+    let totalGoals = Number(clientTotalGoals[0].totalGoalsNotCompleted);
+    let totalGoalsCompleted = Number(clientTotalGoals[0].totalGoalsNotCompleted);
+   /*  Object.values(completedGoals).forEach((goal) => {
       if (goal.summary) totalGoals += 1;
       if (goal.completed === "1") totalGoalsCompleted += 1;
-    });
+    }); */
 
     if (totalGoals === 0 && totalGoalsCompleted === 0) {
       color = "bg-green-300";
@@ -183,18 +182,16 @@ export default function ClientProfilePage({
     if (totalGoals > 0 && totalGoalsCompleted === 0) {
       color = "bg-red-400";
       result = `There are ${
-        totalGoals - totalGoalsCompleted
+        totalGoals 
       } client goals outstanding`;
       alert = "Alert"
       
     }
 
-   
-
     if (totalGoalsCompleted >= 1 && totalGoalsCompleted <= totalGoals) {
       color = "bg-orange-300";
       result = `There are ${
-        totalGoals - totalGoalsCompleted
+        totalGoals 
       } client goals outstanding`;
       alert = "Warning"
       
@@ -820,7 +817,7 @@ export default function ClientProfilePage({
               )}
             </div>
           </section>
-          <section
+       {/*    <section
             id="baselineData"
             className="mt-16 container mx-auto bg-white pt-5 px-5 pb-10 rounded-md shadow-md"
           >
@@ -837,7 +834,7 @@ export default function ClientProfilePage({
               clientId={data?.clientid}
               clientUniqueId={data?.id}
             />
-          </section>
+          </section> */}
           
         </div>
       </Layout>
@@ -876,22 +873,26 @@ export default function ClientProfilePage({
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const [data, impactBaseline, impactTracker] = await Promise.all([
+    const [data, clientTotalGoals] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
       ).then((r) => r.json()),
       fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile/sap_goals`
+      ).then((r) => r.json()),
+/*       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
       ).then((r) => r.json()),
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
-      ).then((r) => r.json()),
+      ).then((r) => r.json()), */
     ]);
     return {
       props: {
         data: data,
-        impactBaseline: impactBaseline,
-        impactTracker: impactTracker,
+/*         impactBaseline: impactBaseline,
+        impactTracker: impactTracker, */
+        clientTotalGoals:clientTotalGoals
       },
     };
 
