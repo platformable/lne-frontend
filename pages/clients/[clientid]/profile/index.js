@@ -58,7 +58,7 @@ export default function ClientProfilePage({
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
 
-console.log("clientTotalGoals",clientTotalGoals)
+// console.log("clientTotalGoals",clientTotalGoals)
 
   const checkMessage1 = () => {
     let result;

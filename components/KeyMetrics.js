@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, msaFormsXClient, clientSaps }) {
+export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, msaFormsXClient, clientSaps, monitorMetrics }) {
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
     total: 0,
     color: "bg-light-red",
@@ -93,7 +93,13 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
     
       return total;
     });
-    let average = total / totalActiveClients;
+    
+    const newTotal = monitorMetrics?.reduce((acc, curr) => acc + curr.average ,0)
+    
+    console.log(monitorMetrics, newTotal)
+    let average = newTotal / totalActiveClients;
+
+
 
     if (average > 30) {
       setAverageDays({
