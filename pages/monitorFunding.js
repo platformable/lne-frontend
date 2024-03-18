@@ -68,7 +68,14 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
   );
   // console.log("monitorMetricsData", msaFormsXClient);
   let componentRef = useRef();
-
+  const calculateDaysBetweenTwoDates = (date1, date2) => {
+        
+    let date_1 = new Date(date1);
+    let date_2 = date2 ?  new Date(date2) : new Date();
+    let difference = date_2.getTime() - date_1.getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    return TotalDays - 1;
+  };
 
   const updateMonitorMetricData = async () => {
     const newClients = [];
@@ -86,6 +93,64 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
             day: "numeric",
           })
         : "-";
+
+      newClient.progress_notes = ProgressNotesXClient?.find(pn => pn.clientid === client.clientid)?.pn || []
+      newClient.saps = clientSaps?.find(pn => pn.clientid === client.clientid)?.saps || []
+      newClient.msa = msaFormsXClient?.find(pn => pn.clientid === client.clientid)?.msaformdate ||''
+
+
+      // console.log("************",[...newClient.saps , ...newClient.progress_notes])
+
+     
+      let resultado;
+      // const dates = [...newClient.saps , ...newClient.progress_notes].reduce((acc, curr) acc - curr., 0)
+      if (newClient.progress_notes.length === 2 ) {
+        resultado =  calculateDaysBetweenTwoDates(newClient?.progress_notes[1]?.progressnotedate,newClient?.progress_notes[0]?.progressnotedate)
+
+      }
+
+      if (newClient?.progress_notes.length === 1 && newClient?.saps.length ===  2 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.saps[1]?.planstartdate, newClient?.progress_notes[0]?.progressnotedate,)
+        // console.log("resultado, resu", resultado)   
+      }
+
+      
+      if (newClient?.progress_notes.length === 1 && newClient?.saps.length ===  1 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.saps[0]?.planstartdate, newClient?.progress_notes[0]?.progressnotedate)
+        // console.log("resultado, resu", resultado)   
+      }
+      
+      if (newClient?.progress_notes.length === 0 && newClient?.saps.length ===  2 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.saps[0]?.planstartdate,newClient?.saps[1]?.planstartdate)
+        // console.log("resultado, resu", resultado)   
+      }
+
+      if (newClient?.progress_notes.length === 0 && newClient?.saps.length ===  1 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.msa.split("T")[0] || client.clientdatecreated?.split('T')[0], newClient?.saps[0]?.planstartdate)
+        // console.log("resultado, resu", resultado)   
+      }
+
+      
+      if (newClient?.progress_notes.length === 0 && newClient?.saps.length ===  0 && newClient.msa) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.msa.split("T")[0])
+        // console.log("resultado, resu", resultado)   
+      }
+
+      if (!newClient?.msa && client.clientdatecreated && newClient?.saps.length ===  0 && newClient?.progress_notes.length ===  0 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(client.clientdatecreated)
+
+      }
+
+      newClient.average = resultado 
+
+
+
       newClient.startdate = client.clientdatecreated;
       newClient.firstname = client.clientfirstname;
       newClient.lastname = client.clientlastname;
@@ -105,10 +170,12 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
         newClient.goals = 0
 
       }
-        // console.log("goal 323123", newClient.goals)
+        // console.log("goal 323123", newClient)
 
       newClients.push(newClient);
     });
+    // console.log("-----------------------",newClients)
+
     setMonitorMetricsData(newClients);
   };
 
@@ -376,7 +443,7 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
         <div className="container mx-auto grid-cols-1 gap-5">
           {/* KEY METRICS */}
 
-          <KeyMetrics clients={clients} msaFormsXClient={msaFormsXClient} sapXClient={sapXClient} ProgressNotesXClient={ProgressNotesXClient} clientSaps={clientSaps}/>
+          <KeyMetrics monitorMetrics={monitorMetricsData} clients={clients} msaFormsXClient={msaFormsXClient} sapXClient={sapXClient} ProgressNotesXClient={ProgressNotesXClient} clientSaps={clientSaps}/>
 
           {/* KEY METRICS */}
 
