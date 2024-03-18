@@ -182,10 +182,10 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
     if (goals === 0) {
       return "bg-red-500 text-white";
     }
-    if (goals >= 1 && goals <= 2) {
+    if (goals === 1) {
       return "bg-orange-500 text-white";
     }
-    if (goals === 3) {
+    if (goals === 2) {
       return "bg-green-500 text-white";
     }
   };
