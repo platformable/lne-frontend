@@ -175,7 +175,7 @@ export default function IndexServoceActionPlan({ data }) {
           if (response.status === 200 || response.statusText === "Ok") {
             setErrorCompleteAllFieldsMessage("");
             setServiceActionPlanId(response.data.service_action_plan_id);
-            setShowImpactBaselineModal(!showImpactBaselineModal);
+            //setShowImpactBaselineModal(!showImpactBaselineModal);
             notifyMessage('ok');
           }
         })
@@ -728,7 +728,7 @@ export default function IndexServoceActionPlan({ data }) {
            )}
         </section>
       </Layout>
-      {showImpactBaselineModal && serviceActionPlanId && (
+ {/*      {showImpactBaselineModal && serviceActionPlanId && (
         <ImpactBaselineModal
           showImpactBaselineModal={showImpactBaselineModal}
           setShowImpactBaselineModal={setShowImpactBaselineModal}
@@ -737,7 +737,7 @@ export default function IndexServoceActionPlan({ data }) {
           clientUniqueId={clientData.id}
           serviceActionPlanId={serviceActionPlanId}
         />
-      )}
+      )} */}
     </>
   );
 }
