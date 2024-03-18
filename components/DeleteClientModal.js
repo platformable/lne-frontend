@@ -10,7 +10,7 @@ const DeleteClientModal = ({
   setShowDeleteClientModal,
   notifyDeleteMessage,
 }) => {
-  let { id, clientid, clientfirstname, clientlastname } = data[0];
+  let { id, clientid, clientfirstname, clientlastname } = data;
 
   const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
