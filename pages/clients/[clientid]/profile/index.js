@@ -158,8 +158,9 @@ console.log("clientTotalGoals",clientTotalGoals)
     let result = "-";
     let alert = "-";
     let color = "bg-red-400";
-    let totalGoals = Number(clientTotalGoals[0].totalGoalsNotCompleted);
-    let totalGoalsCompleted = Number(clientTotalGoals[0].totalGoalsNotCompleted);
+    let totalGoals = clientTotalGoals[0].totalClientGoalsSummaries;
+    let totalGoalsCompleted = Number(clientTotalGoals[0].totalGoalsCompleted);
+    let totalGoalsNotCompleted = Number(clientTotalGoals[0].totalGoalsNotCompleted);
    /*  Object.values(completedGoals).forEach((goal) => {
       if (goal.summary) totalGoals += 1;
       if (goal.completed === "1") totalGoalsCompleted += 1;
@@ -179,23 +180,32 @@ console.log("clientTotalGoals",clientTotalGoals)
 
     }
 
-    if (totalGoals > 0 && totalGoalsCompleted === 0) {
+    if (totalGoalsNotCompleted === 1) {
+      color = "bg-orange-300";
+      result = `There are ${
+        totalGoalsNotCompleted 
+      } client goals outstanding`;
+      alert = "Warning"
+      
+    }
+
+    if (totalGoalsNotCompleted > 1) {
+      color = "bg-red-400";
+      result = `There are ${
+        totalGoalsNotCompleted 
+      } client goals outstanding`;
+      alert = "Alert"
+      
+    }
+
+    /*     if (totalGoals > 0 && totalGoalsCompleted === 0) {
       color = "bg-red-400";
       result = `There are ${
         totalGoals 
       } client goals outstanding`;
       alert = "Alert"
       
-    }
-
-    if (totalGoalsCompleted >= 1 && totalGoalsCompleted <= totalGoals) {
-      color = "bg-orange-300";
-      result = `There are ${
-        totalGoals 
-      } client goals outstanding`;
-      alert = "Warning"
-      
-    }
+    } */
 
     return (
       <div className="flex flex-col justify-start h-full">
@@ -237,7 +247,7 @@ console.log("clientTotalGoals",clientTotalGoals)
       let color = "bg-red-400";
       let fechaFin = new Date();
 
-      let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
       // console.log("client data", data);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
@@ -284,7 +294,7 @@ console.log("clientTotalGoals",clientTotalGoals)
       let color = "bg-red-400";
       let fechaFin = new Date();
 
-      let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
       // console.log("client data", data);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
@@ -334,7 +344,7 @@ console.log("clientTotalGoals",clientTotalGoals)
       let color = "bg-red-400";
       let fechaFin = new Date();
 
-      let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
       // console.log("totalDays", totalDays);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
