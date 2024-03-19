@@ -12,8 +12,160 @@ import BackButton from "../components/BackButton";
 import KeyMetrics from "../components/KeyMetrics";
 
 const Services = ({clients, msaFormsXClient, sapXClient, ProgressNotesXClient, clientSaps }) => {
+  const [monitorMetricsData, setMonitorMetricsData] = useState([]);
+  const calculateDaysBetweenTwoDates = (date1, date2) => {
+        
+    let date_1 = new Date(date1);
+    let date_2 = date2 ?  new Date(date2) : new Date();
+    let difference = date_2.getTime() - date_1.getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    return TotalDays - 1;
+  };
 
+  const calculateDaysBetweenDates = (clientStartDate) => {
+    let date_1 = new Date(clientStartDate);
+    let date_2 = new Date();
+    let difference = date_2.getTime() - date_1.getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    return TotalDays- 1;
+  };
+  const calculateLastEncounter = (
+    client
+   ) => {
+       let date1;
+      
+       if (ProgressNotesXClient?.some(pn => pn.clientid === client.clientid)) {
+         // console.log("pasa pn", client.clientid)
+         const progressnotedate = ProgressNotesXClient.find(pn => pn.clientid === client.clientid)?.progressnotedate
+         date1 = new Date(progressnotedate);
+      
+       } else if (sapXClient?.some(pn => pn.clientid === client.clientid)){
+         // console.log("pasa sap", client.clientid)
  
+         const planstartdate = sapXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate
+         date1 = new Date(planstartdate);
+ 
+       }
+       else if (msaFormsXClient?.some(pn => pn.clientid === client.clientid)){
+         // console.log("pasa msa",client.clientid)
+ 
+         const msaformDate = msaFormsXClient?.find(pn => pn.clientid === client.clientid)?.msaformdate
+         date1 = new Date(msaformDate);
+ 
+       } else {
+         // console.log("pasa nada", client.clientid)
+ 
+         date1 = new Date(client?.clientdatecreated)
+       }
+       return date1
+    
+   };
+ 
+  const updateMonitorMetricData = async () => {
+    const newClients = [];
+    const activeClients = clients?.filter(
+      (client) => client.clientactive === "1"
+    )
+    activeClients.forEach((client, index) => {
+      const newClient = {};
+      /*   newClient.progressnote = []; */
+      newClient.clientid = client.clientid;
+      
+      newClient.serviceActionPlanDate = sapXClient?.some(pn => pn.clientid === client.clientid) ?  new Date(sapXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          })
+        : "-";
+
+      newClient.progress_notes = ProgressNotesXClient?.find(pn => pn.clientid === client.clientid)?.pn || []
+      newClient.saps = clientSaps?.find(pn => pn.clientid === client.clientid)?.saps || []
+      newClient.msa = msaFormsXClient?.find(pn => pn.clientid === client.clientid)?.msaformdate ||''
+
+
+      // console.log("************",[...newClient.saps , ...newClient.progress_notes])
+
+     
+      let resultado;
+      // const dates = [...newClient.saps , ...newClient.progress_notes].reduce((acc, curr) acc - curr., 0)
+      if (newClient.progress_notes.length === 2 ) {
+        resultado =  calculateDaysBetweenTwoDates(newClient?.progress_notes[1]?.progressnotedate,newClient?.progress_notes[0]?.progressnotedate)
+
+      }
+
+      if (newClient?.progress_notes.length === 1 && newClient?.saps.length ===  2 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.saps[1]?.planstartdate, newClient?.progress_notes[0]?.progressnotedate,)
+        // console.log("resultado, resu", resultado)   
+      }
+
+      
+      if (newClient?.progress_notes.length === 1 && newClient?.saps.length ===  1 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.saps[0]?.planstartdate, newClient?.progress_notes[0]?.progressnotedate)
+        // console.log("resultado, resu", resultado)   
+      }
+      
+      if (newClient?.progress_notes.length === 0 && newClient?.saps.length ===  2 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.saps[0]?.planstartdate,newClient?.saps[1]?.planstartdate)
+        // console.log("resultado, resu", resultado)   
+      }
+
+      if (newClient?.progress_notes.length === 0 && newClient?.saps.length ===  1 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.msa.split("T")[0] || client.clientdatecreated?.split('T')[0], newClient?.saps[0]?.planstartdate)
+        // console.log("resultado, resu", resultado)   
+      }
+
+      
+      if (newClient?.progress_notes.length === 0 && newClient?.saps.length ===  0 && newClient.msa) {
+
+        resultado =  calculateDaysBetweenTwoDates(newClient?.msa.split("T")[0])
+        // console.log("resultado, resu", resultado)   
+      }
+
+      if (!newClient?.msa && client.clientdatecreated && newClient?.saps.length ===  0 && newClient?.progress_notes.length ===  0 ) {
+
+        resultado =  calculateDaysBetweenTwoDates(client.clientdatecreated)
+
+      }
+
+      newClient.average = resultado 
+
+
+
+      newClient.startdate = client.clientdatecreated;
+      newClient.firstname = client.clientfirstname;
+      newClient.lastname = client.clientlastname;
+      // newClient.clienthcwname = client.clienthcwname;
+      /* newClient.progressnotes = client.progressnotes.length; */
+      // newClient.progressNotesDates = client.progressnotes;
+      newClient.lastEncounter = calculateDaysBetweenDates(calculateLastEncounter(
+        client
+      ));
+
+      newClient.joining = calculateDaysBetweenDates(client.clientdatecreated);
+
+      if (clientSaps.some(cl => client.clientid === cl.clientid)) {
+        const clientsap = clientSaps.find(cl => client.clientid === cl.clientid)
+        newClient.goals = parseInt(clientsap.goal1completed || 0) + parseInt(clientsap.goal2completed || 0) 
+      } else {
+        newClient.goals = 0
+
+      }
+        // console.log("goal 323123", newClient)
+
+      newClients.push(newClient);
+    });
+    // console.log("-----------------------",newClients)
+
+    setMonitorMetricsData(newClients);
+  };
+
+  useEffect(() => {
+    updateMonitorMetricData();
+  }, []);
   return (
     <Layout>
       <div className="bg-white">
@@ -32,7 +184,7 @@ const Services = ({clients, msaFormsXClient, sapXClient, ProgressNotesXClient, c
           <div className="container mx-auto grid-cols-1 gap-5">
             {/* KEY METRICS */}
 
-            <KeyMetrics clients={clients} msaFormsXClient={msaFormsXClient} sapXClient={sapXClient} ProgressNotesXClient={ProgressNotesXClient} clientSaps={clientSaps}/>
+            <KeyMetrics clients={clients} msaFormsXClient={msaFormsXClient} sapXClient={sapXClient} ProgressNotesXClient={ProgressNotesXClient} clientSaps={clientSaps} monitorMetrics={monitorMetricsData}/>
 
 
         
