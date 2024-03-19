@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, msaFormsXClient, clientSaps, monitorMetrics }) {
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
@@ -14,6 +14,7 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
     total: 0,
     color: "bg-middle-green",
   });
+  const newTotalForAverageDays = useMemo(() => monitorMetrics?.reduce((acc, curr) => acc + (curr.average || 0) ,0), [monitorMetrics])
 
   const clientsCount = (clients) => {
     const totalActiveClients = clients?.filter(
@@ -94,10 +95,8 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
       return total;
     });
     
-    const newTotal = monitorMetrics?.reduce((acc, curr) => acc + curr.average ,0)
     
-    console.log(monitorMetrics, newTotal)
-    let average = newTotal / totalActiveClients;
+    let average = newTotalForAverageDays / totalActiveClients;
 
 
 
@@ -142,7 +141,6 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
 
       })
     });
-    // console.log("total",)
     let average = total / totalActiveClients;
     if (average > 1) {
       setAverageGoals({
@@ -171,7 +169,7 @@ export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, m
     clientsCount(clients);
     calculateAverageDays();
     calculateNumberOfGoals();
-  }, [clients, ]);
+  }, [clients, newTotalForAverageDays]);
 
   return (
     <div className="key-metrics grid grid-cols-1 gap-2 mx-3 md:mx-0">
