@@ -51,8 +51,8 @@ export default function ClientProfilePage({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
   const [progNotes, setProgNotes] = useState([]);
-// console.log("data server progress notes", progNotes)
-// console.log("data client", data) 
+// console.log("data server msaform", data)
+
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
@@ -645,7 +645,7 @@ export default function ClientProfilePage({
                   ""
                 )}
 
-                {data?.servicesactionplanid ? (
+                {clientTotalGoals[0]?.totalClientGoalsSummaries > 0  ? (
                   <Link href={`/clients/${data?.clientid}/progress_note`}>
                     <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">

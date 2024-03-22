@@ -1928,7 +1928,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
           <ProgressNoteToPrint ref={componentRef} data={clientData} />
         </div>
       </Layout>
-      {showImpactTrackerModal && progressNoteId && (
+      {/* {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal
           showImpactTrackerModal={showImpactTrackerModal}
           setShowImpactTrackerModal={setShowImpactTrackerModal}
@@ -1937,7 +1937,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
           clientUniqueId={clientData.clientUniqueId}
           progress_note_id={progressNoteId}
         />
-      )}
+      )} */}
     </>
   );
 };

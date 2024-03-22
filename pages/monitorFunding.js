@@ -66,7 +66,6 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
     indexofFirstPost,
     indexOfLastPost
   );
-  // console.log("monitorMetricsData", msaFormsXClient);
   let componentRef = useRef();
   const calculateDaysBetweenTwoDates = (date1, date2) => {
         
@@ -82,6 +81,7 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
     const activeClients = clients?.filter(
       (client) => client.clientactive === "1"
     )
+    const clientCounts = {}
     activeClients.forEach((client, index) => {
       const newClient = {};
       /*   newClient.progressnote = []; */
@@ -146,7 +146,8 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
         resultado =  calculateDaysBetweenTwoDates(client.clientdatecreated)
 
       }
-
+      // console.log("client", client.clientid, resultado)  
+      clientCounts[client.clientid] = resultado    
       newClient.average = resultado 
 
 
@@ -174,7 +175,7 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
 
       newClients.push(newClient);
     });
-    // console.log("-----------------------",newClients)
+    console.log("-----------------------",clientCounts)
 
     setMonitorMetricsData(newClients);
   };
@@ -191,7 +192,6 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
    client
   ) => {
       let date1;
-     
       if (ProgressNotesXClient?.some(pn => pn.clientid === client.clientid)) {
         // console.log("pasa pn", client.clientid)
         const progressnotedate = ProgressNotesXClient.find(pn => pn.clientid === client.clientid)?.progressnotedate

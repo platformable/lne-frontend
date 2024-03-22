@@ -172,7 +172,7 @@ export default function EditServiceActionPlan({ data }) {
         if (response.status === 200 || response.statusText === "Ok") {
           notifyMessage('ok');
           setTimeout(() => {
-            router.push(`/clients/${clientData.clientId}/profile`);
+            router.back();
           }, 2300);
         }
       })
