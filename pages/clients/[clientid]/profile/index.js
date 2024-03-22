@@ -58,8 +58,8 @@ export default function ClientProfilePage({
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
 
-// console.log("clientTotalGoals",clientTotalGoals)
-
+console.log("clientTotalGoals",clientTotalGoals)
+console.log("data",data)
   const checkMessage1 = () => {
     let result;
     let color;
@@ -161,10 +161,7 @@ export default function ClientProfilePage({
     let totalGoals = clientTotalGoals[0].totalClientGoalsSummaries;
     let totalGoalsCompleted = Number(clientTotalGoals[0].totalGoalsCompleted);
     let totalGoalsNotCompleted = Number(clientTotalGoals[0].totalGoalsNotCompleted);
-   /*  Object.values(completedGoals).forEach((goal) => {
-      if (goal.summary) totalGoals += 1;
-      if (goal.completed === "1") totalGoalsCompleted += 1;
-    }); */
+
 
     if (totalGoals === 0 && totalGoalsCompleted === 0) {
       color = "bg-green-300";
@@ -180,6 +177,15 @@ export default function ClientProfilePage({
 
     }
 
+
+    if (totalGoals > 0 && totalGoalsCompleted <1 ) {
+      color = "bg-orange-300";
+      result = `There are ${
+        clientTotalGoals[0]?.totalClientGoalsSummaries 
+      } client goals outstanding`;
+      alert = "Warning"
+      
+    }
     if (totalGoalsNotCompleted === 1) {
       color = "bg-orange-300";
       result = `There are ${
