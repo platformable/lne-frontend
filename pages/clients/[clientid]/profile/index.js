@@ -44,13 +44,14 @@ export function setLocaleDateString(date) {
 
 export default function ClientProfilePage({
   data,
-  clientTotalGoals
+  clientTotalGoals,
+  progNotes
 }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal, setShowDeleteClientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
-  const [progNotes, setProgNotes] = useState([]);
+/*   const [progNotes, setProgNotes] = useState([]); */
 // console.log("data server msaform", data)
 
 
@@ -428,7 +429,7 @@ console.log("data",data)
   
   const [hasMounted, setHasMounted] = useState(false);
 
-  useEffect(() => {
+/*   useEffect(() => {
     setHasMounted(true);
 
     const getPnData = async () => {
@@ -443,7 +444,7 @@ console.log("data",data)
   }, [progNotes.progressnotes]);
   if (!hasMounted) {
     return null;
-  } 
+  }  */
 
   return (
     <>
@@ -889,13 +890,15 @@ console.log("data",data)
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const [data, clientTotalGoals] = await Promise.all([
+    const [data, clientTotalGoals, progNotes] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
       ).then((r) => r.json()),
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile/sap_goals`
       ).then((r) => r.json()),
+      fetch( `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
+      .then((r) => r.json()),
 /*       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
       ).then((r) => r.json()),
@@ -908,7 +911,8 @@ export const getServerSideProps = withPageAuthRequired({
         data: data,
 /*         impactBaseline: impactBaseline,
         impactTracker: impactTracker, */
-        clientTotalGoals:clientTotalGoals
+        clientTotalGoals:clientTotalGoals,
+        progNotes:progNotes
       },
     };
 
