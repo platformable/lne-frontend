@@ -131,7 +131,7 @@ export default function IndexServoceActionPlan({ data }) {
   };
   const createClientActionPlan = () => {
     if (
-      //clientData.goal1ServiceCategory==="" ||
+      clientData.planStartDate==="" ||
       clientData.goal1Summary === "" ||
       clientData.goal1Details === "" ||
       clientData.goal1TargetDate === "" ||
@@ -156,7 +156,7 @@ export default function IndexServoceActionPlan({ data }) {
       setLoading(true);
       setTimeout(() => {
         setErrorCompleteAllFieldsMessage(
-          "* Complete at least Action 1 of Goal 1"
+          "*Select plan start date or Complete at least Action 1 of Goal 1"
         );
         setLoading(false);
       }, 200);
@@ -171,12 +171,13 @@ export default function IndexServoceActionPlan({ data }) {
         })
         .then(function (response) {
 
-          console.log(response.data);
+          // console.log(response.data);
           if (response.status === 200 || response.statusText === "Ok") {
             setErrorCompleteAllFieldsMessage("");
             setServiceActionPlanId(response.data.service_action_plan_id);
             //setShowImpactBaselineModal(!showImpactBaselineModal);
             notifyMessage('ok');
+            setTimeout(() => router.back(), 2000)
           }
         })
         .catch(function (error) {
