@@ -239,6 +239,8 @@ console.log("data",data)
   );
 
   const checkMessage3 = () => {
+console.log("M3")
+console.log("progNotes",progNotes)
     if (
       progNotes.length === 0 &&
         (data?.planstartdate === "" ||
@@ -289,7 +291,7 @@ console.log("data",data)
       );
     }
     if (
-      progNotes.length <= 0 &&
+      progNotes.length < 0 &&
       (data?.planstartdate !== "" || data?.planstartdate !== null) 
     ) {
       const planstartdate = data?.planstartdate;
@@ -341,10 +343,10 @@ console.log("data",data)
     ) {
       // console.log("progress notes date");
       const lastProgressNote = progNotes[0]
-      // console.log("aqui", pn )
+      console.log("aqui > 0", lastProgressNote )
      
 
-      let date_1 = new Date(lastProgressNote.date)
+      let date_1 = new Date(data.progressnotedate)
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
 
