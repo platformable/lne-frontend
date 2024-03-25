@@ -291,7 +291,7 @@ console.log("progNotes",progNotes)
       );
     }
     if (
-      progNotes.length < 0 &&
+      progNotes.length === 0 &&
       (data?.planstartdate !== "" || data?.planstartdate !== null) 
     ) {
       const planstartdate = data?.planstartdate;
