@@ -580,25 +580,25 @@ const MonitorFunding = ({ clients,  msaFormsXClient,sapXClient, ProgressNotesXCl
           <div className="grid md:grid-cols-7 grid-cols-1 gap-5 px-5 md:px-0 pb-5">
             <div className="p-3 py-5 rounded-md bg-black  shadow-md cursor-pointer">
               {/* <Link href={"/services"}> */}
-              <figure className="flex flex-col items-center">
+              {/* <figure className="flex flex-col items-center">
                 <img
                   src="/supervisor/print_funding_report_large.svg"
                   className="mb-5"
                   alt="monitor STAFF PROGRESS"
-                ></img>
+                ></img> */}
                 {/*  <figcaption className="font-bold text-xs text-center">
                     MANAGE SERVICES
                   </figcaption> */}
-                <ReactToPrint
+                {/* <ReactToPrint
                   trigger={() => (
                     <button className="flex items-center px-5 py-1 rounded  text-white ">
-                      {/*      <img src="/print-report.svg" alt="" className="mr-2"/> */}
+                      {/*      <img src="/print-report.svg" alt="" className="mr-2"/> 
                       Print Funding <br/>Report Tables
                     </button>
                   )}
                   content={() => componentRef.current}
-                />
-              </figure>
+                /> */}
+              {/* </figure> */}
               {/*  </Link> 
             </div>
            
