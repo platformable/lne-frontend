@@ -573,7 +573,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
             notifyMessage("ok");
             setTimeout(() => {
               setIsSaving(false);
-              setShowImpactTrackerModal(!showImpactTrackerModal);
+              // setShowImpactTrackerModal(!showImpactTrackerModal);
             }, 1500);
           }
         })
@@ -1812,7 +1812,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
           <ProgressNoteToPrint ref={componentRef} data={clientData} />
         </div>
       </Layout>
-      {showImpactTrackerModal && progressNoteId && (
+      {/* {showImpactTrackerModal && progressNoteId && (
         <ImpactTrackerModal
           showImpactTrackerModal={showImpactTrackerModal}
           setShowImpactTrackerModal={setShowImpactTrackerModal}
@@ -1822,7 +1822,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
           progress_note_id={progressNoteId}
           progressNoteDate={clientData.progressNoteDate}
         />
-      )}
+      )} */}
     </>
   );
 };

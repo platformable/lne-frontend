@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
-export default function KeyMetrics({ clients, averageNumbers }) {
+export default function KeyMetrics({ clients,sapXClient, ProgressNotesXClient, msaFormsXClient, clientSaps, monitorMetrics }) {
   const [numberOfActiveClients, setNumberOfActiveClients] = useState({
     total: 0,
     color: "bg-light-red",
@@ -14,6 +14,7 @@ export default function KeyMetrics({ clients, averageNumbers }) {
     total: 0,
     color: "bg-middle-green",
   });
+  const newTotalForAverageDays = useMemo(() => monitorMetrics?.reduce((acc, curr) => acc + (curr.average || 0) ,0), [monitorMetrics])
 
   const clientsCount = (clients) => {
     const totalActiveClients = clients?.filter(
@@ -48,34 +49,56 @@ export default function KeyMetrics({ clients, averageNumbers }) {
     }
   };
 
-  const calculateAverageDays = (averageNumbers) => {
+  const calculateAverageDays = () => {
     let total = 0;
-    const totalActiveClients = clients?.filter(
+    const activeClients = clients?.filter(
       (client) => client.clientactive === "1"
-    ).length;
-    const x = averageNumbers.forEach((client, index) => {
+    )
+    const totalActiveClients = activeClients.length;
+
+    activeClients.forEach((client, index) => {
       let date1;
-      const { planstartdate, progressnotedate } = client;
-      // if (progressnotedate === null && sapstartdate === null) {
-      //   date1 = new Date(clientdatecreated);
-      // }
-      if (progressnotedate) {
+     
+      if (ProgressNotesXClient?.some(pn => pn.clientid === client.clientid)) {
+        // console.log("pasa pn")
+        const progressnotedate = ProgressNotesXClient.find(pn => pn.clientid === client.clientid)?.progressnotedate
         date1 = new Date(progressnotedate);
-      } else {
+     
+      } else if (sapXClient?.some(pn => pn.clientid === client.clientid)){
+        // console.log("pasa sap")
+
+        const planstartdate = sapXClient?.find(pn => pn.clientid === client.clientid)?.planstartdate
         date1 = new Date(planstartdate);
+
       }
+      else if (msaFormsXClient?.some(pn => pn.clientid === client.clientid)){
+        // console.log("pasa sap")
+
+        const planstartdate = msaFormsXClient?.find(pn => pn.clientid === client.clientid)?.msaformdate
+
+        date1 = new Date(planstartdate);
+
+      } else {
+        // console.log("pasa date created")
+
+        date1 = new Date(client?.clientdatecreated)
+      }
+
       let date2 = new Date();
-      let difference = date2.getDate() - date1.getDate();
+     
+      const diffTime = Math.abs(date2 - date1);
+      const difference = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+      
 
-      // let days = Math.ceil(difference / (1000 * 3600 * 24));
       total = total + difference;
-      // console.log(total)
-
+    
       return total;
     });
-    // console.log("services",total, totalActiveClients)
+    
+    
+    let average = newTotalForAverageDays / totalActiveClients;
 
-    let average = total / totalActiveClients;
+
 
     if (average > 30) {
       setAverageDays({
@@ -100,34 +123,24 @@ export default function KeyMetrics({ clients, averageNumbers }) {
     }
   };
 
-  const calculateNumberOfGoals = (averageNumbers) => {
+  const calculateNumberOfGoals = () => {
     let total = 0;
 
-    const totalActiveClients = clients?.filter(
+    const activeClients = clients?.filter(
       (client) => client.clientactive === "1"
-    ).length;
+    )
+    const totalActiveClients = activeClients.length;
 
-    const checkGoals = averageNumbers.forEach((client, index) => {
-      if (
-        client.goal1targetdate !== null &&
-        client.goal1completiondate === null
-      ) {
-        total = total + 1;
-      }
-      if (
-        client.goal2targetdate !== null &&
-        client.goal2completiondate === null
-      ) {
-        total = total + 1;
-      }
-      if (
-        client.goal3targetdate !== null &&
-        client.goal3completiondate === null
-      ) {
-        total = total + 1;
-      }
+
+    clientSaps?.forEach((client, index) => {
+     
+      client.saps.forEach(sap => {
+        if (sap.goal1Completed === '0') {
+          total += 1
+        }  
+
+      })
     });
-
     let average = total / totalActiveClients;
     if (average > 1) {
       setAverageGoals({
@@ -154,9 +167,9 @@ export default function KeyMetrics({ clients, averageNumbers }) {
 
   useEffect(() => {
     clientsCount(clients);
-    calculateAverageDays(averageNumbers);
-    calculateNumberOfGoals(averageNumbers);
-  }, [clients, averageNumbers]);
+    calculateAverageDays();
+    calculateNumberOfGoals();
+  }, [clients, newTotalForAverageDays]);
 
   return (
     <div className="key-metrics grid grid-cols-1 gap-2 mx-3 md:mx-0">

@@ -44,23 +44,23 @@ export function setLocaleDateString(date) {
 
 export default function ClientProfilePage({
   data,
-  impactBaseline,
-  impactTracker,
+  clientTotalGoals,
+  progNotes
 }) {
   const [showEditClientModal, setShowEditClientModal] = useState(false);
   const [showDeleteClientModal, setShowDeleteClientModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProgressNoteId, setSelectedProgressNoteId] = useState("");
-  const [progNotes, setProgNotes] = useState([]);
-// console.log("data server progress notes", progNotes)
-// console.log("data client", data) 
+/*   const [progNotes, setProgNotes] = useState([]); */
+// console.log("data server msaform", data)
+
 
   const { user, error, isLoading } = useUser();
   const loggedUserRole =
     user && user["https://lanuevatest.herokuapp.com/roles"];
 
-
-
+console.log("clientTotalGoals",clientTotalGoals)
+console.log("data",data)
   const checkMessage1 = () => {
     let result;
     let color;
@@ -159,12 +159,10 @@ export default function ClientProfilePage({
     let result = "-";
     let alert = "-";
     let color = "bg-red-400";
-    let totalGoals = 0;
-    let totalGoalsCompleted = 0;
-    Object.values(completedGoals).forEach((goal) => {
-      if (goal.summary) totalGoals += 1;
-      if (goal.completed === "1") totalGoalsCompleted += 1;
-    });
+    let totalGoals = clientTotalGoals[0].totalClientGoalsSummaries;
+    let totalGoalsCompleted = Number(clientTotalGoals[0].totalGoalsCompleted);
+    let totalGoalsNotCompleted = Number(clientTotalGoals[0].totalGoalsNotCompleted);
+
 
     if (totalGoals === 0 && totalGoalsCompleted === 0) {
       color = "bg-green-300";
@@ -180,25 +178,41 @@ export default function ClientProfilePage({
 
     }
 
-    if (totalGoals > 0 && totalGoalsCompleted === 0) {
+
+    if (totalGoals > 0 && totalGoalsCompleted <1 ) {
+      color = "bg-orange-300";
+      result = `There are ${
+        clientTotalGoals[0]?.totalClientGoalsSummaries 
+      } client goals outstanding`;
+      alert = "Warning"
+      
+    }
+    if (totalGoalsNotCompleted === 1) {
+      color = "bg-orange-300";
+      result = `There are ${
+        totalGoalsNotCompleted 
+      } client goals outstanding`;
+      alert = "Warning"
+      
+    }
+
+    if (totalGoalsNotCompleted > 1) {
       color = "bg-red-400";
       result = `There are ${
-        totalGoals - totalGoalsCompleted
+        totalGoalsNotCompleted 
       } client goals outstanding`;
       alert = "Alert"
       
     }
 
-   
-
-    if (totalGoalsCompleted >= 1 && totalGoalsCompleted <= totalGoals) {
-      color = "bg-orange-300";
+    /*     if (totalGoals > 0 && totalGoalsCompleted === 0) {
+      color = "bg-red-400";
       result = `There are ${
-        totalGoals - totalGoalsCompleted
+        totalGoals 
       } client goals outstanding`;
-      alert = "Warning"
+      alert = "Alert"
       
-    }
+    } */
 
     return (
       <div className="flex flex-col justify-start h-full">
@@ -225,6 +239,8 @@ export default function ClientProfilePage({
   );
 
   const checkMessage3 = () => {
+console.log("M3")
+console.log("progNotes",progNotes)
     if (
       progNotes.length === 0 &&
         (data?.planstartdate === "" ||
@@ -240,7 +256,7 @@ export default function ClientProfilePage({
       let color = "bg-red-400";
       let fechaFin = new Date();
 
-      let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
       // console.log("client data", data);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
@@ -275,7 +291,7 @@ export default function ClientProfilePage({
       );
     }
     if (
-      progNotes.length <= 0 &&
+      progNotes.length === 0 &&
       (data?.planstartdate !== "" || data?.planstartdate !== null) 
     ) {
       const planstartdate = data?.planstartdate;
@@ -287,7 +303,7 @@ export default function ClientProfilePage({
       let color = "bg-red-400";
       let fechaFin = new Date();
 
-      let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
       // console.log("client data", data);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
@@ -327,17 +343,17 @@ export default function ClientProfilePage({
     ) {
       // console.log("progress notes date");
       const lastProgressNote = progNotes[0]
-      // console.log("aqui", pn )
+      console.log("aqui > 0", lastProgressNote )
      
 
-      let date_1 = new Date(lastProgressNote.date)
+      let date_1 = new Date(data.progressnotedate)
       let date_2 = new Date();
       let difference = date_2.getTime() - date_1.getTime();
 
       let color = "bg-red-400";
       let fechaFin = new Date();
 
-      let totalDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let totalDays = Math.ceil(difference / (1000 * 3600 * 24))-1;
       // console.log("totalDays", totalDays);
       if (totalDays <= 14) color = "bg-green-300";
       if (totalDays > 14 && totalDays < 30) color = "bg-orange-300";
@@ -415,7 +431,7 @@ export default function ClientProfilePage({
   
   const [hasMounted, setHasMounted] = useState(false);
 
-  useEffect(() => {
+/*   useEffect(() => {
     setHasMounted(true);
 
     const getPnData = async () => {
@@ -430,7 +446,7 @@ export default function ClientProfilePage({
   }, [progNotes.progressnotes]);
   if (!hasMounted) {
     return null;
-  } 
+  }  */
 
   return (
     <>
@@ -638,7 +654,7 @@ export default function ClientProfilePage({
                   ""
                 )}
 
-                {data?.servicesactionplanid ? (
+                {clientTotalGoals[0]?.totalClientGoalsSummaries > 0  ? (
                   <Link href={`/clients/${data?.clientid}/progress_note`}>
                     <div className="client-profile-page-navigation-icon-container shadow-md bg-blue-cards-btns cursor-pointer rounded-xl py-5 px-5 inline-block">
                       <div className="flex justify-center">
@@ -820,7 +836,7 @@ export default function ClientProfilePage({
               )}
             </div>
           </section>
-          <section
+       {/*    <section
             id="baselineData"
             className="mt-16 container mx-auto bg-white pt-5 px-5 pb-10 rounded-md shadow-md"
           >
@@ -837,7 +853,7 @@ export default function ClientProfilePage({
               clientId={data?.clientid}
               clientUniqueId={data?.id}
             />
-          </section>
+          </section> */}
           
         </div>
       </Layout>
@@ -876,22 +892,29 @@ export default function ClientProfilePage({
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     let { clientid } = ctx.params;
-    const [data, impactBaseline, impactTracker] = await Promise.all([
+    const [data, clientTotalGoals, progNotes] = await Promise.all([
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile`
       ).then((r) => r.json()),
       fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/${clientid}/profile/sap_goals`
+      ).then((r) => r.json()),
+      fetch( `${process.env.NEXT_PUBLIC_SERVER_URL}/clients/profile_by_uniqueid/${clientid}`)
+      .then((r) => r.json()),
+/*       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_baseline/${clientid}`
       ).then((r) => r.json()),
       fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/impact_tracker/tracker/${clientid}`
-      ).then((r) => r.json()),
+      ).then((r) => r.json()), */
     ]);
     return {
       props: {
         data: data,
-        impactBaseline: impactBaseline,
-        impactTracker: impactTracker,
+/*         impactBaseline: impactBaseline,
+        impactTracker: impactTracker, */
+        clientTotalGoals:clientTotalGoals,
+        progNotes:progNotes
       },
     };
 
