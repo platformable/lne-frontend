@@ -562,10 +562,15 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
           setProgressNoteId(response.data.progress_note_id);
           handleMsaformUpdate();
           handleServiceActionPlanFormUpdate();
-          setTimeout(() => router.back(), 2000);
-          setIsSaving(false)
-
-          notifyMessage('ok');
+          notifyMessage("ok");
+          setTimeout(() => {
+            setIsSaving(false);
+            // setShowImpactTrackerModal(!showImpactTrackerModal);
+            router.push(`/clients/${data[0]?.clientid}/profile`)
+          }, 1500);
+  
+          
+          
         }
       })
       .catch(function (error) {

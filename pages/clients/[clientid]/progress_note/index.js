@@ -574,7 +574,9 @@ const ProgressNotesIndex = ({ data, sap }) => {
             setTimeout(() => {
               setIsSaving(false);
               // setShowImpactTrackerModal(!showImpactTrackerModal);
+              router.push(`/clients/${data[0]?.clientid}/profile`)
             }, 1500);
+            
           }
         })
         .catch(function (error) {
