@@ -1330,10 +1330,16 @@ const ProgressNotesIndex = ({ data, sap }) => {
                   src={"/progress_notes/goals_completed.svg"}
                   alt="Goals completed icon"
                 />
+                <div>
+
                 <h3 className="font-bold text-2xl">
                   Were any of the clients goals completed?
                 </h3>
+                <span className="text-xs block italic">Make sure to select progress note date first</span>
+                </div>
+                
               </div>
+              
               <div className="grid lg:grid-cols-2 gap-5 mb-5">
                 <div>
                   {data[0]?.sapgoal1completed === "1" && (
@@ -1374,16 +1380,17 @@ const ProgressNotesIndex = ({ data, sap }) => {
                         type="radio"
                         name="completedGoals1"
                         onClick={(e) => {
-                          setClientData({
-                            ...clientData,
-                            goal1Completed: true,
-                            goal1CompletedDate: clientData.progressNoteDate,
-                          });
-                          setDataForSAP({
-                            ...dataForSAP,
-                            goal1Completed: true,
-                          });
+                            setClientData({
+                              ...clientData,
+                              goal1Completed: true,
+                              goal1CompletedDate: clientData.progressNoteDate,
+                            });
+                            setDataForSAP({
+                              ...dataForSAP,
+                              goal1Completed: true,
+                            });
                         }}
+                        disabled={clientData?.progressNoteDate ==='' ? true: false}
                       />
                       Yes
                     </label>
@@ -1403,6 +1410,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal1Completed: false,
                           });
                         }}
+                       
                       />
                       No
                     </label>
@@ -1450,6 +1458,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                 </div>
                 <div className="">
                   <p className="text-xl mb-3 font-medium">Goal 2</p>
+                  
 
                   <div className="workedGoals-box flex gap-20 mb-7">
                     <label className={`flex items-center gap-5 text-xl`}>
@@ -1467,6 +1476,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal2Completed: true,
                           });
                         }}
+                        disabled={clientData?.progressNoteDate ==='' ? true: false}
                       />
                       Yes
                     </label>

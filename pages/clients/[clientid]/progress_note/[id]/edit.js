@@ -582,7 +582,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
       });
     // }
   };
-
+ console.log("clientData", clientData);
   return (
     <>
       <ToastContainer autoClose={2000} />
@@ -1459,12 +1459,12 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                           setClientData({
                             ...clientData,
                             goal1Completed: true,
-                            goal1CompletedDate: crearFecha(),
+                            goal1CompletedDate: clientData?.progressNoteDate,
                           });
                           setDataForSAP({
                             ...dataForSAP,
                             goal1Completed: true,
-                            goal1CompletionDate: crearFecha(),
+                            goal1CompletionDate: clientData?.progressNoteDate,
                           });
                         }}
                         defaultChecked={
@@ -1548,12 +1548,12 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                           setClientData({
                             ...clientData,
                             goal2Completed: true,
-                            goal2CompletedDate: crearFecha(),
+                            goal2CompletedDate: clientData?.progressNoteDate,
                           });
                           setDataForSAP({
                             ...dataForSAP,
                             goal2Completed: true,
-                            goal2CompletionDate: crearFecha(),
+                            goal2CompletionDate: clientData?.progressNoteDate,
                           });
                         }}
                         defaultChecked={
