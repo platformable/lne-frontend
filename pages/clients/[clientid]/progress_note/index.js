@@ -511,7 +511,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
     HCWSignature: false,
   });
 
-console.log("sap",sap)
+console.log("dataForSAP",dataForSAP)
 
   const handleMsaformUpdate = () => {
     axios
@@ -1453,7 +1453,7 @@ console.log("sap",sap)
                           setDataForSAP({
                             ...dataForSAP,
                             goal1Completed: false,
-                            goal2CompletionDate:''
+                            goal1CompletionDate:''
                           });
                         }}
                         disabled={selectedSAP?.goal1completed === "1" || selectedSAP?.goal1completed === "1" ? true : false  }
@@ -1546,7 +1546,7 @@ console.log("sap",sap)
                             goal2CompletionDate:''
                           });
                         }}
-                        disabled={selectedSAP?.goal2completed === "1" || selectedSAP?.goal2completed === "1" ? true : false  }
+                        disabled={clientData?.progressNoteDate ==='' || selectedSAP?.goal2completed === "1" ? true : false  }
                         defaultChecked={selectedSAP?.goal2completed === "0" ? true : false}
                       />
                       No

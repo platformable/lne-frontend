@@ -1063,6 +1063,37 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 )}
               </select>
 
+              <div className="grid lg:grid-cols-2 gap-5 mb-5">
+                <div>
+                  {clientData.goal1CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData?.goal1CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {clientData.goal2CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData.goal2CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+              </div>
+
               <div className="goals-container grid lg:grid-cols-2  gap-5">
                 <div className="goal-box grid gap-y-7">
                   {/* <div className="goal-top flex items-center my-2">
@@ -1194,6 +1225,36 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 <h3 className="font-bold text-2xl">
                   Which of the goals were worked on?
                 </h3>
+              </div>
+              <div className="grid lg:grid-cols-2 gap-5 mb-5">
+                <div>
+                  {clientData.goal1CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData?.goal1CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {clientData.goal2CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData.goal2CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="goals-container grid md:grid-cols-2  gap-5">
                 <div>
@@ -1446,6 +1507,36 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 <h3 className="font-bold text-2xl">
                   Were any of the clients goals completed?
                 </h3>
+              </div>
+              <div className="grid lg:grid-cols-2 gap-5 mb-5">
+                <div>
+                  {clientData.goal1CompletedDate !=='' && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData?.goal1CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {!clientData.goal2CompletedDate ==''  && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData.goal2CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="goals-container grid md:grid-cols-2 gap-5">
                 <div className="">
