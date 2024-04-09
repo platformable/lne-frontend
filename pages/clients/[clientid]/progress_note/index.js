@@ -511,7 +511,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
     HCWSignature: false,
   });
 
-
+console.log("sap",sap)
 
   const handleMsaformUpdate = () => {
     axios
@@ -1090,10 +1090,42 @@ const ProgressNotesIndex = ({ data, sap }) => {
                 <h3 className="font-bold text-2xl">
                   Which of the goals were worked on?
                 </h3>
+                
+              </div>
+              <div className="grid lg:grid-cols-2 gap-5 mb-3">
+                <div>
+                  {selectedSAP?.goal1completed === "1" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        data[0]?.sapgoal1completiondate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {selectedSAP?.goal2completed === "1" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        data[0]?.sapgoal2completiondate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="goals-container grid md:grid-cols-2  gap-5">
                 <div>
                   <p className="text-xl mb-3 font-medium">Goal 1</p>
+                  
 
                   <div className="workedGoals-box flex gap-20 gap-5 mb-7">
                     <label className={`flex gap-5 items-center text-xl`}>
@@ -1107,6 +1139,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal1ProgressDate: clientData.progressNoteDate,
                           });
                         }}
+                        disabled={clientData?.progressNoteDate ==='' || selectedSAP?.goal1completed === "1" ? true : false }
+                        defaultChecked={selectedSAP?.goal1completed === "1" ? true : false}
                       />
                       Yes
                     </label>
@@ -1122,6 +1156,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal1ProgressDate: "",
                           });
                         }}
+                        disabled={clientData?.progressNoteDate ==='' || selectedSAP?.goal1completed === "1" ? true : false }
+                        defaultChecked={selectedSAP?.goal1completed === "0" ? true : false}
                       />
                       No
                     </label>
@@ -1182,6 +1218,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal2ProgressDate: clientData.progressNoteDate,
                           });
                         }}
+                        disabled={clientData?.progressNoteDate ==='' || selectedSAP?.goal2completed === "1" ? true : false }
+                        defaultChecked={selectedSAP?.goal2completed === "1" ? true : false}
                       />
                       Yes
                     </label>
@@ -1197,6 +1235,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal2ProgressDate: "",
                           });
                         }}
+                        disabled={clientData?.progressNoteDate ==='' || selectedSAP?.goal2completed === "1" ? true : false }
+                        defaultChecked={selectedSAP?.goal2completed === "0" ? true : false}
                       />
                       No
                     </label>
@@ -1393,7 +1433,9 @@ const ProgressNotesIndex = ({ data, sap }) => {
                               goal1CompletionDate:clientData.progressNoteDate
                             });
                         }}
-                        disabled={clientData?.progressNoteDate ==='' ? true: false}
+                    
+                        disabled={clientData?.progressNoteDate ==='' || selectedSAP?.goal1completed === "1" ? true : false }
+                        defaultChecked={selectedSAP?.goal1completed === "1" ? true : false}
                       />
                       Yes
                     </label>
@@ -1414,7 +1456,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal2CompletionDate:''
                           });
                         }}
-                       
+                        disabled={selectedSAP?.goal1completed === "1" || selectedSAP?.goal1completed === "1" ? true : false  }
+                        defaultChecked={selectedSAP?.goal1completed === "0" ? true : false}
                       />
                       No
                     </label>
@@ -1481,7 +1524,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal2CompletionDate:clientData.progressNoteDate
                           });
                         }}
-                        disabled={clientData?.progressNoteDate ==='' ? true: false}
+                        disabled={clientData?.progressNoteDate ==='' || selectedSAP?.goal2completed === "1" ? true : false }
+                        defaultChecked={selectedSAP?.goal2completed === "1" ? true : false}
                       />
                       Yes
                     </label>
@@ -1502,6 +1546,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             goal2CompletionDate:''
                           });
                         }}
+                        disabled={selectedSAP?.goal2completed === "1" || selectedSAP?.goal2completed === "1" ? true : false  }
+                        defaultChecked={selectedSAP?.goal2completed === "0" ? true : false}
                       />
                       No
                     </label>
