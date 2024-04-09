@@ -511,6 +511,8 @@ const ProgressNotesIndex = ({ data, sap }) => {
     HCWSignature: false,
   });
 
+
+
   const handleMsaformUpdate = () => {
     axios
       .put(
@@ -825,7 +827,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                         onChange={() =>
                           setClientData({
                             ...clientData,
-                            SupportGroup: !clientData.supportGroup,
+                            SupportGroups: !clientData.SupportGroups,
                           })
                         }
                       />
@@ -1388,6 +1390,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                             setDataForSAP({
                               ...dataForSAP,
                               goal1Completed: true,
+                              goal1CompletionDate:clientData.progressNoteDate
                             });
                         }}
                         disabled={clientData?.progressNoteDate ==='' ? true: false}
@@ -1408,6 +1411,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                           setDataForSAP({
                             ...dataForSAP,
                             goal1Completed: false,
+                            goal2CompletionDate:''
                           });
                         }}
                        
@@ -1474,6 +1478,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                           setDataForSAP({
                             ...dataForSAP,
                             goal2Completed: true,
+                            goal2CompletionDate:clientData.progressNoteDate
                           });
                         }}
                         disabled={clientData?.progressNoteDate ==='' ? true: false}
@@ -1494,6 +1499,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
                           setDataForSAP({
                             ...dataForSAP,
                             goal2Completed: false,
+                            goal2CompletionDate:''
                           });
                         }}
                       />

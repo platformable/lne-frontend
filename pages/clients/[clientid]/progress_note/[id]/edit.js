@@ -507,6 +507,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
   });
   // console.log("conpleted dates", clientData, dataForSAP )
 
+  console.log("dataForSAP",dataForSAP)
   // console.log("msaData", msaData);
   const handleMsaformUpdate = () => {
     axios
