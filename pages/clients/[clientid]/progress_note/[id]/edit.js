@@ -507,6 +507,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
   });
   // console.log("conpleted dates", clientData, dataForSAP )
 
+  console.log("dataForSAP",dataForSAP)
   // console.log("msaData", msaData);
   const handleMsaformUpdate = () => {
     axios
@@ -582,7 +583,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
       });
     // }
   };
-
+ console.log("clientData", clientData);
   return (
     <>
       <ToastContainer autoClose={2000} />
@@ -1062,6 +1063,37 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 )}
               </select>
 
+              <div className="grid lg:grid-cols-2 gap-5 mb-5">
+                <div>
+                  {clientData.goal1CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData?.goal1CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {clientData.goal2CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData.goal2CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+              </div>
+
               <div className="goals-container grid lg:grid-cols-2  gap-5">
                 <div className="goal-box grid gap-y-7">
                   {/* <div className="goal-top flex items-center my-2">
@@ -1193,6 +1225,36 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                 <h3 className="font-bold text-2xl">
                   Which of the goals were worked on?
                 </h3>
+              </div>
+              <div className="grid lg:grid-cols-2 gap-5 mb-5">
+                <div>
+                  {clientData.goal1CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData?.goal1CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {clientData.goal2CompletedDate !== "" && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData.goal2CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="goals-container grid md:grid-cols-2  gap-5">
                 <div>
@@ -1446,6 +1508,36 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                   Were any of the clients goals completed?
                 </h3>
               </div>
+              <div className="grid lg:grid-cols-2 gap-5 mb-5">
+                <div>
+                  {clientData.goal1CompletedDate !=='' && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData?.goal1CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  {!clientData.goal2CompletedDate ==''  && (
+                    <p className="px-3 py-1 rounded-lg shadow font-bold  bg-green-300">
+                      Completed:{" "}
+                      {new Date(
+                        clientData.goal2CompletedDate
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+              </div>
               <div className="goals-container grid md:grid-cols-2 gap-5">
                 <div className="">
                   <p className="text-xl mb-3 font-medium">Goal 1</p>
@@ -1459,12 +1551,12 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                           setClientData({
                             ...clientData,
                             goal1Completed: true,
-                            goal1CompletedDate: crearFecha(),
+                            goal1CompletedDate: clientData?.progressNoteDate,
                           });
                           setDataForSAP({
                             ...dataForSAP,
                             goal1Completed: true,
-                            goal1CompletionDate: crearFecha(),
+                            goal1CompletionDate: clientData?.progressNoteDate,
                           });
                         }}
                         defaultChecked={
@@ -1548,12 +1640,12 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
                           setClientData({
                             ...clientData,
                             goal2Completed: true,
-                            goal2CompletedDate: crearFecha(),
+                            goal2CompletedDate: clientData?.progressNoteDate,
                           });
                           setDataForSAP({
                             ...dataForSAP,
                             goal2Completed: true,
-                            goal2CompletionDate: crearFecha(),
+                            goal2CompletionDate: clientData?.progressNoteDate,
                           });
                         }}
                         defaultChecked={

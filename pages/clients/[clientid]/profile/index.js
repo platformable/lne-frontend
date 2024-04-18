@@ -161,7 +161,7 @@ console.log("data",data)
     let color = "bg-red-400";
     let totalGoals = clientTotalGoals[0].totalClientGoalsSummaries;
     let totalGoalsCompleted = Number(clientTotalGoals[0].totalGoalsCompleted);
-    let totalGoalsNotCompleted = Number(clientTotalGoals[0].totalGoalsNotCompleted);
+    let totalGoalsNotCompleted = totalGoals - totalGoalsCompleted;
 
 
     if (totalGoals === 0 && totalGoalsCompleted === 0) {
@@ -179,15 +179,7 @@ console.log("data",data)
     }
 
 
-    if (totalGoals > 0 && totalGoalsCompleted <1 ) {
-      color = "bg-orange-300";
-      result = `There are ${
-        clientTotalGoals[0]?.totalClientGoalsSummaries 
-      } client goals outstanding`;
-      alert = "Warning"
-      
-    }
-    if (totalGoalsNotCompleted === 1) {
+    if (totalGoalsNotCompleted === 1 ) {
       color = "bg-orange-300";
       result = `There are ${
         totalGoalsNotCompleted 
@@ -195,11 +187,19 @@ console.log("data",data)
       alert = "Warning"
       
     }
+    // if (totalGoals === 1) {
+    //   color = "bg-orange-300";
+    //   result = `There are ${
+    //     totalGoals - totalGoalsCompleted
+    //   } client goals outstanding`;
+    //   alert = "Warning"
+      
+    // }
 
     if (totalGoalsNotCompleted > 1) {
       color = "bg-red-400";
       result = `There are ${
-        totalGoalsNotCompleted 
+        totalGoals - totalGoalsCompleted
       } client goals outstanding`;
       alert = "Alert"
       
@@ -430,6 +430,9 @@ console.log("progNotes",progNotes)
   };
   
   const [hasMounted, setHasMounted] = useState(false);
+
+
+  console.log("prognotes",progNotes)
 
 /*   useEffect(() => {
     setHasMounted(true);
