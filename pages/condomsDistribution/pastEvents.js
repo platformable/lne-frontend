@@ -115,8 +115,8 @@ const PastEvents = ({ events }) => {
             <div
               className={`hidden md:grid ${
                 loggedUserRole === "Supervisor"
-                  ? "supervisor-existing-events-head-tablex  grid grid-cols-3"
-                  : `existing-events-head-tablex grid grid-cols-3`
+                ? "grid-cols-3 "
+                : `grid-cols-2`
               } container mx-auto gap-x-1 `}
             >
               {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
@@ -132,9 +132,12 @@ const PastEvents = ({ events }) => {
               <p className="font-bold  flex items-center text-xl justify-center bg-middle-purple py-2 px-3">
                 View/edit
               </p>
-              <p className="font-bold  flex items-center text-xl justify-center bg-middle-purple py-2 px-3">
+              {
+                loggedUserRole === 'Supervisor' ?
+              (<p className="font-bold  flex items-center text-xl justify-center bg-middle-purple py-2 px-3">
                 Delete 
-              </p>
+              </p>):''
+              }
             </div>
           </div>
           <div className="">
@@ -169,7 +172,7 @@ const PastEvents = ({ events }) => {
                           className={`hidden md:grid ${
                             loggedUserRole === "Supervisor"
                               ? "grid-cols-3 "
-                              : `grid-cols-3`
+                              : `grid-cols-2`
                           } container mx-auto bg-white  ${
                             index % 2 === 0 ? "bg-ligh-pink" : "bg-purple-50"
                           }`}
@@ -202,7 +205,7 @@ const PastEvents = ({ events }) => {
                               </a>
                             </Link>
                           </p>
-                          <p className="flex items-center justify-center p-1">
+                        {loggedUserRole==='Supervisor' ? (  <p className="flex items-center justify-center p-1">
                             <button
                               className="py-2"
                               onClick={() =>
@@ -219,7 +222,7 @@ const PastEvents = ({ events }) => {
                                 width="25px"
                               />
                             </button>
-                          </p>
+                          </p>):''}
                         </div>
                       </div>
                     </section>
