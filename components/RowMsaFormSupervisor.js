@@ -36,7 +36,7 @@ const RowMsaFormSupervisor = ({
     formIssues: nameStrings[2],
     formReviewed: nameStrings[3],
   });
-  console.log("strings ",strings);
+  // console.log("strings ",strings);
   // console.log("form name: ", formString, formDate)
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();
@@ -86,7 +86,15 @@ const RowMsaFormSupervisor = ({
 })) */
   };
   const onChangeInputIssues = (e) => {
-    //set info to display in issue popup
+    if(formIssues) {
+      setClientData((previousState) => ({
+        ...previousState,
+        [strings.formIssues]: false,
+        [strings.formReviewed]: true,
+        [strings.formUploadDate]: crearFecha(),
+      }));
+    } else {
+      //set info to display in issue popup
     setIssueFounded((previousState) => ({
       ...previousState,
       form_issues: strings.formIssues,
@@ -104,6 +112,8 @@ const RowMsaFormSupervisor = ({
       [strings.formReviewed]: true,
       [strings.formUploadDate]: crearFecha(),
     }));
+    }
+    
   };
 
   return (
@@ -210,7 +220,7 @@ const RowMsaFormSupervisor = ({
           name={fieldName}
           id={strings.formIssues}
           onChange={(e) => onChangeInputIssues(e)}
-          //checked={formIssues ? "checked" : false}
+          checked={formIssues === true ? "checked" : false}
           //disabled={!formDate}
         />
       </div>
