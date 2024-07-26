@@ -511,7 +511,7 @@ const ProgressNotesIndex = ({ data, sap }) => {
     HCWSignature: false,
   });
 
-console.log("dataForSAP",dataForSAP)
+// console.log("dataForSAP",dataForSAP)
 
   const handleMsaformUpdate = () => {
     axios

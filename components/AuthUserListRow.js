@@ -48,7 +48,7 @@ export default function AuthUserListRow({
   const year = date[0];
   const month = date[1];
   const day = date[2];
-  console.log(index);
+  // console.log(index);
   return (
     <>
       <div

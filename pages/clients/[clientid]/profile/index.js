@@ -239,7 +239,6 @@ console.log("data",data)
   );
 
   const checkMessage3 = () => {
-console.log("M3")
 console.log("progNotes",progNotes)
     if (
       progNotes.length === 0 &&

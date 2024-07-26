@@ -32,7 +32,7 @@ export default function ThreeColumnsTable({ data, notifyMessage }) {
     data?.forEach((item) => {
       total += item[value];
       if (value === "transwoman") {
-        console.log(value, item[value]);
+        // console.log(value, item[value]);
       }
     });
     return total;
