@@ -10,7 +10,7 @@ const DeleteAuthUserModal = ({urlEntity,selectedUser, showDeleteAuthUserModal, s
     const {id, name, lastname,email} = selectedUser
 
  
-    console.log("selected",selectedUser)
+    // console.log("selected",selectedUser)
 
     const handleAuthUserDelete = ({})=>{
         axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/authorizedusers/`,{ data: { email } })

@@ -57,13 +57,13 @@ const ClientInfoTopHeader = ({clientData, setClientData, data,stateValue}) => {
                     <label className="block">
                       <p className="text-xl font-medium mb-2">First Name</p>
                       <p className="md:w-72 p-3 rounded-md text-lg bg-primary-light-blue">
-                        {clientData.userFirstName}
+                        {data[0]?.clienthcwname}
                       </p>
                     </label>
                     <label className="block">
                       <p className="text-xl font-medium mb-2">Last Name</p>
                       <p className="md:w-72 p-3 rounded-md text-lg bg-primary-light-blue">
-                        {clientData.userLastName}
+                        {data[0]?.clienthcwlastname}
                       </p>
                     </label>
                   </div>

@@ -17,7 +17,6 @@ import SubHeader from "../../../../../components/SubHeader";
 
 const ProgressNotesIndex = ({ data, id, msa, sap }) => {
   const router = useRouter();
-  // console.log("sap", sap);
 
   const [selectedSAP, setSelectedSAP] = useState(sap?.current);
   const [showImpactTrackerModal, setShowImpactTrackerModal] = useState(false);
@@ -60,8 +59,8 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
     clientFirstName: data[0]?.clientfirstname,
     clientLastName: data[0]?.clientlastname,
     clientHCWID: data[0]?.clienthcwid,
-    userFirstName: data[0]?.userfirstname,
-    userLastName: data[0]?.userlastname,
+    userFirstName: data[0]?.clienthcwname,
+    userLastName: data[0]?.clienthcwlastname,
     progressNoteDate: data[0]?.progressnotedate || "",
 
     // Services provided *****************
@@ -507,7 +506,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
   });
   // console.log("conpleted dates", clientData, dataForSAP )
 
-  console.log("dataForSAP",dataForSAP)
+  // console.log("dataForSAP",dataForSAP)
   // console.log("msaData", msaData);
   const handleMsaformUpdate = () => {
     axios
@@ -583,7 +582,7 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
       });
     // }
   };
- console.log("clientData", clientData);
+//  console.log("clientData", clientData);
   return (
     <>
       <ToastContainer autoClose={2000} />

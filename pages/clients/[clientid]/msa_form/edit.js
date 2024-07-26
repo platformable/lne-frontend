@@ -42,8 +42,8 @@ const EditMsaFormPage = ({ data }) => {
     clientLastName: data[0].clientlastname,
     clientHCWID: data[0].clienthcwid,
     planStartDate: "",
-    userFirstName: data[0].userfirstname,
-    userLastName: data[0].userlastname,
+    userFirstName: data[0].clienthcwname,
+    userLastName: data[0].clienthcwlastname,
     AIRSIntakeForm: data[0].airsintakeform === "0" ? false : true,
     AIRSIntakeFormDate: data[0].airsintakeformdate || "",
     ComprehensiveRiskBehaviorAssessment:
@@ -226,11 +226,6 @@ const EditMsaFormPage = ({ data }) => {
       });
   };
 
-  /* if(typeof window !== 'undefined'){
-  const userLocale=window.navigator.language
-  userLocale='en-US' ? console.log("es gringo")
-  :console.log("no es gringo")
-} */
 
   const crearFecha = () => {
     const initialDate = new Date().toLocaleDateString();

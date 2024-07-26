@@ -32,7 +32,7 @@ const ProfilePageBaselineData = ({
   });
   const router = useRouter();
   useEffect(() => {
-    console.log("index selected is", baselineEdit);
+    // console.log("index selected is", baselineEdit);
     //fill form with actual tracker selected by index
     selectedTrackIndex >= 0 
       ? setForm(impactTracker[selectedTrackIndex])
@@ -133,7 +133,7 @@ const ProfilePageBaselineData = ({
     }
   };
   const updateBaseline = () => {
-    console.log(form);
+    // console.log(form);
     try {
       axios
         .put(
