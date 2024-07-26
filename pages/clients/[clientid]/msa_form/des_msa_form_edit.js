@@ -14,7 +14,6 @@ import RowMsaFormDES from "../../../../components/RowMsaFormDES";
 import ClientInfoTopHeader from "../../../../components/ClientInfoTopHeader";
 
 const EditMsaFormPage = ({ data }) => {
-  console.log("data", data);
 
   const router = useRouter();
 
@@ -38,8 +37,8 @@ const EditMsaFormPage = ({ data }) => {
     clientLastName: data[0].clientlastname,
     clientHCWID: data[0].clienthcwid,
     planStartDate: "",
-    userFirstName: data[0].userfirstname,
-    userLastName: data[0].userlastname,
+    userFirstName: data[0].clienthcwname,
+    userLastName: data[0].clienthcwlastname,
 
     AIRSIntakeForm:
       data[0].AIRSIntakeForm === "0" || data[0].AIRSIntakeForm === null

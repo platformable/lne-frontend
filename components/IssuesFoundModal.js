@@ -11,7 +11,6 @@ const IssuesFoundModal = ({
   showIssuesFoundModal,
   resetIssuesAndReviewCheckbox,
 }) => {
-  console.log(issueFounded);
   const [error, setError] = useState(false);
 
   const closeModal = () => {
