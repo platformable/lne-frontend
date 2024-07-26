@@ -510,7 +510,8 @@ console.log("progNotes",progNotes)
                         <p className="text-xl">Edit</p> 
                       </button>
 
-                      <button
+                    {loggedUserRole ==='Supervisor' ? (
+                        <button
                         className="w-full rounded-md px-5 py-3 block shadow-md bg-black text-white mt-5 text-sm flex gap-x-2 items-center justify-center text-lg"
                         onClick={() =>
                           setShowDeleteClientModal(!showDeleteClientModal)
@@ -524,6 +525,7 @@ console.log("progNotes",progNotes)
                         />
                        <p className="text-xl"> Delete</p>
                       </button>
+                    ):''}
                     </div>
                   </div>
                   {/* end first card */}
@@ -683,7 +685,8 @@ console.log("progNotes",progNotes)
                 <h3 className="font-bold my-5 text-2xl">Client progress notes</h3>
               </div>
 
-              <div className="grid client-progress-note-table gap-x-1 rounded-tl-md rounded-tr-md">
+              <div className={`grid ${loggedUserRole ==='Supervisor' ? ' md:grid-cols-[2fr_8fr_2fr_2fr]':'grid-cols-[2fr_8fr_2fr]'} grid-cols-1':'grid-cols-[2fr_8fr_2fr]'} 
+               client-progress-note-tablex gap-x-1 rounded-tl-md rounded-tr-md`}>
                 <div>
                   <h3 className="bg-client-profile-pn-heading p-2 text-bold table-headings py-2 px-5  mt-2  font-bold ">
                     Date
@@ -699,11 +702,11 @@ console.log("progNotes",progNotes)
                     Edit
                   </h3>
                 </div>
-                <div>
+                {loggedUserRole === 'Supervisor' ?(<div>
                   <h3 className="bg-client-profile-pn-heading py-2 text-bold table-headings text-center  mt-2  font-bold ">
                     Delete
                   </h3>
-                </div>
+                </div>):''}
               </div>
 
               {progNotes.length > 0 ? (
@@ -713,7 +716,7 @@ console.log("progNotes",progNotes)
                     return (
                       <div
                         key={index}
-                        className={`grid client-progress-note-table py-2  ${
+                        className={`${loggedUserRole ==='Supervisor' ? ' md:grid-cols-[2fr_8fr_2fr_2fr]':'grid-cols-[2fr_8fr_2fr]'} grid-cols-1 grid py-2  ${
                           index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
                         }`}
                       >
@@ -817,7 +820,8 @@ console.log("progNotes",progNotes)
                             </a>
                           </Link>
                         </div>
-                        <div className="flex justify-center ">
+                        {loggedUserRole ==='Supervisor' ? (
+                          <div className="flex justify-center ">
                           <button
                             onClick={() => {
                               setSelectedProgressNoteId(pn.id);
@@ -828,6 +832,8 @@ console.log("progNotes",progNotes)
                             <img src="/delete_client_black_icon.svg" alt="edit icon" />
                           </button>
                         </div>
+                        ):''}
+                        
                       </div>
                     );
                   })

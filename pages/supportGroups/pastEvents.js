@@ -115,8 +115,8 @@ const PastEvents = ({ events }) => {
             <div
               className={`hidden md:grid ${
                 loggedUserRole === "Supervisor"
-                  ? "supervisor-existing-events-head-table "
-                  : `existing-events-head-table`
+                  ? "grid-cols-[1.3fr_2fr_4.5fr_1.3fr_1.3fr]"
+                  : `grid-cols-[1.3fr_2fr_4.5fr_1.3fr]`
               } container mx-auto gap-x-1 `}
             >
               {/* <p className="lg:text-xl font-bold flex items-center ">Program</p> */}
@@ -132,9 +132,14 @@ const PastEvents = ({ events }) => {
               <p className="font-bold  flex items-center text-xl justify-center bg-support-groups-table-heading py-2 px-3">
                 View/edit event
               </p>
+              {
+                loggedUserRole === 'Supervisor' ? (
               <p className="font-bold  flex items-center text-xl justify-center bg-support-groups-table-heading py-2 px-3">
                 Delete event
               </p>
+
+                ):''
+              }
             </div>
           </div>
           <div className="">
@@ -168,8 +173,8 @@ const PastEvents = ({ events }) => {
                         <div
                           className={`hidden md:grid ${
                             loggedUserRole === "Supervisor"
-                              ? "supervisor-existing-events-head-table "
-                              : `existing-events-head-table`
+                            ? "grid-cols-[1.3fr_2fr_4.5fr_1.3fr_1.3fr]"
+                            : `grid-cols-[1.3fr_2fr_4.5fr_1.3fr]`
                           } container mx-auto bg-white  ${
                             index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
                           }`}
@@ -202,24 +207,30 @@ const PastEvents = ({ events }) => {
                               </a>
                             </Link>
                           </p>
-                          <p className="flex items-center justify-center p-1">
-                            <button
-                              className="py-2"
-                              onClick={() =>
-                                handleDeleteEvent(
-                                  event?.id,
-                                  event?.supportgrouptopic
-                                )
-                              }
-                              title="Delete event"
-                            >
-                              <img
-                                src="/delete_client_black_icon.svg"
-                                alt="delete icon"
-                                width="25px"
-                              />
-                            </button>
-                          </p>
+                         
+                          {
+                loggedUserRole === 'Supervisor' ? (
+                  <p className="flex items-center justify-center p-1">
+                  <button
+                    className="py-2"
+                    onClick={() =>
+                      handleDeleteEvent(
+                        event?.id,
+                        event?.supportgrouptopic
+                      )
+                    }
+                    title="Delete event"
+                  >
+                    <img
+                      src="/delete_client_black_icon.svg"
+                      alt="delete icon"
+                      width="25px"
+                    />
+                  </button>
+                </p>
+
+                ):''
+              }
                         </div>
                       </div>
                     </section>

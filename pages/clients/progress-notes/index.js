@@ -20,7 +20,9 @@ export default function AllProgressNotes({data}) {
           position: toast.POSITION.TOP_CENTER,
         });
       };
-
+      const { user, error, isLoading } = useUser();
+      const loggedUserRole =
+        user && user["https://lanuevatest.herokuapp.com/roles"];
 
       console.log("progressNotes", progressNotes)
 
@@ -64,7 +66,7 @@ export default function AllProgressNotes({data}) {
                 <h3 className="font-bold my-5 text-2xl">Client progress notes</h3>
               </div>
 
-              <div className="grid all-client-progress-note-table gap-x-1 rounded-tl-md rounded-tr-md">
+              <div className={`grid ${loggedUserRole==='Supervisor' ? 'md:grid-cols-[2fr_2fr_6fr_2fr_2fr]':'md:grid-cols-[2fr_2fr_6fr_2fr]'}  grid-cols-1 all-client-progress-note-tablex gap-x-1 rounded-tl-md rounded-tr-md`}>
                 <div>
                   <h3 className="bg-client-profile-pn-heading p-2 text-bold table-headings py-2 px-5  mt-2  font-bold ">
                     Date
@@ -85,11 +87,14 @@ export default function AllProgressNotes({data}) {
                     Edit
                   </h3>
                 </div>
-                <div>
+                {loggedUserRole==='Supervisor' ?(
+                  <div>
                   <h3 className="bg-client-profile-pn-heading py-2 text-bold table-headings text-center  mt-2  font-bold ">
                     Delete
                   </h3>
                 </div>
+                ) :''}
+                
               </div>
 
               {progressNotes?.data?.length > 0 ? (
@@ -99,7 +104,7 @@ export default function AllProgressNotes({data}) {
                     return (
                       <div
                         key={index}
-                        className={`grid all-client-progress-note-table py-2  ${
+                        className={`grid all-client-progress-note-tablex  ${loggedUserRole==='Supervisor' ? 'md:grid-cols-[2fr_2fr_6fr_2fr_2fr]':'md:grid-cols-[2fr_2fr_6fr_2fr]'}    py-2  ${
                           index % 2 === 0 ? "bg-light-gray" : "bg-blue-50"
                         }`}
                       >
@@ -208,17 +213,21 @@ export default function AllProgressNotes({data}) {
                             </a>
                           </Link>
                         </div>
+                     {
+                      loggedUserRole === 'Supervisor' ? (
                         <div className="flex justify-center ">
-                          <button
-                            onClick={() => {
-                              setSelectedProgressNoteId(pn.id);
-                              setShowDeleteModal(!showDeleteModal);
-                            }}
-                            className="flex items-center justify-center"
-                          >
-                            <img src="/delete_client_black_icon.svg" alt="edit icon" />
-                          </button>
-                        </div>
+                        <button
+                          onClick={() => {
+                            setSelectedProgressNoteId(pn.id);
+                            setShowDeleteModal(!showDeleteModal);
+                          }}
+                          className="flex items-center justify-center"
+                        >
+                          <img src="/delete_client_black_icon.svg" alt="edit icon" />
+                        </button>
+                      </div>
+                      ):''
+                     }
                       </div>
                     );
                   })
