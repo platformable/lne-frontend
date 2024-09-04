@@ -209,8 +209,18 @@ const ProgressNotesIndex = ({ data, id, msa, sap }) => {
     goal1WorkedComments: data[0]?.goal1workedcomments || "",
     goal2WorkedComments: data[0]?.goal2workedcomments || "",
     goal3WorkedComments: data[0]?.goal3workedcomments || "",
+
+    // Added on 2024/09/04
+    SocialDeterminatsOfHealthAssesment: false,
+    SocialDeterminatsOfHealthAssesmentDate: "",
+    ChlamydiaLaboratoryPsychologicalTestsInformation: false,
+    ChlamydiaLaboratoryPsychologicalTestsInformationDate: "",
+    SyphilisLaboratoryPsychologicalTestsInformation: false,
+    SyphilisLaboratoryPsychologicalTestsInformationDate: "",
+    GonorrheaLaboratoryPsychologicalTestsInformation: false,
+    GonorrheaLaboratoryPsychologicalTestsInformationDate: "",
   });
-  // console.log("form", clientData);
+  console.log("form", clientData);
 
   const [msaData, setMsaData] = useState({
     clientId: msa[0]?.clientid,
