@@ -869,8 +869,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     IDGFormIssues: data[0].idgformissues === '1' ?  true: false,
     
     clientUniqueId: data[0]?.id,
-
-     // Added on 2024/09/04 
+// ADDED 4-9-24
      SocialDeterminatsOfHealthAssesment: data[0]?.socialdeterminatsofhealthassesment === "0" ||
      data[0]?.socialdeterminatsofhealthassesment === null ? false : true,
      SocialDeterminatsOfHealthAssesmentDate: data[0]?.socialdeterminatsofhealthassesmentdate || "",
@@ -881,8 +880,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       SocialDeterminatsOfHealthAssesmentReviewed: data[0]?.socialdeterminatsofhealthassesmentreviewed === "0" ? false : true,
       SocialDeterminatsOfHealthAssesmentIssues: data[0].socialdeterminatsofhealthassesmentissues === '1' ?  true: false,
 
-     ChlamydiaLaboratoryPsychologicalTestsInformation: data[0]?.chlamydialaboratorypsychologicaltestsinformation === "0" ||
-     data[0]?.chlamydialaboratorypsychologicaltestsinformation === null ? false : true,
+     ChlamydiaLaboratoryPsychologicalTestsInformation:  data[0]?.chlamydialaboratorypsychologicaltestsinformation === "0"  ? false : true,
      ChlamydiaLaboratoryPsychologicalTestsInformationDate: data[0]?.chlamydialaboratorypsychologicaltestsinformationdate || "",
      ChlamydiaLaboratoryPsychologicalTestsInformationUploadDate:
      data[0].chlamydialaboratorypsychologicaltestsinformationuploaddate === "" || data[0].chlamydialaboratorypsychologicaltestsinformationuploaddate === null
@@ -891,8 +889,9 @@ const EditSupervisorMSAFormPage = ({ data }) => {
        ChlamydiaLaboratoryPsychologicalTestsInformationReviewed: data[0]?.chlamydialaboratorypsychologicaltestsinformationreviewed === "0" ? false : true,
        ChlamydiaLaboratoryPsychologicalTestsInformationIssues: data[0].chlamydialaboratorypsychologicaltestsinformationissues === '1' ?  true: false,
 
-     SyphilisLaboratoryPsychologicalTestsInformation: data[0]?.syphilislaboratorypsychologicaltestsinformation === "0" ||
-     data[0]?.syphilislaboratorypsychologicaltestsinformation === null ? false : true,
+
+
+     SyphilisLaboratoryPsychologicalTestsInformation: data[0]?.syphilislaboratorypsychologicaltestsinformation === "0" ? false : true,
      SyphilisLaboratoryPsychologicalTestsInformationDate: data[0]?.syphilislaboratorypsychologicaltestsinformationdate || "",
      SyphilisLaboratoryPsychologicalTestsInformationUploadDate:
      data[0].syphilislaboratorypsychologicaltestsinformationuploaddate === "" || data[0].syphilislaboratorypsychologicaltestsinformationuploaddate === null
@@ -901,8 +900,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
     SyphilisLaboratoryPsychologicalTestsInformationReviewed: data[0]?.syphilislaboratorypsychologicaltestsinformationreviewed === "0" ? false : true,
     SyphilisLaboratoryPsychologicalTestsInformationIssues: data[0].syphilislaboratorypsychologicaltestsinformationissues === '1' ?  true: false,
 
-     GonorrheaLaboratoryPsychologicalTestsInformation: data[0]?.gonorrhealaboratorypsychologicaltestsinformation === "0" ||
-     data[0]?.gonorrhealaboratorypsychologicaltestsinformation === null ? false : true,
+     GonorrheaLaboratoryPsychologicalTestsInformation: data[0]?.gonorrhealaboratorypsychologicaltestsinformation === "0" ? false : true,
      GonorrheaLaboratoryPsychologicalTestsInformationDate: data[0]?.gonorrhealaboratorypsychologicaltestsinformationdate || "",
      GonorrheaLaboratoryPsychologicalTestsInformationUploadDate:
      data[0].gonorrhealaboratorypsychologicaltestsinformationuploaddate === "" || data[0].gonorrhealaboratorypsychologicaltestsinformationuploaddate === null
@@ -1434,7 +1432,7 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationUploadDate}
                   formReviewed={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationReviewed}
                   formIssues={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationIssues}
-                  formString={"ChlamydiaLaboratoryPsychologicalTestsInformation"}
+                  formString={'ChlamydiaLaboratoryPsychologicalTestsInformation'}
                   folder_url={data[0].tickler_updates_folder_url}
                   dependency_folder_url={data[0].tickler_updates_folder_url}
                   setClientData={setClientData}
