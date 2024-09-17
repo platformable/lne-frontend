@@ -15,7 +15,6 @@ const RowMsaFormSupervisor = ({
   form,
   formDate,
   formUploadDate,
-  formPDF,
   formReviewed,
   formIssues,
   formString,
@@ -86,6 +85,7 @@ const RowMsaFormSupervisor = ({
 })) */
   };
   const onChangeInputIssues = (e) => {
+    //verify if are issues in database
     if(formIssues) {
       setClientData((previousState) => ({
         ...previousState,
@@ -104,7 +104,7 @@ const RowMsaFormSupervisor = ({
       lastdateupdated: formUploadDate || crearFecha(),
       formDate: formDate,
     }));
-
+      //display in issue popup
     setShowIssuesFoundModal((previousState) => !previousState);
     setClientData((previousState) => ({
       ...previousState,
@@ -192,7 +192,7 @@ const RowMsaFormSupervisor = ({
       <div
         //handles the prohibition to change review`s input once was issue checked
         className={`${bgColor} h-full py-1 text-center flex justify-center items-center  ${
-          formIssues && "pointer-events-none"
+          !formIssues && "pointer-events-none"
         }`}
       >
         <input
@@ -203,7 +203,7 @@ const RowMsaFormSupervisor = ({
           name={strings.formReviewed}
           id={strings.formReviewed}
           onChange={(e) => onChangeInputCheckbox(e)}
-          //checked={formReviewed || formIssues ? "checked" : false}
+          // checked={formReviewed || formIssues ? "checked" : false}
           //disabled={!formDate}
         />
       </div>

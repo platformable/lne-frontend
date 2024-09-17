@@ -867,10 +867,50 @@ const EditSupervisorMSAFormPage = ({ data }) => {
       data[0].idgformpdf === "0" || data[0].idgformpdf === null ? false : true,
     IDGFormReviewed: data[0]?.idgformreviewed === "0" ? false : true,
     IDGFormIssues: data[0].idgformissues === '1' ?  true: false,
+    
     clientUniqueId: data[0]?.id,
+// ADDED 4-9-24
+     SocialDeterminatsOfHealthAssesment: data[0]?.socialdeterminatsofhealthassesment === "0" ||
+     data[0]?.socialdeterminatsofhealthassesment === null ? false : true,
+     SocialDeterminatsOfHealthAssesmentDate: data[0]?.socialdeterminatsofhealthassesmentdate || "",
+     SocialDeterminatsOfHealthAssesmentUploadDate:
+     data[0].socialdeterminatsofhealthassesmentuploaddate === "" || data[0].socialdeterminatsofhealthassesmentuploaddate === null
+       ? data[0].socialdeterminatsofhealthassesmentdate
+       : data[0].socialdeterminatsofhealthassesmentuploaddate,
+      SocialDeterminatsOfHealthAssesmentReviewed: data[0]?.socialdeterminatsofhealthassesmentreviewed === "0" ? false : true,
+      SocialDeterminatsOfHealthAssesmentIssues: data[0].socialdeterminatsofhealthassesmentissues === '1' ?  true: false,
+
+     ChlamydiaLaboratoryPsychologicalTestsInformation:  data[0]?.chlamydialaboratorypsychologicaltestsinformation === "0"  ? false : true,
+     ChlamydiaLaboratoryPsychologicalTestsInformationDate: data[0]?.chlamydialaboratorypsychologicaltestsinformationdate || "",
+     ChlamydiaLaboratoryPsychologicalTestsInformationUploadDate:
+     data[0].chlamydialaboratorypsychologicaltestsinformationuploaddate === "" || data[0].chlamydialaboratorypsychologicaltestsinformationuploaddate === null
+       ? data[0].chlamydialaboratorypsychologicaltestsinformationdate
+       : data[0].chlamydialaboratorypsychologicaltestsinformationuploaddate,
+       ChlamydiaLaboratoryPsychologicalTestsInformationReviewed: data[0]?.chlamydialaboratorypsychologicaltestsinformationreviewed === "0" ? false : true,
+       ChlamydiaLaboratoryPsychologicalTestsInformationIssues: data[0].chlamydialaboratorypsychologicaltestsinformationissues === '1' ?  true: false,
+
+
+
+     SyphilisLaboratoryPsychologicalTestsInformation: data[0]?.syphilislaboratorypsychologicaltestsinformation === "0" ? false : true,
+     SyphilisLaboratoryPsychologicalTestsInformationDate: data[0]?.syphilislaboratorypsychologicaltestsinformationdate || "",
+     SyphilisLaboratoryPsychologicalTestsInformationUploadDate:
+     data[0].syphilislaboratorypsychologicaltestsinformationuploaddate === "" || data[0].syphilislaboratorypsychologicaltestsinformationuploaddate === null
+       ? data[0].syphilislaboratorypsychologicaltestsinformationdate
+       : data[0].syphilislaboratorypsychologicaltestsinformationuploaddate,
+    SyphilisLaboratoryPsychologicalTestsInformationReviewed: data[0]?.syphilislaboratorypsychologicaltestsinformationreviewed === "0" ? false : true,
+    SyphilisLaboratoryPsychologicalTestsInformationIssues: data[0].syphilislaboratorypsychologicaltestsinformationissues === '1' ?  true: false,
+
+     GonorrheaLaboratoryPsychologicalTestsInformation: data[0]?.gonorrhealaboratorypsychologicaltestsinformation === "0" ? false : true,
+     GonorrheaLaboratoryPsychologicalTestsInformationDate: data[0]?.gonorrhealaboratorypsychologicaltestsinformationdate || "",
+     GonorrheaLaboratoryPsychologicalTestsInformationUploadDate:
+     data[0].gonorrhealaboratorypsychologicaltestsinformationuploaddate === "" || data[0].gonorrhealaboratorypsychologicaltestsinformationuploaddate === null
+       ? data[0].gonorrhealaboratorypsychologicaltestsinformationdate
+       : data[0].gonorrhealaboratorypsychologicaltestsinformationuploaddate,
+      GonorrheaLaboratoryPsychologicalTestsInformationReviewed: data[0]?.gonorrhealaboratorypsychologicaltestsinformationreviewed === "0" ? false : true,
+      GonorrheaLaboratoryPsychologicalTestsInformationIssues: data[0].gonorrhealaboratorypsychologicaltestsinformationissues === '1' ?  true: false,
   });
 
-  // console.log("date sap", data[0]);
+  console.log("MSA data from server", data[0]);
   const [showIssuesFoundModal, setShowIssuesFoundModal] = useState(false);
   const [issueFounded, setIssueFounded] = useState({
     clientId: clientData.clientId,
@@ -1010,7 +1050,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSIntakeForm}
                   formDate={clientData.AIRSIntakeFormDate}
                   formUploadDate={clientData.AIRSIntakeFormUploadDate}
-                  formPDF={clientData.AIRSIntakeFormPDF}
                   formReviewed={clientData.AIRSIntakeFormReviewed}
                   formIssues={clientData.AIRSIntakeFormIssues}
                   formString={"AIRSIntakeForm"}
@@ -1030,7 +1069,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.ComprehensiveRiskBehaviorAssessmentUploadDate
                   }
-                  formPDF={clientData.ComprehensiveRiskBehaviorAssessmentPDF}
                   formReviewed={
                     clientData.ComprehensiveRiskBehaviorAssessmentReviewed
                   }
@@ -1052,7 +1090,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.ServiceActionPlan}
                   formDate={clientData.ServiceActionPlanDate}
                   formUploadDate={clientData.ServiceActionPlanUploadDate}
-                  formPDF={clientData.ServiceActionPlanPDF}
                   formReviewed={clientData.ServiceActionPlanReviewed}
                   formIssues={clientData.ServiceActionPlanIssues}
                   formString={"ServiceActionPlan"}
@@ -1070,7 +1107,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.ProgressNote}
                   formDate={clientData.ProgressNoteDate}
                   formUploadDate={clientData.ProgressNoteUploadDate}
-                  formPDF={clientData.ProgressNotePDF}
                   formReviewed={clientData.ProgressNoteReviewed}
                   formIssues={clientData.ProgressNoteIssues}
                   formString={"ProgressNote"}
@@ -1088,7 +1124,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.StatusChangesForm}
                   formDate={clientData.StatusChangesFormDate}
                   formUploadDate={clientData.StatusChangesFormUploadDate}
-                  formPDF={clientData.StatusChangesFormPDF}
                   formReviewed={clientData.StatusChangesFormReviewed}
                   formIssues={clientData.StatusChangesFormIssues}
                   formString={"StatusChangesForm"}
@@ -1109,9 +1144,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   }
                   formUploadDate={
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesUploadDate
-                  }
-                  formPDF={
-                    clientData.ComprehensiveRiskBehaviorAssessmentUpdatesPDF
                   }
                   formReviewed={
                     clientData.ComprehensiveRiskBehaviorAssessmentUpdatesReviewed
@@ -1134,7 +1166,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.M11QForm}
                   formDate={clientData.M11QFormDate}
                   formUploadDate={clientData.M11QFormUploadDate}
-                  formPDF={clientData.M11QFormPDF}
                   formReviewed={clientData.M11QFormReviewed}
                   formIssues={clientData.M11QFormIssues}
                   formString={"M11QForm"}
@@ -1152,7 +1183,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.CD4VLReports}
                   formDate={clientData.CD4VLReportsDate}
                   formUploadDate={clientData.CD4VLReportsUploadDate}
-                  formPDF={clientData.CD4VLReportsPDF}
                   formReviewed={clientData.CD4VLReportsReviewed}
                   formIssues={clientData.CD4VLReportsIssues}
                   formString={"CD4VLReports"}
@@ -1172,7 +1202,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.InitialTreatmentAdherenceIntakeUploadDate
                   }
-                  formPDF={clientData.InitialTreatmentAdherenceIntakePDF}
                   formReviewed={
                     clientData.InitialTreatmentAdherenceIntakeReviewed
                   }
@@ -1194,7 +1223,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.TreatmentAdherenceUpdatesUploadDate
                   }
-                  formPDF={clientData.TreatmentAdherenceUpdatesPDF}
                   formReviewed={clientData.TreatmentAdherenceUpdatesReviewed}
                   formIssues={clientData.TreatmentAdherenceUpdatesIssues}
                   formString={"TreatmentAdherenceUpdates"}
@@ -1214,7 +1242,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.AIRSCollateralInformationUploadDate
                   }
-                  formPDF={clientData.AIRSCollateralInformationPDF}
                   formReviewed={clientData.AIRSCollateralInformationReviewed}
                   formIssues={clientData.AIRSCollateralInformationIssues}
                   formString={"AIRSCollateralInformation"}
@@ -1232,7 +1259,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSDrugRegimen}
                   formDate={clientData.AIRSDrugRegimenDate}
                   formUploadDate={clientData.AIRSDrugRegimenUploadDate}
-                  formPDF={clientData.AIRSDrugRegimenPDF}
                   formReviewed={clientData.AIRSDrugRegimenReviewed}
                   formIssues={clientData.AIRSDrugRegimenIssues}
                   formString={"AIRSDrugRegimen"}
@@ -1250,7 +1276,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSFinancialInformation}
                   formDate={clientData.AIRSFinancialInformationDate}
                   formUploadDate={clientData.AIRSFinancialInformationUploadDate}
-                  formPDF={clientData.AIRSFinancialInformationPDF}
                   formReviewed={clientData.AIRSFinancialInformationReviewed}
                   formIssues={clientData.AIRSFinancialInformationIssues}
                   formString={"AIRSFinancialInformation"}
@@ -1268,7 +1293,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSHIVAIDSRiskHistory}
                   formDate={clientData.AIRSHIVAIDSRiskHistoryDate}
                   formUploadDate={clientData.AIRSHIVAIDSRiskHistoryUploadDate}
-                  formPDF={clientData.AIRSHIVAIDSRiskHistoryPDF}
                   formReviewed={clientData.AIRSHIVAIDSRiskHistoryReviewed}
                   formIssues={clientData.AIRSHIVAIDSRiskHistoryIssues}
                   formString={"AIRSHIVAIDSRiskHistory"}
@@ -1286,7 +1310,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSHIVMedicalProvider}
                   formDate={clientData.AIRSHIVMedicalProviderDate}
                   formUploadDate={clientData.AIRSHIVMedicalProviderUploadDate}
-                  formPDF={clientData.AIRSHIVMedicalProviderPDF}
                   formReviewed={clientData.AIRSHIVMedicalProviderReviewed}
                   formIssues={clientData.AIRSHIVMedicalProviderIssues}
                   formString={"AIRSHIVMedicalProvider"}
@@ -1304,7 +1327,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSHIVStatusHistory}
                   formDate={clientData.AIRSHIVStatusHistoryDate}
                   formUploadDate={clientData.AIRSHIVStatusHistoryUploadDate}
-                  formPDF={clientData.AIRSHIVStatusHistoryPDF}
                   formReviewed={clientData.AIRSHIVStatusHistoryReviewed}
                   formIssues={clientData.AIRSHIVStatusHistoryIssues}
                   formString={"AIRSHIVStatusHistory"}
@@ -1322,7 +1344,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSHCVHistory}
                   formDate={clientData.AIRSHCVHistoryDate}
                   formUploadDate={clientData.AIRSHCVHistoryUploadDate}
-                  formPDF={clientData.AIRSHCVHistoryPDF}
                   formReviewed={clientData.AIRSHCVHistoryReviewed}
                   formIssues={clientData.AIRSHCVHistoryIssues}
                   formString={"AIRSHCVHistory"}
@@ -1340,7 +1361,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSHousingInformation}
                   formDate={clientData.AIRSHousingInformationDate}
                   formUploadDate={clientData.AIRSHousingInformationUploadDate}
-                  formPDF={clientData.AIRSHousingInformationPDF}
                   formReviewed={clientData.AIRSHousingInformationReviewed}
                   formIssues={clientData.AIRSHousingInformationIssues}
                   formString={"AIRSHousingInformation"}
@@ -1358,7 +1378,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSInsuranceInformation}
                   formDate={clientData.AIRSInsuranceInformationDate}
                   formUploadDate={clientData.AIRSInsuranceInformationUploadDate}
-                  formPDF={clientData.AIRSInsuranceInformationPDF}
                   formReviewed={clientData.AIRSInsuranceInformationReviewed}
                   formIssues={clientData.AIRSInsuranceInformationIssues}
                   formString={"AIRSInsuranceInformation"}
@@ -1376,7 +1395,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.AIRSSubstanceUseHistory}
                   formDate={clientData.AIRSSubstanceUseHistoryDate}
                   formUploadDate={clientData.AIRSSubstanceUseHistoryUploadDate}
-                  formPDF={clientData.AIRSSubstanceUseHistoryPDF}
                   formReviewed={clientData.AIRSSubstanceUseHistoryReviewed}
                   formIssues={clientData.AIRSSubstanceUseHistoryIssues}
                   formString={"AIRSSubstanceUseHistory"}
@@ -1389,12 +1407,80 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   bgColor={"msa-table-light-light-blue-bg"}
                 />
 
+                {/* Added on 2024/09/04 */}
+                <RowMsaFormSupervisor
+                  fieldName={"Social Determinants of Health Assessment"}
+                  form={clientData.SocialDeterminatsOfHealthAssesment}
+                  formDate={clientData.SocialDeterminatsOfHealthAssesmentDate}
+                  formUploadDate={clientData.SocialDeterminatsOfHealthAssesmentUploadDate}
+                  formReviewed={clientData.SocialDeterminatsOfHealthAssesmentReviewed}
+                  formIssues={clientData.SocialDeterminatsOfHealthAssesmentIssues}
+                  formString={"SocialDeterminatsOfHealthAssesment"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                <RowMsaFormSupervisor
+                  fieldName={"Chlamydia - Laboratory & Psychological Tests Information"}
+                  form={clientData.ChlamydiaLaboratoryPsychologicalTestsInformation}
+                  formDate={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationDate}
+                  formUploadDate={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationUploadDate}
+                  formReviewed={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationReviewed}
+                  formIssues={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationIssues}
+                  formString={'ChlamydiaLaboratoryPsychologicalTestsInformation'}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+                <RowMsaFormSupervisor
+                  fieldName={"Syphilis - Laboratory & Psychological Tests Information"}
+                  form={clientData.SyphilisLaboratoryPsychologicalTestsInformation}
+                  formDate={clientData.SyphilisLaboratoryPsychologicalTestsInformationDate}
+                  formUploadDate={clientData.SyphilisLaboratoryPsychologicalTestsInformationUploadDate}
+                  formReviewed={clientData.SyphilisLaboratoryPsychologicalTestsInformationReviewed}
+                  formIssues={clientData.SyphilisLaboratoryPsychologicalTestsInformationIssues}
+                  formString={"SyphilisLaboratoryPsychologicalTestsInformation"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+                <RowMsaFormSupervisor
+                  fieldName={"Gonorrhea - Laboratory & Psychological Tests Information"}
+                  form={clientData.GonorrheaLaboratoryPsychologicalTestsInformation}
+                  formDate={clientData.GonorrheaLaboratoryPsychologicalTestsInformationDate}
+                  formUploadDate={clientData.GonorrheaLaboratoryPsychologicalTestsInformationUploadDate}
+                  formReviewed={clientData.GonorrheaLaboratoryPsychologicalTestsInformationReviewed}
+                  formIssues={clientData.GonorrheaLaboratoryPsychologicalTestsInformationIssues}
+                  formString={"GonorrheaLaboratoryPsychologicalTestsInformation"}
+                  folder_url={data[0].tickler_updates_folder_url}
+                  dependency_folder_url={data[0].tickler_updates_folder_url}
+                  setClientData={setClientData}
+                  setIssueFounded={setIssueFounded}
+                  showIssuesFoundModal={showIssuesFoundModal}
+                  setShowIssuesFoundModal={setShowIssuesFoundModal}
+                  bgColor={"msa-table-light-light-blue-bg"}
+                />
+
+                {/* ********************************* */}
+
                 <RowMsaFormSupervisor
                   fieldName={"LNE Client Rights"}
                   form={clientData.LNEClientRights}
                   formDate={clientData.LNEClientRightsDate}
                   formUploadDate={clientData.LNEClientRightsUploadDate}
-                  formPDF={clientData.LNEClientRightsPDF}
                   formReviewed={clientData.LNEClientRightsReviewed}
                   formIssues={clientData.LNEClientRightsIssues}
                   formString={"LNEClientRights"}
@@ -1414,7 +1500,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.LNEClientGrievancePolicyProcedureUploadDate
                   }
-                  formPDF={clientData.LNEClientGrievancePolicyProcedurePDF}
                   formReviewed={
                     clientData.LNEClientGrievancePolicyProcedureReviewed
                   }
@@ -1436,7 +1521,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.LNEProgramRules}
                   formDate={clientData.LNEProgramRulesDate}
                   formUploadDate={clientData.LNEProgramRulesUploadDate}
-                  formPDF={clientData.LNEProgramRulesPDF}
                   formReviewed={clientData.LNEProgramRulesReviewed}
                   formIssues={clientData.LNEProgramRulesIssues}
                   formString={"LNEProgramRules"}
@@ -1456,7 +1540,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.LNEEmergencyContactConsentUploadDate
                   }
-                  formPDF={clientData.LNEEmergencyContactConsentPDF}
                   formReviewed={clientData.LNEEmergencyContactConsentReviewed}
                   formIssues={clientData.LNEEmergencyContactConsentIssues}
                   formString={"LNEEmergencyContactConsent"}
@@ -1482,9 +1565,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.LNEConsentForReleaseOfConfidentialInformationUploadDate
                   }
-                  formPDF={
-                    clientData.LNEConsentForReleaseOfConfidentialInformationPDF
-                  }
                   formReviewed={
                     clientData.LNEConsentForReleaseOfConfidentialInformationReviewed
                   }
@@ -1506,7 +1586,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.HIPPAConsentForm}
                   formDate={clientData.HIPPAConsentFormDate}
                   formUploadDate={clientData.HIPPAConsentFormUploadDate}
-                  formPDF={clientData.HIPPAConsentFormPDF}
                   formReviewed={clientData.HIPPAConsentFormReviewed}
                   formIssues={clientData.HIPPAConsentFormIssues}
                   formString={"HIPPAConsentForm"}
@@ -1528,7 +1607,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesUploadDate
                   }
-                  formPDF={clientData.NYCDOHMHNoticeOfPrivacyPracticesPDF}
                   formReviewed={
                     clientData.NYCDOHMHNoticeOfPrivacyPracticesReviewed
                   }
@@ -1550,7 +1628,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.LinkageRetentionAdherenceFormsUploadDate
                   }
-                  formPDF={clientData.LinkageRetentionAdherenceFormsPDF}
                   formReviewed={
                     clientData.LinkageRetentionAdherenceFormsReviewed
                   }
@@ -1572,7 +1649,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   formUploadDate={
                     clientData.InternalReferralInformationUploadDate
                   }
-                  formPDF={clientData.InternalReferralInformationPDF}
                   formReviewed={clientData.InternalReferralInformationReviewed}
                   formIssues={clientData.InternalReferralInformationIssues}
                   formString={"InternalReferralInformation"}
@@ -1590,7 +1666,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.LNEClientReferralForm}
                   formDate={clientData.LNEClientReferralFormDate}
                   formUploadDate={clientData.LNEClientReferralFormUploadDate}
-                  formPDF={clientData.LNEClientReferralFormPDF}
                   formReviewed={clientData.LNEClientReferralFormReviewed}
                   formIssues={clientData.LNEClientReferralFormIssues}
                   formString={"LNEClientReferralForm"}
@@ -1608,7 +1683,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.HNSEligibilityForm}
                   formDate={clientData.HNSEligibilityFormDate}
                   formUploadDate={clientData.HNSEligibilityFormUploadDate}
-                  formPDF={clientData.HNSEligibilityFormPDF}
                   formReviewed={clientData.HNSEligibilityFormReviewed}
                   formIssues={clientData.HNSEligibilityFormIssues}
                   formString={"HNSEligibilityForm"}
@@ -1626,7 +1700,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.HNSReadinessForm}
                   formDate={clientData.HNSReadinessFormDate}
                   formUploadDate={clientData.HNSReadinessFormUploadDate}
-                  formPDF={clientData.HNSReadinessFormPDF}
                   formReviewed={clientData.HNSReadinessFormReviewed}
                   formIssues={clientData.HNSReadinessFormIssues}
                   formString={"HNSReadinessForm"}
@@ -1644,7 +1717,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.SupportGroups}
                   formDate={clientData.SupportGroupsDate}
                   formUploadDate={clientData.SupportGroupsUploadDate}
-                  formPDF={clientData.SupportGroupsPDF}
                   formReviewed={clientData.SupportGroupsReviewed}
                   formIssues={clientData.SupportGroupsIssues}
                   formString={"SupportGroups"}
@@ -1662,7 +1734,6 @@ const EditSupervisorMSAFormPage = ({ data }) => {
                   form={clientData.IDGForm}
                   formDate={clientData.IDGFormDate}
                   formUploadDate={clientData.IDGFormUploadDate}
-                  formPDF={clientData.IDGFormPDF}
                   formReviewed={clientData.IDGFormReviewed}
                   formIssues={clientData.IDGFormIssues}
                   formString={"IDGForm"}

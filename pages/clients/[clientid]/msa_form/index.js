@@ -32,13 +32,6 @@ const notifyMessage = (status) => {
   }
 };
 
-/*   const crearFecha=()=>{
-    const initialDate= new Date().toLocaleDateString()
-    const newDate=initialDate.split('/')
-    const fixedDate=`${newDate[2]}-${newDate[1].length===1? `0${newDate[1]}`:`${newDate[1]}`}-${newDate[0].length===1 ? `0${newDate[0]}`: `${newDate[0]}`}`
-    return fixedDate
-  
-  } */
 
 
   const crearFecha=()=>{
@@ -134,8 +127,21 @@ const notifyMessage = (status) => {
     AirsHIVMedicalProviderDate:"",
     AIRSHIVStatusHistory:false,
     AIRSHIVStatusHistoryDate:"",
+
     clientUniqueId:data[0]?.id,
+
+    // Added on 2024/09/04 
+    SocialDeterminatsOfHealthAssesment: false,
+    SocialDeterminatsOfHealthAssesmentDate: "",
+    ChlamydiaLaboratoryPsychologicalTestsInformation: false,
+    ChlamydiaLaboratoryPsychologicalTestsInformationDate: "",
+    SyphilisLaboratoryPsychologicalTestsInformation: false,
+    SyphilisLaboratoryPsychologicalTestsInformationDate: "",
+    GonorrheaLaboratoryPsychologicalTestsInformation: false,
+    GonorrheaLaboratoryPsychologicalTestsInformationDate: "",
   });
+
+  console.log("client data create form", clientData)
 
   const todaysDate = new Date();
 
@@ -1577,7 +1583,252 @@ const handleMsaform = ()=> {
                 </a>
               </div>
             </div>
-
+          
+            <div
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
+            >
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={() => {
+                    clientData.SocialDeterminatsOfHealthAssesmentDate==="" || clientData.SocialDeterminatsOfHealthAssesmentDate===null ? (
+                    setClientData({
+                      ...clientData,
+                      SocialDeterminatsOfHealthAssesment:
+                        !clientData.SocialDeterminatsOfHealthAssesment,
+                        SocialDeterminatsOfHealthAssesmentDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      SocialDeterminatsOfHealthAssesment:
+                        !clientData.SocialDeterminatsOfHealthAssesment,
+                      SocialDeterminatsOfHealthAssesmentDate: ''
+                    })
+                  }}
+                  checked={clientData.SocialDeterminatsOfHealthAssesment? true : false}
+                />
+              </div>
+              <div>
+                <p className="text-lg">Social Determinants of Health Assessment</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="SocialDeterminatsOfHealthAssesment"
+                  value={
+                    clientData.SocialDeterminatsOfHealthAssesmentDate &&
+                    clientData.SocialDeterminatsOfHealthAssesmentDate
+                  }
+                  /* disabled={clientData.SocialDeterminatsOfHealthAssesmentDate ? true: false} */
+                  className=" rounded p-2 border"
+                  onChange={(e) => {
+                    if(clientData.SocialDeterminatsOfHealthAssesment){
+                      setClientData({
+                        ...clientData,
+                        SocialDeterminatsOfHealthAssesmentDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        SocialDeterminatsOfHealthAssesmentDate: e.target.value,
+                        SocialDeterminatsOfHealthAssesment:
+                          !clientData.SocialDeterminatsOfHealthAssesment,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
+            >
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={() => {
+                    clientData.ChlamydiaLaboratoryPsychologicalTestsInformationDate==="" || clientData.ChlamydiaLaboratoryPsychologicalTestsInformationDate===null ? (
+                    setClientData({
+                      ...clientData,
+                      ChlamydiaLaboratoryPsychologicalTestsInformation:
+                        !clientData.ChlamydiaLaboratoryPsychologicalTestsInformation,
+                        ChlamydiaLaboratoryPsychologicalTestsInformationDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      ChlamydiaLaboratoryPsychologicalTestsInformation:
+                        !clientData.ChlamydiaLaboratoryPsychologicalTestsInformation,
+                      ChlamydiaLaboratoryPsychologicalTestsInformationDate: ''
+                    })
+                  }}
+                  checked={clientData.ChlamydiaLaboratoryPsychologicalTestsInformation? true : false}
+                />
+              </div>
+              <div>
+                <p className="text-lg">Chlamydia - Laboratory & Psychological Tests Information</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="ChlamydiaLaboratoryPsychologicalTestsInformation"
+                  value={
+                    clientData.ChlamydiaLaboratoryPsychologicalTestsInformationDate &&
+                    clientData.ChlamydiaLaboratoryPsychologicalTestsInformationDate
+                  }
+                  /* disabled={clientData.ChlamydiaLaboratoryPsychologicalTestsInformationDate ? true: false} */
+                  className=" rounded p-2 border"
+                  onChange={(e) => {
+                    if(clientData.ChlamydiaLaboratoryPsychologicalTestsInformation){
+                      setClientData({
+                        ...clientData,
+                        ChlamydiaLaboratoryPsychologicalTestsInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        ChlamydiaLaboratoryPsychologicalTestsInformationDate: e.target.value,
+                        ChlamydiaLaboratoryPsychologicalTestsInformation:
+                          !clientData.ChlamydiaLaboratoryPsychologicalTestsInformation,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
+            >
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={() => {
+                    clientData.SyphilisLaboratoryPsychologicalTestsInformationDate==="" || clientData.SyphilisLaboratoryPsychologicalTestsInformationDate===null ? (
+                    setClientData({
+                      ...clientData,
+                      SyphilisLaboratoryPsychologicalTestsInformation:
+                        !clientData.SyphilisLaboratoryPsychologicalTestsInformation,
+                        SyphilisLaboratoryPsychologicalTestsInformationDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      SyphilisLaboratoryPsychologicalTestsInformation:
+                        !clientData.SyphilisLaboratoryPsychologicalTestsInformation,
+                      SyphilisLaboratoryPsychologicalTestsInformationDate: ''
+                    })
+                  }}
+                  checked={clientData.SyphilisLaboratoryPsychologicalTestsInformation? true : false}
+                />
+              </div>
+              <div>
+                <p className="text-lg">Syphilis - Laboratory & Psychological Tests Information</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="SyphilisLaboratoryPsychologicalTestsInformation"
+                  value={
+                    clientData.SyphilisLaboratoryPsychologicalTestsInformationDate &&
+                    clientData.SyphilisLaboratoryPsychologicalTestsInformationDate
+                  }
+                  /* disabled={clientData.SyphilisLaboratoryPsychologicalTestsInformationDate ? true: false} */
+                  className=" rounded p-2 border"
+                  onChange={(e) => {
+                    if(clientData.SyphilisLaboratoryPsychologicalTestsInformation){
+                      setClientData({
+                        ...clientData,
+                        SyphilisLaboratoryPsychologicalTestsInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        SyphilisLaboratoryPsychologicalTestsInformationDate: e.target.value,
+                        SyphilisLaboratoryPsychologicalTestsInformation:
+                          !clientData.SyphilisLaboratoryPsychologicalTestsInformation,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+            <div
+              className={`${MSAStyles.formRowsContainer} msa-table-light-light-blue-bg grid gap-5 py-1  my-2`}
+            >
+              <div className="form-row-item px-5">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  onChange={() => {
+                    clientData.GonorrheaLaboratoryPsychologicalTestsInformationDate==="" || clientData.GonorrheaLaboratoryPsychologicalTestsInformationDate===null ? (
+                    setClientData({
+                      ...clientData,
+                      GonorrheaLaboratoryPsychologicalTestsInformation:
+                        !clientData.GonorrheaLaboratoryPsychologicalTestsInformation,
+                        GonorrheaLaboratoryPsychologicalTestsInformationDate:crearFecha()
+                    })):setClientData({
+                      ...clientData,
+                      GonorrheaLaboratoryPsychologicalTestsInformation:
+                        !clientData.GonorrheaLaboratoryPsychologicalTestsInformation,
+                      GonorrheaLaboratoryPsychologicalTestsInformationDate: ''
+                    })
+                  }}
+                  checked={clientData.GonorrheaLaboratoryPsychologicalTestsInformation? true : false}
+                />
+              </div>
+              <div>
+                <p className="text-lg">Gonorrhea - Laboratory & Psychological Tests Information</p>
+              </div>
+              <div className="text-center">
+                <input
+                  type="date"
+                  id="GonorrheaLaboratoryPsychologicalTestsInformation"
+                  value={
+                    clientData.GonorrheaLaboratoryPsychologicalTestsInformationDate &&
+                    clientData.GonorrheaLaboratoryPsychologicalTestsInformationDate
+                  }
+                  /* disabled={clientData.GonorrheaLaboratoryPsychologicalTestsInformationDate ? true: false} */
+                  className=" rounded p-2 border"
+                  onChange={(e) => {
+                    if(clientData.GonorrheaLaboratoryPsychologicalTestsInformation){
+                      setClientData({
+                        ...clientData,
+                        GonorrheaLaboratoryPsychologicalTestsInformationDate: e.target.value,
+                      });
+                    } else {
+                      setClientData({
+                        ...clientData,
+                        GonorrheaLaboratoryPsychologicalTestsInformationDate: e.target.value,
+                        GonorrheaLaboratoryPsychologicalTestsInformation:
+                          !clientData.GonorrheaLaboratoryPsychologicalTestsInformation,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="text-center flex justify-center">
+              <a href={data[0]?.tickler_updates_folder_url ? data[0]?.tickler_updates_folder_url : ""} target="_blank" rel="noreferrer">
+              <img src={'/dropbox_folder.svg'} alt="" width="34"/>
+                </a>
+              </div>
+            </div>
+         
             <div
               className={`${MSAStyles.formRowsContainer} msa-table-light-light-green-bg grid gap-5 py-1  my-2`}
             >
