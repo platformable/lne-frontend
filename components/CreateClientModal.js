@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import Loader from "./Loader";
+import React, { useState, useEffect, useRef } from "react"
+import axios from "axios"
+import { useRouter } from "next/router"
+import Loader from "./Loader"
 
 export default function CreateClientModal({
   setShowCreateClientModal,
@@ -9,19 +9,19 @@ export default function CreateClientModal({
   notifyMessage,
   user,
 }) {
-  const router = useRouter();
+  const router = useRouter()
 
-  const loggeduserId = user[`https://lanuevatest.herokuapp.com/roles`];
-  const loggedUserName = user[`https://lanuevatest.herokuapp.com/name`];
-  const loggedUserLastname = user[`https://lanuevatest.herokuapp.com/lastname`];
+  const loggeduserId = user[`https://lanuevatest.herokuapp.com/roles`]
+  const loggedUserName = user[`https://lanuevatest.herokuapp.com/name`]
+  const loggedUserLastname = user[`https://lanuevatest.herokuapp.com/lastname`]
 
-  const { current: a } = useRef(["a"]);
+  const { current: a } = useRef(["a"])
 
-  const [users, setUsers] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [emptyFields, setEmptyFields] = useState(false);
-  const [errorsInFields, setErrorsInFields] = useState(false);
+  const [users, setUsers] = useState([])
+  const [errorMessage, setErrorMessage] = useState("")
+  const [saving, setSaving] = useState(false)
+  const [emptyFields, setEmptyFields] = useState(false)
+  const [errorsInFields, setErrorsInFields] = useState(false)
 
   // console.log("users", users);
   const [clientData, setClientData] = useState({
@@ -36,43 +36,41 @@ export default function CreateClientModal({
     clientID: "",
     clientHCWemail: loggeduserId !== "Supervisor" ? user.email : "",
     clientCategory: "",
-  });
+  })
 
   const createClientId = () => {
-    const firstNameLetter = clientData?.clientFirstName?.slice(0, 1);
-    let shortSsn = String(clientData?.clientSSN)?.slice(-4);
+    const firstNameLetter = clientData?.clientFirstName?.slice(0, 1)
+    let shortSsn = String(clientData?.clientSSN)?.slice(-4)
 
-    const lastnameFirstLetter = clientData?.clientLastName?.slice(0, 1);
+    const lastnameFirstLetter = clientData?.clientLastName?.slice(0, 1)
     const result =
       firstNameLetter.toUpperCase() +
       shortSsn +
-      lastnameFirstLetter.toUpperCase();
-    setClientData({ ...clientData, clientID: result });
-  };
+      lastnameFirstLetter.toUpperCase()
+    setClientData({ ...clientData, clientID: result })
+  }
   const getUsers = () => {
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`)
       .then((res) => res.json())
       .then((response) => setUsers(response))
-      .catch((err) => console.log("err", err));
-  };
+      .catch((err) => console.log("err", err))
+  }
 
   const checkErrorsFields = () => {
     // setErrorMessage('');
-    setErrorsInFields(true);
-    setSaving(false);
-  };
-
-  
+    setErrorsInFields(true)
+    setSaving(false)
+  }
 
   const checkEmtpyFields = () => {
-    setErrorMessage("");
-    setEmptyFields(true);
-    setSaving(false);
-  };
+    setErrorMessage("")
+    setEmptyFields(true)
+    setSaving(false)
+  }
 
   const addClient = () => {
-    setSaving(true);
-    setEmptyFields(false);
+    setSaving(true)
+    setEmptyFields(false)
     // console.log(clientData);
     if (
       clientData.clientFirstName === "" ||
@@ -80,18 +78,16 @@ export default function CreateClientModal({
       clientData.clientSSN === "" ||
       clientData.clientID === "" ||
       !clientData.length === 6 ||
-      clientData.clientCategory === ''
+      clientData.clientCategory === ""
     ) {
-      checkEmtpyFields();
-    }
-    else if (
-   
+      checkEmtpyFields()
+    } else if (
       clientData.clientSSN.length <= 3 ||
       clientData.clientSSN.length > 4
     ) {
-      checkErrorsFields();
+      checkErrorsFields()
     } else {
-      notifyMessage('info');
+      notifyMessage("info")
 
       axios(`${process.env.NEXT_PUBLIC_SERVER_URL}/clients/create`, {
         method: "POST",
@@ -102,30 +98,37 @@ export default function CreateClientModal({
         data: clientData,
       })
         .then(function (response) {
-          if (response.status === 200 || response.statusText === "OK") {
-            notifyMessage('ok');
-
+          if (response.status === 409) {
+            console.log("Conflict:", response.message)
+            notifyMessage("fail", response.message || "Conflict occurred")
+          } else if (response.status === 200) {
+            notifyMessage(
+              "ok",
+              response.message || "Client created successfully"
+            )
             setSaving(false)
-            setShowCreateClientModal(!showCreateClientModal);
+            setShowCreateClientModal(!showCreateClientModal)
             setTimeout(() => {
-              router.reload();
-            }, 50000);
+              router.reload()
+            }, 50000)
           }
         })
         .catch(function (error) {
-          //showErrors(error.response.data)
-          notifyMessage('fail');
+          notifyMessage(
+            "fail",
+            error.response.data.message || "Something went wrong, try again"
+          )
 
           setSaving(false)
-        });
+        })
     }
-  };
+  }
 
   const assignUser = (clientHCWID) => {
     // console.log("ejecutandose assign", clientHCWID);
     const filteredusers = users.filter(
       (user, index) => user.user_id === clientHCWID
-    );
+    )
 
     setClientData({
       ...clientData,
@@ -133,27 +136,27 @@ export default function CreateClientModal({
       clientHCWID: filteredusers[0]?.user_id,
       clientHCWName: filteredusers[0]?.name,
       clientHCWLastname: filteredusers[0]?.lastname,
-    });
+    })
     /* createClientId() */
     /*  
     clientHCWName
     clientHCWLastname */
-  };
+  }
 
   useEffect(() => {
-    getUsers();
-    createClientId();
+    getUsers()
+    createClientId()
     /*   assignUser(clientData.clientHCWID) */
   }, [
     clientData.clientFirstName,
     clientData.clientLastName,
     clientData.clientSSN,
     saving,
-  ]);
+  ])
   function isNumberKey(e) {
-    const invalidChars = ["-", "+", "e"];
+    const invalidChars = ["-", "+", "e"]
     if (invalidChars.includes(e.key)) {
-      e.preventDefault();
+      e.preventDefault()
     }
   }
   return (
@@ -165,12 +168,16 @@ export default function CreateClientModal({
               onClick={() => setShowCreateClientModal(!showCreateClientModal)}
               className="p-2"
             >
-              <img src="/client/close_modal_client.svg" title="Close" alt="Close modal"/>
+              <img
+                src="/client/close_modal_client.svg"
+                title="Close"
+                alt="Close modal"
+              />
             </button>
           </div>
           <div className="grid grid-cols-1 gap-6 px-9 pb-6">
             <div className="flex items-center pt-1 gap-3">
-              <img src="/client/add_info_icon.svg" alt="add info icon"/>
+              <img src="/client/add_info_icon.svg" alt="add info icon" />
               <h1 className="font-medium text-3xl">Client Information</h1>
             </div>
 
@@ -228,7 +235,7 @@ export default function CreateClientModal({
                   max="4"
                   onWheel={(event) => event.currentTarget.blur()}
                   onChange={(e) => {
-                    setClientData({ ...clientData, clientSSN: e.target.value });
+                    setClientData({ ...clientData, clientSSN: e.target.value })
                   }}
                   onKeyDown={isNumberKey}
                 />
@@ -243,13 +250,13 @@ export default function CreateClientModal({
                 <p className="text-red-500 text-md mt-3">Must be 4 numbers </p>
               )}
             </label>
-            
+
             {loggeduserId === "Supervisor" ? (
               <label className="block">
                 <span className="text-xl font-bold">Asign user</span>
                 <select
                   onChange={(e) => {
-                    assignUser(e.target.value);
+                    assignUser(e.target.value)
                     //setClientData({ ...clientData, clientHCWID: e.target.value })
                   }}
                   className="block w-full text-2xl mt-5 rounded-md p-2 border shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -263,7 +270,7 @@ export default function CreateClientModal({
                           <option value={user.user_id} key={index}>
                             {user.useremail}
                           </option>
-                        );
+                        )
                       })}
                 </select>
               </label>
@@ -305,32 +312,27 @@ export default function CreateClientModal({
                 <option value="Hight risk client">Hight risk client</option>
               </select>
             </label>
-
-            
           </div>
           {errorMessage && (
-              <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">
-                {errorMessage}
-              </span>
-            )}
+            <span className="text-red-600 bg-gray-100 text-center text-xs py-2 rounded-xl">
+              {errorMessage}
+            </span>
+          )}
 
-                <div className="flex justify-center">
-                {saving ? (
-                      <Loader />
-                    ) : (
-                      <button
-                      className="px-10  py-1  font-medium btn-new-blue text-xl flex shadow-xl items-center rounded-md"
-                      onClick={() => addClient()}
-                    >
-                      
-                      Save
-                    </button>
-                    )}
-                 
-                 
-              </div>
+          <div className="flex justify-center">
+            {saving ? (
+              <Loader />
+            ) : (
+              <button
+                className="px-10  py-1  font-medium btn-new-blue text-xl flex shadow-xl items-center rounded-md"
+                onClick={() => addClient()}
+              >
+                Save
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </>
-  );
+  )
 }
