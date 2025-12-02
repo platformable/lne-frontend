@@ -110,7 +110,7 @@ export default function CreateClientModal({
             setShowCreateClientModal(!showCreateClientModal)
             setTimeout(() => {
               router.reload()
-            }, 50000)
+            }, 2000)
           }
         })
         .catch(function (error) {
